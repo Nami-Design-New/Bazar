@@ -1,0 +1,274 @@
+@import "./config";
+
+body {
+  overflow-x: hidden;
+  direction: rtl;
+
+  /*-------- header -------- */
+  header {
+    width: 100%;
+    z-index: 9;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+
+    .header_bar {
+      height: 50px;
+      width: 100%;
+      background: $main;
+      .container {
+        height: 100%;
+        @include space-between();
+        .social {
+          width: 20%;
+          height: 100%;
+          ul {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            height: 100%;
+            li {
+              border: 1px solid $white;
+              border-radius: 50%;
+              width: 32px;
+              height: 32px;
+              transition: $transition;
+              &:hover {
+                background: $white;
+                a {
+                  color: $main;
+                }
+              }
+              a {
+                width: 100%;
+                height: 100%;
+                color: $white;
+                @include centerFlex();
+                font-size: 14px;
+              }
+            }
+          }
+        }
+        .language {
+          width: 20%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          button {
+            @include clearInput();
+            display: flex;
+            gap: 4px;
+            color: $white;
+            font-size: 14px;
+            align-items: center;
+            i {
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
+
+    nav {
+      display: flex;
+      height: 80px;
+
+      .logo {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex: 2;
+        img {
+          height: 70px;
+        }
+      }
+
+      .navigation_links {
+        flex: 3;
+        display: flex;
+        height: 100%;
+
+        li {
+          flex: 1;
+          @include centerFlex();
+          a {
+            color: $main;
+            font-size: 16px;
+            transition: $transition;
+            &.active {
+              color: $second;
+            }
+            &:hover {
+              color: $second;
+            }
+          }
+        }
+
+        @media (max-width: 992px) {
+          position: fixed;
+          top: 0;
+          height: 100vh;
+          width: 50%;
+          background: #fff;
+          right: -50%;
+          padding: 40px 0;
+          transition: $transition;
+          ul {
+            flex-direction: column;
+            li {
+              max-height: 60px;
+            }
+          }
+          &.show {
+            right: 0;
+          }
+        }
+      }
+
+      .left_utils {
+        flex: 2;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 24px;
+
+        button {
+          @include clearInput();
+          color: $main;
+          font-size: 18px;
+          transition: $transition;
+          &:hover {
+            color: $second;
+          }
+        }
+
+        a {
+          color: $main;
+          font-size: 18px;
+          transition: $transition;
+          &:hover {
+            color: $second;
+          }
+        }
+
+        .dropdown {
+          box-shadow: $shadow;
+          a {
+            box-shadow: none !important;
+          }
+          .user {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid $white;
+            overflow: hidden;
+            img {
+              object-fit: contain;
+              width: 100%;
+              height: 100%;
+              display: block;
+            }
+          }
+          .dropdown-menu {
+            transform: translate3d(-70px, 50px, 0px) !important;
+            padding: 0;
+            overflow: hidden;
+            a {
+              font-size: 12px;
+            }
+            border: 0;
+          }
+        }
+        .cart_open {
+          cursor: pointer;
+          position: relative;
+          display: flex;
+          gap: 10px;
+          i {
+            font-size: 18px;
+          }
+          span {
+            @include centerFlex();
+            font-size: 10px;
+            line-height: normal;
+            background: $second;
+            color: $white;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            height: 16px;
+            width: 16px;
+            left: 8px;
+          }
+        }
+        h6 {
+          font-size: 12px;
+          color: $second;
+          line-height: 24px;
+          margin: 0;
+          // @media (max-width: 576px) {
+          //   display: none;
+          // }
+        }
+        .toggler {
+          display: none;
+          cursor: pointer;
+          width: 25px;
+          height: 25px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-end;
+          gap: 5px;
+          span {
+            width: 25px;
+            height: 2px;
+            background: $main;
+            display: block;
+            transition: all 0.25s ease-in-out;
+            &:nth-child(1) {
+              width: 25px;
+            }
+            &:nth-child(2) {
+              width: 19px;
+            }
+            &:nth-child(3) {
+              width: 13px;
+            }
+          }
+          @media (max-width: 992px) {
+            display: flex;
+          }
+          &.close {
+            span {
+              &:nth-child(1) {
+                transform: rotate(45deg);
+                transform-origin: 15% 90%;
+              }
+              &:nth-child(2) {
+                opacity: 0;
+              }
+              &:nth-child(3) {
+                transform-origin: 10% 10%;
+                transform: rotate(-45deg);
+                width: 25px;
+              }
+            }
+          }
+        }
+
+        @media (max-width: 768px) {
+          gap: 20px;
+        }
+        @media (max-width: 576px) {
+          gap: 12px;
+        }
+      }
+    }
+  }
+
+  &.en {
+    direction: ltr;
+  }
+}

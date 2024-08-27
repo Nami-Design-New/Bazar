@@ -1,0 +1,99 @@
+import HeaderTopBar from "./HeaderTopBar";
+import { Link, NavLink } from "react-router-dom";
+
+export default function Header() {
+  return (
+    <header>
+      <HeaderTopBar />
+
+      <nav className="container">
+        <div className="logo">
+          <Link to="/">
+            <img src="/images/logo.png" alt="logo" />
+          </Link>
+        </div>
+
+        <ul className="navigation_links">
+          <li>
+            <NavLink className="nav-link" to="/">
+              الرئيسية
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="nav-link" to="/stores">
+              المتاجر
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="nav-link" to="/about-us">
+              نبذه عنا
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="nav-link" to="/blogs">
+              المدونات
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="nav-link" to="/contact-us">
+              تواصل معنا
+            </NavLink>
+          </li>
+        </ul>
+
+        <div className="left_utils">
+          <div className="cart_open" id="toggleSmallCart">
+            <h6>0,00 ريال</h6>
+            <i className="fa-light fa-bag-shopping"></i>
+            <span>0</span>
+          </div>
+
+          <div className="dropdown">
+            <Link
+              className="account"
+              to="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <div className="user">
+                <img src="assets/images/user.png" alt="avatar" />
+              </div>
+            </Link>
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li>
+                <Link className="dropdown-item" to="/profile">
+                  الملف الشخصى
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/orders">
+                  طلباتى
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/favourites">
+                  المفضلة
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/auth-login">
+                  تسجيل الخروج
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <button data-bs-toggle="modal" data-bs-target="#searchModal">
+            <i className="fa-regular fa-magnifying-glass"></i>
+          </button>
+          <button className="toggler">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+  );
+}
