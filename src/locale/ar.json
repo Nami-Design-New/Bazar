@@ -32,5 +32,14 @@
     "passwordNotMatched": "كلمتا المرور غير متطابقتين",
     "newPasswordSuccess": "تم تغيير كلمة المرور بنجاح",
     "saveChanges": "حفظ التغييرات"
+  },
+  "profile": {
+    "myADs": "اعلاناتي",
+    "myInterests": "اهتماماتي",
+    "myOrders": "طلباتي"
+  },
+  "error": {
+    "pageNotFound": "هذه الصفحة غير موجودة",
+    "goHome": "الذهاب للرئيسية"
   }
 }

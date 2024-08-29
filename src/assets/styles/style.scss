@@ -19,7 +19,7 @@ body {
     .header_bar {
       height: 50px;
       width: 100%;
-      background: $main;
+      background: linear-gradient(238.2deg, $main 0%, $second 100%);
       .container {
         height: 100%;
         @include space-between();
@@ -77,196 +77,206 @@ body {
     nav {
       display: flex;
       height: 80px;
+      background: linear-gradient(238.2deg, $main 0%, $second 100%);
 
-      .logo {
-        height: 100%;
+      .container {
         display: flex;
-        align-items: center;
-        flex: 2;
-        img {
-          height: 70px;
+        .logo {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          flex: 2;
+          img {
+            height: 70px;
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+          }
         }
-      }
 
-      .navigation_links {
-        flex: 3;
-        display: flex;
-        height: 100%;
+        .navigation_links {
+          flex: 3;
+          display: flex;
+          height: 100%;
 
-        li {
-          flex: 1;
-          @include centerFlex();
+          li {
+            flex: 1;
+            @include centerFlex();
+            a {
+              color: $white;
+              font-size: 16px;
+              transition: $transition;
+              &.active {
+                color: $white;
+              }
+              &:hover {
+                color: $white;
+              }
+            }
+          }
+
+          @media (max-width: 992px) {
+            position: fixed;
+            top: 0;
+            height: 100vh;
+            width: 50%;
+            background: #fff;
+            right: -50%;
+            padding: 40px 0;
+            transition: $transition;
+            ul {
+              flex-direction: column;
+              li {
+                max-height: 60px;
+              }
+            }
+            &.show {
+              right: 0;
+            }
+          }
+        }
+
+        .left_utils {
+          flex: 2;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 24px;
+
+          button {
+            @include clearInput();
+            color: $white;
+            font-size: 18px;
+            transition: $transition;
+            &:hover {
+              color: $white;
+            }
+          }
+
           a {
             color: $main;
-            font-size: 16px;
+            font-size: 18px;
             transition: $transition;
-            &.active {
-              color: $second;
-            }
             &:hover {
               color: $second;
             }
           }
-        }
 
-        @media (max-width: 992px) {
-          position: fixed;
-          top: 0;
-          height: 100vh;
-          width: 50%;
-          background: #fff;
-          right: -50%;
-          padding: 40px 0;
-          transition: $transition;
-          ul {
-            flex-direction: column;
-            li {
-              max-height: 60px;
-            }
-          }
-          &.show {
-            right: 0;
-          }
-        }
-      }
-
-      .left_utils {
-        flex: 2;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 24px;
-
-        button {
-          @include clearInput();
-          color: $main;
-          font-size: 18px;
-          transition: $transition;
-          &:hover {
-            color: $second;
-          }
-        }
-
-        a {
-          color: $main;
-          font-size: 18px;
-          transition: $transition;
-          &:hover {
-            color: $second;
-          }
-        }
-
-        .dropdown {
-          box-shadow: $shadow;
-          a {
-            box-shadow: none !important;
-          }
-          .user {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: 2px solid $white;
-            overflow: hidden;
-            img {
-              object-fit: contain;
-              width: 100%;
-              height: 100%;
-              display: block;
-            }
-          }
-          .dropdown-menu {
-            transform: translate3d(-70px, 50px, 0px) !important;
-            padding: 0;
-            overflow: hidden;
+          .dropdown {
             a {
-              font-size: 12px;
+              box-shadow: none !important;
             }
-            border: 0;
-          }
-        }
-        .cart_open {
-          cursor: pointer;
-          position: relative;
-          display: flex;
-          gap: 10px;
-          i {
-            font-size: 18px;
-          }
-          span {
-            @include centerFlex();
-            font-size: 10px;
-            line-height: normal;
-            background: $second;
-            color: $white;
-            border-radius: 50%;
-            position: absolute;
-            bottom: 0;
-            height: 16px;
-            width: 16px;
-            left: 8px;
-          }
-        }
-        h6 {
-          font-size: 12px;
-          color: $second;
-          line-height: 24px;
-          margin: 0;
-          // @media (max-width: 576px) {
-          //   display: none;
-          // }
-        }
-        .toggler {
-          display: none;
-          cursor: pointer;
-          width: 25px;
-          height: 25px;
-          flex-direction: column;
-          justify-content: center;
-          align-items: flex-end;
-          gap: 5px;
-          span {
-            width: 25px;
-            height: 2px;
-            background: $main;
-            display: block;
-            transition: all 0.25s ease-in-out;
-            &:nth-child(1) {
-              width: 25px;
+            .user {
+              box-shadow: $shadow;
+              width: 32px;
+              height: 32px;
+              border-radius: 50%;
+              border: 2px solid $white;
+              overflow: hidden;
+              img {
+                object-fit: contain;
+                width: 100%;
+                height: 100%;
+                display: block;
+                filter: brightness(0) invert(1);
+              }
             }
-            &:nth-child(2) {
-              width: 19px;
-            }
-            &:nth-child(3) {
-              width: 13px;
+            .dropdown-menu {
+              transform: translate3d(-70px, 50px, 0px) !important;
+              padding: 0;
+              overflow: hidden;
+              a {
+                font-size: 12px;
+              }
+              border: 0;
             }
           }
-          @media (max-width: 992px) {
+          .cart_open {
+            cursor: pointer;
+            position: relative;
             display: flex;
-          }
-          &.close {
+            gap: 10px;
+            i {
+              font-size: 18px;
+            }
             span {
+              padding: 4px;
+              @include centerFlex();
+              font-size: 10px;
+              line-height: normal;
+              background: $white;
+              color: $second;
+              border-radius: 50%;
+              position: absolute;
+              bottom: 0;
+              height: 16px;
+              width: 16px;
+              left: 8px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+          h6 {
+            font-size: 12px;
+            color: $white;
+            line-height: 24px;
+            margin: 0;
+            // @media (max-width: 576px) {
+            //   display: none;
+            // }
+          }
+          .toggler {
+            display: none;
+            cursor: pointer;
+            width: 25px;
+            height: 25px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 5px;
+            span {
+              width: 25px;
+              height: 2px;
+              background: $main;
+              display: block;
+              transition: all 0.25s ease-in-out;
               &:nth-child(1) {
-                transform: rotate(45deg);
-                transform-origin: 15% 90%;
-              }
-              &:nth-child(2) {
-                opacity: 0;
-              }
-              &:nth-child(3) {
-                transform-origin: 10% 10%;
-                transform: rotate(-45deg);
                 width: 25px;
               }
+              &:nth-child(2) {
+                width: 19px;
+              }
+              &:nth-child(3) {
+                width: 13px;
+              }
+            }
+            @media (max-width: 992px) {
+              display: flex;
+            }
+            &.close {
+              span {
+                &:nth-child(1) {
+                  transform: rotate(45deg);
+                  transform-origin: 15% 90%;
+                }
+                &:nth-child(2) {
+                  opacity: 0;
+                }
+                &:nth-child(3) {
+                  transform-origin: 10% 10%;
+                  transform: rotate(-45deg);
+                  width: 25px;
+                }
+              }
             }
           }
-        }
 
-        @media (max-width: 768px) {
-          gap: 20px;
-        }
-        @media (max-width: 576px) {
-          gap: 12px;
+          @media (max-width: 768px) {
+            gap: 20px;
+          }
+          @media (max-width: 576px) {
+            gap: 12px;
+          }
         }
       }
     }
@@ -546,6 +556,70 @@ body {
             &::before {
               right: initial;
               left: 4px;
+            }
+          }
+        }
+      }
+    }
+
+    .error-section {
+      @include centerFlex();
+      flex-direction: column;
+      align-items: center;
+      img {
+        height: 300px;
+        margin-bottom: 24px;
+      }
+      h2 {
+        margin: 0;
+        text-align: center;
+        text-wrap: balance;
+        font-size: 48px;
+        font-weight: 800;
+        color: #cecece;
+      }
+      a {
+        min-width: 200px;
+        margin-top: 36px;
+        border: 1px solid $main;
+        color: $main;
+        @include centerFlex();
+        padding: 8px 16px;
+        transition: $transition;
+        border-radius: 12px;
+        gap: 8px;
+        background: none;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        i {
+          font-size: 16px;
+        }
+        &:hover {
+          background: $main;
+          color: #fff;
+        }
+      }
+    }
+
+    .activities-section {
+      .nav-tabs {
+        background: $grayBackground;
+        padding: 12px 16px;
+        border: 0;
+        border-radius: 16px;
+        .nav-item {
+          flex: 1;
+          button {
+            border-radius: 8px;
+            width: 100%;
+            border: 0;
+            padding: 12px 16px;
+            white-space: nowrap;
+            color: $main;
+            &.active {
+              background: linear-gradient(238.2deg, $second 0%, $main 100%);
+              color: $white;
             }
           }
         }
