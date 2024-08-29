@@ -7,11 +7,11 @@ import translationAR from "../locale/ar.json";
 
 const resources = {
   en: {
-    translation: translationEN
+    translation: translationEN,
   },
   ar: {
-    translation: translationAR
-  }
+    translation: translationAR,
+  },
 };
 
 const lang = sessionStorage.getItem("lang") || "ar";
@@ -25,8 +25,8 @@ i18n
     fallbackLng: lang,
     lng: lang,
     interpolation: {
-      escapeValue: false
-    }
+      escapeValue: false,
+    },
   });
 
 export default i18n;

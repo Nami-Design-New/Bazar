@@ -1,5 +1,6 @@
 import HeaderTopBar from "./HeaderTopBar";
 import { Link, NavLink } from "react-router-dom";
+import userAvatar from "../../assets/images/avatar-placeholder.svg";
 
 export default function Header() {
   return (
@@ -58,13 +59,18 @@ export default function Header() {
               aria-expanded="false"
             >
               <div className="user">
-                <img src="assets/images/user.png" alt="avatar" />
+                <img src={userAvatar} alt="avatar" />
               </div>
             </Link>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <li>
                 <Link className="dropdown-item" to="/profile">
                   الملف الشخصى
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/edit-profile">
+                  تعديل الملف الشخصى
                 </Link>
               </li>
               <li>
@@ -78,7 +84,7 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <Link className="dropdown-item" to="/auth-login">
+                <Link className="dropdown-item" to="/login">
                   تسجيل الخروج
                 </Link>
               </li>

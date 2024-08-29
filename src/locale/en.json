@@ -1,0 +1,7 @@
+{
+  "auth": {
+    "login": "Login",
+    "loginSubtitle": "Enter your registered data to complete the login process",
+    "phone": "Phone Number"
+  }
+}
