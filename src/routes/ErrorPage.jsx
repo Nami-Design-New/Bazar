@@ -9,7 +9,7 @@ function ErrorPage() {
       <img src={errorImg} alt="error image" />
       <h2>404</h2>
       <h2>{t("error.pageNotFound")}</h2>
-      <Link to="/">
+      <Link to="/" className="backhome">
         <i className="fa-solid fa-home"></i>
         <span>{t("error.goHome")}</span>
       </Link>

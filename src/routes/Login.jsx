@@ -41,7 +41,7 @@ function Login() {
           />
         </div>
 
-        <Link to="/forget-password" className="forgetpass">
+        <Link to="/forget-password" className="forgetpass gradient-text">
           {t("auth.forgetPassword")}
         </Link>
 
@@ -53,7 +53,8 @@ function Login() {
         </div>
         <div className="d-flex gap-2 flex-lg-row flex-column w-100">
           <Link to="/register" className="noAccount">
-            {t("auth.don'tHaveAccount")} <span>{t("auth.createAccount")}</span>
+            {t("auth.don'tHaveAccount")}{" "}
+            <span className="gradient-text">{t("auth.createAccount")}</span>
           </Link>
         </div>
       </form>

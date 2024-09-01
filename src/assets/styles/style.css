@@ -527,6 +527,9 @@ body main {
   padding: 40px 0 80px;
   position: relative;
 }
+body main:has(.section-head) {
+  padding: 0 0 80px;
+}
 body main .auth-form {
   position: relative;
   display: flex;
@@ -627,7 +630,7 @@ body main .auth-form .pass-group span {
   width: 60px;
   height: 56px;
   border: 1px solid #d9d9d9;
-  background: var(--input-bg);
+  background: #fafafa;
   border-right: 0;
   border-radius: 12px 0 0 12px !important;
   color: #777777;
@@ -767,7 +770,7 @@ body main .auth-form .question .quest {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--black-color);
+  color: #000;
 }
 body main .auth-form .question .vendorInput {
   -webkit-appearance: none !important;
@@ -782,7 +785,7 @@ body main .auth-form .question .vendorInput::after {
   height: 24px;
   border-radius: 16px;
   content: "";
-  background-color: var(--text-color);
+  background-color: #777777;
   transition: all 0.2s ease-in-out;
 }
 body main .auth-form .question .vendorInput::before {
@@ -803,6 +806,22 @@ body main .auth-form .question .vendorInput:checked::after {
 body main .auth-form .question .vendorInput:checked::before {
   right: initial;
   left: 4px;
+}
+body main .auth-form input {
+  background: #fafafa;
+  background: #fafafa;
+  border: 1px solid #d9d9d9;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  box-shadow: none !important;
+  color: #231f20;
+  color: #000;
+  direction: rtl;
+  font-size: 14px;
+  height: 56px;
+  outline: none;
+  padding: 8px 12px;
+  width: 100%;
 }
 body main .error-section {
   display: flex;
@@ -826,8 +845,10 @@ body main .error-section h2 {
 body main .error-section a {
   min-width: 200px;
   margin-top: 36px;
-  border: 1px solid #4381f8;
   color: #4381f8;
+  border: 1px solid #4381f8;
+  position: relative;
+  transition: all 0.2s ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -839,13 +860,32 @@ body main .error-section a {
   display: flex;
   align-items: center;
   font-size: 16px;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+body main .error-section a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: inherit;
+  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%) !important;
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+  z-index: -1;
 }
 body main .error-section a i {
   font-size: 16px;
 }
 body main .error-section a:hover {
-  background: #4381f8;
   color: #fff;
+  border: 1px solid transparent;
+  background-color: transparent;
+}
+body main .error-section a:hover::after {
+  opacity: 1;
 }
 body main .activities-section .nav-tabs {
   padding: 12px 16px;
@@ -1070,7 +1110,7 @@ body .gradient-text {
   background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
   -webkit-background-clip: text;
           background-clip: text;
-  color: transparent;
+  color: transparent !important;
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -1078,7 +1118,7 @@ body .gradient-icon::before {
   background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
   -webkit-background-clip: text;
           background-clip: text;
-  color: transparent;
+  color: transparent !important;
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -1093,15 +1133,39 @@ body .cutom-btn {
   height: 56px;
   gap: 6px;
   border-radius: 12px;
+  border: 1px solid #4381f8;
+  color: #4381f8;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   background: none;
   outline: none;
-  color: #fff;
-  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
+  color: #fff !important;
   transition: all 0.2s ease-in-out;
+  position: relative;
+}
+body .cutom-btn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: inherit;
+  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%) !important;
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+  z-index: -1;
+}
+body .cutom-btn:hover {
+  color: #fff;
+  border: 1px solid transparent;
+  background-color: transparent;
+}
+body .cutom-btn:hover::after {
+  opacity: 1;
 }
 body .cutom-btn.disabled {
   opacity: 0.7;
@@ -1109,8 +1173,8 @@ body .cutom-btn.disabled {
 }
 body .cutom-btn.stroke {
   background: transparent !important;
-  border: 1px solid #4381f8;
-  color: #4381f8;
+  border: 1px solid #4381f8 !important;
+  color: #4381f8 !important;
 }
 body .confirm-delete p {
   color: #000;
@@ -1141,6 +1205,48 @@ body .confirm-delete .delete-btn {
 }
 body .confirm-delete.other .delete-btn {
   background: linear-gradient(238.2deg, #4381f8 0%, #d785f1 100%);
+}
+body .section-head {
+  width: 100%;
+  background: #f4f4f4;
+  padding: 16px 0;
+}
+body .section-head .container {
+  position: relative;
+  height: 100%;
+}
+body .section-head .text-wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+body .section-head .text-wrap a {
+  font-size: 14px;
+  color: #aaaaaa;
+}
+body .section-head .text-wrap h1 {
+  color: #4381f8;
+  font-size: 24px;
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+  body .section-head .text-wrap h1 {
+    font-size: 18px;
+  }
+}
+body .section-head .text-wrap p {
+  font-size: 14px;
+  color: #000;
+}
+body .section-head .img {
+  width: 100%;
+}
+body .section-head .img img {
+  max-height: 150px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .terms-condition-alert {

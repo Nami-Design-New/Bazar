@@ -286,6 +286,10 @@ body {
     padding: 40px 0 80px;
     position: relative;
 
+    &:has(.section-head) {
+      padding: 0 0 80px;
+    }
+
     .auth-form {
       position: relative;
       display: flex;
@@ -386,7 +390,7 @@ body {
           width: 60px;
           height: 56px;
           border: 1px solid $LightGray;
-          background: var(--input-bg);
+          background: $inputBg;
           border-right: 0;
           border-radius: 12px 0 0 12px !important;
           color: $textColor;
@@ -522,7 +526,7 @@ body {
           display: flex;
           align-items: center;
           gap: 8px;
-          color: var(--black-color);
+          color: $black;
         }
         .vendorInput {
           appearance: none !important;
@@ -534,7 +538,7 @@ body {
             height: 24px;
             border-radius: 16px;
             content: "";
-            background-color: var(--text-color);
+            background-color: $textColor;
             transition: $transition;
           }
           &::before {
@@ -560,6 +564,23 @@ body {
           }
         }
       }
+
+      input {
+        background: #fafafa;
+        background: $inputBg;
+        border: 1px solid #d9d9d9;
+        border: 1px solid $LightGray;
+        border-radius: 12px;
+        box-shadow: none !important;
+        color: #231f20;
+        color: $black;
+        direction: rtl;
+        font-size: 14px;
+        height: 56px;
+        outline: none;
+        padding: 8px 12px;
+        width: 100%;
+      }
     }
 
     .error-section {
@@ -581,8 +602,10 @@ body {
       a {
         min-width: 200px;
         margin-top: 36px;
-        border: 1px solid $main;
         color: $main;
+        border: 1px solid $main;
+        position: relative;
+        transition: $transition;
         @include centerFlex();
         padding: 8px 16px;
         transition: $transition;
@@ -592,12 +615,38 @@ body {
         display: flex;
         align-items: center;
         font-size: 16px;
+        position: relative;
+        transition: $transition;
+
+        &::after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          border-radius: inherit;
+          background: linear-gradient(
+            238.2deg,
+            $second 0%,
+            $main 100%
+          ) !important;
+          transition: $transition;
+          opacity: 0;
+          z-index: -1;
+        }
+
         i {
           font-size: 16px;
         }
         &:hover {
-          background: $main;
-          color: #fff;
+          color: $white;
+          border: 1px solid transparent;
+          background-color: transparent;
+
+          &::after {
+            opacity: 1;
+          }
         }
       }
     }
@@ -853,7 +902,7 @@ body {
   .gradient-text {
     background: linear-gradient(238.2deg, $second 0%, $main 100%);
     background-clip: text;
-    color: transparent;
+    color: transparent !important;
     width: fit-content;
   }
 
@@ -861,7 +910,7 @@ body {
     &::before {
       background: linear-gradient(238.2deg, $second 0%, $main 100%);
       background-clip: text;
-      color: transparent;
+      color: transparent !important;
       width: fit-content;
     }
   }
@@ -878,11 +927,38 @@ body {
     height: 56px;
     gap: 6px;
     border-radius: 12px;
+    border: 1px solid $main;
+    color: $main;
+    background-color: transparent;
     @include centerFlex();
     @include clearInput();
-    color: #fff;
-    background: linear-gradient(238.2deg, $second 0%, $main 100%);
+    color: #fff !important;
     transition: $transition;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border-radius: inherit;
+      background: linear-gradient(238.2deg, $second 0%, $main 100%) !important;
+      transition: $transition;
+      opacity: 0;
+      z-index: -1;
+    }
+
+    &:hover {
+      color: $white;
+      border: 1px solid transparent;
+      background-color: transparent;
+
+      &::after {
+        opacity: 1;
+      }
+    }
 
     &.disabled {
       opacity: 0.7;
@@ -891,8 +967,8 @@ body {
 
     &.stroke {
       background: transparent !important;
-      border: 1px solid $main;
-      color: $main;
+      border: 1px solid $main !important;
+      color: $main !important;
     }
   }
 
@@ -927,6 +1003,47 @@ body {
     &.other {
       .delete-btn {
         background: linear-gradient(238.2deg, $main 0%, $second 100%);
+      }
+    }
+  }
+
+  .section-head {
+    width: 100%;
+    background: $grayBackground;
+    padding: 16px 0;
+    .container {
+      position: relative;
+      height: 100%;
+    }
+    .text-wrap {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      a {
+        font-size: 14px;
+        color: $inputHint;
+      }
+      h1 {
+        color: $main;
+        font-size: 24px;
+        font-weight: bold;
+        @media (max-width: 768px) {
+          font-size: 18px;
+        }
+      }
+      p {
+        font-size: 14px;
+        color: $black;
+      }
+    }
+    .img {
+      width: 100%;
+      img {
+        max-height: 150px;
+        position: absolute;
+        top: 0;
+        left: 0;
       }
     }
   }

@@ -82,16 +82,20 @@ function Register() {
         </div>
         <p className="d-flex w-100 gap-2 terms-condition-alert">
           {t("auth.acceptingTermsByContinue1")}
-          <Link to="/terms">{t("auth.terms")}</Link>
+          <Link to="/terms" className="gradient-text">
+            {t("auth.terms")}
+          </Link>
           {t("auth.acceptingTermsByContinueAnd")}
-          <Link to="/privacy">{t("auth.privacy")}</Link>
+          <Link to="/privacy" className="gradient-text">
+            {t("auth.privacy")}
+          </Link>
           {t("auth.acceptingTermsByContinue2")}
         </p>
         <div className="d-flex gap-2 flex-lg-row flex-column w-100">
           <SubmitButton loading={loading} name={t("auth.createAccount")} />
         </div>
         <div className="d-flex gap-2 flex-lg-row flex-column w-100">
-          <Link to="/login" className="noAccount">
+          <Link to="/login" className="noAccount gradient-text">
             {t("auth.alreadyHaveAccount")} <span>{t("auth.login")}</span>
           </Link>
         </div>

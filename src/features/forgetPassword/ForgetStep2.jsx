@@ -44,7 +44,7 @@ function ForgetStep2({ setStep }) {
             className={`resend_link ${resendDisabled ? "disabled" : ""}`}
           >
             {t("auth.didnotReceiveCode")}
-            <span>{t("auth.resendCode")}</span>
+            <span className="gradient-text">{t("auth.resendCode")}</span>
           </span>
           <div className="timer">
             <span>
