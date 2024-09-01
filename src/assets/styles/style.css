@@ -336,7 +336,7 @@ body header nav .container .logo {
 }
 body header nav .container .logo img {
   height: 70px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
 }
 body header nav .container .navigation_links {
   flex: 3;
@@ -848,16 +848,24 @@ body main .error-section a:hover {
   color: #fff;
 }
 body main .activities-section .nav-tabs {
-  background: #f4f4f4;
   padding: 12px 16px;
   border: 0;
   border-radius: 16px;
+  gap: 16px;
 }
 body main .activities-section .nav-tabs .nav-item {
   flex: 1;
 }
+body main .activities-section .nav-tabs .nav-item:first-of-type button {
+  border-end-start-radius: 24px !important;
+}
+body main .activities-section .nav-tabs .nav-item:last-of-type button {
+  border-end-end-radius: 24px !important;
+}
 body main .activities-section .nav-tabs .nav-item button {
-  border-radius: 8px;
+  background: #dfdcdc;
+  color: #5d5d5d !important;
+  border-radius: 12px;
   width: 100%;
   border: 0;
   padding: 12px 16px;
@@ -866,7 +874,219 @@ body main .activities-section .nav-tabs .nav-item button {
 }
 body main .activities-section .nav-tabs .nav-item button.active {
   background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
+  color: #fff !important;
+}
+body main .activities-section .content-wrapper {
+  padding: 40px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+body main .activities-section .content-wrapper .add-btn {
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  outline: none;
+  color: #4381f8;
+  border: 1px solid #4381f8;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  font-size: 16px;
+}
+body main .activities-section .content-wrapper .add-btn i {
+  font-size: 16px;
+}
+body main .activities-section .content-wrapper .add-btn:hover {
   color: #fff;
+  border: none;
+}
+body main .activities-section .content-wrapper .add-btn:hover::after {
+  opacity: 1;
+}
+body main .activities-section .content-wrapper .add-btn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 12px;
+  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+  z-index: -1;
+}
+body main .activities-section .content-wrapper .activity-card {
+  background-color: #fff;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1490196078);
+  width: 100%;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  position: relative;
+  background: #f6f6f6;
+  border-radius: 12px;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .image-wrapper {
+  width: 120px;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .image-wrapper img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .card-content {
+  flex: 1 0;
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .card-content .title {
+  color: #000;
+  font-size: 18px;
+  margin: 0;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .card-content .categories-wrapper {
+  width: 100%;
+  display: flex;
+  gap: 0 24px;
+  flex-wrap: wrap;
+  position: relative;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .card-content .categories-wrapper .category {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .card-content .date {
+  color: #000;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .action-boxes {
+  padding: 16px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .action-boxes .action-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(234, 234, 234, 0.5098039216);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .action-boxes .action-btn i {
+  font-size: 20px;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-statistics {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 16px;
+  position: relative;
+  padding: 0 16px 16px;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-statistics .statistic {
+  flex: 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 16px;
+  position: relative;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-statistics .statistic:not(:last-of-type)::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color: #ececec;
+  top: 0;
+  left: 0;
+  border-radius: 2px;
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-statistics .statistic i {
+  font-size: 28px;
+}
+@media screen and (max-width: 768px) {
+  body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-statistics .statistic i {
+    font-size: 20px;
+  }
+}
+body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-statistics .statistic .value {
+  color: #000;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  font-weight: 600;
+}
+@media screen and (max-width: 768px) {
+  body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-statistics .statistic .value {
+    font-size: 16px;
+  }
+}
+body main .activities-section .content-wrapper .activity-card.interest-mini-card .card-content {
+  gap: 16px !important;
+  padding: 16px !important;
+}
+body .gradient-text {
+  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+body .gradient-icon::before {
+  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+body .one-line-wrap {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 body .cutom-btn {
   width: 100%;
@@ -891,6 +1111,36 @@ body .cutom-btn.stroke {
   background: transparent !important;
   border: 1px solid #4381f8;
   color: #4381f8;
+}
+body .confirm-delete p {
+  color: #000;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+body .confirm-delete p span {
+  color: red;
+  font-weight: 600;
+}
+body .confirm-delete .cancel-btn {
+  border: 1px solid #000;
+  color: #000;
+  width: 100%;
+  outline: none;
+  background: none;
+  padding: 8px;
+  border-radius: 8px;
+}
+body .confirm-delete .delete-btn {
+  width: 100%;
+  padding: 8px;
+  background: red;
+  color: #fff;
+  border-radius: 8px;
+  border: 0;
+  outline: none;
+}
+body .confirm-delete.other .delete-btn {
+  background: linear-gradient(238.2deg, #4381f8 0%, #d785f1 100%);
 }
 
 .terms-condition-alert {

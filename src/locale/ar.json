@@ -36,10 +36,29 @@
   "profile": {
     "myADs": "اعلاناتي",
     "myInterests": "اهتماماتي",
-    "myOrders": "طلباتي"
+    "myOrders": "طلباتي",
+    "addAD": "اضافة اعلان",
+    "addInterest": "اضافة اهتمام",
+    "addOrder": "اضافة طلب"
   },
   "error": {
     "pageNotFound": "هذه الصفحة غير موجودة",
     "goHome": "الذهاب للرئيسية"
-  }
+  },
+  "currency": {
+    "sar": "ريال"
+  },
+  "categories": {
+    "estates": "عقارات",
+    "cars": "سيارات",
+    "villas": "فيلل"
+  },
+  "activities": {
+    "areYouSureYouWantToDeleteInterest": "هل انت متأكد من حذف هذا الاهتمام؟",
+    "areYouSureYouWantToDeleteOrder": "هل انت متأكد من حذف هذا الطلب؟",
+    "areYouSureYouWantToDeleteAD": "هل انت متأكد من حذف هذا الاعلان؟"
+  },
+  "createdAt": "تم الإنشاء في",
+  "delete": "حذف",
+  "cancel": "الغاء"
 }
