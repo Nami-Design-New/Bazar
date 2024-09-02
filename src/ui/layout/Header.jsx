@@ -1,13 +1,36 @@
 import HeaderTopBar from "./HeaderTopBar";
+import NotificationItem from "./NotificationItem";
 import { Link, NavLink } from "react-router-dom";
-import userAvatar from "../../assets/images/avatar-placeholder.svg";
+import { useTranslation } from "react-i18next";
+import { Dropdown } from "react-bootstrap";
+import { useState } from "react";
+import {
+  IconBell,
+  IconCirclePlus,
+  IconMessage,
+  IconSearch,
+  IconShoppingBag
+} from "@tabler/icons-react";
 
 export default function Header() {
+  const { t } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
+
+
+  const handleClickOutSide = () => {
+    setIsOpen(false);
+  };
+
   return (
     <header>
       <HeaderTopBar />
 
-      <nav className="">
+      <div
+        className={`underLay ${isOpen ? "active" : ""}`}
+        onClick={handleClickOutSide}
+      />
+
+      <nav>
         <div className="container">
           <div className="logo">
             <Link to="/">
@@ -15,90 +38,150 @@ export default function Header() {
             </Link>
           </div>
 
-          <ul className="navigation_links">
-            <li>
-              <NavLink className="nav-link" to="/">
-                الرئيسية
+          <ul className={`navigation_links ${isOpen ? "show" : ""}`}>
+            <li className="logoo">
+              <NavLink className="nav-link" to="/" onClick={handleClickOutSide}>
+                <img src={"/images/logo.png"} alt="" />
               </NavLink>
             </li>
             <li>
-              <NavLink className="nav-link" to="/stores">
-                المتاجر
+              <NavLink className="nav-link" to="/" onClick={handleClickOutSide}>
+                {t("header.home")}
               </NavLink>
             </li>
             <li>
-              <NavLink className="nav-link" to="/about-us">
-                نبذه عنا
+              <NavLink
+                className="nav-link"
+                to="/contact-us"
+                onClick={handleClickOutSide}
+              >
+                {t("header.categories")}
               </NavLink>
             </li>
             <li>
-              <NavLink className="nav-link" to="/blogs">
-                المدونات
+              <NavLink
+                className="nav-link"
+                to="/ads"
+                onClick={handleClickOutSide}
+              >
+                {t("header.Ads")}
               </NavLink>
             </li>
             <li>
-              <NavLink className="nav-link" to="/contact-us">
-                تواصل معنا
+              <NavLink
+                className="nav-link"
+                to="/about-us"
+                onClick={handleClickOutSide}
+              >
+                {t("header.aboutUs")}
               </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="nav-link"
+                to="/contact-us"
+                onClick={handleClickOutSide}
+              >
+                {t("header.contactUs")}
+              </NavLink>
+            </li>
+            <li>
+              <Link
+                to="/add-post"
+                className="add_ad"
+                onClick={handleClickOutSide}
+              >
+                <IconCirclePlus stroke={1.5} />
+                {t("header.addAd")}
+              </Link>
             </li>
           </ul>
 
           <div className="left_utils">
             <div className="cart_open" id="toggleSmallCart">
-              <h6>0,00 ريال</h6>
-              <i className="fa-light fa-bag-shopping"></i>
+              <IconShoppingBag stroke={1.5} />
               <span>0</span>
             </div>
 
-            <div className="dropdown">
-              <Link
-                className="account"
-                to="#"
-                role="button"
+            <button>
+              <IconSearch stroke={1.5} />
+            </button>
+
+            <Dropdown>
+              <Dropdown.Toggle
+                as="div"
                 id="dropdownMenuLink"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+                className="account"
+              >
+                <IconBell stroke={1.5} />
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu className="drop_Message_Menu" align="start">
+                <div className="scroll_menu">
+                  <Dropdown.Item className="drop_Message">
+                    <NotificationItem />
+                  </Dropdown.Item>
+                </div>
+                <Link className="showall" to="/notifications">
+                  {t("header.allNotifications")}
+                </Link>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <Link to="/chats">
+              <IconMessage stroke={1.5} />
+            </Link>
+
+            <Dropdown>
+              <Dropdown.Toggle
+                as="div"
+                id="dropdownMenuLink"
+                className="account"
               >
                 <div className="user">
-                  <img src={userAvatar} alt="avatar" />
+                  <i className="fa-light fa-user"></i>
                 </div>
-              </Link>
-              <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li>
-                  <Link className="dropdown-item" to="/profile">
-                    الملف الشخصى
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/edit-profile">
-                    تعديل الملف الشخصى
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/my-activities">
-                    نشاطاتي
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/favourites">
-                    المفضلة
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/login">
-                    تسجيل الخروج
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <button data-bs-toggle="modal" data-bs-target="#searchModal">
-              <i className="fa-regular fa-magnifying-glass"></i>
-            </button>
-            <button className="toggler">
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item as={Link} to="/profile">
+                  <i className="fa-solid fa-user"></i> {t("header.profile")}
+                </Dropdown.Item>
+
+                <Dropdown.Item as={Link} to="/edit-profile">
+                  <i className="fa-light fa-pen-to-square"></i>{" "}
+                  {t("header.editProfile")}
+                </Dropdown.Item>
+
+                <Dropdown.Item as={Link} to="/my-activities">
+                  <i className="fa-light fa-chart-line"></i>
+                  {t("header.myActivities")}
+                </Dropdown.Item>
+
+                <Dropdown.Item as={Link} to="/favourites">
+                  <i className="fa-sharp fa-regular fa-heart"></i>
+                  {t("header.favourites")}
+                </Dropdown.Item>
+
+                <Dropdown.Item as={Link} to="/login">
+                  <i className="fa-regular fa-arrow-right-from-bracket"></i>{" "}
+                  {t("header.logout")}
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <label className="toggleMenu">
+              <input
+                type="checkbox"
+                checked={isOpen}
+                onChange={() => setIsOpen(!isOpen)}
+              />
+              <div className="checkmark">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </label>
           </div>
         </div>
       </nav>

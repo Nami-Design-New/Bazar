@@ -1,0 +1,374 @@
+@import "./config";
+
+header {
+  width: 100%;
+  z-index: 9;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+
+  .underLay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9;
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+
+  .header_bar {
+    height: 50px;
+    width: 100%;
+    background: $main;
+
+    .container {
+      height: 100%;
+      @include space-between();
+      .social {
+        width: 20%;
+        height: 100%;
+        ul {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 12px;
+          height: 100%;
+          li {
+            border: 1px solid $white;
+            border-radius: 50%;
+            min-width: 32px;
+            height: 32px;
+            transition: $transition;
+            &:hover {
+              background: $white;
+              a {
+                color: $main;
+              }
+            }
+            a {
+              width: 100%;
+              height: 100%;
+              color: $white;
+              @include centerFlex();
+              font-size: 14px;
+            }
+          }
+        }
+      }
+      .language {
+        width: 20%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        button {
+          @include clearInput();
+          display: flex;
+          gap: 4px;
+          color: $white;
+          font-size: 14px;
+          align-items: center;
+          i {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+
+  nav {
+    display: flex;
+    height: 80px;
+    
+    .container {
+      display: flex;
+      .logo {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex: 1;
+        img {
+          height: 70px;
+        }
+      }
+
+      .navigation_links {
+        flex: 4;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        height: 100%;
+
+        li {
+          @include centerFlex();
+          a {
+            color: $black;
+            font-size: 16px;
+            transition: $transition;
+            &.active {
+              color: $second;
+            }
+            &:hover {
+              color: $second;
+            }
+          }
+          .add_ad {
+            background: $main;
+            color: $white;
+            padding: 2px 12px;
+            border-radius: 60px;
+            font-size: 14px;
+            svg {
+              height: 18px;
+            }
+            &:hover {
+              background: $main;
+              color: $white;
+            }
+          }
+          &.logoo {
+            img {
+              height: 80px;
+            }
+            display: none;
+          }
+        }
+
+        @media (max-width: 992px) {
+          position: fixed;
+          top: 0;
+          height: 100vh;
+          width: 50%;
+          background: $white;
+          right: -50%;
+          flex-direction: column;
+          align-items: flex-start;
+          z-index: 99999;
+          padding: 40px 24px;
+          transition: all 0.2s ease-in-out;
+
+          li {
+            max-height: 60px;
+            &.logoo {
+              display: flex !important;
+            }
+          }
+
+          &.show {
+            right: 0;
+          }
+        }
+      }
+
+      .left_utils {
+        flex: 2;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 20px;
+
+        button {
+          @include clearInput();
+          color: $main;
+          font-size: 18px;
+          transition: $transition;
+          &:hover {
+            color: $main;
+          }
+        }
+
+        a {
+          color: $main;
+          font-size: 18px;
+          transition: $transition;
+          &:hover {
+            color: $second;
+          }
+        }
+
+        .drop_Message_Menu {
+          width: 350px;
+          height: 300px;
+          .scroll_menu {
+            overflow-y: scroll;
+            height: 238px;
+          }
+          .drop_Message {
+            width: 100%;
+            .image-wrapper {
+              align-items: center;
+              border-radius: 50%;
+              display: flex;
+              height: 42px;
+              justify-content: center;
+              overflow: hidden;
+              position: relative;
+              width: 42px;
+              i {
+                font-size: 28px;
+              }
+            }
+            p {
+              margin: 0;
+              text-align: start;
+            }
+          }
+        }
+
+        .dropdown {
+          a {
+            box-shadow: none !important;
+          }
+          svg {
+            stroke: $main;
+          }
+          .user {
+            width: 36px;
+            height: 36px;
+            @include centerFlex();
+            border-radius: 50%;
+            background: #fafafa;
+            border: 1px solid #e4e4e4;
+            overflow: hidden;
+            img {
+              height: 24px;
+            }
+          }
+          .dropdown-menu {
+            transform: translate3d(-70px, 50px, 0px) !important;
+            padding: 8px;
+            overflow: hidden;
+            a {
+              font-size: 12px;
+              width: 100%;
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              &.showall {
+                background: #fafafa;
+                padding: 8px 16px;
+              }
+            }
+            border: 0;
+          }
+        }
+
+        .cart_open {
+          cursor: pointer;
+          position: relative;
+          display: flex;
+          gap: 10px;
+          svg {
+            stroke: $main;
+          }
+          span {
+            padding: 4px;
+            @include centerFlex();
+            font-size: 10px;
+            line-height: normal;
+            background: $second;
+            color: $white;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            height: 16px;
+            width: 16px;
+            right: -6px;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+
+        .toggleMenu {
+          display: none;
+          position: relative;
+          cursor: pointer;
+          font-size: 20px;
+          user-select: none;
+
+          @media screen and (max-width: 992px) {
+            display: block;
+          }
+
+          input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+          }
+
+          .checkmark {
+            position: relative;
+            top: 0;
+            left: 0;
+            height: 1em;
+            width: 1em;
+            span {
+              width: 24px;
+              height: 2px;
+              background-color: $main;
+              position: absolute;
+              transition: all 0.3s ease-in-out;
+              -webkit-transition: all 0.3s ease-in-out;
+              -moz-transition: all 0.3s ease-in-out;
+              -ms-transition: all 0.3s ease-in-out;
+              -o-transition: all 0.3s ease-in-out;
+
+              &:nth-child(1) {
+                top: 10%;
+              }
+              &:nth-child(2) {
+                top: 50%;
+              }
+              &:nth-child(3) {
+                top: 90%;
+              }
+            }
+          }
+
+          input:checked + .checkmark span:nth-child(1) {
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            -webkit-transform: translateY(-50%) rotate(45deg);
+            -moz-transform: translateY(-50%) rotate(45deg);
+            -ms-transform: translateY(-50%) rotate(45deg);
+            -o-transform: translateY(-50%) rotate(45deg);
+          }
+
+          input:checked + .checkmark span:nth-child(2) {
+            top: 50%;
+            transform: translateY(-50%) rotate(-45deg);
+            -webkit-transform: translateY(-50%) rotate(-45deg);
+            -moz-transform: translateY(-50%) rotate(-45deg);
+            -ms-transform: translateY(-50%) rotate(-45deg);
+            -o-transform: translateY(-50%) rotate(-45deg);
+          }
+
+          input:checked + .checkmark span:nth-child(3) {
+            transform: translateX(-50px);
+            -webkit-transform: translateX(-50px);
+            -moz-transform: translateX(-50px);
+            -ms-transform: translateX(-50px);
+            -o-transform: translateX(-50px);
+            opacity: 0;
+          }
+        }
+
+        @media (max-width: 768px) {
+          gap: 20px;
+        }
+        @media (max-width: 576px) {
+          gap: 12px;
+        }
+      }
+    }
+  }
+}

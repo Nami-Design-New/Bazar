@@ -1,4 +1,17 @@
 {
+  "header": {
+    "home": "Home",
+    "Ads": "Advertisements",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+    "categories": "Categories",
+    "profile": "Profile",
+    "editProfile": "Edit Profile",
+    "myActivities": "My Activities",
+    "favourites": "Favourites",
+    "logout": "Logout",
+    "addAd": "Add AD"
+  },
   "auth": {
     "login": "Login",
     "loginSubtitle": "Enter your registered data to complete the login process",
