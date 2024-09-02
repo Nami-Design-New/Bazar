@@ -67,6 +67,11 @@
     "areYouSureYouWantToDeleteAD": "هل انت متأكد من حذف هذا الاعلان؟",
     "addAD": "اضافة اعلان"
   },
+  "markets": {
+    "products": "المنتجات",
+    "aboutMarket": "حول المتجر",
+    "rates": "التقييمات"
+  },
   "orders": {
     "areYouSureYouWantToDeleteOrder": "هل انت متأكد من حذف هذا الطلب؟",
     "addOrder": "اضافة طلب",

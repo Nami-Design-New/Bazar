@@ -2,7 +2,7 @@ import marketLogoImage from "../assets/images/market-logo-1.jpg";
 import marketCoverImage from "../assets/images/market-cover-1.png";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Dropdown } from "react-bootstrap";
+import { Dropdown, Tab, Tabs } from "react-bootstrap";
 function MarketDetails() {
   const { t } = useTranslation();
   const [isAdded, setIsAdded] = useState(false);
@@ -67,6 +67,19 @@ function MarketDetails() {
           </p>
         </div>
       </div>
+      <section className="tabs-section">
+        <Tabs defaultActiveKey="products" id="uncontrolled-tab-example">
+          <Tab eventKey="products" title={t("markets.products")}>
+            <div className="content-wrapper container">products</div>
+          </Tab>
+          <Tab eventKey="aboutMarket" title={t("markets.aboutMarket")}>
+            <div className="content-wrapper container">about market</div>
+          </Tab>
+          <Tab eventKey="rates" title={t("markets.rates")}>
+            <div className="content-wrapper container">rates</div>
+          </Tab>
+        </Tabs>
+      </section>
     </div>
   );
 }
