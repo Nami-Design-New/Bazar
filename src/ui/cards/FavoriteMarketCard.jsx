@@ -1,6 +1,6 @@
-import { useTranslation } from "react-i18next";
-import marketLogoImage from "../../assets/images/market-logo-1.jpg";
-import marketCoverImage from "../../assets/images/market-cover-1.png";
+  import { useTranslation } from "react-i18next";
+  import marketLogoImage from "../../assets/images/market-logo-1.jpg";
+  import marketCoverImage from "../../assets/images/market-cover-1.png";
 import { Link } from "react-router-dom";
 
 function FavoriteMarketCard() {
@@ -20,7 +20,7 @@ function FavoriteMarketCard() {
 
   return (
     <Link
-      to={`/ad-details/1`}
+      to={`/market-details/1`}
       className="fav-market-card"
       onClick={handleLinkClick}
     >

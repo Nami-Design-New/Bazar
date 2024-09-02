@@ -527,7 +527,7 @@ body main {
   padding: 40px 0 80px;
   position: relative;
 }
-body main:has(.section-head) {
+body main:has(.section-head), body main:has(.no-padding) {
   padding: 0 0 80px;
 }
 body main .auth-form {
@@ -1118,9 +1118,9 @@ body main .favorites-section .content-wrapper {
   flex-direction: column;
   gap: 36px;
 }
-body main .favorites-section .content-wrapper .fav-market-card {
-  background-color: #fff;
+body main .fav-market-card {
   border-radius: 12px;
+  background-color: #fff;
   box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.1490196078);
   border: 1px solid #fdfdfd;
   position: relative;
@@ -1128,7 +1128,7 @@ body main .favorites-section .content-wrapper .fav-market-card {
   flex-direction: column;
   margin-top: 50px;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-header {
+body main .fav-market-card .card-header {
   width: 100%;
   position: relative;
   border-radius: 12px;
@@ -1139,7 +1139,7 @@ body main .favorites-section .content-wrapper .fav-market-card .card-header {
   padding-bottom: 24px;
   min-height: 140px;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-header .cover-wrapper {
+body main .fav-market-card .card-header .cover-wrapper {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -1151,23 +1151,22 @@ body main .favorites-section .content-wrapper .fav-market-card .card-header .cov
   display: flex;
   z-index: 2;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-header .cover-wrapper::after {
+body main .fav-market-card .card-header .cover-wrapper::after {
   content: "";
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4117647059);
+  background-color: rgba(0, 0, 0, 0.5098039216);
   position: absolute;
   top: 0;
   left: 0;
   border-radius: 12px 12px 0 0;
   z-index: 4;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-header .cover-wrapper img {
-  -o-object-fit: cover;
-     object-fit: cover;
+body main .fav-market-card .card-header .cover-wrapper img {
+  aspect-ratio: 1/1;
   width: 100%;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-header .logo-wrapper {
+body main .fav-market-card .card-header .logo-wrapper {
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -1181,20 +1180,20 @@ body main .favorites-section .content-wrapper .fav-market-card .card-header .log
   background-color: #fff;
   z-index: 6;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-header .logo-wrapper img {
+body main .fav-market-card .card-header .logo-wrapper img {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
   height: 100%;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-header .categories-actions {
+body main .fav-market-card .card-header .categories-actions {
   width: 100%;
   display: flex;
   gap: 16px;
   justify-content: space-between;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-header .categories-actions .categories-wrapper {
+body main .fav-market-card .card-header .categories-actions .categories-wrapper {
   display: flex;
   gap: 0 24px;
   flex-wrap: wrap;
@@ -1202,21 +1201,21 @@ body main .favorites-section .content-wrapper .fav-market-card .card-header .cat
   z-index: 6;
   padding: 16px;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-header .categories-actions .categories-wrapper .category {
+body main .fav-market-card .card-header .categories-actions .categories-wrapper .category {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 16px;
   color: #fff;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-header .categories-actions .action-boxes {
+body main .fav-market-card .card-header .categories-actions .action-boxes {
   position: relative;
   display: flex;
   align-items: flex-start;
   gap: 16px;
   z-index: 6;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-header .categories-actions .action-boxes .action-btn {
+body main .fav-market-card .card-header .categories-actions .action-boxes .action-btn {
   width: 48px;
   height: 48px;
   border-radius: 12px 0 12px;
@@ -1228,10 +1227,10 @@ body main .favorites-section .content-wrapper .fav-market-card .card-header .cat
   position: relative;
   cursor: pointer;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-header .categories-actions .action-boxes .action-btn i {
+body main .fav-market-card .card-header .categories-actions .action-boxes .action-btn i {
   font-size: 20px;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-header h3 {
+body main .fav-market-card .card-header h3 {
   color: #fff;
   width: 100%;
   order: 3;
@@ -1239,7 +1238,7 @@ body main .favorites-section .content-wrapper .fav-market-card .card-header h3 {
   z-index: 6;
   text-align: center;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-details {
+body main .fav-market-card .card-details {
   width: 100%;
   padding: 16px;
   display: flex;
@@ -1247,7 +1246,7 @@ body main .favorites-section .content-wrapper .fav-market-card .card-details {
   gap: 24px;
   position: relative;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-details .description {
+body main .fav-market-card .card-details .description {
   width: 100%;
   margin: 0;
   align-items: center;
@@ -1257,7 +1256,7 @@ body main .favorites-section .content-wrapper .fav-market-card .card-details .de
   color: #6B6464;
   position: relative;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-details .card-statistics {
+body main .fav-market-card .card-details .card-statistics {
   width: 100%;
   display: flex;
   align-items: center;
@@ -1266,7 +1265,7 @@ body main .favorites-section .content-wrapper .fav-market-card .card-details .ca
   gap: 16px;
   position: relative;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-details .card-statistics .statistic {
+body main .fav-market-card .card-details .card-statistics .statistic {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1274,15 +1273,15 @@ body main .favorites-section .content-wrapper .fav-market-card .card-details .ca
   font-size: 16px;
   position: relative;
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-details .card-statistics .statistic i {
+body main .fav-market-card .card-details .card-statistics .statistic i {
   font-size: 28px;
 }
 @media screen and (max-width: 768px) {
-  body main .favorites-section .content-wrapper .fav-market-card .card-details .card-statistics .statistic i {
+  body main .fav-market-card .card-details .card-statistics .statistic i {
     font-size: 20px;
   }
 }
-body main .favorites-section .content-wrapper .fav-market-card .card-details .card-statistics .statistic .value {
+body main .fav-market-card .card-details .card-statistics .statistic .value {
   color: #000;
   font-size: 18px;
   display: flex;
@@ -1292,11 +1291,11 @@ body main .favorites-section .content-wrapper .fav-market-card .card-details .ca
   font-weight: 600;
 }
 @media screen and (max-width: 768px) {
-  body main .favorites-section .content-wrapper .fav-market-card .card-details .card-statistics .statistic .value {
+  body main .fav-market-card .card-details .card-statistics .statistic .value {
     font-size: 16px;
   }
 }
-body main .favorites-section .content-wrapper .fav-ad-card {
+body main .fav-ad-card {
   background-color: #fff;
   width: 100%;
   border-radius: 12px;
@@ -1307,7 +1306,7 @@ body main .favorites-section .content-wrapper .fav-ad-card {
   gap: 16px;
   position: relative;
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-header {
+body main .fav-ad-card .card-header {
   width: 100%;
   display: flex;
   gap: 16px;
@@ -1315,20 +1314,20 @@ body main .favorites-section .content-wrapper .fav-ad-card .card-header {
   background: #f6f6f6;
   border-radius: 12px;
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-header .image-wrapper {
+body main .fav-ad-card .card-header .image-wrapper {
   width: 120px;
   border-radius: 12px;
   position: relative;
   display: flex;
   overflow: hidden;
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-header .image-wrapper img {
+body main .fav-ad-card .card-header .image-wrapper img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-header .card-content {
+body main .fav-ad-card .card-header .card-content {
   flex: 1 0;
   padding: 16px 0;
   display: flex;
@@ -1336,35 +1335,35 @@ body main .favorites-section .content-wrapper .fav-ad-card .card-header .card-co
   gap: 8px;
   position: relative;
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-header .card-content .title {
+body main .fav-ad-card .card-header .card-content .title {
   color: #000;
   font-size: 18px;
   margin: 0;
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-header .card-content .categories-wrapper {
+body main .fav-ad-card .card-header .card-content .categories-wrapper {
   width: 100%;
   display: flex;
   gap: 0 24px;
   flex-wrap: wrap;
   position: relative;
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-header .card-content .categories-wrapper .category {
+body main .fav-ad-card .card-header .card-content .categories-wrapper .category {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 16px;
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-header .card-content .date {
+body main .fav-ad-card .card-header .card-content .date {
   color: #000;
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-header .action-boxes {
+body main .fav-ad-card .card-header .action-boxes {
   padding: 16px;
   position: relative;
   display: flex;
   align-items: flex-start;
   gap: 16px;
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-header .action-boxes .action-btn {
+body main .fav-ad-card .card-header .action-boxes .action-btn {
   width: 48px;
   height: 48px;
   border-radius: 12px;
@@ -1376,10 +1375,10 @@ body main .favorites-section .content-wrapper .fav-ad-card .card-header .action-
   position: relative;
   cursor: pointer;
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-header .action-boxes .action-btn i {
+body main .fav-ad-card .card-header .action-boxes .action-btn i {
   font-size: 20px;
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-statistics {
+body main .fav-ad-card .card-statistics {
   width: 100%;
   display: flex;
   align-items: center;
@@ -1389,7 +1388,7 @@ body main .favorites-section .content-wrapper .fav-ad-card .card-statistics {
   position: relative;
   padding: 0 16px 16px;
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-statistics .statistic {
+body main .fav-ad-card .card-statistics .statistic {
   flex: 1 0;
   display: flex;
   align-items: center;
@@ -1398,7 +1397,7 @@ body main .favorites-section .content-wrapper .fav-ad-card .card-statistics .sta
   font-size: 16px;
   position: relative;
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-statistics .statistic:not(:last-of-type)::after {
+body main .fav-ad-card .card-statistics .statistic:not(:last-of-type)::after {
   content: "";
   position: absolute;
   width: 2px;
@@ -1408,15 +1407,15 @@ body main .favorites-section .content-wrapper .fav-ad-card .card-statistics .sta
   left: 0;
   border-radius: 2px;
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-statistics .statistic i {
+body main .fav-ad-card .card-statistics .statistic i {
   font-size: 28px;
 }
 @media screen and (max-width: 768px) {
-  body main .favorites-section .content-wrapper .fav-ad-card .card-statistics .statistic i {
+  body main .fav-ad-card .card-statistics .statistic i {
     font-size: 20px;
   }
 }
-body main .favorites-section .content-wrapper .fav-ad-card .card-statistics .statistic .value {
+body main .fav-ad-card .card-statistics .statistic .value {
   color: #000;
   font-size: 18px;
   display: flex;
@@ -1426,7 +1425,7 @@ body main .favorites-section .content-wrapper .fav-ad-card .card-statistics .sta
   font-weight: 600;
 }
 @media screen and (max-width: 768px) {
-  body main .favorites-section .content-wrapper .fav-ad-card .card-statistics .statistic .value {
+  body main .fav-ad-card .card-statistics .statistic .value {
     font-size: 16px;
   }
 }
@@ -1666,6 +1665,192 @@ body main .order-details-page .order-details-wrapper .details-wrapper .details-b
 }
 body main .order-details-page .order-details-wrapper .btn-wrapper {
   margin-top: 24px;
+}
+body main .market-details-page .page-header {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 24px;
+  min-height: 140px;
+  background-color: #fff;
+  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.5019607843);
+}
+body main .market-details-page .page-header .cover-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  display: flex;
+  z-index: 2;
+}
+body main .market-details-page .page-header .cover-wrapper::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5098039216);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 12px 12px 0 0;
+  z-index: 4;
+}
+body main .market-details-page .page-header .cover-wrapper img {
+  aspect-ratio: 1/1;
+  width: 100%;
+}
+body main .market-details-page .page-header .top-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+  z-index: 6;
+  padding: 24px 16px;
+}
+body main .market-details-page .page-header .top-wrapper .logo-follow-wrapper {
+  flex: 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+}
+body main .market-details-page .page-header .top-wrapper .logo-follow-wrapper .logo-wrapper {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  box-shadow: 0px 0 4px 0px rgba(0, 0, 0, 0.2509803922);
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+  z-index: 6;
+}
+body main .market-details-page .page-header .top-wrapper .logo-follow-wrapper .logo-wrapper img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
+}
+body main .market-details-page .page-header .top-wrapper .logo-follow-wrapper .action-boxes {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  position: relative;
+}
+body main .market-details-page .page-header .top-wrapper .logo-follow-wrapper .action-boxes .action-btn {
+  padding: 8px 16px;
+  height: 40px;
+  border-radius: 16px;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+body main .market-details-page .page-header .top-wrapper .btns-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+body main .market-details-page .page-header .top-wrapper .btns-wrapper .dropdown-toggle {
+  border: none !important;
+}
+body main .market-details-page .page-header .top-wrapper .btns-wrapper .dropdown-toggle::after {
+  content: none !important;
+}
+body main .market-details-page .page-header .top-wrapper .btns-wrapper .btn-box {
+  background: rgba(31, 31, 31, 0.6);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+body main .market-details-page .page-header .top-wrapper .btns-wrapper .btn-box i {
+  font-size: 20px;
+  color: #fff;
+}
+body main .market-details-page .page-header .info-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 6;
+  padding: 16px;
+  color: #fff;
+}
+body main .market-details-page .page-header .info-wrapper h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+body main .market-details-page .page-header .info-wrapper p {
+  font-size: 18px;
+  position: relative;
+  text-wrap: balance;
+}
+body main .market-details-page .tabs-section {
+  padding: 0 !important;
+  position: relative;
+}
+body main .market-details-page .tabs-section .nav-tabs {
+  padding: 0 !important;
+  border: 0;
+  border-radius: 0 !important;
+  gap: 0 !important;
+}
+body main .market-details-page .tabs-section .nav-tabs .nav-item {
+  flex: 1;
+  border-radius: 0 !important;
+}
+body main .market-details-page .tabs-section .nav-tabs .nav-item button {
+  background: #fff !important;
+  color: #858585 !important;
+  border-radius: 0 !important;
+  width: 100%;
+  border: 0;
+  padding: 16px;
+  white-space: nowrap;
+  color: #4381f8;
+  position: relative;
+}
+body main .market-details-page .tabs-section .nav-tabs .nav-item button::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background: #858585;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 0;
+}
+body main .market-details-page .tabs-section .nav-tabs .nav-item button.active {
+  color: #4381f8 !important;
+}
+body main .market-details-page .tabs-section .nav-tabs .nav-item button.active::after {
+  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
+}
+body main .market-details-page .content-wrapper {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  position: relative;
 }
 body .gradient-text {
   background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
