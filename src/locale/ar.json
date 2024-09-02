@@ -3,7 +3,7 @@
     "home": "الرئيسية",
     "my-activities": "نشاطاتي",
     "favorites": "المفضلة",
-    "order-details": "تفاصيل الطلب"
+    "orders": "الطلبات"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -94,5 +94,7 @@
   },
   "createdAt": "تم الإنشاء في",
   "delete": "حذف",
-  "cancel": "الغاء"
+  "cancel": "الغاء",
+  "following": "يتابع",
+  "follow": "متابعة"
 }
