@@ -82,7 +82,7 @@ function ADMiniCard() {
         type="delete"
         eventFun={handleDelete}
         buttonText={t("delete")}
-        text={t("activities.areYouSureYouWantToDeleteOrder")}
+        text={t("ads.areYouSureYouWantToDeleteAD")}
       />
     </Link>
   );

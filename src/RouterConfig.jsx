@@ -7,6 +7,7 @@ import Home from "./routes/Home";
 import OrderDetails from "./routes/OrderDetails";
 import Login from "./routes/Login";
 import Register from "./routes/Register";
+import Favorites from "./routes/Favorites";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
@@ -21,6 +22,8 @@ const routerConfig = [
   { path: "/my-activities", element: <Activities /> },
   { path: "/ad-details/:id", element: <AdDetails /> },
   { path: "/order-details/:id", element: <OrderDetails /> },
+
+  { path: "/favorites", element: <Favorites /> },
 ];
 
 export default routerConfig;

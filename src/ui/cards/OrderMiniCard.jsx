@@ -79,7 +79,7 @@ function OrderMiniCard() {
         type="delete"
         eventFun={handleDelete}
         buttonText={t("delete")}
-        text={t("activities.areYouSureYouWantToDeleteOrder")}
+        text={t("orders.areYouSureYouWantToDeleteOrder")}
       />
     </Link>
   );
