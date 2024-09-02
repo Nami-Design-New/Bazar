@@ -21,7 +21,9 @@ function InterestMiniCard() {
     >
       <div className="card-header">
         <div className="card-content">
-          <h5 className="title one-line-wrap">اهتمام بالعقارات</h5>
+          <h5 className="title one-line-wrap">
+            {t("interests.interestIn")}العقارات
+          </h5>
           <div className="categories-wrapper">
             <Link to="" className="category gradient-text">
               <i className="fa-regular fa-apartment"></i>
@@ -54,7 +56,7 @@ function InterestMiniCard() {
         type="delete"
         eventFun={handleDelete}
         buttonText={t("delete")}
-        text={t("activities.areYouSureYouWantToDeleteInterest")}
+        text={t("interests.areYouSureYouWantToDeleteInterest")}
       />
     </div>
   );

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import SectionHeader from "../ui/layout/SectionHeader";
+import { useTranslation } from "react-i18next";
 
 function OrderDetails() {
+  const { t } = useTranslation();
   const [step, setStep] = useState(1);
 
   return (
@@ -14,7 +16,7 @@ function OrderDetails() {
         <div className="status-wrapper">
           <div className="status-header">
             <div className="info">
-              <h5>طلب جديد</h5>
+              <h5>{t("orders.newOrder")}</h5>
               <div className="info-boxes">
                 <div className="box gradient-text">
                   <i className="fa-regular fa-calendar-days"></i>2024/2/2
@@ -50,7 +52,7 @@ function OrderDetails() {
                   }`}
                 ></i>
               </div>
-              <span className="status">طلب جديد</span>
+              <span className="status">{t("orders.newOrder")}</span>
             </div>
             <div className={`progress-line ${step >= 1 ? "active" : ""}`}></div>
             <div className="progress-box">
@@ -61,7 +63,7 @@ function OrderDetails() {
                   }`}
                 ></i>
               </div>
-              <span className="status">تم الموافقة</span>
+              <span className="status">{t("orders.accepted")}</span>
             </div>
             <div className={`progress-line ${step >= 2 ? "active" : ""}`}></div>
             <div className="progress-box">
@@ -72,7 +74,7 @@ function OrderDetails() {
                   }`}
                 ></i>
               </div>
-              <span className="status">جاري الشحن</span>
+              <span className="status">{t("orders.onDelivery")}</span>
             </div>
             <div className={`progress-line ${step >= 3 ? "active" : ""}`}></div>
             <div className="progress-box">
@@ -83,7 +85,7 @@ function OrderDetails() {
                   }`}
                 ></i>
               </div>
-              <span className="status">تم الاكتمال</span>
+              <span className="status">{t("orders.completed")}</span>
             </div>
           </div>
         </div>
@@ -93,7 +95,7 @@ function OrderDetails() {
               <div className="icon">
                 <i className="fa-sharp fa-solid fa-cube  gradient-icon"></i>
               </div>
-              <span>رقم الطلب : 342353</span>
+              <span>{t("orders.orderId")}: 342353</span>
             </div>
           </div>
           <div className="details-box">
@@ -101,16 +103,16 @@ function OrderDetails() {
               <div className="icon">
                 <i className="fa-brands fa-cc-visa gradient-icon"></i>
               </div>
-              <span>طرق الدفع</span>
+              <span>{t("orders.paymentMethod")}</span>
             </div>
-            <div className="sub-title">بطاقات الائتمان</div>
+            <div className="sub-title">{t("orders.creditCards")}</div>
           </div>
           <div className="details-box">
             <div className="title">
               <div className="icon">
                 <i className="fa-sharp fa-solid fa-location-dot gradient-icon"></i>
               </div>
-              <span>العنوان</span>
+              <span>{t("orders.address")}</span>
             </div>
             <div className="sub-title">السعوديه / الرياض/ شارع فيصل</div>
           </div>
@@ -119,7 +121,7 @@ function OrderDetails() {
               <div className="icon">
                 <i className="fa-solid fa-memo-circle-info gradient-icon"></i>
               </div>
-              <span>تفاصيل الطلب</span>
+              <span>{t("orders.orderDetails")}</span>
             </div>
             <div className="menu">
               <ol>
@@ -167,28 +169,28 @@ function OrderDetails() {
               <div className="icon">
                 <i className="fa-solid fa-money-check-dollar gradient-icon"></i>
               </div>
-              <span>اجمالي السعر</span>
+              <span>{t("orders.totalCost")}</span>
             </div>
             <div className="menu checkout-details">
               <ul>
                 <li>
-                  <div className="title">سعر الطلب</div>
+                  <div className="title">{t("orders.orderPrice")}</div>
                   <div className="value gradient-text">150.0 ريال</div>
                 </li>
                 <li>
-                  <div className="title">ضرايب</div>
+                  <div className="title">{t("orders.taxes")}</div>
                   <div className="value gradient-text">150.0 ريال</div>
                 </li>
                 <li className="discount">
-                  <div className="title">الخصم</div>
+                  <div className="title">{t("orders.discount")}</div>
                   <div className="value gradient-text">150.0 ريال</div>
                 </li>
                 <li className="bigger">
-                  <div className="title">رسوم التوصيل</div>
+                  <div className="title">{t("orders.deliveryCost")}</div>
                   <div className="value gradient-text">150.0 ريال</div>
                 </li>
                 <li className="bigger">
-                  <div className="title">الاجمالي</div>
+                  <div className="title">{t("orders.total")}</div>
                   <div className="value gradient-text">150.0 ريال</div>
                 </li>
               </ul>
@@ -197,7 +199,7 @@ function OrderDetails() {
         </div>
         {step === 1 && (
           <div className="btn-wrapper">
-            <button className="custom-btn">الغاء الطلب</button>
+            <button className="custom-btn">{t("orders.cancelOrder")}</button>
           </div>
         )}
       </div>

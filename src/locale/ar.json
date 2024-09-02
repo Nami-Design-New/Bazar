@@ -1,6 +1,8 @@
 {
   "routes": {
     "home": "الرئيسية",
+    "my-activities": "نشاطاتي",
+    "favorites": "المفضلة",
     "order-details": "تفاصيل الطلب"
   },
   "auth": {
@@ -37,14 +39,7 @@
     "newPasswordSuccess": "تم تغيير كلمة المرور بنجاح",
     "saveChanges": "حفظ التغييرات"
   },
-  "profile": {
-    "myADs": "اعلاناتي",
-    "myInterests": "اهتماماتي",
-    "myOrders": "طلباتي",
-    "addAD": "اضافة اعلان",
-    "addInterest": "اضافة اهتمام",
-    "addOrder": "اضافة طلب"
-  },
+  "profile": {},
   "error": {
     "pageNotFound": "هذه الصفحة غير موجودة",
     "goHome": "الذهاب للرئيسية"
@@ -55,12 +50,47 @@
   "categories": {
     "estates": "عقارات",
     "cars": "سيارات",
-    "villas": "فيلل"
+    "villas": "فيلل",
+    "perfumes": "عطور",
+    "food": "غذاء"
   },
   "activities": {
-    "areYouSureYouWantToDeleteInterest": "هل انت متأكد من حذف هذا الاهتمام؟",
+    "myADs": "اعلاناتي",
+    "myInterests": "اهتماماتي",
+    "myOrders": "طلباتي"
+  },
+  "favorites": {
+    "ads": "الاعلانات",
+    "markets": "المتاجر"
+  },
+  "ads": {
+    "areYouSureYouWantToDeleteAD": "هل انت متأكد من حذف هذا الاعلان؟",
+    "addAD": "اضافة اعلان"
+  },
+  "orders": {
     "areYouSureYouWantToDeleteOrder": "هل انت متأكد من حذف هذا الطلب؟",
-    "areYouSureYouWantToDeleteAD": "هل انت متأكد من حذف هذا الاعلان؟"
+    "addOrder": "اضافة طلب",
+    "newOrder": "طلب جديد",
+    "accepted": "تم الموافقة",
+    "onDelivery": "جاري الشحن",
+    "completed": "تم الاكتمال",
+    "orderId": "رقم الطلب",
+    "paymentMethod": "طرق الدفع",
+    "creditCards": "بطاقات الائتمان",
+    "address": "العنوان",
+    "orderDetails": "تفاصيل الطلب",
+    "totalCost": "اجمالي السعر",
+    "orderPrice": "سعر الطلب",
+    "taxes": "الضرائب",
+    "discount": "الخصم",
+    "deliveryCost": "رسوم التوصيل",
+    "total": "الاجمالي",
+    "cancelOrder": "الغاء الطلب"
+  },
+  "interests": {
+    "areYouSureYouWantToDeleteInterest": "هل انت متأكد من حذف هذا الاهتمام؟",
+    "addInterest": "اضافة اهتمام",
+    "interestIn": "اهتمام ب"
   },
   "createdAt": "تم الإنشاء في",
   "delete": "حذف",

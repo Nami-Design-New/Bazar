@@ -80,7 +80,7 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/favourites">
+                  <Link className="dropdown-item" to="/favorites">
                     المفضلة
                   </Link>
                 </li>
