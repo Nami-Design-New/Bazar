@@ -1,0 +1,294 @@
+.auth-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding: 60px 0;
+  .form-header-image {
+    width: 100%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+
+    img {
+      width: 300px;
+      object-fit: contain;
+    }
+  }
+
+  .form-title {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+
+    .title {
+      margin: 0;
+      font-size: 32px;
+      color: #333;
+      font-weight: 600;
+      @media (max-width: 576px) {
+        font-size: 24px;
+      }
+    }
+  }
+
+  form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .input-field {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .phone-group {
+    width: 100%;
+    position: relative;
+    display: flex;
+    .PhoneInput {
+      width: 100%;
+      display: flex;
+      gap: 12px;
+      flex-direction: row-reverse;
+      .PhoneInputCountryIcon {
+        position: relative;
+      }
+      .PhoneInputCountryIconImg {
+        width: 20px;
+        position: absolute;
+        top: -36px;
+        left: 10px;
+      }
+      select {
+        padding: 12px 6px 12px 30px !important;
+        direction: ltr !important;
+      }
+      input,
+      select {
+        flex: 1 0;
+        color: $black;
+        font-size: 14px;
+        height: 56px;
+        width: 100%;
+        box-shadow: none !important;
+        background: $inputBg;
+        border: 1px solid $LightGray;
+        border-radius: 12px;
+        outline: none;
+        padding: 8px 12px;
+      }
+    }
+    .phone-code {
+      height: 54px;
+      border-radius: 4px;
+    }
+  }
+
+  .pass-group {
+    display: flex;
+    span {
+      @include centerFlex();
+      width: 60px;
+      height: 56px;
+      border: 1px solid $LightGray;
+      background: $inputBg;
+      border-right: 0;
+      border-radius: 12px 0 0 12px !important;
+      color: $textColor;
+    }
+    input {
+      border-left: 0 !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+  }
+
+  .image-change-wrapper {
+    border-radius: 12px;
+    border: 1px solid $LightGray;
+    @include centerFlex();
+    flex-direction: column;
+    padding: 16px;
+    .img-wrap {
+      padding: 12px;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 1px solid $inputHint;
+      overflow: hidden;
+      @include centerFlex();
+      img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+        object-position: center;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+    .upload {
+      input {
+        display: none;
+      }
+      .plus {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background-color: $main;
+        @include centerFlex();
+        cursor: pointer;
+        i {
+          font-size: 14px;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .forgetpass {
+    align-self: flex-end;
+    color: $main;
+  }
+
+  .otp-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    direction: ltr !important;
+    @media (max-width: 576px) {
+      gap: 8px;
+    }
+    .otp-input {
+      border-radius: 12px;
+      flex: 1;
+      width: inherit;
+      height: 80px !important;
+      text-align: center;
+      border: 1px solid $main;
+      background: $main10;
+      font-size: 28px;
+      font-weight: 600;
+      color: $main !important;
+      outline: none;
+      &::-webkit-inner-spin-button {
+        display: none;
+      }
+      @media (max-width: 576px) {
+        height: 60px !important;
+      }
+    }
+  }
+
+  .resend-code {
+    width: 100%;
+    display: flex;
+    padding: 10px 0 0;
+    justify-content: space-between;
+    .resend_link {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      color: $textColor;
+      gap: 6px;
+      cursor: pointer;
+
+      span {
+        white-space: nowrap;
+        color: $main;
+        cursor: pointer;
+      }
+
+      &.disabled {
+        pointer-events: none;
+
+        span {
+          color: $main60;
+          cursor: default;
+        }
+      }
+    }
+    .timer span {
+      color: $textColor;
+    }
+  }
+
+  .noAccount {
+    color: $textColor;
+    span {
+      color: $main;
+    }
+  }
+
+  .question {
+    padding: 0 0 30px;
+    width: 100%;
+    @include space-between();
+    .quest {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: $black;
+    }
+    .vendorInput {
+      appearance: none !important;
+      position: relative;
+      cursor: pointer;
+      &::after {
+        display: block;
+        width: 48px;
+        height: 24px;
+        border-radius: 12px;
+        content: "";
+        background-color: $textColor;
+        transition: $transition;
+      }
+      &::before {
+        transition: $transition;
+        display: block;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        content: "";
+        background-color: $white;
+      }
+      &:checked {
+        &::after {
+          background-color: $main;
+        }
+        &::before {
+          right: initial;
+          left: 4px;
+        }
+      }
+    }
+  }
+
+  input {
+    background: #fafafa;
+    background: $inputBg;
+    border: 1px solid #d9d9d9;
+    border: 1px solid $LightGray;
+    border-radius: 12px;
+    box-shadow: none !important;
+    color: #231f20;
+    color: $black;
+    direction: rtl;
+    font-size: 14px;
+    height: 56px;
+    outline: none;
+    padding: 8px 12px;
+    width: 100%;
+  }
+}
