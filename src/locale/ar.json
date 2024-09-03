@@ -1,4 +1,18 @@
 {
+  "header": {
+    "home": "الرئيسية",
+    "Ads": "الاعلانات",
+    "aboutUs": "من نحن",
+    "contactUs": "اتصل بنا",
+    "profile": "الملف الشخصى",
+    "editProfile": "تعديل الملف الشخصي",
+    "myActivities": "نشاطاتي",
+    "favourites": "المفضلة",
+    "logout": "تسجيل الخروج",
+    "categories": "الفئات",
+    "addAd": "اضف إعلان",
+    "allNotifications": "كل التنبيهات"
+  },
   "routes": {
     "home": "الرئيسية",
     "my-activities": "نشاطاتي",
