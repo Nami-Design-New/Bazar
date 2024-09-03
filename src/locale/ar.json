@@ -17,7 +17,8 @@
     "home": "الرئيسية",
     "my-activities": "نشاطاتي",
     "favorites": "المفضلة",
-    "orders": "الطلبات"
+    "orders": "الطلبات",
+    "order-details": "تفاصيل الطلب"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -51,7 +52,8 @@
     "email": "البريد الالكتروني",
     "passwordNotMatched": "كلمتا المرور غير متطابقتين",
     "newPasswordSuccess": "تم تغيير كلمة المرور بنجاح",
-    "saveChanges": "حفظ التغييرات"
+    "saveChanges": "حفظ التغييرات",
+    "back": "رجوع"
   },
   "profile": {},
   "error": {
@@ -62,11 +64,17 @@
     "sar": "ريال"
   },
   "categories": {
+    "categories": "الاصناف",
+    "all": "الكل",
     "estates": "عقارات",
     "cars": "سيارات",
     "villas": "فيلل",
     "perfumes": "عطور",
-    "food": "غذاء"
+    "food": "غذاء",
+    "clothes": "ملابس",
+    "electronics": "الكترونيات",
+    "paintingProducts": "منتجات طلاء",
+    "carpentryTools": "أدوات نجارة"
   },
   "activities": {
     "myADs": "اعلاناتي",
@@ -84,7 +92,14 @@
   "markets": {
     "products": "المنتجات",
     "aboutMarket": "حول المتجر",
-    "rates": "التقييمات"
+    "rates": "التقييمات",
+    "acceptsRecovery": "يقبل الاسترجاع",
+    "recoveryCondition1": "شرورط الاسترجاع ان يكون المنتج في نفس الحاله",
+    "recoveryCondition2": "ألا تزيد المدة عن 3 أيام",
+    "identity": "رقم الهوية",
+    "deliveryExisting": "يوجد خدمه توصيل",
+    "workTimes": "مواعيد العمل",
+    "contactWithMarket": "التواصل مع المتجر"
   },
   "orders": {
     "areYouSureYouWantToDeleteOrder": "هل انت متأكد من حذف هذا الطلب؟",
@@ -111,9 +126,15 @@
     "addInterest": "اضافة اهتمام",
     "interestIn": "اهتمام ب"
   },
+  "products": {
+    "newest": "الاحدث"
+  },
   "createdAt": "تم الإنشاء في",
   "delete": "حذف",
   "cancel": "الغاء",
   "following": "يتابع",
-  "follow": "متابعة"
+  "follow": "متابعة",
+  "thousand": "ألف",
+  "publishRate": "نشر التقييم",
+  "shareYourComment": "شاركنا سؤالك او تعليقك"
 }

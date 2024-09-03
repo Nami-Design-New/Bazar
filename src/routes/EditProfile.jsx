@@ -27,7 +27,7 @@ function EditProfile() {
   };
 
   return (
-    <section className="auth-form container">
+    <section className="auth-form container col-12 col-lg-6">
       <div className="form-title">
         <h1 className="title">{t("auth.editProfile")}</h1>
       </div>

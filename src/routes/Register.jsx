@@ -26,7 +26,7 @@ function Register() {
   };
 
   return (
-    <section className="auth-form container">
+    <section className="auth-form container col-12 col-lg-6">
       <div className="form-title">
         <h1 className="title">{t("auth.register")}</h1>
         <h5 className="sub-title">{t("auth.registerSubtitle")}</h5>
@@ -95,8 +95,9 @@ function Register() {
           <SubmitButton loading={loading} name={t("auth.createAccount")} />
         </div>
         <div className="d-flex gap-2 flex-lg-row flex-column w-100">
-          <Link to="/login" className="noAccount gradient-text">
-            {t("auth.alreadyHaveAccount")} <span>{t("auth.login")}</span>
+          <Link to="/login" className="noAccount">
+            {t("auth.alreadyHaveAccount")}{" "}
+            <span className=" gradient-text">{t("auth.login")}</span>
           </Link>
         </div>
       </form>

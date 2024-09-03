@@ -1,6 +1,6 @@
-  import { useTranslation } from "react-i18next";
-  import marketLogoImage from "../../assets/images/market-logo-1.jpg";
-  import marketCoverImage from "../../assets/images/market-cover-1.png";
+import { useTranslation } from "react-i18next";
+import marketLogoImage from "../../assets/images/market-logo-1.jpg";
+import marketCoverImage from "../../assets/images/market-cover-1.png";
 import { Link } from "react-router-dom";
 
 function FavoriteMarketCard() {
@@ -59,7 +59,7 @@ function FavoriteMarketCard() {
         <div className="card-statistics">
           <div className="statistic">
             <i className="fa-regular fa-eye gradient-icon"></i>
-            <span className="value">22 k</span>
+            <span className="value">22 {t("thousand")}</span>
           </div>
           <div className="statistic">
             <i className="fa-solid fa-star gradient-icon"></i>

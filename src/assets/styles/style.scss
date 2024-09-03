@@ -9,6 +9,10 @@ body {
 
   main {
     @import "./home";
+    @import "./auth";
+    @import "./activities";
+    @import "./favorites";
+    @import "./features";
 
     .topHead {
       display: flex;
@@ -32,6 +36,45 @@ body {
       }
       a {
         color: $main;
+      }
+    }
+
+    .tabs-section {
+      padding: 36px 0;
+      position: relative;
+
+      .nav-tabs {
+        border: 0;
+        border-radius: 12px;
+        gap: 24px;
+        .nav-item {
+          flex: 1;
+          &:first-of-type {
+            button {
+              border-end-start-radius: 24px !important;
+            }
+          }
+          &:last-of-type {
+            button {
+              border-end-end-radius: 24px !important;
+            }
+          }
+          button {
+            background: #dfdcdc;
+            color: #5d5d5d !important;
+            border-radius: 12px;
+            width: 100%;
+            border: 0;
+            padding: 12px 16px;
+            white-space: nowrap;
+            color: $main;
+
+            &.active {
+              background: linear-gradient(238.2deg, $second 0%, $main 100%);
+              color: $white !important;
+            }
+          }
+        }
       }
     }
 
@@ -272,299 +315,6 @@ body {
       }
     }
 
-    .auth-form {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 36px;
-      .form-header-image {
-        width: 100%;
-        display: flex;
-        position: relative;
-        justify-content: center;
-
-        img {
-          width: 300px;
-          object-fit: contain;
-        }
-      }
-
-      .form-title {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        align-items: center;
-
-        .title {
-          margin: 0;
-          font-size: 32px;
-          color: #333;
-          font-weight: 600;
-          @media (max-width: 576px) {
-            font-size: 24px;
-          }
-        }
-      }
-
-      form {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-      }
-
-      .input-field {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        width: 100%;
-        gap: 8px;
-      }
-
-      .phone-group {
-        width: 100%;
-        position: relative;
-        display: flex;
-        .PhoneInput {
-          width: 100%;
-          display: flex;
-          gap: 12px;
-          flex-direction: row-reverse;
-          .PhoneInputCountryIcon {
-            position: relative;
-          }
-          .PhoneInputCountryIconImg {
-            width: 20px;
-            position: absolute;
-            top: -36px;
-            left: 10px;
-          }
-          select {
-            padding: 12px 6px 12px 30px !important;
-            direction: ltr !important;
-          }
-          input,
-          select {
-            flex: 1 0;
-            color: $black;
-            font-size: 14px;
-            height: 56px;
-            width: 100%;
-            box-shadow: none !important;
-            background: $inputBg;
-            border: 1px solid $LightGray;
-            border-radius: 12px;
-            outline: none;
-            padding: 8px 12px;
-          }
-        }
-        .phone-code {
-          height: 54px;
-          border-radius: 4px;
-        }
-      }
-
-      .pass-group {
-        display: flex;
-        span {
-          @include centerFlex();
-          width: 60px;
-          height: 56px;
-          border: 1px solid $LightGray;
-          background: $inputBg;
-          border-right: 0;
-          border-radius: 12px 0 0 12px !important;
-          color: $textColor;
-        }
-        input {
-          border-left: 0 !important;
-          border-radius: 0 12px 12px 0 !important;
-        }
-      }
-
-      .image-change-wrapper {
-        border-radius: 16px;
-        border: 1px solid $LightGray;
-        @include centerFlex();
-        flex-direction: column;
-        padding: 16px;
-        .img-wrap {
-          width: 130px;
-          height: 130px;
-          border-radius: 50%;
-          border: 1px solid $inputHint;
-          overflow: hidden;
-          @include centerFlex();
-          img {
-            width: 100%;
-            height: 100%;
-            aspect-ratio: 1/1;
-            object-fit: contain;
-            object-position: center;
-            width: 100%;
-            object-fit: cover;
-          }
-        }
-        .upload {
-          input {
-            display: none;
-          }
-          .plus {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background-color: $main;
-            @include centerFlex();
-            cursor: pointer;
-            i {
-              font-size: 14px;
-              color: $white;
-            }
-          }
-        }
-      }
-
-      .forgetpass {
-        align-self: flex-end;
-        color: $main;
-      }
-
-      .otp-container {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        width: 100%;
-        direction: ltr !important;
-        @media (max-width: 576px) {
-          gap: 8px;
-        }
-        .otp-input {
-          border-radius: 12px;
-          flex: 1;
-          width: inherit;
-          height: 80px !important;
-          text-align: center;
-          border: 1px solid $main;
-          background: $main10;
-          font-size: 28px;
-          font-weight: 600;
-          color: $main !important;
-          outline: none;
-          &::-webkit-inner-spin-button {
-            display: none;
-          }
-          @media (max-width: 576px) {
-            height: 60px !important;
-          }
-        }
-      }
-
-      .resend-code {
-        width: 100%;
-        display: flex;
-        padding: 10px 0 0;
-        justify-content: space-between;
-        .resend_link {
-          display: flex;
-          align-items: center;
-          white-space: nowrap;
-          color: $textColor;
-          gap: 6px;
-          cursor: pointer;
-
-          span {
-            white-space: nowrap;
-            color: $main;
-            cursor: pointer;
-          }
-
-          &.disabled {
-            pointer-events: none;
-
-            span {
-              color: $main60;
-              cursor: default;
-            }
-          }
-        }
-        .timer span {
-          color: $textColor;
-        }
-      }
-
-      .noAccount {
-        color: $textColor;
-        span {
-          color: $main;
-        }
-      }
-
-      .question {
-        padding: 0 0 30px;
-        width: 100%;
-        @include space-between();
-        .quest {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          color: $black;
-        }
-        .vendorInput {
-          appearance: none !important;
-          position: relative;
-          cursor: pointer;
-          &::after {
-            display: block;
-            width: 48px;
-            height: 24px;
-            border-radius: 16px;
-            content: "";
-            background-color: $textColor;
-            transition: $transition;
-          }
-          &::before {
-            transition: $transition;
-            display: block;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            content: "";
-            background-color: $white;
-          }
-          &:checked {
-            &::after {
-              background-color: $main;
-            }
-            &::before {
-              right: initial;
-              left: 4px;
-            }
-          }
-        }
-      }
-
-      input {
-        background: #fafafa;
-        background: $inputBg;
-        border: 1px solid #d9d9d9;
-        border: 1px solid $LightGray;
-        border-radius: 12px;
-        box-shadow: none !important;
-        color: #231f20;
-        color: $black;
-        direction: rtl;
-        font-size: 14px;
-        height: 56px;
-        outline: none;
-        padding: 8px 12px;
-        width: 100%;
-      }
-    }
-
     .error-section {
       @include centerFlex();
       flex-direction: column;
@@ -585,7 +335,7 @@ body {
         min-width: 200px;
         margin-top: 36px;
         color: $main;
-        border: 1px solid $main;
+        border: 1px solid $main !important;
         position: relative;
         transition: $transition;
         @include centerFlex();
@@ -617,241 +367,21 @@ body {
           opacity: 0;
           z-index: -1;
         }
+
         i {
           font-size: 16px;
         }
         &:hover {
           color: $white;
-          border: 1px solid transparent;
+          border: 1px solid transparent !important;
           background-color: transparent;
+
           &::after {
             opacity: 1;
           }
         }
       }
     }
-
-    .activities-section {
-      .nav-tabs {
-        padding: 12px 16px;
-        border: 0;
-        border-radius: 16px;
-        gap: 16px;
-        .nav-item {
-          flex: 1;
-          &:first-of-type {
-            button {
-              border-end-start-radius: 24px !important;
-            }
-          }
-          &:last-of-type {
-            button {
-              border-end-end-radius: 24px !important;
-            }
-          }
-          button {
-            background: #dfdcdc;
-            color: #5d5d5d !important;
-            border-radius: 12px;
-            width: 100%;
-            border: 0;
-            padding: 12px 16px;
-            white-space: nowrap;
-            color: $main;
-            &.active {
-              background: linear-gradient(238.2deg, $second 0%, $main 100%);
-              color: $white !important;
-            }
-          }
-        }
-      }
-      .content-wrapper {
-        padding: 40px 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 36px;
-        .add-btn {
-          width: 100%;
-          height: 56px;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          border-radius: 12px;
-          @include centerFlex();
-          @include clearInput();
-          color: $main;
-          border: 1px solid $main;
-          transition: $transition;
-          position: relative;
-          overflow: hidden;
-          font-size: 16px;
-          i {
-            font-size: 16px;
-          }
-          &:hover {
-            color: $white;
-            border: none;
-            &::after {
-              opacity: 1;
-            }
-          }
-          &::after {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            border-radius: 12px;
-            background: linear-gradient(238.2deg, $second 0%, $main 100%);
-            transition: $transition;
-            opacity: 0;
-            z-index: -1;
-          }
-        }
-        .activity-card {
-          background-color: $white;
-          width: 100%;
-          border-radius: 12px;
-          box-shadow: 0px 4px 20px 0px #00000026;
-          width: 100%;
-          &.ad-mini-card {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            position: relative;
-            .card-header {
-              width: 100%;
-              display: flex;
-              gap: 16px;
-              position: relative;
-              background: #f6f6f6;
-              border-radius: 12px;
-              .image-wrapper {
-                width: 120px;
-                border-radius: 12px;
-                position: relative;
-                display: flex;
-                overflow: hidden;
-                img {
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                }
-              }
-              .card-content {
-                flex: 1 0;
-                padding: 16px 0;
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-                position: relative;
-                .title {
-                  color: $black;
-                  font-size: 18px;
-                  margin: 0;
-                }
-                .categories-wrapper {
-                  width: 100%;
-                  display: flex;
-                  gap: 0 24px;
-                  flex-wrap: wrap;
-                  position: relative;
-                  .category {
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    font-size: 16px;
-                  }
-                }
-                .date {
-                  color: $black;
-                }
-              }
-              .action-boxes {
-                padding: 16px;
-                position: relative;
-                display: flex;
-                align-items: flex-start;
-                gap: 16px;
-                .action-btn {
-                  width: 48px;
-                  height: 48px;
-                  border-radius: 12px;
-                  background: #eaeaea82;
-                  padding: 8px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  position: relative;
-                  cursor: pointer;
-                  i {
-                    font-size: 20px;
-                  }
-                }
-              }
-            }
-            .card-statistics {
-              width: 100%;
-              display: flex;
-              align-items: center;
-              flex-wrap: wrap;
-              justify-content: space-around;
-              gap: 16px;
-              position: relative;
-              padding: 0 16px 16px;
-              .statistic {
-                flex: 1 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 16px;
-                font-size: 16px;
-                position: relative;
-                &:not(:last-of-type) {
-                  &::after {
-                    content: "";
-                    position: absolute;
-                    width: 2px;
-                    height: 100%;
-                    background-color: #ececec;
-                    top: 0;
-                    left: 0;
-                    border-radius: 2px;
-                  }
-                }
-                i {
-                  font-size: 28px;
-                  @media screen and (max-width: 768px) {
-                    font-size: 20px;
-                  }
-                }
-                .value {
-                  color: $black;
-                  font-size: 18px;
-                  display: flex;
-                  align-items: center;
-                  flex-direction: column;
-                  position: relative;
-                  font-weight: 600;
-                  @media screen and (max-width: 768px) {
-                    font-size: 16px;
-                  }
-                }
-              }
-            }
-          }
-          &.interest-mini-card {
-            .card-content {
-              gap: 16px !important;
-              padding: 16px !important;
-            }
-          }
-        }
-      }
-    }
-
   }
 
   @import "./footer";
@@ -875,50 +405,6 @@ body {
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
-  }
-  .cutom-btn {
-    width: 100%;
-    height: 56px;
-    gap: 6px;
-    border-radius: 12px;
-    border: 1px solid $main;
-    color: $main;
-    background-color: transparent;
-    @include centerFlex();
-    @include clearInput();
-    color: #fff !important;
-    transition: $transition;
-    position: relative;
-    &::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      border-radius: inherit;
-      background: linear-gradient(238.2deg, $second 0%, $main 100%) !important;
-      transition: $transition;
-      opacity: 0;
-      z-index: -1;
-    }
-    &:hover {
-      color: $white;
-      border: 1px solid transparent;
-      background-color: transparent;
-      &::after {
-        opacity: 1;
-      }
-    }
-    &.disabled {
-      opacity: 0.7;
-      pointer-events: none;
-    }
-    &.stroke {
-      background: transparent !important;
-      border: 1px solid $main !important;
-      color: $main !important;
-    }
   }
   .confirm-delete {
     p {
@@ -992,6 +478,93 @@ body {
         top: 0;
         left: 0;
       }
+    }
+  }
+  .custom-btn {
+    width: 100%;
+    height: 56px;
+    gap: 6px;
+    border-radius: 12px;
+    border: 1px solid $main !important;
+    color: $main;
+    background-color: transparent;
+    @include centerFlex();
+    @include clearInput();
+    transition: $transition;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border-radius: inherit;
+      background: linear-gradient(238.2deg, $second 0%, $main 100%) !important;
+      transition: $transition;
+      opacity: 0;
+      z-index: -1;
+    }
+
+    &.filled {
+      border: 1px solid transparent !important;
+      color: $white !important;
+      &::after {
+        opacity: 1 !important;
+      }
+    }
+
+    &:hover {
+      color: $white !important;
+      border: 1px solid transparent !important;
+      background-color: transparent;
+
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    &.disabled {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    &.stroke {
+      background: transparent !important;
+      border: 1px solid $main !important;
+      color: $main !important;
+
+      &:hover {
+        color: $white !important;
+        border: 1px solid transparent !important;
+      }
+    }
+  }
+  .stars {
+    display: flex;
+    gap: 4px;
+    li {
+      color: $LightGray;
+      &.star {
+        color: $starColor;
+      }
+    }
+  }
+  .star-rating-service {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 12px;
+    label {
+      cursor: pointer;
+      color: $LightGray;
+      &.active {
+        color: $starColor;
+      }
+    }
+    input {
+      appearance: none;
+      display: none;
     }
   }
   &.en {
