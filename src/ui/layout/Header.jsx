@@ -3,26 +3,37 @@ import NotificationItem from "./NotificationItem";
 import { Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Dropdown } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   IconBell,
   IconCirclePlus,
   IconMessage,
-  IconSearch,
   IconShoppingBag
 } from "@tabler/icons-react";
 
 export default function Header() {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-
+  const [isFixedTop, setIsFixedTop] = useState(false);
 
   const handleClickOutSide = () => {
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      window.scrollY > 120 ? setIsFixedTop(true) : setIsFixedTop(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header>
+    <header className={`header ${isFixedTop ? "sticky" : ""}`}>
       <HeaderTopBar />
 
       <div
@@ -102,10 +113,6 @@ export default function Header() {
               <IconShoppingBag stroke={1.5} />
               <span>0</span>
             </div>
-
-            <button>
-              <IconSearch stroke={1.5} />
-            </button>
 
             <Dropdown>
               <Dropdown.Toggle

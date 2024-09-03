@@ -1,5 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap");
+@keyframes loading {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(120px);
+  }
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -47,24 +75,6 @@ hr {
   margin: 0.5rem 0;
 }
 
-@keyframes loading {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(120px);
-  }
-}
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translateZ(0);
-  }
-}
 .tooltip {
   --bs-tooltip-bg: #242424;
 }
@@ -373,6 +383,34 @@ body {
   @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
   @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap");
 }
+@keyframes loading {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(120px);
+  }
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
 body * {
   margin: 0;
   padding: 0;
@@ -410,24 +448,6 @@ body input[type=number]::-webkit-outer-spin-button {
 }
 body hr {
   margin: 0.5rem 0;
-}
-@keyframes loading {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(120px);
-  }
-}
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translateZ(0);
-  }
 }
 body .tooltip {
   --bs-tooltip-bg: #242424;
@@ -717,10 +737,11 @@ body .swiperControl .swiper-pagination .swiper-pagination-bullet.swiper-paginati
 }
 body header {
   width: 100%;
-  z-index: 9;
+  z-index: 99;
   display: flex;
   position: relative;
   flex-direction: column;
+  background: #fff;
 }
 body header .underLay {
   position: fixed;
@@ -1084,9 +1105,52 @@ body header nav .container .left_utils .toggleMenu input:checked + .checkmark sp
     gap: 12px;
   }
 }
+body header.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
+  animation: 0.5s ease-in-out 0s normal none 1 running fadeInDown;
+}
+body header.sticky .header_bar {
+  padding: 0;
+  height: 0;
+  overflow: hidden;
+}
+body header.sticky + main {
+  margin-top: 130px;
+}
 body main {
   @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
   @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap");
+}
+@keyframes loading {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(120px);
+  }
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
 }
 body main * {
   margin: 0;
@@ -1125,24 +1189,6 @@ body main input[type=number]::-webkit-outer-spin-button {
 }
 body main hr {
   margin: 0.5rem 0;
-}
-@keyframes loading {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(120px);
-  }
-}
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translateZ(0);
-  }
 }
 body main .tooltip {
   --bs-tooltip-bg: #242424;
@@ -1659,9 +1705,19 @@ body main .popular .container .swiperControl .swiperBtns .swiper-button-prev::af
 }
 body main .popular .item {
   background: #1f1f1f;
+  border-color: #38383a;
+}
+body main .popular .item .itemInfo .itemBottom {
+  border-color: #38383a;
 }
 body main .popular .item .itemInfo .itemBottom .price {
   color: #fff;
+}
+body main .sliders .slider_wrap {
+  padding: 60px 0;
+}
+body main .sliders .slider_wrap:nth-child(even) {
+  background-color: #fafafa;
 }
 body main .topHead {
   display: flex;
@@ -1678,6 +1734,14 @@ body main .topHead {
     align-items: start;
   }
 }
+body main .topHead .title {
+  color: #000;
+  font-size: 24px;
+  line-height: 2;
+}
+body main .topHead .subtitle {
+  color: #4381f8;
+}
 body main .topHead a {
   color: #4381f8;
 }
@@ -1689,7 +1753,7 @@ body main .item {
   height: 100%;
   border-radius: 16px;
   transition: all 0.2s ease-in-out;
-  border: 1px solid #38383a;
+  border: 1px solid #d9d9d9;
   background-color: #fff;
 }
 body main .item .favorite {
@@ -1811,7 +1875,7 @@ body main .item .itemInfo .itemBottom {
   justify-content: space-between;
   padding-top: 12px;
   margin-top: 8px;
-  border-top: 1px solid #38383a;
+  border-top: 1px solid #d9d9d9;
 }
 body main .item .itemInfo .itemBottom .category {
   display: flex;
@@ -2490,6 +2554,115 @@ body main .activities-section .content-wrapper .activity-card.ad-mini-card .card
 body main .activities-section .content-wrapper .activity-card.interest-mini-card .card-content {
   gap: 16px !important;
   padding: 16px !important;
+}
+body .download_app {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+}
+@media screen and (max-width: 576px) {
+  body .download_app {
+    flex-direction: column;
+    gap: 32px;
+  }
+}
+body .download_app .content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+body .download_app .content h3 {
+  color: #000;
+  font-size: 32px;
+}
+body .download_app .content h4 {
+  color: #4381f8;
+}
+body .download_app .links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+body .download_app .links img {
+  height: 42px;
+  filter: invert(1);
+}
+body footer {
+  padding: 40px 0 0;
+  background: #212121;
+}
+body footer .footer_about {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+body footer .footer_about .logo img {
+  height: 62px;
+  filter: brightness(0) invert(1);
+}
+body footer .footer_about .links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 18px 0 0;
+}
+@media screen and (max-width: 576px) {
+  body footer .footer_about .links {
+    gap: 12px;
+  }
+}
+body footer .footer_about .links a {
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+body footer .footer_about .links a:hover {
+  color: #4381f8;
+}
+body footer .copyrights {
+  padding: 24px 0;
+  border-top: 1px solid #38383a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media screen and (max-width: 576px) {
+  body footer .copyrights {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+}
+body footer .copyrights p {
+  margin: 0;
+  color: #fff;
+}
+body footer .copyrights p a {
+  color: #4381f8;
+}
+body footer .copyrights .social_media {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+body footer .copyrights .social_media a {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #38383a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+body footer .copyrights .social_media a:hover {
+  background: #4381f8;
+  border-color: #4381f8;
+  color: #fff;
+  transform: translateY(-2px);
 }
 body .gradient-text {
   background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);

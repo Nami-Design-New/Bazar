@@ -186,7 +186,7 @@
 }
 
 .popular {
-  background-color: #212121;
+  background-color: $blackBg;
   .container {
     display: flex;
     align-items: center;
@@ -222,8 +222,21 @@
   }
   .item {
     background: #1f1f1f;
-    .itemInfo .itemBottom .price {
-      color: $white;
+    border-color: $border;
+    .itemInfo .itemBottom {
+      border-color: $border;
+      .price {
+        color: $white;
+      }
+    }
+  }
+}
+
+.sliders {
+  .slider_wrap {
+    padding: 60px 0;
+    &:nth-child(even) {
+      background-color: $inputBg;
     }
   }
 }

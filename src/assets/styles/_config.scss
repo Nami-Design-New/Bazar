@@ -26,12 +26,44 @@
   outline: none;
 }
 
+@keyframes loading {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(120px);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
 $main: #4381f8;
 $main10: #4381f81a;
 $main60: #4381f89a;
 $second: #d785f1;
 $white: #fff;
 $black: #000;
+$blackBg: #212121;
 $star-color: #ffd500;
 $LightGray: #d9d9d9;
 $textColor: #777777;
@@ -91,26 +123,6 @@ hr {
   margin: 0.5rem 0;
 }
 
-@keyframes loading {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(120px);
-  }
-}
-
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translateZ(0);
-  }
-}
-
 .tooltip {
   --bs-tooltip-bg: #242424;
   .tooltip-inner {
@@ -165,10 +177,12 @@ input[type="checkbox"] {
 .Toastify__toast-body {
   direction: ltr !important;
 }
+
 .Toastify__toast-body > div:last-child {
   line-height: 24px;
   flex: unset;
 }
+
 @media only screen and (max-width: 480px) {
   .Toastify__toast-container {
     right: 0;

@@ -16,9 +16,7 @@ function Categories() {
         <div className="topHead">
           <div className="sectionTitle">
             <span className="subtitle">فئة مختارة بعناية</span>
-            <h4 className="title">
-              تصفح العناصر حسب <span>الفئة</span>
-            </h4>
+            <h4 className="title">تصفح العناصر حسب الفئة</h4>
           </div>
           <Link href="categories.html" className="viewAll">
             <span>عرض الكل</span>
