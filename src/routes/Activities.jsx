@@ -14,7 +14,7 @@ function Activities() {
   return (
     <>
       <SectionHeader />
-      <section className="activities-section tabs-section container">
+      <section className="activities-section tabs-section container col-lg-10 col-12">
         <Tabs defaultActiveKey="ads" id="uncontrolled-tab-example">
           {/* ADs */}
           <Tab
@@ -23,12 +23,22 @@ function Activities() {
             className="tab_item"
           >
             <div className="content-wrapper">
-              <Link to="/add-ad" className="add-btn">
-                <IconCirclePlus stroke={2} /> {t("ads.addAD")}
-              </Link>
-              <ADMiniCard />
-              <ADMiniCard />
-              <ADMiniCard />
+              <div className="btn-wrapper d-flex justify-content-end">
+                <Link to="/add-ad" className="add-btn">
+                  <IconCirclePlus stroke={2} /> {t("ads.addAD")}
+                </Link>
+              </div>
+              <div className="cards-wrapper">
+                <div className="col-lg-6 col-12 p-3">
+                  <ADMiniCard />
+                </div>
+                <div className="col-lg-6 col-12 p-3">
+                  <ADMiniCard />
+                </div>
+                <div className="col-lg-6 col-12 p-3">
+                  <ADMiniCard />
+                </div>
+              </div>
             </div>
           </Tab>
 
@@ -39,12 +49,22 @@ function Activities() {
             className="tab_item"
           >
             <div className="content-wrapper">
-              <Link to="/add-interest" className="add-btn">
-                <IconCirclePlus stroke={2} /> {t("interests.addInterest")}
-              </Link>
-              <InterestMiniCard />
-              <InterestMiniCard />
-              <InterestMiniCard />
+              <div className="btn-wrapper d-flex justify-content-end">
+                <Link to="/add-interest" className="add-btn">
+                  <IconCirclePlus stroke={2} /> {t("interests.addInterest")}
+                </Link>
+              </div>
+              <div className="cards-wrapper">
+                <div className="col-lg-6 col-12 p-3">
+                  <InterestMiniCard />
+                </div>
+                <div className="col-lg-6 col-12 p-3">
+                  <InterestMiniCard />
+                </div>
+                <div className="col-lg-6 col-12 p-3">
+                  <InterestMiniCard />
+                </div>
+              </div>
             </div>
           </Tab>
 
@@ -55,12 +75,22 @@ function Activities() {
             className="tab_item"
           >
             <div className="content-wrapper">
-              <Link to="/add-order" className="add-btn">
-                <IconCirclePlus stroke={2} /> {t("orders.addOrder")}
-              </Link>
-              <OrderMiniCard />
-              <OrderMiniCard />
-              <OrderMiniCard />
+              <div className="btn-wrapper d-flex justify-content-end">
+                <Link to="/add-order" className="add-btn">
+                  <IconCirclePlus stroke={2} /> {t("orders.addOrder")}
+                </Link>
+              </div>
+              <div className="cards-wrapper">
+                <div className="col-lg-6 col-12 p-3">
+                  <OrderMiniCard />
+                </div>
+                <div className="col-lg-6 col-12 p-3">
+                  <OrderMiniCard />
+                </div>
+                <div className="col-lg-6 col-12 p-3">
+                  <OrderMiniCard />
+                </div>
+              </div>
             </div>
           </Tab>
         </Tabs>

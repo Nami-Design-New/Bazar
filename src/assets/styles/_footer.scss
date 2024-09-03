@@ -87,8 +87,8 @@ footer {
         font-size: 14px;
         transition: $transition;
         &:hover {
-          background: $main;
-          border-color: $main;
+          background: linear-gradient(238.2deg, $second 0%, $main 100%);
+          border-color: transparent !important;
           color: $white;
           transform: translateY(-2px);
         }

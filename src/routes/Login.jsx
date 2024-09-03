@@ -18,7 +18,7 @@ function Login() {
   };
 
   return (
-    <section className="auth-form container">
+    <section className="auth-form container col-12 col-lg-6">
       <div className="form-title">
         <h1 className="title">{t("auth.login")}</h1>
         <h5 className="sub-title">{t("auth.loginSubtitle")}</h5>

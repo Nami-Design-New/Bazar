@@ -10,14 +10,20 @@ function Favorites() {
   return (
     <>
       <SectionHeader />
-      <section className="favorites-section tabs-section container">
+      <section className="favorites-section tabs-section container col-lg-10 col-12">
         <Tabs defaultActiveKey="ads" id="uncontrolled-tab-example">
           {/* ADs */}
           <Tab eventKey="ads" title={t("favorites.ads")} className="tab_item">
             <div className="content-wrapper">
-              <FavoriteADCard />
-              <FavoriteADCard />
-              <FavoriteADCard />
+              <div className="col-lg-6 col-12 p-3">
+                <FavoriteADCard />
+              </div>
+              <div className="col-lg-6 col-12 p-3">
+                <FavoriteADCard />
+              </div>
+              <div className="col-lg-6 col-12 p-3">
+                <FavoriteADCard />
+              </div>
             </div>
           </Tab>
 
@@ -28,9 +34,15 @@ function Favorites() {
             className="tab_item"
           >
             <div className="content-wrapper">
-              <FavoriteMarketCard />
-              <FavoriteMarketCard />
-              <FavoriteMarketCard />
+              <div className="col-lg-4 col-md-6 col-12 p-3">
+                <FavoriteMarketCard />
+              </div>
+              <div className="col-lg-4 col-md-6 col-12 p-3">
+                <FavoriteMarketCard />
+              </div>
+              <div className="col-lg-4 col-md-6 col-12 p-3">
+                <FavoriteMarketCard />
+              </div>
             </div>
           </Tab>
         </Tabs>

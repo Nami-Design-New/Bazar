@@ -7,9 +7,9 @@ function OrderDetails() {
   const [step, setStep] = useState(1);
 
   return (
-    <div className="order-details-page">
+    <div className="order-details-page ">
       <SectionHeader />
-      <div className="order-details-wrapper container">
+      <div className="order-details-wrapper container col-lg-10 col-12">
         <div className="order-header">
           <h3>مطلوب سياره AGM مستعمله</h3>
         </div>
@@ -95,7 +95,7 @@ function OrderDetails() {
               <div className="icon">
                 <i className="fa-sharp fa-solid fa-cube  gradient-icon"></i>
               </div>
-              <span>{t("orders.orderId")}: 342353</span>
+              <span className="secondary">{t("orders.orderId")}: 342353</span>
             </div>
           </div>
           <div className="details-box">

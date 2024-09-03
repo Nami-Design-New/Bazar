@@ -64,14 +64,24 @@ function ForgetStep3({ setStep }) {
             onChange={handleConfirmChange}
           />
         </div>
-        <SubmitButton
-          onClick={() => {
-            handleSubmit();
-            setStep(1);
-          }}
-          name={t("auth.next")}
-          loading={loading}
-        />
+        <div className="d-flex gap-3 align-items-center flex-column w-100">
+          <SubmitButton
+            onClick={() => {
+              handleSubmit();
+              setStep(1);
+            }}
+            name={t("auth.next")}
+            loading={loading}
+          />
+          <span
+            to="/"
+            className="custom-btn stroke"
+            style={{ cursor: "pointer" }}
+            onClick={() => setStep(2)}
+          >
+            {t("auth.back")}
+          </span>
+        </div>
       </form>
     </>
   );
