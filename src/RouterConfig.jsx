@@ -9,6 +9,7 @@ import Favorites from "./routes/Favorites";
 import AdDetails from "./routes/AdDetails";
 import OrderDetails from "./routes/OrderDetails";
 import MarketDetails from "./routes/MarketDetails";
+import Cart from "./routes/Cart";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
@@ -20,6 +21,7 @@ const routerConfig = [
   { path: "/edit-profile", element: <EditProfile /> },
 
   // user features
+  { path: "/cart", element: <Cart /> },
   { path: "/my-activities", element: <Activities /> },
   { path: "/ad-details/:id", element: <AdDetails /> },
   { path: "/order-details/:id", element: <OrderDetails /> },

@@ -12,6 +12,7 @@ import mapPin from "../assets/images/mapPin.svg";
 import RateScale from "../ui/form-elements/RateScale";
 import SubmitButton from "../ui/form-elements/SubmitButton";
 import TextField from "../ui/form-elements/TextField";
+import RateCard from "../ui/cards/RateCard";
 
 const containerStyle = {
   width: "100%",
@@ -99,7 +100,7 @@ function MarketDetails() {
         </div>
       </div>
       <section className="tabs-section">
-        <Tabs defaultActiveKey="rates" id="uncontrolled-tab-example">
+        <Tabs defaultActiveKey="products" id="uncontrolled-tab-example">
           <Tab eventKey="products" title={t("markets.products")}>
             <div className="content-wrapper container col-lg-10 col-12">
               <div className="filter-wrapper">
@@ -248,6 +249,9 @@ function MarketDetails() {
                       <img src={whatsAppLogo} alt="WhatsApp" />
                     </Link>
                     <Link target="_blank" to="" className="contact-link">
+                      <i className="fa-regular fa-globe"></i>
+                    </Link>
+                    <Link target="_blank" to="" className="contact-link">
                       <img src={instagramLogo} alt="Instagram" />
                     </Link>
                     <Link target="_blank" to="" className="contact-link">
@@ -280,6 +284,10 @@ function MarketDetails() {
                   />
                 </div>
               </form>
+              <div className="rates-wrapper">
+                <RateCard />
+                <RateCard />
+              </div>
             </div>
           </Tab>
         </Tabs>

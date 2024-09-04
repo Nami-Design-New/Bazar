@@ -109,10 +109,10 @@ export default function Header() {
           </ul>
 
           <div className="left_utils">
-            <div className="cart_open" id="toggleSmallCart">
+            <Link to={"/cart"} className="cart_open" id="toggleSmallCart">
               <IconShoppingBag stroke={1.5} />
               <span>0</span>
-            </div>
+            </Link>
 
             <Dropdown>
               <Dropdown.Toggle
