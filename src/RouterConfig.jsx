@@ -14,6 +14,7 @@ import Cart from "./routes/Cart";
 const routerConfig = [
   { path: "/", element: <Home /> },
   { path: "*", element: <ErrorPage /> },
+
   // user auth
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
@@ -27,7 +28,9 @@ const routerConfig = [
   { path: "/order-details/:id", element: <OrderDetails /> },
   { path: "/market-details/:id", element: <MarketDetails /> },
 
-  { path: "/favorites", element: <Favorites /> },
+  { path: "/ads", element: <Home /> },
+
+  { path: "/favorites", element: <Favorites /> }
 ];
 
 export default routerConfig;

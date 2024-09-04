@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import errorImg from "../Assets/images/error-404.svg";
+import errorImg from "../assets/images/error-404.svg";
 import { useTranslation } from "react-i18next";
 
 function ErrorPage() {
