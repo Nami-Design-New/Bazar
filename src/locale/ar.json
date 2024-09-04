@@ -11,7 +11,8 @@
     "logout": "تسجيل الخروج",
     "categories": "الفئات",
     "addAd": "اضف إعلان",
-    "allNotifications": "كل التنبيهات"
+    "allNotifications": "كل التنبيهات",
+    "coupons": "كوبونات"
   },
   "routes": {
     "home": "الرئيسية",
@@ -19,7 +20,9 @@
     "favorites": "المفضلة",
     "orders": "الطلبات",
     "order-details": "تفاصيل الطلب",
-    "cart": "السلة"
+    "cart": "السلة",
+    "checkout": "اكمال الشراء",
+    "coupons": "الكوبونات"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -131,7 +134,16 @@
     "newest": "الاحدث"
   },
   "cart": {
-    "completePurchese": "اكمل الشراء"
+    "completePurchese": "اكمل الشراء",
+    "orderDetails": "تفاصيل الطلب",
+    "addAddress": "اضف عنوان جديد",
+    "orderAddress": "عنوان الطلب",
+    "addCoupon": "اضف كوبون الخصم",
+    "paymentMethod": "طريقة الدفع",
+    "visa": "فيزا",
+    "cach": "كاش",
+    "wallet": "محفظة",
+    "visaNumber": "رقم الفيزا"
   },
   "createdAt": "تم الإنشاء في",
   "delete": "حذف",
@@ -141,5 +153,6 @@
   "thousand": "ألف",
   "publishRate": "نشر التقييم",
   "shareYourComment": "شاركنا سؤالك او تعليقك",
-  "addToCart": "اضف للسلة"
+  "addToCart": "اضف للسلة",
+  "writeHere": "اكتب هنا"
 }

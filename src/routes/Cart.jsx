@@ -10,9 +10,9 @@ function Cart() {
     <div className="cart-page">
       <SectionHeader />
       <div className="cart-details-wrapper container col-lg-10 col-12">
-        <CartItem />
-        <CartItem />
-        <CartItem />
+        <CartItem type="cart" />
+        <CartItem type="cart" />
+        <CartItem type="cart" />
 
         <div className="checkout-btn-wrapper">
           <Link to="/checkout" className="custom-btn filled">
