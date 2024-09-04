@@ -8,7 +8,7 @@ import {
   IconBell,
   IconCirclePlus,
   IconMessage,
-  IconShoppingBag,
+  IconShoppingBag
 } from "@tabler/icons-react";
 
 export default function Header() {
@@ -151,46 +151,26 @@ export default function Header() {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item
-                  as={Link}
-                  className={"gradient-text"}
-                  to="/profile"
-                >
+                <Dropdown.Item as={Link} to="/profile">
                   <i className="fa-solid fa-user"></i> {t("header.profile")}
                 </Dropdown.Item>
 
-                <Dropdown.Item
-                  as={Link}
-                  className={"gradient-text"}
-                  to="/edit-profile"
-                >
+                <Dropdown.Item as={Link} to="/edit-profile">
                   <i className="fa-light fa-pen-to-square"></i>{" "}
                   {t("header.editProfile")}
                 </Dropdown.Item>
 
-                <Dropdown.Item
-                  as={Link}
-                  className={"gradient-text"}
-                  to="/my-activities"
-                >
+                <Dropdown.Item as={Link} to="/my-activities">
                   <i className="fa-light fa-chart-line"></i>
                   {t("header.myActivities")}
                 </Dropdown.Item>
 
-                <Dropdown.Item
-                  as={Link}
-                  className={"gradient-text"}
-                  to="/favorites"
-                >
+                <Dropdown.Item as={Link} to="/favorites">
                   <i className="fa-sharp fa-regular fa-heart"></i>
                   {t("header.favourites")}
                 </Dropdown.Item>
 
-                <Dropdown.Item
-                  as={Link}
-                  className={"gradient-text"}
-                  to="/login"
-                >
+                <Dropdown.Item as={Link} to="/login">
                   <i className="fa-regular fa-arrow-right-from-bracket"></i>{" "}
                   {t("header.logout")}
                 </Dropdown.Item>

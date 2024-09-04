@@ -8,13 +8,15 @@ import stores from "../../assets/images/stores.png";
 import coupon from "../../assets/images/copoun.png";
 import categories from "../../assets/images/categories.png";
 import ads from "../../assets/images/ads.png";
+import onlineStore from "../../assets/images/onlineStore.png"
+import wanted from "../../assets/images/storeWanted.png"
 
 function HeroSection() {
   return (
     <section className="hero-section">
       <div className="container p-0">
         <div className="row m-0 h-100">
-          <div className="col-lg-8 col-12 p-2 h-100">
+          <div className="col-lg-7 col-12 p-2 h-100">
             <div className="swiper_adds">
               <Swiper
                 slidesPerView={1}
@@ -61,7 +63,7 @@ function HeroSection() {
             </div>
           </div>
 
-          <div className="col-lg-4 col-12 p-2">
+          <div className="col-lg-5 col-12 p-2">
             <div className="categories">
               <div
                 className="category"
@@ -80,6 +82,26 @@ function HeroSection() {
                 <h2>الكوبونات</h2>
                 <div className="img">
                   <img src={coupon} alt="stores" />
+                </div>
+              </div>
+
+              <div
+                className="category"
+                style={{ backgroundColor: "#dd4bf829" }}
+              >
+                <h2>متاجر المطلوبه</h2>
+                <div className="img">
+                  <img src={wanted} alt="stores" />
+                </div>
+              </div>
+
+              <div
+                className="category"
+                style={{ backgroundColor: "#23c98c4a" }}
+              >
+                <h2>المتاجر الاكترونيه</h2>
+                <div className="img">
+                  <img src={onlineStore} alt="stores" />
                 </div>
               </div>
 
