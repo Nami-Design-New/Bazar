@@ -1,8 +1,23 @@
 import { useTranslation } from "react-i18next";
 import productImage from "../../assets/images/product-1.png";
+import { useState } from "react";
 
 function ProductMiniCard({ newest, discount }) {
   const { t } = useTranslation();
+  const [quantity, setQuantity] = useState(0);
+
+  function handleAddToCart() {
+    setQuantity(1);
+  }
+
+  function handleIncrease() {
+    setQuantity((q) => q + 1);
+  }
+
+  function handleDecrease() {
+    if (quantity === 0) return;
+    setQuantity((q) => q - 1);
+  }
 
   return (
     <div className="product-mini-card">
@@ -22,9 +37,22 @@ function ProductMiniCard({ newest, discount }) {
           )}
         </div>
         <div className="btns-wrapper">
-          <span className="btn-box view">
-            <i className="fa-solid fa-up-right-from-square gradient-icon"></i>
-          </span>
+          {quantity === 0 ? (
+            <span className="btn-box add" onClick={handleAddToCart}>
+              <i className="fa-solid fa-cart-plus"></i>
+              {t("addToCart")}
+            </span>
+          ) : (
+            <>
+              <span className="btn-box increase quantity-btn" onClick={handleIncrease}>
+                <i className="fa-solid fa-plus"></i>
+              </span>
+              <h5 className="quantity">{quantity}</h5>
+              <span className="btn-box decrease quantity-btn" onClick={handleDecrease}>
+                <i className="fa-solid fa-minus"></i>
+              </span>
+            </>
+          )}
         </div>
       </div>
     </div>

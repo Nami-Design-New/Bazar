@@ -18,7 +18,8 @@
     "my-activities": "نشاطاتي",
     "favorites": "المفضلة",
     "orders": "الطلبات",
-    "order-details": "تفاصيل الطلب"
+    "order-details": "تفاصيل الطلب",
+    "cart": "السلة"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -129,6 +130,9 @@
   "products": {
     "newest": "الاحدث"
   },
+  "cart": {
+    "completePurchese": "اكمل الشراء"
+  },
   "createdAt": "تم الإنشاء في",
   "delete": "حذف",
   "cancel": "الغاء",
@@ -136,5 +140,6 @@
   "follow": "متابعة",
   "thousand": "ألف",
   "publishRate": "نشر التقييم",
-  "shareYourComment": "شاركنا سؤالك او تعليقك"
+  "shareYourComment": "شاركنا سؤالك او تعليقك",
+  "addToCart": "اضف للسلة"
 }
