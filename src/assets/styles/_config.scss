@@ -73,6 +73,7 @@ $border: #38383a;
 $inputBg: #fafafa;
 $grayBackground: #f4f4f4;
 $shadow: 0 2px 8px 0 #63636333;
+$bigShadow: 0 16px 32px 0 #071c1f1a;
 $transition: all 0.2s ease-in-out;
 
 * {
@@ -146,7 +147,6 @@ hr {
     height: 16px !important;
   }
 }
-
 
 input[type="checkbox"] {
   width: 18px;

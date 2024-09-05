@@ -2025,6 +2025,397 @@ body main .auth-form input {
   padding: 8px 12px;
   width: 100%;
 }
+body main .profile .content-wrapper .row {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  position: relative;
+}
+body main .profile .userInfo {
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 16px 32px 0 rgba(7, 28, 31, 0.1019607843);
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+body main .profile .userInfo .top-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+}
+body main .profile .userInfo .top-wrapper .user-avatar-wrapper {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  display: flex;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  margin: 0 8px;
+}
+body main .profile .userInfo .top-wrapper .user-avatar-wrapper .userImg {
+  width: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body main .profile .userInfo .top-wrapper .user-avatar-wrapper .verified-badge {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #fff;
+  bottom: -6px;
+  left: -6px;
+  box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+body main .profile .userInfo .top-wrapper .user-avatar-wrapper .verified-badge i {
+  font-size: 20px;
+  color: green;
+}
+body main .profile .userInfo .top-wrapper .userName {
+  flex: 1;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body main .profile .userInfo .top-wrapper .userName .name {
+  font-weight: bold;
+}
+body main .profile .userInfo .top-wrapper .userName .userDetails {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+}
+body main .profile .userInfo .top-wrapper .userName .userDetails .details-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  position: relative;
+  color: #6b6464;
+}
+body main .profile .userInfo .top-wrapper .userName .userDetails .details-box i {
+  font-size: 18px;
+}
+body main .profile .userInfo .top-wrapper .verification-details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+}
+body main .profile .userInfo .top-wrapper .verification-details .verification-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+body main .profile .userInfo .top-wrapper .verification-details .verification-item i {
+  font-size: 18px;
+}
+body main .profile .userInfo .top-wrapper .action-boxes {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  position: relative;
+}
+body main .profile .userInfo .top-wrapper .action-boxes .following-details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  position: relative;
+}
+body main .profile .userInfo .top-wrapper .action-boxes .following-details .details-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+}
+body main .profile .userInfo .top-wrapper .action-boxes .following-details .details-box .value {
+  font-weight: 600;
+  font-size: 18px;
+}
+body main .profile .userInfo .top-wrapper .action-boxes .following-details .details-box .title {
+  font-weight: 600;
+}
+body main .profile .userInfo .top-wrapper .action-boxes .actions-wrapper {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  position: relative;
+}
+body main .profile .userInfo .top-wrapper .action-boxes .actions-wrapper .action-btn {
+  padding: 8px 16px;
+  height: 40px;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+body main .profile .profileNavCol {
+  background-color: #fff;
+  border-radius: 16px;
+  border: 1px solid #ccc;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body main .profile .profileNavCol a {
+  padding: 12px 16px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  text-transform: capitalize;
+}
+body main .profile .profileNavCol a img {
+  width: 20px;
+  height: 20px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  transition: all 0.2s ease-in-out;
+}
+body main .profile .profileNavCol a.active, body main .profile .profileNavCol a:hover {
+  background-color: #4381f8;
+  color: #fff;
+}
+body main .profile .profileNavCol a.active img, body main .profile .profileNavCol a:hover img {
+  filter: brightness(0) invert(1);
+}
+@media (max-width: 760px) {
+  body main .profile .profileNavCol {
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  body main .profile .profileNavCol a {
+    padding: 12px 10px;
+    display: inline-flex;
+    flex: 1 140px;
+    border-radius: 8px;
+  }
+}
+body main .profile .profileContent .notifications {
+  padding: 10px;
+}
+body main .profile .profileContent .notifications ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+body main .profile .profileContent .notifications ul .notification {
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #e9e9e9;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body main .profile .profileContent .notifications ul .notification .notificationTitle {
+  font-weight: bold;
+}
+body main .profile .profileContent .notifications ul .notification p {
+  color: #d9d9d9;
+}
+body main .profile .profileContent .notifications ul .notification .date {
+  display: flex;
+  font-size: 13px;
+}
+body main .profile .profileContent .topImg {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+body main .profile .profileContent .topImg img {
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  max-height: 200px;
+}
+body main .profile .cardForm {
+  box-shadow: unset;
+  background-color: #f8f8f8;
+  border: 1px solid #e9e9e9;
+}
+body main .profile .content-wrapper {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+body main .profile .tabs-section {
+  display: flex;
+  padding: 0 !important;
+}
+body main .profile .tabs-section .nav-tabs .nav-item {
+  flex: unset !important;
+}
+body main .profile .tabs-section .nav-tabs .nav-item:first-of-type button {
+  border-end-start-radius: 12px !important;
+}
+body main .profile .tabs-section .nav-tabs .nav-item:last-of-type button {
+  border-end-end-radius: 12px !important;
+}
+body main .profile .tab-content {
+  flex: 1 0;
+}
+body main .profile .tab-content .tab-pane {
+  width: 100%;
+}
+body main .profile .tab-content .tab-pane.active {
+  display: flex !important;
+  flex-wrap: wrap;
+}
+body main .profile-verification-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  position: relative;
+}
+body main .profile-verification-wrapper h6 {
+  font-size: 18px;
+  color: #615d5c;
+  position: relative;
+  text-align: center;
+  text-wrap: balance;
+  line-height: 1.6;
+}
+body main .profile-verification-wrapper .verification-box {
+  box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #fff;
+}
+body main .profile-verification-wrapper .verification-box .box-info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+body main .profile-verification-wrapper .verification-box .box-info .icon-box {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 1px solid #e6eef0;
+  border-radius: 12px;
+  padding: 8px;
+}
+body main .profile-verification-wrapper .verification-box .box-info .icon-box i {
+  font-size: 28px;
+  color: #4381f8;
+}
+body main .profile-verification-wrapper .verification-box .box-info h5 {
+  font-weight: 600;
+  font-size: 16px;
+  color: #000;
+}
+body main .profile-verification-wrapper .verification-box .btn-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body main .profile-verification-wrapper .verification-box .btn-wrapper .custom-btn {
+  max-width: 300px !important;
+}
+body main .profileImage {
+  position: relative;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main .profileImage .profileImageLabel {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+body main .profileImage .profileImageLabel img {
+  display: block;
+  width: 150px;
+  aspect-ratio: 1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 100%;
+  background-color: #f1f1f1;
+  border: 1px solid #f1f1f1;
+}
+body main .profileImage span {
+  position: absolute;
+  bottom: 4px;
+  left: 12px;
+  background-color: #fff;
+  border-radius: 100%;
+  pointer-events: none;
+}
+body main .profileImage span img {
+  width: 32px;
+  height: 32px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+body main .profileImage input {
+  display: none;
+}
+body main .profileImage.wide {
+  width: min(100%, 485px);
+}
+body main .profileImage.wide .profileImageLabel {
+  cursor: pointer;
+}
+body main .profileImage.wide .profileImageLabel img {
+  width: 100%;
+  border-radius: 12px;
+  aspect-ratio: 3/2;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+body main .profileImage.wide span {
+  bottom: -4px;
+  left: -4px;
+}
 body main .activities-section {
   padding-left: 16px;
   padding-right: 16px;
@@ -2087,19 +2478,19 @@ body main .activities-section .content-wrapper .cards-wrapper {
   position: relative;
   flex-wrap: wrap;
 }
-body main .activities-section .content-wrapper .activity-card {
+body main .activity-card {
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1490196078);
   border: 1px solid #fdfdfd;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card {
+body main .activity-card.ad-mini-card {
   display: flex;
   flex-direction: column;
   gap: 16px;
   position: relative;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header {
+body main .activity-card.ad-mini-card .card-header {
   width: 100%;
   display: flex;
   gap: 16px;
@@ -2107,20 +2498,20 @@ body main .activities-section .content-wrapper .activity-card.ad-mini-card .card
   background: #f6f6f6;
   border-radius: 12px;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .image-wrapper {
+body main .activity-card.ad-mini-card .card-header .image-wrapper {
   width: 120px;
   border-radius: 12px;
   position: relative;
   display: flex;
   overflow: hidden;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .image-wrapper img {
+body main .activity-card.ad-mini-card .card-header .image-wrapper img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .card-content {
+body main .activity-card.ad-mini-card .card-header .card-content {
   flex: 1 0;
   padding: 56px 0 16px;
   display: flex;
@@ -2128,28 +2519,28 @@ body main .activities-section .content-wrapper .activity-card.ad-mini-card .card
   gap: 8px;
   position: relative;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .card-content .title {
+body main .activity-card.ad-mini-card .card-header .card-content .title {
   color: #000;
   font-size: 18px;
   margin: 0;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .card-content .categories-wrapper {
+body main .activity-card.ad-mini-card .card-header .card-content .categories-wrapper {
   width: 100%;
   display: flex;
   gap: 0 24px;
   flex-wrap: wrap;
   position: relative;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .card-content .categories-wrapper .category {
+body main .activity-card.ad-mini-card .card-header .card-content .categories-wrapper .category {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 16px;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .card-content .date {
+body main .activity-card.ad-mini-card .card-header .card-content .date {
   color: #000;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .action-boxes {
+body main .activity-card.ad-mini-card .card-header .action-boxes {
   padding: 16px;
   position: absolute;
   top: 0;
@@ -2158,7 +2549,7 @@ body main .activities-section .content-wrapper .activity-card.ad-mini-card .card
   align-items: flex-start;
   gap: 8px;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .action-boxes .action-btn {
+body main .activity-card.ad-mini-card .card-header .action-boxes .action-btn {
   width: 36px;
   height: 36px;
   border-radius: 12px;
@@ -2170,10 +2561,10 @@ body main .activities-section .content-wrapper .activity-card.ad-mini-card .card
   position: relative;
   cursor: pointer;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-header .action-boxes .action-btn i {
+body main .activity-card.ad-mini-card .card-header .action-boxes .action-btn i {
   font-size: 18px;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-statistics {
+body main .activity-card.ad-mini-card .card-statistics {
   width: 100%;
   display: flex;
   align-items: center;
@@ -2183,7 +2574,7 @@ body main .activities-section .content-wrapper .activity-card.ad-mini-card .card
   position: relative;
   padding: 0 16px 16px;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-statistics .statistic {
+body main .activity-card.ad-mini-card .card-statistics .statistic {
   flex: 1 0;
   display: flex;
   align-items: center;
@@ -2193,10 +2584,10 @@ body main .activities-section .content-wrapper .activity-card.ad-mini-card .card
   position: relative;
   white-space: nowrap;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-statistics .statistic i {
+body main .activity-card.ad-mini-card .card-statistics .statistic i {
   font-size: 20px;
 }
-body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-statistics .statistic .value {
+body main .activity-card.ad-mini-card .card-statistics .statistic .value {
   color: #000;
   font-size: 18px;
   display: flex;
@@ -2206,11 +2597,11 @@ body main .activities-section .content-wrapper .activity-card.ad-mini-card .card
   font-weight: 600;
 }
 @media screen and (max-width: 768px) {
-  body main .activities-section .content-wrapper .activity-card.ad-mini-card .card-statistics .statistic .value {
+  body main .activity-card.ad-mini-card .card-statistics .statistic .value {
     font-size: 16px;
   }
 }
-body main .activities-section .content-wrapper .activity-card.interest-mini-card .card-content {
+body main .activity-card.interest-mini-card .card-content {
   gap: 16px !important;
   padding: 16px !important;
 }
@@ -2269,7 +2660,8 @@ body main .fav-market-card .card-header .cover-wrapper::after {
   z-index: 4;
 }
 body main .fav-market-card .card-header .cover-wrapper img {
-  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 100%;
 }
 body main .fav-market-card .card-header .logo-wrapper {
@@ -2568,7 +2960,8 @@ body main .market-details-page .page-header .cover-wrapper::after {
   z-index: 4;
 }
 body main .market-details-page .page-header .cover-wrapper img {
-  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 100%;
 }
 body main .market-details-page .page-header .top-wrapper {
@@ -4791,9 +5184,8 @@ body .custom-btn span {
   justify-content: center;
   font-size: inherit;
   font-weight: inherit;
-  gap: 16px;
+  gap: 8px;
   z-index: 4;
-  transition: all 0.2s ease-in-out;
 }
 body .custom-btn span i {
   z-index: 4;
@@ -4802,8 +5194,10 @@ body .custom-btn.filled {
   border: 1px solid transparent !important;
   color: #fff !important;
 }
+body .custom-btn.filled span {
+  color: #fff;
+}
 body .custom-btn.filled i {
-  z-index: 4;
   color: #fff;
 }
 body .custom-btn.filled::after {

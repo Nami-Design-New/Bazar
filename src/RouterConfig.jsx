@@ -13,6 +13,7 @@ import Cart from "./routes/Cart";
 import Checkout from "./routes/Checkout";
 import Coupons from "./routes/Coupons";
 import CouponDetails from "./routes/CouponDetails";
+import Profile from "./routes/Profile";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
@@ -23,6 +24,7 @@ const routerConfig = [
   { path: "/register", element: <Register /> },
   { path: "/forget-password", element: <ForgetPassword /> },
   { path: "/edit-profile", element: <EditProfile /> },
+  { path: "/profile", element: <Profile /> },
 
   // user features
   { path: "/cart", element: <Cart /> },

@@ -80,8 +80,6 @@ function CouponCard() {
                   isCopied ? "fa-check-double" : "fa-copy"
                 }`}
               ></i>
-              {/* <i class="fa-solid fa-check-double"></i> */}
-              {/* <i class="fa-solid fa-clipboard-check"></i> */}
               {isCopied ? t("successfullyCopied") : t("copyCoupon")}{" "}
             </span>
           </span>
