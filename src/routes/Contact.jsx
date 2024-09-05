@@ -4,14 +4,14 @@ import phone from "../assets/images/c-phone.svg";
 import email from "../assets/images/c-email.svg";
 
 function Contact() {
-  function highlight(el) {
-    el.previousElementSibling.classList.add("h");
+  function highlight(e) {
+    e.target.previousElementSibling.classList.add("h");
   }
 
-  function dehighlight(el) {
-    el.previousElementSibling.classList.remove("h");
+  function dehighlight(e) {
+    e.target.previousElementSibling.classList.remove("h");
   }
-  
+
   return (
     <>
       <SectionHeader />
@@ -78,7 +78,13 @@ function Contact() {
 
                   <div className="inputfield">
                     <label htmlFor="email">البريد الالكتروني</label>
-                    <input type="email" id="email" name="email" />
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      onFocus={(e) => highlight(e)}
+                      onBlur={(e) => dehighlight(e)}
+                    />
                     <span className="highlight"></span>
                   </div>
                 </div>
@@ -86,13 +92,25 @@ function Contact() {
                 <div className="form-group">
                   <div className="inputfield">
                     <label htmlFor="phone">رقم الهاتف</label>
-                    <input type="tel" id="phone" name="phone" />
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      onFocus={(e) => highlight(e)}
+                      onBlur={(e) => dehighlight(e)}
+                    />
                     <span className="highlight"></span>
                   </div>
 
                   <div className="inputfield">
                     <label htmlFor="subject">الموضوع</label>
-                    <input type="text" id="subject" name="subject" />
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      onFocus={(e) => highlight(e)}
+                      onBlur={(e) => dehighlight(e)}
+                    />
                     <span className="highlight"></span>
                   </div>
                 </div>
@@ -101,7 +119,12 @@ function Contact() {
                     <label htmlFor="message" className="message-label">
                       رسالتك
                     </label>
-                    <textarea name="message" id="message"></textarea>
+                    <textarea
+                      name="message"
+                      id="message"
+                      onFocus={(e) => highlight(e)}
+                      onBlur={(e) => dehighlight(e)}
+                    ></textarea>
                     <span className="highlight"></span>
                   </div>
                 </div>

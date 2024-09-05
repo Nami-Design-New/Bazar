@@ -1,23 +1,24 @@
 import Home from "./routes/Home";
 import ErrorPage from "./routes/ErrorPage";
+import Cart from "./routes/Cart";
 import Login from "./routes/Login";
 import Register from "./routes/Register";
-import ForgetPassword from "./routes/ForgetPassword";
 import EditProfile from "./routes/EditProfile";
 import Activities from "./routes/Activities";
 import Favorites from "./routes/Favorites";
 import AdDetails from "./routes/AdDetails";
-import OrderDetails from "./routes/OrderDetails";
-import MarketDetails from "./routes/MarketDetails";
-import Cart from "./routes/Cart";
-import Checkout from "./routes/Checkout";
 import Coupons from "./routes/Coupons";
-import CouponDetails from "./routes/CouponDetails";
 import Contact from "./routes/Contact";
 import Profile from "./routes/Profile";
 import AbsherVerification from "./routes/AbsherVerification";
 import ValVerification from "./routes/ValVerification";
 import CommercialVerification from "./routes/CommercialVerification";
+import Checkout from "./routes/Checkout";
+import OrderDetails from "./routes/OrderDetails";
+import MarketDetails from "./routes/MarketDetails";
+import CouponDetails from "./routes/CouponDetails";
+import ForgetPassword from "./routes/ForgetPassword";
+import AddAdvertisment from "./routes/AddAdvertisment";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
@@ -42,6 +43,7 @@ const routerConfig = [
   { path: "/order-details/:id", element: <OrderDetails /> },
   { path: "/market-details/:id", element: <MarketDetails /> },
   { path: "/favorites", element: <Favorites /> },
+  { path: "/add-ad", element: <AddAdvertisment /> },
 
   // general
   { path: "/coupons", element: <Coupons /> },

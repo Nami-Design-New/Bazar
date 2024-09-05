@@ -5,3 +5,10 @@ export const calculateDate = (createdAt) => {
   const yyyy = createdDate.getFullYear();
   return `${dd} / ${mm} / ${yyyy}`;
 };
+
+export const handleChange = (e, setFormData) => {
+  setFormData({
+    ...setFormData,
+    [e.target.name]: e.target.value
+  });
+};

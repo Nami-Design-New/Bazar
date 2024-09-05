@@ -27,7 +27,8 @@
     "profile": "الملف الشخصي",
     "absher-verification": "توثيق الحساب",
     "val-verification": "توثيق فال",
-    "commercial-verification": "توثيق السجل التجاري"
+    "commercial-verification": "توثيق السجل التجاري",
+    "add-ad": "اضف أعلان"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -173,6 +174,10 @@
     "cach": "كاش",
     "wallet": "محفظة",
     "visaNumber": "رقم الفيزا"
+  },
+  "tabs": {
+    "main-info": "المعلومات الرئيسية",
+    "location": "العنوان"
   },
   "createdAt": "تم الإنشاء في",
   "delete": "حذف",
