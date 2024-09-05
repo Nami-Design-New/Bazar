@@ -2065,6 +2065,88 @@ body main .profileImage.wide span {
   bottom: -4px;
   left: -4px;
 }
+body main .verification-page .content-wrapper {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  position: relative;
+}
+body main .verification-page .content-wrapper .form-header-image {
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+body main .verification-page .content-wrapper .form-header-image img {
+  width: 300px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+body main .verification-page .content-wrapper .plan-wrapper {
+  width: 100%;
+}
+body main .verification-page .content-wrapper .plan-wrapper .inputs-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  flex-wrap: wrap;
+}
+body main .verification-page .content-wrapper .plan-wrapper .radio-group {
+  width: unset !important;
+}
+body main .verification-page .content-wrapper .plan-wrapper .radio-group label {
+  padding: 8px 24px;
+  border-radius: 12px;
+  background: #efecec;
+  color: #6b6464;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+body main .verification-page .content-wrapper .plan-wrapper .radio-group input {
+  display: none;
+}
+body main .verification-page .content-wrapper .plan-wrapper .radio-group input:checked + label {
+  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
+  color: #fff;
+}
+body main .verification-page .content-wrapper .filepond--credits {
+  display: none !important;
+}
+body main .verification-page .content-wrapper .hint-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style-type: disc;
+  list-style-position: inside;
+}
+body main .verification-page .content-wrapper .hint-wrapper h5 {
+  font-size: 18px;
+  font-weight: 600;
+  position: relative;
+  margin: 0;
+}
+body main .verification-page .content-wrapper .hint-wrapper li {
+  color: #6b6464;
+  font-size: 18px;
+  position: relative;
+  text-wrap: balance;
+  line-height: 1.6;
+}
+body main .verification-page .content-wrapper .submit-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
 body main .activities-section {
   padding-left: 16px;
   padding-right: 16px;
