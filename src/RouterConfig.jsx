@@ -13,11 +13,13 @@ import Cart from "./routes/Cart";
 import Checkout from "./routes/Checkout";
 import Coupons from "./routes/Coupons";
 import CouponDetails from "./routes/CouponDetails";
+import Contact from "./routes/Contact";
 import Profile from "./routes/Profile";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
   { path: "*", element: <ErrorPage /> },
+  { path: "contact", element: <Contact /> },
 
   // user auth
   { path: "/login", element: <Login /> },
@@ -38,7 +40,7 @@ const routerConfig = [
   // general
   { path: "/coupons", element: <Coupons /> },
   { path: "/coupon-details/:id", element: <CouponDetails /> },
-  { path: "/ads", element: <Home /> },
+  { path: "/ads", element: <Home /> }
 ];
 
 export default routerConfig;

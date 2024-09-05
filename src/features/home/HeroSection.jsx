@@ -8,8 +8,9 @@ import stores from "../../assets/images/stores.png";
 import coupon from "../../assets/images/copoun.png";
 import categories from "../../assets/images/categories.png";
 import ads from "../../assets/images/ads.png";
-import onlineStore from "../../assets/images/onlineStore.png"
-import wanted from "../../assets/images/storeWanted.png"
+import onlineStore from "../../assets/images/onlineStore.png";
+import wanted from "../../assets/images/storeWanted.png";
+import { Link } from "react-router-dom";
 
 function HeroSection() {
   return (
@@ -65,7 +66,8 @@ function HeroSection() {
 
           <div className="col-lg-5 col-12 p-2">
             <div className="categories">
-              <div
+              <Link
+                to="/stores"
                 className="category"
                 style={{ backgroundColor: "#DE010121" }}
               >
@@ -73,9 +75,10 @@ function HeroSection() {
                 <div className="img">
                   <img src={stores} alt="stores" />
                 </div>
-              </div>
+              </Link>
 
-              <div
+              <Link
+                to="/coupons"
                 className="category"
                 style={{ backgroundColor: "#3FA21821" }}
               >
@@ -83,29 +86,32 @@ function HeroSection() {
                 <div className="img">
                   <img src={coupon} alt="stores" />
                 </div>
-              </div>
+              </Link>
 
-              <div
+              <Link
+                to="/stores"
                 className="category"
                 style={{ backgroundColor: "#dd4bf829" }}
               >
-                <h2>متاجر المطلوبه</h2>
+                <h2>المتاجر المطلوبه</h2>
                 <div className="img">
                   <img src={wanted} alt="stores" />
                 </div>
-              </div>
+              </Link>
 
-              <div
+              <Link
+                to="/stores"
                 className="category"
                 style={{ backgroundColor: "#23c98c4a" }}
               >
-                <h2>المتاجر الاكترونيه</h2>
+                <h2>المتاجر الالكترونيه</h2>
                 <div className="img">
                   <img src={onlineStore} alt="stores" />
                 </div>
-              </div>
+              </Link>
 
-              <div
+              <Link
+                to="/categories"
                 className="category"
                 style={{ backgroundColor: "#4B82F829" }}
               >
@@ -113,9 +119,10 @@ function HeroSection() {
                 <div className="img">
                   <img src={categories} alt="stores" />
                 </div>
-              </div>
+              </Link>
 
-              <div
+              <Link
+                to="/ads"
                 className="category"
                 style={{ backgroundColor: "#F8CF734A" }}
               >
@@ -123,7 +130,7 @@ function HeroSection() {
                 <div className="img">
                   <img src={ads} alt="stores" />
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>

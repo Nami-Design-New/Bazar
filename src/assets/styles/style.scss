@@ -17,6 +17,7 @@ body {
     @import "./favorites";
     @import "./features";
     @import "./ad-details";
+    @import "./contact";
     @import "./cart";
 
     .topHead {
@@ -165,10 +166,10 @@ body {
           font-size: 16px;
         }
         .description {
-          color: $inputHint;
+          color: #777;
           flex: 1;
           line-height: 24px;
-          font-size: 13px;
+          font-size: 14px;
         }
         .advertiser {
           position: absolute;
@@ -336,7 +337,9 @@ body {
     }
 
     .error-section {
+      padding: 60px 0;
       @include centerFlex();
+      gap: 16px;
       flex-direction: column;
       align-items: center;
       img {
@@ -346,20 +349,18 @@ body {
       h2 {
         margin: 0;
         text-align: center;
-        text-wrap: balance;
-        font-size: 48px;
-        font-weight: 800;
-        color: #cecece;
+        font-size: 24px;
+        color: $black;
+        max-width: 400px;
+        margin: 0 auto;
       }
       a {
-        min-width: 200px;
-        margin-top: 36px;
         color: $main;
-        border: 1px solid $main !important;
+        border: 1px solid $main;
         position: relative;
         transition: $transition;
         @include centerFlex();
-        padding: 8px 16px;
+        padding: 8px 24px;
         transition: $transition;
         border-radius: 12px;
         gap: 8px;
@@ -369,39 +370,57 @@ body {
         font-size: 16px;
         position: relative;
         transition: $transition;
-
-        &::after {
-          content: "";
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          border-radius: inherit;
-          background: linear-gradient(
-            238.2deg,
-            $second 0%,
-            $main 100%
-          ) !important;
-          transition: $transition;
-          opacity: 0;
-          z-index: -1;
-        }
         i {
           font-size: 16px;
         }
         &:hover {
           color: $white;
-          border: 1px solid transparent !important;
-          background-color: transparent;
-          &::after {
-            opacity: 1;
-          }
+          border-color: $second;
+          background-color: $second;
         }
       }
     }
   }
   @import "./footer";
+
+  .customBtn {
+    border: none;
+    outline: none;
+    background: none;
+    isolation: isolate;
+    padding: 12px 16px;
+    width: 160px;
+    margin: auto;
+    border: 1px solid $main;
+    color: $main;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: $transition;
+    &::after {
+      position: absolute;
+      content: "";
+      height: 1000px;
+      width: 0;
+      right: 50%;
+      transition: $transition;
+      background: $main;
+      transform: rotate(-25deg);
+      z-index: -1;
+    }
+    &:hover {
+      color: #fff;
+      border-color: $main;
+      &::after {
+        width: 110%;
+        right: -10px;
+      }
+    }
+  }
+
   .gradient-text {
     background: linear-gradient(238.2deg, $second 0%, $main 100%);
     background-clip: text;
@@ -458,8 +477,8 @@ body {
   }
   .section-head {
     width: 100%;
-    background: $grayBackground;
     padding: 16px 0;
+    background: $inputBg;
     .container {
       position: relative;
       height: 100%;
@@ -472,6 +491,9 @@ body {
       a {
         font-size: 14px;
         color: $inputHint;
+      }
+      h6 {
+        color: $main;
       }
       h1 {
         color: $main;
@@ -531,6 +553,7 @@ body {
       font-weight: inherit;
       gap: 8px;
       z-index: 4;
+      transition: $transition;
 
       i {
         z-index: 4;
@@ -539,15 +562,9 @@ body {
     &.filled {
       border: 1px solid transparent !important;
       color: $white !important;
-
-      span {
-        color: $white;
-      }
-
       i {
         color: $white;
       }
-
       &::after {
         opacity: 1 !important;
       }

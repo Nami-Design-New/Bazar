@@ -6,7 +6,7 @@ function SectionHeader() {
   const { t } = useTranslation();
 
   return (
-    <div className="section-head">
+    <section className="section-head">
       <div className="container">
         <div className={`row h-100`}>
           <div
@@ -14,22 +14,14 @@ function SectionHeader() {
             data-aos="fade-up"
           >
             <Link to="/">{t("routes.home")}</Link>
-            <span className="gradient-text">/</span>
-            <h6 className="m-0 gradient-text">
+            <span className="gradient-text"> / </span>
+            <h6 className="m-0">
               {t(`routes.${location.pathname.split("/")[1]}`)}
             </h6>
           </div>
-          <div className="col-6 hide-sm">
-            <div className="img" data-aos="zoom-in">
-              {/* <img
-                src={about7}
-                alt=""
-              /> */}
-            </div>
-          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
