@@ -123,6 +123,7 @@
           align-items: center;
           justify-content: center;
           padding: 8px;
+          cursor: pointer;
 
           i {
             font-size: 20px;
@@ -204,7 +205,7 @@
   }
 
   .content-wrapper {
-    padding-top: 40px;
+    padding-top: 60px;
     padding-bottom: 60px;
     display: flex;
     flex-direction: column;
@@ -639,6 +640,79 @@
           flex: unset !important;
           width: unset !important;
           min-width: 160px;
+        }
+      }
+    }
+  }
+
+  &.coupon-details-page {
+    .content-wrapper {
+      .notification-box {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 24px;
+        position: relative;
+        background-color: $inputBg;
+        box-shadow: 0px 4px 4px 0px #00000040;
+        padding: 24px;
+        border-radius: 12px;
+
+        .icon-box {
+          i {
+            font-size: 36px;
+          }
+        }
+
+        p {
+          color: $textSecondaryColor;
+          font-size: 18px;
+          position: relative;
+        }
+
+        .form-switch {
+          input {
+            height: 36px;
+            width: 72px;
+          }
+        }
+      }
+
+      .coupon-card {
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+
+        .copy-wrapper {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          bottom: -60px;
+          right: 0;
+        }
+        .custom-btn {
+          width: fit-content !important;
+          height: 60px !important;
+          min-width: 200px !important;
+          max-width: 300px !important;
+          padding: 8px 24px !important;
+          cursor: pointer;
+
+          i {
+            font-size: 18px;
+          }
+        }
+
+        .details {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+          position: relative;
+          flex-wrap: wrap;
         }
       }
     }

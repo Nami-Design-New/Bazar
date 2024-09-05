@@ -16,8 +16,10 @@ function Cart() {
 
         <div className="checkout-btn-wrapper">
           <Link to="/checkout" className="custom-btn filled">
-            <i className="fa-regular fa-wallet"></i>
-            {t("cart.completePurchese")}
+            <span>
+              <i className="fa-regular fa-wallet"></i>
+              {t("cart.completePurchese")}
+            </span>
           </Link>
         </div>
       </div>

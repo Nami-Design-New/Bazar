@@ -36,10 +36,7 @@ const routerConfig = [
   // general
   { path: "/coupons", element: <Coupons /> },
   { path: "/coupon-details/:id", element: <CouponDetails /> },
-
   { path: "/ads", element: <Home /> },
-
-  { path: "/favorites", element: <Favorites /> }
 ];
 
 export default routerConfig;

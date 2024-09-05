@@ -98,7 +98,7 @@ export default function Header() {
             </li>
             <li>
               <Link
-                to="/add-post"
+                to="/add-ad"
                 className="add_ad"
                 onClick={handleClickOutSide}
               >

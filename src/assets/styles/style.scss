@@ -518,11 +518,33 @@ body {
       background: linear-gradient(238.2deg, $second 0%, $main 100%) !important;
       transition: $transition;
       opacity: 0;
-      z-index: -1;
+      z-index: 1;
+    }
+    span {
+      z-index: 4;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: inherit;
+      font-weight: inherit;
+      gap: 16px;
+      z-index: 4;
+      transition: $transition;
+
+      i {
+        z-index: 4;
+      }
     }
     &.filled {
       border: 1px solid transparent !important;
       color: $white !important;
+
+      i {
+        z-index: 4;
+        color: $white;
+      }
+
       &::after {
         opacity: 1 !important;
       }

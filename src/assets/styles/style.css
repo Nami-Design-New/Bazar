@@ -2650,6 +2650,7 @@ body main .market-details-page .page-header .top-wrapper .btns-wrapper .btn-box 
   align-items: center;
   justify-content: center;
   padding: 8px;
+  cursor: pointer;
 }
 body main .market-details-page .page-header .top-wrapper .btns-wrapper .btn-box i {
   font-size: 20px;
@@ -2717,7 +2718,7 @@ body main .market-details-page .tabs-section .nav-tabs .nav-item button.active::
   background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
 }
 body main .market-details-page .content-wrapper {
-  padding-top: 40px;
+  padding-top: 60px;
   padding-bottom: 60px;
   display: flex;
   flex-direction: column;
@@ -3098,6 +3099,64 @@ body main .market-details-page .content-wrapper .rate-form .btn-rate-wrapper .cu
   flex: unset !important;
   width: unset !important;
   min-width: 160px;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .notification-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 24px;
+  position: relative;
+  background-color: #fafafa;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  padding: 24px;
+  border-radius: 12px;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .notification-box .icon-box i {
+  font-size: 36px;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .notification-box p {
+  color: #6b6464;
+  font-size: 18px;
+  position: relative;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .notification-box .form-switch input {
+  height: 36px;
+  width: 72px;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .coupon-card {
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .coupon-card .copy-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -60px;
+  right: 0;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .coupon-card .custom-btn {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  height: 60px !important;
+  min-width: 200px !important;
+  max-width: 300px !important;
+  padding: 8px 24px !important;
+  cursor: pointer;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .coupon-card .custom-btn i {
+  font-size: 18px;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .coupon-card .details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  position: relative;
+  flex-wrap: wrap;
 }
 body main .order-details-page .order-details-wrapper {
   padding: 40px 0;
@@ -4726,11 +4785,30 @@ body .custom-btn::after {
   background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%) !important;
   transition: all 0.2s ease-in-out;
   opacity: 0;
-  z-index: -1;
+  z-index: 1;
+}
+body .custom-btn span {
+  z-index: 4;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+  font-weight: inherit;
+  gap: 16px;
+  z-index: 4;
+  transition: all 0.2s ease-in-out;
+}
+body .custom-btn span i {
+  z-index: 4;
 }
 body .custom-btn.filled {
   border: 1px solid transparent !important;
   color: #fff !important;
+}
+body .custom-btn.filled i {
+  z-index: 4;
+  color: #fff;
 }
 body .custom-btn.filled::after {
   opacity: 1 !important;

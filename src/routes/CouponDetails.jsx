@@ -3,22 +3,25 @@ import marketCoverImage from "../assets/images/market-cover-1.png";
 import marketLogoImage from "../assets/images/market-logo-1.jpg";
 import { useState } from "react";
 import { Form } from "react-bootstrap";
+import CouponCard from "../ui/cards/CouponCard";
+import { useNavigate } from "react-router-dom";
 
 function CouponDetails() {
   const { t } = useTranslation();
   const [isAdded, setIsAdded] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
   const [wantNotifications, setWantNotifications] = useState(false);
+  const navigate = useNavigate();
 
   return (
-    <div className="market-details-page no-padding">
+    <div className="market-details-page coupon-details-page">
       <div className="page-header">
         <div className="cover-wrapper">
           <img src={marketCoverImage} alt="market cover image" />
         </div>
         <div className="top-wrapper">
           <div className="btns-wrapper">
-            <span className="btn-box back">
+            <span className="btn-box back" onClick={() => navigate(-1)}>
               <i className="fa-regular fa-arrow-right"></i>
             </span>
           </div>
@@ -58,12 +61,12 @@ function CouponDetails() {
           </p>
         </div>
       </div>
-      <div className="content-wrapper">
+      <div className="content-wrapper container col-lg-10 col-12">
         <div className="notification-box">
           <div className="icon-box">
-            <i className="fa-solid fa-bell"></i>
+            <i className="fa-solid fa-bell gradient-icon"></i>
           </div>
-          <p>ارسل لي اشعار عندما يتم اضافة عروض جديده (اسم الكود)</p>
+          <p>ارسل لي اشعار عندما يتم اضافة عروض جديده على هذا الكود</p>
           <Form.Switch
             id="wantChangePassword"
             name="wantChangePassword"

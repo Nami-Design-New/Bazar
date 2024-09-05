@@ -190,8 +190,10 @@ function Checkout() {
         </div>
         <div className="checkout-btn-wrapper">
           <span className="custom-btn filled">
-            <i className="fa-regular fa-wallet"></i>
-            {t("cart.completePurchese")}
+            <span>
+              <i className="fa-regular fa-wallet"></i>
+              {t("cart.completePurchese")}
+            </span>
           </span>
         </div>
       </form>

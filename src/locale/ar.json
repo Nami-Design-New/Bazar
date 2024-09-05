@@ -154,5 +154,8 @@
   "publishRate": "نشر التقييم",
   "shareYourComment": "شاركنا سؤالك او تعليقك",
   "addToCart": "اضف للسلة",
-  "writeHere": "اكتب هنا"
+  "writeHere": "اكتب هنا",
+  "numberOfCoupons": "عدد الكوبونات",
+  "copyCoupon": "انسخ كود الخصم و تسوق",
+  "successfullyCopied": "تم النسخ بنجاح"
 }
