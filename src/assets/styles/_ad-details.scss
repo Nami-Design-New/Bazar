@@ -1,9 +1,10 @@
 .itemDetails {
-  padding-bottom: 40px;
+  padding: 40px 0;
   .itemDetailsSlider {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    aspect-ratio: 3 / 2;
     .swiper-slide {
       position: relative;
       iframe,
@@ -25,24 +26,7 @@
         cursor: zoom-in;
       }
     }
-    .thumbs {
-      box-sizing: border-box;
-      max-height: 500px;
-      .swiper-slide {
-        max-height: 120px;
-        aspect-ratio: 3/2;
-        opacity: 0.3;
-        filter: grayscale(1);
-        img {
-          cursor: pointer;
-          border-radius: 8px;
-        }
-      }
-      .swiper-slide.swiper-slide-thumb-active {
-        opacity: 1;
-        filter: none;
-      }
-    }
+
     @media screen and (min-width: 992px) {
       flex-direction: row-reverse;
       .slider {
@@ -59,9 +43,12 @@
     }
     .swiperControl .swiperBtns .swiper-button-next,
     .swiperControl .swiperBtns .swiper-button-prev {
-      --darkColor: $white;
+      border-color: $white;
       &::after {
         filter: brightness(0) invert(1);
+      }
+      &:hover {
+        border-color: $main;
       }
     }
   }
@@ -76,7 +63,7 @@
       color: $main;
       span {
         font-size: 32px;
-        font-weight: bold;
+        font-family: "Poppins", sans-serif;
       }
     }
     .actions {
@@ -92,7 +79,7 @@
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      border: 1px solid $black;
+      border: 1px solid $LightGray;
       transition: $transition;
       img {
         width: 24px;
@@ -113,9 +100,13 @@
       gap: 4px;
       align-items: center;
       padding: 4px;
+      padding-inline-start: 12px;
       transition: $transition;
       border-radius: 100px;
-      border: 1px solid $black;
+      border: 1px solid $LightGray;
+      span{
+        font-size: 14px;
+      }
       a {
         background-color: $white;
         width: 32px;
@@ -159,11 +150,12 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    border: 1px solid $black;
+    border: 1px solid $LightGray;
     padding: 8px 12px;
     border-radius: 100px;
     height: 42px;
     font-weight: bold;
+    font-size: 14px;
     img {
       width: 24px;
       height: 24px;
@@ -186,7 +178,7 @@
     justify-content: space-between;
     padding-top: 12px;
     margin-top: 8px;
-    border-top: 1px solid $border;
+    border-top: 1px solid $LightGray;
     gap: 8px;
     flex-wrap: wrap;
     .location,
@@ -212,6 +204,7 @@
     gap: 8px;
     position: relative;
     color: $black;
+    padding-top: 32px;
     .title {
       font-weight: bold;
     }
@@ -237,7 +230,7 @@
   }
   .itemDetailsBox {
     padding: 24px;
-    border: 1px solid $border;
+    border: 1px solid $LightGray;
     border-radius: 16px;
     background-color: $white;
     @media screen and (max-width: 768px) {
@@ -254,7 +247,7 @@
       font-size: 18px;
       margin-bottom: 16px;
       padding-bottom: 16px;
-      border-bottom: 1px solid $border;
+      border-bottom: 1px solid $LightGray;
     }
     ul {
       list-style: none;
@@ -263,7 +256,7 @@
       li {
         display: flex;
         flex-wrap: wrap;
-        padding: 16px;
+        padding: 12px;
         border-radius: 16px;
         gap: 8px;
         span {
@@ -271,6 +264,8 @@
         }
         p {
           flex: 3;
+          font-size: 12px;
+          color: #777;
           font-weight: bold;
         }
         &:nth-child(2n) {
@@ -287,8 +282,8 @@
         justify-content: center;
         align-items: center;
         gap: 4px;
-        border: 1px solid $black;
-        padding: 8px 16px;
+        border: 1px solid $LightGray;
+        padding: 2px 16px;
         border-radius: 100px;
       }
     }
@@ -299,9 +294,9 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  box-shadow: var(--BigShadow);
+  box-shadow: $shadow;
   border-radius: 16px;
-  padding: 24px;
+  padding: 16px;
   text-align: center;
   background-color: $white;
   margin-bottom: 32px;
@@ -309,9 +304,6 @@
   background-position: top right;
   background-repeat: no-repeat;
   background-size: 150px;
-  // position: sticky;
-  // top: 120px ;
-  // z-index: 2;
   .advertiser {
     display: flex;
     flex-direction: column;
@@ -325,7 +317,8 @@
       transition: $transition;
     }
     h3 {
-      font-weight: bold;
+      font-family: "Poppins", sans-serif;
+      font-size: 26px;
       transition: $transition;
       text-transform: capitalize;
     }
@@ -350,8 +343,8 @@
     }
   }
   .date {
-    color: $inputBg;
-    font-size: 13px;
+    color: $inputHint;
+    font-size: 14px;
   }
   .contact {
     display: flex;
@@ -373,8 +366,8 @@
         object-fit: contain;
         filter: brightness(0) invert(1);
       }
-      &.call {
-        background-color: #2562d3;
+      &.chat {
+        background-color: #00a650;
       }
     }
   }

@@ -1,7 +1,6 @@
 import headerImg from "../../assets/images/forget-2.svg";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Otpcontainer from "../../ui/form-elements/Otpcontainer";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 
 function ForgetStep2({ setStep }) {
@@ -35,9 +34,9 @@ function ForgetStep2({ setStep }) {
         <h5 className="sub-title">{t("auth.enterOTP")}</h5>
       </div>
       <form>
-        <div className="d-flex gap-2 flex-lg-row flex-column w-100">
+        {/* <div className="d-flex gap-2 flex-lg-row flex-column w-100">
           <Otpcontainer formData={formData} setFormData={setFormData} />
-        </div>
+        </div> */}
         <div className="resend-code">
           <span
             onClick={handleResend}
