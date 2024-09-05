@@ -94,7 +94,7 @@
       display: flex;
       gap: 8px;
       flex: 1;
-      min-width: 160px;
+      min-width: 130px;
       justify-content: space-between;
       flex-direction: column;
       @media screen and (max-width: 576px) {
@@ -229,6 +229,9 @@
       .price {
         color: $white;
       }
+    }
+    .itemInfo .description {
+      color: $inputHint;
     }
   }
 }

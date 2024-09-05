@@ -90,7 +90,7 @@ export default function Header() {
             <li>
               <NavLink
                 className="nav-link"
-                to="/contact-us"
+                to="/contact"
                 onClick={handleClickOutSide}
               >
                 {t("header.contactUs")}
