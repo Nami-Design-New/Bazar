@@ -1,5 +1,5 @@
-import starFilledIcon from "../Assets/images/star-filled.svg";
-import starIcon from "../Assets/images/star.svg";
+import starFilledIcon from "../assets/images/star-filled.svg";
+import starIcon from "../assets/images/star.svg";
 
 const StarsList = ({ rate = 0 }) => {
   return (

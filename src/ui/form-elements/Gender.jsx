@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import female from "../../Assets/images/female.svg";
-import male from "../../Assets/images/male.svg";
+import female from "../../assets/images/female.svg";
+import male from "../../assets/images/male.svg";
 
 export default function Gender({ formData, setFormData, noLabel, dataKey }) {
   const { t } = useTranslation();
