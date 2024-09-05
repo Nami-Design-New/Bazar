@@ -17,6 +17,7 @@ import CouponDetails from "./routes/CouponDetails";
 const routerConfig = [
   { path: "/", element: <Home /> },
   { path: "*", element: <ErrorPage /> },
+
   // user auth
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
@@ -35,6 +36,10 @@ const routerConfig = [
   // general
   { path: "/coupons", element: <Coupons /> },
   { path: "/coupon-details/:id", element: <CouponDetails /> },
+
+  { path: "/ads", element: <Home /> },
+
+  { path: "/favorites", element: <Favorites /> }
 ];
 
 export default routerConfig;
