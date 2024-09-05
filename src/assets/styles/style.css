@@ -3405,12 +3405,13 @@ body main .rate-card .comment {
   padding-right: 72px;
 }
 body main .itemDetails {
-  padding-bottom: 40px;
+  padding: 40px 0;
 }
 body main .itemDetails .itemDetailsSlider {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  aspect-ratio: 3/2;
 }
 body main .itemDetails .itemDetailsSlider .swiper-slide {
   position: relative;
@@ -3433,24 +3434,6 @@ body main .itemDetails .itemDetailsSlider .slider {
 body main .itemDetails .itemDetailsSlider .slider img {
   cursor: zoom-in;
 }
-body main .itemDetails .itemDetailsSlider .thumbs {
-  box-sizing: border-box;
-  max-height: 500px;
-}
-body main .itemDetails .itemDetailsSlider .thumbs .swiper-slide {
-  max-height: 120px;
-  aspect-ratio: 3/2;
-  opacity: 0.3;
-  filter: grayscale(1);
-}
-body main .itemDetails .itemDetailsSlider .thumbs .swiper-slide img {
-  cursor: pointer;
-  border-radius: 8px;
-}
-body main .itemDetails .itemDetailsSlider .thumbs .swiper-slide.swiper-slide-thumb-active {
-  opacity: 1;
-  filter: none;
-}
 @media screen and (min-width: 992px) {
   body main .itemDetails .itemDetailsSlider {
     flex-direction: row-reverse;
@@ -3469,11 +3452,15 @@ body main .itemDetails .itemDetailsSlider .swiperControl {
 }
 body main .itemDetails .itemDetailsSlider .swiperControl .swiperBtns .swiper-button-next,
 body main .itemDetails .itemDetailsSlider .swiperControl .swiperBtns .swiper-button-prev {
-  --darkColor: $white;
+  border-color: #fff;
 }
 body main .itemDetails .itemDetailsSlider .swiperControl .swiperBtns .swiper-button-next::after,
 body main .itemDetails .itemDetailsSlider .swiperControl .swiperBtns .swiper-button-prev::after {
   filter: brightness(0) invert(1);
+}
+body main .itemDetails .itemDetailsSlider .swiperControl .swiperBtns .swiper-button-next:hover,
+body main .itemDetails .itemDetailsSlider .swiperControl .swiperBtns .swiper-button-prev:hover {
+  border-color: #4381f8;
 }
 body main .itemDetails .priceInfo {
   display: flex;
@@ -3488,7 +3475,7 @@ body main .itemDetails .priceInfo .price {
 }
 body main .itemDetails .priceInfo .price span {
   font-size: 32px;
-  font-weight: bold;
+  font-family: "Poppins", sans-serif;
 }
 body main .itemDetails .priceInfo .actions {
   display: flex;
@@ -3503,7 +3490,7 @@ body main .itemDetails .priceInfo .favorite {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  border: 1px solid #000;
+  border: 1px solid #d9d9d9;
   transition: all 0.2s ease-in-out;
 }
 body main .itemDetails .priceInfo .favorite img {
@@ -3523,9 +3510,13 @@ body main .itemDetails .priceInfo .share {
   gap: 4px;
   align-items: center;
   padding: 4px;
+  padding-inline-start: 12px;
   transition: all 0.2s ease-in-out;
   border-radius: 100px;
-  border: 1px solid #000;
+  border: 1px solid #d9d9d9;
+}
+body main .itemDetails .priceInfo .share span {
+  font-size: 14px;
 }
 body main .itemDetails .priceInfo .share a {
   background-color: #fff;
@@ -3566,11 +3557,12 @@ body main .itemDetails .category {
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid #000;
+  border: 1px solid #d9d9d9;
   padding: 8px 12px;
   border-radius: 100px;
   height: 42px;
   font-weight: bold;
+  font-size: 14px;
 }
 body main .itemDetails .category img {
   width: 24px;
@@ -3594,7 +3586,7 @@ body main .itemDetails .itemBottom {
   justify-content: space-between;
   padding-top: 12px;
   margin-top: 8px;
-  border-top: 1px solid #38383a;
+  border-top: 1px solid #d9d9d9;
   gap: 8px;
   flex-wrap: wrap;
 }
@@ -3622,6 +3614,7 @@ body main .itemDetails .itemInfo {
   gap: 8px;
   position: relative;
   color: #000;
+  padding-top: 32px;
 }
 body main .itemDetails .itemInfo .title {
   font-weight: bold;
@@ -3647,7 +3640,7 @@ body main .itemDetails .instructions span {
 }
 body main .itemDetails .itemDetailsBox {
   padding: 24px;
-  border: 1px solid #38383a;
+  border: 1px solid #d9d9d9;
   border-radius: 16px;
   background-color: #fff;
 }
@@ -3667,7 +3660,7 @@ body main .itemDetails .itemDetailsBox .title {
   font-size: 18px;
   margin-bottom: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #38383a;
+  border-bottom: 1px solid #d9d9d9;
 }
 body main .itemDetails .itemDetailsBox ul {
   list-style: none;
@@ -3677,7 +3670,7 @@ body main .itemDetails .itemDetailsBox ul {
 body main .itemDetails .itemDetailsBox ul li {
   display: flex;
   flex-wrap: wrap;
-  padding: 16px;
+  padding: 12px;
   border-radius: 16px;
   gap: 8px;
 }
@@ -3686,6 +3679,8 @@ body main .itemDetails .itemDetailsBox ul li span {
 }
 body main .itemDetails .itemDetailsBox ul li p {
   flex: 3;
+  font-size: 12px;
+  color: #777;
   font-weight: bold;
 }
 body main .itemDetails .itemDetailsBox ul li:nth-child(2n) {
@@ -3701,17 +3696,17 @@ body main .itemDetails .itemDetailsBox .features span {
   justify-content: center;
   align-items: center;
   gap: 4px;
-  border: 1px solid #000;
-  padding: 8px 16px;
+  border: 1px solid #d9d9d9;
+  padding: 2px 16px;
   border-radius: 100px;
 }
 body main .advertiserDetails {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  box-shadow: var(--BigShadow);
+  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
   border-radius: 16px;
-  padding: 24px;
+  padding: 16px;
   text-align: center;
   background-color: #fff;
   margin-bottom: 32px;
@@ -3735,7 +3730,8 @@ body main .advertiserDetails .advertiser img {
   transition: all 0.2s ease-in-out;
 }
 body main .advertiserDetails .advertiser h3 {
-  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  font-size: 26px;
   transition: all 0.2s ease-in-out;
   text-transform: capitalize;
 }
@@ -3758,8 +3754,8 @@ body main .advertiserDetails .time img {
   height: 16px;
 }
 body main .advertiserDetails .date {
-  color: #fafafa;
-  font-size: 13px;
+  color: #aaaaaa;
+  font-size: 14px;
 }
 body main .advertiserDetails .contact {
   display: flex;
@@ -3784,8 +3780,8 @@ body main .advertiserDetails .contact a img {
      object-fit: contain;
   filter: brightness(0) invert(1);
 }
-body main .advertiserDetails .contact a.call {
-  background-color: #2562d3;
+body main .advertiserDetails .contact a.chat {
+  background-color: #00a650;
 }
 body main .cart-details-wrapper {
   padding-top: 60px;

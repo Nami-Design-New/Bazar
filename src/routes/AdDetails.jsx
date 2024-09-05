@@ -1,6 +1,16 @@
-import AdDetailsSlider from "../features/ad-details/AdDetailsSlider";
-import avatar from "../assets/images/user-1.png";
 import { Link } from "react-router-dom";
+import { IconMessageCircle, IconPhone } from "@tabler/icons-react";
+import AdDetailsSlider from "../features/ad-details/AdDetailsSlider";
+import avatar from "../assets/images/userr.webp";
+import heart from "../assets/images/heart.svg";
+import category from "../assets/images/icon (1).svg";
+import instgram from "../assets/images/instagram.svg";
+import twitter from "../assets/images/twitter.svg";
+import whatsapp from "../assets/images/whatsapp.svg";
+import facebook from "../assets/images/facebook.svg";
+import location from "../assets/images/location.svg";
+import clock from "../assets/images/clock.svg";
+import eye from "../assets/images/eye.svg";
 
 function AdDetails() {
   return (
@@ -15,47 +25,29 @@ function AdDetails() {
                 <span> $1,200 </span>
               </div>
               <button className="favorite ">
-                <img src="img/icons/heart.svg" alt="" />
+                <img src={heart} alt="heart" />
               </button>
+
               <div className="actions">
                 <a href="listing.html" className="category">
-                  <img src="img/categories/icon (1).svg" alt="" />
-                  Electronics
+                  <img src={category} alt="category" />
+                  إلكترونيات
                 </a>
+
                 <div className="share">
-                  <span className="ps-2 text-capitalize fw-bold">share :</span>
-                  <a
-                    href="#!"
-                    className="twitter"
-                    data-bs-toggle="tooltip"
-                    title=" twitter "
-                  >
-                    <img src="img/icons/twitter.svg" alt="" />
-                  </a>
-                  <a
-                    href="#!"
-                    className="whatsapp"
-                    data-bs-toggle="tooltip"
-                    title="  whatsapp "
-                  >
-                    <img src="img/icons/whatsapp.svg" alt="" />
-                  </a>
-                  <a
-                    href="#!"
-                    className="instagram"
-                    data-bs-toggle="tooltip"
-                    title=" instagram "
-                  >
-                    <img src="img/icons/instagram.svg" alt="" />
-                  </a>
-                  <a
-                    href="#!"
-                    className="facebook"
-                    data-bs-toggle="tooltip"
-                    title=" facebook "
-                  >
-                    <img src="img/icons/facebook.svg" alt="" />
-                  </a>
+                  <span className="ps-2 text-capitalize fw-bold">مشاركة :</span>
+                  <Link className="twitter">
+                    <img src={twitter} alt="" />
+                  </Link>
+                  <Link className="whatsapp">
+                    <img src={whatsapp} alt="" />
+                  </Link>
+                  <Link className="instagram">
+                    <img src={instgram} alt="" />
+                  </Link>
+                  <Link className="facebook">
+                    <img src={facebook} alt="" />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -64,27 +56,27 @@ function AdDetails() {
               <h3 className="title">Apple MacBook Air (2023) Apple M2 Chip</h3>
 
               <div className="itemBottom">
-                <a href="#!" className="location">
-                  <img src="img/icons/location.svg" alt="" />
+                <Link className="location">
+                  <img src={location} alt="" />
                   <span> USA, California </span>
-                </a>
+                </Link>
                 <div className="time">
-                  <img src="img/icons/clock.svg" alt="" /> 1h ago
+                  <img src={clock} alt="" /> 1h ago
                 </div>
                 <div className="views">
-                  <img src="img/icons/eye.svg" alt="" /> 1.2k
+                  <img src={eye} alt="" /> 1.2k
                 </div>
               </div>
               <p className="description">
-                The Apple MacBook Air 13.6-Inch laptop is powered by the new M2
-                chip. It is loaded with 8GB RAM and 256GB SSD. The MacBook Air
-                features a brilliant Retina display, a FaceTime HD camera, and
-                studio‑quality mics. It comes with the same compact design but
-                now it supports up to 20 hours of battery life and an active
-                cooling system to sustain enhanced performance. macOS and M2
-                work together to bring more speed and responsiveness to all your
-                go‑to apps. The Apple MacBook Air comes with active cooling that
-                sustains blazing‑fast performance.
+                يعمل الكمبيوتر المحمول Apple MacBook Air مقاس 13.6 بوصة بشريحة
+                M2 الجديدة. وهو مزود بذاكرة وصول عشوائي (RAM) بسعة 8 جيجابايت
+                ووحدة تخزين SSD بسعة 256 جيجابايت. يتميز MacBook Air بشاشة
+                Retina رائعة وكاميرا FaceTime HD وميكروفونات بجودة الاستوديو.
+                يأتي بنفس التصميم المدمج ولكنه الآن يدعم عمر بطارية يصل إلى 20
+                ساعة ونظام تبريد نشط للحفاظ على الأداء المحسن. يعمل نظام التشغيل
+                macOS وM2 معًا لتوفير المزيد من السرعة والاستجابة لجميع تطبيقاتك
+                المفضلة. يأتي Apple MacBook Air مزودًا بتبريد نشط يحافظ على
+                الأداء السريع.
               </p>
               <div className="instructions">
                 <span> Used </span>
@@ -94,7 +86,7 @@ function AdDetails() {
             </div>
 
             <div className="itemDetailsBox">
-              <h4 className="title">Key Features</h4>
+              <h4 className="title">الميزات الرئيسية</h4>
               <ul>
                 <li>
                   <span>MPN</span>
@@ -135,7 +127,7 @@ function AdDetails() {
             </div>
 
             <div className="itemDetailsBox">
-              <h4 className="title">Extra Features</h4>
+              <h4 className="title">مميزات اضافية</h4>
               <div className="features">
                 <span> Airbag </span>
                 <span> ABS </span>
@@ -150,48 +142,38 @@ function AdDetails() {
             <div className="advertiserDetails">
               <Link to="/profile/1" className="advertiser">
                 <img src={avatar} loading="lazy" alt="" />
-                <h3 className="name"> Mahmoud Elkomy </h3>
+                <h3 className="name"> Ahmed El-Sayed </h3>
               </Link>
-
-              <span className="date"> Member S. Nov 24, 2020 </span>
+              <span className="date"> عضو منذ أغسطس 2023 </span>
               <div className="contact">
-                <a href="chats.html" className="chat">
-                  <img src="img/icons/chat.svg" alt="" />
-                  <span> chat </span>
-                </a>
-                <a href="#!" className="call">
-                  <img src="img/icons/call.svg" alt="" />
-                  <span> call </span>
-                </a>
+                <Link to="/chats" className="chat">
+                  <IconMessageCircle stroke={1.5} />
+                  <span> محادثة </span>
+                </Link>
+                <Link to="tel:+966123456789" className="call">
+                  <IconPhone stroke={1.5} />
+                  <span> اتصل </span>
+                </Link>
               </div>
             </div>
 
             <div className="itemDetailsBox">
-              <h4 className="title"> Your safety matters to us </h4>
+              <h4 className="title"> سلامتك تهمنا </h4>
               <ul>
                 <li>
                   <p>
-                    Meet the seller in a public place such as the metro, malls,
-                    or gas stations
+                    قابل البايع في مكان عام زي المترو أو المولات أو محطات
+                    البنزين
                   </p>
                 </li>
                 <li>
-                  <p>
-                    Take someone with you when you go to meet the seller or
-                    buyer
-                  </p>
+                  <p>خد حد معاك وانت رايح تقابل البايع أو المشتري</p>
                 </li>
                 <li>
-                  <p>
-                    Inspect the product carefully before you buy and make sure
-                    that its price is appropriate
-                  </p>
+                  <p>عاين المنتج كويس قبل ما تشتري وتأكد ان سعره مناسب</p>
                 </li>
                 <li>
-                  <p>
-                    Do not pay or transfer money unless you have inspected the
-                    product properly
-                  </p>
+                  <p>متدفعش او تحول فلوس الا لما تعاين المنتج كويس</p>
                 </li>
               </ul>
             </div>
