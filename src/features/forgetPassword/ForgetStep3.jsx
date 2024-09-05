@@ -79,7 +79,7 @@ function ForgetStep3({ setStep }) {
             style={{ cursor: "pointer" }}
             onClick={() => setStep(2)}
           >
-            {t("auth.back")}
+            <span>{t("auth.back")}</span>
           </span>
         </div>
       </form>

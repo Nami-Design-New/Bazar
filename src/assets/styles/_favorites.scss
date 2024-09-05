@@ -126,6 +126,19 @@
 
           i {
             font-size: 18px;
+            transition: $transition;
+          }
+
+          &.favorite {
+            i {
+              color: $textSecondaryColor;
+            }
+
+            &.liked {
+              i {
+                color: red;
+              }
+            }
           }
         }
       }

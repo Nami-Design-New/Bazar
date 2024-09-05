@@ -2335,6 +2335,13 @@ body main .fav-market-card .card-header .categories-actions .action-boxes .actio
 }
 body main .fav-market-card .card-header .categories-actions .action-boxes .action-btn i {
   font-size: 18px;
+  transition: all 0.2s ease-in-out;
+}
+body main .fav-market-card .card-header .categories-actions .action-boxes .action-btn.favorite i {
+  color: #6b6464;
+}
+body main .fav-market-card .card-header .categories-actions .action-boxes .action-btn.favorite.liked i {
+  color: red;
 }
 body main .fav-market-card .card-header h3 {
   color: #fff;
@@ -2643,6 +2650,7 @@ body main .market-details-page .page-header .top-wrapper .btns-wrapper .btn-box 
   align-items: center;
   justify-content: center;
   padding: 8px;
+  cursor: pointer;
 }
 body main .market-details-page .page-header .top-wrapper .btns-wrapper .btn-box i {
   font-size: 20px;
@@ -2710,7 +2718,7 @@ body main .market-details-page .tabs-section .nav-tabs .nav-item button.active::
   background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
 }
 body main .market-details-page .content-wrapper {
-  padding-top: 40px;
+  padding-top: 60px;
   padding-bottom: 60px;
   display: flex;
   flex-direction: column;
@@ -3079,22 +3087,6 @@ body main .market-details-page .content-wrapper .rate-form {
   flex-direction: column;
   gap: 16px;
 }
-body main .market-details-page .content-wrapper .rate-form textarea {
-  background: #fff;
-  border-radius: 12px;
-  padding: 12px;
-  font-size: 16px;
-  width: 100%;
-  min-height: 100px;
-  resize: none;
-  border: 1px solid #d9d9d9;
-}
-body main .market-details-page .content-wrapper .rate-form textarea::-moz-placeholder {
-  color: #ababab;
-}
-body main .market-details-page .content-wrapper .rate-form textarea::placeholder {
-  color: #ababab;
-}
 body main .market-details-page .content-wrapper .rate-form .btn-rate-wrapper {
   width: 100%;
   padding: 0 16px;
@@ -3107,6 +3099,64 @@ body main .market-details-page .content-wrapper .rate-form .btn-rate-wrapper .cu
   flex: unset !important;
   width: unset !important;
   min-width: 160px;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .notification-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 24px;
+  position: relative;
+  background-color: #fafafa;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  padding: 24px;
+  border-radius: 12px;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .notification-box .icon-box i {
+  font-size: 36px;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .notification-box p {
+  color: #6b6464;
+  font-size: 18px;
+  position: relative;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .notification-box .form-switch input {
+  height: 36px;
+  width: 72px;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .coupon-card {
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .coupon-card .copy-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -60px;
+  right: 0;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .coupon-card .custom-btn {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  height: 60px !important;
+  min-width: 200px !important;
+  max-width: 300px !important;
+  padding: 8px 24px !important;
+  cursor: pointer;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .coupon-card .custom-btn i {
+  font-size: 18px;
+}
+body main .market-details-page.coupon-details-page .content-wrapper .coupon-card .details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  position: relative;
+  flex-wrap: wrap;
 }
 body main .order-details-page .order-details-wrapper {
   padding: 40px 0;
@@ -3403,6 +3453,55 @@ body main .rate-card .comment {
   color: #000;
   margin: 0;
   padding-right: 72px;
+}
+body main .coupons-page .content-wrapper {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 36px;
+}
+body main .coupons-page .filter-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+body main .coupons-page .filter-wrapper .filter-heading {
+  font-size: 18px;
+  font-weight: 600;
+  position: relative;
+  margin: 0;
+}
+body main .coupons-page .filter-wrapper .filter-list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  position: relative;
+}
+body main .coupons-page .filter-wrapper .filter-list .filter-item {
+  flex: 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: #efebeb;
+  color: #5f5f5f;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+body main .coupons-page .filter-wrapper .filter-list .filter-item.active {
+  color: #fff;
+  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%) !important;
 }
 body main .itemDetails {
   padding: 40px 0;
@@ -3790,7 +3889,148 @@ body main .cart-details-wrapper {
   flex-direction: column;
   gap: 36px;
 }
-body main .cart-details-wrapper .cart-item {
+body main .cart-details-wrapper .cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+body main .cart-details-wrapper textarea {
+  background-color: #fff;
+}
+body main .cart-details-wrapper .address-wrapper,
+body main .cart-details-wrapper .coupon-form-wrapper,
+body main .cart-details-wrapper .paymentMethod-wrapper {
+  background-color: #fff;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.2509803922);
+  padding: 24px;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body main .cart-details-wrapper .coupon-form-wrapper label {
+  display: none;
+}
+body main .cart-details-wrapper .coupon-card {
+  width: 100%;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  gap: 16px;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.2509803922);
+  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
+  padding: 24px;
+}
+body main .cart-details-wrapper .coupon-card .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+}
+body main .cart-details-wrapper .coupon-card .header i {
+  font-size: 24px;
+}
+body main .cart-details-wrapper .coupon-card .btns-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: absolute;
+  top: 0px;
+  left: 0;
+}
+body main .cart-details-wrapper .coupon-card .btns-wrapper .dropdown-toggle {
+  border: none !important;
+}
+body main .cart-details-wrapper .coupon-card .btns-wrapper .dropdown-toggle::after {
+  content: none !important;
+}
+body main .cart-details-wrapper .coupon-card .btns-wrapper .btn-box {
+  background: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px 0 12px 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  cursor: pointer;
+}
+body main .cart-details-wrapper .coupon-card .btns-wrapper .btn-box i {
+  font-size: 20px;
+  color: #fff;
+}
+body main .cart-details-wrapper .coupon-card .btns-wrapper .btn-box i.delete {
+  color: red;
+}
+body main .cart-details-wrapper .coupon-card .details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  position: relative;
+}
+body main .cart-details-wrapper .menu {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+body main .cart-details-wrapper .menu ul {
+  width: 100%;
+  padding-right: 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+body main .cart-details-wrapper .menu ul li {
+  color: #6b6464;
+  font-size: 16px;
+  position: relative;
+}
+body main .cart-details-wrapper .menu.checkout-details {
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1490196078);
+  width: 100%;
+  padding: 16px !important;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+body main .cart-details-wrapper .menu.checkout-details ul {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+body main .cart-details-wrapper .menu.checkout-details ul li {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 16px;
+  position: relative;
+  justify-content: space-between;
+}
+body main .cart-details-wrapper .menu.checkout-details ul li:not(:last-of-type)::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #d9d9d9;
+  bottom: -12px;
+  left: 0;
+}
+body main .cart-details-wrapper .menu.checkout-details ul li .value {
+  white-space: nowrap;
+}
+body main .cart-item {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -3799,7 +4039,7 @@ body main .cart-details-wrapper .cart-item {
   border-radius: 12px;
   box-shadow: 1px 1px 20px 0px rgba(0, 0, 0, 0.1490196078);
 }
-body main .cart-details-wrapper .cart-item .image-wrapper {
+body main .cart-item .image-wrapper {
   width: 120px;
   border-radius: 12px;
   position: relative;
@@ -3807,13 +4047,13 @@ body main .cart-details-wrapper .cart-item .image-wrapper {
   overflow: hidden;
   box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.1490196078);
 }
-body main .cart-details-wrapper .cart-item .image-wrapper img {
+body main .cart-item .image-wrapper img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-body main .cart-details-wrapper .cart-item .card-content {
+body main .cart-item .card-content {
   flex: 1 0;
   padding: 16px 0 16px;
   display: flex;
@@ -3821,28 +4061,28 @@ body main .cart-details-wrapper .cart-item .card-content {
   gap: 8px;
   position: relative;
 }
-body main .cart-details-wrapper .cart-item .card-content .title {
+body main .cart-item .card-content .title {
   color: #000;
   font-size: 18px;
   margin: 0;
 }
-body main .cart-details-wrapper .cart-item .card-content .categories-wrapper {
+body main .cart-item .card-content .categories-wrapper {
   width: 100%;
   display: flex;
   gap: 0 24px;
   flex-wrap: wrap;
   position: relative;
 }
-body main .cart-details-wrapper .cart-item .card-content .categories-wrapper .category {
+body main .cart-item .card-content .categories-wrapper .category {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 16px;
 }
-body main .cart-details-wrapper .cart-item .card-content .date {
+body main .cart-item .card-content .date {
   color: #000;
 }
-body main .cart-details-wrapper .cart-item .btns-wrapper {
+body main .cart-item .btns-wrapper {
   padding: 16px;
   display: flex;
   align-items: center;
@@ -3850,7 +4090,7 @@ body main .cart-details-wrapper .cart-item .btns-wrapper {
   justify-content: center;
   margin-top: 16px;
 }
-body main .cart-details-wrapper .cart-item .btns-wrapper .btn-box {
+body main .cart-item .btns-wrapper .btn-box {
   width: 36px;
   height: 36px;
   display: flex;
@@ -3865,16 +4105,16 @@ body main .cart-details-wrapper .cart-item .btns-wrapper .btn-box {
   padding: 8px;
   border-radius: 12px;
 }
-body main .cart-details-wrapper .cart-item .btns-wrapper .btn-box i {
+body main .cart-item .btns-wrapper .btn-box i {
   font-size: 18px;
 }
-body main .cart-details-wrapper .cart-item .btns-wrapper .quantity {
+body main .cart-item .btns-wrapper .quantity {
   font-size: 24px;
   font-weight: 600;
   position: relative;
   margin: 0;
 }
-body main .cart-details-wrapper .cart-item .action-boxes {
+body main .cart-item .action-boxes {
   position: absolute;
   top: 0;
   left: 0;
@@ -3882,7 +4122,7 @@ body main .cart-details-wrapper .cart-item .action-boxes {
   align-items: flex-start;
   gap: 8px;
 }
-body main .cart-details-wrapper .cart-item .action-boxes .action-btn {
+body main .cart-item .action-boxes .action-btn {
   width: 36px;
   height: 36px;
   border-radius: 12px 0 12px 0;
@@ -3894,10 +4134,10 @@ body main .cart-details-wrapper .cart-item .action-boxes .action-btn {
   position: relative;
   cursor: pointer;
 }
-body main .cart-details-wrapper .cart-item .action-boxes .action-btn i {
+body main .cart-item .action-boxes .action-btn i {
   font-size: 18px;
 }
-body main .cart-details-wrapper .checkout-btn-wrapper {
+body main .checkout-btn-wrapper {
   width: 100%;
   display: flex;
   align-items: center;
@@ -3905,8 +4145,38 @@ body main .cart-details-wrapper .checkout-btn-wrapper {
   position: relative;
   margin-top: 16px;
 }
-body main .cart-details-wrapper .checkout-btn-wrapper .custom-btn {
+body main .checkout-btn-wrapper .custom-btn {
   max-width: 300px !important;
+}
+body main .radio-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  cursor: pointer;
+}
+body main .radio-group input {
+  width: 16px;
+  aspect-ratio: 1/1;
+}
+body main .radio-group label,
+body main .radio-group span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #918e8e;
+  font-size: 16px;
+  cursor: pointer;
+}
+body main .radio-group label i,
+body main .radio-group span i {
+  font-size: 18px;
+}
+body main .radio-group i {
+  color: #4381f8;
+  font-size: 18px;
+  cursor: pointer;
 }
 body main .topHead {
   display: flex;
@@ -4199,6 +4469,22 @@ body main .item:hover .itemImg img {
 }
 body main .item:hover .itemImg::after {
   animation: shine 1s;
+}
+body main textarea {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 16px;
+  width: 100%;
+  min-height: 100px;
+  resize: none;
+  border: 1px solid #d9d9d9;
+}
+body main textarea::-moz-placeholder {
+  color: #ababab;
+}
+body main textarea::placeholder {
+  color: #ababab;
 }
 body main .error-section {
   display: flex;
@@ -4495,11 +4781,30 @@ body .custom-btn::after {
   background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%) !important;
   transition: all 0.2s ease-in-out;
   opacity: 0;
-  z-index: -1;
+  z-index: 1;
+}
+body .custom-btn span {
+  z-index: 4;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+  font-weight: inherit;
+  gap: 16px;
+  z-index: 4;
+  transition: all 0.2s ease-in-out;
+}
+body .custom-btn span i {
+  z-index: 4;
 }
 body .custom-btn.filled {
   border: 1px solid transparent !important;
   color: #fff !important;
+}
+body .custom-btn.filled i {
+  z-index: 4;
+  color: #fff;
 }
 body .custom-btn.filled::after {
   opacity: 1 !important;

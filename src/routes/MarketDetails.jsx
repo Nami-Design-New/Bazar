@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Tab, Tabs } from "react-bootstrap";
 import ProductMiniCard from "../ui/cards/ProductMiniCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import whatsAppLogo from "../assets/images/whatsapp-icon.svg";
 import instagramLogo from "../assets/images/instagram-icon.svg";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
@@ -36,6 +36,7 @@ function MarketDetails() {
     comment: "",
   });
   const [commentLoading, setCommentLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -52,14 +53,14 @@ function MarketDetails() {
   };
 
   return (
-    <div className="market-details-page no-padding">
+    <div className="market-details-page ">
       <div className="page-header">
         <div className="cover-wrapper">
           <img src={marketCoverImage} alt="market cover image" />
         </div>
         <div className="top-wrapper">
           <div className="btns-wrapper">
-            <span className="btn-box back">
+            <span className="btn-box back" onClick={() => navigate(-1)}>
               <i className="fa-regular fa-arrow-right"></i>
             </span>
           </div>

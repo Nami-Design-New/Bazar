@@ -63,10 +63,10 @@ export default function Header() {
             <li>
               <NavLink
                 className="nav-link"
-                to="/contact-us"
+                to="/coupons"
                 onClick={handleClickOutSide}
               >
-                {t("header.categories")}
+                {t("header.coupons")}
               </NavLink>
             </li>
             <li>
@@ -98,7 +98,7 @@ export default function Header() {
             </li>
             <li>
               <Link
-                to="/add-post"
+                to="/add-ad"
                 className="add_ad"
                 onClick={handleClickOutSide}
               >

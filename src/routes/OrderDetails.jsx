@@ -199,7 +199,9 @@ function OrderDetails() {
         </div>
         {step === 1 && (
           <div className="btn-wrapper">
-            <button className="custom-btn">{t("orders.cancelOrder")}</button>
+            <span className="custom-btn">
+              <span>{t("orders.cancelOrder")}</span>
+            </span>
           </div>
         )}
       </div>

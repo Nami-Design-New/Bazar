@@ -60,8 +60,13 @@ function ForgetStep2({ setStep }) {
             name={t("auth.next")}
             loading={loading}
           />
-          <span to="/" className="custom-btn stroke" style={{cursor: "pointer"}} onClick={() => setStep(1)}>
-            {t("auth.back")}
+          <span
+            to="/"
+            className="custom-btn stroke"
+            style={{ cursor: "pointer" }}
+            onClick={() => setStep(1)}
+          >
+            <span>{t("auth.back")}</span>
           </span>
         </div>
       </form>

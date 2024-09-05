@@ -2,9 +2,17 @@ import { useTranslation } from "react-i18next";
 import marketLogoImage from "../../assets/images/market-logo-1.jpg";
 import marketCoverImage from "../../assets/images/market-cover-1.png";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-function FavoriteMarketCard() {
+function FavoriteMarketCard({ type }) {
   const { t } = useTranslation();
+  const [isLiked, setIsLiked] = useState(false);
+
+  function handleToggleFavorite(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    setIsLiked(!isLiked);
+  }
 
   function handleOpenConfirmation(e) {
     e.stopPropagation();
@@ -13,14 +21,17 @@ function FavoriteMarketCard() {
 
   function handleLinkClick(e) {
     e.stopPropagation();
-    if (e.target.classList.contains("delete")) {
+    if (
+      e.target.classList.contains("delete") ||
+      e.target.classList.contains("favorite")
+    ) {
       e.preventDefault();
     }
   }
 
   return (
     <Link
-      to={`/market-details/1`}
+      to={`/${type === "coupon" ? "coupon" : "market"}-details/1`}
       className="fav-market-card"
       onClick={handleLinkClick}
     >
@@ -41,12 +52,21 @@ function FavoriteMarketCard() {
             </Link>
           </div>
           <div className="action-boxes">
-            <span
-              className="action-btn delete"
-              onClick={handleOpenConfirmation}
-            >
-              <i className="fa-regular fa-trash gradient-icon"></i>
-            </span>
+            {type === "coupon" ? (
+              <span
+                className={`action-btn favorite ${isLiked ? "liked" : ""}`}
+                onClick={handleToggleFavorite}
+              >
+                <i className="fa-solid fa-heart"></i>
+              </span>
+            ) : (
+              <span
+                className="action-btn delete"
+                onClick={handleOpenConfirmation}
+              >
+                <i className="fa-regular fa-trash gradient-icon"></i>
+              </span>
+            )}
           </div>
         </div>
         <h3>كارفور اونلاين</h3>

@@ -48,7 +48,7 @@ function Login() {
         <div className="d-flex gap-3 align-items-center flex-column w-100">
           <SubmitButton loading={loading} name={t("auth.login")} />
           <Link to="/" className="custom-btn stroke">
-            {t("auth.loginAsGuest")}
+            <span>{t("auth.loginAsGuest")}</span>
           </Link>
         </div>
         <div className="d-flex gap-2 flex-lg-row flex-column w-100">
