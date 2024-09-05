@@ -10,6 +10,9 @@ import AdDetails from "./routes/AdDetails";
 import OrderDetails from "./routes/OrderDetails";
 import MarketDetails from "./routes/MarketDetails";
 import Cart from "./routes/Cart";
+import Checkout from "./routes/Checkout";
+import Coupons from "./routes/Coupons";
+import CouponDetails from "./routes/CouponDetails";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
@@ -23,14 +26,17 @@ const routerConfig = [
 
   // user features
   { path: "/cart", element: <Cart /> },
+  { path: "/checkout", element: <Checkout /> },
   { path: "/my-activities", element: <Activities /> },
   { path: "/ad-details/:id", element: <AdDetails /> },
   { path: "/order-details/:id", element: <OrderDetails /> },
   { path: "/market-details/:id", element: <MarketDetails /> },
+  { path: "/favorites", element: <Favorites /> },
 
+  // general
+  { path: "/coupons", element: <Coupons /> },
+  { path: "/coupon-details/:id", element: <CouponDetails /> },
   { path: "/ads", element: <Home /> },
-
-  { path: "/favorites", element: <Favorites /> }
 ];
 
 export default routerConfig;

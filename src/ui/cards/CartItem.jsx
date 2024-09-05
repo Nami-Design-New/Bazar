@@ -4,7 +4,7 @@ import { useState } from "react";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import { Link } from "react-router-dom";
 
-function CartItem() {
+function CartItem({ type }) {
   const { t } = useTranslation();
   const [quantity, setQuantity] = useState(1);
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -48,29 +48,33 @@ function CartItem() {
             <h3 className="title">مشروم thio</h3>
             <span className="sub-title">مشروم طازج ٢٠٠ جرام</span>
           </div>
-          <div className="action-boxes">
-            <span
-              className="action-btn delete"
-              onClick={handleOpenConfirmation}
-            >
-              <i className="fa-regular fa-trash gradient-icon"></i>
-            </span>
-          </div>
-          <div className="btns-wrapper">
-            <span
-              className="btn-box increase quantity-btn"
-              onClick={handleIncrease}
-            >
-              <i className="fa-solid fa-plus"></i>
-            </span>
-            <h5 className="quantity">{quantity}</h5>
-            <span
-              className="btn-box decrease quantity-btn"
-              onClick={handleDecrease}
-            >
-              <i className="fa-solid fa-minus"></i>
-            </span>
-          </div>
+          {type === "cart" && (
+            <>
+              <div className="action-boxes">
+                <span
+                  className="action-btn delete"
+                  onClick={handleOpenConfirmation}
+                >
+                  <i className="fa-regular fa-trash gradient-icon"></i>
+                </span>
+              </div>
+              <div className="btns-wrapper">
+                <span
+                  className="btn-box increase quantity-btn"
+                  onClick={handleIncrease}
+                >
+                  <i className="fa-solid fa-plus"></i>
+                </span>
+                <h5 className="quantity">{quantity}</h5>
+                <span
+                  className="btn-box decrease quantity-btn"
+                  onClick={handleDecrease}
+                >
+                  <i className="fa-solid fa-minus"></i>
+                </span>
+              </div>
+            </>
+          )}
         </Link>
         <ConfirmationModal
           showModal={showConfirmation}
