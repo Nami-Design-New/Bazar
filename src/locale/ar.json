@@ -24,7 +24,10 @@
     "checkout": "اكمال الشراء",
     "coupons": "الكوبونات",
     "contact": "اتصل بنا",
-    "profile": "الملف الشخصي"
+    "profile": "الملف الشخصي",
+    "absher-verification": "توثيق الحساب",
+    "val-verification": "توثيق فال",
+    "commercial-verification": "توثيق السجل التجاري"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -77,7 +80,14 @@
     "valVerification": "اضافة رخصة فال للوساطة و التسويق",
     "verifiedVal": "موثق فال",
     "followings": "يتابع",
-    "followers": "متابع"
+    "followers": "متابع",
+    "uploadImagesMax5": "قم بتحميل ما يصل إلى 5 صورة",
+    "verificationBenifints": "مميزات التوثيق",
+    "verififcationHint1": "عند توثيق حسابك ستظهر علامة صح ازرق عند اعلاناتك.",
+    "verififcationHint2": "توثيق عضويتك يزيد من مبيعاتك و ثقة الأخرين في حسابك.",
+    "verififcationHint3": "بيانات التوثيق سرية لا يتم نشرا او إطلاع اي جهة اخرى عليها.",
+    "planMethod": "طرق الاشتراك",
+    "planPrice": "سعر الاشتراك"
   },
   "error": {
     "pageNotFound": "هذا الرابط غير موجود لدينا او ربما تم حذفه. كيف وصلت الي هنا ؟",
@@ -176,5 +186,6 @@
   "writeHere": "اكتب هنا",
   "numberOfCoupons": "عدد الكوبونات",
   "copyCoupon": "انسخ كود الخصم و تسوق",
-  "successfullyCopied": "تم النسخ بنجاح"
+  "successfullyCopied": "تم النسخ بنجاح",
+  "send": "ارسال"
 }

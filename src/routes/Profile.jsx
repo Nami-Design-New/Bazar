@@ -146,7 +146,10 @@ function Profile() {
                       <h5>{t("profile.verifyWithAbsher")}</h5>
                     </div>
                     <div className="btn-wrapper">
-                      <Link className="btn-box custom-btn filled">
+                      <Link
+                        to="/absher-verification"
+                        className="btn-box custom-btn filled"
+                      >
                         <span>{t("profile.verify")}</span>
                       </Link>
                     </div>
@@ -159,7 +162,10 @@ function Profile() {
                       <h5>{t("profile.commercialVerification")}</h5>
                     </div>
                     <div className="btn-wrapper">
-                      <Link className="btn-box custom-btn filled">
+                      <Link
+                        to="/commercial-verification"
+                        className="btn-box custom-btn filled"
+                      >
                         <span>{t("profile.subscribe")}</span>
                       </Link>
                     </div>
@@ -172,16 +178,23 @@ function Profile() {
                       <h5>{t("profile.valVerification")}</h5>
                     </div>
                     <div className="btn-wrapper">
-                      <Link className="btn-box custom-btn filled">
-                        <span>
-                          {isValVerified && (
-                            <i className="fa-solid fa-check-double"></i>
-                          )}
-                          {t(
-                            `profile.${isValVerified ? "verified" : "verify"}`
-                          )}
-                        </span>
-                      </Link>
+                      {isValVerified ? (
+                        <div className="btn-box custom-btn filled">
+                          <span>{t(`profile.verified`)}</span>
+                        </div>
+                      ) : (
+                        <Link
+                          to="/val-verification"
+                          className="btn-box custom-btn filled"
+                        >
+                          <span>
+                            {isValVerified && (
+                              <i className="fa-solid fa-check-double"></i>
+                            )}
+                            {t(`profile.verify`)}
+                          </span>
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>

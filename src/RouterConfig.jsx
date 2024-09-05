@@ -15,6 +15,9 @@ import Coupons from "./routes/Coupons";
 import CouponDetails from "./routes/CouponDetails";
 import Contact from "./routes/Contact";
 import Profile from "./routes/Profile";
+import AbsherVerification from "./routes/AbsherVerification";
+import ValVerification from "./routes/ValVerification";
+import CommercialVerification from "./routes/CommercialVerification";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
@@ -27,6 +30,9 @@ const routerConfig = [
   { path: "/forget-password", element: <ForgetPassword /> },
   { path: "/edit-profile", element: <EditProfile /> },
   { path: "/profile", element: <Profile /> },
+  { path: "/absher-verification", element: <AbsherVerification /> },
+  { path: "/val-verification", element: <ValVerification /> },
+  { path: "/commercial-verification", element: <CommercialVerification /> },
 
   // user features
   { path: "/cart", element: <Cart /> },
