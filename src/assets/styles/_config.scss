@@ -148,33 +148,33 @@ hr {
   }
 }
 
-input[type="checkbox"] {
-  width: 18px;
-  appearance: none;
-  position: relative;
-  cursor: pointer;
-  &::after {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    content: "";
-    font-family: "Font Awesome 6 pro";
-    width: 18px;
-    height: 18px;
-    border: 1px solid $inputHint;
-    border-radius: 4px;
-    font-size: 12px;
-    @include centerFlex();
-    color: $main;
-  }
-  &:checked::after {
-    content: "\f00c";
-    background: $main;
-    color: #fff;
-    border-color: $main;
-  }
-}
+// input[type="checkbox"] {
+//   width: 18px;
+//   appearance: none;
+//   position: relative;
+//   cursor: pointer;
+//   &::after {
+//     position: absolute;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     top: 50%;
+//     content: "";
+//     font-family: "Font Awesome 6 pro";
+//     width: 18px;
+//     height: 18px;
+//     border: 1px solid $inputHint;
+//     border-radius: 4px;
+//     font-size: 12px;
+//     @include centerFlex();
+//     color: $main;
+//   }
+//   &:checked::after {
+//     content: "\f00c";
+//     background: $main;
+//     color: #fff;
+//     border-color: $main;
+//   }
+// }
 
 .Toastify__toast-body {
   direction: ltr !important;

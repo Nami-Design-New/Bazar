@@ -93,7 +93,7 @@ function HeroSection() {
                 className="category"
                 style={{ backgroundColor: "#dd4bf829" }}
               >
-                <h2>المتاجر المطلوبه</h2>
+                <h2>الإعلانات المطلوبه</h2>
                 <div className="img">
                   <img src={wanted} alt="stores" />
                 </div>
