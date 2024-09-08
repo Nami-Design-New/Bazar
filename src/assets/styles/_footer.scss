@@ -3,7 +3,7 @@
   background: $white;
   @media screen and (max-width: 576px) {
     flex-direction: column;
-    gap: 32px;
+    gap: 64px;
   }
   .content {
     display: flex;
@@ -87,7 +87,7 @@ footer {
         font-size: 14px;
         transition: $transition;
         &:hover {
-          background: linear-gradient(238.2deg, $second 0%, $main 100%);
+          background: $second;
           border-color: transparent !important;
           color: $white;
           transform: translateY(-2px);

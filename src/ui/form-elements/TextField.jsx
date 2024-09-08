@@ -10,9 +10,7 @@ export default function TextField({ label, icon, toolTipContent, ...props }) {
     <div className="input-field">
       <label htmlFor={props.id}>
         <div className="d-flex justify-content-between align-items-center">
-          <span>
-            {icon} {label}
-          </span>
+          {icon} {label}
           {toolTipContent && (
             <OverlayTrigger
               placement="bottom"

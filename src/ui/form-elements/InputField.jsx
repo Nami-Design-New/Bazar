@@ -12,7 +12,7 @@ export default function InputField({ label, toolTipContent, span, ...props }) {
     <div className="input-field w-100">
       <label htmlFor={props.id}>
         <div className="d-flex justify-content-between align-items-center">
-          <span>{label}</span>
+          {label}
           {toolTipContent && (
             <OverlayTrigger
               placement="bottom"

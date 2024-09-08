@@ -7,8 +7,5 @@ export const calculateDate = (createdAt) => {
 };
 
 export const handleChange = (e, setFormData) => {
-  setFormData({
-    ...setFormData,
-    [e.target.name]: e.target.value
-  });
+  setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 };

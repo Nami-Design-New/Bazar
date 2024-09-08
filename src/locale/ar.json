@@ -167,7 +167,9 @@
   },
   "tabs": {
     "main-info": "المعلومات الرئيسية",
-    "location": "العنوان"
+    "location": "العنوان",
+    "gallery": "صور الإعلان",
+    "pricing-contact": "التسعير والتواصل"
   },
   "createdAt": "تم الإنشاء في",
   "delete": "حذف",

@@ -25,9 +25,7 @@ export default function Footer() {
             <div className="copyrights">
               <p>
                 حقوق الطبع والنشر &copy; {currentYear} . جميع الحقوق محفوظة لدى{" "}
-                <Link to="/" className="gradient-text">
-                  بازار
-                </Link>
+                <Link to="/">بازار</Link>
               </p>
               <div className="social_media">
                 <Link to="/">
