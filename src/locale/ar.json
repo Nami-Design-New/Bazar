@@ -186,11 +186,15 @@
   "follow": "متابعة",
   "thousand": "ألف",
   "publishRate": "نشر التقييم",
+  "publishReplay": "نشر الرد",
   "shareYourComment": "شاركنا سؤالك او تعليقك",
+  "shareYourReplay": "شاركنا بردك على هذا التعليق",
   "addToCart": "اضف للسلة",
   "writeHere": "اكتب هنا",
   "numberOfCoupons": "عدد الكوبونات",
   "copyCoupon": "انسخ كود الخصم و تسوق",
   "successfullyCopied": "تم النسخ بنجاح",
-  "send": "ارسال"
+  "send": "ارسال",
+  "report": "إبلاغ",
+  "repaly": "الرد"
 }

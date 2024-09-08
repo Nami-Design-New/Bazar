@@ -8,7 +8,7 @@ import {
   IconBell,
   IconCirclePlus,
   IconMessage,
-  IconShoppingBag
+  IconShoppingBag,
 } from "@tabler/icons-react";
 
 export default function Header() {
