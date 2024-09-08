@@ -1,26 +1,26 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import adImage from "../../assets/images/villa-1.png";
-import ConfirmationModal from "../modals/ConfirmationModal";
 import { useState } from "react";
 
 function FavoriteADCard({ type }) {
   const { t } = useTranslation();
-  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [isLiked, setIsLiked] = useState(() =>
+    type === "favorite" ? true : false
+  );
 
-  function handleOpenConfirmation(e) {
-    e.preventDefault();
+  function handleToggleFavorite(e) {
     e.stopPropagation();
-    setShowConfirmation(true);
-  }
-
-  function handleDelete() {
-    setShowConfirmation(false);
+    e.preventDefault();
+    setIsLiked(!isLiked);
   }
 
   function handleLinkClick(e) {
     e.stopPropagation();
-    if (showConfirmation) {
+    if (
+      e.target.classList.contains("delete") ||
+      e.target.classList.contains("favorite")
+    ) {
       e.preventDefault();
     }
   }
@@ -50,11 +50,16 @@ function FavoriteADCard({ type }) {
           </div>
           <span className="date">{t("createdAt")} 2024/8/2</span>
         </div>
-        {type === "favorite" && <div className="action-boxes">
-          <span className="action-btn delete" onClick={handleOpenConfirmation}>
-            <i className="fa-regular fa-trash gradient-icon"></i>
+        <div className="action-boxes">
+          <span
+            className={`action-btn favorite ${
+              type === "favorite" || isLiked ? "liked" : ""
+            }`}
+            onClick={handleToggleFavorite}
+          >
+            <i className="fa-solid fa-heart"></i>
           </span>
-        </div>}
+        </div>
       </div>
       <div className="card-statistics">
         <div className="statistic">
@@ -74,14 +79,6 @@ function FavoriteADCard({ type }) {
           <span className="value">5</span>
         </div>
       </div>
-      <ConfirmationModal
-        showModal={showConfirmation}
-        setShowModal={setShowConfirmation}
-        type="delete"
-        eventFun={handleDelete}
-        buttonText={t("delete")}
-        text={t("ads.areYouSureYouWantToDeleteAD")}
-      />
     </Link>
   );
 }

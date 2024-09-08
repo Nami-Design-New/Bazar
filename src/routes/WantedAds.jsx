@@ -38,7 +38,7 @@ const areas = [
   },
 ];
 
-function Ads() {
+function WantedAds() {
   const { t } = useTranslation();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -276,4 +276,4 @@ function Ads() {
   );
 }
 
-export default Ads;
+export default WantedAds;

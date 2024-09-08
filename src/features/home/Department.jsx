@@ -3,7 +3,7 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import Post from "../../ui/cards/Post";
 
-function Department({ index }) {
+function Department({ index, sub_categories }) {
   const baseDelay = 1000;
   const delay = baseDelay + index * 1000;
 
@@ -33,35 +33,27 @@ function Department({ index }) {
           className="mainSliderContainer"
           navigation={{
             nextEl: `.btn_${index}`,
-            prevEl: `.btn_${index}`
+            prevEl: `.btn_${index}`,
           }}
           breakpoints={{
             992: {
-              slidesPerView: 4
+              slidesPerView: 4,
             },
             768: {
-              slidesPerView: 2
+              slidesPerView: 2,
             },
             350: {
-              slidesPerView: 1
-            }
+              slidesPerView: 1,
+            },
           }}
         >
-          <SwiperSlide>
-            <Post />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Post />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Post />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Post />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Post />
-          </SwiperSlide>
+          {sub_categories && sub_categories?.length > 0 && (
+            <SwiperSlide>
+              {sub_categories?.map((sub_category) => (
+                <Post post={sub_category} key={sub_category.id} />
+              ))}
+            </SwiperSlide>
+          )}
         </Swiper>
       </div>
     </div>

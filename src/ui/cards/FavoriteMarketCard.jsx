@@ -14,17 +14,11 @@ function FavoriteMarketCard({ type }) {
     setIsLiked(!isLiked);
   }
 
-  function handleOpenConfirmation(e) {
-    e.stopPropagation();
-    e.preventDefault();
-  }
-
   function handleLinkClick(e) {
     e.stopPropagation();
     if (
       e.target.classList.contains("delete") ||
-      e.target.classList.contains("favorite") ||
-      handleLinkClick
+      e.target.classList.contains("favorite")
     ) {
       e.preventDefault();
     }
@@ -53,21 +47,14 @@ function FavoriteMarketCard({ type }) {
             </Link>
           </div>
           <div className="action-boxes">
-            {type === "coupon" ? (
-              <span
-                className={`action-btn favorite ${isLiked ? "liked" : ""}`}
-                onClick={handleToggleFavorite}
-              >
-                <i className="fa-solid fa-heart"></i>
-              </span>
-            ) : (
-              <span
-                className="action-btn delete"
-                onClick={handleOpenConfirmation}
-              >
-                <i className="fa-regular fa-trash gradient-icon"></i>
-              </span>
-            )}
+            <span
+              className={`action-btn favorite ${
+                type === "favorite" || isLiked ? "liked" : ""
+              }`}
+              onClick={handleToggleFavorite}
+            >
+              <i className="fa-solid fa-heart"></i>
+            </span>
           </div>
         </div>
         <h3>كارفور اونلاين</h3>

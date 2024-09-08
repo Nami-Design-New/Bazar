@@ -1,10 +1,20 @@
 import Department from "./Department";
 
-function Sliders() {
+function Sliders({ categories }) {
   return (
     <section className="sliders">
-      <Department index={1} />
-      <Department index={2} />
+      {categories &&
+        categories?.data?.map(
+          (category) =>
+            category?.sub_categories &&
+            category?.sub_categories?.length > 0 && (
+              <Department
+                key={category.id}
+                index={category.id}
+                sub_categories={category?.sub_categories}
+              />
+            )
+        )}
     </section>
   );
 }

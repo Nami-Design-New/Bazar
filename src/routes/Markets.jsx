@@ -4,25 +4,10 @@ import { useState } from "react";
 import { handleApplyFilters } from "../utils/helpers";
 import { useSearchParams } from "react-router-dom";
 import InputField from "../ui/form-elements/InputField";
-import RangeSlider from "../ui/form-elements/RangeSlider";
 import SelectField from "../ui/form-elements/SelectField";
-import FavoriteADCard from "../ui/cards/FavoriteADCard";
+import FavoriteMarketCard from "../ui/cards/FavoriteMarketCard";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
 
-const cities = [
-  {
-    id: 1,
-    name: "الرياض",
-  },
-  {
-    id: 2,
-    name: "جدة",
-  },
-  {
-    id: 3,
-    name: "مكة",
-  },
-];
 const areas = [
   {
     id: 1,
@@ -38,20 +23,15 @@ const areas = [
   },
 ];
 
-function Ads() {
+function Markets() {
   const { t } = useTranslation();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
-    price_from: Number(searchParams.get("price_from")) || 5,
-    price_to: Number(searchParams.get("price_to")) || 2000,
-    duration_from: Number(searchParams.get("duration_from")) || 1,
-    duration_to: Number(searchParams.get("duration_to")) || 360,
     page: Number(searchParams.get("page")) || null,
-    ad_type: Number(searchParams.get("ad_type")) || "",
-    city_id: Number(searchParams.get("city_id")) || "",
+    type: Number(searchParams.get("ad_type")) || "",
     area_id: Number(searchParams.get("area_id")) || "",
     category_id: searchParams.get("category_id")
       ? searchParams
@@ -98,13 +78,8 @@ function Ads() {
     setSearchParams({});
     setSearchFilterData({
       search: searchParams.get("search") || "",
-      price_from: Number(searchParams.get("price_from")) || 5,
-      price_to: Number(searchParams.get("price_to")) || 2000,
-      duration_from: Number(searchParams.get("duration_from")) || 1,
-      duration_to: Number(searchParams.get("duration_to")) || 360,
       page: Number(searchParams.get("page")) || null,
-      ad_type: Number(searchParams.get("ad_type")) || "",
-      city_id: Number(searchParams.get("city_id")) || "",
+      type: Number(searchParams.get("ad_type")) || "",
       area_id: Number(searchParams.get("area_id")) || "",
       category_id: searchParams.get("category_id")
         ? searchParams
@@ -120,22 +95,6 @@ function Ads() {
         : [],
     });
   }
-
-  const handleSliderChange = (name, value) => {
-    if (name === "duration") {
-      setSearchFilterData((prevState) => ({
-        ...prevState,
-        duration_from: value[0],
-        duration_to: value[1],
-      }));
-    } else if (name === "price") {
-      setSearchFilterData((prevState) => ({
-        ...prevState,
-        price_from: value[0],
-        price_to: value[1],
-      }));
-    }
-  };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -172,18 +131,6 @@ function Ads() {
                   // categoriesWithSubCategories={categoriesWithSubCategories}
                 />
                 <SelectField
-                  label={t("search.city")}
-                  id="city_id"
-                  name="city_id"
-                  disabledOption={t("select")}
-                  value={searchFilterData?.city_id}
-                  onChange={(e) => handleChange(e)}
-                  options={cities?.map((city) => ({
-                    name: city.name,
-                    value: city.id,
-                  }))}
-                />
-                <SelectField
                   label={t("search.area")}
                   id="area_id"
                   name="area_id"
@@ -195,38 +142,6 @@ function Ads() {
                     value: area.id,
                   }))}
                 />
-                <div className="w-100 mb-4 px-4">
-                  <h6 className="mb-2">{t("search.deliveryTime")}</h6>
-                  <RangeSlider
-                    min={1}
-                    steps={1}
-                    max={360}
-                    value={[
-                      searchFilterData.duration_from,
-                      searchFilterData.duration_to,
-                    ]}
-                    handleSlide={(value) =>
-                      handleSliderChange("duration", value)
-                    }
-                    minType={t("search.days")}
-                    maxType={t("search.days")}
-                  />
-                </div>
-                <div className="w-100 mb-4 px-4">
-                  <h6 className="mb-2">{t("search.budget")}</h6>
-                  <RangeSlider
-                    min={5}
-                    max={2000}
-                    steps={5}
-                    value={[
-                      searchFilterData.price_from,
-                      searchFilterData.price_to,
-                    ]}
-                    handleSlide={(value) => handleSliderChange("price", value)}
-                    minType="$"
-                    maxType="$"
-                  />
-                </div>
                 <div className="d-flex gap-2 w-100">
                   <div className="search-btn">
                     <button onClick={handleSubmit}>{t("search.apply")}</button>
@@ -253,19 +168,19 @@ function Ads() {
             <div className="row">
               <>
                 <div className="col-lg-6 col-12 p-2">
-                  <FavoriteADCard />
+                  <FavoriteMarketCard />
                 </div>
                 <div className="col-lg-6 col-12 p-2">
-                  <FavoriteADCard />
+                  <FavoriteMarketCard />
                 </div>
                 <div className="col-lg-6 col-12 p-2">
-                  <FavoriteADCard />
+                  <FavoriteMarketCard />
                 </div>
                 <div className="col-lg-6 col-12 p-2">
-                  <FavoriteADCard />
+                  <FavoriteMarketCard />
                 </div>
                 <div className="col-lg-6 col-12 p-2">
-                  <FavoriteADCard />
+                  <FavoriteMarketCard />
                 </div>
               </>
             </div>
@@ -276,4 +191,4 @@ function Ads() {
   );
 }
 
-export default Ads;
+export default Markets;

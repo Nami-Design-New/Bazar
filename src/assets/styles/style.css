@@ -2598,6 +2598,16 @@ body main .fav-ad-card .card-statistics .statistic .value {
     font-size: 16px;
   }
 }
+body main .action-btn {
+  transition: all 0.2s ease-in-out !important;
+}
+body main .action-btn.favorite i {
+  transition: all 0.2s ease-in-out !important;
+  color: #6b6464;
+}
+body main .action-btn.favorite.liked i {
+  color: red;
+}
 body main .market-details-page .page-header {
   width: 100%;
   position: relative;

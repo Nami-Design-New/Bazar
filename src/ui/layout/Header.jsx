@@ -81,6 +81,15 @@ export default function Header() {
             <li>
               <NavLink
                 className="nav-link"
+                to="/wanted-ads"
+                onClick={handleClickOutSide}
+              >
+                {t("header.wantedAds")}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="nav-link"
                 to="/about-us"
                 onClick={handleClickOutSide}
               >

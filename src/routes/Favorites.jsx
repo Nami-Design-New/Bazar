@@ -35,13 +35,13 @@ function Favorites() {
           >
             <div className="content-wrapper">
               <div className="col-lg-4 col-md-6 col-12 p-3">
-                <FavoriteMarketCard />
+                <FavoriteMarketCard type="favorite" />
               </div>
               <div className="col-lg-4 col-md-6 col-12 p-3">
-                <FavoriteMarketCard />
+                <FavoriteMarketCard type="favorite" />
               </div>
               <div className="col-lg-4 col-md-6 col-12 p-3">
-                <FavoriteMarketCard />
+                <FavoriteMarketCard type="favorite" />
               </div>
             </div>
           </Tab>

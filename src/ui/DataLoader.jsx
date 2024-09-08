@@ -1,5 +1,3 @@
-import React from "react";
-
 const DataLoader = ({ minHeight = "548px" }) => {
   return (
     <div

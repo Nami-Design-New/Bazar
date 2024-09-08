@@ -2,6 +2,7 @@
   "header": {
     "home": "الرئيسية",
     "Ads": "الاعلانات",
+    "wantedAds": "الاعلانات المطلوبة",
     "aboutUs": "من نحن",
     "contactUs": "اتصل بنا",
     "profile": "الملف الشخصي",
@@ -13,6 +14,16 @@
     "addAd": "اضف إعلان",
     "allNotifications": "كل التنبيهات",
     "coupons": "كوبونات"
+  },
+  "home": {
+    "markets": "المتاجر",
+    "ads": "الاعلانات",
+    "wantedAds": "الاعلانات المطلوبة",
+    "coupons": "الكوبونات",
+    "goodPickCategory": "فئة مختارة بعناية",
+    "browseWithCategories": "تصفح الإعلانات حسب الفئة",
+    "mostPopular": "الأكثر رواجًا الآن",
+    "browseWithPopularity": "تصفح العناصر حسب الشعبية"
   },
   "routes": {
     "home": "الرئيسية",
@@ -29,7 +40,9 @@
     "val-verification": "توثيق فال",
     "commercial-verification": "توثيق السجل التجاري",
     "add-ad": "اضف أعلان",
-    "ads": "الاعلانات"
+    "ads": "الاعلانات",
+    "wanted-ads": "الاعلانات المطلوبة",
+    "markets": "المتاجر"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -134,7 +147,8 @@
     "identity": "رقم الهوية",
     "deliveryExisting": "يوجد خدمه توصيل",
     "workTimes": "مواعيد العمل",
-    "contactWithMarket": "التواصل مع المتجر"
+    "contactWithMarket": "التواصل مع المتجر",
+    "areYouSureYouWantToDeleteMarket": "هل انت متأكد من حذف هذا المتجر؟"
   },
   "orders": {
     "areYouSureYouWantToDeleteOrder": "هل انت متأكد من حذف هذا الطلب؟",
@@ -212,5 +226,6 @@
   "send": "ارسال",
   "report": "إبلاغ",
   "repaly": "الرد",
-  "select": "اختر"
+  "select": "اختر",
+  "viewAll": "عرض الكل"
 }
