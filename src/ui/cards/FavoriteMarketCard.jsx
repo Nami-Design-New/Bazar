@@ -23,7 +23,8 @@ function FavoriteMarketCard({ type }) {
     e.stopPropagation();
     if (
       e.target.classList.contains("delete") ||
-      e.target.classList.contains("favorite")
+      e.target.classList.contains("favorite") ||
+      handleLinkClick
     ) {
       e.preventDefault();
     }

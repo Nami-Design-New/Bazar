@@ -25,7 +25,11 @@
     "coupons": "الكوبونات",
     "contact": "اتصل بنا",
     "profile": "الملف الشخصي",
-    "add-ad": "اضف أعلان"
+    "absher-verification": "توثيق الحساب",
+    "val-verification": "توثيق فال",
+    "commercial-verification": "توثيق السجل التجاري",
+    "add-ad": "اضف أعلان",
+    "ads": "الاعلانات"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -78,7 +82,14 @@
     "valVerification": "اضافة رخصة فال للوساطة و التسويق",
     "verifiedVal": "موثق فال",
     "followings": "يتابع",
-    "followers": "متابع"
+    "followers": "متابع",
+    "uploadImagesMax5": "قم بتحميل ما يصل إلى 5 صورة",
+    "verificationBenifints": "مميزات التوثيق",
+    "verififcationHint1": "عند توثيق حسابك ستظهر علامة صح ازرق عند اعلاناتك.",
+    "verififcationHint2": "توثيق عضويتك يزيد من مبيعاتك و ثقة الأخرين في حسابك.",
+    "verififcationHint3": "بيانات التوثيق سرية لا يتم نشرا او إطلاع اي جهة اخرى عليها.",
+    "planMethod": "طرق الاشتراك",
+    "planPrice": "سعر الاشتراك"
   },
   "error": {
     "pageNotFound": "هذا الرابط غير موجود لدينا او ربما تم حذفه. كيف وصلت الي هنا ؟",
@@ -171,6 +182,18 @@
     "gallery": "صور الإعلان",
     "pricing-contact": "التسعير والتواصل"
   },
+  "search": {
+    "searchFor": "ابحث عن...",
+    "search": "بحث",
+    "apply": "تأكيد",
+    "clear": "مسح الفلتر",
+    "rating": "التقييم",
+    "deliveryTime": "مدة التسليم",
+    "budget": "الميزانية",
+    "days": "يوم",
+    "city": "المدينة",
+    "area": "المنطقة"
+  },
   "createdAt": "تم الإنشاء في",
   "delete": "حذف",
   "cancel": "الغاء",
@@ -178,10 +201,16 @@
   "follow": "متابعة",
   "thousand": "ألف",
   "publishRate": "نشر التقييم",
+  "publishReplay": "نشر الرد",
   "shareYourComment": "شاركنا سؤالك او تعليقك",
+  "shareYourReplay": "شاركنا بردك على هذا التعليق",
   "addToCart": "اضف للسلة",
   "writeHere": "اكتب هنا",
   "numberOfCoupons": "عدد الكوبونات",
   "copyCoupon": "انسخ كود الخصم و تسوق",
-  "successfullyCopied": "تم النسخ بنجاح"
+  "successfullyCopied": "تم النسخ بنجاح",
+  "send": "ارسال",
+  "report": "إبلاغ",
+  "repaly": "الرد",
+  "select": "اختر"
 }

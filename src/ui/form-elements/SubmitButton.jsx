@@ -5,7 +5,7 @@ const SubmitButton = ({ loading, name, className, onClick, icon }) => {
       disabled={loading}
       type="submit"
       onClick={onClick}
-      className={`custom-btn ${className} filled`}
+      className={` ${className}`}
     >
       <span>
         {icon && icon} {name}{" "}

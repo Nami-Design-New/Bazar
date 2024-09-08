@@ -10,17 +10,20 @@ import AdDetails from "./routes/AdDetails";
 import Coupons from "./routes/Coupons";
 import Contact from "./routes/Contact";
 import Profile from "./routes/Profile";
+import AbsherVerification from "./routes/AbsherVerification";
+import ValVerification from "./routes/ValVerification";
+import CommercialVerification from "./routes/CommercialVerification";
 import Checkout from "./routes/Checkout";
 import OrderDetails from "./routes/OrderDetails";
 import MarketDetails from "./routes/MarketDetails";
 import CouponDetails from "./routes/CouponDetails";
 import ForgetPassword from "./routes/ForgetPassword";
 import AddAdvertisment from "./routes/AddAdvertisment";
+import Ads from "./routes/Ads";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
   { path: "*", element: <ErrorPage /> },
-  { path: "contact", element: <Contact /> },
 
   // user auth
   { path: "/login", element: <Login /> },
@@ -28,6 +31,9 @@ const routerConfig = [
   { path: "/forget-password", element: <ForgetPassword /> },
   { path: "/edit-profile", element: <EditProfile /> },
   { path: "/profile", element: <Profile /> },
+  { path: "/absher-verification", element: <AbsherVerification /> },
+  { path: "/val-verification", element: <ValVerification /> },
+  { path: "/commercial-verification", element: <CommercialVerification /> },
 
   // user features
   { path: "/cart", element: <Cart /> },
@@ -42,7 +48,8 @@ const routerConfig = [
   // general
   { path: "/coupons", element: <Coupons /> },
   { path: "/coupon-details/:id", element: <CouponDetails /> },
-  { path: "/ads", element: <Home /> }
+  { path: "/ads", element: <Ads /> },
+  { path: "contact", element: <Contact /> },
 ];
 
 export default routerConfig;
