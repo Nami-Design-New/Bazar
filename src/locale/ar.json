@@ -15,6 +15,16 @@
     "allNotifications": "كل التنبيهات",
     "coupons": "كوبونات"
   },
+  "home": {
+    "markets": "المتاجر",
+    "ads": "الاعلانات",
+    "wantedAds": "الاعلانات المطلوبة",
+    "coupons": "الكوبونات",
+    "goodPickCategory": "فئة مختارة بعناية",
+    "browseWithCategories": "تصفح الإعلانات حسب الفئة",
+    "mostPopular": "الأكثر رواجًا الآن",
+    "browseWithPopularity": "تصفح العناصر حسب الشعبية"
+  },
   "routes": {
     "home": "الرئيسية",
     "my-activities": "نشاطاتي",
@@ -216,5 +226,6 @@
   "send": "ارسال",
   "report": "إبلاغ",
   "repaly": "الرد",
-  "select": "اختر"
+  "select": "اختر",
+  "viewAll": "عرض الكل"
 }
