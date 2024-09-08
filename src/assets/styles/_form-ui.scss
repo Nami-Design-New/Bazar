@@ -44,11 +44,21 @@
     gap: 8px;
     label {
       color: $black;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       svg,
       i {
         stroke: $black;
         width: 16px;
         height: 16px;
+      }
+      img {
+        height: 24px;
+      }
+      span {
+        font-size: 12px;
+        color: $inputHint;
       }
     }
     input,
@@ -388,13 +398,13 @@
       display: none;
     }
   }
-  
+
   .wizard_tab {
     display: flex;
     gap: 8px;
     white-space: nowrap;
     align-items: center;
-    background: $inputBg ;
+    background: $inputBg;
     z-index: 3;
     padding: 8px;
     cursor: pointer;

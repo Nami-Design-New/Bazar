@@ -5,5 +5,223 @@
     border-radius: 16px;
     background: $inputBg;
     border: 1px solid $grayBackground;
+    .radios {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      label {
+        width: 100%;
+        span {
+          height: 56px;
+          width: 100%;
+          background: $white;
+          color: $black;
+          font-size: 16px;
+          cursor: pointer;
+          border: 1px solid $LightGray;
+          @include centerFlex();
+          border-radius: 12px;
+        }
+        input {
+          display: none;
+          &:checked + span {
+            background: $main;
+            border-color: $main;
+            color: $white;
+          }
+        }
+      }
+    }
+    .btns {
+      display: flex;
+      align-items: center;
+      margin-top: 16px;
+      .wizard_btn {
+        width: fit-content;
+        height: fit-content;
+        gap: 4px;
+        padding: 12px 24px;
+        &.prev {
+          margin-inline-end: auto;
+          background: transparent;
+          color: $inputHint;
+          border: 1px solid $inputHint;
+        }
+        &.next {
+          margin-inline-start: auto;
+        }
+      }
+    }
+    .images_grid_upload {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+      gap: 8px;
+      .file_upload {
+        border: 1px solid $LightGray;
+        border-radius: 12px;
+        height: 150px;
+        label {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          input {
+            display: none;
+          }
+          @include centerFlex();
+          img {
+            height: 60px;
+          }
+          .file_upload_dimensions {
+            color: $LightGray;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+          }
+        }
+      }
+      .uploaded_file {
+        border: 1px solid $LightGray;
+        border-radius: 12px;
+        position: relative;
+        height: 150px;
+        overflow: hidden;
+        @include centerFlex();
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        button {
+          position: absolute;
+          top: 8px;
+          left: 8px;
+          width: 26px;
+          font-size: 16px;
+          height: 26px;
+          border-radius: 50%;
+          background: $main;
+          color: $white;
+        }
+        .doc_icon {
+          @include centerFlex();
+          flex-direction: column;
+          gap: 4px;
+          span {
+            font-size: 10px;
+            line-height: normal;
+            color: $LightGray;
+          }
+          img {
+            width: auto;
+            height: 50px;
+          }
+        }
+      }
+    }
+    .types {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      .type {
+        width: 100%;
+        background: $white;
+        border: 1px solid $LightGray;
+        border-radius: 12px;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        .label {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .content {
+          cursor: pointer;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          .text {
+            h4 {
+              font-size: 16px;
+              color: $main;
+            }
+            p {
+              font-size: 14px;
+              color: $inputHint;
+            }
+          }
+        }
+        input {
+          cursor: pointer;
+          appearance: none;
+          width: 28px;
+          height: 28px;
+          background: $inputBg;
+          border-radius: 8px;
+          border-color: $LightGray;
+          position: relative;
+          &::after {
+            content: "\f00c";
+            color: $main;
+            font-size: 18px;
+            font-family: "Font Awesome 6 Pro";
+            @include centerAbsolute();
+            display: none;
+          }
+          &:checked {
+            &::after {
+              display: block;
+            }
+          }
+        }
+        .input-field input {
+          width: 100% !important;
+          height: 56px !important;
+          cursor: auto;
+        }
+      }
+    }
+    .video_upload {
+      border: 1px solid $LightGray;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 150px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      input {
+        display: none;
+      }
+      @include centerFlex();
+      img {
+        height: 60px;
+      }
+    }
+    .delete_btn {
+      cursor: pointer;
+      color: #ff0000;
+    }
+    .record_btn {
+      width: fit-content;
+      padding: 16px 28px;
+      box-shadow: $shadow;
+      border-radius: 12px;
+      cursor: pointer;
+      img {
+        height: 32px;
+      }
+    }
   }
 }

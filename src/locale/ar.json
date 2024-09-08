@@ -178,7 +178,9 @@
   },
   "tabs": {
     "main-info": "المعلومات الرئيسية",
-    "location": "العنوان"
+    "location": "العنوان",
+    "gallery": "صور الإعلان",
+    "pricing-contact": "التسعير والتواصل"
   },
   "search": {
     "searchFor": "ابحث عن...",
