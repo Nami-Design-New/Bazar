@@ -16,13 +16,13 @@ function Favorites() {
           <Tab eventKey="ads" title={t("favorites.ads")} className="tab_item">
             <div className="content-wrapper">
               <div className="col-lg-6 col-12 p-3">
-                <FavoriteADCard />
+                <FavoriteADCard type="favorite" />
               </div>
               <div className="col-lg-6 col-12 p-3">
-                <FavoriteADCard />
+                <FavoriteADCard type="favorite" />
               </div>
               <div className="col-lg-6 col-12 p-3">
-                <FavoriteADCard />
+                <FavoriteADCard type="favorite" />
               </div>
             </div>
           </Tab>

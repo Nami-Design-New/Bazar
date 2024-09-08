@@ -1,0 +1,56 @@
+.ads-page {
+  .content-wrapper {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .search-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    button,
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 56px;
+      cursor: pointer;
+      width: 100%;
+      background: none;
+      outline: none;
+      padding: 8px 16px;
+      border: none;
+      font-size: 14px;
+      color: $white;
+      border-radius: 12px;
+      background: $main;
+      transition: $transition;
+    }
+  }
+}
+.small-filter-header {
+  width: 100%;
+  @include space-between();
+  display: none;
+  padding: 20px;
+  button {
+    @include clearInput();
+    background: $inputBg;
+    padding: 8px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h6 {
+      color: $black;
+    }
+    i {
+      font-size: 20px;
+      color: $black;
+    }
+  }
+  @media (max-width: 991px) {
+    display: flex;
+  }
+}

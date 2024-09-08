@@ -19,11 +19,11 @@ import MarketDetails from "./routes/MarketDetails";
 import CouponDetails from "./routes/CouponDetails";
 import ForgetPassword from "./routes/ForgetPassword";
 import AddAdvertisment from "./routes/AddAdvertisment";
+import Ads from "./routes/Ads";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
   { path: "*", element: <ErrorPage /> },
-  { path: "contact", element: <Contact /> },
 
   // user auth
   { path: "/login", element: <Login /> },
@@ -48,7 +48,8 @@ const routerConfig = [
   // general
   { path: "/coupons", element: <Coupons /> },
   { path: "/coupon-details/:id", element: <CouponDetails /> },
-  { path: "/ads", element: <Home /> }
+  { path: "/ads", element: <Ads /> },
+  { path: "contact", element: <Contact /> },
 ];
 
 export default routerConfig;
