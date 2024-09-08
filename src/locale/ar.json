@@ -28,7 +28,8 @@
     "absher-verification": "توثيق الحساب",
     "val-verification": "توثيق فال",
     "commercial-verification": "توثيق السجل التجاري",
-    "add-ad": "اضف أعلان"
+    "add-ad": "اضف أعلان",
+    "ads": "الاعلانات"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -179,6 +180,18 @@
     "main-info": "المعلومات الرئيسية",
     "location": "العنوان"
   },
+  "search": {
+    "searchFor": "ابحث عن...",
+    "search": "بحث",
+    "apply": "تأكيد",
+    "clear": "مسح الفلتر",
+    "rating": "التقييم",
+    "deliveryTime": "مدة التسليم",
+    "budget": "الميزانية",
+    "days": "يوم",
+    "city": "المدينة",
+    "area": "المنطقة"
+  },
   "createdAt": "تم الإنشاء في",
   "delete": "حذف",
   "cancel": "الغاء",
@@ -196,5 +209,6 @@
   "successfullyCopied": "تم النسخ بنجاح",
   "send": "ارسال",
   "report": "إبلاغ",
-  "repaly": "الرد"
+  "repaly": "الرد",
+  "select": "اختر"
 }
