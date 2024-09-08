@@ -67,7 +67,7 @@ function HeroSection() {
           <div className="col-lg-5 col-12 p-2">
             <div className="categories">
               <Link
-                to="/stores"
+                to="/markets"
                 className="category"
                 style={{ backgroundColor: "#DE010121" }}
               >

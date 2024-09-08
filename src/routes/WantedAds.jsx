@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import SectionHeader from "../ui/layout/SectionHeader";
-import React, { useState } from "react";
+import { useState } from "react";
 import { handleApplyFilters } from "../utils/helpers";
 import { useSearchParams } from "react-router-dom";
 import InputField from "../ui/form-elements/InputField";
@@ -65,9 +65,6 @@ function WantedAds() {
           .split("-")
           .map((subcategory) => Number(subcategory))
       : [],
-    skills: searchParams.get("skills")
-      ? searchParams.get("skills").split("-")
-      : [],
   });
 
   const handleChange = (e) => {
@@ -121,9 +118,6 @@ function WantedAds() {
             .split("-")
             .map((subcategory) => Number(subcategory))
         : [],
-      skills: searchParams.get("skills")
-        ? searchParams.get("skills").split("-")
-        : [],
     });
   }
 
@@ -141,10 +135,6 @@ function WantedAds() {
         price_to: value[1],
       }));
     }
-  };
-
-  const handleRatingChange = (value) => {
-    setSearchFilterData({ ...searchFilterData, rate: value });
   };
 
   function handleSubmit(e) {
@@ -177,7 +167,7 @@ function WantedAds() {
                 />
                 <DepartmentFilterBox
                   categoriesValue={searchFilterData.categories}
-                  sub_categoriesValue={searchFilterData.sub_categories}
+                  sub_categoriesValue={searchFilterData.sub_category_id}
                   onChange={handleChange}
                   // categoriesWithSubCategories={categoriesWithSubCategories}
                 />
@@ -205,34 +195,6 @@ function WantedAds() {
                     value: area.id,
                   }))}
                 />
-                <div className="input-field">
-                  <label htmlFor="rate">{t("search.rating")}</label>
-                  <div className="stars">
-                    <div className="star-rating-service">
-                      {[5, 4, 3, 2, 1].map((star) => (
-                        <React.Fragment key={star}>
-                          <input
-                            type="radio"
-                            id={`star${star}`}
-                            name="rating"
-                            value={star}
-                            checked={searchFilterData.rate === star}
-                            onChange={() => handleRatingChange(star)}
-                          />
-                          <label
-                            htmlFor={`star${star}`}
-                            title={`${star} stars`}
-                            className={
-                              searchFilterData.rate >= star ? "active" : ""
-                            }
-                          >
-                            <i className="fa-sharp fa-solid fa-star"></i>
-                          </label>
-                        </React.Fragment>
-                      ))}
-                    </div>
-                  </div>
-                </div>
                 <div className="w-100 mb-4 px-4">
                   <h6 className="mb-2">{t("search.deliveryTime")}</h6>
                   <RangeSlider

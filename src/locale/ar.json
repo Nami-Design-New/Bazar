@@ -31,7 +31,8 @@
     "commercial-verification": "توثيق السجل التجاري",
     "add-ad": "اضف أعلان",
     "ads": "الاعلانات",
-    "wanted-ads": "الاعلانات المطلوبة"
+    "wanted-ads": "الاعلانات المطلوبة",
+    "markets": "المتاجر"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -136,7 +137,8 @@
     "identity": "رقم الهوية",
     "deliveryExisting": "يوجد خدمه توصيل",
     "workTimes": "مواعيد العمل",
-    "contactWithMarket": "التواصل مع المتجر"
+    "contactWithMarket": "التواصل مع المتجر",
+    "areYouSureYouWantToDeleteMarket": "هل انت متأكد من حذف هذا المتجر؟"
   },
   "orders": {
     "areYouSureYouWantToDeleteOrder": "هل انت متأكد من حذف هذا الطلب؟",

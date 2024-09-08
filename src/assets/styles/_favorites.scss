@@ -364,3 +364,19 @@
     }
   }
 }
+.action-btn {
+  transition: $transition !important;
+
+  &.favorite {
+    i {
+      transition: $transition !important;
+      color: $textSecondaryColor;
+    }
+
+    &.liked {
+      i {
+        color: red;
+      }
+    }
+  }
+}
