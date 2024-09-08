@@ -3203,13 +3203,20 @@ body main .market-details-page .content-wrapper .details-wrapper .details-box .c
      object-fit: contain;
 }
 body main .market-details-page .content-wrapper .rate-form {
-  background: rgba(217, 217, 217, 0.231372549);
+  background: #fff;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2509803922);
   padding: 16px;
   border-radius: 12px;
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+body main .market-details-page .content-wrapper .rate-form.replay-to {
+  border-radius: 0 0 12px 12px;
+}
+body main .market-details-page .content-wrapper .rate-form.replay-to .submit-wrapper {
+  justify-content: flex-end;
 }
 body main .market-details-page .content-wrapper .rate-form .btn-rate-wrapper {
   width: 100%;
@@ -3218,6 +3225,12 @@ body main .market-details-page .content-wrapper .rate-form .btn-rate-wrapper {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+}
+body main .market-details-page .content-wrapper .rate-form .btn-rate-wrapper .submit-wrapper {
+  flex: 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 body main .market-details-page .content-wrapper .rate-form .btn-rate-wrapper .custom-btn {
   flex: unset !important;
@@ -3530,11 +3543,48 @@ body main .rate-card {
   flex-direction: column;
   gap: 16px;
 }
+body main .rate-card.replay-to {
+  width: 100%;
+  padding: 16px;
+  border-radius: 66px 66px 0 0;
+  position: relative;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2509803922);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-right: 26px;
+}
+body main .rate-card .close-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  padding: 8px;
+  position: absolute;
+  top: 26px;
+  left: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2509803922);
+  cursor: pointer;
+}
+body main .rate-card .close-btn i {
+  font-size: 18px;
+  color: #6b6464;
+}
 body main .rate-card .info-wrapper {
   width: 100%;
   display: flex;
   gap: 16px;
   position: relative;
+  align-items: flex-start;
+}
+body main .rate-card .info-wrapper .info-rate-wrapper {
+  flex: 1 0;
+  display: flex;
+  gap: 16px;
+  position: relative;
+  align-items: flex-start;
 }
 body main .rate-card .info-wrapper .image-wrapper {
   width: 56px;
@@ -3565,6 +3615,31 @@ body main .rate-card .info-wrapper .user-info .time {
   display: flex;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.6);
+}
+body main .rate-card .info-wrapper .dropdown-toggle {
+  background-color: #fff !important;
+  border: none !important;
+  position: relative;
+}
+body main .rate-card .info-wrapper .dropdown-toggle i {
+  color: #000 !important;
+  font-size: 20px;
+}
+body main .rate-card .info-wrapper .dropdown-menu {
+  padding: 0 !important;
+}
+body main .rate-card .info-wrapper .dropdown-menu a,
+body main .rate-card .info-wrapper .dropdown-menu span {
+  width: 100% !important;
+  display: flex;
+  padding: 8px 16px;
+  color: #000 !important;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+body main .rate-card .info-wrapper .dropdown-menu a:hover,
+body main .rate-card .info-wrapper .dropdown-menu span:hover {
+  color: #4381f8 !important;
 }
 body main .rate-card .info-wrapper .rate {
   display: flex;

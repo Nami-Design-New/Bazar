@@ -9,10 +9,8 @@ import whatsAppLogo from "../assets/images/whatsapp-icon.svg";
 import instagramLogo from "../assets/images/instagram-icon.svg";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import mapPin from "../assets/images/mapPin.svg";
-import RateScale from "../ui/form-elements/RateScale";
-import SubmitButton from "../ui/form-elements/SubmitButton";
-import TextField from "../ui/form-elements/TextField";
 import RateCard from "../ui/cards/RateCard";
+import CreateComment from "../ui/CreateComment";
 
 const containerStyle = {
   width: "100%",
@@ -31,26 +29,8 @@ function MarketDetails() {
   const [isAdded, setIsAdded] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
   const [productsCategory, setProductsCategory] = useState("all");
-  const [formData, setFormData] = useState({
-    rate: 0,
-    comment: "",
-  });
-  const [commentLoading, setCommentLoading] = useState(false);
+  const [targetedComment, setTargetedComment] = useState("");
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleRatingChange = (rate) => {
-    setFormData({
-      ...formData,
-      rate,
-    });
-  };
 
   return (
     <div className="market-details-page ">
@@ -266,29 +246,14 @@ function MarketDetails() {
           </Tab>
           <Tab eventKey="rates" title={t("markets.rates")}>
             <div className="content-wrapper container col-lg-10 col-12">
-              <form action="" className="rate-form">
-                <TextField
-                  name="comment"
-                  id="comment"
-                  value={formData?.comment}
-                  onChange={(e) => handleChange(e)}
-                  placeholder={t("shareYourComment")}
-                />
-                <div className="btn-rate-wrapper">
-                  <SubmitButton
-                    loading={commentLoading}
-                    name={t("publishRate")}
-                  />
-                  <RateScale
-                    rate={formData?.rate}
-                    handleRatingChange={handleRatingChange}
-                  />
-                </div>
-              </form>
               <div className="rates-wrapper">
-                <RateCard />
-                <RateCard />
+                <RateCard setTargetedComment={setTargetedComment} />
+                <RateCard setTargetedComment={setTargetedComment} />
               </div>
+              <CreateComment
+                comment={targetedComment}
+                setTargetedComment={setTargetedComment}
+              />
             </div>
           </Tab>
         </Tabs>

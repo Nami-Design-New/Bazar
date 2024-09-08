@@ -14,7 +14,7 @@ export default function Footer() {
               </Link>
               <div className="links">
                 <Link>الرئيسية</Link>
-                <Link>من نحن</Link>
+                <Link to="/about-us">من نحن</Link>
                 <Link>شروط الاستخدام</Link>
                 <Link>سياسة الخصوصية</Link>
                 <Link>اتصل بنا</Link>

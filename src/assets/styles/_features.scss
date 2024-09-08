@@ -620,13 +620,22 @@
     }
 
     .rate-form {
-      background: #d9d9d93b;
+      background: $white;
+      box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2509803922);
       padding: 16px;
       border-radius: 12px;
       position: relative;
       display: flex;
       flex-direction: column;
       gap: 16px;
+
+      &.replay-to {
+        border-radius: 0 0 12px 12px;
+
+        .submit-wrapper {
+          justify-content: flex-end;
+        }
+      }
 
       .btn-rate-wrapper {
         width: 100%;
@@ -635,6 +644,13 @@
         align-items: center;
         justify-content: space-between;
         gap: 24px;
+
+        .submit-wrapper {
+          flex: 1 0;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+        }
 
         .custom-btn {
           flex: unset !important;
@@ -1015,11 +1031,52 @@
   flex-direction: column;
   gap: 16px;
 
+  &.replay-to {
+    width: 100%;
+    padding: 16px;
+    border-radius: 66px 66px 0 0;
+    position: relative;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2509803922);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-right: 26px;
+  }
+
+  .close-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    padding: 8px;
+    position: absolute;
+    top: 26px;
+    left: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2509803922);
+    cursor: pointer;
+
+    i {
+      font-size: 18px;
+      color: $textSecondaryColor;
+    }
+  }
+
   .info-wrapper {
     width: 100%;
     display: flex;
     gap: 16px;
     position: relative;
+    align-items: flex-start;
+
+    .info-rate-wrapper {
+      flex: 1 0;
+      display: flex;
+      gap: 16px;
+      position: relative;
+      align-items: flex-start;
+    }
 
     .image-wrapper {
       width: 56px;
@@ -1052,6 +1109,33 @@
         display: flex;
         font-size: 14px;
         color: #00000099;
+      }
+    }
+
+    .dropdown-toggle {
+      background-color: $white !important;
+      border: none !important;
+      position: relative;
+
+      i {
+        color: $black !important;
+        font-size: 20px;
+      }
+    }
+    .dropdown-menu {
+      padding: 0 !important;
+      a,
+      span {
+        width: 100% !important;
+        display: flex;
+        padding: 8px 16px;
+        color: $black !important;
+        position: relative;
+        transition: $transition;
+
+        &:hover {
+          color: $main !important;
+        }
       }
     }
 
