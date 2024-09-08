@@ -2,6 +2,7 @@
   "header": {
     "home": "الرئيسية",
     "Ads": "الاعلانات",
+    "wantedAds": "الاعلانات المطلوبة",
     "aboutUs": "من نحن",
     "contactUs": "اتصل بنا",
     "profile": "الملف الشخصي",
@@ -29,7 +30,8 @@
     "val-verification": "توثيق فال",
     "commercial-verification": "توثيق السجل التجاري",
     "add-ad": "اضف أعلان",
-    "ads": "الاعلانات"
+    "ads": "الاعلانات",
+    "wanted-ads": "الاعلانات المطلوبة"
   },
   "auth": {
     "login": "تسجيل الدخول",

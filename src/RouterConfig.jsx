@@ -20,6 +20,7 @@ import CouponDetails from "./routes/CouponDetails";
 import ForgetPassword from "./routes/ForgetPassword";
 import AddAdvertisment from "./routes/AddAdvertisment";
 import Ads from "./routes/Ads";
+import WantedAds from "./routes/WantedAds";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
@@ -49,6 +50,7 @@ const routerConfig = [
   { path: "/coupons", element: <Coupons /> },
   { path: "/coupon-details/:id", element: <CouponDetails /> },
   { path: "/ads", element: <Ads /> },
+  { path: "/wanted-ads", element: <WantedAds /> },
   { path: "contact", element: <Contact /> },
 ];
 
