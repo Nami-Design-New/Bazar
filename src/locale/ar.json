@@ -13,7 +13,9 @@
     "categories": "الفئات",
     "addAd": "اضف إعلان",
     "allNotifications": "كل التنبيهات",
-    "coupons": "كوبونات"
+    "coupons": "كوبونات",
+    "addNewAccount": "تسجيل حساب جديد",
+    "login": "تسجيل الدخول"
   },
   "home": {
     "markets": "المتاجر",
@@ -23,7 +25,9 @@
     "goodPickCategory": "فئة مختارة بعناية",
     "browseWithCategories": "تصفح الإعلانات حسب الفئة",
     "mostPopular": "الأكثر رواجًا الآن",
-    "browseWithPopularity": "تصفح العناصر حسب الشعبية"
+    "browseWithPopularity": "تصفح العناصر حسب الشعبية",
+    "onlineMarkets": "المتاجر الإلكترونية",
+    "categories": "التصنيفات"
   },
   "routes": {
     "home": "الرئيسية",

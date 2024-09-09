@@ -1491,39 +1491,6 @@ body main .auth-form .forgetpass {
   align-self: flex-end;
   color: #4381f8;
 }
-body main .auth-form .otp-container {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  direction: ltr !important;
-}
-@media (max-width: 576px) {
-  body main .auth-form .otp-container {
-    gap: 8px;
-  }
-}
-body main .auth-form .otp-container .otp-input {
-  border-radius: 12px;
-  flex: 1;
-  width: inherit;
-  height: 80px !important;
-  text-align: center;
-  border: 1px solid #4381f8;
-  background: rgba(67, 129, 248, 0.1019607843);
-  font-size: 28px;
-  font-weight: 600;
-  color: #4381f8 !important;
-  outline: none;
-}
-body main .auth-form .otp-container .otp-input::-webkit-inner-spin-button {
-  display: none;
-}
-@media (max-width: 576px) {
-  body main .auth-form .otp-container .otp-input {
-    height: 60px !important;
-  }
-}
 body main .auth-form .resend-code {
   width: 100%;
   display: flex;
@@ -1622,6 +1589,43 @@ body main .auth-form input {
   outline: none;
   padding: 8px 12px;
   width: 100%;
+}
+body main .otp-small h1,
+body main .otp-small p {
+  align-self: center !important;
+}
+body main .otp-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  direction: ltr !important;
+}
+@media (max-width: 576px) {
+  body main .otp-container {
+    gap: 8px;
+  }
+}
+body main .otp-container .otp-input {
+  border-radius: 12px;
+  flex: 1;
+  width: inherit;
+  height: 80px !important;
+  text-align: center;
+  border: 1px solid #4381f8;
+  background: rgba(67, 129, 248, 0.1019607843);
+  font-size: 28px;
+  font-weight: 600;
+  color: #4381f8 !important;
+  outline: none;
+}
+body main .otp-container .otp-input::-webkit-inner-spin-button {
+  display: none;
+}
+@media (max-width: 576px) {
+  body main .otp-container .otp-input {
+    height: 60px !important;
+  }
 }
 body main .profile .content-wrapper .row {
   display: flex;
@@ -2601,7 +2605,7 @@ body main .fav-ad-card .card-statistics .statistic:not(:last-of-type)::after {
   border-radius: 2px;
 }
 body main .fav-ad-card .card-statistics .statistic i {
-  font-size: 28px;
+  font-size: 20px;
 }
 @media screen and (max-width: 768px) {
   body main .fav-ad-card .card-statistics .statistic i {

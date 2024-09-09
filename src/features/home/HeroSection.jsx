@@ -6,9 +6,9 @@ import slide2 from "../../assets/images/s2.jpg";
 import slide3 from "../../assets/images/s3.jpg";
 import stores from "../../assets/images/stores.png";
 import coupon from "../../assets/images/copoun.png";
-// import categories from "../../assets/images/categories.png";
+import categories from "../../assets/images/categories.png";
 import ads from "../../assets/images/ads.png";
-// import onlineStore from "../../assets/images/onlineStore.png";
+import onlineStore from "../../assets/images/onlineStore.png";
 import wanted from "../../assets/images/storeWanted.png";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -81,6 +81,17 @@ function HeroSection() {
               </Link>
 
               <Link
+                to="/stores"
+                className="category"
+                style={{ backgroundColor: "#23c98c4a" }}
+              >
+                <h2>{t("home.onlineMarkets")}</h2>
+                <div className="img">
+                  <img src={onlineStore} alt="stores" />
+                </div>
+              </Link>
+
+              <Link
                 to="/coupons"
                 className="category"
                 style={{ backgroundColor: "#3FA21821" }}
@@ -99,6 +110,17 @@ function HeroSection() {
                 <h2>{t("home.wantedAds")}</h2>
                 <div className="img">
                   <img src={wanted} alt="stores" />
+                </div>
+              </Link>
+
+              <Link
+                to="/categories"
+                className="category"
+                style={{ backgroundColor: "#4B82F829" }}
+              >
+                <h2>{t("home.categories")}</h2>
+                <div className="img">
+                  <img src={categories} alt="stores" />
                 </div>
               </Link>
 
