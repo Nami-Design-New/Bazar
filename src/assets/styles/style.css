@@ -913,7 +913,9 @@ body header nav .container .left_utils .dropdown .user {
   overflow: hidden;
 }
 body header nav .container .left_utils .dropdown .user img {
-  height: 24px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 100%;
 }
 body header nav .container .left_utils .dropdown .dropdown-menu {
   transform: translate3d(-70px, 50px, 0px) !important;
@@ -1226,8 +1228,7 @@ body main .categories_section .category .text h5 {
   font-size: 16px;
 }
 body main .categories_section .category .icon img {
-  min-width: 40px;
-  height: 40px;
+  height: 60px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -1379,15 +1380,26 @@ body main .auth-form .phone-group .PhoneInput {
 body main .auth-form .phone-group .PhoneInput .PhoneInputCountryIcon {
   position: relative;
 }
+body main .auth-form .phone-group .PhoneInput .PhoneInputCountrySelect {
+  padding-right: 36px !important;
+  padding-left: 42px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px !important;
+}
 body main .auth-form .phone-group .PhoneInput .PhoneInputCountryIconImg {
   width: 20px;
   position: absolute;
   top: -36px;
-  left: 10px;
+  left: 8px;
 }
 body main .auth-form .phone-group .PhoneInput select {
   padding: 12px 6px 12px 30px !important;
   direction: ltr !important;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 body main .auth-form .phone-group .PhoneInput input,
 body main .auth-form .phone-group .PhoneInput select {
@@ -1646,8 +1658,8 @@ body main .profile .userInfo .top-wrapper .user-avatar-wrapper {
 body main .profile .userInfo .top-wrapper .user-avatar-wrapper .userImg {
   width: 100%;
   aspect-ratio: 1/1;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 body main .profile .userInfo .top-wrapper .user-avatar-wrapper .verified-badge {
   position: absolute;
@@ -1676,6 +1688,11 @@ body main .profile .userInfo .top-wrapper .userName {
 }
 body main .profile .userInfo .top-wrapper .userName .name {
   font-weight: bold;
+}
+body main .profile .userInfo .top-wrapper .userName .email {
+  font-weight: normal;
+  color: #6b6464;
+  font-size: 14px;
 }
 body main .profile .userInfo .top-wrapper .userName .userDetails {
   width: 100%;
@@ -1743,6 +1760,7 @@ body main .profile .userInfo .top-wrapper .action-boxes .actions-wrapper {
   width: 100%;
   display: flex;
   gap: 16px;
+  justify-content: center;
   align-items: center;
   position: relative;
 }
@@ -2505,6 +2523,12 @@ body main .fav-ad-card .card-header .card-content .title {
   color: #000;
   font-size: 18px;
   margin: 0;
+}
+body main .fav-ad-card .card-header .card-content .sub-title {
+  color: #6b6464;
+  font-size: 16px;
+  margin: 0;
+  line-height: 1;
 }
 body main .fav-ad-card .card-header .card-content .categories-wrapper {
   width: 100%;
@@ -3972,10 +3996,11 @@ body main .advertiserDetails .advertiser {
 body main .advertiserDetails .advertiser img {
   width: 120px;
   height: 120px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
   border-radius: 100px;
   transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
 }
 body main .advertiserDetails .advertiser h3 {
   font-family: "Poppins", sans-serif;
@@ -5949,7 +5974,6 @@ body .custom-btn span {
   font-weight: inherit;
   gap: 8px;
   z-index: 4;
-  transition: all 0.2s ease-in-out;
 }
 body .custom-btn span i {
   z-index: 4;
@@ -6268,6 +6292,24 @@ body .search-section .filter-wrap form .star-rating-service input {
 }
 body .rc-slider-mark-text {
   white-space: nowrap !important;
+}
+body .empty-section {
+  flex: 1 0 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+}
+body .empty-section h2 {
+  margin: 0;
+  text-align: center;
+  text-wrap: balance;
+  font-size: 36px;
+  font-weight: 800;
+  color: #cecece;
 }
 body.en {
   direction: ltr;

@@ -14,6 +14,7 @@ import "../node_modules/react-toastify/dist/ReactToastify.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min";
 import "./assets/styles/style.css";
+import InterceptorProvider from "./features/verification/InterceptorProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,7 +22,9 @@ root.render(
     <Provider store={store}>
       <ToastContainer />
       <BrowserRouter>
-        <App />
+        <InterceptorProvider>
+          <App />
+        </InterceptorProvider>
       </BrowserRouter>
     </Provider>
     <ReactQueryDevtools initialIsOpen={false} />

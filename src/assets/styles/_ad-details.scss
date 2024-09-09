@@ -104,7 +104,7 @@
       transition: $transition;
       border-radius: 100px;
       border: 1px solid $LightGray;
-      span{
+      span {
         font-size: 14px;
       }
       a {
@@ -312,9 +312,10 @@
     img {
       width: 120px;
       height: 120px;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: 100px;
       transition: $transition;
+      box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
     }
     h3 {
       font-family: "Poppins", sans-serif;
