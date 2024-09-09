@@ -61,15 +61,24 @@
       .PhoneInputCountryIcon {
         position: relative;
       }
+      .PhoneInputCountrySelect {
+        padding-right: 36px !important;
+        padding-left: 42px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 160px !important;
+      }
       .PhoneInputCountryIconImg {
         width: 20px;
         position: absolute;
         top: -36px;
-        left: 10px;
+        left: 8px;
       }
       select {
         padding: 12px 6px 12px 30px !important;
         direction: ltr !important;
+        appearance: none;
       }
       input,
       select {

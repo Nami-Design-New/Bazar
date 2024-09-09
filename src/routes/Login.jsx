@@ -3,12 +3,24 @@ import PhoneField from "../ui/form-elements/PhoneField";
 import PasswordField from "../ui/form-elements/PasswordField";
 import SubmitButton from "../ui/form-elements/SubmitButton";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "../utils/axios";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setIsLogged, setUser } from "../redux/slices/authedUser";
+import { useCookies } from "react-cookie";
 
 function Login() {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState({ phone: "", password: "" });
+  const [formData, setFormData] = useState({
+    phone: "",
+    password: "",
+    token: 123234,
+  });
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [, setCookie] = useCookies(["token", "id"]);
 
   const handleChange = (e) => {
     setFormData({
@@ -17,18 +29,63 @@ function Login() {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    formData.phone = Number(formData.phone);
+    formData.password = Number(formData.password);
+
+    try {
+      const res = await axios.post("/user/login", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log(res);
+      if (res.data.code === 200) {
+        toast.success(t("auth.loginSuccess"));
+        dispatch(setUser(res.data.data));
+        dispatch(setIsLogged(true));
+        navigate("/");
+        setCookie("token", res.data.data.token, {
+          path: "/",
+          secure: true,
+          sameSite: "Strict",
+        });
+        setCookie("id", res.data.data.id, {
+          path: "/",
+          secure: true,
+          sameSite: "Strict",
+        });
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `${res.data.data.token}`;
+      } else {
+        toast.error(t("auth.phoneOrPasswordWrong"));
+      }
+    } catch (error) {
+      toast.error(t("auth.loginErorr"));
+      throw new Error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="auth-form container col-12 col-lg-6">
       <div className="form-title">
         <h1 className="title">{t("auth.login")}</h1>
         <h5 className="sub-title">{t("auth.loginSubtitle")}</h5>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="d-flex gap-2 flex-lg-row flex-column w-100">
           <PhoneField
-            formData={formData}
-            setFormData={setFormData}
+            onChange={handleChange}
+            value={formData.phone}
             id="phone"
+            name="phone"
+            type="tel"
+            placeholder={t("0XXXXXXXXXX")}
           />
         </div>
         <div className="d-flex gap-2 flex-lg-row flex-column w-100">
@@ -46,7 +103,12 @@ function Login() {
         </Link>
 
         <div className="d-flex gap-3 align-items-center flex-column w-100">
-          <SubmitButton loading={loading} name={t("auth.login")} />
+          <SubmitButton
+            loading={loading}
+            name={t("auth.login")}
+            className={"custom-btn filled"}
+            onClick={handleSubmit}
+          />
           <Link to="/" className="custom-btn stroke">
             <span>{t("auth.loginAsGuest")}</span>
           </Link>

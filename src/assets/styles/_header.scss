@@ -238,7 +238,8 @@ header {
             border: 1px solid #e4e4e4;
             overflow: hidden;
             img {
-              height: 24px;
+              object-fit: contain;
+              width: 100%;
             }
           }
           .dropdown-menu {

@@ -13,7 +13,7 @@ import SubmitButton from "../ui/form-elements/SubmitButton";
 // Register the plugin
 registerPlugin(FilePondPluginImagePreview);
 
-function ValVerification() {
+function FalVerification() {
   const { t } = useTranslation();
   const [files, setFiles] = useState([]);
 
@@ -36,7 +36,7 @@ function ValVerification() {
             onupdatefiles={setFiles}
             allowMultiple={true}
             maxFiles={5}
-            name="images" /* sets the file input name */
+            name="images"
             labelIdle={t("profile.uploadImagesMax5")}
           />
         </div>
@@ -48,4 +48,4 @@ function ValVerification() {
   );
 }
 
-export default ValVerification;
+export default FalVerification;

@@ -7,8 +7,6 @@ import heart from "../../assets/images/heart.svg";
 import { Link } from "react-router-dom";
 
 function Post({ post }) {
-  console.log(post);
-
   return (
     <div className="item">
       <button className="favorite active">

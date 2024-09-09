@@ -10,11 +10,14 @@ import {
   IconMessage,
   IconShoppingBag,
 } from "@tabler/icons-react";
+import { useSelector } from "react-redux";
 
 export default function Header() {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [isFixedTop, setIsFixedTop] = useState(false);
+  const user = useSelector((state) => state.authedUser.user);
+  const isLogged = useSelector((state) => state.authedUser.isLogged);
 
   const handleClickOutSide = () => {
     setIsOpen(false);
@@ -52,7 +55,7 @@ export default function Header() {
           <ul className={`navigation_links ${isOpen ? "show" : ""}`}>
             <li className="logoo">
               <NavLink className="nav-link" to="/" onClick={handleClickOutSide}>
-                <img src={"/images/logo.png"} alt="" />
+                <img src={`/images/logo.png`} alt="" />
               </NavLink>
             </li>
             <li>
@@ -72,7 +75,7 @@ export default function Header() {
             <li>
               <NavLink
                 className="nav-link"
-                to="/ads"
+                to={`/ads?ad_type=sell`}
                 onClick={handleClickOutSide}
               >
                 {t("header.Ads")}
@@ -81,7 +84,7 @@ export default function Header() {
             <li>
               <NavLink
                 className="nav-link"
-                to="/wanted-ads"
+                to={`/wanted-ads?ad_type=buy`}
                 onClick={handleClickOutSide}
               >
                 {t("header.wantedAds")}
@@ -155,34 +158,44 @@ export default function Header() {
                 className="account"
               >
                 <div className="user">
-                  <i className="fa-light fa-user"></i>
+                  {user?.image ? (
+                    <img src={user?.image} alt={user?.name} />
+                  ) : (
+                    <i className="fa-light fa-user"></i>
+                  )}
                 </div>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item as={Link} to="/profile">
-                  <i className="fa-solid fa-user"></i> {t("header.profile")}
-                </Dropdown.Item>
+                {isLogged && user && (
+                  <>
+                    <Dropdown.Item as={Link} to="/profile">
+                      <i className="fa-solid fa-user"></i> {t("header.profile")}
+                    </Dropdown.Item>
 
-                <Dropdown.Item as={Link} to="/edit-profile">
-                  <i className="fa-light fa-pen-to-square"></i>{" "}
-                  {t("header.editProfile")}
-                </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/edit-profile">
+                      <i className="fa-light fa-pen-to-square"></i>
+                      {t("header.editProfile")}
+                    </Dropdown.Item>
 
-                <Dropdown.Item as={Link} to="/my-activities">
-                  <i className="fa-light fa-chart-line"></i>
-                  {t("header.myActivities")}
-                </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/my-activities">
+                      <i className="fa-light fa-chart-line"></i>
+                      {t("header.myActivities")}
+                    </Dropdown.Item>
 
-                <Dropdown.Item as={Link} to="/favorites">
-                  <i className="fa-sharp fa-regular fa-heart"></i>
-                  {t("header.favourites")}
-                </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/favorites">
+                      <i className="fa-sharp fa-regular fa-heart"></i>
+                      {t("header.favourites")}
+                    </Dropdown.Item>
+                  </>
+                )}
 
-                <Dropdown.Item as={Link} to="/login">
-                  <i className="fa-regular fa-arrow-right-from-bracket"></i>{" "}
-                  {t("header.logout")}
-                </Dropdown.Item>
+                {!isLogged && !user && (
+                  <Dropdown.Item as={Link} to="/login">
+                    <i className="fa-regular fa-arrow-right-from-bracket"></i>
+                    {t("header.logout")}
+                  </Dropdown.Item>
+                )}
               </Dropdown.Menu>
             </Dropdown>
 

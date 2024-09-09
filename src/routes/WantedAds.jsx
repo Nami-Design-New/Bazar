@@ -8,6 +8,9 @@ import RangeSlider from "../ui/form-elements/RangeSlider";
 import SelectField from "../ui/form-elements/SelectField";
 import FavoriteADCard from "../ui/cards/FavoriteADCard";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
+import useAdsByFilter from "../features/ads/useAdsByFilter";
+import DataLoader from "../ui/DataLoader";
+import EmptyData from "../ui/EmptyData";
 
 const cities = [
   {
@@ -42,6 +45,7 @@ function WantedAds() {
   const { t } = useTranslation();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { isLoading, data: ads } = useAdsByFilter();
 
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
@@ -250,25 +254,23 @@ function WantedAds() {
             </button>
           </div>
           <div className="col-lg-9 col-12 p-2">
-            <div className="row">
-              <>
-                <div className="col-lg-6 col-12 p-2">
-                  <FavoriteADCard />
-                </div>
-                <div className="col-lg-6 col-12 p-2">
-                  <FavoriteADCard />
-                </div>
-                <div className="col-lg-6 col-12 p-2">
-                  <FavoriteADCard />
-                </div>
-                <div className="col-lg-6 col-12 p-2">
-                  <FavoriteADCard />
-                </div>
-                <div className="col-lg-6 col-12 p-2">
-                  <FavoriteADCard />
-                </div>
-              </>
-            </div>
+            {isLoading ? (
+              <DataLoader />
+            ) : (
+              <div className="row">
+                {ads && ads?.data?.length > 0 ? (
+                  ads?.data?.map((ad) => (
+                    <div className="col-lg-6 col-12 p-2" key={ad.id}>
+                      <FavoriteADCard ad={ad} />
+                    </div>
+                  ))
+                ) : (
+                  <EmptyData minHeight={"300px"}>
+                    {t("ads.noWantedAds")}
+                  </EmptyData>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </section>

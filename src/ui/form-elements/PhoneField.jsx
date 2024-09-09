@@ -1,32 +1,31 @@
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import PhoneInput from "react-phone-number-input";
+import { Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 
-const PhoneField = ({ formData, setFormData, id, value, icon }) => {
-  const [phoneNumber, setPhoneNumber] = useState();
-  const { t } = useTranslation();
-
-  const handlePhoneNumberChange = (value) => {
-    setPhoneNumber(value);
-    setFormData({ ...formData, [id]: value });
-  };
+const PhoneField = ({ label, toolTipContent, span, ...props }) => {
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      {props.content}
+    </Tooltip>
+  );
 
   return (
-    <div className="input-field">
-      <label htmlFor="phone">
-        {icon} {t("auth.phone")}
+    <div className="input-field w-100">
+      <label htmlFor={props.id}>
+        <div className="d-flex justify-content-between align-items-center">
+          {label}
+          {toolTipContent && (
+            <OverlayTrigger
+              placement="bottom"
+              overlay={renderTooltip({
+                content: toolTipContent,
+              })}
+            >
+              <i className="info-label fa-light fa-circle-info"></i>
+            </OverlayTrigger>
+          )}
+        </div>
       </label>
-      <div className="phone-group">
-        <PhoneInput
-          placeholder="0XXXXXXXXXX"
-          value={value || phoneNumber}
-          onChange={handlePhoneNumberChange}
-          countryOptionsOrder={["SA", "AE"]}
-          defaultCountry="SA"
-          id={id}
-          name="phone"
-        />
-      </div>
+      <Form.Control className="form-control" {...props} />
+      {span && <span className="input-span">{span}</span>}
     </div>
   );
 };

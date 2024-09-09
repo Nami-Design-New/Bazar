@@ -4,15 +4,18 @@ import avatarPlaceholder from "../assets/images/avatar-placeholder-2.svg";
 import SectionHeader from "../ui/layout/SectionHeader";
 import ADMiniCard from "../ui/cards/ADMiniCard";
 import OrderMiniCard from "../ui/cards/OrderMiniCard";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { IconCirclePlus } from "@tabler/icons-react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 function Profile() {
+  const { id } = useParams();
   const { t } = useTranslation();
-  const [isValVerified, setIsValVerified] = useState(true);
+  const user = useSelector((state) => state.authedUser.user);
   const [isAdded, setIsAdded] = useState(false);
-  const [isFollowing, setIsFollowing] = useState(false);
+
+  const isMyAccount = !id || id === String(user?.id);
 
   return (
     <section className="profile-page profile">
@@ -22,47 +25,71 @@ function Profile() {
           <div className="userInfo">
             <div className="top-wrapper">
               <div className="user-avatar-wrapper">
-                <img className="userImg" src={avatarPlaceholder} alt="" />
-                <div className="verified-badge">
-                  <i className="fa-solid fa-badge-check"></i>
-                </div>
+                <img
+                  className="userImg"
+                  src={user?.image || avatarPlaceholder}
+                  alt=""
+                />
+                {user?.verified ? (
+                  <div className="verified-badge">
+                    <i className="fa-solid fa-badge-check"></i>
+                  </div>
+                ) : null}
               </div>
               <div className="userName">
-                <h4 className="name"> Ahmed Abdelghany </h4>
+                <h4 className="name"> {user?.name || "Ahmed Abdelghany"} </h4>
+                <h6 className="email">
+                  {user?.email || "ahmed.abdelghany1211@gmail.com"}
+                </h6>
                 <div className="userDetails">
                   <span className="details-box phone">
                     <i className="fa-regular fa-phone gradient-icon"></i>
-                    +1 0123456789{" "}
+                    +966{user?.phone || "1234567890"}
                   </span>
-                  <span className="details-box location">
+                  {/* <span className="details-box location">
                     <i className="fa-sharp fa-solid fa-location-dot gradient-icon"></i>
                     السعودية, الرياض
-                  </span>
+                  </span> */}
                 </div>
                 <div className="verification-details">
-                  <span className="verification-item">
-                    <i className="fa-regular fa-memo-circle-check gradient-icon"></i>
-                    {t("profile.verifiedVal")}
-                  </span>
+                  {user?.fal_verified ? (
+                    <span className="verification-item">
+                      <i className="fa-regular fa-memo-circle-check gradient-icon"></i>
+                      {t("profile.verifiedVal")}
+                    </span>
+                  ) : null}
                 </div>
               </div>
               <div className="action-boxes">
                 <div className="following-details">
                   <div className="details-box">
-                    <span className="value gradient-text"> 100 </span>
+                    <span className="value gradient-text">
+                      {!user?.following_count && user?.follow_count !== 0
+                        ? 100
+                        : user?.following_count}
+                    </span>
                     <span className="title">{t("profile.followings")}</span>
                   </div>
                   <div className="details-box">
-                    <span className="value gradient-text"> 200 </span>
+                    <span className="value gradient-text">
+                      {!user?.follow_count && user?.follow_count !== 0
+                        ? 100
+                        : user?.follow_count}
+                    </span>
                     <span className="title">{t("profile.followers")}</span>
+                  </div>
+                  <div className="details-box">
+                    <span className="value gradient-text">
+                      {!user?.ad_count && user?.ad_count !== 0
+                        ? 10
+                        : user?.ad_count}
+                    </span>
+                    <span className="title">{t("profile.ad")}</span>
                   </div>
                 </div>
                 <div className="actions-wrapper">
-                  <span
-                    className="action-btn follow"
-                    onClick={() => setIsFollowing(!isFollowing)}
-                  >
-                    {isFollowing ? t("following") : t("follow")}
+                  <span className="action-btn follow">
+                    {user?.is_follow ? t("following") : t("follow")}
                   </span>
                   <span
                     className="action-btn add"
@@ -146,12 +173,25 @@ function Profile() {
                       <h5>{t("profile.verifyWithAbsher")}</h5>
                     </div>
                     <div className="btn-wrapper">
-                      <Link
-                        to="/absher-verification"
-                        className="btn-box custom-btn filled"
-                      >
-                        <span>{t("profile.verify")}</span>
-                      </Link>
+                      {user?.absher_verified ? (
+                        <div className="btn-box custom-btn filled">
+                          <span>
+                            <i className="fa-solid fa-check-double"></i>
+                            {t(`profile.verified`)}
+                          </span>
+                        </div>
+                      ) : isMyAccount ? (
+                        <Link
+                          to="/absher-verification"
+                          className="btn-box custom-btn filled"
+                        >
+                          <span>{t(`profile.verify`)}</span>
+                        </Link>
+                      ) : (
+                        <div className="btn-box custom-btn filled">
+                          <span>{t(`profile.notVerified`)}</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="verification-box">
@@ -162,12 +202,25 @@ function Profile() {
                       <h5>{t("profile.commercialVerification")}</h5>
                     </div>
                     <div className="btn-wrapper">
-                      <Link
-                        to="/commercial-verification"
-                        className="btn-box custom-btn filled"
-                      >
-                        <span>{t("profile.subscribe")}</span>
-                      </Link>
+                      {user?.commercial_verified ? (
+                        <div className="btn-box custom-btn filled">
+                          <span>
+                            <i className="fa-solid fa-check-double"></i>
+                            {t(`profile.verified`)}
+                          </span>
+                        </div>
+                      ) : isMyAccount ? (
+                        <Link
+                          to="/commercial-verification"
+                          className="btn-box custom-btn filled"
+                        >
+                          <span>{t(`profile.subscribe`)}</span>
+                        </Link>
+                      ) : (
+                        <div className="btn-box custom-btn filled">
+                          <span>{t(`profile.notVerified`)}</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="verification-box">
@@ -175,25 +228,27 @@ function Profile() {
                       <div className="icon-box">
                         <i className="fa-regular fa-memo-circle-check"></i>
                       </div>
-                      <h5>{t("profile.valVerification")}</h5>
+                      <h5>{t("profile.falVerification")}</h5>
                     </div>
                     <div className="btn-wrapper">
-                      {isValVerified ? (
+                      {user?.fal_verified ? (
                         <div className="btn-box custom-btn filled">
-                          <span>{t(`profile.verified`)}</span>
+                          <span>
+                            <i className="fa-solid fa-check-double"></i>
+                            {t(`profile.verified`)}
+                          </span>
                         </div>
-                      ) : (
+                      ) : isMyAccount ? (
                         <Link
-                          to="/val-verification"
+                          to="/fal-verification"
                           className="btn-box custom-btn filled"
                         >
-                          <span>
-                            {isValVerified && (
-                              <i className="fa-solid fa-check-double"></i>
-                            )}
-                            {t(`profile.verify`)}
-                          </span>
+                          <span>{t(`profile.verify`)}</span>
                         </Link>
+                      ) : (
+                        <div className="btn-box custom-btn filled">
+                          <span>{t(`profile.notVerified`)}</span>
+                        </div>
                       )}
                     </div>
                   </div>

@@ -35,7 +35,7 @@
         .userImg {
           width: 100%;
           aspect-ratio: 1 / 1;
-          object-fit: cover;
+          object-fit: contain;
         }
 
         .verified-badge {
@@ -66,6 +66,11 @@
         gap: 8px;
         .name {
           font-weight: bold;
+        }
+        .email {
+          font-weight: normal;
+          color: $textSecondaryColor;
+          font-size: 14px;
         }
         .userDetails {
           width: 100%;
@@ -142,6 +147,7 @@
           width: 100%;
           display: flex;
           gap: 16px;
+          justify-content: center;
           align-items: center;
           position: relative;
 
