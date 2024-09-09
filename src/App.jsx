@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useLocation } from "react-router-dom";
+import { useJwt } from "react-jwt";
+import { useCookies } from "react-cookie";
+import { setIsLogged, setUser } from "./redux/slices/authedUser";
 import routerConfig from "./RouterConfig";
 import AppLayout from "./ui/layout/AppLayout";
 import i18n from "./utils/i18n";
 import axios from "./utils/axios";
-import { useCookies } from "react-cookie";
-import { useJwt } from "react-jwt";
 import useGetProfile from "./features/profile/useGetProfile";
-import { setIsLogged, setUser } from "./redux/slices/authedUser";
 import ProtectedRoute from "./routes/ProtectedRoute";
 
 export default function App() {
@@ -19,7 +19,6 @@ export default function App() {
   const token = cookies?.token;
   const id = cookies?.id;
   const { decodedToken, isExpired } = useJwt(token);
-
   axios.defaults.headers.common["Authorization"] = `${token}`;
 
   useEffect(() => {
@@ -30,7 +29,7 @@ export default function App() {
     data: profile,
     // isLoading,
     isFetched,
-    refetch,
+    refetch
   } = useGetProfile(id, Boolean(token && id && !isExpired));
 
   useEffect(() => {
@@ -47,12 +46,6 @@ export default function App() {
       delete axios.defaults.headers.common["Authorization"];
     }
   }, [decodedToken?.sub, id, isExpired, profile, isFetched, refetch, dispatch]);
-
-  useEffect(() => {
-    sessionStorage.setItem("lang", lang);
-    const body = document.querySelector("body");
-    lang === "en" ? body.classList.add("en") : body.classList.remove("en");
-  }, [lang]);
 
   useEffect(() => {
     sessionStorage.setItem("lang", lang);

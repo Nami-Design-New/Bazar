@@ -15,7 +15,7 @@ function Login() {
   const [formData, setFormData] = useState({
     phone: "",
     password: "",
-    token: 123234,
+    token: 123234
   });
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ function Login() {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -38,8 +38,8 @@ function Login() {
     try {
       const res = await axios.post("/user/login", formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
-        },
+          "Content-Type": "multipart/form-data"
+        }
       });
       console.log(res);
       if (res.data.code === 200) {
@@ -50,12 +50,12 @@ function Login() {
         setCookie("token", res.data.data.token, {
           path: "/",
           secure: true,
-          sameSite: "Strict",
+          sameSite: "Strict"
         });
         setCookie("id", res.data.data.id, {
           path: "/",
           secure: true,
-          sameSite: "Strict",
+          sameSite: "Strict"
         });
         axios.defaults.headers.common[
           "Authorization"
@@ -72,54 +72,62 @@ function Login() {
   };
 
   return (
-    <section className="auth-form container col-12 col-lg-6">
-      <div className="form-title">
-        <h1 className="title">{t("auth.login")}</h1>
-        <h5 className="sub-title">{t("auth.loginSubtitle")}</h5>
+    <section className="container">
+      <div className="row m-0 justify-content-center">
+        <div className="col-lg-8 col-12 p-2">
+          <div className="auth-form">
+            {/* form title */}
+            <div className="form-title">
+              <h1 className="title">{t("auth.login")}</h1>
+              <h5 className="sub-title">{t("auth.loginSubtitle")}</h5>
+            </div>
+
+            {/* form */}
+            <form onSubmit={handleSubmit}>
+              <PhoneField
+                onChange={handleChange}
+                value={formData.phone}
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder={t("0XXXXXXXXXX")}
+              />
+
+              <PasswordField
+                label={t("auth.password")}
+                name={"password"}
+                id={"password"}
+                value={formData.password}
+                onChange={handleChange}
+              />
+
+              <Link to="/forget-password" className="forgetpass gradient-text">
+                {t("auth.forgetPassword")}
+              </Link>
+
+              <div className="d-flex gap-3 align-items-center flex-column w-100">
+                <SubmitButton
+                  loading={loading}
+                  name={t("auth.login")}
+                  className={"custom-btn filled"}
+                  onClick={handleSubmit}
+                />
+                <Link to="/" className="custom-btn stroke">
+                  <span>{t("auth.loginAsGuest")}</span>
+                </Link>
+              </div>
+              <div className="d-flex gap-2 flex-lg-row flex-column w-100">
+                <Link to="/register" className="noAccount">
+                  {t("auth.don'tHaveAccount")}{" "}
+                  <span className="gradient-text">
+                    {t("auth.createAccount")}
+                  </span>
+                </Link>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-      <form onSubmit={handleSubmit}>
-        <div className="d-flex gap-2 flex-lg-row flex-column w-100">
-          <PhoneField
-            onChange={handleChange}
-            value={formData.phone}
-            id="phone"
-            name="phone"
-            type="tel"
-            placeholder={t("0XXXXXXXXXX")}
-          />
-        </div>
-        <div className="d-flex gap-2 flex-lg-row flex-column w-100">
-          <PasswordField
-            label={t("auth.password")}
-            name={"password"}
-            id={"password"}
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </div>
-
-        <Link to="/forget-password" className="forgetpass gradient-text">
-          {t("auth.forgetPassword")}
-        </Link>
-
-        <div className="d-flex gap-3 align-items-center flex-column w-100">
-          <SubmitButton
-            loading={loading}
-            name={t("auth.login")}
-            className={"custom-btn filled"}
-            onClick={handleSubmit}
-          />
-          <Link to="/" className="custom-btn stroke">
-            <span>{t("auth.loginAsGuest")}</span>
-          </Link>
-        </div>
-        <div className="d-flex gap-2 flex-lg-row flex-column w-100">
-          <Link to="/register" className="noAccount">
-            {t("auth.don'tHaveAccount")}{" "}
-            <span className="gradient-text">{t("auth.createAccount")}</span>
-          </Link>
-        </div>
-      </form>
     </section>
   );
 }

@@ -8,7 +8,7 @@ import {
   IconBell,
   IconCirclePlus,
   IconMessage,
-  IconShoppingBag,
+  IconShoppingBag
 } from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
