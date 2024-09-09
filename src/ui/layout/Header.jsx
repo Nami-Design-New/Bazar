@@ -1,6 +1,6 @@
 import HeaderTopBar from "./HeaderTopBar";
 import NotificationItem from "./NotificationItem";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Dropdown } from "react-bootstrap";
 import { useEffect, useState } from "react";
@@ -10,7 +10,11 @@ import {
   IconMessage,
   IconShoppingBag,
 } from "@tabler/icons-react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useCookies } from "react-cookie";
+import axios from "../../utils/axios";
+import { setIsLogged, setUser } from "../../redux/slices/authedUser";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function Header() {
   const { t } = useTranslation();
@@ -18,9 +22,34 @@ export default function Header() {
   const [isFixedTop, setIsFixedTop] = useState(false);
   const user = useSelector((state) => state.authedUser.user);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
+  const [, , deleteCookie] = useCookies();
+  const dispatch = useDispatch();
+  const [cookies] = useCookies(["token"]);
+  const token = cookies?.token;
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const handleClickOutSide = () => {
     setIsOpen(false);
+  };
+
+  const performLogout = async () => {
+    try {
+      const deleteToken = await axios.post("/user/logout", { token: token });
+      if (deleteToken.data.code === 200) {
+        deleteCookie("token");
+        deleteCookie("id");
+        delete axios.defaults.headers.common["Authorization"];
+        dispatch(setUser({}));
+        dispatch(setIsLogged(false));
+        navigate("/");
+        queryClient.clear();
+        sessionStorage.clear();
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+      throw new Error(error.message);
+    }
   };
 
   useEffect(() => {
@@ -190,16 +219,22 @@ export default function Header() {
                   </>
                 )}
 
-                {!isLogged && !user ? (
-                  <Dropdown.Item as={Link} to="/login">
+                {isLogged && user ? (
+                  <Dropdown.Item onClick={performLogout}>
                     <i className="fa-regular fa-arrow-right-from-bracket"></i>
                     {t("header.logout")}
                   </Dropdown.Item>
                 ) : (
-                  <Dropdown.Item as={Link} to="/login">
-                    <i className="fa-regular fa-arrow-right-to-bracket"></i>
-                    {t("auth.login")}
-                  </Dropdown.Item>
+                  <>
+                    <Dropdown.Item as={Link} to="/register">
+                      <i className="fa-regular fa-user-plus"></i>
+                      {t("header.addNewAccount")}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/login">
+                      <i className="fa-regular fa-arrow-right-to-bracket"></i>
+                      {t("header.login")}
+                    </Dropdown.Item>
+                  </>
                 )}
               </Dropdown.Menu>
             </Dropdown>

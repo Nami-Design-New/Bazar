@@ -34,9 +34,17 @@ const routerConfig = [
   { path: "/edit-profile", element: <EditProfile /> },
   { path: "/profile", element: <Profile /> },
   { path: "/profile/:id", element: <Profile /> },
-  { path: "/absher-verification", element: <AbsherVerification /> },
+  {
+    path: "/absher-verification",
+    element: <AbsherVerification />,
+    protected: true,
+  },
   { path: "/fal-verification", element: <FalVerification /> },
-  { path: "/commercial-verification", element: <CommercialVerification /> },
+  {
+    path: "/commercial-verification",
+    element: <CommercialVerification />,
+    protected: true,
+  },
 
   // user features
   { path: "/cart", element: <Cart /> },
