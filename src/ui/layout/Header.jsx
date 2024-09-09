@@ -190,10 +190,15 @@ export default function Header() {
                   </>
                 )}
 
-                {!isLogged && !user && (
+                {!isLogged && !user ? (
                   <Dropdown.Item as={Link} to="/login">
                     <i className="fa-regular fa-arrow-right-from-bracket"></i>
                     {t("header.logout")}
+                  </Dropdown.Item>
+                ) : (
+                  <Dropdown.Item as={Link} to="/login">
+                    <i className="fa-regular fa-arrow-right-to-bracket"></i>
+                    {t("auth.login")}
                   </Dropdown.Item>
                 )}
               </Dropdown.Menu>
