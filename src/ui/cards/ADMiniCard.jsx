@@ -8,8 +8,6 @@ function ADMiniCard({ ad }) {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  console.log(ad);
-
   function handleOpenConfirmation(e) {
     e.preventDefault();
     e.stopPropagation();

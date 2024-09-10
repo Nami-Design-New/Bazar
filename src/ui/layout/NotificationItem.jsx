@@ -5,8 +5,6 @@ import { calculateDate } from "../../utils/helpers";
 function NotificationItem({ notification }) {
   const [imgError, setImgError] = useState(false);
 
-  console.log(notification);
-
   let status = "";
 
   switch (notification?.status) {

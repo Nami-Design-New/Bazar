@@ -67,7 +67,7 @@ function ProfileTabs({ user, isMyAccount }) {
               <div className="col-lg-6 col-12 p-3" key={order?.id}>
                 <FavoriteADCard
                   ad={order}
-                  order={true}
+                  type="order"
                   isMyAccount={isMyAccount}
                 />
               </div>

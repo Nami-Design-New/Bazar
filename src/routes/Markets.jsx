@@ -7,6 +7,9 @@ import InputField from "../ui/form-elements/InputField";
 import SelectField from "../ui/form-elements/SelectField";
 import FavoriteMarketCard from "../ui/cards/FavoriteMarketCard";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
+import useMarketsByFilter from "../features/markets/useMarketsByFilter";
+import DataLoader from "../ui/DataLoader";
+import EmptyData from "../ui/EmptyData";
 
 const areas = [
   {
@@ -27,6 +30,7 @@ function Markets() {
   const { t } = useTranslation();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { isLoading: marketsLoading, data: markets } = useMarketsByFilter();
 
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
@@ -166,23 +170,22 @@ function Markets() {
           </div>
           <div className="col-lg-9 col-12 p-2">
             <div className="row">
-              <>
-                <div className="col-lg-6 col-12 p-2">
-                  <FavoriteMarketCard />
-                </div>
-                <div className="col-lg-6 col-12 p-2">
-                  <FavoriteMarketCard />
-                </div>
-                <div className="col-lg-6 col-12 p-2">
-                  <FavoriteMarketCard />
-                </div>
-                <div className="col-lg-6 col-12 p-2">
-                  <FavoriteMarketCard />
-                </div>
-                <div className="col-lg-6 col-12 p-2">
-                  <FavoriteMarketCard />
-                </div>
-              </>
+              {marketsLoading ? (
+                <>
+                  {" "}
+                  <DataLoader minHeight="200px" />{" "}
+                </>
+              ) : markets?.data && markets?.data?.length > 0 ? (
+                markets?.data?.map((market) => (
+                  <div className="col-lg-6 col-12 p-3" key={market?.id}>
+                    <FavoriteMarketCard market={market} />
+                  </div>
+                ))
+              ) : (
+                <EmptyData minHeight={"300px"}>
+                  {t("markets.noMarkets")}
+                </EmptyData>
+              )}
             </div>
           </div>
         </div>
