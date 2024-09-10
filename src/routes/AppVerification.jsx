@@ -13,7 +13,7 @@ import SubmitButton from "../ui/form-elements/SubmitButton";
 // Register the plugin
 registerPlugin(FilePondPluginImagePreview);
 
-function AbsherVerification() {
+function AppVerification() {
   const { t } = useTranslation();
   const [files, setFiles] = useState([]);
 
@@ -48,4 +48,4 @@ function AbsherVerification() {
   );
 }
 
-export default AbsherVerification;
+export default AppVerification;

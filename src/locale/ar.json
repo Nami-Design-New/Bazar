@@ -40,7 +40,7 @@
     "coupons": "الكوبونات",
     "contact": "اتصل بنا",
     "profile": "الملف الشخصي",
-    "absher-verification": "توثيق الحساب",
+    "app-verification": "توثيق الحساب",
     "fal-verification": "توثيق فال",
     "commercial-verification": "توثيق السجل التجاري",
     "add-ad": "اضف أعلان",
@@ -94,11 +94,13 @@
     "verify": "توثيق",
     "verified": "موثق",
     "notVerified": "غير موثق",
-    "verifyWithAbsher": "توثيق بطاقة أحوال او أقامة ( للأفراد ) عن طريق ابشر",
-    "verifiedAbsher": "موثق ابشر",
+    "verifyWithApp": "توثيق بطاقة أحوال او أقامة ( للأفراد ) عن طريق التطبيق",
+    "verifiedApp": "موثق",
     "commercialVerification": "توثيق سجل تجاري ( للشركات و المؤسسات و عمل حر ) عن طريق وزارة التجارة",
     "verifiedCommercial": "موثق تجاري",
     "subscribe": "اشتراك",
+    "renewSubscribe": "تجديد الاشتراك",
+    "notSubscribed": "غير مشترك",
     "subscribed": "مشترك",
     "falVerification": "اضافة رخصة فال للوساطة و التسويق",
     "verifiedVal": "موثق فال",
@@ -111,10 +113,13 @@
     "verififcationHint2": "توثيق عضويتك يزيد من مبيعاتك و ثقة الأخرين في حسابك.",
     "verififcationHint3": "بيانات التوثيق سرية لا يتم نشرا او إطلاع اي جهة اخرى عليها.",
     "planMethod": "طرق الاشتراك",
-    "planPrice": "سعر الاشتراك"
+    "planPrice": "سعر الاشتراك",
+    "noAds": "لا توجد إعلانات لهذا المستخدم",
+    "noOrders": "لا توجد طلبات لهذا المستخدم"
   },
   "error": {
     "pageNotFound": "هذا الرابط غير موجود لدينا او ربما تم حذفه. كيف وصلت الي هنا ؟",
+    "noAccountWithThisId": "لا يوجد مستخدم لدينا لديه هذا الـ ID. كيف وصلت الي هنا ؟",
     "goHome": "الرئيسية"
   },
   "currency": {

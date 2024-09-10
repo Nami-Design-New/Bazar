@@ -1,8 +1,8 @@
-const DataLoader = ({ minHeight = "548px" }) => {
+const DataLoader = ({ minHeight = "548px", minWidth = "100%" }) => {
   return (
     <div
       className="tableLoader loader--style8"
-      style={{ minHeight: minHeight }}
+      style={{ minHeight: minHeight, minWidth: minWidth }}
     >
       <svg
         version="1.1"

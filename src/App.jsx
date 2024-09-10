@@ -10,6 +10,7 @@ import i18n from "./utils/i18n";
 import axios from "./utils/axios";
 import useGetProfile from "./features/profile/useGetProfile";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import Loader from "./ui/Loader";
 
 export default function App() {
   const location = useLocation();
@@ -27,9 +28,9 @@ export default function App() {
 
   const {
     data: profile,
-    // isLoading,
+    isLoading,
     isFetched,
-    refetch
+    refetch,
   } = useGetProfile(id, Boolean(token && id && !isExpired));
 
   useEffect(() => {
@@ -54,7 +55,9 @@ export default function App() {
     i18n.changeLanguage(lang);
   }, [lang]);
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <AppLayout>
       <Routes>
         {routerConfig.map(
