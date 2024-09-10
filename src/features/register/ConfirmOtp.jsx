@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import { useCookies } from "react-cookie";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import Otpcontainer from "../../ui/form-elements/Otpcontainer";
+import { setIsLogged, setUser } from "../../redux/slices/authedUser";
+import Otpcontainer from './../../ui/form-elements/OtpContainer';
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axios from "../../utils/axios";
-import { setIsLogged, setUser } from "../../redux/slices/authedUser";
 import headerImg from "../../assets/images/forget-2.svg";
 
 const ConfirmOtp = ({ otpData, setOtpData, formData }) => {

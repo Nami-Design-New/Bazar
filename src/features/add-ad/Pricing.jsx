@@ -8,8 +8,9 @@ import contact from "../../assets/images/contact.svg";
 import whatsapp from "../../assets/images/whatsapp-icon.svg";
 import call from "../../assets/images/call.svg";
 import message from "../../assets/images/message.svg";
+import SubmitButton from "../../ui/form-elements/SubmitButton";
 
-function Pricing({ formData, setFormData, setForm }) {
+function Pricing({ formData, setFormData, setForm, loading }) {
   return (
     <div className="row w-100">
       <div className="col-12 p-2">
@@ -213,7 +214,11 @@ function Pricing({ formData, setFormData, setForm }) {
           >
             <i className="fa-regular fa-angle-right"></i> السابق
           </button>
-          <button className="wizard_btn next">نشر الاعلان</button>
+          <SubmitButton
+            name={"نشر الاعلان"}
+            className="wizard_btn next"
+            loading={loading}
+          />
         </div>
       </div>
     </div>

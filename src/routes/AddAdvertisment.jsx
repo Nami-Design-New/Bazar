@@ -5,10 +5,13 @@ import MainInfo from "../features/add-ad/MainInfo";
 import Location from "../features/add-ad/Location";
 import Gallery from "../features/add-ad/Gallery";
 import Pricing from "../features/add-ad/Pricing";
+import { toast } from "react-toastify";
+import axios from "./../utils/axios";
 
 function AddAdvertisment() {
   const { t } = useTranslation();
   const [form, setForm] = useState("main-info");
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -29,6 +32,25 @@ function AddAdvertisment() {
     whatsapp: 0,
     video: ""
   });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await axios.post("/ads", formData);
+      if (res.status === 201 || res.status === 200) {
+        toast.success("تم الاضافة بنجاح");
+        setForm("main-info");
+      } else {
+        toast.error("حدث خطأ ما");
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "حدث خطأ ما");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <SectionHeader />
@@ -54,7 +76,7 @@ function AddAdvertisment() {
 
             {/* wizard tab content */}
             <div className="col-12 p-2">
-              <div className="form">
+              <form onSubmit={handleSubmit} className="form">
                 {form === "main-info" && (
                   <MainInfo
                     formData={formData}
@@ -78,12 +100,13 @@ function AddAdvertisment() {
                 )}
                 {form === "pricing-contact" && (
                   <Pricing
+                    loading={loading}
                     formData={formData}
                     setFormData={setFormData}
                     setForm={setForm}
                   />
                 )}
-              </div>
+              </form>
             </div>
           </div>
         </div>

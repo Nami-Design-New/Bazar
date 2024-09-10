@@ -3,9 +3,16 @@ import { handleChange } from "../../utils/helpers";
 import SelectField from "./../../ui/form-elements/SelectField";
 import MapWithMarker from "../../utils/MapWithMarker";
 import DataLoader from "./../../ui/DataLoader";
+import useGetCities from "../../hooks/useGetCities";
+import useGetAreas from "../../hooks/useGetAreas";
 
 function Location({ formData, setFormData, setForm }) {
   const [mapLoaded, setMapLoaded] = useState(false);
+  const { data: cities } = useGetCities();
+  const { data: areas } = useGetAreas(
+    formData?.city_id,
+    formData?.city_id ? true : false
+  );
 
   useEffect(() => {
     const loadGoogleMapsScript = () => {
@@ -43,10 +50,9 @@ function Location({ formData, setFormData, setForm }) {
           value={formData?.city_id}
           onChange={(e) => handleChange(e, setFormData)}
           disabledOption={"اختر المدينة"}
-          options={[
-            { name: "مدينة 1", value: 1 },
-            { name: "مدينة 2", value: 2 }
-          ]}
+          options={cities?.data?.map((city) => {
+            return { name: city.name, value: city.id };
+          })}
         />
       </div>
       <div className="col-lg-6 col-12 p-2">
@@ -58,10 +64,9 @@ function Location({ formData, setFormData, setForm }) {
           value={formData?.area_id}
           onChange={(e) => handleChange(e, setFormData)}
           disabledOption={"اختر المنطقة"}
-          options={[
-            { name: "منطقة 1", value: 1 },
-            { name: "منطقة 2", value: 2 }
-          ]}
+          options={areas?.data?.map((area) => {
+            return { name: area.name, value: area.id };
+          })}
         />
       </div>
       <div className="col-12 p-2">
