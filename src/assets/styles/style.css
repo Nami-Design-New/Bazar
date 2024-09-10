@@ -6269,6 +6269,9 @@ body .empty-section h2 {
   font-weight: 800;
   color: #cecece;
 }
+body .dropdown-item {
+  text-align: right !important;
+}
 body.en {
   direction: ltr;
   font-family: "Poppins", sans-serif;

@@ -1,8 +1,6 @@
-import marketLogoImage from "../assets/images/market-logo-1.jpg";
-import marketCoverImage from "../assets/images/market-cover-1.png";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Tab, Tabs } from "react-bootstrap";
+import { Dropdown, Tab, Tabs } from "react-bootstrap";
 import ProductMiniCard from "../ui/cards/ProductMiniCard";
 import { Link, useNavigate } from "react-router-dom";
 import whatsAppLogo from "../assets/images/whatsapp-icon.svg";
@@ -12,6 +10,7 @@ import mapPin from "../assets/images/mapPin.svg";
 import RateCard from "../ui/cards/RateCard";
 import CreateComment from "../ui/CreateComment";
 import useMarketSections from "../features/markets/useMarketSections";
+import useMarketDetails from "../features/markets/useMarketDetails.js";
 import DataLoader from "../ui/DataLoader";
 import EmptyData from "../ui/EmptyData";
 
@@ -30,19 +29,21 @@ const position = {
 function MarketDetails() {
   const { t } = useTranslation();
   const { isLoading: sectionLoading, data: sections } = useMarketSections();
-  const [isAdded, setIsAdded] = useState(false);
+  const { isLoading: marketLoading, data: market } = useMarketDetails();
   const [isFollowing, setIsFollowing] = useState(false);
   const [productsCategory, setProductsCategory] = useState();
   const [targetedComment, setTargetedComment] = useState("");
   const navigate = useNavigate();
 
-  console.log(sections);
+  console.log(market.data);
 
-  return (
+  return marketLoading ? (
+    <DataLoader minHeight="200px" />
+  ) : (
     <div className="market-details-page ">
       <div className="page-header">
         <div className="cover-wrapper">
-          <img src={marketCoverImage} alt="market cover image" />
+          <img src={market?.data?.banner} alt="market cover image" />
         </div>
         <div className="top-wrapper">
           <div className="btns-wrapper">
@@ -52,7 +53,7 @@ function MarketDetails() {
           </div>
           <div className="logo-follow-wrapper">
             <div className="logo-wrapper">
-              <img src={marketLogoImage} alt="market logo image" />
+              <img src={market?.data?.logo} alt="market logo image" />
             </div>
 
             <div className="action-boxes">
@@ -60,15 +61,12 @@ function MarketDetails() {
                 className="action-btn follow"
                 onClick={() => setIsFollowing(!isFollowing)}
               >
-                {isFollowing ? t("following") : t("follow")}
-              </span>
-              <span
-                className="action-btn add"
-                onClick={() => setIsAdded(!isAdded)}
-              >
                 <i
-                  className={`fa-regular fa-user-${isAdded ? "check" : "plus"}`}
+                  className={`fa-regular fa-user-${
+                    isFollowing ? "check" : "plus"
+                  }`}
                 ></i>
+                {isFollowing ? t("following") : t("follow")}
               </span>
             </div>
           </div>
@@ -76,14 +74,22 @@ function MarketDetails() {
             <span className="btn-box share">
               <i className="fa-sharp fa-solid fa-share-nodes"></i>
             </span>
+            <Dropdown className="">
+              <Dropdown.Toggle className="btn-box butn" id="dropdown-basic">
+                <i className="fa-regular fa-ellipsis-vertical"></i>
+                {/* <i class="fa-regular fa-circle-ellipsis-vertical"></i> */}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item as={Link} to="/profile">
+                  {t("report")}
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
         </div>
         <div className="info-wrapper">
-          <h3>متجر كرفور</h3>
-          <p>
-            الجروب مخصص فقط لكل ما يخص اعمال النجاره مثل الموبيليات و الديكور و
-            الباب و الشباك
-          </p>
+          <h3>{market?.data?.name}</h3>
+          <p>{market?.data?.bio}</p>
         </div>
       </div>
       <section className="tabs-section">
