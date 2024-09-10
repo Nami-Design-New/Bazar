@@ -167,7 +167,8 @@
     "deliveryExisting": "يوجد خدمه توصيل",
     "workTimes": "مواعيد العمل",
     "contactWithMarket": "التواصل مع المتجر",
-    "areYouSureYouWantToDeleteMarket": "هل انت متأكد من حذف هذا المتجر؟"
+    "areYouSureYouWantToDeleteMarket": "هل انت متأكد من حذف هذا المتجر؟",
+    "noProducts": "عذرًا، لا توجد منتجات في هذا المتجر في الوقت الحالي"
   },
   "orders": {
     "areYouSureYouWantToDeleteOrder": "هل انت متأكد من حذف هذا الطلب؟",

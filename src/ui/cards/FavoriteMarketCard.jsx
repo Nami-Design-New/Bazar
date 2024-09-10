@@ -4,8 +4,6 @@ import { useState } from "react";
 function FavoriteMarketCard({ market }) {
   const [isLiked, setIsLiked] = useState(false);
 
-  console.log(market);
-
   function handleToggleFavorite(e) {
     e.stopPropagation();
     e.preventDefault();
