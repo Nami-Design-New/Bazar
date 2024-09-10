@@ -11,6 +11,9 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import mapPin from "../assets/images/mapPin.svg";
 import RateCard from "../ui/cards/RateCard";
 import CreateComment from "../ui/CreateComment";
+import useMarketSections from "../features/markets/useMarketSections";
+import DataLoader from "../ui/DataLoader";
+import EmptyData from "../ui/EmptyData";
 
 const containerStyle = {
   width: "100%",
@@ -26,11 +29,14 @@ const position = {
 
 function MarketDetails() {
   const { t } = useTranslation();
+  const { isLoading: sectionLoading, data: sections } = useMarketSections();
   const [isAdded, setIsAdded] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
-  const [productsCategory, setProductsCategory] = useState("all");
+  const [productsCategory, setProductsCategory] = useState();
   const [targetedComment, setTargetedComment] = useState("");
   const navigate = useNavigate();
+
+  console.log(sections);
 
   return (
     <div className="market-details-page ">
@@ -84,67 +90,40 @@ function MarketDetails() {
         <Tabs defaultActiveKey="products" id="uncontrolled-tab-example">
           <Tab eventKey="products" title={t("markets.products")}>
             <div className="content-wrapper container col-lg-10 col-12">
-              <div className="filter-wrapper">
-                <h5 className="filter-heading">{t("categories.categories")}</h5>
-                <ul className="filter-list">
-                  <li
-                    className={`filter-item ${
-                      productsCategory === "all" ? "active" : ""
-                    }`}
-                    onClick={() => setProductsCategory("all")}
-                  >
-                    {t("categories.all")}
-                  </li>
-                  <li
-                    className={`filter-item ${
-                      productsCategory === "food" ? "active" : ""
-                    }`}
-                    onClick={() => setProductsCategory("food")}
-                  >
-                    {t("categories.food")}
-                  </li>
-                  <li
-                    className={`filter-item ${
-                      productsCategory === "clothes" ? "active" : ""
-                    }`}
-                    onClick={() => setProductsCategory("clothes")}
-                  >
-                    {t("categories.clothes")}
-                  </li>
-                  <li
-                    className={`filter-item ${
-                      productsCategory === "painting" ? "active" : ""
-                    }`}
-                    onClick={() => setProductsCategory("painting")}
-                  >
-                    {t("categories.paintingProducts")}
-                  </li>
-                  <li
-                    className={`filter-item ${
-                      productsCategory === "electronics"
-                        ? "active"
-                        : "electronics"
-                    }`}
-                    onClick={() => setProductsCategory("")}
-                  >
-                    {t("categories.electronics")}
-                  </li>
-                  <li
-                    className={`filter-item ${
-                      productsCategory === "carpentry" ? "active" : ""
-                    }`}
-                    onClick={() => setProductsCategory("carpentry")}
-                  >
-                    {t("categories.carpentryTools")}
-                  </li>
-                </ul>
-              </div>
+              {sectionLoading ? (
+                <DataLoader minHeight="200px" />
+              ) : sections?.data && sections?.data?.length > 0 ? (
+                <>
+                  <div className="filter-wrapper">
+                    <h5 className="filter-heading">
+                      {t("categories.categories")}
+                    </h5>
+                    <ul className="filter-list">
+                      {sections?.data?.map((section) => (
+                        <li
+                          className={`filter-item ${
+                            productsCategory === section?.id ? "active" : ""
+                          }`}
+                          key={section?.id}
+                          onClick={() => setProductsCategory(section?.id)}
+                        >
+                          {section?.name}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-              <div className="products-wrapper">
-                <ProductMiniCard discount={true} />
-                <ProductMiniCard />
-                <ProductMiniCard newest={true} discount={true} />
-              </div>
+                  <div className="products-wrapper">
+                    <ProductMiniCard discount={true} />
+                    <ProductMiniCard />
+                    <ProductMiniCard newest={true} discount={true} />
+                  </div>
+                </>
+              ) : (
+                <EmptyData minHeight={"300px"}>
+                  {t("markets.noProducts")}
+                </EmptyData>
+              )}
             </div>
           </Tab>
           <Tab eventKey="aboutMarket" title={t("markets.aboutMarket")}>
