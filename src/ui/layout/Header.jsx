@@ -8,7 +8,7 @@ import {
   IconBell,
   IconCirclePlus,
   IconMessage,
-  IconShoppingBag
+  IconShoppingBag,
 } from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
@@ -95,10 +95,10 @@ export default function Header() {
             <li>
               <NavLink
                 className="nav-link"
-                to="/coupons"
+                to="/markets"
                 onClick={handleClickOutSide}
               >
-                {t("header.coupons")}
+                {t("header.markets")}
               </NavLink>
             </li>
             <li>

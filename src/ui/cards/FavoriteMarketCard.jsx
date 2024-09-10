@@ -1,12 +1,10 @@
-import { useTranslation } from "react-i18next";
-import marketLogoImage from "../../assets/images/market-logo-1.jpg";
-import marketCoverImage from "../../assets/images/market-cover-1.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function FavoriteMarketCard({ type }) {
-  const { t } = useTranslation();
+function FavoriteMarketCard({ market }) {
   const [isLiked, setIsLiked] = useState(false);
+
+  console.log(market);
 
   function handleToggleFavorite(e) {
     e.stopPropagation();
@@ -26,30 +24,33 @@ function FavoriteMarketCard({ type }) {
 
   return (
     <Link
-      to={`/${type === "coupon" ? "coupon" : "market"}-details/1`}
+      to={`/${market?.type === "coupon" ? "coupon" : "market"}-details/${
+        market?.id
+      }`}
       className="fav-market-card"
       onClick={handleLinkClick}
     >
       <div className="card-header">
         <div className="cover-wrapper">
-          <img src={marketCoverImage} alt="market cover image" />
+          <img src={market?.banner} alt="market cover image" />
         </div>
         <div className="logo-wrapper">
-          <img src={marketLogoImage} alt="market logo image" />
+          <img src={market?.logo} alt="market logo image" />
         </div>
         <div className="categories-actions">
           <div className="categories-wrapper">
-            <Link to="" className="category">
-              {t("categories.perfumes")}
-            </Link>
-            <Link to="" className="category">
-              {t("categories.food")}
+            <Link
+              to={`/ads?category_id=${market?.category?.id}`}
+              className="category"
+            >
+              <img src={market?.category?.image} alt="" />
+              {market?.category?.name}
             </Link>
           </div>
           <div className="action-boxes">
             <span
               className={`action-btn favorite ${
-                type === "favorite" || isLiked ? "liked" : ""
+                market?.is_favorite ? "liked" : ""
               }`}
               onClick={handleToggleFavorite}
             >
@@ -57,22 +58,28 @@ function FavoriteMarketCard({ type }) {
             </span>
           </div>
         </div>
-        <h3>كارفور اونلاين</h3>
+        <h3>{market?.bio}</h3>
       </div>
       <div className="card-details">
-        <p className="description">
-          يجمع دعاية بلس بين افضل المتاجر والمنتجات عالية الجوده كما يتيح لكم
-          التسوق بالاسعار المخفضة
-        </p>
         <div className="card-statistics">
-          <div className="statistic">
-            <i className="fa-regular fa-eye gradient-icon"></i>
-            <span className="value">22 {t("thousand")}</span>
-          </div>
-          <div className="statistic">
-            <i className="fa-solid fa-star gradient-icon"></i>
-            <span className="value">4.4</span>
-          </div>
+          {market?.views_count || market?.views_count === 0 ? (
+            <div className="statistic">
+              <i className="fa-regular fa-eye gradient-icon"></i>
+              <span className="value">{market?.views_count}</span>
+            </div>
+          ) : null}
+          {market?.follow_count || market?.follow_count === 0 ? (
+            <div className="statistic">
+              <i className={`fa-regular fa-user-plus`}></i>
+              <span className="value">{market?.follow_count}</span>
+            </div>
+          ) : null}
+          {market?.rate || market?.rate === 0 ? (
+            <div className="statistic">
+              <i className="fa-solid fa-star gradient-icon"></i>
+              <span className="value">{market?.rate}</span>
+            </div>
+          ) : null}
         </div>
       </div>
     </Link>

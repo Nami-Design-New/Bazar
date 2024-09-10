@@ -3,9 +3,17 @@ import { useTranslation } from "react-i18next";
 import SectionHeader from "../ui/layout/SectionHeader";
 import FavoriteMarketCard from "../ui/cards/FavoriteMarketCard";
 import FavoriteADCard from "../ui/cards/FavoriteADCard";
+import useFavoriteAds from "../features/ads/useFavoriteAds";
+import DataLoader from "../ui/DataLoader";
+import EmptyData from "../ui/EmptyData";
+import useFavoriteMarkets from "../features/markets/useFavoriteMarkets";
 
 function Favorites() {
   const { t } = useTranslation();
+  const { isLoading: adsLoading, data: ads } = useFavoriteAds();
+  const { isLoading: marketsLoading, data: markets } = useFavoriteMarkets();
+
+  console.log(markets);
 
   return (
     <>
@@ -15,15 +23,17 @@ function Favorites() {
           {/* ADs */}
           <Tab eventKey="ads" title={t("favorites.ads")} className="tab_item">
             <div className="content-wrapper">
-              <div className="col-lg-6 col-12 p-3">
-                <FavoriteADCard type="favorite" />
-              </div>
-              <div className="col-lg-6 col-12 p-3">
-                <FavoriteADCard type="favorite" />
-              </div>
-              <div className="col-lg-6 col-12 p-3">
-                <FavoriteADCard type="favorite" />
-              </div>
+              {adsLoading ? (
+                <DataLoader minHeight="200px" />
+              ) : ads?.data && ads?.data?.length > 0 ? (
+                ads?.data?.map((ad) => (
+                  <div className="col-lg-6 col-12 p-3" key={ad?.id}>
+                    <FavoriteADCard type="favorite" ad={ad} />
+                  </div>
+                ))
+              ) : (
+                <EmptyData minHeight={"300px"}>{t("ads.noFavAds")}</EmptyData>
+              )}
             </div>
           </Tab>
 
@@ -34,15 +44,22 @@ function Favorites() {
             className="tab_item"
           >
             <div className="content-wrapper">
-              <div className="col-lg-4 col-md-6 col-12 p-3">
-                <FavoriteMarketCard type="favorite" />
-              </div>
-              <div className="col-lg-4 col-md-6 col-12 p-3">
-                <FavoriteMarketCard type="favorite" />
-              </div>
-              <div className="col-lg-4 col-md-6 col-12 p-3">
-                <FavoriteMarketCard type="favorite" />
-              </div>
+              {marketsLoading ? (
+                <DataLoader minHeight="200px" />
+              ) : markets?.data && markets?.data?.length > 0 ? (
+                markets?.data?.map((market) => (
+                  <div
+                    className="col-lg-4 col-md-6 col-12 p-3"
+                    key={market?.id}
+                  >
+                    <FavoriteMarketCard type="favorite" market={market} />
+                  </div>
+                ))
+              ) : (
+                <EmptyData minHeight={"300px"}>
+                  {t("ads.noFavMarkets")}
+                </EmptyData>
+              )}
             </div>
           </Tab>
         </Tabs>

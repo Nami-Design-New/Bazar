@@ -33,6 +33,15 @@ export async function getuserAds(id) {
     throw new Error(`Error fetching ads: ${err.message}`);
   }
 }
+export async function getFavoriteAds() {
+  try {
+    const req = await axios.get("/user/get_ad_favorites");
+
+    return req.data;
+  } catch (err) {
+    throw new Error(`Error fetching ads: ${err.message}`);
+  }
+}
 
 export async function getAdById(id) {
   const requestBody = {};
