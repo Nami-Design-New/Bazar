@@ -69,6 +69,16 @@ export const getTimeDifference = (createdAt) => {
   return { years, months, days, hours, minutes };
 };
 
+export const subscriptionRemainingDays = (end_date) => {
+  const today = new Date();
+  const futureDate = new Date(end_date);
+
+  const timeDifference = futureDate - today;
+  const remainingDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+  return remainingDays;
+};
+
 export const formatTimeDifference = (
   years,
   months,

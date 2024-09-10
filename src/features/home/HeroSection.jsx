@@ -81,7 +81,7 @@ function HeroSection() {
               </Link>
 
               <Link
-                to="/stores"
+                to="/markets?type=online"
                 className="category"
                 style={{ backgroundColor: "#23c98c4a" }}
               >

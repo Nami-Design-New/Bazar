@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import { useState } from "react";
 
-function ADMiniCard() {
+function ADMiniCard({ ad }) {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
+
+  console.log(ad);
 
   function handleOpenConfirmation(e) {
     e.preventDefault();
@@ -26,21 +28,24 @@ function ADMiniCard() {
 
   return (
     <Link
-      to={`/ad-details/1`}
+      to={`/ad-details/${ad?.id || "1"}`}
       className="ad-mini-card activity-card"
       onClick={handleLinkClick}
     >
       <div className="card-header">
         <div className="image-wrapper">
-          <img src={adImage} alt="AD image" />
+          <img src={ad?.image?.image || adImage} alt="AD image" />
         </div>
         <div className="card-content">
           <span className="price gradient-text">
-            200.000 {t("currency.sar")}
+            {ad?.price || "200.00"} {t("currency.sar")}
           </span>
           <h5 className="title one-line-wrap">
-            فيلا في الرياض 150 م بحديقه و بول
+            {ad?.title || "فيلا في الرياض "}
           </h5>
+          <p className="sub-title one-line-wrap">
+            {ad?.description || "فيلا 150 م بحديقه و بول"}
+          </p>
           <div className="categories-wrapper">
             <Link to="" className="category gradient-text">
               <i className="fa-regular fa-apartment"></i>

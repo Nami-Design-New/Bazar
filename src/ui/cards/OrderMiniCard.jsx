@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import { useState } from "react";
 
-function OrderMiniCard() {
+function OrderMiniCard({ order }) {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
+
+  console.log(order);
 
   function handleOpenConfirmation(e) {
     e.stopPropagation();

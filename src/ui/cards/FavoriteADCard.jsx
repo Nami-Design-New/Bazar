@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import adImage from "../../assets/images/villa-1.png";
 import { useState } from "react";
 import { calculateDate } from "../../utils/helpers";
+import ConfirmationModal from "../modals/ConfirmationModal";
 
-function FavoriteADCard({ type, ad }) {
+function FavoriteADCard({ type, ad, isMyAccount, order }) {
   const { t } = useTranslation();
   const [isLiked, setIsLiked] = useState(() =>
     type === "favorite" ? true : false
@@ -16,11 +17,23 @@ function FavoriteADCard({ type, ad }) {
     setIsLiked(!isLiked);
   }
 
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  function handleOpenConfirmation(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowConfirmation(true);
+  }
+  function handleDelete() {
+    setShowConfirmation(false);
+  }
+
   function handleLinkClick(e) {
     e.stopPropagation();
     if (
       e.target.classList.contains("delete") ||
-      e.target.classList.contains("favorite")
+      e.target.classList.contains("favorite") ||
+      showConfirmation
     ) {
       e.preventDefault();
     }
@@ -28,7 +41,7 @@ function FavoriteADCard({ type, ad }) {
 
   return (
     <Link
-      to={`/ad-details/${ad?.id || "1"}`}
+      to={`/${order ? "order" : "ad"}-details/${ad?.id || "1"}`}
       className={`fav-ad-card ${type === "favorite" ? "favorite" : ""}`}
       onClick={handleLinkClick}
     >
@@ -58,18 +71,33 @@ function FavoriteADCard({ type, ad }) {
             </div>
           )}
           <span className="date">
-            {t("createdAt")} {ad?.created_at ? calculateDate(ad?.created_at) : "2024/8/2"}
+            {t("createdAt")}{" "}
+            {ad?.created_at ? calculateDate(ad?.created_at) : "2024/8/2"}
           </span>
         </div>
         <div className="action-boxes">
-          <span
-            className={`action-btn favorite ${
-              type === "favorite" || isLiked ? "liked" : ""
-            }`}
-            onClick={handleToggleFavorite}
-          >
-            <i className="fa-solid fa-heart"></i>
-          </span>
+          {isMyAccount ? (
+            <>
+              <span
+                className="action-btn delete"
+                onClick={handleOpenConfirmation}
+              >
+                <i className="fa-regular fa-trash gradient-icon"></i>
+              </span>
+              <Link to={`/add-ad/${ad?.id || "1"}`} className="action-btn edit">
+                <i className="fa-regular fa-pen-to-square gradient-icon"></i>
+              </Link>
+            </>
+          ) : (
+            <span
+              className={`action-btn favorite ${
+                type === "favorite" || isLiked ? "liked" : ""
+              }`}
+              onClick={handleToggleFavorite}
+            >
+              <i className="fa-solid fa-heart"></i>
+            </span>
+          )}
         </div>
       </div>
       <div className="card-statistics">
@@ -90,6 +118,14 @@ function FavoriteADCard({ type, ad }) {
           <span className="value">{ad?.favorites_count || "5"}</span>
         </div>
       </div>
+      <ConfirmationModal
+        showModal={showConfirmation}
+        setShowModal={setShowConfirmation}
+        type="delete"
+        eventFun={handleDelete}
+        buttonText={t("delete")}
+        text={t("ads.areYouSureYouWantToDeleteAD")}
+      />
     </Link>
   );
 }

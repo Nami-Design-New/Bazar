@@ -1,263 +1,148 @@
-import { Tab, Tabs } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import avatarPlaceholder from "../assets/images/avatar-placeholder-2.svg";
 import SectionHeader from "../ui/layout/SectionHeader";
-import ADMiniCard from "../ui/cards/ADMiniCard";
-import OrderMiniCard from "../ui/cards/OrderMiniCard";
-import { Link, useParams } from "react-router-dom";
-import { IconCirclePlus } from "@tabler/icons-react";
-import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { subscriptionRemainingDays } from "../utils/helpers";
+import ProfileTabs from "../features/profile/ProfileTabs";
+import useGetUserById from "../features/profile/useGetUserById";
+
+import errorImg from "../assets/images/error.svg";
 
 function Profile() {
   const { id } = useParams();
   const { t } = useTranslation();
-  const user = useSelector((state) => state.authedUser.user);
-  const [isAdded, setIsAdded] = useState(false);
+  const [user, setUser] = useState({});
+  const authedUser = useSelector((state) => state.authedUser.user);
+  const { data: profile } = useGetUserById(user?.id);
+  const navigate = useNavigate();
 
-  const isMyAccount = !id || id === String(user?.id);
+  const isMyAccount = !id || Number(id) === Number(authedUser?.id);
+
+  useEffect(() => {
+    if (id) {
+      if (Number(id) === Number(authedUser?.id)) {
+        setUser(authedUser);
+      } else {
+        setUser(profile);
+      }
+    } else {
+      if (authedUser) {
+        setUser(authedUser);
+      } else {
+        navigate("/login");
+      }
+    }
+  }, [isMyAccount, authedUser, profile, id, setUser, navigate]);
 
   return (
     <section className="profile-page profile">
       <SectionHeader />
-      <div className="content-wrapper container col-lg-10 col-12">
-        <div className="row">
-          <div className="userInfo">
-            <div className="top-wrapper">
-              <div className="user-avatar-wrapper">
-                <img
-                  className="userImg"
-                  src={user?.image || avatarPlaceholder}
-                  alt=""
-                />
-                {user?.verified ? (
-                  <div className="verified-badge">
-                    <i className="fa-solid fa-badge-check"></i>
-                  </div>
-                ) : null}
-              </div>
-              <div className="userName">
-                <h4 className="name"> {user?.name || "Ahmed Abdelghany"} </h4>
-                <h6 className="email">
-                  {user?.email || "ahmed.abdelghany1211@gmail.com"}
-                </h6>
-                <div className="userDetails">
-                  <span className="details-box phone">
-                    <i className="fa-regular fa-phone gradient-icon"></i>
-                    +966{user?.phone || "1234567890"}
-                  </span>
-                  {/* <span className="details-box location">
+      {user ? (
+        <div className="content-wrapper container col-lg-10 col-12">
+          <div className="row">
+            <div className="userInfo">
+              <div className="top-wrapper">
+                <div className="user-avatar-wrapper">
+                  <img className="userImg" src={user?.image} alt="" />
+                  {user?.verified ? (
+                    <div className="verified-badge">
+                      <i className="fa-solid fa-badge-check"></i>
+                    </div>
+                  ) : null}
+                </div>
+                <div className="userName">
+                  <h4 className="name"> {user?.name} </h4>
+                  <h6 className="email">{user?.email}</h6>
+                  <div className="userDetails">
+                    {user?.phone && (
+                      <span className="details-box phone">
+                        <i className="fa-regular fa-phone gradient-icon"></i>
+                        +966{user?.phone}
+                      </span>
+                    )}
+                    {/* <span className="details-box location">
                     <i className="fa-sharp fa-solid fa-location-dot gradient-icon"></i>
                     السعودية, الرياض
                   </span> */}
-                </div>
-                <div className="verification-details">
-                  {user?.fal_verified ? (
-                    <span className="verification-item">
-                      <i className="fa-regular fa-memo-circle-check gradient-icon"></i>
-                      {t("profile.verifiedVal")}
-                    </span>
-                  ) : null}
-                </div>
-              </div>
-              <div className="action-boxes">
-                <div className="following-details">
-                  <div className="details-box">
-                    <span className="value gradient-text">
-                      {!user?.following_count && user?.follow_count !== 0
-                        ? 100
-                        : user?.following_count}
-                    </span>
-                    <span className="title">{t("profile.followings")}</span>
                   </div>
-                  <div className="details-box">
-                    <span className="value gradient-text">
-                      {!user?.follow_count && user?.follow_count !== 0
-                        ? 100
-                        : user?.follow_count}
-                    </span>
-                    <span className="title">{t("profile.followers")}</span>
-                  </div>
-                  <div className="details-box">
-                    <span className="value gradient-text">
-                      {!user?.ad_count && user?.ad_count !== 0
-                        ? 10
-                        : user?.ad_count}
-                    </span>
-                    <span className="title">{t("profile.ad")}</span>
+                  <div className="verification-details">
+                    {user?.fal_verified ? (
+                      <span className="verification-item">
+                        <i className="fa-regular fa-memo-circle-check gradient-icon"></i>
+                        {t("profile.verifiedVal")}
+                      </span>
+                    ) : null}
+                    {subscriptionRemainingDays(user?.end_date) > 0 ? (
+                      <span className="verification-item">
+                        <i className="fa-regular fa-box-circle-check gradient-icon"></i>
+                        {t("profile.verifiedCommercial")}
+                      </span>
+                    ) : null}
                   </div>
                 </div>
-                <div className="actions-wrapper">
-                  <span className="action-btn follow">
-                    {user?.is_follow ? t("following") : t("follow")}
-                  </span>
-                  <span
-                    className="action-btn add"
-                    onClick={() => setIsAdded(!isAdded)}
-                  >
-                    <i
-                      className={`fa-regular fa-user-${
-                        isAdded ? "check" : "plus"
-                      }`}
-                    ></i>
-                  </span>
+                <div className="action-boxes">
+                  <div className="following-details">
+                    {user?.follow_count ||
+                      (user?.follow_count === 0 && (
+                        <div className="details-box">
+                          <span className="value gradient-text">
+                            {user?.following_count}
+                          </span>
+                          <span className="title">
+                            {t("profile.followings")}
+                          </span>
+                        </div>
+                      ))}
+                    {user?.follow_count ||
+                      (user?.follow_count === 0 && (
+                        <div className="details-box">
+                          <span className="value gradient-text">
+                            {user?.follow_count}
+                          </span>
+                          <span className="title">
+                            {t("profile.followers")}
+                          </span>
+                        </div>
+                      ))}
+                    {user?.ad_count ||
+                      (user?.ad_count === 0 && (
+                        <div className="details-box">
+                          <span className="value gradient-text">
+                            {user?.ad_count}
+                          </span>
+                          <span className="title">{t("profile.ad")}</span>
+                        </div>
+                      ))}
+                  </div>
+                  {!isMyAccount && (
+                    <div className="actions-wrapper">
+                      <span className="action-btn follow">
+                        <i
+                          className={`fa-regular fa-user-${
+                            user?.is_follow ? "check" : "plus"
+                          }`}
+                        ></i>
+                        {user?.is_follow ? t("following") : t("follow")}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-          </div>
-          <div className="tabs-section">
-            <Tabs
-              className="profileNavCol col-md-5 col-lg-4 col-xl-3 p-2"
-              defaultActiveKey="ads"
-              id="uncontrolled-tab-example"
-            >
-              {/* ADs */}
-              <Tab
-                eventKey="ads"
-                title={t("profile.ads")}
-                className="tab_item p-2"
-              >
-                <div className="w-100 btn-wrapper d-flex justify-content-end mb-3 p-2">
-                  <Link to="/add-ad" className="custom-btn stroke">
-                    <span>
-                      <IconCirclePlus stroke={2} /> {t("ads.addAD")}
-                    </span>
-                  </Link>
-                </div>
-                <div className="col-lg-6 col-12 p-3">
-                  <ADMiniCard />
-                </div>
-                <div className="col-lg-6 col-12 p-3">
-                  <ADMiniCard />
-                </div>
-                <div className="col-lg-6 col-12 p-3">
-                  <ADMiniCard />
-                </div>
-              </Tab>
-              {/* Orders */}
-              <Tab
-                eventKey="orders"
-                title={t("profile.orders")}
-                className="tab_item p-2"
-              >
-                <div className="w-100 btn-wrapper d-flex justify-content-end mb-3 p-2">
-                  <Link to="/add-order" className="custom-btn stroke">
-                    <span>
-                      <IconCirclePlus stroke={2} /> {t("orders.addOrder")}
-                    </span>
-                  </Link>
-                </div>
-                <div className="col-lg-6 col-12 p-3">
-                  <OrderMiniCard />
-                </div>
-                <div className="col-lg-6 col-12 p-3">
-                  <OrderMiniCard />
-                </div>
-                <div className="col-lg-6 col-12 p-3">
-                  <OrderMiniCard />
-                </div>
-              </Tab>
-              {/* Verifications */}
-              <Tab
-                eventKey="verifications"
-                title={t("profile.verifications")}
-                className="tab_item p-2"
-              >
-                <div className="profile-verification-wrapper">
-                  <h6>{t("profile.verificationHeading")}</h6>
-                  <div className="verification-box">
-                    <div className="box-info">
-                      <div className="icon-box">
-                        <i className="fa-solid fa-shield-check"></i>
-                      </div>
-                      <h5>{t("profile.verifyWithAbsher")}</h5>
-                    </div>
-                    <div className="btn-wrapper">
-                      {user?.absher_verified ? (
-                        <div className="btn-box custom-btn filled">
-                          <span>
-                            <i className="fa-solid fa-check-double"></i>
-                            {t(`profile.verified`)}
-                          </span>
-                        </div>
-                      ) : isMyAccount ? (
-                        <Link
-                          to="/absher-verification"
-                          className="btn-box custom-btn filled"
-                        >
-                          <span>{t(`profile.verify`)}</span>
-                        </Link>
-                      ) : (
-                        <div className="btn-box custom-btn filled">
-                          <span>{t(`profile.notVerified`)}</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <div className="verification-box">
-                    <div className="box-info">
-                      <div className="icon-box">
-                        <i className="fa-regular fa-box-circle-check"></i>
-                      </div>
-                      <h5>{t("profile.commercialVerification")}</h5>
-                    </div>
-                    <div className="btn-wrapper">
-                      {user?.commercial_verified ? (
-                        <div className="btn-box custom-btn filled">
-                          <span>
-                            <i className="fa-solid fa-check-double"></i>
-                            {t(`profile.verified`)}
-                          </span>
-                        </div>
-                      ) : isMyAccount ? (
-                        <Link
-                          to="/commercial-verification"
-                          className="btn-box custom-btn filled"
-                        >
-                          <span>{t(`profile.subscribe`)}</span>
-                        </Link>
-                      ) : (
-                        <div className="btn-box custom-btn filled">
-                          <span>{t(`profile.notVerified`)}</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <div className="verification-box">
-                    <div className="box-info">
-                      <div className="icon-box">
-                        <i className="fa-regular fa-memo-circle-check"></i>
-                      </div>
-                      <h5>{t("profile.falVerification")}</h5>
-                    </div>
-                    <div className="btn-wrapper">
-                      {user?.fal_verified ? (
-                        <div className="btn-box custom-btn filled">
-                          <span>
-                            <i className="fa-solid fa-check-double"></i>
-                            {t(`profile.verified`)}
-                          </span>
-                        </div>
-                      ) : isMyAccount ? (
-                        <Link
-                          to="/fal-verification"
-                          className="btn-box custom-btn filled"
-                        >
-                          <span>{t(`profile.verify`)}</span>
-                        </Link>
-                      ) : (
-                        <div className="btn-box custom-btn filled">
-                          <span>{t(`profile.notVerified`)}</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </Tab>
-            </Tabs>
+            <ProfileTabs user={user} isMyAccount={isMyAccount} />
           </div>
         </div>
-      </div>
+      ) : (
+        <section className="error-section">
+          <img src={errorImg} alt="error image" />
+          <h2>{t("error.noAccountWithThisId")}</h2>
+          <Link to="/" className="backhome">
+            <i className="fa-solid fa-home"></i>
+            <span>{t("error.goHome")}</span>
+          </Link>
+        </section>
+      )}
     </section>
   );
 }
