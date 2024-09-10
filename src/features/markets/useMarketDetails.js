@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { getMarketSections } from "../../services/apiMarkets";
+import { getMarketDetails } from "../../services/apiMarkets";
 
-function useMarketSections() {
+function useMarketDetails() {
   const { id } = useParams();
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["favoriteMarkets", id],
-    queryFn: () => getMarketSections(id),
+    queryKey: ["marketDetails", id],
+    queryFn: () => getMarketDetails(id),
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -17,4 +17,4 @@ function useMarketSections() {
   return { isLoading, data, error };
 }
 
-export default useMarketSections;
+export default useMarketDetails;

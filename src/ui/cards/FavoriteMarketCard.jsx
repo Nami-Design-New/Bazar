@@ -56,9 +56,10 @@ function FavoriteMarketCard({ market }) {
             </span>
           </div>
         </div>
-        <h3>{market?.bio}</h3>
+        <h3>{market?.name}</h3>
       </div>
       <div className="card-details">
+        <p className="description one-line-wrap">{market?.bio}</p>
         <div className="card-statistics">
           {market?.views_count || market?.views_count === 0 ? (
             <div className="statistic">
