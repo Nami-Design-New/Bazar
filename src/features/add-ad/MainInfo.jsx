@@ -1,9 +1,21 @@
+import { useEffect, useState } from "react";
 import { handleChange } from "../../utils/helpers";
+import useCategoriesList from "../categories/useCategoriesList";
 import InputField from "./../../ui/form-elements/InputField";
 import SelectField from "./../../ui/form-elements/SelectField";
 import TextField from "./../../ui/form-elements/TextField";
 
 function MainInfo({ formData, setFormData, setForm }) {
+  const { data: categories } = useCategoriesList();
+  const [subCategories, setSubCategories] = useState([]);
+
+  useEffect(() => {
+    if (formData?.category_id) {
+      setSubCategories(
+        categories?.data?.find((c) => c.id === formData?.category_id)?.sub_categories
+      );
+    }
+  }, [formData?.category_id, categories]);
   return (
     <div className="row w-100">
       {/* ** */}
@@ -60,16 +72,10 @@ function MainInfo({ formData, setFormData, setForm }) {
           value={formData?.category_id}
           onChange={(e) => handleChange(e, setFormData)}
           disabledOption={"اختر التصنيف"}
-          options={[
-            {
-              name: "تصنيف 1",
-              value: 1
-            },
-            {
-              name: "تصنيف 2",
-              value: 2
-            }
-          ]}
+          options={categories?.data?.map((category) => ({
+            name: category.name,
+            value: category.id
+          }))}
         />
       </div>
       {/* ** */}
@@ -81,18 +87,13 @@ function MainInfo({ formData, setFormData, setForm }) {
           }
           name="sub_category_id"
           id="sub_category_id"
+          required
           value={formData?.sub_category_id}
           onChange={(e) => handleChange(e, setFormData)}
-          options={[
-            {
-              name: "تصنيف فرعي 1",
-              value: 1
-            },
-            {
-              name: "تصنيف فرعي 2",
-              value: 2
-            }
-          ]}
+          options={subCategories?.map((category) => ({
+            name: category.name,
+            value: category.id
+          }))}
         />
       </div>
       {/* ** */}
@@ -112,6 +113,7 @@ function MainInfo({ formData, setFormData, setForm }) {
       <div className="col-12 p-2">
         <div className="btns">
           <button
+            type="submit"
             className="wizard_btn next"
             onClick={(e) => {
               e.preventDefault();
