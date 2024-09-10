@@ -83,37 +83,30 @@ function Profile() {
                 </div>
                 <div className="action-boxes">
                   <div className="following-details">
-                    {user?.follow_count ||
-                      (user?.follow_count === 0 && (
-                        <div className="details-box">
-                          <span className="value gradient-text">
-                            {user?.following_count}
-                          </span>
-                          <span className="title">
-                            {t("profile.followings")}
-                          </span>
-                        </div>
-                      ))}
-                    {user?.follow_count ||
-                      (user?.follow_count === 0 && (
-                        <div className="details-box">
-                          <span className="value gradient-text">
-                            {user?.follow_count}
-                          </span>
-                          <span className="title">
-                            {t("profile.followers")}
-                          </span>
-                        </div>
-                      ))}
-                    {user?.ad_count ||
-                      (user?.ad_count === 0 && (
-                        <div className="details-box">
-                          <span className="value gradient-text">
-                            {user?.ad_count}
-                          </span>
-                          <span className="title">{t("profile.ad")}</span>
-                        </div>
-                      ))}
+                    {(user?.follow_count || user?.follow_count === 0) && (
+                      <div className="details-box">
+                        <span className="value gradient-text">
+                          {user?.following_count}
+                        </span>
+                        <span className="title">{t("profile.followings")}</span>
+                      </div>
+                    )}
+                    {(user?.follow_count || user?.follow_count === 0) && (
+                      <div className="details-box">
+                        <span className="value gradient-text">
+                          {user?.follow_count}
+                        </span>
+                        <span className="title">{t("profile.followers")}</span>
+                      </div>
+                    )}
+                    {(user?.ad_count || user?.ad_count === 0) && (
+                      <div className="details-box">
+                        <span className="value gradient-text">
+                          {user?.ad_count}
+                        </span>
+                        <span className="title">{t("profile.ad")}</span>
+                      </div>
+                    )}
                   </div>
                   {!isMyAccount && (
                     <div className="actions-wrapper">
