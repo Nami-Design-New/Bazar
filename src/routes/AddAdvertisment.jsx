@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import SectionHeader from "../ui/layout/SectionHeader";
 import MainInfo from "../features/add-ad/MainInfo";
 import Location from "../features/add-ad/Location";
 import Gallery from "../features/add-ad/Gallery";
 import Pricing from "../features/add-ad/Pricing";
-import { toast } from "react-toastify";
 import axios from "./../utils/axios";
 
 function AddAdvertisment() {
   const { t } = useTranslation();
   const [form, setForm] = useState("main-info");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -37,10 +39,15 @@ function AddAdvertisment() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("/ads", formData);
+      const res = await axios.post("/user/create_ad", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
       if (res.status === 201 || res.status === 200) {
         toast.success("تم الاضافة بنجاح");
         setForm("main-info");
+        navigate("/profile");
       } else {
         toast.error("حدث خطأ ما");
       }

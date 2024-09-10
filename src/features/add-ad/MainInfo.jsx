@@ -12,7 +12,8 @@ function MainInfo({ formData, setFormData, setForm }) {
   useEffect(() => {
     if (formData?.category_id) {
       setSubCategories(
-        categories?.data?.find((c) => c.id === formData?.category_id)?.sub_categories
+        categories?.data?.find((c) => c.id === Number(formData?.category_id))
+          ?.sub_categories
       );
     }
   }, [formData?.category_id, categories]);
