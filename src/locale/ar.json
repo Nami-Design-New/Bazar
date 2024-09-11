@@ -65,6 +65,7 @@
     "send": "ارسال",
     "next": "التالي",
     "enterOTP": "ادخل الرمز الذي تم ارساله إلى الجوال",
+    "enterPhoneOTP": "ادخل الرمز الذي تم ارساله إلى ",
     "didnotReceiveCode": "لم تستلم الرمز؟",
     "resendCode": "أعد ارسال الرمز مره اخري",
     "addNewPassword": "اضف كلمة مرور جديدة",
@@ -88,7 +89,8 @@
     "loginErorr": "حدث خطأ في تسجيل الدخول",
     "fillAllFieldsRequired": "املأ جميع الحقول لتتمكن من المتابعة",
     "registerSuccess": "تم تسجيل حسابك بنجاح",
-    "profileEditedSuccessfully": "تم تعديل الملف الشخصي بنجاح"
+    "profileEditedSuccessfully": "تم تعديل الملف الشخصي بنجاح",
+    "otpSentSuccess": "تم ارسال الرمز بنجاح، يرجى التحقق من الرسالة"
   },
   "profile": {
     "ads": "الاعلانات",

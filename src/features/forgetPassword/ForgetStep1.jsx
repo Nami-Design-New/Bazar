@@ -3,13 +3,35 @@ import headerImg from "../../assets/images/forget-1.svg";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
+import { toast } from "react-toastify";
+import axios from "../../utils/axios";
 
-function ForgetStep1({ setStep }) {
+function ForgetStep1({ setStep, formData, handleChange, setOtpData }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    phone: "",
-  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await axios.post("/user/sendOtpCode", formData);
+      if (res.data.code === 200) {
+        toast.success(t("auth.otpSentSuccess"));
+        setOtpData((prev) => ({
+          ...prev,
+          hashed_code: res.data.data,
+        }));
+        setStep(2);
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.error("Forget password error:", error);
+      throw new Error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -19,18 +41,27 @@ function ForgetStep1({ setStep }) {
       <div className="form-title">
         <h5 className="sub-title">{t("auth.forgetPasswordSubtitle")}</h5>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="d-flex gap-2 flex-lg-row flex-column w-100">
           <PhoneField
-            formData={formData}
-            setFormData={setFormData}
+            label={t("auth.phone")}
+            onChange={handleChange}
+            value={formData.phone}
             id="phone"
+            name="phone"
+            type="tel"
+            placeholder={t("0XXXXXXXXXX")}
+            maxLength={9}
+            required={true}
           />
         </div>
         <SubmitButton
-          onClick={() => setStep(2)}
+          className={"custom-btn filled"}
           name={t("auth.next")}
           loading={loading}
+          onClick={() => {
+            handleSubmit();
+          }}
         />
       </form>
     </>

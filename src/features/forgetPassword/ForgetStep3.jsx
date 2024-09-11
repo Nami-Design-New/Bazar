@@ -5,12 +5,14 @@ import SubmitButton from "../../ui/form-elements/SubmitButton";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import headerImg from "../../assets/images/forget-3.svg";
+import axios from "../../utils/axios";
 
-function ForgetStep3({ setStep }) {
+function ForgetStep3({ setStep, code }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [formData, setFormData] = useState({
+    code,
     password: "",
   });
   const navigate = useNavigate();
@@ -26,14 +28,27 @@ function ForgetStep3({ setStep }) {
     setConfirmPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (confirmPassword !== formData.password) {
       toast.error(t("auth.passwordNotMatched"));
       return;
     } else {
-      toast.success(t("auth.newPasswordSuccess"));
-      navigate("/");
+      setLoading(true);
+      try {
+        const res = await axios.post("/user/update_password", formData);
+        if (res.data.code === 200) {
+          toast.success(t("auth.newPasswordSuccess"));
+          navigate("/login");
+        } else {
+          toast.error(res.data.message);
+        }
+      } catch (error) {
+        console.error("Forget password error:", error);
+        throw new Error(error.message);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -66,10 +81,8 @@ function ForgetStep3({ setStep }) {
         </div>
         <div className="d-flex gap-3 align-items-center flex-column w-100">
           <SubmitButton
-            onClick={() => {
-              handleSubmit();
-              setStep(1);
-            }}
+            className={"custom-btn filled"}
+            onClick={handleSubmit}
             name={t("auth.next")}
             loading={loading}
           />

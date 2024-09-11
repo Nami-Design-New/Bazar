@@ -1351,6 +1351,16 @@ body main .auth-form .form-title .title {
     font-size: 24px;
   }
 }
+body main .auth-form .form-title .sub-title {
+  margin: 0;
+  color: #6b6464;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: relative;
+}
 body main .auth-form form {
   position: relative;
   display: flex;
@@ -1612,7 +1622,7 @@ body main .otp-container .otp-input {
   text-align: center;
   border: 1px solid #4381f8;
   background: rgba(67, 129, 248, 0.1019607843);
-  font-size: 28px;
+  font-size: 28px !important;
   font-weight: 600;
   color: #4381f8 !important;
   outline: none;
