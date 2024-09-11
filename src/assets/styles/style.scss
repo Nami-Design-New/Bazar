@@ -664,6 +664,9 @@ body {
       color: #cecece;
     }
   }
+  .dropdown-item {
+    text-align: right !important;
+  }
   &.en {
     direction: ltr;
     font-family: "Poppins", sans-serif;
