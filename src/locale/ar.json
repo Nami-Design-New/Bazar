@@ -85,7 +85,10 @@
     "back": "رجوع",
     "loginSuccess": "تم تسجيل الدخول بنجاح",
     "phoneOrPasswordWrong": "رقم الجوال او كلمة المرور خاطئة",
-    "loginErorr": "حدث خطأ في تسجيل الدخول"
+    "loginErorr": "حدث خطأ في تسجيل الدخول",
+    "fillAllFieldsRequired": "املأ جميع الحقول لتتمكن من المتابعة",
+    "registerSuccess": "تم تسجيل حسابك بنجاح",
+    "profileEditedSuccessfully": "تم تعديل الملف الشخصي بنجاح"
   },
   "profile": {
     "ads": "الاعلانات",
@@ -227,7 +230,7 @@
     "days": "يوم",
     "city": "المدينة",
     "area": "المنطقة",
-    "category":"القسم"
+    "category": "القسم"
   },
   "createdAt": "تم الإنشاء في",
   "delete": "حذف",

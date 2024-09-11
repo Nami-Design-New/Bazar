@@ -4,11 +4,12 @@ import RegisterForm from "../features/register/RegisterForm";
 
 function Register() {
   const [formData, setFormData] = useState({
-    userImage: "",
+    image: "",
     name: "",
     email: "",
     phone: "",
     password: "",
+    token: 123,
   });
   const [showOtp, setShowOtp] = useState(false);
   const [otpData, setOtpData] = useState({});

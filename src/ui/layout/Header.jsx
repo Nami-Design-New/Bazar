@@ -15,6 +15,7 @@ import { useCookies } from "react-cookie";
 import axios from "../../utils/axios";
 import { setIsLogged, setUser } from "../../redux/slices/authedUser";
 import { useQueryClient } from "@tanstack/react-query";
+import Loader from "../Loader";
 
 export default function Header() {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ export default function Header() {
   const user = useSelector((state) => state.authedUser.user);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
   const [, , deleteCookie] = useCookies();
+  const [isLogoutLoading, setIsLogoutLoading] = useState(false);
   const dispatch = useDispatch();
   const [cookies] = useCookies(["token"]);
   const token = cookies?.token;
@@ -34,6 +36,7 @@ export default function Header() {
   };
 
   const performLogout = async () => {
+    setIsLogoutLoading(true);
     try {
       const deleteToken = await axios.post("/user/logout", { token: token });
       if (deleteToken.data.code === 200) {
@@ -50,6 +53,8 @@ export default function Header() {
       console.error("Error during logout:", error);
       throw new Error(error.message);
     }
+
+    setIsLogoutLoading(false);
   };
 
   useEffect(() => {
@@ -64,7 +69,9 @@ export default function Header() {
     };
   }, []);
 
-  return (
+  return isLogoutLoading ? (
+    <Loader />
+  ) : (
     <header className={`header ${isFixedTop ? "sticky" : ""}`}>
       <HeaderTopBar />
 

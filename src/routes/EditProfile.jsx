@@ -6,17 +6,25 @@ import PasswordField from "../ui/form-elements/PasswordField";
 import InputField from "../ui/form-elements/InputField";
 import { useTranslation } from "react-i18next";
 import SubmitButton from "../ui/form-elements/SubmitButton";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import axios from "../utils/axios";
+import { setUser } from "../redux/slices/authedUser";
+import { useNavigate } from "react-router-dom";
 
 function EditProfile() {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [wantChangePassword, setWantChangePassword] = useState(false);
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.authedUser.user);
   const [formData, setFormData] = useState({
-    userImage: "",
-    name: "",
-    email: "",
-    phone: "",
-    password: "",
+    image: user.image || "",
+    name: user.name || "",
+    email: user.email || "",
+    phone: user.phone || "",
   });
 
   const handleChange = (e) => {
@@ -26,18 +34,53 @@ function EditProfile() {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const requestBody = {
+      ...formData,
+    };
+
+    if (password && wantChangePassword) {
+      requestBody.password = password;
+    }
+
+    console.log(requestBody);
+
+    try {
+      const res = await axios.post("/user/update_profile", requestBody, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (res.data.code === 200) {
+        toast.success(t("auth.profileEditedSuccessfully"));
+        dispatch(setUser(res.data.data));
+        navigate("/profile");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.error("Register error:", error);
+      throw new Error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="auth-form container col-12 col-lg-6">
       <div className="form-title">
         <h1 className="title">{t("auth.editProfile")}</h1>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <ImageUpload
           type="file"
           name="userImage"
           id="img-upload"
           accept="image/*"
           formData={formData}
+          image={user?.image}
           setFormData={setFormData}
         />
         <div className="d-flex gap-2 flex-lg-row flex-column w-100">
@@ -62,13 +105,20 @@ function EditProfile() {
             required={true}
             formData={formData}
             onChange={(e) => handleChange(e)}
+            value={formData.email}
           />
         </div>
         <div className="d-flex gap-2 flex-lg-row flex-column w-100">
           <PhoneField
-            formData={formData}
-            setFormData={setFormData}
+            label={t("auth.phone")}
+            onChange={handleChange}
+            value={formData.phone}
             id="phone"
+            name="phone"
+            type="tel"
+            placeholder={t("0XXXXXXXXXX")}
+            maxLength={9}
+            required={true}
           />
         </div>
         <div className="question p-0 pt-2">
@@ -88,13 +138,18 @@ function EditProfile() {
               label={t("auth.password")}
               name={"password"}
               id={"password"}
-              value={formData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
         )}
         <div className="d-flex gap-2 flex-lg-row flex-column w-100">
-          <SubmitButton loading={loading} name={t("auth.saveChanges")} />
+          <SubmitButton
+            className={"custom-btn filled"}
+            loading={loading}
+            name={t("auth.saveChanges")}
+            onClick={handleSubmit}
+          />
         </div>
       </form>
     </section>

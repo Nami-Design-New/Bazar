@@ -82,17 +82,19 @@
       }
       input,
       select {
-        flex: 1 0;
-        color: $black;
-        font-size: 14px;
-        height: 56px;
-        width: 100%;
-        box-shadow: none !important;
-        background: $inputBg;
-        border: 1px solid $LightGray;
-        border-radius: 12px;
-        outline: none;
-        padding: 8px 12px;
+        &:not(#wantChangePassword) {
+          flex: 1 0;
+          color: $black;
+          font-size: 14px;
+          height: 56px;
+          width: 100%;
+          box-shadow: none !important;
+          background: $inputBg;
+          border: 1px solid $LightGray;
+          border-radius: 12px;
+          outline: none;
+          padding: 8px 12px;
+        }
       }
     }
     .phone-code {
@@ -255,20 +257,22 @@
   }
 
   input {
-    background: #fafafa;
-    background: $inputBg;
-    border: 1px solid #d9d9d9;
-    border: 1px solid $LightGray;
-    border-radius: 12px;
-    box-shadow: none !important;
-    color: #231f20;
-    color: $black;
-    direction: rtl;
-    font-size: 14px;
-    height: 56px;
-    outline: none;
-    padding: 8px 12px;
-    width: 100%;
+    &:not(#wantChangePassword) {
+      background: #fafafa;
+      background: $inputBg;
+      border: 1px solid #d9d9d9;
+      border: 1px solid $LightGray;
+      border-radius: 12px;
+      box-shadow: none !important;
+      color: #231f20;
+      color: $black;
+      direction: rtl;
+      font-size: 14px;
+      height: 56px;
+      outline: none;
+      padding: 8px 12px;
+      width: 100%;
+    }
   }
 }
 

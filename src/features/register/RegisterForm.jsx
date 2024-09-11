@@ -14,7 +14,7 @@ function RegisterForm({
   setFormData,
   handleChange,
   setShowOtp,
-  setOtpData
+  setOtpData,
 }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
@@ -22,25 +22,36 @@ function RegisterForm({
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    formData.phone = Number(formData.phone);
+
+    if (
+      !formData?.email ||
+      !formData?.name ||
+      !formData?.phone ||
+      !formData?.password
+    ) {
+      toast.error(t("auth.fillAllFieldsRequired"));
+      setLoading(false);
+      return;
+    }
 
     try {
       const res = await axios.post(
         "/user/can_register",
         {
-          ...formData
+          ...formData,
+          phone: Number(formData.phone),
         },
         {
           headers: {
-            "Content-Type": "multipart/form-data"
-          }
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
       if (res.data.code === 200) {
         setShowOtp(true);
         setOtpData((prev) => ({
           ...prev,
-          hashed_code: res.data.data
+          hashed_code: res.data.data,
         }));
       } else {
         toast.error(res.data.message);
@@ -60,7 +71,9 @@ function RegisterForm({
           <div className="auth-form">
             <div className="form-title">
               <h1 className="title">{t("auth.register")}</h1>
-              <h5 className="sub-title text-center">{t("auth.registerSubtitle")}</h5>
+              <h5 className="sub-title text-center">
+                {t("auth.registerSubtitle")}
+              </h5>
             </div>
             <form onSubmit={handleSubmit}>
               <ImageUpload
@@ -97,12 +110,15 @@ function RegisterForm({
               </div>
               <div className="d-flex gap-2 flex-lg-row flex-column w-100">
                 <PhoneField
+                  label={t("auth.phone")}
                   onChange={handleChange}
                   value={formData.phone}
                   id="phone"
                   name="phone"
                   type="tel"
                   placeholder={t("0XXXXXXXXXX")}
+                  maxLength={9}
+                  required={true}
                 />
               </div>
               <div className="d-flex gap-2 flex-lg-row flex-column w-100">
