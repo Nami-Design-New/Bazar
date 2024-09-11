@@ -247,8 +247,6 @@ function Checkout() {
                     </div>
                   </div>
 
-                  
-
                   <div className="cart_total">
                     <button type="submit">إرسال الطلب</button>
                   </div>

@@ -98,6 +98,38 @@ hr {
   height: 16px !important;
 }
 
+input[type=checkbox] {
+  width: 18px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  position: relative;
+  cursor: pointer;
+}
+input[type=checkbox]::after {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  content: "";
+  font-family: "Font Awesome 6 pro";
+  width: 18px;
+  height: 18px;
+  border: 1px solid #aaaaaa;
+  border-radius: 4px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4381f8;
+}
+input[type=checkbox]:checked::after {
+  content: "\f00c";
+  background: #4381f8;
+  color: #fff;
+  border-color: #4381f8;
+}
+
 .Toastify__toast-body {
   direction: ltr !important;
 }
@@ -404,6 +436,37 @@ body .stars li.star {
 }
 body .stars img {
   height: 16px !important;
+}
+body input[type=checkbox] {
+  width: 18px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  position: relative;
+  cursor: pointer;
+}
+body input[type=checkbox]::after {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  content: "";
+  font-family: "Font Awesome 6 pro";
+  width: 18px;
+  height: 18px;
+  border: 1px solid #aaaaaa;
+  border-radius: 4px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4381f8;
+}
+body input[type=checkbox]:checked::after {
+  content: "\f00c";
+  background: #4381f8;
+  color: #fff;
+  border-color: #4381f8;
 }
 body .Toastify__toast-body {
   direction: ltr !important;
@@ -2266,6 +2329,7 @@ body main .fav-market-card .card-header {
   position: relative;
   padding-bottom: 24px;
   min-height: 140px;
+  aspect-ratio: 3/2;
 }
 body main .fav-market-card .card-header .cover-wrapper {
   width: 100%;
@@ -2303,7 +2367,7 @@ body main .fav-market-card .card-header .logo-wrapper {
   display: flex;
   position: absolute;
   right: 50%;
-  top: -50px;
+  top: -40px;
   transform: translateX(50%);
   overflow: hidden;
   background-color: #fff;
@@ -2357,6 +2421,7 @@ body main .fav-market-card .card-header h3 {
   order: 3;
   position: relative;
   z-index: 6;
+  margin-top: auto;
   text-align: center;
 }
 body main .fav-market-card .categories-wrapper {
@@ -5556,6 +5621,9 @@ body main .small-filter-header button i {
     display: flex;
   }
 }
+body main .search-btn {
+  height: 48px !important;
+}
 body main .topHead {
   display: flex;
   flex-wrap: wrap;
@@ -6158,7 +6226,10 @@ body .search-section .filter-wrap form .departments .deps li {
   justify-content: space-between;
 }
 body .search-section .filter-wrap form .departments .deps li input {
-  width: 20px;
+  width: 18px;
+  height: 18px;
+  border: 0;
+  box-shadow: none !important;
 }
 body .search-section .filter-wrap form .departments .deps li .department-header {
   width: 100%;

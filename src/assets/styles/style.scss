@@ -492,7 +492,10 @@ body {
               gap: 10px;
               align-items: flex-start !important;
               input {
-                width: 20px;
+                width: 18px;
+                height: 18px;
+                border: 0;
+                box-shadow: none !important;
               }
               @include space-between();
               .department-header {
