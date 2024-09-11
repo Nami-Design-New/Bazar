@@ -7,23 +7,37 @@ function Cart() {
   const { t } = useTranslation();
 
   return (
-    <div className="cart-page">
+    <>
       <SectionHeader />
-      <div className="cart-details-wrapper container col-lg-10 col-12">
-        <CartItem type="cart" />
-        <CartItem type="cart" />
-        <CartItem type="cart" />
-
-        <div className="checkout-btn-wrapper">
-          <Link to="/checkout" className="custom-btn filled">
-            <span>
-              <i className="fa-regular fa-wallet"></i>
-              {t("cart.completePurchese")}
-            </span>
-          </Link>
+      <section className="shopping_cart">
+        <div className="container">
+          <div className="row m-0">
+            <div className="col-12">
+              <CartItem type="cart" />
+            </div>
+            <div className="col-12">
+              <CartItem type="cart" />
+            </div>
+            <div className="col-12">
+              <CartItem type="cart" />
+            </div>
+            <div className="col-12">
+              <CartItem type="cart" />
+            </div>
+            <div className="col-12">
+              <div className="cart_total">
+                <p>
+                  الإجمالى : <span>120.00</span> ريال
+                </p>
+                <Link to="/checkout">
+                  <span>{t("cart.completePurchese")}</span>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }
 

@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import productImg from "../../assets/images/product-1.png";
-import { useState } from "react";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import { Link } from "react-router-dom";
 
@@ -27,55 +27,50 @@ function CartItem({ type }) {
     setShowConfirmation(false);
   }
 
-  function handleLinkClick(e) {
-    e.stopPropagation();
-    if (showConfirmation) {
-      e.preventDefault();
-    }
-  }
-
   return (
     quantity > 0 && (
       <>
-        <Link className="cart-item" onClick={handleLinkClick}>
-          <div className="image-wrapper">
-            <img src={productImg} alt="order image" />
-          </div>
-          <div className="card-content">
-            <span className="price gradient-text">
-              300.00 {t("currency.sar")}
-            </span>
-            <h3 className="title">مشروم thio</h3>
-            <span className="sub-title">مشروم طازج ٢٠٠ جرام</span>
-          </div>
+        <div className="cart_item">
+          <Link to="/ad-details" className="item-info">
+            <div className="img">
+              <img src={productImg} alt="product" />
+            </div>
+            <div className="details">
+              <h6>مشروم طازج ٢٠٠ جرام</h6>
+              <p>
+                {" "}
+                <i className="fa-regular fa-tags"></i> <span>30.00</span>{" "}
+                {t("currency.sar")}
+              </p>
+            </div>
+          </Link>
           {type === "cart" && (
-            <>
-              <div className="action-boxes">
-                <span
-                  className="action-btn delete"
-                  onClick={handleOpenConfirmation}
-                >
-                  <i className="fa-regular fa-trash gradient-icon"></i>
-                </span>
+            <div className="price_count">
+              <div className="count">
+                <button onClick={handleDecrease}>
+                  <i className="fa-sharp fa-solid fa-minus"></i>
+                </button>
+                <input
+                  type="number"
+                  value={quantity}
+                  disabled
+                  placeholder="0"
+                />
+                <button onClick={handleIncrease}>
+                  <i className="fa-sharp fa-solid fa-plus"></i>
+                </button>
               </div>
-              <div className="btns-wrapper">
-                <span
-                  className="btn-box increase quantity-btn"
-                  onClick={handleIncrease}
-                >
-                  <i className="fa-solid fa-plus"></i>
-                </span>
-                <h5 className="quantity">{quantity}</h5>
-                <span
-                  className="btn-box decrease quantity-btn"
-                  onClick={handleDecrease}
-                >
-                  <i className="fa-solid fa-minus"></i>
-                </span>
+              <div className="total">
+                <p>
+                  الاجمالي : <span>30.00</span> {t("currency.sar")}
+                </p>
+                <button onClick={handleOpenConfirmation}>
+                  <i className="fa-regular fa-trash-can-list"></i>
+                </button>
               </div>
-            </>
+            </div>
           )}
-        </Link>
+        </div>
         <ConfirmationModal
           showModal={showConfirmation}
           setShowModal={setShowConfirmation}

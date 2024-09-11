@@ -115,6 +115,7 @@
     }
     input {
       border-left: 0 !important;
+      cursor: normal !important;
       border-radius: 0 12px 12px 0 !important;
     }
   }
@@ -126,7 +127,6 @@
     flex-direction: column;
     padding: 16px;
     .img-wrap {
-      padding: 12px;
       width: 130px;
       height: 130px;
       border-radius: 50%;
