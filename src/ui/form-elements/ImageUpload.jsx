@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import avatar from "../../assets/images/user.svg";
+import avatar from "../../assets/images/userr.webp";
 
 const ImageUpload = ({ formData, setFormData, image }) => {
   const { t } = useTranslation();

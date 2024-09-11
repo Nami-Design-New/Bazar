@@ -9,6 +9,11 @@ function DepartmentFilterBox({
 }) {
   const { t } = useTranslation();
 
+  console.log("sub_categoriesValue", sub_categoriesValue);
+  console.log("categoriesValue", categoriesValue);
+  
+  
+
   return (
     <div className="departments w-100">
       {categoriesWithSubCategories &&

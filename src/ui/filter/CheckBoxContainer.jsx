@@ -4,16 +4,17 @@ function CheckBoxContainer({
   item,
   categoriesValue,
   sub_categoriesValue,
-  onChange,
+  onChange
 }) {
+  const hasSubcategories =
+    item?.sub_categories && item?.sub_categories.length > 0;
+
   const isParentChecked =
     categoriesValue?.includes(+item.id) ||
-    item?.sub_categories.every((sub_category) =>
-      sub_categoriesValue?.includes(+sub_category.id)
-    );
-  // const isChildChecked = item?.sub_categories?.some((sub_category) =>
-  //   sub_categoriesValue?.includes(+sub_category.id)
-  // );
+    (hasSubcategories &&
+      item?.sub_categories.every((sub_category) =>
+        sub_categoriesValue?.includes(+sub_category.id)
+      ));
 
   return (
     <li className="department-item">

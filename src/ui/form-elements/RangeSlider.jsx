@@ -26,18 +26,18 @@ function RangeSlider({
       reverse
       step={steps}
       onChange={handleSlide}
-      trackStyle={[{ backgroundColor: "#410c9e", opacity: 1 }]}
+      trackStyle={[{ backgroundColor: "#4381f8", opacity: 1 }]}
       railStyle={{ backgroundColor: "#d3d3d3" }}
       handleStyle={[
         {
-          borderColor: "#410c9e",
-          backgroundColor: "#410c9e",
+          borderColor: "#4381f8",
+          backgroundColor: "#4381f8",
           opacity: 1,
           boxShadow: "none",
         },
         {
-          borderColor: "#410c9e",
-          backgroundColor: "#410c9e",
+          borderColor: "#4381f8",
+          backgroundColor: "#4381f8",
           opacity: 1,
           boxShadow: "none",
         },
