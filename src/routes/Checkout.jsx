@@ -1,9 +1,9 @@
 import { useState } from "react";
-import CartItem from "../ui/cards/CartItem";
+import { useTranslation } from "react-i18next";
 import TextField from "../ui/form-elements/TextField";
 import InputField from "../ui/form-elements/InputField";
 import SectionHeader from "../ui/layout/SectionHeader";
-import { useTranslation } from "react-i18next";
+import product from "../assets/images/product-1.png";
 
 function Checkout() {
   const { t } = useTranslation();
@@ -25,208 +25,239 @@ function Checkout() {
   return (
     <>
       <SectionHeader />
-      <form className="shopping_cart form cart-details-wrapper">
+
+      <section className="checkout_section">
         <div className="container">
           <div className="row m-0">
-            {/* items */}
-            <div className="col-12 p-2">
-              <CartItem />
-            </div>
-            <div className="col-12 p-2">
-              <CartItem />
-            </div>
-
-            {/* details */}
-            <div className="col-12 p-2">
-              <TextField
-                name="details"
-                id="details"
-                value={formData?.details}
-                onChange={(e) => handleChange(e)}
-                placeholder={t("writeHere")}
-                label={t("cart.orderDetails")}
-              />
-            </div>
-
-            {/* address */}
-            <div className="col-12 p-2">
-              <div className="address-wrapper">
-                <h6>{t("cart.orderAddress")}</h6>
-                <div className="radio-group">
-                  <input
-                    type="radio"
-                    name="address"
-                    id="address1"
-                    value={"عنوان المنزل ، الدمام ،فيلا 13"}
-                    checked={address === "عنوان المنزل ، الدمام ،فيلا 13"}
-                    onChange={(e) => setAddress(e.target.value)}
-                  />
-                  <label htmlFor="address1">
-                    عنوان المنزل، الدمام، فيلا 13
-                  </label>
-                </div>
-                <div className="radio-group">
-                  <input
-                    type="radio"
-                    name="address"
-                    id="address2"
-                    value={"عنوان المكتب  ، الدمام ، شارع عزيز ،فيلا 13"}
-                    checked={
-                      address === "عنوان المكتب  ، الدمام ، شارع عزيز ،فيلا 13"
-                    }
-                    onChange={(e) => setAddress(e.target.value)}
-                  />
-                  <label htmlFor="address2">
-                    عنوان المكتب، الدمام، شارع عزيز، فيلا 13
-                  </label>
-                </div>
-                <div className="radio-group">
-                  <i className="fa-regular fa-location-plus "></i>
-                  <span>{t("cart.addAddress")}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* add copoun */}
-            <div className="col-12 p-2">
-              <div className="coupon-form-wrapper">
-                <h6 className="d-flex align-items-center gap-2">
-                  <i className="fa-solid fa-receipt gradient-icon"></i>
-                  {t("cart.addCoupon")}
-                </h6>
-                <div className="col-12 p-2">
-                  <InputField
-                    type="text"
-                    id="coupon"
-                    name="coupon"
-                    placeholder={t("writeHere")}
-                    value={formData?.coupon}
-                    onChange={handleChange}
-                    required={true}
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* copoun */}
-            <div className="col-12 p-2">
-              <div className="coupon-card">
-                <div className="header">
-                  <i className="fa-solid fa-receipt"></i>
-                  <h3>TAWFFER50%</h3>
-                </div>
-                <div className="btns-wrapper">
-                  <div className="btn-box">
-                    <i className="fa-regular fa-trash delete"></i>
+            <div className="col-lg-5 col-12 p-2">
+              <div className="products">
+                <div className="product">
+                  <div className="pro_img">
+                    <img src={product} alt="product" />
+                  </div>
+                  <div className="info">
+                    <h6>بطارية كلورايد جولد - امبير 44 - سالب شمال</h6>
+                    <div className="count_price">
+                      <p>
+                        الكمية : <span>X3</span>
+                      </p>
+                      <p>
+                        الاجمالي : <span>36</span> ريال
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <div className="details">
-                  <span className="details-box">الحد الادني ٢٠٠ ريال</span>
-                  <span className="details-box">الحد الاقصي ٢٠٠٠ ريال</span>
+
+                <div className="product">
+                  <div className="pro_img">
+                    <img src={product} alt="product" />
+                  </div>
+                  <div className="info">
+                    <h6>طقم لمبات فيليبس ليد HB3/4</h6>
+                    <div className="count_price">
+                      <p>
+                        الكمية : <span>X2</span>
+                      </p>
+                      <p>
+                        الاجمالي : <span>48</span> ريال
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="product">
+                  <div className="pro_img">
+                    <img src={product} alt="product" />
+                  </div>
+                  <div className="info">
+                    <h6>طقم كشاف تويوتا أوريون</h6>
+                    <div className="count_price">
+                      <p>
+                        الكمية : <span>X4</span>
+                      </p>
+                      <p>
+                        الاجمالي : <span>1848</span> ريال
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+            <div className="col-lg-7 col-12 p-2">
+              <div className="d-flex flex-column gap-3">
+                {/* order details */}
+                <div className="checkout-details">
+                  <ul>
+                    <li>
+                      <div className="title">{t("orders.orderPrice")}</div>
+                      <div className="value ">150.0 ريال</div>
+                    </li>
+                    <li>
+                      <div className="title">{t("orders.taxes")}</div>
+                      <div className="value ">150.0 ريال</div>
+                    </li>
+                    <li className="discount">
+                      <div className="title">{t("orders.discount")}</div>
+                      <div className="value ">150.0 ريال</div>
+                    </li>
+                    <li className="bigger">
+                      <div className="title">{t("orders.deliveryCost")}</div>
+                      <div className="value ">150.0 ريال</div>
+                    </li>
+                    <li className="bigger">
+                      <div className="title">{t("orders.total")}</div>
+                      <div className="value ">150.0 ريال</div>
+                    </li>
+                  </ul>
+                </div>
 
-            {/* payment method */}
-            <div className="col-12 p-2">
-              <div className="paymentMethod-wrapper">
-                <h6>{t("cart.paymentMethod")}</h6>
-                <div className="radio-group">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    id="cach"
-                    value="cach"
-                    checked={paymentMethod === "cach"}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
+                {/* checkout form */}
+                <form className="form d-flex flex-column gap-3 p-0">
+                  <TextField
+                    name="details"
+                    id="details"
+                    value={formData?.details}
+                    onChange={(e) => handleChange(e)}
+                    placeholder={t("writeHere")}
+                    label={t("cart.orderDetails")}
                   />
-                  <label htmlFor="cach">
-                    {/* <i className="fa-regular fa-money-bill"></i> */}
-                    <span>{t("cart.cach")}</span>
-                  </label>
-                </div>
-                <div className="radio-group">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    id="wallet"
-                    value="wallet"
-                    checked={paymentMethod === "wallet"}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                  />
-                  <label htmlFor="wallet">
-                    {/* <i className="fa-regular fa-wallet"></i> */}
-                    <span>{t("cart.wallet")}</span>
-                  </label>
-                </div>
-                <div className="radio-group">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    id="visa"
-                    value="visa"
-                    checked={paymentMethod === "visa"}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                  />
-                  <label htmlFor="visa">
-                    {/* <i className="fa-brands fa-cc-visa"></i> */}
-                    <span>{t("cart.visa")}</span>
-                  </label>
-                </div>
+
+                  <div className="address-wrapper">
+                    <h6>{t("cart.orderAddress")}</h6>
+                    <div className="radios">
+                      <label htmlFor="address1">
+                        <input
+                          type="radio"
+                          name="address"
+                          id="address1"
+                          value={"عنوان المنزل ، الدمام ،فيلا 13"}
+                          checked={address === "عنوان المنزل ، الدمام ،فيلا 13"}
+                          onChange={(e) => setAddress(e.target.value)}
+                        />
+                        <span className="address">
+                          عنوان المنزل، الدمام، فيلا 13
+                        </span>
+                      </label>
+
+                      <label htmlFor="address2">
+                        <input
+                          type="radio"
+                          name="address"
+                          id="address2"
+                          value={"عنوان المكتب  ، الدمام ، شارع عزيز ،فيلا 13"}
+                          checked={
+                            address ===
+                            "عنوان المكتب  ، الدمام ، شارع عزيز ،فيلا 13"
+                          }
+                          onChange={(e) => setAddress(e.target.value)}
+                        />
+                        <span className="address">
+                          عنوان المكتب، الدمام، شارع عزيز، فيلا 13
+                        </span>
+                      </label>
+                    </div>
+
+                    <div className="d-flex align-items-center gap-2">
+                      <i className="fa-regular fa-location-plus "></i>
+                      <span>{t("cart.addAddress")}</span>
+                    </div>
+                  </div>
+
+                  <div className="paymentMethod-wrapper">
+                    <h6>{t("cart.paymentMethod")}</h6>
+                    <div className="radios">
+                      <label htmlFor="cach">
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          id="cach"
+                          value="cach"
+                          checked={paymentMethod === "cach"}
+                          onChange={(e) => setPaymentMethod(e.target.value)}
+                        />
+                        <span className="address">{t("cart.cach")}</span>
+                      </label>
+
+                      <label htmlFor="wallet">
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          id="wallet"
+                          value="wallet"
+                          checked={paymentMethod === "wallet"}
+                          onChange={(e) => setPaymentMethod(e.target.value)}
+                        />
+                        <span className="address">{t("cart.wallet")}</span>
+                      </label>
+
+                      <label htmlFor="visa">
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          id="visa"
+                          value="visa"
+                          checked={paymentMethod === "visa"}
+                          onChange={(e) => setPaymentMethod(e.target.value)}
+                        />
+                        <span className="address">{t("cart.visa")}</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  {paymentMethod === "visa" && (
+                    <InputField
+                      type="number"
+                      id="visaNumber"
+                      name="visaNumber"
+                      placeholder={t("123456")}
+                      label={t("cart.visaNumber")}
+                      value={formData?.visaNumber}
+                      onChange={handleChange}
+                      required={true}
+                    />
+                  )}
+
+                  <div className="w-100">
+                    <h6 className="d-flex align-items-center gap-2">
+                      <i className="fa-solid fa-receipt gradient-icon"></i>
+                      {t("cart.addCoupon")}
+                    </h6>
+                    <InputField
+                      type="text"
+                      id="coupon"
+                      name="coupon"
+                      placeholder={t("writeHere")}
+                      value={formData?.coupon}
+                      onChange={handleChange}
+                      required={true}
+                    />
+                  </div>
+
+                  <div className="coupon-card">
+                    <div className="header">
+                      <i className="fa-solid fa-receipt"></i>
+                      <h3>TAWFFER50%</h3>
+                    </div>
+                    <button className="discard_coupon">
+                      <i className="fa-regular fa-trash delete"></i>
+                    </button>
+                    <div className="details">
+                      <span className="details-box">الحد الادني ٢٠٠ ريال</span>
+                      <span className="details-box">الحد الاقصي ٢٠٠٠ ريال</span>
+                    </div>
+                  </div>
+
+                  
+
+                  <div className="cart_total">
+                    <button type="submit">إرسال الطلب</button>
+                  </div>
+                </form>
               </div>
-
-              {paymentMethod === "visa" && (
-                <div className="col-12 p-2 payment-key">
-                  <InputField
-                    type="number"
-                    id="visaNumber"
-                    name="visaNumber"
-                    placeholder={t("123456")}
-                    label={t("cart.visaNumber")}
-                    value={formData?.visaNumber}
-                    onChange={handleChange}
-                    required={true}
-                  />
-                </div>
-              )}
-            </div>
-
-            {/*  */}
-            <div className="col-12 p-2 menu checkout-details">
-              <ul>
-                <li>
-                  <div className="title">{t("orders.orderPrice")}</div>
-                  <div className="value gradient-text">150.0 ريال</div>
-                </li>
-                <li>
-                  <div className="title">{t("orders.taxes")}</div>
-                  <div className="value gradient-text">150.0 ريال</div>
-                </li>
-                <li className="discount">
-                  <div className="title">{t("orders.discount")}</div>
-                  <div className="value gradient-text">150.0 ريال</div>
-                </li>
-                <li className="bigger">
-                  <div className="title">{t("orders.deliveryCost")}</div>
-                  <div className="value gradient-text">150.0 ريال</div>
-                </li>
-                <li className="bigger">
-                  <div className="title">{t("orders.total")}</div>
-                  <div className="value gradient-text">150.0 ريال</div>
-                </li>
-              </ul>
-            </div>
-            <div className="checkout-btn-wrapper">
-              <span className="custom-btn filled">
-                <span>
-                  <i className="fa-regular fa-wallet"></i>
-                  {t("cart.completePurchese")}
-                </span>
-              </span>
             </div>
           </div>
         </div>
-      </form>
+      </section>
     </>
   );
 }

@@ -4194,305 +4194,8 @@ body main .contact_section form .form-group .inputfield .highlight::after {
   position: absolute;
   transform: translate(-50%);
 }
-body main .cart-details-wrapper {
-  padding-top: 60px;
-  padding-bottom: 60px;
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
-}
-body main .cart-details-wrapper .cart-items {
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
-}
-body main .cart-details-wrapper textarea {
-  background-color: #fff;
-}
-body main .cart-details-wrapper .address-wrapper,
-body main .cart-details-wrapper .coupon-form-wrapper,
-body main .cart-details-wrapper .paymentMethod-wrapper {
-  background-color: #fff;
-  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.2509803922);
-  padding: 24px;
-  border-radius: 12px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-body main .cart-details-wrapper .coupon-form-wrapper label {
-  display: none;
-}
-body main .cart-details-wrapper .coupon-card {
-  width: 100%;
-  border-radius: 12px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #fff;
-  gap: 16px;
-  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.2509803922);
-  background: linear-gradient(238.2deg, #fff 0%, #4381f8 100%);
-  padding: 24px;
-}
-body main .cart-details-wrapper .coupon-card .header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  position: relative;
-}
-body main .cart-details-wrapper .coupon-card .header i {
-  font-size: 24px;
-}
-body main .cart-details-wrapper .coupon-card .btns-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  position: absolute;
-  top: 0px;
-  left: 0;
-}
-body main .cart-details-wrapper .coupon-card .btns-wrapper .dropdown-toggle {
-  border: none !important;
-}
-body main .cart-details-wrapper .coupon-card .btns-wrapper .dropdown-toggle::after {
-  content: none !important;
-}
-body main .cart-details-wrapper .coupon-card .btns-wrapper .btn-box {
-  background: #fff;
-  width: 36px;
-  height: 36px;
-  border-radius: 12px 0 12px 0;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  cursor: pointer;
-}
-body main .cart-details-wrapper .coupon-card .btns-wrapper .btn-box i {
-  font-size: 20px;
-  color: #fff;
-}
-body main .cart-details-wrapper .coupon-card .btns-wrapper .btn-box i.delete {
-  color: red;
-}
-body main .cart-details-wrapper .coupon-card .details {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  flex-wrap: wrap;
-  position: relative;
-}
-body main .cart-details-wrapper .menu {
-  width: 100%;
-  position: relative;
-  display: flex;
-}
-body main .cart-details-wrapper .menu ul {
-  width: 100%;
-  padding-right: 16px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-body main .cart-details-wrapper .menu ul li {
-  color: #6b6464;
-  font-size: 16px;
-  position: relative;
-}
-body main .cart-details-wrapper .menu.checkout-details {
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1490196078);
-  width: 100%;
-  padding: 16px !important;
-  background-color: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-}
-body main .cart-details-wrapper .menu.checkout-details ul {
-  width: 100%;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  position: relative;
-}
-body main .cart-details-wrapper .menu.checkout-details ul li {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  gap: 16px;
-  position: relative;
-  justify-content: space-between;
-}
-body main .cart-details-wrapper .menu.checkout-details ul li:not(:last-of-type)::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  background-color: #d9d9d9;
-  bottom: -12px;
-  left: 0;
-}
-body main .cart-details-wrapper .menu.checkout-details ul li .value {
-  white-space: nowrap;
-}
-body main .cart-item {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  padding: 8px;
-  position: relative;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
-}
-body main .cart-item .image-wrapper {
-  width: 120px;
-  border-radius: 12px;
-  position: relative;
-  display: flex;
-  overflow: hidden;
-  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.1490196078);
-}
-body main .cart-item .image-wrapper img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-body main .cart-item .card-content {
-  flex: 1 0;
-  padding: 16px 0 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  position: relative;
-}
-body main .cart-item .card-content .title {
-  color: #000;
-  font-size: 18px;
-  margin: 0;
-}
-body main .cart-item .card-content .categories-wrapper {
-  width: 100%;
-  display: flex;
-  gap: 0 24px;
-  flex-wrap: wrap;
-  position: relative;
-}
-body main .cart-item .card-content .categories-wrapper .category {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-}
-body main .cart-item .card-content .date {
-  color: #000;
-}
-body main .cart-item .btns-wrapper {
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  justify-content: center;
-  margin-top: 16px;
-}
-body main .cart-item .btns-wrapper .btn-box {
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  position: relative;
-  cursor: pointer;
-  white-space: nowrap;
-  background: linear-gradient(238.2deg, #fff 0%, #4381f8 100%);
-  color: #fff;
-  padding: 8px;
-  border-radius: 12px;
-}
-body main .cart-item .btns-wrapper .btn-box i {
-  font-size: 18px;
-}
-body main .cart-item .btns-wrapper .quantity {
-  font-size: 24px;
-  font-weight: 600;
-  position: relative;
-  margin: 0;
-}
-body main .cart-item .action-boxes {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-}
-body main .cart-item .action-boxes .action-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 12px 0 12px 0;
-  background: rgba(234, 234, 234, 0.5098039216);
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  cursor: pointer;
-}
-body main .cart-item .action-boxes .action-btn i {
-  font-size: 18px;
-}
-body main .checkout-btn-wrapper {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  margin-top: 16px;
-}
-body main .checkout-btn-wrapper .custom-btn {
-  max-width: 300px !important;
-}
-body main .radio-group {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  position: relative;
-  cursor: pointer;
-}
-body main .radio-group input {
-  width: 16px;
-  aspect-ratio: 1/1;
-}
-body main .radio-group label,
-body main .radio-group span {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #918e8e;
-  font-size: 16px;
-  cursor: pointer;
-}
-body main .radio-group label i,
-body main .radio-group span i {
-  font-size: 18px;
-}
-body main .radio-group i {
-  color: #4381f8;
-  font-size: 18px;
-  cursor: pointer;
-}
 body main .shopping_cart {
-  padding: 20px 16px;
+  padding: 40px 0;
 }
 body main .shopping_cart .cart_item {
   padding: 16px 0;
@@ -4652,6 +4355,198 @@ body main .shopping_cart .cart_total a {
   border-radius: 4px;
 }
 body main .shopping_cart .cart_total a:hover {
+  background: #d785f1;
+}
+body main .checkout_section {
+  padding: 40px 0;
+}
+body main .checkout_section .products {
+  background: #fafafa;
+  padding: 16px;
+  border-radius: 12px;
+}
+body main .checkout_section .products .product {
+  display: flex;
+  border-bottom: 1px dashed #d9d9d9;
+  gap: 16px;
+  width: 100%;
+  padding: 12px 0;
+}
+body main .checkout_section .products .product:last-child {
+  border-bottom: 0;
+}
+body main .checkout_section .products .product .pro_img {
+  min-width: 80px;
+  width: 80px;
+  height: 80px;
+}
+body main .checkout_section .products .product .pro_img img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: multiply;
+}
+body main .checkout_section .products .product .info {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  flex-direction: column;
+  justify-content: center;
+}
+body main .checkout_section .products .product .info h6 {
+  font-size: 14px;
+  color: #4381f8;
+  font-weight: 600;
+}
+body main .checkout_section .products .product .info .count_price {
+  display: flex;
+}
+body main .checkout_section .products .product .info .count_price p {
+  font-size: 14px;
+  white-space: nowrap;
+  flex: 1;
+  color: #4381f8;
+  font-weight: 600;
+}
+body main .checkout_section .products .product .info .count_price p span {
+  color: #d785f1;
+}
+body main .checkout_section .checkout-details {
+  background: #fafafa;
+  padding: 16px;
+  border-radius: 12px;
+  width: 100%;
+}
+body main .checkout_section .checkout-details ul {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+body main .checkout_section .checkout-details ul li {
+  border-bottom: 1px dashed #d9d9d9;
+  padding: 12px 0;
+  color: #000;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body main .checkout_section .checkout-details ul li:last-child {
+  border-bottom: 0;
+}
+body main .checkout_section .checkout-details ul li .value {
+  color: #4381f8;
+  font-weight: 600;
+}
+body main .checkout_section textarea,
+body main .checkout_section input {
+  border: 1px solid #d9d9d9 !important;
+}
+body main .checkout_section .address-wrapper,
+body main .checkout_section .paymentMethod-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body main .checkout_section .address-wrapper .radios,
+body main .checkout_section .paymentMethod-wrapper .radios {
+  display: flex;
+  padding: 8px 0;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+body main .checkout_section .address-wrapper .radios label,
+body main .checkout_section .paymentMethod-wrapper .radios label {
+  flex: 1;
+  min-width: 150px;
+  cursor: pointer;
+}
+body main .checkout_section .address-wrapper .radios label input,
+body main .checkout_section .paymentMethod-wrapper .radios label input {
+  display: none;
+}
+body main .checkout_section .address-wrapper .radios label input:checked + span,
+body main .checkout_section .paymentMethod-wrapper .radios label input:checked + span {
+  border-color: #4381f8;
+  background: rgba(67, 129, 248, 0.1019607843);
+}
+body main .checkout_section .address-wrapper .radios label .address,
+body main .checkout_section .paymentMethod-wrapper .radios label .address {
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  padding: 12px 24px;
+  border-radius: 8px;
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body main .checkout_section .coupon-card {
+  width: 100%;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  gap: 16px;
+  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
+  padding: 24px;
+}
+body main .checkout_section .coupon-card .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+}
+body main .checkout_section .coupon-card .header i {
+  font-size: 24px;
+}
+body main .checkout_section .coupon-card .discard_coupon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #fff;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
+body main .checkout_section .coupon-card .discard_coupon i {
+  color: red;
+}
+body main .checkout_section .coupon-card .details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  position: relative;
+}
+body main .checkout_section .cart_total {
+  padding: 24px 0;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+body main .checkout_section .cart_total button {
+  width: -moz-fit-content;
+  width: fit-content;
+  outline: none;
+  border: none;
+  padding: 8px 48px;
+  font-size: 16px;
+  background: #4381f8;
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+  border-radius: 4px;
+}
+body main .checkout_section .cart_total button:hover {
   background: #d785f1;
 }
 body main .item {
