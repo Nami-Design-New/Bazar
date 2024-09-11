@@ -35,7 +35,7 @@ function MarketDetails() {
   const [targetedComment, setTargetedComment] = useState("");
   const navigate = useNavigate();
 
-  console.log(market.data);
+  console.log(market?.data);
 
   return marketLoading ? (
     <DataLoader minHeight="200px" />

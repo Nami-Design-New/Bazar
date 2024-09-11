@@ -1399,8 +1399,8 @@ body main .auth-form .phone-group .PhoneInput select {
      -moz-appearance: none;
           appearance: none;
 }
-body main .auth-form .phone-group .PhoneInput input,
-body main .auth-form .phone-group .PhoneInput select {
+body main .auth-form .phone-group .PhoneInput input:not(#wantChangePassword),
+body main .auth-form .phone-group .PhoneInput select:not(#wantChangePassword) {
   flex: 1 0;
   color: #000;
   font-size: 14px;
@@ -1572,7 +1572,7 @@ body main .auth-form .question .vendorInput:checked::before {
   right: initial;
   left: 4px;
 }
-body main .auth-form input {
+body main .auth-form input:not(#wantChangePassword) {
   background: #fafafa;
   background: #fafafa;
   border: 1px solid #d9d9d9;
@@ -1656,12 +1656,13 @@ body main .profile .userInfo .top-wrapper .user-avatar-wrapper {
   border-radius: 50%;
   box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.2509803922);
   margin: 0 8px;
+  overflow: hidden;
 }
 body main .profile .userInfo .top-wrapper .user-avatar-wrapper .userImg {
   width: 100%;
   aspect-ratio: 1/1;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 body main .profile .userInfo .top-wrapper .user-avatar-wrapper .verified-badge {
   position: absolute;
