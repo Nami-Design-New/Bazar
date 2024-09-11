@@ -32,6 +32,17 @@
         font-size: 24px;
       }
     }
+
+    .sub-title {
+      margin: 0;
+      color: $textSecondaryColor;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      flex-wrap: wrap;
+      gap: 8px;
+      position: relative;
+    }
   }
 
   form {
@@ -299,7 +310,7 @@
     text-align: center;
     border: 1px solid $main;
     background: $main10;
-    font-size: 28px;
+    font-size: 28px !important;
     font-weight: 600;
     color: $main !important;
     outline: none;
