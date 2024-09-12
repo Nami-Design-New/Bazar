@@ -25,9 +25,9 @@ function Markets() {
     type: searchParams.get("ad_type") || "",
     city_id: Number(searchParams.get("city_id")) || "",
     area_id: Number(searchParams.get("area_id")) || "",
-    category_id: searchParams.get("category_id")
+    category_ids: searchParams.get("category_ids")
       ? searchParams
-          .get("category_id")
+          .get("category_ids")
           .split("-")
           .map((category) => Number(category))
       : [],
@@ -89,9 +89,9 @@ function Markets() {
       type: Number(searchParams.get("ad_type")) || "",
       city_id: Number(searchParams.get("city_id")) || "",
       area_id: Number(searchParams.get("area_id")) || "",
-      category_ids: searchParams.get("category_id")
+      category_ids: searchParams.get("category_ids")
         ? searchParams
-            .get("category_id")
+            .get("category_ids")
             .split("-")
             .map((category) => Number(category))
         : [],
@@ -135,7 +135,7 @@ function Markets() {
                   <DepartmentFilterBox
                     onChange={handleChange}
                     categoriesValue={searchFilterData.categories}
-                    sub_categoriesValue={searchFilterData.sub_category_id}
+                    sub_categoriesValue={searchFilterData.sub_category_ids}
                     categoriesWithSubCategories={categories?.data}
                   />
                   <SelectField
