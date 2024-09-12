@@ -5,7 +5,7 @@ import RateCard from "./../../ui/cards/RateCard";
 import EmptyData from "../../ui/EmptyData";
 import CreateComment from "./../../ui/CreateComment";
 
-function RatesTab({  rates, ratesLoading }) {
+function RatesTab({ rates, ratesLoading }) {
   const { t } = useTranslation();
   const [targetedComment, setTargetedComment] = useState("");
 

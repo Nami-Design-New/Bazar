@@ -17,8 +17,6 @@ function RateCard({ setTargetedComment, rate }) {
     t
   );
 
-  console.log(rate);
-
   return (
     <div className="rate-card">
       <div className="info-wrapper">

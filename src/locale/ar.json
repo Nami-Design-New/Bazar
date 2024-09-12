@@ -274,5 +274,7 @@
   "minute": "دقيقة",
   "minutes": "دقائق",
   "now": "الان",
-  "and": "و"
+  "and": "و",
+  "successfullyCommentReplayed": "تم إرسال الرد على التعليق بنجاح",
+  "successfullyRated": "تم إرسال التقييم بنجاح"
 }
