@@ -32,38 +32,42 @@ function FavoriteMarketCard({ market }) {
         <div className="cover-wrapper">
           <img src={market?.banner} alt="market cover image" />
         </div>
-        <div className="logo-wrapper">
-          <img src={market?.logo} alt="market logo image" />
-        </div>
-        <div className="categories-actions">
-          <div className="categories-wrapper">
-            <Link
-              to={`/ads?category_id=${market?.category?.id}`}
-              className="category"
-            >
-              <img src={market?.category?.image} alt="" />
-              {market?.category?.name}
-            </Link>
+
+        <div className="card_header__content">
+          <div className="logo-wrapper">
+            <img src={market?.logo} alt="market logo image" />
           </div>
-          <div className="action-boxes">
-            <span
-              className={`action-btn favorite ${
-                market?.is_favorite ? "liked" : ""
-              }`}
-              onClick={handleToggleFavorite}
-            >
-              <i className="fa-solid fa-heart"></i>
-            </span>
+
+          <div className="category_like">
+            <div className="category_wrapper">
+              <Link
+                to={`/ads?category_id=${market?.category?.id}`}
+                className="category"
+              >
+                <img src={market?.category?.image} alt="" />
+                {market?.category?.name}
+              </Link>
+            </div>
+
+            <div className="action-boxes">
+              <span
+                className={`action-btn favorite ${
+                  market?.is_favorite ? "liked" : ""
+                }`}
+                onClick={handleToggleFavorite}
+              >
+                <i className="fa-solid fa-heart"></i>
+              </span>
+            </div>
           </div>
         </div>
-        <h3>{market?.name}</h3>
       </div>
       <div className="card-details">
         <p className="description one-line-wrap">{market?.bio}</p>
         <div className="card-statistics">
           {market?.views_count || market?.views_count === 0 ? (
             <div className="statistic">
-              <i className="fa-regular fa-eye gradient-icon"></i>
+              <i className="fa-regular fa-eye"></i>
               <span className="value">{market?.views_count}</span>
             </div>
           ) : null}
@@ -75,7 +79,7 @@ function FavoriteMarketCard({ market }) {
           ) : null}
           {market?.rate || market?.rate === 0 ? (
             <div className="statistic">
-              <i className="fa-solid fa-star gradient-icon"></i>
+              <i className="fa-solid fa-star"></i>
               <span className="value">{market?.rate}</span>
             </div>
           ) : null}

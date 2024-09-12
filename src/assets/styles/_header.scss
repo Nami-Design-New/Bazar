@@ -238,8 +238,9 @@ header {
             border: 1px solid #e4e4e4;
             overflow: hidden;
             img {
-              object-fit: contain;
+              object-fit: cover;
               width: 100%;
+              height: 100%;
             }
           }
           .dropdown-menu {
@@ -270,7 +271,6 @@ header {
             border: 0;
           }
         }
-
         .cart_open {
           cursor: pointer;
           position: relative;
@@ -298,18 +298,15 @@ header {
             justify-content: center;
           }
         }
-
         .toggleMenu {
           display: none;
           position: relative;
           cursor: pointer;
           font-size: 20px;
           user-select: none;
-
           @media screen and (max-width: 992px) {
             display: block;
           }
-
           input {
             position: absolute;
             opacity: 0;
@@ -317,7 +314,6 @@ header {
             height: 0;
             width: 0;
           }
-
           .checkmark {
             position: relative;
             top: 0;
@@ -334,7 +330,6 @@ header {
               -moz-transition: all 0.3s ease-in-out;
               -ms-transition: all 0.3s ease-in-out;
               -o-transition: all 0.3s ease-in-out;
-
               &:nth-child(1) {
                 top: 10%;
               }
@@ -346,7 +341,6 @@ header {
               }
             }
           }
-
           input:checked + .checkmark span:nth-child(1) {
             top: 50%;
             transform: translateY(-50%) rotate(45deg);
@@ -355,7 +349,6 @@ header {
             -ms-transform: translateY(-50%) rotate(45deg);
             -o-transform: translateY(-50%) rotate(45deg);
           }
-
           input:checked + .checkmark span:nth-child(2) {
             top: 50%;
             transform: translateY(-50%) rotate(-45deg);
@@ -364,7 +357,6 @@ header {
             -ms-transform: translateY(-50%) rotate(-45deg);
             -o-transform: translateY(-50%) rotate(-45deg);
           }
-
           input:checked + .checkmark span:nth-child(3) {
             transform: translateX(-50px);
             -webkit-transform: translateX(-50px);
@@ -374,7 +366,6 @@ header {
             opacity: 0;
           }
         }
-
         @media (max-width: 768px) {
           gap: 20px;
         }
@@ -384,7 +375,6 @@ header {
       }
     }
   }
-
   &.sticky {
     position: fixed;
     top: 0;

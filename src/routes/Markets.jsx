@@ -13,16 +13,16 @@ import EmptyData from "../ui/EmptyData";
 import useGetAreas from "./../hooks/useGetAreas";
 import useGetCities from "./../hooks/useGetCities";
 import useCategoriesList from "./../features/categories/useCategoriesList";
+import { Form } from "react-bootstrap";
 
 function Markets() {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
     page: Number(searchParams.get("page")) || 1,
-    type: Number(searchParams.get("ad_type")) || "",
+    type: searchParams.get("ad_type") || "",
     city_id: Number(searchParams.get("city_id")) || "",
     area_id: Number(searchParams.get("area_id")) || "",
     category_id: searchParams.get("category_id")
@@ -93,6 +93,7 @@ function Markets() {
       search: searchParams.get("search") || "",
       page: Number(searchParams.get("page")) || null,
       type: Number(searchParams.get("ad_type")) || "",
+      city_id: Number(searchParams.get("city_id")) || "",
       area_id: Number(searchParams.get("area_id")) || "",
       category_id: searchParams.get("category_id")
         ? searchParams
@@ -150,7 +151,7 @@ function Markets() {
                     categoriesWithSubCategories={categories?.data}
                   />
                   <SelectField
-                    label={t("search.area")}
+                    label={t("search.city")}
                     id="city_id"
                     name="city_id"
                     disabledOption={t("select")}
@@ -173,6 +174,41 @@ function Markets() {
                       value: area?.id
                     }))}
                   />
+                  <div className="input-field">
+                    <label>{t("search.type")}</label>
+                    <Form.Check
+                      type="radio"
+                      name="type"
+                      value="store"
+                      checked={searchFilterData.type === "store"}
+                      onChange={(e) => handleChange(e)}
+                      label={t("search.store")}
+                    />
+                    <Form.Check
+                      type="radio"
+                      name="type"
+                      value="online_store"
+                      checked={searchFilterData.type === "online_store"}
+                      onChange={(e) => handleChange(e)}
+                      label={t("search.onlineStore")}
+                    />
+                    <Form.Check
+                      type="radio"
+                      name="type"
+                      value="market"
+                      checked={searchFilterData.type === "market"}
+                      onChange={(e) => handleChange(e)}
+                      label={t("search.market")}
+                    />
+                    <Form.Check
+                      type="radio"
+                      name="type"
+                      value="coupon"
+                      checked={searchFilterData.type === "coupon"}
+                      onChange={(e) => handleChange(e)}
+                      label={t("search.coupon")}
+                    />
+                  </div>
                   <div className="d-flex gap-2 w-100">
                     <button onClick={handleSubmit} className="search-btn">
                       <i className="fa-regular fa-check"></i>{" "}
@@ -208,7 +244,10 @@ function Markets() {
                   </>
                 ) : markets?.data && markets?.data?.length > 0 ? (
                   markets?.data?.map((market) => (
-                    <div className="col-lg-4 col-md-6 col-12 p-2" key={market?.id}>
+                    <div
+                      className="col-lg-4 col-md-6 col-12 p-2"
+                      key={market?.id}
+                    >
                       <FavoriteMarketCard market={market} />
                     </div>
                   ))
