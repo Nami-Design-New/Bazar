@@ -1,35 +1,40 @@
 import { Link } from "react-router-dom";
-import userImage from "../../assets/images/user-1.png";
 import StarsList from "../StarsList";
 import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 
-const comment = {
-  name: "محمد أحمد",
-  comment: "هل يمكنك إضافة المزيد من الصور للسيارة ؟",
-  rate: 4.4,
-  time: "7 ساعة",
-};
-
-function RateCard({ setTargetedComment }) {
+function RateCard({ setTargetedComment, rate }) {
   const { t } = useTranslation();
+
+  const timeDifference = getTimeDifference(rate?.created_at);
+  const creationTime = formatTimeDifference(
+    timeDifference.years,
+    timeDifference.months,
+    timeDifference.days,
+    timeDifference.hours,
+    timeDifference.minutes,
+    t
+  );
+
+  console.log(rate);
 
   return (
     <div className="rate-card">
       <div className="info-wrapper">
-        <Link to="/profile" className="image-wrapper">
-          <img src={userImage} alt="user" />
+        <Link to={`/profile/${rate?.user?.id}`} className="image-wrapper">
+          <img src={rate?.user?.image} alt="user" />
         </Link>
         <div className="info-rate-wrapper">
           <div className="user-info">
-            <Link to="/profile" className="name">
-              {comment.name}
+            <Link to={`/profile/${rate?.user?.id}`} className="name">
+              {rate?.user?.name}
             </Link>
-            <span>{comment.time}</span>
+            <span>{creationTime}</span>
           </div>
           <div className="rate">
-            <StarsList rate={comment.rate} />
-            <span>{comment.rate}</span>
+            <StarsList rate={rate?.rate} />
+            <span>{rate?.rate}</span>
           </div>
         </div>
         <div className="btns-wrapper">
@@ -43,7 +48,7 @@ function RateCard({ setTargetedComment }) {
               </Dropdown.Item>
               <Dropdown.Item
                 as={"span"}
-                onClick={() => setTargetedComment(comment)}
+                onClick={() => setTargetedComment(rate)}
               >
                 {t("repaly")}
               </Dropdown.Item>
@@ -52,7 +57,7 @@ function RateCard({ setTargetedComment }) {
         </div>
       </div>
 
-      <p className="comment">{comment.comment}</p>
+      <p className="comment">{rate?.comment}</p>
     </div>
   );
 }
