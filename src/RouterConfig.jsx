@@ -22,6 +22,7 @@ import AddAdvertisment from "./routes/AddAdvertisment";
 import Ads from "./routes/Ads";
 import WantedAds from "./routes/WantedAds";
 import Markets from "./routes/Markets";
+import Videos from "./routes/Videos";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
@@ -37,13 +38,13 @@ const routerConfig = [
   {
     path: "/app-verification",
     element: <AppVerification />,
-    protected: true,
+    protected: true
   },
   { path: "/fal-verification", element: <FalVerification /> },
   {
     path: "/commercial-verification",
     element: <CommercialVerification />,
-    protected: true,
+    protected: true
   },
 
   // user features
@@ -59,11 +60,12 @@ const routerConfig = [
 
   // general
   { path: "contact", element: <Contact /> },
+  { path: "/videos", element: <Videos /> },
   { path: "/coupons", element: <Coupons /> },
   { path: "/coupon-details/:id", element: <CouponDetails /> },
   { path: "/ads", element: <Ads /> },
   { path: "/wanted-ads", element: <WantedAds /> },
-  { path: "/markets", element: <Markets /> },
+  { path: "/markets", element: <Markets /> }
 ];
 
 export default routerConfig;
