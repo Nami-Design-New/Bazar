@@ -6,7 +6,7 @@ function useMarketSections() {
   const { id } = useParams();
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["favoriteMarkets", id],
+    queryKey: ["marketSections", id],
     queryFn: () => getMarketSections(id),
     retry: false,
     refetchOnWindowFocus: false,

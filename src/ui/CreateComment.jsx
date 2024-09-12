@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import RateScale from "./form-elements/RateScale";
 import StarsList from "./StarsList";
 import { Link } from "react-router-dom";
-import userImage from "../assets/images/user-1.png";
+import { formatTimeDifference, getTimeDifference } from "../utils/helpers";
 
 function CreateComment({ comment, setTargetedComment }) {
   const { t } = useTranslation();
@@ -14,6 +14,16 @@ function CreateComment({ comment, setTargetedComment }) {
     rate: 0,
     comment: "",
   });
+
+  const timeDifference = getTimeDifference(comment?.created_at);
+  const creationTime = formatTimeDifference(
+    timeDifference.years,
+    timeDifference.months,
+    timeDifference.days,
+    timeDifference.hours,
+    timeDifference.minutes,
+    t
+  );
 
   const handleChange = (e) => {
     setFormData({
@@ -35,14 +45,14 @@ function CreateComment({ comment, setTargetedComment }) {
         <div className={`rate-card replay-to`}>
           <div className="info-wrapper">
             <Link to="/profile" className="image-wrapper">
-              <img src={userImage} alt="user" />
+              <img src={comment.user.image} alt="user" />
             </Link>
             <div className="info-rate-wrapper">
               <div className="user-info">
                 <Link to="/profile" className="name">
-                  {comment.name}
+                  {comment.user.name}
                 </Link>
-                <span>{comment.time}</span>
+                <span>{creationTime}</span>
               </div>
               <div className="rate">
                 <StarsList rate={comment.rate} />
@@ -69,6 +79,7 @@ function CreateComment({ comment, setTargetedComment }) {
         <div className="btn-rate-wrapper">
           <div className="submit-wrapper">
             <SubmitButton
+              className="custom-btn filled"
               loading={commentLoading}
               name={comment ? t("publishReplay") : t("publishRate")}
             />
