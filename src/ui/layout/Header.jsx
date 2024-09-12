@@ -100,6 +100,11 @@ export default function Header() {
               </NavLink>
             </li>
             <li>
+              <NavLink className="nav-link" to="/videos" onClick={handleClickOutSide}>
+                {t("header.videos")}
+              </NavLink>
+            </li>
+            <li>
               <NavLink
                 className="nav-link"
                 to="/markets"

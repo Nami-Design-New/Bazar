@@ -9,6 +9,7 @@ body {
   main {
     min-height: calc(100vh - 130px);
     @import "./home";
+    @import "./videos";
     @import "./auth";
     @import "./profile";
     @import "./activities";
