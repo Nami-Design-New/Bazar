@@ -11,6 +11,8 @@ import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
 import useAdsByFilter from "../features/ads/useAdsByFilter";
 import DataLoader from "../ui/DataLoader";
 import EmptyData from "../ui/EmptyData";
+import useGetFilters from "../features/filters/useGetFilters";
+import useCategoriesList from "../features/categories/useCategoriesList";
 
 const cities = [
   {
@@ -46,6 +48,11 @@ function Ads() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const { isLoading, data: ads } = useAdsByFilter();
+  const { isLoading: categoriesLoading, data: categories } =
+    useCategoriesList();
+  const { isLoading: filtersLoading, data: filters } = useGetFilters();
+
+  console.log("filters", filters?.data);
 
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
@@ -74,6 +81,7 @@ function Ads() {
   const handleChange = (e) => {
     const { name, checked, type, value } = e.target;
     const parsedValue = type === "checkbox" ? (checked ? 1 : 0) : value;
+
     if (name !== "categories" && name !== "sub_categories") {
       setSearchFilterData((prevState) => ({
         ...prevState,
@@ -81,12 +89,15 @@ function Ads() {
       }));
       return;
     }
+
     const categoryValue = Number(value);
     setSearchFilterData((prevState) => {
       const updatedState = { ...prevState };
-      const updateList = (list, value, add) => {
+
+      const updateList = (list = [], value, add) => {
         return add ? [...list, value] : list.filter((id) => id !== value);
       };
+
       if (name === "categories") {
         updatedState[name] = updateList(
           prevState[name],
@@ -94,6 +105,15 @@ function Ads() {
           checked
         );
       }
+
+      if (name === "sub_categories") {
+        updatedState[name] = updateList(
+          prevState[name],
+          categoryValue,
+          checked
+        );
+      }
+
       return updatedState;
     });
   };
@@ -151,108 +171,116 @@ function Ads() {
       <SectionHeader />
       <section className="content-wrapper container search-section col-lg-10 col-12">
         <div className="row">
-          <aside
-            className={`col-lg-3 p-2 pt-3 side-menu ${
-              isFilterOpen ? "active" : ""
-            }`}
-          >
-            <div className="filter-wrap">
-              <div className="colse" onClick={() => setIsFilterOpen(false)}>
-                <i className="fa-light fa-xmark"></i>
+          {!filtersLoading || !categoriesLoading ? (
+            <>
+              <aside
+                className={`col-lg-3 p-2 pt-3 side-menu ${
+                  isFilterOpen ? "active" : ""
+                }`}
+              >
+                <div className="filter-wrap">
+                  <div className="colse" onClick={() => setIsFilterOpen(false)}>
+                    <i className="fa-light fa-xmark"></i>
+                  </div>
+                  <form className="form" onSubmit={handleSubmit}>
+                    <InputField
+                      id="search"
+                      name="search"
+                      value={searchFilterData.search}
+                      onChange={handleChange}
+                      label={t("search.search")}
+                      placeholder={t("search.searchFor")}
+                    />
+                    <DepartmentFilterBox
+                      categoriesValue={searchFilterData?.category_id}
+                      sub_categoriesValue={searchFilterData?.sub_category_id}
+                      onChange={handleChange}
+                      categoriesWithSubCategories={categories?.data}
+                    />
+                    <SelectField
+                      label={t("search.city")}
+                      id="city_id"
+                      name="city_id"
+                      disabledOption={t("select")}
+                      value={searchFilterData?.city_id}
+                      onChange={(e) => handleChange(e)}
+                      options={cities?.map((city) => ({
+                        name: city.name,
+                        value: city.id,
+                      }))}
+                    />
+                    <SelectField
+                      label={t("search.area")}
+                      id="area_id"
+                      name="area_id"
+                      disabledOption={t("select")}
+                      value={searchFilterData?.area_id}
+                      onChange={(e) => handleChange(e)}
+                      options={areas?.map((area) => ({
+                        name: area.name,
+                        value: area.id,
+                      }))}
+                    />
+                    <div className="w-100 mb-4 px-4">
+                      <h6 className="mb-2">{t("search.deliveryTime")}</h6>
+                      <RangeSlider
+                        min={1}
+                        steps={1}
+                        max={360}
+                        value={[
+                          searchFilterData.duration_from,
+                          searchFilterData.duration_to,
+                        ]}
+                        handleSlide={(value) =>
+                          handleSliderChange("duration", value)
+                        }
+                        minType={t("search.days")}
+                        maxType={t("search.days")}
+                      />
+                    </div>
+                    <div className="w-100 mb-4 px-4">
+                      <h6 className="mb-2">{t("search.budget")}</h6>
+                      <RangeSlider
+                        min={5}
+                        max={2000}
+                        steps={5}
+                        value={[
+                          searchFilterData.price_from,
+                          searchFilterData.price_to,
+                        ]}
+                        handleSlide={(value) =>
+                          handleSliderChange("price", value)
+                        }
+                        minType="$"
+                        maxType="$"
+                      />
+                    </div>
+                    <div className="d-flex gap-2 w-100">
+                      <div className="search-btn">
+                        <button onClick={handleSubmit}>
+                          {t("search.apply")}
+                        </button>
+                      </div>
+                      <div className="search-btn">
+                        <span onClick={handleClearFilters}>
+                          {t("search.clear")}
+                        </span>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </aside>
+              <div className="small-filter-header">
+                <h6>{t("projects.title")}</h6>
+                <button
+                  className="openfilter"
+                  onClick={() => setIsFilterOpen(true)}
+                >
+                  <i className="fa-light fa-sliders"></i>
+                </button>
               </div>
-              <form className="form" onSubmit={handleSubmit}>
-                <InputField
-                  id="search"
-                  name="search"
-                  value={searchFilterData.search}
-                  onChange={handleChange}
-                  label={t("search.search")}
-                  placeholder={t("search.searchFor")}
-                />
-                <DepartmentFilterBox
-                  categoriesValue={searchFilterData.categories}
-                  sub_categoriesValue={searchFilterData.sub_category_id}
-                  onChange={handleChange}
-                  // categoriesWithSubCategories={categoriesWithSubCategories}
-                />
-                <SelectField
-                  label={t("search.city")}
-                  id="city_id"
-                  name="city_id"
-                  disabledOption={t("select")}
-                  value={searchFilterData?.city_id}
-                  onChange={(e) => handleChange(e)}
-                  options={cities?.map((city) => ({
-                    name: city.name,
-                    value: city.id,
-                  }))}
-                />
-                <SelectField
-                  label={t("search.area")}
-                  id="area_id"
-                  name="area_id"
-                  disabledOption={t("select")}
-                  value={searchFilterData?.area_id}
-                  onChange={(e) => handleChange(e)}
-                  options={areas?.map((area) => ({
-                    name: area.name,
-                    value: area.id,
-                  }))}
-                />
-                <div className="w-100 mb-4 px-4">
-                  <h6 className="mb-2">{t("search.deliveryTime")}</h6>
-                  <RangeSlider
-                    min={1}
-                    steps={1}
-                    max={360}
-                    value={[
-                      searchFilterData.duration_from,
-                      searchFilterData.duration_to,
-                    ]}
-                    handleSlide={(value) =>
-                      handleSliderChange("duration", value)
-                    }
-                    minType={t("search.days")}
-                    maxType={t("search.days")}
-                  />
-                </div>
-                <div className="w-100 mb-4 px-4">
-                  <h6 className="mb-2">{t("search.budget")}</h6>
-                  <RangeSlider
-                    min={5}
-                    max={2000}
-                    steps={5}
-                    value={[
-                      searchFilterData.price_from,
-                      searchFilterData.price_to,
-                    ]}
-                    handleSlide={(value) => handleSliderChange("price", value)}
-                    minType="$"
-                    maxType="$"
-                  />
-                </div>
-                <div className="d-flex gap-2 w-100">
-                  <div className="search-btn">
-                    <button onClick={handleSubmit}>{t("search.apply")}</button>
-                  </div>
-                  <div className="search-btn">
-                    <span onClick={handleClearFilters}>
-                      {t("search.clear")}
-                    </span>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </aside>
-          <div className="small-filter-header">
-            <h6>{t("projects.title")}</h6>
-            <button
-              className="openfilter"
-              onClick={() => setIsFilterOpen(true)}
-            >
-              <i className="fa-light fa-sliders"></i>
-            </button>
-          </div>
+            </>
+          ) : null}
           <div className="col-lg-9 col-12 p-2">
             {isLoading ? (
               <DataLoader />

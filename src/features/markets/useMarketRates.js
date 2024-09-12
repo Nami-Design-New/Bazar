@@ -5,7 +5,7 @@ import { getMarketRates } from "../../services/apiMarkets";
 function useMarketRates() {
   const { id } = useParams();
 
-  const { isLoading, data, error } = useQuery({
+  const { isLoading, data, error, refetch } = useQuery({
     queryKey: ["marketRates", id],
     queryFn: () => getMarketRates(id),
     retry: false,
@@ -14,7 +14,7 @@ function useMarketRates() {
     refetchOnReconnect: false,
   });
 
-  return { isLoading, data, error };
+  return { isLoading, data, error, refetch };
 }
 
 export default useMarketRates;

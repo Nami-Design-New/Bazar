@@ -4,16 +4,25 @@ import SubmitButton from "./form-elements/SubmitButton";
 import { useTranslation } from "react-i18next";
 import RateScale from "./form-elements/RateScale";
 import StarsList from "./StarsList";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { formatTimeDifference, getTimeDifference } from "../utils/helpers";
+import axios from "../utils/axios";
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
-function CreateComment({ comment, setTargetedComment }) {
+function CreateComment({ comment, setTargetedComment, refetch }) {
   const { t } = useTranslation();
   const [commentLoading, setCommentLoading] = useState(false);
   const [formData, setFormData] = useState({
     rate: 0,
     comment: "",
   });
+  const [replayData, setReplayDataData] = useState({
+    comment: "",
+  });
+  const isLogged = useSelector((state) => state.authedUser.isLogged);
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   const timeDifference = getTimeDifference(comment?.created_at);
   const creationTime = formatTimeDifference(
@@ -25,8 +34,15 @@ function CreateComment({ comment, setTargetedComment }) {
     t
   );
 
-  const handleChange = (e) => {
+  const handleChangeRate = (e) => {
     setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleChangeReplay = (e) => {
+    setReplayDataData({
       ...formData,
       [e.target.name]: e.target.value,
     });
@@ -37,6 +53,55 @@ function CreateComment({ comment, setTargetedComment }) {
       ...formData,
       rate,
     });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setCommentLoading(true);
+    const requestBody = {};
+
+    if (!isLogged) {
+      navigate("/login");
+    } else {
+      if (comment) {
+        requestBody.comment = replayData.comment;
+        requestBody.comment_id = +comment.id;
+      } else if (id) {
+        requestBody.comment = formData.comment;
+        requestBody.rate = formData.rate;
+        requestBody.market_id = +id;
+      }
+
+      try {
+        console.log("requestBody", requestBody);
+
+        const res = await axios.post(
+          `/user/${comment ? "create_replay" : "create_market_rate"}`,
+          requestBody
+        );
+
+        console.log(res);
+
+        if (res.data.code === 200) {
+          toast.success(
+            t(
+              `${comment ? "successfullyCommentReplayed" : "successfullyRated"}`
+            )
+          );
+          refetch();
+          setFormData({
+            rate: 0,
+            comment: "",
+          });
+          setTargetedComment("");
+        }
+      } catch (error) {
+        console.error("Failed to create comment:", error);
+        throw new Error(error.message);
+      } finally {
+        setCommentLoading(false);
+      }
+    }
   };
 
   return (
@@ -68,13 +133,23 @@ function CreateComment({ comment, setTargetedComment }) {
           <p className="comment">{comment.comment}</p>
         </div>
       )}
-      <form action="" className={`rate-form  ${comment ? "replay-to" : ""}`}>
+      <form
+        className={`rate-form  ${comment ? "replay-to" : ""}`}
+        onSubmit={handleSubmit}
+      >
         <TextField
           name="comment"
           id="comment"
-          value={formData?.comment}
-          onChange={(e) => handleChange(e)}
+          value={comment ? replayData.comment : formData.comment}
+          onChange={(e) => {
+            if (comment) {
+              handleChangeReplay(e);
+            } else {
+              handleChangeRate(e);
+            }
+          }}
           placeholder={comment ? t("shareYourReplay") : t("shareYourComment")}
+          required={true}
         />
         <div className="btn-rate-wrapper">
           <div className="submit-wrapper">
@@ -82,6 +157,7 @@ function CreateComment({ comment, setTargetedComment }) {
               className="custom-btn filled"
               loading={commentLoading}
               name={comment ? t("publishReplay") : t("publishRate")}
+              onClick={handleSubmit}
             />
           </div>
           {!comment && (
