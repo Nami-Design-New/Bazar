@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ProductMiniCard from "./../../ui/cards/ProductMiniCard";
 import useSectionProducts from "../markets/useSectionProducts";
@@ -13,6 +13,12 @@ function ProductsTab({ market }) {
   const { isLoading: sectionLoading, data: sections } = useMarketSections();
   const { isLoading: productsLoading, data: products } =
     useSectionProducts(productsCategory);
+
+  useEffect(() => {
+    if (!sectionLoading) {
+      setProductsCategory(sections?.data?.[0]?.id);
+    }
+  }, [sectionLoading, sections]);
 
   return (
     <div className="content-wrapper">

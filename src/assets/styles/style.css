@@ -1667,13 +1667,13 @@ body main .profile .userInfo .top-wrapper .user-avatar-wrapper {
   border-radius: 50%;
   box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.2509803922);
   margin: 0 8px;
-  overflow: hidden;
 }
 body main .profile .userInfo .top-wrapper .user-avatar-wrapper .userImg {
   width: 100%;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 50%;
 }
 body main .profile .userInfo .top-wrapper .user-avatar-wrapper .verified-badge {
   position: absolute;
