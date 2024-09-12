@@ -1,58 +1,63 @@
 import { useTranslation } from "react-i18next";
 import productImage from "../../assets/images/product-1.png";
-import { useState } from "react";
+import { toast } from "react-toastify";
+import axios from "./../../utils/axios";
 
-function ProductMiniCard({ newest, discount }) {
+function ProductMiniCard({ product, marketId }) {
   const { t } = useTranslation();
-  const [quantity, setQuantity] = useState(0);
+  console.log(marketId);
+  
 
-  function handleAddToCart() {
-    setQuantity(1);
-  }
-
-  function handleIncrease() {
-    setQuantity((q) => q + 1);
-  }
-
-  function handleDecrease() {
-    if (quantity === 0) return;
-    setQuantity((q) => q - 1);
-  }
+  const handleAddToCart = async () => {
+    try {
+      const res = await axios.post("/user/add_to_cart", {
+        quantity: 1,
+        market_id: marketId,
+        product_id: product?.id
+      });
+      if (res.status === 200 || res.status === 201) {
+        toast.success("تم اضافة المنتج الي السلة بنجاح");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.message || "حدث خطأ ما");
+    }
+  };
 
   return (
-    <div className="product-mini-card">
-      <div className="image-wrapper">
-        <img src={productImage} alt="product" />
+    <div className="product_crad">
+      <div className="product_image">
+        <img src={product?.image || productImage} alt="product" />
+        {/* <span>أوريون</span>
+        <button>
+          <i className="fa-sharp fa-light fa-heart"></i>
+        </button> */}
       </div>
-      {newest && <span className="badge">{t("products.newest")}</span>}
-      <div className="info-wrapper">
-        <h3 className="title">مشروم thio</h3>
-        <span className="sub-title">مشروم طازج ٢٠٠ جرام</span>
-        <div className="price">
-          <span className="gradient-text">300 {t("currency.sar")}</span>
-          {discount && (
-            <span className="gradient-text old-price">
-              380 {t("currency.sar")}
-            </span>
-          )}
+      <div className="product_info">
+        <h5 className="pro_name">{product?.title || "مشروم thio"}</h5>
+        <p className="pro_number">
+          {product?.description || "مشروم طازج ٢٠٠ جرام"}
+        </p>
+
+        <div className="price_buy">
+          <h6>
+            {product?.offer_price || 300} {t("currency.sar")}
+          </h6>
+          <button onClick={handleAddToCart}>
+            <i className="fa-light fa-cart-plus"></i> اضف الى السلة
+          </button>
         </div>
-        <div className="btns-wrapper">
-          {quantity === 0 ? (
-            <span className="btn-box add" onClick={handleAddToCart}>
-              <i className="fa-solid fa-cart-plus"></i>
-              {t("addToCart")}
+        <div className="rate_sale">
+          <p>
+            <span className="old_price">
+              {product?.price} {t("currency.sar")}
+            </span>{" "}
+            <span className="sale">
+              خصم{" "}
+              {((product?.price - product?.offer_price) / product?.price) * 100}
+              %
             </span>
-          ) : (
-            <>
-              <span className="btn-box increase quantity-btn" onClick={handleIncrease}>
-                <i className="fa-solid fa-plus"></i>
-              </span>
-              <h5 className="quantity">{quantity}</h5>
-              <span className="btn-box decrease quantity-btn" onClick={handleDecrease}>
-                <i className="fa-solid fa-minus"></i>
-              </span>
-            </>
-          )}
+          </p>
         </div>
       </div>
     </div>

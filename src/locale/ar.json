@@ -166,14 +166,18 @@
     "aboutMarket": "حول المتجر",
     "rates": "التقييمات",
     "acceptsRecovery": "يقبل الاسترجاع",
+    "doesnotAcceptsRecovery": "لا يقبل الاسترجاع",
     "recoveryCondition1": "شرورط الاسترجاع ان يكون المنتج في نفس الحاله",
-    "recoveryCondition2": "ألا تزيد المدة عن 3 أيام",
+    "recoveryCondition2": "ألا تزيد المدة عن ",
     "identity": "رقم الهوية",
     "deliveryExisting": "يوجد خدمه توصيل",
+    "noDeliveryExisting": "لا يوجد خدمه توصيل",
     "workTimes": "مواعيد العمل",
     "contactWithMarket": "التواصل مع المتجر",
     "areYouSureYouWantToDeleteMarket": "هل انت متأكد من حذف هذا المتجر؟",
-    "noProducts": "عذرًا، لا توجد منتجات في هذا المتجر في الوقت الحالي"
+    "noProducts": " لا يوجد منتجات في الوقت الحالي",
+    "noSectionProducts": "لا يوجد منتجات في هذا الصنف",
+    "noRates": "عذرًا، لا توجد تقييمات لهذا المتجر في الوقت الحالي"
   },
   "orders": {
     "areYouSureYouWantToDeleteOrder": "هل انت متأكد من حذف هذا الطلب؟",
@@ -232,7 +236,12 @@
     "days": "يوم",
     "city": "المدينة",
     "area": "المنطقة",
-    "category": "القسم"
+    "category": "القسم",
+    "type": "نوع المتجر",
+    "store": "استور",
+    "onlineStore": "اونلاين استور",
+    "market": "متجر",
+    "coupon": "كوبون خصم"
   },
   "createdAt": "تم الإنشاء في",
   "delete": "حذف",
