@@ -3,9 +3,12 @@ import StarsList from "../StarsList";
 import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
+import useGetReplays from "../../features/comments/useGetReplays";
 
 function RateCard({ setTargetedComment, rate }) {
   const { t } = useTranslation();
+
+  const { isLoading: replaysLoading, data: replays } = useGetReplays(rate?._id);
 
   const timeDifference = getTimeDifference(rate?.created_at);
   const creationTime = formatTimeDifference(
@@ -16,6 +19,8 @@ function RateCard({ setTargetedComment, rate }) {
     timeDifference.minutes,
     t
   );
+
+  if (!replaysLoading) console.log(replays);
 
   return (
     <div className="rate-card">
