@@ -17,7 +17,7 @@
     .video {
       position: relative;
       transition-property: margin, width, padding;
-      transition-duration: 300ms;
+      transition-duration: 5s;
       transition-timing-function: ease-in-out;
       overflow: hidden clip;
       scroll-snap-stop: always;
@@ -95,13 +95,130 @@
           font-size: 14px;
           color: $white;
         }
-        button {
+        .link {
           padding: 4px 12px;
           outline: none;
           border: none;
           background: $white;
           border-radius: 8px;
           color: $main;
+        }
+      }
+      .comments {
+        z-index: 99;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        background: $white;
+        border: 1px solid $LightGray;
+        position: absolute;
+        bottom: -60vh;
+        left: 0;
+        height: 60vh;
+        border-radius: 16px 16px 0 0;
+        padding: 16px;
+        transition: .3s ease-in-out;
+        gap: 16px;
+        .header {
+          @include space-between();
+          button {
+            @include clearInput();
+          }
+        }
+        .comments_wrapper {
+          flex: 1 1;
+          gap: 8px;
+          display: flex;
+          overflow-y: scroll;
+          scrollbar-width: 0;
+          flex-direction: column;
+          max-height: 286px;
+          &::-webkit-scrollbar {
+            display: none;
+          }
+          .comment_wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            .user_img {
+              width: 60px;
+              height: 60px;
+              border-radius: 50%;
+              overflow: hidden;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+            .user_details {
+              display: flex;
+              flex-direction: column;
+              gap: 4px;
+              h6 {
+                font-size: 16px;
+                line-height: 1.2;
+              }
+              p {
+                font-size: 14px;
+                color: $textColor;
+                line-height: 1.2;
+              }
+              span {
+                font-size: 12px;
+                color: $inputHint;
+                line-height: normal;
+              }
+            }
+          }
+        }
+        &.show {
+          bottom: 0;
+        }
+        .comment_form {
+          padding: 16px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          background: $white;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          a {
+            font-size: 18px;
+            color: red;
+          }
+          .user_img {
+            width: 42px;
+            height: 42px;
+            overflow: hidden;
+            border-radius: 50%;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          input {
+            flex: 1;
+            background: $inputBg;
+            border: 1px solid $LightGray;
+            border: none;
+            outline: none;
+            padding: 0 12px;
+            border-radius: 60px;
+            height: 42px;
+          }
+          button {
+            outline: none;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: $main;
+            color: $white;
+          }
         }
       }
     }
