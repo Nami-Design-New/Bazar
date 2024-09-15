@@ -6,7 +6,7 @@ const CheckBoxFilterItem = ({ sub_category, onChange, checked }) => {
         className="form-check-input checkBox"
         id={`sub_category-${sub_category.id}`}
         value={sub_category.id}
-        name="sub_categories"
+        name="sub_category_id"
         checked={checked}
         onChange={onChange}
       />
