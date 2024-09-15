@@ -3,16 +3,24 @@ import { useTranslation } from "react-i18next";
 import TextField from "../ui/form-elements/TextField";
 import InputField from "../ui/form-elements/InputField";
 import SectionHeader from "../ui/layout/SectionHeader";
-import product from "../assets/images/product-1.png";
+import useGetCart from "./../features/cart/useGetCart";
 
 function Checkout() {
   const { t } = useTranslation();
-
+  const { data: cart } = useGetCart();
   const [address, setAddress] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
+
   const [formData, setFormData] = useState({
-    details: "",
-    visaNumber: ""
+    address_id: "",
+    notes: "",
+    sub_total: "",
+    taxes: "",
+    discount: "",
+    total: "",
+    coupon: "",
+    payment_method: "",
+    delivery_price: ""
   });
 
   const handleChange = (e) => {
@@ -29,68 +37,45 @@ function Checkout() {
       <section className="checkout_section">
         <div className="container">
           <div className="row m-0">
-            <div className="col-lg-5 col-12 p-2">
+            <div className="col-lg-6 col-12 p-2">
               <div className="products">
-                <div className="product">
-                  <div className="pro_img">
-                    <img src={product} alt="product" />
-                  </div>
-                  <div className="info">
-                    <h6>بطارية كلورايد جولد - امبير 44 - سالب شمال</h6>
-                    <div className="count_price">
-                      <p>
-                        الكمية : <span>X3</span>
-                      </p>
-                      <p>
-                        الاجمالي : <span>36</span> ريال
-                      </p>
+                {cart?.map((c) => (
+                  <div className="product" key={c.id}>
+                    <div className="pro_img">
+                      <img src={c?.product?.image} alt="product" />
+                    </div>
+                    <div className="info">
+                      <h6>{c?.product?.title}</h6>
+                      <div className="count_price">
+                        <p>
+                          الكمية : <span>X{c?.quantity}</span>
+                        </p>
+                        <p>
+                          الاجمالي :{" "}
+                          <span>{c?.product?.price * c?.quantity}</span> ريال
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                <div className="product">
-                  <div className="pro_img">
-                    <img src={product} alt="product" />
-                  </div>
-                  <div className="info">
-                    <h6>طقم لمبات فيليبس ليد HB3/4</h6>
-                    <div className="count_price">
-                      <p>
-                        الكمية : <span>X2</span>
-                      </p>
-                      <p>
-                        الاجمالي : <span>48</span> ريال
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="product">
-                  <div className="pro_img">
-                    <img src={product} alt="product" />
-                  </div>
-                  <div className="info">
-                    <h6>طقم كشاف تويوتا أوريون</h6>
-                    <div className="count_price">
-                      <p>
-                        الكمية : <span>X4</span>
-                      </p>
-                      <p>
-                        الاجمالي : <span>1848</span> ريال
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
-            <div className="col-lg-7 col-12 p-2">
+
+            <div className="col-lg-6 col-12 p-2">
               <div className="d-flex flex-column gap-3">
                 {/* order details */}
                 <div className="checkout-details">
                   <ul>
                     <li>
                       <div className="title">{t("orders.orderPrice")}</div>
-                      <div className="value ">150.0 ريال</div>
+                      <div className="value ">
+                        {cart?.reduce(
+                          (count, item) =>
+                            count + item.quantity * item?.product?.price,
+                          0
+                        )}{" "}
+                        ريال
+                      </div>
                     </li>
                     <li>
                       <div className="title">{t("orders.taxes")}</div>

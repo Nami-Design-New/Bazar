@@ -219,12 +219,10 @@
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
         gap: 12px;
         flex-wrap: wrap;
         position: relative;
         .filter-item {
-          flex: 1 0;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -252,6 +250,7 @@
         border: 1px solid $LightGray;
         transition: $transition;
         border-radius: 8px;
+        overflow: hidden;
         .product_image {
           width: 100%;
           position: relative;
@@ -531,9 +530,9 @@
     }
     .rate-form {
       background: $white;
-      box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2509803922);
+      box-shadow: $shadow;
       padding: 16px;
-      border-radius: 12px;
+      border-radius: 16px;
       position: relative;
       display: flex;
       flex-direction: column;
@@ -546,7 +545,7 @@
       }
       .btn-rate-wrapper {
         width: 100%;
-        padding: 0 16px;
+        padding: 8px 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -557,10 +556,9 @@
           align-items: center;
           justify-content: flex-start;
         }
-        .custom-btn {
-          flex: unset !important;
-          width: unset !important;
-          min-width: 160px;
+        button {
+          padding: 0 32px;
+          width: fit-content;
         }
       }
     }

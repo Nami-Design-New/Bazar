@@ -11,26 +11,26 @@ import axios from "./utils/axios";
 import useGetProfile from "./features/profile/useGetProfile";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Loader from "./ui/Loader";
+import useGetCart from "./features/cart/useGetCart";
+import { setCart } from "./redux/slices/cart";
 
 export default function App() {
   const location = useLocation();
-  const lang = useSelector((state) => state.language.lang);
   const dispatch = useDispatch();
+  const lang = useSelector((state) => state.language.lang);
+
   const [cookies] = useCookies(["token", "id"]);
   const token = cookies?.token;
   const id = cookies?.id;
   const { decodedToken, isExpired } = useJwt(token);
   axios.defaults.headers.common["Authorization"] = `${token}`;
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
-
+  const { data: cart } = useGetCart();
   const {
     data: profile,
     isLoading,
     isFetched,
-    refetch,
+    refetch
   } = useGetProfile(id, Boolean(token && id && !isExpired));
 
   useEffect(() => {
@@ -54,6 +54,16 @@ export default function App() {
     lang === "en" ? body.classList.add("en") : body.classList.remove("en");
     i18n.changeLanguage(lang);
   }, [lang]);
+
+  useEffect(() => {
+    if (cart) {
+      dispatch(setCart(cart));
+    }
+  }, [cart, dispatch]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return isLoading ? (
     <Loader />

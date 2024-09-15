@@ -6,14 +6,11 @@ export const cart = createSlice({
     cartList: []
   },
   reducers: {
-    addToCart: (state, action) => {
-      state.cartList = action.payload;
-    },
-    updateEntireCart: (state, action) => {
+    setCart: (state, action) => {
       state.cartList = action.payload;
     }
   }
 });
 
-export const { addToCart, updateEntireCart } = cart.actions;
+export const { setCart } = cart.actions;
 export default cart.reducer;

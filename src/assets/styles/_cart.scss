@@ -9,7 +9,7 @@
     @media (max-width: 768px) {
       flex-direction: column;
       align-items: flex-start;
-      gap: 4px;
+      gap: 12px;
     }
     .item-info {
       flex: 1;
@@ -35,15 +35,16 @@
         justify-content: center;
         h6 {
           font-size: 14px;
-          color: $main;
+          color: $black;
           font-weight: 600;
         }
         p {
           font-size: 14px;
-          color: $main;
+          color: $black;
           span {
             font-size: 16px;
             font-weight: 600;
+            color: $second;
           }
           i {
             color: $second;
@@ -60,6 +61,9 @@
         width: 100%;
         gap: 12px;
       }
+      @media screen and (max-width: 576px) {
+        flex-direction: column;
+      }
       .count {
         width: 60%;
         background: $white;
@@ -67,9 +71,15 @@
         flex: 1;
         border-radius: 4px;
         overflow: hidden;
+        @media screen and (max-width: 576px) {
+          width: 100%;
+        }
         input {
           flex: 3;
           width: 100%;
+          color: $black;
+          font-size: 20px;
+          font-weight: 600;
           outline: none;
           background: $inputBg;
           text-align: center;
@@ -77,16 +87,16 @@
           &::-webkit-inner-spin-button {
             display: none;
           }
-          @media (max-width: 576px) {
-            max-width: 100px;
+          @media screen and (max-width: 576px) {
+            height: 48px;
           }
         }
         button {
           @include clearInput();
           width: 70px;
-          background: $main;
+          background: $LightGray;
           i {
-            color: $white;
+            color: $black;
           }
         }
         button {
@@ -99,6 +109,9 @@
         display: flex;
         align-items: center;
         flex: 1;
+        @media screen and (max-width: 576px) {
+          width: 100%;
+        }
         p {
           flex: 2;
           font-size: 14px;
@@ -110,8 +123,8 @@
         }
         button {
           @include clearInput();
-          width: 50px;
-          height: 50px;
+          width: 42px;
+          height: 42px;
           background: $main;
           border-radius: 4px;
           i {
@@ -337,5 +350,25 @@
         background: $second;
       }
     }
+  }
+}
+
+.empty_cart {
+  @include centerFlex();
+  flex-direction: column;
+  img {
+    height: 300px;
+    margin-bottom: 24px;
+  }
+  h3 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  a {
+    color: $white;
+    background: $main;
+    border-radius: 100px;
+    padding: 6px 16px;
   }
 }
