@@ -4,12 +4,14 @@ import TextField from "../ui/form-elements/TextField";
 import InputField from "../ui/form-elements/InputField";
 import SectionHeader from "../ui/layout/SectionHeader";
 import useGetCart from "./../features/cart/useGetCart";
+import useGetAddresses from "../features/addresses/useGetAddresses";
+import AddAddress from "../features/addresses/AddAddress";
 
 function Checkout() {
   const { t } = useTranslation();
+  const [showModal, setShowModal] = useState(false);
   const { data: cart } = useGetCart();
-  const [address, setAddress] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const { data: addresses } = useGetAddresses();
 
   const [formData, setFormData] = useState({
     address_id: "",
@@ -99,9 +101,9 @@ function Checkout() {
                 {/* checkout form */}
                 <form className="form d-flex flex-column gap-3 p-0">
                   <TextField
-                    name="details"
-                    id="details"
-                    value={formData?.details}
+                    name="notes"
+                    id="notes"
+                    value={formData?.notes}
                     onChange={(e) => handleChange(e)}
                     placeholder={t("writeHere")}
                     label={t("cart.orderDetails")}
@@ -109,42 +111,35 @@ function Checkout() {
 
                   <div className="address-wrapper">
                     <h6>{t("cart.orderAddress")}</h6>
-                    <div className="radios">
-                      <label htmlFor="address1">
-                        <input
-                          type="radio"
-                          name="address"
-                          id="address1"
-                          value={"عنوان المنزل ، الدمام ،فيلا 13"}
-                          checked={address === "عنوان المنزل ، الدمام ،فيلا 13"}
-                          onChange={(e) => setAddress(e.target.value)}
-                        />
-                        <span className="address">
-                          عنوان المنزل، الدمام، فيلا 13
-                        </span>
-                      </label>
+                    {addresses?.data?.length > 0 && (
+                      <div className="radios">
+                        {addresses?.data?.map((address) => (
+                          <label htmlFor="address1" key={address?.id}>
+                            <input
+                              type="radio"
+                              name="address"
+                              id="address1"
+                              value={"عنوان المنزل ، الدمام ،فيلا 13"}
+                              checked={
+                                address === "عنوان المنزل ، الدمام ،فيلا 13"
+                              }
+                            />
+                            <span className="address">
+                              عنوان المنزل، الدمام، فيلا 13
+                            </span>
+                          </label>
+                        ))}
+                      </div>
+                    )}
 
-                      <label htmlFor="address2">
-                        <input
-                          type="radio"
-                          name="address"
-                          id="address2"
-                          value={"عنوان المكتب  ، الدمام ، شارع عزيز ،فيلا 13"}
-                          checked={
-                            address ===
-                            "عنوان المكتب  ، الدمام ، شارع عزيز ،فيلا 13"
-                          }
-                          onChange={(e) => setAddress(e.target.value)}
-                        />
-                        <span className="address">
-                          عنوان المكتب، الدمام، شارع عزيز، فيلا 13
-                        </span>
-                      </label>
-                    </div>
-
-                    <div className="d-flex align-items-center gap-2">
+                    <div
+                      className="d-flex align-items-center gap-2"
+                      style={{ cursor: "pointer" }}
+                    >
                       <i className="fa-regular fa-location-plus "></i>
-                      <span>{t("cart.addAddress")}</span>
+                      <span onClick={() => setShowModal(true)}>
+                        {t("cart.addAddress")}
+                      </span>
                     </div>
                   </div>
 
@@ -154,11 +149,11 @@ function Checkout() {
                       <label htmlFor="cach">
                         <input
                           type="radio"
-                          name="paymentMethod"
+                          name="payment_method"
                           id="cach"
                           value="cach"
-                          checked={paymentMethod === "cach"}
-                          onChange={(e) => setPaymentMethod(e.target.value)}
+                          checked={formData?.payment_method === "cach"}
+                          onChange={(e) => handleChange(e)}
                         />
                         <span className="address">{t("cart.cach")}</span>
                       </label>
@@ -166,11 +161,11 @@ function Checkout() {
                       <label htmlFor="wallet">
                         <input
                           type="radio"
-                          name="paymentMethod"
+                          name="payment_method"
                           id="wallet"
                           value="wallet"
-                          checked={paymentMethod === "wallet"}
-                          onChange={(e) => setPaymentMethod(e.target.value)}
+                          checked={formData?.payment_method === "wallet"}
+                          onChange={(e) => handleChange(e)}
                         />
                         <span className="address">{t("cart.wallet")}</span>
                       </label>
@@ -178,18 +173,18 @@ function Checkout() {
                       <label htmlFor="visa">
                         <input
                           type="radio"
-                          name="paymentMethod"
+                          name="payment_method"
                           id="visa"
                           value="visa"
-                          checked={paymentMethod === "visa"}
-                          onChange={(e) => setPaymentMethod(e.target.value)}
+                          checked={formData?.payment_method === "visa"}
+                          onChange={(e) => handleChange(e)}
                         />
                         <span className="address">{t("cart.visa")}</span>
                       </label>
                     </div>
                   </div>
 
-                  {paymentMethod === "visa" && (
+                  {formData?.payment_method === "visa" && (
                     <InputField
                       type="number"
                       id="visaNumber"
@@ -240,6 +235,7 @@ function Checkout() {
             </div>
           </div>
         </div>
+        <AddAddress showModal={showModal} setShowModal={setShowModal} />
       </section>
     </>
   );
