@@ -1,6 +1,6 @@
 import productImg from "../../assets/images/product-1.png";
 import ConfirmationModal from "../modals/ConfirmationModal";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
@@ -77,7 +77,12 @@ function CartItem({ type, item }) {
               <button disabled={loading} onClick={handleDecrease}>
                 <i className="fa-sharp fa-solid fa-minus"></i>
               </button>
-              <input type="number" value={quantity} disabled placeholder="0" />
+              <input
+                type="number"
+                value={item?.quantity}
+                disabled
+                placeholder="0"
+              />
               <button disabled={loading} onClick={handleIncrease}>
                 <i className="fa-sharp fa-solid fa-plus"></i>
               </button>
