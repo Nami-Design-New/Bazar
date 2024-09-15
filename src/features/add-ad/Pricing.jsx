@@ -7,7 +7,7 @@ import fixed from "../../assets/images/fixed.svg";
 import contact from "../../assets/images/contact.svg";
 import whatsapp from "../../assets/images/whatsapp-icon.svg";
 import call from "../../assets/images/call.svg";
-import message from "../../assets/images/message.svg";
+import message from "../../assets/images/Message.svg";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 
 function Pricing({ formData, setFormData, setForm, loading }) {
