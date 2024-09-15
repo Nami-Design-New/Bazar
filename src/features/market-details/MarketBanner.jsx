@@ -1,12 +1,11 @@
-import { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import banner from "../../assets/images/banner.png"
+import banner from "../../assets/images/banner.png";
 
 function MarketBanner({ market }) {
   const { t } = useTranslation();
-  const [isFollowing, setIsFollowing] = useState(false);
+
   return (
     <div className="page-header">
       <div className="cover-wrapper">
@@ -21,16 +20,13 @@ function MarketBanner({ market }) {
             </div>
 
             <div className="btns-wrapper">
-              <button
-                className="action-btn follow"
-                onClick={() => setIsFollowing(!isFollowing)}
-              >
+              <button className="action-btn follow">
                 <i
                   className={`fa-regular fa-user-${
-                    isFollowing ? "check" : "plus"
+                    market?.data?.is_follow ? "check" : "plus"
                   }`}
                 ></i>
-                {isFollowing ? t("following") : t("follow")}
+                {market?.data?.is_follow ? t("following") : t("follow")}
               </button>
 
               <span className="btn-box share">

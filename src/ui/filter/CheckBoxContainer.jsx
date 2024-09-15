@@ -4,10 +4,10 @@ function CheckBoxContainer({
   item,
   categoriesValue,
   sub_categoriesValue,
-  onChange
+  onChange,
 }) {
   const hasSubcategories =
-    item?.sub_categories && item?.sub_categories.length > 0;
+    item?.sub_categories && item?.sub_categories?.length > 0;
 
   const isParentChecked =
     categoriesValue?.includes(+item.id) ||
@@ -20,7 +20,7 @@ function CheckBoxContainer({
     <li className="department-item">
       <div className="department-header">
         <label htmlFor={item.id}>
-          {item?.sub_categories && sub_categoriesValue && (
+          {hasSubcategories && item?.sub_categories && sub_categoriesValue && (
             <button
               className="accordion-button collapsed"
               type="button"
