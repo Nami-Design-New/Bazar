@@ -6,11 +6,9 @@ function DepartmentFilterBox({
   categoriesValue,
   sub_categoriesValue,
   onChange,
+  viewSubCategories = true,
 }) {
   const { t } = useTranslation();
-
-  
-  
 
   return (
     <div className="departments w-100">
@@ -21,6 +19,7 @@ function DepartmentFilterBox({
             <ul className="deps">
               {categoriesWithSubCategories?.map((item) => (
                 <CheckBoxContainer
+                  viewSubCategories={viewSubCategories}
                   key={item.id}
                   item={item}
                   categoriesValue={categoriesValue}
