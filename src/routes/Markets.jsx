@@ -6,7 +6,6 @@ import SectionHeader from "../ui/layout/SectionHeader";
 import InputField from "../ui/form-elements/InputField";
 import SelectField from "../ui/form-elements/SelectField";
 import FavoriteMarketCard from "../ui/cards/FavoriteMarketCard";
-import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
 import useMarketsByFilter from "../features/markets/useMarketsByFilter";
 import DataLoader from "../ui/DataLoader";
 import EmptyData from "../ui/EmptyData";
@@ -25,9 +24,15 @@ function Markets() {
     type: searchParams.get("ad_type") || "",
     city_id: Number(searchParams.get("city_id")) || "",
     area_id: Number(searchParams.get("area_id")) || "",
-    category_ids: searchParams.get("category_ids")
+    category_id: searchParams.get("category_id")
       ? searchParams
-          .get("category_ids")
+          .get("category_id")
+          .split("-")
+          .map((category) => Number(category))
+      : [],
+    sub_category_id: searchParams.get("sub_category_id")
+      ? searchParams
+          .get("sub_category_id")
           .split("-")
           .map((category) => Number(category))
       : [],
@@ -89,9 +94,15 @@ function Markets() {
       type: Number(searchParams.get("ad_type")) || "",
       city_id: Number(searchParams.get("city_id")) || "",
       area_id: Number(searchParams.get("area_id")) || "",
-      category_ids: searchParams.get("category_ids")
+      category_id: searchParams.get("category_id")
         ? searchParams
-            .get("category_ids")
+            .get("category_id")
+            .split("-")
+            .map((category) => Number(category))
+        : [],
+      sub_category_id: searchParams.get("sub_category_id")
+        ? searchParams
+            .get("sub_category_id")
             .split("-")
             .map((category) => Number(category))
         : [],
@@ -132,12 +143,24 @@ function Markets() {
                     label={t("search.search")}
                     placeholder={t("search.searchFor")}
                   />
-                  <DepartmentFilterBox
-                    onChange={handleChange}
-                    categoriesValue={searchFilterData.categories}
-                    sub_categoriesValue={searchFilterData.sub_category_ids}
-                    categoriesWithSubCategories={categories?.data}
-                  />
+                  <div className="input-field">
+                    <label>{t("search.category")}</label>
+                    {categories &&
+                      categories?.data?.length > 0 &&
+                      categories?.data?.map((category) => (
+                        <Form.Check
+                          key={category.id}
+                          type="radio"
+                          name="category_id"
+                          value={category?.id}
+                          checked={searchFilterData?.category_id?.includes(
+                            category?.id
+                          )}
+                          onChange={(e) => handleChange(e)}
+                          label={category?.name}
+                        />
+                      ))}
+                  </div>
                   <SelectField
                     label={t("search.city")}
                     id="city_id"

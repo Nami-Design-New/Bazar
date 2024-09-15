@@ -5,6 +5,7 @@ function CheckBoxContainer({
   categoriesValue,
   sub_categoriesValue,
   onChange,
+  viewSubCategories = true,
 }) {
   const hasSubcategories =
     item?.sub_categories && item?.sub_categories?.length > 0;
@@ -12,7 +13,7 @@ function CheckBoxContainer({
   const isParentChecked =
     categoriesValue?.includes(+item.id) ||
     (hasSubcategories &&
-      item?.sub_categories.every((sub_category) =>
+      item?.sub_categorie?.every((sub_category) =>
         sub_categoriesValue?.includes(+sub_category.id)
       ));
 
@@ -20,32 +21,35 @@ function CheckBoxContainer({
     <li className="department-item">
       <div className="department-header">
         <label htmlFor={item.id}>
-          {hasSubcategories && item?.sub_categories && sub_categoriesValue && (
-            <button
-              className="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target={`#accordion-${item.id}`}
-              aria-expanded="true"
-              aria-controls={`#accordion-${item.id}`}
-            >
-              <span className="horizontal"></span>
-              <span className="vertical"></span>
-            </button>
-          )}
+          {hasSubcategories &&
+            item?.sub_categories &&
+            sub_categoriesValue &&
+            viewSubCategories && (
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target={`#accordion-${item.id}`}
+                aria-expanded="true"
+                aria-controls={`#accordion-${item.id}`}
+              >
+                <span className="horizontal"></span>
+                <span className="vertical"></span>
+              </button>
+            )}
           {item.name}
         </label>
         <input
           className="checkBox"
           type="checkbox"
-          name="categories"
+          name="category_id"
           value={item.id}
           id={item.id}
           checked={isParentChecked}
           onChange={onChange}
         />
       </div>
-      {item?.sub_categories && sub_categoriesValue && (
+      {item?.sub_categories && sub_categoriesValue && viewSubCategories && (
         <div
           id={`accordion-${item.id}`}
           className="accordion-collapse collapse"
@@ -56,7 +60,7 @@ function CheckBoxContainer({
             {item.sub_categories.map((sub_category) => (
               <CheckBoxFilterItem
                 key={sub_category.id}
-                name="sub_categories"
+                name="sub_category_id"
                 sub_category={sub_category}
                 onChange={onChange}
                 checked={

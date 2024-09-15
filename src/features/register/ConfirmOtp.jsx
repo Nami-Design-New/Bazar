@@ -9,7 +9,6 @@ import { setIsLogged, setUser } from "../../redux/slices/authedUser";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axios from "../../utils/axios";
 import headerImg from "../../assets/images/forget-2.svg";
-import Otpcontainer from "../../ui/form-elements/Otpcontainer";
 
 const ConfirmOtp = ({ otpData, setOtpData, formData }) => {
   const { t } = useTranslation();
@@ -90,7 +89,6 @@ const ConfirmOtp = ({ otpData, setOtpData, formData }) => {
         className="form forgetpasswordForm otp-small"
         onSubmit={handleSubmit}
       >
-        <Otpcontainer formData={otpData} setFormData={setOtpData} />
         <SubmitButton
           loading={loading}
           name={t("auth.createAccount")}
