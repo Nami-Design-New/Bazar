@@ -137,6 +137,7 @@ input[type=checkbox]:checked::after {
 .Toastify__toast-body > div:last-child {
   line-height: 24px;
   flex: unset;
+  font-family: "Baloo Bhaijaan 2", sans-serif;
 }
 
 @media only screen and (max-width: 480px) {
@@ -474,6 +475,7 @@ body .Toastify__toast-body {
 body .Toastify__toast-body > div:last-child {
   line-height: 24px;
   flex: unset;
+  font-family: "Baloo Bhaijaan 2", sans-serif;
 }
 @media only screen and (max-width: 480px) {
   body .Toastify__toast-container {
@@ -682,7 +684,7 @@ body header .underLay {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9;
@@ -818,7 +820,7 @@ body header nav .container .navigation_links li.logoo img {
   body header nav .container .navigation_links {
     position: fixed;
     top: 0;
-    height: 100vh;
+    height: 100dvh;
     width: 50%;
     background: #fff;
     right: -50%;
@@ -1444,9 +1446,9 @@ body main .videos .videos_wrapper .video .comments {
   background: #fff;
   border: 1px solid #d9d9d9;
   position: absolute;
-  bottom: -60vh;
+  bottom: -60dvh;
   left: 0;
-  height: 60vh;
+  height: 60dvh;
   border-radius: 16px 16px 0 0;
   padding: 16px;
   transition: 0.3s ease-in-out;
@@ -3137,13 +3139,11 @@ body main .market-details-page .content-wrapper .filter-wrapper .filter-list {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
   position: relative;
 }
 body main .market-details-page .content-wrapper .filter-wrapper .filter-list .filter-item {
-  flex: 1 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3170,6 +3170,7 @@ body main .market-details-page .content-wrapper .products-wrapper .product_crad 
   border: 1px solid #d9d9d9;
   transition: all 0.2s ease-in-out;
   border-radius: 8px;
+  overflow: hidden;
 }
 body main .market-details-page .content-wrapper .products-wrapper .product_crad .product_image {
   width: 100%;
@@ -3460,9 +3461,9 @@ body main .market-details-page .content-wrapper .details-wrapper .details-box .c
 }
 body main .market-details-page .content-wrapper .rate-form {
   background: #fff;
-  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2509803922);
+  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
   padding: 16px;
-  border-radius: 12px;
+  border-radius: 16px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -3476,7 +3477,7 @@ body main .market-details-page .content-wrapper .rate-form.replay-to .submit-wra
 }
 body main .market-details-page .content-wrapper .rate-form .btn-rate-wrapper {
   width: 100%;
-  padding: 0 16px;
+  padding: 8px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -3488,10 +3489,10 @@ body main .market-details-page .content-wrapper .rate-form .btn-rate-wrapper .su
   align-items: center;
   justify-content: flex-start;
 }
-body main .market-details-page .content-wrapper .rate-form .btn-rate-wrapper .custom-btn {
-  flex: unset !important;
-  width: unset !important;
-  min-width: 160px;
+body main .market-details-page .content-wrapper .rate-form .btn-rate-wrapper button {
+  padding: 0 32px;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 body main .market-details-page.coupon-details-page .content-wrapper .notification-box {
   width: 100%;
@@ -4532,7 +4533,7 @@ body main .shopping_cart .cart_item {
   body main .shopping_cart .cart_item {
     flex-direction: column;
     align-items: flex-start;
-    gap: 4px;
+    gap: 12px;
   }
 }
 body main .shopping_cart .cart_item .item-info {
@@ -4564,16 +4565,17 @@ body main .shopping_cart .cart_item .item-info .details {
 }
 body main .shopping_cart .cart_item .item-info .details h6 {
   font-size: 14px;
-  color: #4381f8;
+  color: #000;
   font-weight: 600;
 }
 body main .shopping_cart .cart_item .item-info .details p {
   font-size: 14px;
-  color: #4381f8;
+  color: #000;
 }
 body main .shopping_cart .cart_item .item-info .details p span {
   font-size: 16px;
   font-weight: 600;
+  color: #d785f1;
 }
 body main .shopping_cart .cart_item .item-info .details p i {
   color: #d785f1;
@@ -4590,6 +4592,11 @@ body main .shopping_cart .cart_item .price_count {
     gap: 12px;
   }
 }
+@media screen and (max-width: 576px) {
+  body main .shopping_cart .cart_item .price_count {
+    flex-direction: column;
+  }
+}
 body main .shopping_cart .cart_item .price_count .count {
   width: 60%;
   background: #fff;
@@ -4598,9 +4605,17 @@ body main .shopping_cart .cart_item .price_count .count {
   border-radius: 4px;
   overflow: hidden;
 }
+@media screen and (max-width: 576px) {
+  body main .shopping_cart .cart_item .price_count .count {
+    width: 100%;
+  }
+}
 body main .shopping_cart .cart_item .price_count .count input {
   flex: 3;
   width: 100%;
+  color: #000;
+  font-size: 20px;
+  font-weight: 600;
   outline: none;
   background: #fafafa;
   text-align: center;
@@ -4609,9 +4624,9 @@ body main .shopping_cart .cart_item .price_count .count input {
 body main .shopping_cart .cart_item .price_count .count input::-webkit-inner-spin-button {
   display: none;
 }
-@media (max-width: 576px) {
+@media screen and (max-width: 576px) {
   body main .shopping_cart .cart_item .price_count .count input {
-    max-width: 100px;
+    height: 48px;
   }
 }
 body main .shopping_cart .cart_item .price_count .count button {
@@ -4619,10 +4634,10 @@ body main .shopping_cart .cart_item .price_count .count button {
   background: none;
   outline: none;
   width: 70px;
-  background: #4381f8;
+  background: #d9d9d9;
 }
 body main .shopping_cart .cart_item .price_count .count button i {
-  color: #fff;
+  color: #000;
 }
 body main .shopping_cart .cart_item .price_count .count button {
   flex: 1;
@@ -4633,6 +4648,11 @@ body main .shopping_cart .cart_item .price_count .total {
   display: flex;
   align-items: center;
   flex: 1;
+}
+@media screen and (max-width: 576px) {
+  body main .shopping_cart .cart_item .price_count .total {
+    width: 100%;
+  }
 }
 body main .shopping_cart .cart_item .price_count .total p {
   flex: 2;
@@ -4647,8 +4667,8 @@ body main .shopping_cart .cart_item .price_count .total button {
   border: none;
   background: none;
   outline: none;
-  width: 50px;
-  height: 50px;
+  width: 42px;
+  height: 42px;
   background: #4381f8;
   border-radius: 4px;
 }
@@ -4872,6 +4892,27 @@ body main .checkout_section .cart_total button {
 }
 body main .checkout_section .cart_total button:hover {
   background: #d785f1;
+}
+body main .empty_cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+body main .empty_cart img {
+  height: 300px;
+  margin-bottom: 24px;
+}
+body main .empty_cart h3 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+body main .empty_cart a {
+  color: #fff;
+  background: #4381f8;
+  border-radius: 100px;
+  padding: 6px 16px;
 }
 body main .item {
   position: relative;

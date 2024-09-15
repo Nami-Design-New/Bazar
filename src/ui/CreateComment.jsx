@@ -15,10 +15,10 @@ function CreateComment({ comment, setTargetedComment, refetch }) {
   const [commentLoading, setCommentLoading] = useState(false);
   const [formData, setFormData] = useState({
     rate: 0,
-    comment: "",
+    comment: ""
   });
   const [replayData, setReplayDataData] = useState({
-    comment: "",
+    comment: ""
   });
   const isLogged = useSelector((state) => state.authedUser.isLogged);
   const navigate = useNavigate();
@@ -37,21 +37,21 @@ function CreateComment({ comment, setTargetedComment, refetch }) {
   const handleChangeRate = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
   const handleChangeReplay = (e) => {
     setReplayDataData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
   const handleRatingChange = (rate) => {
     setFormData({
       ...formData,
-      rate,
+      rate
     });
   };
 
@@ -91,7 +91,7 @@ function CreateComment({ comment, setTargetedComment, refetch }) {
           refetch();
           setFormData({
             rate: 0,
-            comment: "",
+            comment: ""
           });
           setTargetedComment("");
         }
@@ -134,7 +134,7 @@ function CreateComment({ comment, setTargetedComment, refetch }) {
         </div>
       )}
       <form
-        className={`rate-form  ${comment ? "replay-to" : ""}`}
+        className={`rate-form form ${comment ? "replay-to" : ""}`}
         onSubmit={handleSubmit}
       >
         <TextField
@@ -154,7 +154,6 @@ function CreateComment({ comment, setTargetedComment, refetch }) {
         <div className="btn-rate-wrapper">
           <div className="submit-wrapper">
             <SubmitButton
-              className="custom-btn filled"
               loading={commentLoading}
               name={comment ? t("publishReplay") : t("publishRate")}
               onClick={handleSubmit}

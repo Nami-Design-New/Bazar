@@ -1,86 +1,109 @@
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import productImg from "../../assets/images/product-1.png";
 import ConfirmationModal from "../modals/ConfirmationModal";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useQueryClient } from "@tanstack/react-query";
+import {
+  changeProductQuantity,
+  deleteProductFromCart
+} from "../../services/apiCart";
 
-function CartItem({ type }) {
+function CartItem({ type, item }) {
   const { t } = useTranslation();
-  const [quantity, setQuantity] = useState(1);
+  const queryClient = useQueryClient();
+  const [loading, setLoading] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  function handleDecrease() {
-    if (quantity === 0) return;
-    setQuantity((q) => q - 1);
-  }
+  const handleDecrease = async () => {
+    try {
+      setLoading(true);
+      const res = await changeProductQuantity("/user/decrease_cart", item?.id);
+      if (res?.data?.code === 200) {
+        setLoading(false);
+        queryClient.invalidateQueries(["cart"]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  function handleIncrease() {
-    setQuantity((q) => q + 1);
-  }
+  const handleIncrease = async () => {
+    try {
+      setLoading(true);
+      const res = await changeProductQuantity("/user/increase_cart", item?.id);
+      if (res?.data?.code === 200) {
+        setLoading(false);
+        queryClient.invalidateQueries(["cart"]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  function handleOpenConfirmation(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    setShowConfirmation(true);
-  }
-  function handleDelete() {
-    setShowConfirmation(false);
-  }
+  const handleDeleteItem = async () => {
+    setLoading(true);
+    try {
+      const res = await deleteProductFromCart(item?.id);
+      if (res?.data?.code) {
+        queryClient.invalidateQueries(["cart"]);
+        setShowConfirmation(false);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
-    quantity > 0 && (
-      <>
-        <div className="cart_item">
-          <Link to="/ad-details" className="item-info">
-            <div className="img">
-              <img src={productImg} alt="product" />
+    <>
+      <div className="cart_item">
+        <Link to="/ad-details" className="item-info">
+          <div className="img">
+            <img src={item?.product?.image || productImg} alt="product" />
+          </div>
+          <div className="details">
+            <h6>{item?.product?.title}</h6>
+            <p>
+              {" "}
+              <i className="fa-regular fa-tags"></i>{" "}
+              <span>{item?.product?.price}</span> {t("currency.sar")}
+            </p>
+          </div>
+        </Link>
+        {type === "cart" && (
+          <div className="price_count">
+            <div className="count">
+              <button disabled={loading} onClick={handleDecrease}>
+                <i className="fa-sharp fa-solid fa-minus"></i>
+              </button>
+              <input type="number" value={quantity} disabled placeholder="0" />
+              <button disabled={loading} onClick={handleIncrease}>
+                <i className="fa-sharp fa-solid fa-plus"></i>
+              </button>
             </div>
-            <div className="details">
-              <h6>مشروم طازج ٢٠٠ جرام</h6>
+            <div className="total">
               <p>
-                {" "}
-                <i className="fa-regular fa-tags"></i> <span>30.00</span>{" "}
+                الاجمالي : <span>{item?.product?.price * item.quantity}</span>{" "}
                 {t("currency.sar")}
               </p>
+              <button onClick={() => setShowConfirmation(true)}>
+                <i className="fa-regular fa-trash-can-list"></i>
+              </button>
             </div>
-          </Link>
-          {type === "cart" && (
-            <div className="price_count">
-              <div className="count">
-                <button onClick={handleDecrease}>
-                  <i className="fa-sharp fa-solid fa-minus"></i>
-                </button>
-                <input
-                  type="number"
-                  value={quantity}
-                  disabled
-                  placeholder="0"
-                />
-                <button onClick={handleIncrease}>
-                  <i className="fa-sharp fa-solid fa-plus"></i>
-                </button>
-              </div>
-              <div className="total">
-                <p>
-                  الاجمالي : <span>30.00</span> {t("currency.sar")}
-                </p>
-                <button onClick={handleOpenConfirmation}>
-                  <i className="fa-regular fa-trash-can-list"></i>
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-        <ConfirmationModal
-          showModal={showConfirmation}
-          setShowModal={setShowConfirmation}
-          type="delete"
-          eventFun={handleDelete}
-          buttonText={t("delete")}
-          text={t("orders.areYouSureYouWantToDeleteOrder")}
-        />
-      </>
-    )
+          </div>
+        )}
+      </div>
+      <ConfirmationModal
+        showModal={showConfirmation}
+        setShowModal={setShowConfirmation}
+        type="delete"
+        eventFun={handleDeleteItem}
+        buttonText={t("delete")}
+        loading={loading}
+        text={t("orders.areYouSureYouWantToDeleteOrder")}
+      />
+    </>
   );
 }
 
