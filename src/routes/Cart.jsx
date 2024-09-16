@@ -8,7 +8,7 @@ import emptyCart from "../assets/images/emptyCart.svg";
 function Cart() {
   const { t } = useTranslation();
   const cart = useSelector((state) => state.cart.cartList);
-  
+
   return (
     <>
       <SectionHeader />
@@ -37,7 +37,11 @@ function Cart() {
                       <span>
                         {cart?.reduce(
                           (count, item) =>
-                            count + item.quantity * item?.product?.price,
+                            count +
+                            item.quantity *
+                              (item?.product?.offer_price
+                                ? item?.product?.offer_price
+                                : item?.product?.price),
                           0
                         )}
                       </span>{" "}

@@ -58,3 +58,13 @@ export async function getAdById(id) {
     throw new Error(`Error fetching ads: ${err.message}`);
   }
 }
+
+export async function getAdsVideos() {
+  try {
+    const req = await axios.post("/get_ads");
+
+    return req.data;
+  } catch (err) {
+    throw new Error(`Error fetching ads: ${err.message}`);
+  }
+}

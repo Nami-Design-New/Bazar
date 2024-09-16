@@ -23,6 +23,7 @@ import Ads from "./routes/Ads";
 import WantedAds from "./routes/WantedAds";
 import Markets from "./routes/Markets";
 import Videos from "./routes/Videos";
+import Chats from "./routes/Chats";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
@@ -34,6 +35,7 @@ const routerConfig = [
   { path: "/forget-password", element: <ForgetPassword /> },
   { path: "/edit-profile", element: <EditProfile /> },
   { path: "/profile", element: <Profile /> },
+  { path: "/chats", element: <Chats /> },
   { path: "/profile/:id", element: <Profile /> },
   {
     path: "/app-verification",

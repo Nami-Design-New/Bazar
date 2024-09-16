@@ -1,5 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IconMessageCircle, IconPhone } from "@tabler/icons-react";
+import { formatTimeDifference, getTimeDifference } from "../utils/helpers";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import AdDetailsSlider from "../features/ad-details/AdDetailsSlider";
 import avatar from "../assets/images/userr.webp";
 import heart from "../assets/images/heart.svg";
@@ -13,8 +16,6 @@ import clock from "../assets/images/clock.svg";
 import eye from "../assets/images/eye.svg";
 import useGetAdById from "../features/ads/useGetAdById";
 import DataLoader from "../ui/DataLoader";
-import { formatTimeDifference, getTimeDifference } from "../utils/helpers";
-import { useTranslation } from "react-i18next";
 
 /*
 Missed parts in UI: 
@@ -38,6 +39,8 @@ Missed in data:
 function AdDetails() {
   const { t } = useTranslation();
   const { isLoading, data: ad } = useGetAdById();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.authedUser.user);
 
   const timeDifference = getTimeDifference(ad?.data?.created_at);
   const creationTime = formatTimeDifference(
@@ -48,6 +51,16 @@ function AdDetails() {
     timeDifference.minutes,
     t
   );
+
+  const openChat = () => {
+    console.log(user);
+
+    sessionStorage.setItem("buyer_id", user?.id);
+    sessionStorage.setItem("seller_id", ad?.data?.user_id);
+    sessionStorage.setItem("ad_id", ad?.data?.id);
+
+    navigate("/chats");
+  };
 
   return (
     <section className="itemDetails">
@@ -205,10 +218,10 @@ function AdDetails() {
                 </Link>
                 <span className="date"> عضو منذ أغسطس 2023 </span>
                 <div className="contact">
-                  <Link to="/chats" className="chat">
+                  <button className="chat" onClick={openChat}>
                     <IconMessageCircle stroke={1.5} />
                     <span> محادثة </span>
-                  </Link>
+                  </button>
                   <Link to="tel:+966123456789" className="call">
                     <IconPhone stroke={1.5} />
                     <span> اتصل </span>
