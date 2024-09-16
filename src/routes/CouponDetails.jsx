@@ -64,7 +64,7 @@ function CouponDetails() {
       <div className="content-wrapper container col-lg-10 col-12">
         <div className="notification-box">
           <div className="icon-box">
-            <i className="fa-solid fa-bell gradient-icon"></i>
+            <i className="fa-solid fa-bell "></i>
           </div>
           <p>ارسل لي اشعار عندما يتم اضافة عروض جديده على هذا الكود</p>
           <Form.Switch

@@ -48,11 +48,11 @@ const routerConfig = [
   },
 
   // user features
-  { path: "/cart", element: <Cart /> },
-  { path: "/checkout", element: <Checkout /> },
-  { path: "/my-activities", element: <Activities /> },
+  { path: "/cart", element: <Cart />, protected: true },
+  { path: "/checkout", element: <Checkout />, protected: true },
+  { path: "/my-activities", element: <Activities />, protected: true },
   { path: "/ad-details/:id", element: <AdDetails /> },
-  { path: "/order-details/:id", element: <OrderDetails /> },
+  { path: "/order-details/:id", element: <OrderDetails />, protected: true },
   { path: "/market-details/:id", element: <MarketDetails /> },
   { path: "/favorites", element: <Favorites /> },
   { path: "/add-ad", element: <AddAdvertisment /> },

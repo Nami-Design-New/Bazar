@@ -64,7 +64,7 @@ function CouponCard() {
             style={{ cursor: "pointer" }}
             onClick={handleCopyCoupon}
           >
-            <i className="fa-solid fa-receipt gradient-icon"></i>
+            <i className="fa-solid fa-receipt "></i>
             <span className="value">carrefour924</span>
           </div>
           <div className="statistic">

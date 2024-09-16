@@ -21,32 +21,32 @@ function InterestMiniCard() {
     >
       <div className="card-header">
         <div className="card-content">
-          <h5 className="title one-line-wrap">
+          <h5 className="title ">
             {t("interests.interestIn")}العقارات
           </h5>
           <div className="categories-wrapper">
-            <Link to="" className="category gradient-text">
+            <Link to="" className="category ">
               <i className="fa-regular fa-apartment"></i>
               {t("categories.estates")}
             </Link>
-            <Link to="" className="category gradient-text">
+            <Link to="" className="category ">
               <i className="fa-sharp fa-regular fa-building-columns"></i>
               {t("categories.villas")}
             </Link>
-            <Link to="" className="category gradient-text">
+            <Link to="" className="category ">
               <i className="fa-sharp fa-solid fa-location-dot"></i> الرياض
             </Link>
-            <Link to="" className="category gradient-text">
+            <Link to="" className="category ">
               <i className="fa-regular fa-home"></i> الشارقة
             </Link>
           </div>
         </div>
         <div className="action-boxes">
           <span className="action-btn delete" onClick={handleOpenConfirmation}>
-            <i className="fa-regular fa-trash gradient-icon"></i>
+            <i className="fa-regular fa-trash "></i>
           </span>
           <span className="action-btn edit">
-            <i className="fa-regular fa-pen-to-square gradient-icon"></i>
+            <i className="fa-regular fa-pen-to-square "></i>
           </span>
         </div>
       </div>

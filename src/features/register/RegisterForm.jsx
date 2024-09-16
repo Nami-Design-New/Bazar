@@ -132,11 +132,11 @@ function RegisterForm({
               </div>
               <p className="d-flex w-100 gap-2 terms-condition-alert">
                 {t("auth.acceptingTermsByContinue1")}
-                <Link to="/terms" className="gradient-text">
+                <Link to="/terms" className="">
                   {t("auth.terms")}
                 </Link>
                 {t("auth.acceptingTermsByContinueAnd")}
-                <Link to="/privacy" className="gradient-text">
+                <Link to="/privacy" className="">
                   {t("auth.privacy")}
                 </Link>
                 {t("auth.acceptingTermsByContinue2")}
@@ -152,7 +152,7 @@ function RegisterForm({
               <div className="d-flex gap-2 flex-lg-row flex-column w-100">
                 <Link to="/login" className="noAccount">
                   {t("auth.alreadyHaveAccount")}{" "}
-                  <span className=" gradient-text">{t("auth.login")}</span>
+                  <span className=" ">{t("auth.login")}</span>
                 </Link>
               </div>
             </form>

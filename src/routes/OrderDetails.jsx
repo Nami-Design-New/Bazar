@@ -18,24 +18,24 @@ function OrderDetails() {
             <div className="info">
               <h5>{t("orders.newOrder")}</h5>
               <div className="info-boxes">
-                <div className="box gradient-text">
+                <div className="box ">
                   <i className="fa-regular fa-calendar-days"></i>2024/2/2
                 </div>
-                <div className="box gradient-text">
+                <div className="box ">
                   <i className="fa-solid fa-clock"></i>10 : 30 AM
                 </div>
               </div>
             </div>
             <div className="icon">
               {step === 1 && (
-                <i className={`fa-solid fa-memo gradient-icon `}></i>
+                <i className={`fa-solid fa-memo  `}></i>
               )}
               {step === 2 && (
                 <i className={`fa-solid fa-memo-circle-check active `}></i>
               )}
               {step === 3 && (
                 <i
-                  className={`fa-regular fa-truck-container gradient-icon `}
+                  className={`fa-regular fa-truck-container  `}
                 ></i>
               )}
               {step === 4 && (
@@ -48,7 +48,7 @@ function OrderDetails() {
               <div className="icon-box">
                 <i
                   className={`fa-solid fa-memo ${
-                    step >= 1 ? "gradient-icon" : ""
+                    step >= 1 ? "" : ""
                   }`}
                 ></i>
               </div>
@@ -70,7 +70,7 @@ function OrderDetails() {
               <div className="icon-box">
                 <i
                   className={`fa-regular fa-truck-container  ${
-                    step >= 3 ? "gradient-icon" : ""
+                    step >= 3 ? "" : ""
                   }`}
                 ></i>
               </div>
@@ -93,7 +93,7 @@ function OrderDetails() {
           <div className="details-box">
             <div className="title">
               <div className="icon">
-                <i className="fa-sharp fa-solid fa-cube  gradient-icon"></i>
+                <i className="fa-sharp fa-solid fa-cube  "></i>
               </div>
               <span className="secondary">{t("orders.orderId")}: 342353</span>
             </div>
@@ -101,7 +101,7 @@ function OrderDetails() {
           <div className="details-box">
             <div className="title">
               <div className="icon">
-                <i className="fa-brands fa-cc-visa gradient-icon"></i>
+                <i className="fa-brands fa-cc-visa "></i>
               </div>
               <span>{t("orders.paymentMethod")}</span>
             </div>
@@ -110,7 +110,7 @@ function OrderDetails() {
           <div className="details-box">
             <div className="title">
               <div className="icon">
-                <i className="fa-sharp fa-solid fa-location-dot gradient-icon"></i>
+                <i className="fa-sharp fa-solid fa-location-dot "></i>
               </div>
               <span>{t("orders.address")}</span>
             </div>
@@ -119,7 +119,7 @@ function OrderDetails() {
           <div className="details-box">
             <div className="title">
               <div className="icon">
-                <i className="fa-solid fa-memo-circle-info gradient-icon"></i>
+                <i className="fa-solid fa-memo-circle-info "></i>
               </div>
               <span>{t("orders.orderDetails")}</span>
             </div>
@@ -128,7 +128,7 @@ function OrderDetails() {
                 <li>
                   <div className="header">
                     <h6>نانو سيراميك x2</h6>
-                    <span className="price gradient-text">200 ريال</span>
+                    <span className="price ">200 ريال</span>
                   </div>
                   <ul>
                     <li>
@@ -152,7 +152,7 @@ function OrderDetails() {
                 <li>
                   <div className="header">
                     <h6>نانو زجاج شباك</h6>
-                    <span className="price gradient-text">200 ريال</span>
+                    <span className="price ">200 ريال</span>
                   </div>
                   <ul>
                     <li>
@@ -167,7 +167,7 @@ function OrderDetails() {
           <div className="details-box">
             <div className="title">
               <div className="icon">
-                <i className="fa-solid fa-money-check-dollar gradient-icon"></i>
+                <i className="fa-solid fa-money-check-dollar "></i>
               </div>
               <span>{t("orders.totalCost")}</span>
             </div>
@@ -175,23 +175,23 @@ function OrderDetails() {
               <ul>
                 <li>
                   <div className="title">{t("orders.orderPrice")}</div>
-                  <div className="value gradient-text">150.0 ريال</div>
+                  <div className="value ">150.0 ريال</div>
                 </li>
                 <li>
                   <div className="title">{t("orders.taxes")}</div>
-                  <div className="value gradient-text">150.0 ريال</div>
+                  <div className="value ">150.0 ريال</div>
                 </li>
                 <li className="discount">
                   <div className="title">{t("orders.discount")}</div>
-                  <div className="value gradient-text">150.0 ريال</div>
+                  <div className="value ">150.0 ريال</div>
                 </li>
                 <li className="bigger">
                   <div className="title">{t("orders.deliveryCost")}</div>
-                  <div className="value gradient-text">150.0 ريال</div>
+                  <div className="value ">150.0 ريال</div>
                 </li>
                 <li className="bigger">
                   <div className="title">{t("orders.total")}</div>
-                  <div className="value gradient-text">150.0 ريال</div>
+                  <div className="value ">150.0 ريال</div>
                 </li>
               </ul>
             </div>

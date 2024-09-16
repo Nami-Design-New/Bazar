@@ -57,25 +57,25 @@ function Profile() {
                   <div className="userDetails">
                     {user?.phone && (
                       <span className="details-box phone">
-                        <i className="fa-regular fa-phone gradient-icon"></i>
+                        <i className="fa-regular fa-phone "></i>
                         +966{user?.phone}
                       </span>
                     )}
                     {/* <span className="details-box location">
-                    <i className="fa-sharp fa-solid fa-location-dot gradient-icon"></i>
+                    <i className="fa-sharp fa-solid fa-location-dot "></i>
                     السعودية, الرياض
                   </span> */}
                   </div>
                   <div className="verification-details">
                     {user?.fal_verified ? (
                       <span className="verification-item">
-                        <i className="fa-regular fa-memo-circle-check gradient-icon"></i>
+                        <i className="fa-regular fa-memo-circle-check "></i>
                         {t("profile.verifiedVal")}
                       </span>
                     ) : null}
                     {subscriptionRemainingDays(user?.end_date) > 0 ? (
                       <span className="verification-item">
-                        <i className="fa-regular fa-box-circle-check gradient-icon"></i>
+                        <i className="fa-regular fa-box-circle-check "></i>
                         {t("profile.verifiedCommercial")}
                       </span>
                     ) : null}
@@ -85,7 +85,7 @@ function Profile() {
                   <div className="following-details">
                     {(user?.follow_count || user?.follow_count === 0) && (
                       <div className="details-box">
-                        <span className="value gradient-text">
+                        <span className="value ">
                           {user?.following_count}
                         </span>
                         <span className="title">{t("profile.followings")}</span>
@@ -93,7 +93,7 @@ function Profile() {
                     )}
                     {(user?.follow_count || user?.follow_count === 0) && (
                       <div className="details-box">
-                        <span className="value gradient-text">
+                        <span className="value ">
                           {user?.follow_count}
                         </span>
                         <span className="title">{t("profile.followers")}</span>
@@ -101,7 +101,7 @@ function Profile() {
                     )}
                     {(user?.ad_count || user?.ad_count === 0) && (
                       <div className="details-box">
-                        <span className="value gradient-text">
+                        <span className="value ">
                           {user?.ad_count}
                         </span>
                         <span className="title">{t("profile.ad")}</span>

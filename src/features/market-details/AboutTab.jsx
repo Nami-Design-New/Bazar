@@ -22,7 +22,7 @@ function AboutTab({ market }) {
           <div className="heading">
             <h3>{market?.data?.name}</h3>
             <div className="statistic">
-              <i className="fa-regular fa-eye gradient-icon"></i>
+              <i className="fa-regular fa-eye "></i>
               <span className="value">{market?.data?.views_count}</span>
             </div>
           </div>
@@ -63,18 +63,18 @@ function AboutTab({ market }) {
         <div className="details-box">
           <div className="title">
             <div className="icon">
-              <i className="fa-solid fa-id-card gradient-icon"></i>
+              <i className="fa-solid fa-id-card "></i>
             </div>
             <span>
               {t("markets.identity")}{" "}
-              <span className="gradient-text">24232525</span>
+              <span className="">24232525</span>
             </span>
           </div>
         </div>
         <div className="details-box">
           <div className="title">
             <div className="icon">
-              <i className={`fa-regular fa-truck-container gradient-icon `}></i>
+              <i className={`fa-regular fa-truck-container  `}></i>
             </div>
             <span>
               {t(
@@ -90,7 +90,7 @@ function AboutTab({ market }) {
         <div className="details-box">
           <div className="title">
             <div className="icon">
-              <i className="fa-sharp fa-solid fa-location-dot gradient-icon"></i>
+              <i className="fa-sharp fa-solid fa-location-dot "></i>
             </div>
             <span>{market?.data?.address}</span>
           </div>
@@ -138,7 +138,7 @@ function AboutTab({ market }) {
               className="contact-link"
             >
               <i
-                className="fa-regular fa-envelope gradient-icon"
+                className="fa-regular fa-envelope "
                 style={{ fontSize: "32px" }}
               ></i>
             </Link>
@@ -154,7 +154,7 @@ function AboutTab({ market }) {
               to={`tel:+966${market?.data?.phone}`}
               className="contact-link"
             >
-              <i className="fa-regular fa-phone gradient-icon"></i>
+              <i className="fa-regular fa-phone "></i>
             </Link>
           </div>
         </div>
