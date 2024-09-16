@@ -36,6 +36,22 @@ export async function getMarketDetails(id) {
   }
 }
 
+export async function getMarketCoupons(id) {
+  const requestBody = {};
+
+  if (id) {
+    requestBody.id = +id;
+  }
+
+  try {
+    const req = await axios.post("/get_market_coupons", requestBody);
+
+    return req.data;
+  } catch (err) {
+    throw new Error(`Error fetching market coupons: ${err.message}`);
+  }
+}
+
 export async function getMarketRates(id) {
   const requestBody = {};
 

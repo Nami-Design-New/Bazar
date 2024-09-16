@@ -1,21 +1,14 @@
-import { Link } from "react-router-dom";
-import marketCoverImage from "../../assets/images/market-cover-1.png";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
-function CouponCard() {
+function CouponCard({ coupon }) {
   const { t } = useTranslation();
-  const [isLiked, setIsLiked] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
-  function handleToggleFavorite(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    setIsLiked(!isLiked);
-  }
+  console.log(coupon);
 
   function handleCopyCoupon() {
-    const couponCode = "carrefour924";
+    const couponCode = coupon?.coupon;
     navigator.clipboard
       .writeText(couponCode)
       .then(() => {
@@ -29,34 +22,24 @@ function CouponCard() {
 
   return (
     <div className="fav-market-card coupon-card">
-      <div className="card-header">
+      <div className="card-header no-overlay">
         <div className="cover-wrapper">
-          <img src={marketCoverImage} alt="market cover image" />
+          <img src={coupon?.image} alt="market cover image" />
         </div>
-        <div className="categories-actions">
-          <div className="categories-wrapper">
-            <Link to="" className="category">
-              {t("categories.perfumes")}
-            </Link>
-            <Link to="" className="category">
-              {t("categories.food")}
-            </Link>
-          </div>
-          <div className="action-boxes">
-            <span
-              className={`action-btn favorite ${isLiked ? "liked" : ""}`}
-              onClick={handleToggleFavorite}
-            >
-              <i className="fa-solid fa-heart"></i>
-            </span>
-          </div>
-        </div>
-        <h3>كارفور اونلاين</h3>
       </div>
       <div className="card-details">
-        <div className="details">
-          <span className="details-box">الحد الادني ٢٠٠ ريال</span>
-          <span className="details-box">الحد الاقصي ٢٠٠٠ ريال</span>
+        <h5 className="coupon-title">{coupon?.name}</h5>
+        <div className="details d-flex w-100 align-items-center justify-content-between gap-2 flex-wrap">
+          {coupon?.min ? (
+            <span className="details-box">
+              {t("coupons.min")} {coupon?.min}
+            </span>
+          ) : null}
+          {coupon?.max ? (
+            <span className="details-box">
+              {t("coupons.max")} {coupon?.max}
+            </span>
+          ) : null}
         </div>
         <div className="card-statistics">
           <div
@@ -64,16 +47,22 @@ function CouponCard() {
             style={{ cursor: "pointer" }}
             onClick={handleCopyCoupon}
           >
-            <i className="fa-solid fa-receipt "></i>
-            <span className="value">carrefour924</span>
+            <i className="fa-solid fa-receipt gradient-icon"></i>
+            <span className="value">{coupon?.coupon}</span>
           </div>
-          <div className="statistic">
-            <span>{t("numberOfCoupons")}</span>
-            <span className="value">22</span>
-          </div>
+          {coupon?.value ? (
+            <div className="statistic">
+              <span>{t("coupons.value")}</span>
+              <span className="value">{coupon?.value}</span>
+            </div>
+          ) : null}
         </div>
         <div className="copy-wrapper">
-          <span className="custom-btn filled" onClick={handleCopyCoupon}>
+          <span
+            className="custom-btn filled"
+            style={{ cursor: "pointer" }}
+            onClick={handleCopyCoupon}
+          >
             <span>
               <i
                 className={`fa-regular ${
