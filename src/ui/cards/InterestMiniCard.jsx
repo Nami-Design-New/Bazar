@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import { useState } from "react";
 
-function InterestMiniCard() {
+function InterestMiniCard({ interest, isMyAccount }) {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
+
+  console.log(interest);
 
   function handleOpenConfirmation(e) {
     e.stopPropagation();
@@ -21,9 +23,7 @@ function InterestMiniCard() {
     >
       <div className="card-header">
         <div className="card-content">
-          <h5 className="title ">
-            {t("interests.interestIn")}العقارات
-          </h5>
+          <h5 className="title ">{interest?.name}</h5>
           <div className="categories-wrapper">
             <Link to="" className="category ">
               <i className="fa-regular fa-apartment"></i>
@@ -41,14 +41,19 @@ function InterestMiniCard() {
             </Link>
           </div>
         </div>
-        <div className="action-boxes">
-          <span className="action-btn delete" onClick={handleOpenConfirmation}>
-            <i className="fa-regular fa-trash "></i>
-          </span>
-          <span className="action-btn edit">
-            <i className="fa-regular fa-pen-to-square "></i>
-          </span>
-        </div>
+        {isMyAccount && (
+          <div className="action-boxes">
+            <span
+              className="action-btn delete"
+              onClick={handleOpenConfirmation}
+            >
+              <i className="fa-regular fa-trash "></i>
+            </span>
+            <span className="action-btn edit">
+              <i className="fa-regular fa-pen-to-square "></i>
+            </span>
+          </div>
+        )}
       </div>
       <ConfirmationModal
         showModal={showConfirmation}
