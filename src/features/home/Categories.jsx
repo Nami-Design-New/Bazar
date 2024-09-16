@@ -19,7 +19,7 @@ function Categories({ categories }) {
           </Link>
         </div>
 
-        {!categories && categories?.data?.length > 0 ? (
+        {categories && categories?.data?.length > 0 ? (
           <div className="row pt-3">
             {categories?.data?.map((category) => (
               <div
