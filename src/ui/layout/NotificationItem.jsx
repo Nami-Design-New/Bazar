@@ -54,7 +54,9 @@ function NotificationItem({ notification }) {
           </div>
         </div>
         <div className="info d-flex gap-1 justify-content-between flex-column">
-          <p>{notification?.description || "اهلا بك"}</p>
+          <p className="one-line-wrap">
+            {notification?.description || "اهلا بك"}
+          </p>
           <span className="time w-100 d-flex justify-content-end">
             {calculateDate(
               notification?.created_at || "2024-08-28T12:51:35.000000Z"

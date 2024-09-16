@@ -1,7 +1,7 @@
 import headerImg from "../../assets/images/forget-2.svg";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Otpcontainer from "../../ui/form-elements/Otpcontainer";
+import OtpContainer from "../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import { toast } from "react-toastify";
 import axios from "../../utils/axios";
@@ -72,7 +72,7 @@ function ForgetStep2({ setStep, otpData, setOtpData, phone }) {
       </div>
       <form onSubmit={handleSubmit}>
         <div className="d-flex gap-2 flex-lg-row flex-column w-100">
-          <Otpcontainer formData={otpData} setFormData={setOtpData} />
+          <OtpContainer formData={otpData} setFormData={setOtpData} />
         </div>
         <div className="resend-code">
           <span

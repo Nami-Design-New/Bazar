@@ -2402,6 +2402,12 @@ body main .profile .userInfo .top-wrapper {
   align-items: center;
   gap: 24px;
   position: relative;
+  justify-content: center;
+}
+@media screen and (max-width: 768px) {
+  body main .profile .userInfo .top-wrapper {
+    flex-direction: column;
+  }
 }
 body main .profile .userInfo .top-wrapper .user-avatar-wrapper {
   width: 80px;
@@ -2447,10 +2453,20 @@ body main .profile .userInfo .top-wrapper .userName {
 body main .profile .userInfo .top-wrapper .userName .name {
   font-weight: bold;
 }
+@media screen and (max-width: 768px) {
+  body main .profile .userInfo .top-wrapper .userName .name {
+    text-align: center;
+  }
+}
 body main .profile .userInfo .top-wrapper .userName .email {
   font-weight: normal;
   color: #6b6464;
   font-size: 14px;
+}
+@media screen and (max-width: 768px) {
+  body main .profile .userInfo .top-wrapper .userName .email {
+    text-align: center;
+  }
 }
 body main .profile .userInfo .top-wrapper .userName .userDetails {
   width: 100%;
@@ -2458,6 +2474,12 @@ body main .profile .userInfo .top-wrapper .userName .userDetails {
   align-items: center;
   gap: 24px;
   position: relative;
+}
+@media screen and (max-width: 768px) {
+  body main .profile .userInfo .top-wrapper .userName .userDetails {
+    text-align: center;
+    justify-content: center;
+  }
 }
 body main .profile .userInfo .top-wrapper .userName .userDetails .details-box {
   display: flex;
@@ -2538,7 +2560,6 @@ body main .profile .userInfo .top-wrapper .action-boxes .actions-wrapper .action
   transition: all 0.2s ease-in-out;
 }
 body main .profile .profileNavCol {
-  background-color: #fff;
   border-radius: 16px;
   border: 1px solid #ccc;
   margin-bottom: 50px;
@@ -2639,8 +2660,18 @@ body main .profile .tabs-section {
   display: flex;
   padding: 0 !important;
 }
+@media screen and (max-width: 768px) {
+  body main .profile .tabs-section {
+    flex-direction: column;
+  }
+}
 body main .profile .tabs-section .nav-tabs .nav-item {
   flex: unset !important;
+}
+@media screen and (max-width: 768px) {
+  body main .profile .tabs-section .nav-tabs .nav-item {
+    flex: 1 0 !important;
+  }
 }
 body main .profile .tabs-section .nav-tabs .nav-item:first-of-type button {
   border-end-start-radius: 12px !important;
@@ -3456,11 +3487,12 @@ body main .order-card .card-header .heading .progress-status {
   align-items: center;
   justify-content: center;
   position: relative;
-  font-size: 14px;
+  font-size: 16px;
   background-color: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
   color: #fff;
   border-radius: 12px;
   transition: all 0.2s ease-in-out;
+  min-width: 140px;
 }
 body main .order-card .card-header .heading .progress-status.pending {
   background-color: #0467d0;
@@ -7106,6 +7138,13 @@ body .terms-condition-alert {
 body .terms-condition-alert,
 body .terms-condition-alert a {
   white-space: nowrap;
+}
+body .one-line-wrap {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  padding-left: 16px;
 }
 body.en {
   direction: ltr;

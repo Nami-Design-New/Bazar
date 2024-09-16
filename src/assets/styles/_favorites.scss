@@ -397,11 +397,12 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        font-size: 14px;
+        font-size: 16px;
         background-color: linear-gradient(238.2deg, $second 0%, $main 100%);
         color: $white;
         border-radius: 12px;
         transition: $transition;
+        min-width: 140px;
 
         &.pending {
           background-color: #0467d0;

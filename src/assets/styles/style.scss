@@ -682,6 +682,14 @@ body {
     }
   }
 
+  .one-line-wrap {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding-left: 16px;
+  }
+
   &.en {
     direction: ltr;
     font-family: "Poppins", sans-serif;

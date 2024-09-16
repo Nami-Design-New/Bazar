@@ -18,7 +18,7 @@ function ProfileTabs({ user, isMyAccount }) {
     <div className="tabs-section">
       <Tabs
         className="profileNavCol col-md-5 col-lg-4 col-xl-3 p-2"
-        defaultActiveKey="orders"
+        defaultActiveKey="ads"
         id="uncontrolled-tab-example"
       >
         {/* ADs */}
