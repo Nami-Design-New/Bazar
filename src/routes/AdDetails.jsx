@@ -190,7 +190,7 @@ function AdDetails() {
             <div className="col-lg-4 p-0 p-md-3">
               <div className="advertiserDetails">
                 <Link
-                  to={`/profile/${ad?.data?.user?.id || "1"}`}
+                  to={`/profile/${ad?.data?.user?.id}`}
                   className="advertiser"
                 >
                   <img

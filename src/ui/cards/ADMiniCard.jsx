@@ -26,7 +26,7 @@ function ADMiniCard({ ad }) {
 
   return (
     <Link
-      to={`/ad-details/${ad?.id || "1"}`}
+      to={`/ad-details/${ad?.id}`}
       className="ad-mini-card activity-card"
       onClick={handleLinkClick}
     >
