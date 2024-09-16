@@ -4,7 +4,7 @@ import { useState } from "react";
 import { calculateDate } from "../../utils/helpers";
 import ConfirmationModal from "../modals/ConfirmationModal";
 
-function FavoriteADCard({ ad, isMyAccount, type }) {
+function FavoriteADCard({ ad, isMyAccount }) {
   const { t } = useTranslation();
 
   function handleToggleFavorite(e) {
@@ -36,7 +36,7 @@ function FavoriteADCard({ ad, isMyAccount, type }) {
 
   return (
     <Link
-      to={`/${type === "order" ? "order" : "ad"}-details/${ad?.id || "1"}`}
+      to={`/ad-details/${ad?.id}`}
       className={`fav-ad-card`}
       onClick={handleLinkClick}
     >
@@ -45,11 +45,13 @@ function FavoriteADCard({ ad, isMyAccount, type }) {
           <img src={ad?.image?.image} alt={ad?.title || "AD image"} />
         </div>
         <div className="card-content">
-          <span className="price ">
-            {ad?.price} {t("currency.sar")}
-          </span>
-          <h5 className="title ">{ad?.title}</h5>
-          <p className="sub-title ">{ad?.description}</p>
+          {ad?.price && (
+            <span className="price">
+              {ad?.price} {t("currency.sar")}
+            </span>
+          )}
+          <h5 className="title one-line-wrap">{ad?.title}</h5>
+          <p className="sub-title one-line-wrap">{ad?.description}</p>
           {!ad && (
             <div className="categories-wrapper">
               <Link to="" className="category ">
@@ -72,8 +74,8 @@ function FavoriteADCard({ ad, isMyAccount, type }) {
               >
                 <i className="fa-regular fa-trash "></i>
               </span>
-              <Link to={`/add-ad/${ad?.id || "1"}`} className="action-btn edit">
-                <i className="fa-regular fa-pen-to-square "></i>
+              <Link to={`/add-ad/${ad?.id}`} className="action-btn edit">
+                <i className="fa-regular fa-pen-to-square"></i>
               </Link>
             </>
           ) : (

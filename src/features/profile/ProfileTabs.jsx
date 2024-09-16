@@ -8,6 +8,7 @@ import DataLoader from "../../ui/DataLoader";
 import FavoriteADCard from "../../ui/cards/FavoriteADCard";
 import EmptyData from "../../ui/EmptyData";
 import { subscriptionRemainingDays } from "../../utils/helpers";
+import OrderCard from "../../ui/cards/OrderCard.jsx";
 
 function ProfileTabs({ user, isMyAccount }) {
   const { t } = useTranslation();
@@ -17,7 +18,7 @@ function ProfileTabs({ user, isMyAccount }) {
     <div className="tabs-section">
       <Tabs
         className="profileNavCol col-md-5 col-lg-4 col-xl-3 p-2"
-        defaultActiveKey="ads"
+        defaultActiveKey="orders"
         id="uncontrolled-tab-example"
       >
         {/* ADs */}
@@ -51,25 +52,12 @@ function ProfileTabs({ user, isMyAccount }) {
           title={t("profile.orders")}
           className="tab_item p-2"
         >
-          {isMyAccount && (
-            <div className="w-100 btn-wrapper d-flex justify-content-end mb-3 p-2">
-              <Link to="/add-order" className="custom-btn stroke">
-                <span>
-                  <IconCirclePlus stroke={2} /> {t("orders.addOrder")}
-                </span>
-              </Link>
-            </div>
-          )}
           {ordersLoading ? (
             <DataLoader minHeight="200px" />
           ) : orders?.data && orders?.data?.length > 0 ? (
             orders?.data?.map((order) => (
               <div className="col-lg-6 col-12 p-3" key={order?.id}>
-                <FavoriteADCard
-                  ad={order}
-                  type="order"
-                  isMyAccount={isMyAccount}
-                />
+                <OrderCard order={order} isMyAccount={isMyAccount} />
               </div>
             ))
           ) : (
