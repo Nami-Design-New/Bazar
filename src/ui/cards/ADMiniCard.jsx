@@ -38,10 +38,8 @@ function ADMiniCard({ ad }) {
           <span className="price ">
             {ad?.price || "200.00"} {t("currency.sar")}
           </span>
-          <h5 className="title ">
-            {ad?.title || "فيلا في الرياض "}
-          </h5>
-          <p className="sub-title ">
+          <h5 className="title ">{ad?.title || "فيلا في الرياض "}</h5>
+          <p className="sub-title one-line-wrap">
             {ad?.description || "فيلا 150 م بحديقه و بول"}
           </p>
           <div className="categories-wrapper">

@@ -5,12 +5,12 @@ import { useCookies } from "react-cookie";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { setIsLogged, setUser } from "../../redux/slices/authedUser";
-// import Otpcontainer from "../../ui/form-elements/OtpContainer";
+import OtpContainer from "../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axios from "../../utils/axios";
 import headerImg from "../../assets/images/forget-2.svg";
 
-const ConfirmOtp = ({ otpData, setOtpData, formData }) => {
+const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -38,12 +38,9 @@ const ConfirmOtp = ({ otpData, setOtpData, formData }) => {
     setLoading(true);
     try {
       const res = await axios.request(checkCodeRequest);
-      console.log("otp", res);
-
       if (res.data.code === 200) {
-        // toast.success(t("auth.registerSuccess"));
-        console.log(formData);
-
+        toast.success(t("auth.registerSuccess"));
+        navigate("/");
         const login = await axios.post("/user/register", formData);
         console.log("login", login);
         if (login.data.code === 200) {
@@ -83,12 +80,16 @@ const ConfirmOtp = ({ otpData, setOtpData, formData }) => {
         <img src={headerImg} alt="forget password" />
       </div>
       <div className="form-title">
-        <h5 className="sub-title">{t("auth.enterOTP")}</h5>
+        <h5 className="sub-title">
+          {t(`${phone ? "auth.enterPhoneOTP" : "auth.enterOTP"}`)}{" "}
+          <span className="">{phone}</span>
+        </h5>
       </div>
       <form
         className="form forgetpasswordForm otp-small"
         onSubmit={handleSubmit}
       >
+        <OtpContainer formData={otpData} setFormData={setOtpData} />
         <SubmitButton
           loading={loading}
           name={t("auth.createAccount")}

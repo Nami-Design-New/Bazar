@@ -40,7 +40,7 @@ function Profile() {
       <SectionHeader />
       {user ? (
         <div className="content-wrapper container col-lg-10 col-12">
-          <div className="row">
+          <div className="row px-2">
             <div className="userInfo">
               <div className="top-wrapper">
                 <div className="user-avatar-wrapper">
@@ -56,13 +56,13 @@ function Profile() {
                   <h6 className="email">{user?.email}</h6>
                   <div className="userDetails">
                     {user?.phone && (
-                      <span className="details-box phone">
+                      <Link to={`tel:+966${user?.phone}`} className="details-box phone">
                         <i className="fa-regular fa-phone "></i>
                         +966{user?.phone}
-                      </span>
+                      </Link>
                     )}
                     {/* <span className="details-box location">
-                    <i className="fa-sharp fa-solid fa-location-dot "></i>
+                    <i className="fa-sharp fa-solid fa-location-\ "></i>
                     السعودية, الرياض
                   </span> */}
                   </div>
