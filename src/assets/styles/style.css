@@ -1672,10 +1672,37 @@ body main .hero-section .categories .category .img img {
 }
 body main .categories_section {
   padding: 40px 0;
+  transition: all 0.2s ease-in-out;
 }
 @media screen and (min-width: 768px) {
   body main .categories_section .row {
     margin: 0 -16px;
+  }
+}
+body main .categories_section .skeleton-container {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: nowrap;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+body main .categories_section .skeleton-container .skeleton-item {
+  flex: 1;
+  border-radius: 12px;
+  height: 120px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }
 body main .categories_section .category {
@@ -1688,6 +1715,7 @@ body main .categories_section .category {
   position: relative;
   background: #fff;
   height: 100%;
+  transition: all 0.2s ease-in-out;
 }
 body main .categories_section .category .text {
   flex: 1;
@@ -3058,6 +3086,12 @@ body main .fav-market-card .card-header {
   min-height: 140px;
   aspect-ratio: 3/2;
 }
+body main .fav-market-card .card-header.no-overlay .cover-wrapper {
+  box-shadow: 0px -1px 6px 0px rgba(0, 0, 0, 0.1490196078);
+}
+body main .fav-market-card .card-header.no-overlay .cover-wrapper::after {
+  content: none !important;
+}
 body main .fav-market-card .card-header .cover-wrapper {
   width: 100%;
   height: 100%;
@@ -3176,6 +3210,14 @@ body main .fav-market-card .card-details {
   flex-direction: column;
   gap: 24px;
   position: relative;
+}
+body main .fav-market-card .card-details .coupon-title {
+  font-weight: 600;
+  font-size: 20px;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  text-wrap: balance;
 }
 body main .fav-market-card .card-details .description {
   width: 100%;
@@ -6282,7 +6324,6 @@ body main .search-btn {
 }
 body main .topHead {
   display: flex;
-  flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
@@ -6291,7 +6332,6 @@ body main .topHead {
 }
 @media screen and (max-width: 768px) {
   body main .topHead {
-    flex-direction: column;
     align-items: start;
   }
 }

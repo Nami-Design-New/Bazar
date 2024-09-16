@@ -1,82 +1,67 @@
 import { useTranslation } from "react-i18next";
-import marketCoverImage from "../assets/images/market-cover-1.png";
-import marketLogoImage from "../assets/images/market-logo-1.jpg";
-import { useState } from "react";
-import { Form } from "react-bootstrap";
+// import { useState } from "react";
+// import { Form } from "react-bootstrap";
 import CouponCard from "../ui/cards/CouponCard";
-import { useNavigate } from "react-router-dom";
+import SectionHeader from "../ui/layout/SectionHeader";
+import MarketBanner from "../features/market-details/MarketBanner";
+import useMarketCoupons from "../features/markets/useMarketCoupons";
+import DataLoader from "../ui/DataLoader";
+import useMarketDetails from "../features/markets/useMarketDetails";
+import EmptyData from "../ui/EmptyData";
 
 function CouponDetails() {
   const { t } = useTranslation();
-  const [isAdded, setIsAdded] = useState(false);
-  const [isFollowing, setIsFollowing] = useState(false);
-  const [wantNotifications, setWantNotifications] = useState(false);
-  const navigate = useNavigate();
+  // const [wantNotifications, setWantNotifications] = useState(false);
+  const { isLoading: couponsLoading, data: coupons } = useMarketCoupons();
+  const { isLoading: marketLoading, data: market } = useMarketDetails();
 
-  return (
-    <div className="market-details-page coupon-details-page">
-      <div className="page-header">
-        <div className="cover-wrapper">
-          <img src={marketCoverImage} alt="market cover image" />
-        </div>
-        <div className="top-wrapper">
-          <div className="btns-wrapper">
-            <span className="btn-box back" onClick={() => navigate(-1)}>
-              <i className="fa-regular fa-arrow-right"></i>
-            </span>
-          </div>
-          <div className="logo-follow-wrapper">
-            <div className="logo-wrapper">
-              <img src={marketLogoImage} alt="market logo image" />
-            </div>
+  console.log(coupons);
 
-            <div className="action-boxes">
-              <span
-                className="action-btn follow"
-                onClick={() => setIsFollowing(!isFollowing)}
-              >
-                {isFollowing ? t("following") : t("follow")}
-              </span>
-              <span
-                className="action-btn add"
-                onClick={() => setIsAdded(!isAdded)}
-              >
-                <i
-                  className={`fa-regular fa-user-${isAdded ? "check" : "plus"}`}
-                ></i>
-              </span>
+  return couponsLoading || marketLoading ? (
+    <DataLoader minHeight="200px" />
+  ) : (
+    <>
+      <SectionHeader title={market?.data?.name} backLinks={["markets"]} />
+      <section className="market-details-page ">
+        <div className="container">
+          <div className="row m-0">
+            <div className="col-12 p-2">
+              <MarketBanner market={market} />
+            </div>
+            <div className="col-12 p-2">
+              <div className="content-wrapper container col-lg-10 col-12 align-items-center">
+                {/* <div className="notification-box">
+                  <div className="icon-box">
+                    <i className="fa-solid fa-bell gradient-icon"></i>
+                  </div>
+                  <p>ارسل لي اشعار عندما يتم اضافة عروض جديده على هذا الكود</p>
+                  <Form.Switch
+                    id="wantChangePassword"
+                    name="wantChangePassword"
+                    checked={wantNotifications}
+                    onChange={() => setWantNotifications(!wantNotifications)}
+                  />
+                </div> */}
+                {coupons?.data && coupons?.data?.length > 0 ? (
+                  coupons?.data?.map((coupon) => (
+                    <div
+                      className="col-lg-4 col-md-6 col-12 p-2"
+                      key={coupon?.id}
+                    >
+                      <CouponCard coupon={coupon} />
+                    </div>
+                  ))
+                ) : (
+                  <EmptyData minHeight={"300px"}>
+                    {t("markets.noCoupons")}
+                  </EmptyData>
+                )}
+              </div>
             </div>
           </div>
-          <div className="btns-wrapper">
-            <span className="btn-box share">
-              <i className="fa-sharp fa-solid fa-share-nodes"></i>
-            </span>
-          </div>
         </div>
-        <div className="info-wrapper">
-          <h3>متجر كرفور</h3>
-          <p>
-            الجروب مخصص فقط لكل ما يخص اعمال النجاره مثل الموبيليات و الديكور و
-            الباب و الشباك
-          </p>
-        </div>
-      </div>
-      <div className="content-wrapper container col-lg-10 col-12">
-        <div className="notification-box">
-          <div className="icon-box">
-            <i className="fa-solid fa-bell "></i>
-          </div>
-          <p>ارسل لي اشعار عندما يتم اضافة عروض جديده على هذا الكود</p>
-          <Form.Switch
-            id="wantChangePassword"
-            name="wantChangePassword"
-            checked={wantNotifications}
-            onChange={() => setWantNotifications(!wantNotifications)}
-          />
-        </div>
-        <CouponCard />
-      </div>
-    </div>
+      </section>
+    </>
   );
 }
 
