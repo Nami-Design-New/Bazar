@@ -67,7 +67,12 @@ function CartItem({ type, item }) {
             <p>
               {" "}
               <i className="fa-regular fa-tags"></i>{" "}
-              <span>{item?.product?.price}</span> {t("currency.sar")}
+              <span>
+                {item?.product?.offer_price
+                  ? item?.product?.offer_price
+                  : item?.product?.price}
+              </span>{" "}
+              {t("currency.sar")}
             </p>
           </div>
         </Link>
@@ -89,7 +94,12 @@ function CartItem({ type, item }) {
             </div>
             <div className="total">
               <p>
-                الاجمالي : <span>{item?.product?.price * item.quantity}</span>{" "}
+                الاجمالي :{" "}
+                <span>
+                  {(item?.product?.offer_price
+                    ? item?.product?.offer_price
+                    : item?.product?.price) * item.quantity}
+                </span>{" "}
                 {t("currency.sar")}
               </p>
               <button onClick={() => setShowConfirmation(true)}>

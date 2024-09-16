@@ -224,7 +224,7 @@
     "addCoupon": "اضف كوبون الخصم",
     "paymentMethod": "طريقة الدفع",
     "visa": "فيزا",
-    "cach": "كاش",
+    "cash": "كاش",
     "wallet": "محفظة",
     "visaNumber": "رقم الفيزا",
     "empty": "السلة فارغة، تسوق الآن وأضف منتجاتك!",
@@ -255,6 +255,14 @@
     "onlineStore": "اونلاين استور",
     "market": "متجر",
     "coupon": "كوبون خصم"
+  },
+  "chat": {
+    "block": "حظر",
+    "report": "ابلاغ",
+    "writeHere": "اكتب هنا...",
+    "chats": "المحادثات",
+    "attachment": "مرفق",
+    "deletedAccount": "حساب محذوف"
   },
   "createdAt": "تم الإنشاء في",
   "orderedAt": "تم الطلب في",

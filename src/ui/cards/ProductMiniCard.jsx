@@ -67,7 +67,8 @@ function ProductMiniCard({ product, marketId }) {
 
         <div className="price_buy">
           <h6>
-            {product?.offer_price || 300} {t("currency.sar")}
+            {product?.offer_price ? product?.offer_price : product?.price}{" "}
+            {t("currency.sar")}
           </h6>
           <button onClick={inCart ? handleDeleteItem : handleAddToCart}>
             {inCart ? (
@@ -79,16 +80,19 @@ function ProductMiniCard({ product, marketId }) {
           </button>
         </div>
         <div className="rate_sale">
-          <p>
-            <span className="old_price">
-              {product?.price} {t("currency.sar")}
-            </span>{" "}
-            <span className="sale">
-              خصم{" "}
-              {((product?.price - product?.offer_price) / product?.price) * 100}
-              %
-            </span>
-          </p>
+          {product?.offer_price && (
+            <p>
+              <span className="old_price">
+                {product?.price} {t("currency.sar")}
+              </span>{" "}
+              <span className="sale">
+                خصم{" "}
+                {((product?.price - product?.offer_price) / product?.price) *
+                  100}
+                %
+              </span>
+            </p>
+          )}
         </div>
       </div>
     </div>

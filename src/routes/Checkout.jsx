@@ -32,7 +32,7 @@ function Checkout() {
     discount: 0,
     total: 0,
     coupon: "",
-    payment_method: "",
+    payment_method: "cash",
     delivery_price: ""
   });
 
@@ -50,13 +50,23 @@ function Checkout() {
     setFormData((prev) => ({
       ...prev,
       sub_total: cart?.reduce(
-        (count, item) => count + item.quantity * item?.product?.price,
+        (count, item) =>
+          count +
+          item.quantity *
+            (item?.product?.offer_price
+              ? item?.product?.offer_price
+              : item?.product?.price),
         0
       ),
 
       taxes:
         cart?.reduce(
-          (count, item) => count + item.quantity * item?.product?.price,
+          (count, item) =>
+            count +
+            item.quantity *
+              (item?.product?.offer_price
+                ? item?.product?.offer_price
+                : item?.product?.price),
           0
         ) * 0.15,
 
@@ -156,7 +166,12 @@ function Checkout() {
                         </p>
                         <p>
                           الاجمالي :{" "}
-                          <span>{c?.product?.price * c?.quantity}</span> ريال
+                          <span>
+                            {(c?.product?.offer_price
+                              ? c?.product?.offer_price
+                              : c?.product?.price) * c?.quantity}
+                          </span>{" "}
+                          ريال
                         </p>
                       </div>
                     </div>
@@ -249,16 +264,16 @@ function Checkout() {
                   <div className="paymentMethod-wrapper">
                     <h6>{t("cart.paymentMethod")}</h6>
                     <div className="radios">
-                      <label htmlFor="cach">
+                      <label htmlFor="cash">
                         <input
                           type="radio"
                           name="payment_method"
-                          id="cach"
-                          value="cach"
-                          checked={formData?.payment_method === "cach"}
+                          id="cash"
+                          value="cash"
+                          checked={formData?.payment_method === "cash"}
                           onChange={(e) => handleChange(e)}
                         />
-                        <span className="address">{t("cart.cach")}</span>
+                        <span className="address">{t("cart.cash")}</span>
                       </label>
 
                       <label htmlFor="wallet">
