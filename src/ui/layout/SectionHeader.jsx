@@ -15,13 +15,13 @@ function SectionHeader({ title, backLinks }) {
             data-aos="fade-up"
           >
             <Link to="/">{t("routes.home")}</Link>
-            <span className="gradient-text"> / </span>
+            <span className=""> / </span>
             {backLinks?.map((link, index) => (
               <Fragment key={index}>
                 <Link to={`/${link}`} key={index}>
                   {t(`routes.${link}`)}
                 </Link>
-                <span className="gradient-text"> / </span>
+                <span className=""> / </span>
               </Fragment>
             ))}
 

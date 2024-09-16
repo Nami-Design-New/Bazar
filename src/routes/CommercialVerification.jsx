@@ -61,7 +61,7 @@ function CommercialVerification() {
           <h6>{t("profile.planPrice")}</h6>
           <div className="content d-flex gap-3 align-items-center justify-content-between">
             <span className="title">{plan}</span>
-            <span className="price gradient-text">300 {t("currency.sar")}</span>
+            <span className="price ">300 {t("currency.sar")}</span>
           </div>
         </div>
         <div className="submit-wrapper col-12">

@@ -35,17 +35,17 @@ function ADMiniCard({ ad }) {
           <img src={ad?.image?.image || adImage} alt="AD image" />
         </div>
         <div className="card-content">
-          <span className="price gradient-text">
+          <span className="price ">
             {ad?.price || "200.00"} {t("currency.sar")}
           </span>
-          <h5 className="title one-line-wrap">
+          <h5 className="title ">
             {ad?.title || "فيلا في الرياض "}
           </h5>
-          <p className="sub-title one-line-wrap">
+          <p className="sub-title ">
             {ad?.description || "فيلا 150 م بحديقه و بول"}
           </p>
           <div className="categories-wrapper">
-            <Link to="" className="category gradient-text">
+            <Link to="" className="category ">
               <i className="fa-regular fa-apartment"></i>
               {t("categories.estates")}
             </Link>
@@ -54,28 +54,28 @@ function ADMiniCard({ ad }) {
         </div>
         <div className="action-boxes">
           <span className="action-btn delete" onClick={handleOpenConfirmation}>
-            <i className="fa-regular fa-trash gradient-icon"></i>
+            <i className="fa-regular fa-trash "></i>
           </span>
           <span className="action-btn edit">
-            <i className="fa-regular fa-pen-to-square gradient-icon"></i>
+            <i className="fa-regular fa-pen-to-square "></i>
           </span>
         </div>
       </div>
       <div className="card-statistics">
         <div className="statistic">
-          <i className="fa-regular fa-eye gradient-icon"></i>
+          <i className="fa-regular fa-eye "></i>
           <span className="value">5</span>
         </div>
         <div className="statistic">
-          <i className="fa-regular fa-phone gradient-icon"></i>
+          <i className="fa-regular fa-phone "></i>
           <span className="value">5</span>
         </div>
         <div className="statistic">
-          <i className="fa-regular fa-comment-lines gradient-icon"></i>
+          <i className="fa-regular fa-comment-lines "></i>
           <span className="value">5</span>
         </div>
         <div className="statistic">
-          <i className="fa-regular fa-heart gradient-icon"></i>
+          <i className="fa-regular fa-heart "></i>
           <span className="value">5</span>
         </div>
       </div>

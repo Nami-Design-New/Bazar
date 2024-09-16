@@ -46,7 +46,7 @@ function FavoriteADCard({ ad, isMyAccount }) {
         </div>
         <div className="card-content">
           {ad?.price && (
-            <span className="price gradient-text">
+            <span className="price">
               {ad?.price} {t("currency.sar")}
             </span>
           )}
@@ -54,7 +54,7 @@ function FavoriteADCard({ ad, isMyAccount }) {
           <p className="sub-title one-line-wrap">{ad?.description}</p>
           {!ad && (
             <div className="categories-wrapper">
-              <Link to="" className="category gradient-text">
+              <Link to="" className="category ">
                 <i className="fa-regular fa-apartment"></i>
                 {t("categories.estates")}
               </Link>
@@ -72,10 +72,10 @@ function FavoriteADCard({ ad, isMyAccount }) {
                 className="action-btn delete"
                 onClick={handleOpenConfirmation}
               >
-                <i className="fa-regular fa-trash gradient-icon"></i>
+                <i className="fa-regular fa-trash "></i>
               </span>
               <Link to={`/add-ad/${ad?.id}`} className="action-btn edit">
-                <i className="fa-regular fa-pen-to-square gradient-icon"></i>
+                <i className="fa-regular fa-pen-to-square"></i>
               </Link>
             </>
           ) : (
@@ -93,25 +93,25 @@ function FavoriteADCard({ ad, isMyAccount }) {
       <div className="card-statistics">
         {ad?.view_count || ad?.view_count === 0 ? (
           <div className="statistic">
-            <i className="fa-regular fa-eye gradient-icon"></i>
+            <i className="fa-regular fa-eye "></i>
             <span className="value">{ad?.view_count}</span>
           </div>
         ) : null}
         {ad?.phones_count || ad?.phones_count === 0 ? (
           <div className="statistic">
-            <i className="fa-regular fa-phone gradient-icon"></i>
+            <i className="fa-regular fa-phone "></i>
             <span className="value">{ad?.phones_count}</span>
           </div>
         ) : null}
         {ad?.chats_count || ad?.chats_count === 0 ? (
           <div className="statistic">
-            <i className="fa-regular fa-comment-lines gradient-icon"></i>
+            <i className="fa-regular fa-comment-lines "></i>
             <span className="value">{ad?.chats_count}</span>
           </div>
         ) : null}
         {ad?.favorites_count || ad?.favorites_count === 0 ? (
           <div className="statistic">
-            <i className="fa-regular fa-heart gradient-icon"></i>
+            <i className="fa-regular fa-heart "></i>
             <span className="value">{ad?.favorites_count}</span>
           </div>
         ) : null}

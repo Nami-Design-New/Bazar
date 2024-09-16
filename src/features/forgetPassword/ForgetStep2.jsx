@@ -67,7 +67,7 @@ function ForgetStep2({ setStep, otpData, setOtpData, phone }) {
       <div className="form-title">
         <h5 className="sub-title">
           {t(`${phone ? "auth.enterPhoneOTP" : "auth.enterOTP"}`)}{" "}
-          <span className="gradient-text">{phone}</span>
+          <span className="">{phone}</span>
         </h5>
       </div>
       <form onSubmit={handleSubmit}>
@@ -80,7 +80,7 @@ function ForgetStep2({ setStep, otpData, setOtpData, phone }) {
             className={`resend_link ${resendDisabled ? "disabled" : ""}`}
           >
             {t("auth.didnotReceiveCode")}
-            <span className="gradient-text">{t("auth.resendCode")}</span>
+            <span className="">{t("auth.resendCode")}</span>
           </span>
           <div className="timer">
             <span>

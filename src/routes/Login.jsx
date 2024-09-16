@@ -101,7 +101,7 @@ function Login() {
                 onChange={handleChange}
               />
 
-              <Link to="/forget-password" className="forgetpass gradient-text">
+              <Link to="/forget-password" className="forgetpass ">
                 {t("auth.forgetPassword")}
               </Link>
 
@@ -119,7 +119,7 @@ function Login() {
               <div className="d-flex gap-2 flex-lg-row flex-column w-100">
                 <Link to="/register" className="noAccount">
                   {t("auth.don'tHaveAccount")}{" "}
-                  <span className="gradient-text">
+                  <span className="">
                     {t("auth.createAccount")}
                   </span>
                 </Link>

@@ -35,12 +35,12 @@ function OrderMiniCard() {
           <img src={orderImage} alt="order image" />
         </div>
         <div className="card-content">
-          <span className="price gradient-text">
+          <span className="price ">
             200.000 {t("currency.sar")}
           </span>
-          <h5 className="title one-line-wrap">مطلوب سياره AGM مستعمله</h5>
+          <h5 className="title ">مطلوب سياره AGM مستعمله</h5>
           <div className="categories-wrapper">
-            <Link to="" className="category gradient-text">
+            <Link to="" className="category ">
               <i className="fa-solid fa-cars"></i> {t("categories.cars")}
             </Link>
           </div>
@@ -48,28 +48,28 @@ function OrderMiniCard() {
         </div>
         <div className="action-boxes">
           <span className="action-btn delete" onClick={handleOpenConfirmation}>
-            <i className="fa-regular fa-trash gradient-icon"></i>
+            <i className="fa-regular fa-trash "></i>
           </span>
           <span className="action-btn edit">
-            <i className="fa-regular fa-pen-to-square gradient-icon"></i>
+            <i className="fa-regular fa-pen-to-square "></i>
           </span>
         </div>
       </div>
       <div className="card-statistics">
         <div className="statistic">
-          <i className="fa-regular fa-eye gradient-icon"></i>
+          <i className="fa-regular fa-eye "></i>
           <span className="value">5</span>
         </div>
         <div className="statistic">
-          <i className="fa-regular fa-phone gradient-icon"></i>
+          <i className="fa-regular fa-phone "></i>
           <span className="value">5</span>
         </div>
         <div className="statistic">
-          <i className="fa-regular fa-comment-lines gradient-icon"></i>
+          <i className="fa-regular fa-comment-lines "></i>
           <span className="value">5</span>
         </div>
         <div className="statistic">
-          <i className="fa-regular fa-heart gradient-icon"></i>
+          <i className="fa-regular fa-heart "></i>
           <span className="value">5</span>
         </div>
       </div>

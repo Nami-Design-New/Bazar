@@ -1,20 +1,23 @@
+import { useEffect, useState } from "react";
+import { Modal } from "react-bootstrap";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 import InputField from "./../../ui/form-elements/InputField";
 import MapWithMarker from "../../utils/MapWithMarker";
 import SubmitButton from "./../../ui/form-elements/SubmitButton";
-import { Modal } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import axios from "./../../utils/axios";
 
 const AddAddress = ({ showModal, setShowModal }) => {
+  const queryClient = useQueryClient();
   const [mapLoaded, setMapLoaded] = useState(false);
-  const [loading, setLoading] = useState(true);
-
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     address_title: "",
     recipient_name: "",
     recipient_phone: "",
     address: "",
-    lat: "",
-    lng: ""
+    lat: 24.7136,
+    lng: 46.6753
   });
 
   useEffect(() => {
@@ -29,7 +32,31 @@ const AddAddress = ({ showModal, setShowModal }) => {
     };
   }, []);
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await axios.post("/user/create_address", formData);
+      if (res?.data?.code === 200) {
+        toast.success("تم اضافة العنوان بنجاح");
+        setShowModal(false);
+        queryClient.invalidateQueries(["addresses"]);
+        setFormData({
+          address_title: "",
+          recipient_name: "",
+          recipient_phone: "",
+          address: "",
+          lat: 24.7136,
+          lng: 46.6753
+        });
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Modal
       show={showModal}
@@ -39,18 +66,40 @@ const AddAddress = ({ showModal, setShowModal }) => {
       aria-labelledby="contained-modal-title-vcenter"
     >
       <Modal.Header closeButton>
-        <h6>Add New Destination</h6>
+        <h6>أضف عنوان جديد</h6>
       </Modal.Header>
       <Modal.Body>
         <form className="form" onSubmit={handleSubmit}>
-          <div className="row m-0">
-            <div className="col-lg-6 col-12 p-2">
+          <div className="row m-0 w-100">
+            <div className=" col-12 p-2">
               <InputField
                 label="اسم العنوان"
-                placeholder={"write here"}
+                placeholder="مثال: المنزل"
                 value={formData.address_title}
                 onChange={(e) =>
                   setFormData({ ...formData, address_title: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="col-lg-6 col-12 p-2">
+              <InputField
+                label="اسم المستلم"
+                placeholder="اسم المستلم"
+                value={formData.recipient_name}
+                onChange={(e) =>
+                  setFormData({ ...formData, recipient_name: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="col-lg-6 col-12 p-2">
+              <InputField
+                label="رقم الهاتف"
+                placeholder="هاتف المستلم"
+                value={formData.recipient_phone}
+                onChange={(e) =>
+                  setFormData({ ...formData, recipient_phone: e.target.value })
                 }
               />
             </div>
