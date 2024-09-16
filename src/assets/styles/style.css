@@ -2892,6 +2892,212 @@ body main .fav-ad-card .card-statistics .statistic .value {
     font-size: 16px;
   }
 }
+body main .order-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1490196078);
+  border: 1px solid #fdfdfd;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+body main .order-card .card-header {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  position: relative;
+  background: #f6f6f6;
+  padding: 16px;
+}
+body main .order-card .card-header .image-wrapper {
+  width: 120px;
+  border-radius: 12px 12px 0 0;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+}
+body main .order-card .card-header .image-wrapper img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body main .order-card .card-header .heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  position: relative;
+}
+body main .order-card .card-header .heading h3 {
+  flex: 1 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+body main .order-card .card-header .heading .progress-status {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 14px;
+  background-color: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
+  color: #fff;
+  border-radius: 12px;
+  transition: all 0.2s ease-in-out;
+}
+body main .order-card .card-header .heading .progress-status.pending {
+  background-color: #0467d0;
+}
+body main .order-card .card-header .heading .progress-status.accepted {
+  background-color: #218838;
+}
+body main .order-card .card-header .heading .progress-status.delivering {
+  background-color: #d29f05;
+}
+body main .order-card .card-header .heading .progress-status.completed {
+  background-color: #1ae048;
+}
+body main .order-card .card-header .heading .progress-status.canceled, body main .order-card .card-header .heading .progress-status.user_canceled {
+  background-color: #d9534f;
+}
+body main .order-card .card-header .card-content {
+  flex: 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+}
+body main .order-card .card-header .card-content.favorite {
+  padding: 56px 0 16px;
+}
+body main .order-card .card-header .card-content .title {
+  color: #000;
+  font-size: 18px;
+  margin: 0;
+}
+body main .order-card .card-header .card-content .sub-title {
+  color: #6b6464;
+  font-size: 16px;
+  margin: 0;
+  line-height: 1;
+}
+body main .order-card .card-header .card-content .categories-wrapper {
+  width: 100%;
+  display: flex;
+  gap: 0 24px;
+  flex-wrap: wrap;
+  position: relative;
+}
+body main .order-card .card-header .card-content .categories-wrapper .category {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+body main .order-card .card-header .card-content .date {
+  color: #000;
+}
+body main .order-card .card-header .action-boxes {
+  padding: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+body main .order-card .card-header .action-boxes .action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: rgba(234, 234, 234, 0.5098039216);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+body main .order-card .card-header .action-boxes .action-btn i {
+  font-size: 18px;
+}
+body main .order-card .progress {
+  border-radius: 0 !important;
+  background: var(--white-color) !important;
+}
+body main .order-card .new {
+  background-color: #0467d0;
+}
+body main .order-card .accepted {
+  background-color: #218838;
+}
+body main .order-card .in_delivery {
+  background-color: #d29f05;
+}
+body main .order-card .completed {
+  background-color: #1ae048;
+}
+body main .order-card .canceled,
+body main .order-card .user_canceled {
+  background-color: #d9534f;
+}
+body main .order-card .card-statistics {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 16px;
+  position: relative;
+  padding: 0 16px 16px;
+}
+body main .order-card .card-statistics .statistic {
+  flex: 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 16px;
+  position: relative;
+  white-space: nowrap;
+}
+body main .order-card .card-statistics .statistic:not(:last-of-type)::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color: #ececec;
+  top: 0;
+  left: 0;
+  border-radius: 2px;
+}
+body main .order-card .card-statistics .statistic i {
+  font-size: 20px;
+}
+@media screen and (max-width: 768px) {
+  body main .order-card .card-statistics .statistic i {
+    font-size: 20px;
+  }
+}
+body main .order-card .card-statistics .statistic .value {
+  color: #000;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  font-weight: 600;
+}
+@media screen and (max-width: 768px) {
+  body main .order-card .card-statistics .statistic .value {
+    font-size: 16px;
+  }
+}
 body main .action-btn {
   transition: all 0.2s ease-in-out !important;
 }
@@ -3344,7 +3550,6 @@ body main .market-details-page .content-wrapper .details-wrapper .details-box {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
   position: relative;
 }
 body main .market-details-page .content-wrapper .details-wrapper .details-box .title {
@@ -3559,12 +3764,29 @@ body main .order-details-page .order-details-wrapper {
   flex-direction: column;
   gap: 24px;
 }
+body main .order-details-page .order-details-wrapper .order-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
 body main .order-details-page .order-details-wrapper .status-wrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 36px;
   position: relative;
+}
+body main .order-details-page .order-details-wrapper .status-wrapper .status-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+  position: relative;
+}
+body main .order-details-page .order-details-wrapper .status-wrapper .status-footer .custom-btn {
+  width: unset !important;
+  padding: 8px 24px !important;
 }
 body main .order-details-page .order-details-wrapper .status-wrapper .status-header {
   display: flex;
@@ -3573,6 +3795,22 @@ body main .order-details-page .order-details-wrapper .status-wrapper .status-hea
   position: relative;
   gap: 16px;
 }
+body main .order-details-page .order-details-wrapper .status-wrapper .status-header .image-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  overflow: hidden;
+}
+body main .order-details-page .order-details-wrapper .status-wrapper .status-header .image-wrapper img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 body main .order-details-page .order-details-wrapper .status-wrapper .status-header .info {
   display: flex;
   flex: 1 0;
@@ -3580,16 +3818,25 @@ body main .order-details-page .order-details-wrapper .status-wrapper .status-hea
   gap: 8px;
   position: relative;
 }
+body main .order-details-page .order-details-wrapper .status-wrapper .status-header .info h5 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  font-weight: 600;
+}
+body main .order-details-page .order-details-wrapper .status-wrapper .status-header .info h5 .box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  font-size: 16px;
+  font-weight: 400;
+}
 body main .order-details-page .order-details-wrapper .status-wrapper .status-header .info .info-boxes {
   display: flex;
   align-items: center;
   gap: 24px;
-  position: relative;
-}
-body main .order-details-page .order-details-wrapper .status-wrapper .status-header .info .info-boxes .box {
-  display: flex;
-  align-items: center;
-  gap: 8px;
   position: relative;
 }
 body main .order-details-page .order-details-wrapper .status-wrapper .status-header .icon {
@@ -3608,6 +3855,21 @@ body main .order-details-page .order-details-wrapper .status-wrapper .status-hea
 }
 body main .order-details-page .order-details-wrapper .status-wrapper .status-header .icon i.active {
   color: #3fa218;
+}
+body main .order-details-page .order-details-wrapper .status-wrapper .status-header .icon i.pending {
+  color: #0467d0;
+}
+body main .order-details-page .order-details-wrapper .status-wrapper .status-header .icon i.accepted {
+  color: #218838;
+}
+body main .order-details-page .order-details-wrapper .status-wrapper .status-header .icon i.delivering {
+  color: #d29f05;
+}
+body main .order-details-page .order-details-wrapper .status-wrapper .status-header .icon i.completed {
+  color: #1ae048;
+}
+body main .order-details-page .order-details-wrapper .status-wrapper .status-header .icon i.canceled, body main .order-details-page .order-details-wrapper .status-wrapper .status-header .icon i.user_canceled {
+  color: #d9534f;
 }
 body main .order-details-page .order-details-wrapper .status-progress {
   width: 100%;
@@ -3630,7 +3892,21 @@ body main .order-details-page .order-details-wrapper .status-progress .progress-
 }
 body main .order-details-page .order-details-wrapper .status-progress .progress-line.active {
   background-color: transparent !important;
-  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
+}
+body main .order-details-page .order-details-wrapper .status-progress .progress-line.active.pending-accepted {
+  background: linear-gradient(238.2deg, #0467d0 0%, #218838 100%);
+}
+body main .order-details-page .order-details-wrapper .status-progress .progress-line.active.pending-canceled {
+  background: linear-gradient(238.2deg, #0467d0 0%, #d9534f 100%);
+}
+body main .order-details-page .order-details-wrapper .status-progress .progress-line.active.accepted-delivering {
+  background: linear-gradient(238.2deg, #218838 0%, #d29f05 100%);
+}
+body main .order-details-page .order-details-wrapper .status-progress .progress-line.active.accepted-completed {
+  background: linear-gradient(238.2deg, #218838 0%, #1ae048 100%);
+}
+body main .order-details-page .order-details-wrapper .status-progress .progress-line.active.delivering-completed {
+  background: linear-gradient(238.2deg, #d29f05 0%, #1ae048 100%);
 }
 body main .order-details-page .order-details-wrapper .status-progress .progress-box {
   position: relative;
@@ -3661,21 +3937,36 @@ body main .order-details-page .order-details-wrapper .status-progress .progress-
   font-size: 24px;
   color: #beb3b3;
 }
-body main .order-details-page .order-details-wrapper .status-progress .progress-box .icon-box i.active {
-  color: #3fa218;
+body main .order-details-page .order-details-wrapper .status-progress .progress-box .icon-box i.active.pending {
+  color: #0467d0;
+}
+body main .order-details-page .order-details-wrapper .status-progress .progress-box .icon-box i.active.accepted {
+  color: #218838;
+}
+body main .order-details-page .order-details-wrapper .status-progress .progress-box .icon-box i.active.delivering {
+  color: #d29f05;
+}
+body main .order-details-page .order-details-wrapper .status-progress .progress-box .icon-box i.active.completed {
+  color: #1ae048;
+}
+body main .order-details-page .order-details-wrapper .status-progress .progress-box .icon-box i.active.canceled, body main .order-details-page .order-details-wrapper .status-progress .progress-box .icon-box i.active.user_canceled {
+  color: #d9534f;
 }
 body main .order-details-page .order-details-wrapper .details-wrapper {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 24px;
+  position: relative;
+}
+body main .order-details-page .order-details-wrapper .details-wrapper .order-section {
+  background-color: #fafafa;
+  border-radius: 12px;
+  padding: 16px;
   position: relative;
 }
 body main .order-details-page .order-details-wrapper .details-wrapper .details-box {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
   position: relative;
 }
 body main .order-details-page .order-details-wrapper .details-wrapper .details-box .title {
@@ -3692,9 +3983,12 @@ body main .order-details-page .order-details-wrapper .details-wrapper .details-b
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #fff;
+  padding: 8px;
+  border-radius: 50%;
 }
 body main .order-details-page .order-details-wrapper .details-wrapper .details-box .title .icon i {
-  font-size: 28px;
+  font-size: 20px;
 }
 body main .order-details-page .order-details-wrapper .details-wrapper .details-box .sub-title {
   color: #6b6464;
@@ -3705,7 +3999,34 @@ body main .order-details-page .order-details-wrapper .details-wrapper .details-b
   position: relative;
   display: flex;
 }
-body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol {
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu .order-product-item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 24px;
+}
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu .order-product-item:not(:last-of-type) {
+  padding-bottom: 24px;
+  border-bottom: 1px solid #d9d9d9;
+}
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu .order-product-item .image-wrapper {
+  width: 68px;
+  height: 68px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  overflow: hidden;
+}
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu .order-product-item .image-wrapper img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol,
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ul {
   width: 100%;
   padding: 0;
   padding-right: 56px;
@@ -3713,7 +4034,12 @@ body main .order-details-page .order-details-wrapper .details-wrapper .details-b
   flex-direction: column;
   gap: 24px;
 }
-body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol > li:not(:last-of-type)::after {
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol.no-indent,
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ul.no-indent {
+  padding-right: 16px;
+}
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol > li:not(:last-of-type)::after,
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ul > li:not(:last-of-type)::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -3722,32 +4048,47 @@ body main .order-details-page .order-details-wrapper .details-wrapper .details-b
   bottom: -12px;
   left: 0;
 }
-body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol li {
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol li,
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ul li {
   position: relative;
-}
-body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol li .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  position: relative;
-  font-size: 18px;
-  color: #6b6464;
-}
-body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol li .header h6 {
-  font-size: 18px;
-}
-body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol li ul li {
+  gap: 8px;
   display: flex;
   align-items: center;
   gap: 8px;
   position: relative;
 }
-body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol li ul li .title {
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol li .header,
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ul li .header {
+  flex: 1 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-size: 18px;
+  color: #6b6464;
+}
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol li .header h6,
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ul li .header h6 {
+  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+}
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol li .header .description,
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ul li .header .description {
+  font-size: 16px;
+  font-weight: 400;
+  position: relative;
+  color: #6b6464;
+}
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol li .title,
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ul li .title {
   width: unset !important;
   color: #000;
 }
-body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol li ul li .value {
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ol li .value,
+body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu ul li .value {
   color: #6b6464;
 }
 body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu.checkout-details {

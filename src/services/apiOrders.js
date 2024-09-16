@@ -1,19 +1,27 @@
 import axios from "../utils/axios";
 
-export async function getuserOrders(id) {
-  const requestBody = {};
-
-  if (id) {
-    requestBody.user_id = +id;
-  }
-
-  requestBody.ad_type = "sell";
-
+export async function getuserOrders() {
   try {
-    const req = await axios.post("/get_user_ads", requestBody);
+    const req = await axios.get("/user/get_orders");
 
     return req.data;
   } catch (err) {
-    throw new Error(`Error fetching ads: ${err.message}`);
+    throw new Error(`Error fetching orders: ${err.message}`);
+  }
+}
+
+export async function getOrderDetails(id) {
+  const requestBody = {};
+
+  if (id) {
+    requestBody.id = +id;
+  }
+
+  try {
+    const req = await axios.post("/user/get_order_details", requestBody);
+
+    return req.data;
+  } catch (err) {
+    throw new Error(`Error fetching order details: ${err.message}`);
   }
 }
