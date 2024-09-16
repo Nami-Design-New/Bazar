@@ -1,15 +1,52 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Comments from "./Comments";
 import avatar from "../../assets/images/userr.webp";
 
 function Video({ ad }) {
-  const thisRef = useRef(null);
+  const videoRef = useRef(null);
   const [showComments, setShowComments] = useState(false);
+  const [canPlay, setCanPlay] = useState(false);
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+
+    const handleIntersection = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && canPlay) {
+          videoElement.play().catch(() => {});
+          videoElement.muted = false;
+        } else {
+          videoElement.pause();
+          videoElement.muted = true;
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.5
+    });
+
+    if (videoElement) {
+      observer.observe(videoElement);
+    }
+
+    return () => {
+      if (videoElement) {
+        observer.unobserve(videoElement);
+      }
+    };
+  }, [canPlay]);
+
+  const handleUserInteraction = () => {
+    if (!canPlay) {
+      setCanPlay(true);
+    }
+  };
 
   return (
-    <div className="video" ref={thisRef}>
-      <video src={ad?.video} autoPlay playsInline loop muted></video>
+    <div className="video" onClick={handleUserInteraction}>
+      <video ref={videoRef} src={ad?.video} playsInline loop></video>
 
       <div className="video_utils">
         <div className="user">
@@ -51,7 +88,7 @@ function Video({ ad }) {
       <Comments
         show={showComments}
         setShow={setShowComments}
-        element={thisRef}
+        element={videoRef}
       />
     </div>
   );
