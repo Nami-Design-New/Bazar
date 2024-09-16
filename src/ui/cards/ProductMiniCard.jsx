@@ -61,7 +61,7 @@ function ProductMiniCard({ product, marketId }) {
       </div>
       <div className="product_info">
         <h5 className="pro_name">{product?.title || "مشروم thio"}</h5>
-        <p className="pro_number">
+        <p className="pro_number one-line-wrap">
           {product?.description || "مشروم طازج ٢٠٠ جرام"}
         </p>
 

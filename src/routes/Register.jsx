@@ -22,7 +22,12 @@ function Register() {
   };
 
   return showOtp ? (
-    <ConfirmOtp otpData={otpData} setOtpData={setOtpData} formData={formData} />
+    <ConfirmOtp
+      otpData={otpData}
+      setOtpData={setOtpData}
+      formData={formData}
+      phone={formData?.phone}
+    />
   ) : (
     <RegisterForm
       formData={formData}

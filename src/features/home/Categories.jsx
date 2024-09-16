@@ -6,24 +6,26 @@ function Categories({ categories }) {
   const { t } = useTranslation();
 
   return (
-    categories &&
-    categories?.data?.length > 0 && (
-      <section className="categories_section">
-        <div className="container">
-          <div className="topHead">
-            <div className="sectionTitle">
-              <span className="subtitle">{t("home.goodPickCategory")}</span>
-              <h4 className="title">{t("home.browseWithCategories")}</h4>
-            </div>
-            <Link to="/ads" className="viewAll">
-              <span>{t("viewAll")}</span>
-              <img src={arrow} alt="" />
-            </Link>
+    <section className="categories_section">
+      <div className="container">
+        <div className="topHead">
+          <div className="sectionTitle">
+            <span className="subtitle">{t("home.goodPickCategory")}</span>
+            <h4 className="title">{t("home.browseWithCategories")}</h4>
           </div>
+          <Link to="/ads" className="viewAll">
+            <span>{t("viewAll")}</span>
+            <img src={arrow} alt="" />
+          </Link>
+        </div>
 
+        {categories && categories?.data?.length > 0 ? (
           <div className="row pt-3">
             {categories?.data?.map((category) => (
-              <div className="col-6 col-md-4 col-xl-3 p-2" key={category.id}>
+              <div
+                className="col-6 m-2 col-md-4 col-xl-3 p-2"
+                key={category.id}
+              >
                 <Link
                   to={`/ads?category_id=${category.id}`}
                   href="listing.html"
@@ -39,9 +41,16 @@ function Categories({ categories }) {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-    )
+        ) : (
+          <div className="skeleton-container">
+            <div className="skeleton-item "></div>
+            <div className="skeleton-item "></div>
+            <div className="skeleton-item "></div>
+            <div className="skeleton-item "></div>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 

@@ -9,16 +9,22 @@ import FavoriteADCard from "../../ui/cards/FavoriteADCard";
 import EmptyData from "../../ui/EmptyData";
 import { subscriptionRemainingDays } from "../../utils/helpers";
 import OrderCard from "../../ui/cards/OrderCard.jsx";
+import InterestMiniCard from "../../ui/cards/InterestMiniCard.jsx";
+import useUserInterests from "../interests/useUserInterests.js";
 
 function ProfileTabs({ user, isMyAccount }) {
   const { t } = useTranslation();
   const { isLoading: adsLoading, data: ads } = useUserAds(user?.id);
   const { isLoading: ordersLoading, data: orders } = useUserOrders(user?.id);
+  const { isLoading: interestsLoading, data: interests } = useUserInterests(
+    user?.id
+  );
+
   return (
     <div className="tabs-section">
       <Tabs
         className="profileNavCol col-md-5 col-lg-4 col-xl-3 p-2"
-        defaultActiveKey="orders"
+        defaultActiveKey="ads"
         id="uncontrolled-tab-example"
       >
         {/* ADs */}
@@ -47,23 +53,48 @@ function ProfileTabs({ user, isMyAccount }) {
           </>
         </Tab>
         {/* Orders */}
-        <Tab
-          eventKey="orders"
-          title={t("profile.orders")}
-          className="tab_item p-2"
-        >
-          {ordersLoading ? (
-            <DataLoader minHeight="200px" />
-          ) : orders?.data && orders?.data?.length > 0 ? (
-            orders?.data?.map((order) => (
-              <div className="col-lg-6 col-12 p-3" key={order?.id}>
-                <OrderCard order={order} isMyAccount={isMyAccount} />
-              </div>
-            ))
-          ) : (
-            <EmptyData minHeight={"300px"}>{t("profile.noOrders")}</EmptyData>
-          )}
-        </Tab>
+        {isMyAccount && (
+          <Tab
+            eventKey="orders"
+            title={t("profile.orders")}
+            className="tab_item p-2"
+          >
+            {ordersLoading ? (
+              <DataLoader minHeight="200px" />
+            ) : orders?.data && orders?.data?.length > 0 ? (
+              orders?.data?.map((order) => (
+                <div className="col-lg-6 col-12 p-3" key={order?.id}>
+                  <OrderCard order={order} isMyAccount={isMyAccount} />
+                </div>
+              ))
+            ) : (
+              <EmptyData minHeight={"300px"}>{t("profile.noOrders")}</EmptyData>
+            )}
+          </Tab>
+        )}
+        {/* Interests */}
+        {isMyAccount && (
+          <Tab
+            eventKey="interests"
+            title={t("profile.interests")}
+            className="tab_item p-2"
+          >
+            {interestsLoading ? (
+              <DataLoader minHeight="200px" />
+            ) : interests?.data && interests?.data?.length > 0 ? (
+              interests?.data?.map((interest) => (
+                <div className="col-lg-6 col-12 p-3" key={interest?.id}>
+                  <InterestMiniCard
+                    interest={interest}
+                    isMyAccount={isMyAccount}
+                  />
+                </div>
+              ))
+            ) : (
+              <EmptyData minHeight={"300px"}>{t("profile.noOrders")}</EmptyData>
+            )}
+          </Tab>
+        )}
         {/* Verifications */}
         <Tab
           eventKey="verifications"
@@ -175,6 +206,27 @@ function ProfileTabs({ user, isMyAccount }) {
             </div>
           </div>
         </Tab>
+
+        {/* reward */}
+        {isMyAccount && (
+          <Tab
+            eventKey="rewards"
+            title={t("profile.rewards")}
+            className="tab_item p-2"
+          >
+            {ordersLoading ? (
+              <DataLoader minHeight="200px" />
+            ) : ads?.data && ads?.data?.length > 0 ? (
+              ads?.data?.map((ad) => (
+                <div className="col-lg-6 col-12 p-3" key={ad?.id}>
+                  <FavoriteADCard ad={ad} isMyAccount={isMyAccount} />
+                </div>
+              ))
+            ) : (
+              <EmptyData minHeight={"300px"}>{t("profile.noAds")}</EmptyData>
+            )}
+          </Tab>
+        )}
       </Tabs>
     </div>
   );

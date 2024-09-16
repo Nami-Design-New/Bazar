@@ -1672,10 +1672,37 @@ body main .hero-section .categories .category .img img {
 }
 body main .categories_section {
   padding: 40px 0;
+  transition: all 0.2s ease-in-out;
 }
 @media screen and (min-width: 768px) {
   body main .categories_section .row {
     margin: 0 -16px;
+  }
+}
+body main .categories_section .skeleton-container {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: nowrap;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+body main .categories_section .skeleton-container .skeleton-item {
+  flex: 1;
+  border-radius: 12px;
+  height: 120px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }
 body main .categories_section .category {
@@ -1688,6 +1715,7 @@ body main .categories_section .category {
   position: relative;
   background: #fff;
   height: 100%;
+  transition: all 0.2s ease-in-out;
 }
 body main .categories_section .category .text {
   flex: 1;
@@ -2383,6 +2411,12 @@ body main .profile .userInfo .top-wrapper {
   align-items: center;
   gap: 24px;
   position: relative;
+  justify-content: center;
+}
+@media screen and (max-width: 768px) {
+  body main .profile .userInfo .top-wrapper {
+    flex-direction: column;
+  }
 }
 body main .profile .userInfo .top-wrapper .user-avatar-wrapper {
   width: 80px;
@@ -2428,10 +2462,20 @@ body main .profile .userInfo .top-wrapper .userName {
 body main .profile .userInfo .top-wrapper .userName .name {
   font-weight: bold;
 }
+@media screen and (max-width: 768px) {
+  body main .profile .userInfo .top-wrapper .userName .name {
+    text-align: center;
+  }
+}
 body main .profile .userInfo .top-wrapper .userName .email {
   font-weight: normal;
   color: #6b6464;
   font-size: 14px;
+}
+@media screen and (max-width: 768px) {
+  body main .profile .userInfo .top-wrapper .userName .email {
+    text-align: center;
+  }
 }
 body main .profile .userInfo .top-wrapper .userName .userDetails {
   width: 100%;
@@ -2439,6 +2483,12 @@ body main .profile .userInfo .top-wrapper .userName .userDetails {
   align-items: center;
   gap: 24px;
   position: relative;
+}
+@media screen and (max-width: 768px) {
+  body main .profile .userInfo .top-wrapper .userName .userDetails {
+    text-align: center;
+    justify-content: center;
+  }
 }
 body main .profile .userInfo .top-wrapper .userName .userDetails .details-box {
   display: flex;
@@ -2519,7 +2569,6 @@ body main .profile .userInfo .top-wrapper .action-boxes .actions-wrapper .action
   transition: all 0.2s ease-in-out;
 }
 body main .profile .profileNavCol {
-  background-color: #fff;
   border-radius: 16px;
   border: 1px solid #ccc;
   margin-bottom: 50px;
@@ -2620,8 +2669,18 @@ body main .profile .tabs-section {
   display: flex;
   padding: 0 !important;
 }
+@media screen and (max-width: 768px) {
+  body main .profile .tabs-section {
+    flex-direction: column;
+  }
+}
 body main .profile .tabs-section .nav-tabs .nav-item {
   flex: unset !important;
+}
+@media screen and (max-width: 768px) {
+  body main .profile .tabs-section .nav-tabs .nav-item {
+    flex: 1 0 !important;
+  }
 }
 body main .profile .tabs-section .nav-tabs .nav-item:first-of-type button {
   border-end-start-radius: 12px !important;
@@ -3067,6 +3126,12 @@ body main .fav-market-card .card-header {
   min-height: 140px;
   aspect-ratio: 3/2;
 }
+body main .fav-market-card .card-header.no-overlay .cover-wrapper {
+  box-shadow: 0px -1px 6px 0px rgba(0, 0, 0, 0.1490196078);
+}
+body main .fav-market-card .card-header.no-overlay .cover-wrapper::after {
+  content: none !important;
+}
 body main .fav-market-card .card-header .cover-wrapper {
   width: 100%;
   height: 100%;
@@ -3185,6 +3250,14 @@ body main .fav-market-card .card-details {
   flex-direction: column;
   gap: 24px;
   position: relative;
+}
+body main .fav-market-card .card-details .coupon-title {
+  font-weight: 600;
+  font-size: 20px;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  text-wrap: balance;
 }
 body main .fav-market-card .card-details .description {
   width: 100%;
@@ -3423,11 +3496,12 @@ body main .order-card .card-header .heading .progress-status {
   align-items: center;
   justify-content: center;
   position: relative;
-  font-size: 14px;
+  font-size: 16px;
   background-color: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
   color: #fff;
   border-radius: 12px;
   transition: all 0.2s ease-in-out;
+  min-width: 140px;
 }
 body main .order-card .card-header .heading .progress-status.pending {
   background-color: #0467d0;
@@ -6753,7 +6827,6 @@ body main .lottie_player_holder {
 }
 body main .topHead {
   display: flex;
-  flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
@@ -6762,7 +6835,6 @@ body main .topHead {
 }
 @media screen and (max-width: 768px) {
   body main .topHead {
-    flex-direction: column;
     align-items: start;
   }
 }
@@ -7537,6 +7609,13 @@ body .terms-condition-alert {
 body .terms-condition-alert,
 body .terms-condition-alert a {
   white-space: nowrap;
+}
+body .one-line-wrap {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  padding-left: 16px;
 }
 body.en {
   direction: ltr;

@@ -9,8 +9,11 @@ import whatsapp from "../../assets/images/whatsapp-icon.svg";
 import call from "../../assets/images/call.svg";
 import message from "../../assets/images/Message.svg";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
+import { useParams } from "react-router-dom";
 
 function Pricing({ formData, setFormData, setForm, loading }) {
+  const { id } = useParams();
+
   return (
     <div className="row w-100">
       <div className="col-12 p-2">
@@ -127,7 +130,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                   onChange={(e) =>
                     setFormData((prev) => ({
                       ...prev,
-                      whatsapp: e.target.checked ? 1 : 0
+                      whatsapp: e.target.checked ? 1 : 0,
                     }))
                   }
                 />
@@ -160,7 +163,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                   onChange={(e) =>
                     setFormData((prev) => ({
                       ...prev,
-                      phone: e.target.checked ? 1 : 0
+                      phone: e.target.checked ? 1 : 0,
                     }))
                   }
                 />
@@ -193,7 +196,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                   onChange={(e) =>
                     setFormData((prev) => ({
                       ...prev,
-                      chat: e.target.checked ? 1 : 0
+                      chat: e.target.checked ? 1 : 0,
                     }))
                   }
                 />
@@ -215,7 +218,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
             <i className="fa-regular fa-angle-right"></i> السابق
           </button>
           <SubmitButton
-            name={"نشر الاعلان"}
+            name={id ? "حفظ" : "نشر الاعلان"}
             className="wizard_btn next"
             loading={loading}
           />

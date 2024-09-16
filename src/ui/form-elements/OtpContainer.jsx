@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Otpcontainer = ({ formData, setFormData }) => {
+const OtpContainer = ({ formData, setFormData }) => {
   const [otpValue, setOtpValue] = useState("");
   useEffect(() => {
     const firstInput = document.getElementById("input1");
@@ -62,4 +62,4 @@ const Otpcontainer = ({ formData, setFormData }) => {
   );
 };
 
-export default Otpcontainer;
+export default OtpContainer;

@@ -30,7 +30,7 @@ function Post({ post }) {
           Apple MacBook Air (2023) Apple M2 Chip
         </Link>
 
-        <p className="description">
+        <p className="description one-line-wrap">
           The Apple MacBook Air 13.6-Inch laptop is powered by the new M2 chip.
           It is loaded with 8GB RAM and 256GB SSD.
         </p>

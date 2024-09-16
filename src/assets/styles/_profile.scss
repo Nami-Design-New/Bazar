@@ -23,6 +23,11 @@
       align-items: center;
       gap: 24px;
       position: relative;
+      justify-content: center;
+
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+      }
 
       .user-avatar-wrapper {
         width: 80px;
@@ -68,11 +73,17 @@
         gap: 8px;
         .name {
           font-weight: bold;
+          @media screen and (max-width: 768px) {
+            text-align: center;
+          }
         }
         .email {
           font-weight: normal;
           color: $textSecondaryColor;
           font-size: 14px;
+          @media screen and (max-width: 768px) {
+            text-align: center;
+          }
         }
         .userDetails {
           width: 100%;
@@ -80,6 +91,10 @@
           align-items: center;
           gap: 24px;
           position: relative;
+          @media screen and (max-width: 768px) {
+            text-align: center;
+            justify-content: center;
+          }
 
           .details-box {
             display: flex;
@@ -173,7 +188,6 @@
     }
   }
   .profileNavCol {
-    background-color: $white;
     border-radius: 16px;
     border: 1px solid #ccc;
     margin-bottom: 50px;
@@ -275,9 +289,17 @@
     display: flex;
     padding: 0 !important ;
 
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+
     .nav-tabs {
       .nav-item {
         flex: unset !important;
+
+        @media screen and (max-width: 768px) {
+          flex: 1 0 !important;
+        }
 
         &:first-of-type {
           button {
