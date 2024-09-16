@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { getuserOrders } from "../../services/apiOrders";
 
-function useUserOrders(id) {
+function useUserOrders() {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["userOrders", id],
-    queryFn: () => getuserOrders(id),
+    queryKey: ["userOrders"],
+    queryFn: getuserOrders,
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
-    enabled: !!id,
+
   });
 
   return { isLoading, data, error };

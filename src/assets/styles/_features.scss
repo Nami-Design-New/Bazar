@@ -411,7 +411,6 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 8px;
         position: relative;
         .title {
           width: 100%;
@@ -636,35 +635,82 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+
+    .order-section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+    }
+
     .status-wrapper {
       width: 100%;
       display: flex;
       flex-direction: column;
       gap: 36px;
       position: relative;
+      .status-footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 24px;
+        position: relative;
+
+        .custom-btn {
+          width: unset !important;
+          padding: 8px 24px !important;
+        }
+      }
       .status-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         position: relative;
         gap: 16px;
+
+        .image-wrapper {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          box-shadow: 0px 0px 4px 0px #00000040;
+          overflow: hidden;
+          img {
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+
         .info {
           display: flex;
           flex: 1 0;
           flex-direction: column;
           gap: 8px;
           position: relative;
-          .info-boxes {
+          h5 {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 16px;
             position: relative;
+            font-weight: 600;
+
             .box {
               display: flex;
               align-items: center;
               gap: 8px;
               position: relative;
+              font-size: 16px;
+              font-weight: 400;
             }
+          }
+          .info-boxes {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            position: relative;
           }
         }
         .icon {
@@ -681,6 +727,22 @@
             font-size: 28px;
             &.active {
               color: #3fa218;
+            }
+            &.pending {
+              color: #0467d0;
+            }
+            &.accepted {
+              color: #218838;
+            }
+            &.delivering {
+              color: #d29f05;
+            }
+            &.completed {
+              color: #1ae048;
+            }
+            &.canceled,
+            &.user_canceled {
+              color: #d9534f;
             }
           }
         }
@@ -705,7 +767,22 @@
         transition: $transition;
         &.active {
           background-color: transparent !important;
-          background: linear-gradient(238.2deg, $second 0%, $main 100%);
+
+          &.pending-accepted {
+            background: linear-gradient(238.2deg, #0467d0 0%, #218838 100%);
+          }
+          &.pending-canceled {
+            background: linear-gradient(238.2deg, #0467d0 0%, #d9534f 100%);
+          }
+          &.accepted-delivering {
+            background: linear-gradient(238.2deg, #218838 0%, #d29f05 100%);
+          }
+          &.accepted-completed {
+            background: linear-gradient(238.2deg, #218838 0%, #1ae048 100%);
+          }
+          &.delivering-completed {
+            background: linear-gradient(238.2deg, #d29f05 0%, #1ae048 100%);
+          }
         }
       }
       .progress-box {
@@ -735,7 +812,22 @@
             font-size: 24px;
             color: #beb3b3;
             &.active {
-              color: #3fa218;
+              &.pending {
+                color: #0467d0;
+              }
+              &.accepted {
+                color: #218838;
+              }
+              &.delivering {
+                color: #d29f05;
+              }
+              &.completed {
+                color: #1ae048;
+              }
+              &.canceled,
+              &.user_canceled {
+                color: #d9534f;
+              }
             }
           }
         }
@@ -744,14 +836,19 @@
     .details-wrapper {
       width: 100%;
       display: flex;
-      flex-direction: column;
-      gap: 24px;
       position: relative;
+
+      .order-section {
+        background-color: $inputBg;
+        border-radius: 12px;
+        padding: 16px;
+        position: relative;
+      }
+
       .details-box {
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 8px;
         position: relative;
         .title {
           width: 100%;
@@ -766,8 +863,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: $white;
+            padding: 8px;
+            border-radius: 50%;
             i {
-              font-size: 28px;
+              font-size: 20px;
             }
           }
         }
@@ -779,13 +879,45 @@
           width: 100%;
           position: relative;
           display: flex;
-          ol {
+
+          .order-product-item {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            gap: 24px;
+
+            &:not(:last-of-type) {
+              padding-bottom: 24px;
+              border-bottom: 1px solid $LightGray;
+            }
+
+            .image-wrapper {
+              width: 68px;
+              height: 68px;
+              border-radius: 12px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: relative;
+              box-shadow: 0px 0px 4px 0px #00000040;
+              overflow: hidden;
+              img {
+                width: 100%;
+                object-fit: cover;
+              }
+            }
+          }
+          ol,
+          ul {
             width: 100%;
             padding: 0;
             padding-right: 56px;
             display: flex;
             flex-direction: column;
             gap: 24px;
+            &.no-indent {
+              padding-right: 16px;
+            }
             > li {
               &:not(:last-of-type) {
                 &::after {
@@ -801,32 +933,41 @@
             }
             li {
               position: relative;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 8px;
+
               .header {
+                flex: 1 0;
                 display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 16px;
+                flex-direction: column;
                 position: relative;
                 font-size: 18px;
                 color: $textSecondaryColor;
                 h6 {
+                  color: $black;
                   font-size: 18px;
+                  font-weight: 600;
+                }
+
+                .description {
+                  font-size: 16px;
+                  font-weight: 400;
+                  position: relative;
+                  color: $textSecondaryColor;
                 }
               }
-              ul {
-                li {
-                  display: flex;
-                  align-items: center;
-                  gap: 8px;
-                  position: relative;
-                  .title {
-                    width: unset !important;
-                    color: $black;
-                  }
-                  .value {
-                    color: $textSecondaryColor;
-                  }
-                }
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              position: relative;
+              .title {
+                width: unset !important;
+                color: $black;
+              }
+              .value {
+                color: $textSecondaryColor;
               }
             }
           }

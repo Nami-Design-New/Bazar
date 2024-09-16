@@ -188,8 +188,9 @@
     "onDelivery": "جاري الشحن",
     "completed": "تم الاكتمال",
     "orderId": "رقم الطلب",
-    "paymentMethod": "طرق الدفع",
-    "creditCards": "بطاقات الائتمان",
+    "paymentMethod": "طريقة الدفع",
+    "visa": "فيزا",
+    "cash": "كاش",
     "address": "العنوان",
     "orderDetails": "تفاصيل الطلب",
     "totalCost": "اجمالي السعر",
@@ -198,7 +199,14 @@
     "discount": "الخصم",
     "deliveryCost": "رسوم التوصيل",
     "total": "الاجمالي",
-    "cancelOrder": "الغاء الطلب"
+    "cancelOrder": "الغاء الطلب",
+    "market": "المتجر",
+    "rateMarket": "قيم المتجر",
+    "quantity": "الكمية",
+    "totalPrice": "إجمالي التكلفة",
+    "usedCoupon": "الكوبون المُستخدم",
+    "canceled": "ملغى",
+    "user_canceled": "ملغى بواسطة المستخدم"
   },
   "interests": {
     "areYouSureYouWantToDeleteInterest": "هل انت متأكد من حذف هذا الاهتمام؟",
@@ -247,6 +255,7 @@
     "coupon": "كوبون خصم"
   },
   "createdAt": "تم الإنشاء في",
+  "orderedAt": "تم الطلب في",
   "delete": "حذف",
   "cancel": "الغاء",
   "following": "تتابع",
