@@ -19,10 +19,13 @@ function Categories({ categories }) {
           </Link>
         </div>
 
-        {categories && categories?.data?.length > 0 ? (
+        {!categories && categories?.data?.length > 0 ? (
           <div className="row pt-3">
             {categories?.data?.map((category) => (
-              <div className="col-6 col-md-4 col-xl-3 p-2" key={category.id}>
+              <div
+                className="col-6 m-2 col-md-4 col-xl-3 p-2"
+                key={category.id}
+              >
                 <Link
                   to={`/ads?category_id=${category.id}`}
                   href="listing.html"
@@ -40,10 +43,10 @@ function Categories({ categories }) {
           </div>
         ) : (
           <div className="skeleton-container">
-            <div className="skeleton-item"></div>
-            <div className="skeleton-item"></div>
-            <div className="skeleton-item"></div>
-            <div className="skeleton-item"></div>
+            <div className="skeleton-item "></div>
+            <div className="skeleton-item "></div>
+            <div className="skeleton-item "></div>
+            <div className="skeleton-item "></div>
           </div>
         )}
       </div>

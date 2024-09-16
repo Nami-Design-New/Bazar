@@ -1681,6 +1681,7 @@ body main .categories_section {
 }
 body main .categories_section .skeleton-container {
   width: 100%;
+  overflow: hidden;
   display: flex;
   justify-content: space-between;
   gap: 16px;
@@ -1689,9 +1690,9 @@ body main .categories_section .skeleton-container {
   transition: all 0.2s ease-in-out;
 }
 body main .categories_section .skeleton-container .skeleton-item {
-  flex: 1 0;
+  flex: 1;
   border-radius: 12px;
-  height: 150px;
+  height: 120px;
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
@@ -6323,7 +6324,6 @@ body main .search-btn {
 }
 body main .topHead {
   display: flex;
-  flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
@@ -6332,7 +6332,6 @@ body main .topHead {
 }
 @media screen and (max-width: 768px) {
   body main .topHead {
-    flex-direction: column;
     align-items: start;
   }
 }
