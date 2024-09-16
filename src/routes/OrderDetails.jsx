@@ -66,12 +66,17 @@ function OrderDetails() {
                   ></i>
                 )}
                 {order?.data?.status === "delivering" && (
-                  <i className={`fa-regular fa-truck-container ${order?.data?.status} `}></i>
+                  <i
+                    className={`fa-regular fa-truck-container ${order?.data?.status} `}
+                  ></i>
                 )}
                 {order?.data?.status === "completed" && (
-                  <i className={`fa-solid fa-circle-check  ${order?.data?.status} `}></i>
+                  <i
+                    className={`fa-solid fa-circle-check  ${order?.data?.status} `}
+                  ></i>
                 )}
-                {(order?.data?.status === "canceled" || order?.data?.status === "user_canceled") && (
+                {(order?.data?.status === "canceled" ||
+                  order?.data?.status === "user_canceled") && (
                   <i className={`fa-solid fa-ban  ${order?.data?.status} `}></i>
                 )}
               </div>
@@ -92,7 +97,7 @@ function OrderDetails() {
                     }`}
                   ></i>
                 </div>
-                <span className="status">{t("orders.newOrder")}</span>
+                <span className="status">{t("orders.pending")}</span>
               </div>
               <div
                 className={`progress-line ${
@@ -102,14 +107,16 @@ function OrderDetails() {
                   order?.data?.status === "canceled" ||
                   order?.data?.status === "user_canceled"
                     ? `active ${
-                        order?.data?.status === "canceled" || order?.data?.status === "user_canceled"
+                        order?.data?.status === "canceled" ||
+                        order?.data?.status === "user_canceled"
                           ? "pending-canceled"
                           : "pending-accepted"
                       }`
                     : ""
                 }`}
               ></div>
-              {order?.data?.status === "canceled" || order?.data?.status === "user_canceled" ? null : (
+              {order?.data?.status === "canceled" ||
+              order?.data?.status === "user_canceled" ? null : (
                 <div className="progress-box">
                   <div className="icon-box">
                     <i
@@ -131,7 +138,8 @@ function OrderDetails() {
                 <>
                   <div
                     className={`progress-line ${
-                      order?.data?.status === "delivering" || order?.data?.status === "completed"
+                      order?.data?.status === "delivering" ||
+                      order?.data?.status === "completed"
                         ? `active ${
                             order?.data?.delivery_price
                               ? "accepted-delivering"
@@ -144,7 +152,8 @@ function OrderDetails() {
                     <div className="icon-box">
                       <i
                         className={`fa-regular fa-truck-container  ${
-                          order?.data?.status === "delivering" || order?.data?.status === "completed"
+                          order?.data?.status === "delivering" ||
+                          order?.data?.status === "completed"
                             ? `active delivering`
                             : ""
                         }`}
@@ -154,7 +163,8 @@ function OrderDetails() {
                   </div>
                 </>
               ) : null}
-              {order?.data?.status === "canceled" || order?.data?.status === "user_canceled" ? null : (
+              {order?.data?.status === "canceled" ||
+              order?.data?.status === "user_canceled" ? null : (
                 <div
                   className={`progress-line ${
                     order?.data?.status === "completed"
@@ -169,12 +179,17 @@ function OrderDetails() {
               )}
               <div className="progress-box">
                 <div className="icon-box">
-                  {order?.data?.status === "canceled" || order?.data?.status === "user_canceled" ? (
-                    <i className={`fa-solid fa-ban active ${order?.data?.status} `}></i>
+                  {order?.data?.status === "canceled" ||
+                  order?.data?.status === "user_canceled" ? (
+                    <i
+                      className={`fa-solid fa-ban active ${order?.data?.status} `}
+                    ></i>
                   ) : (
                     <i
                       className={`fa-solid fa-circle-check  ${
-                        order?.data?.status === "completed" ? `active completed` : ""
+                        order?.data?.status === "completed"
+                          ? `active completed`
+                          : ""
                       }`}
                     ></i>
                   )}
@@ -182,7 +197,8 @@ function OrderDetails() {
                 <span className="status">
                   {t(
                     `orders.${
-                      order?.data?.status === "canceled" || order?.data?.status === "user_canceled"
+                      order?.data?.status === "canceled" ||
+                      order?.data?.status === "user_canceled"
                         ? `${order?.data?.status}`
                         : "completed"
                     }`

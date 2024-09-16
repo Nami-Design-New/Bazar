@@ -1,19 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SectionHeader from "../ui/layout/SectionHeader";
 import MainInfo from "../features/add-ad/MainInfo";
 import Location from "../features/add-ad/Location";
 import Gallery from "../features/add-ad/Gallery";
 import Pricing from "../features/add-ad/Pricing";
 import axios from "./../utils/axios";
+import useGetAdById from "../features/ads/useGetAdById";
 
 function AddAdvertisment() {
   const { t } = useTranslation();
   const [form, setForm] = useState("main-info");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { isLoading, data: ad } = useGetAdById();
+
+  const { id } = useParams();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -32,20 +36,49 @@ function AddAdvertisment() {
     chat: 0,
     phone: 0,
     whatsapp: 0,
-    video: ""
+    video: "",
   });
+
+  useEffect(() => {
+    if (ad && !isLoading) {
+      setFormData({
+        ...formData,
+        title: ad?.data?.title,
+        description: ad?.data?.description,
+        category_id: ad?.data?.category_id,
+        sub_category_id: ad?.data?.sub_category_id,
+        city_id: ad?.data?.city_id,
+        area_id: ad?.data?.area_id,
+        lat: ad?.data?.lat,
+        lng: ad?.data?.lng,
+        address: ad?.data?.address,
+        images: ad?.data?.images,
+        ad_type: ad?.data?.ad_type,
+        price: ad?.data?.price,
+        price_type: ad?.data?.price_type,
+        chat: ad?.data?.chat,
+        phone: ad?.data?.phone,
+        whatsapp: ad?.data?.whatsapp,
+        video: ad?.data?.video,
+      });
+    }
+  }, [ad, isLoading]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("/user/create_ad", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
+      const res = await axios.post(
+        `/user/${id ? `update_ad` : "create_ad"}`,
+        { ...formData, id: +ad?.data?.id },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      });
+      );
       if (res.status === 201 || res.status === 200) {
-        toast.success("تم الاضافة بنجاح");
+        toast.success(`${id ? "تم التعديل بنجاح" : "تم الاضافة بنجاح"}`);
         setForm("main-info");
         navigate("/profile");
       } else {

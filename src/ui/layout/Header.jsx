@@ -219,11 +219,6 @@ export default function Header() {
                       {t("header.editProfile")}
                     </Dropdown.Item>
 
-                    <Dropdown.Item as={Link} to="/my-activities">
-                      <i className="fa-light fa-chart-line"></i>
-                      {t("header.myActivities")}
-                    </Dropdown.Item>
-
                     <Dropdown.Item as={Link} to="/favorites">
                       <i className="fa-sharp fa-regular fa-heart"></i>
                       {t("header.favourites")}
