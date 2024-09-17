@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import { useCookies } from "react-cookie";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { setIsLogged, setUser } from "../../redux/slices/authedUser";
 import OtpContainer from "../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axios from "../../utils/axios";
@@ -13,9 +10,7 @@ import headerImg from "../../assets/images/forget-2.svg";
 const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [, setCookie] = useCookies(["token"]);
 
   const headers = {
     Accept: "application/json",
@@ -41,28 +36,12 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
       if (res.data.code === 200) {
         toast.success(t("auth.registerSuccess"));
         navigate("/");
-        const login = await axios.post("/user/register", formData);
-        console.log("login", login);
-        if (login.data.code === 200) {
+        const req = await axios.post("/user/register", formData);
+        if (req.data.code === 200) {
           toast.success(t("auth.registerSuccess"));
-          navigate("/");
-          dispatch(setUser(login.data.data));
-          dispatch(setIsLogged(true));
-          setCookie("token", login.data.data.token, {
-            path: "/",
-            secure: true,
-            sameSite: "Strict",
-          });
-          setCookie("id", login.data.data.id, {
-            path: "/",
-            secure: true,
-            sameSite: "Strict",
-          });
-          axios.defaults.headers.common[
-            "Authorization"
-          ] = `${login.data.data.token}`;
+          navigate("/login");
         } else {
-          toast.error(login.data.message);
+          toast.error(req.data.message);
         }
       } else {
         toast.error(res.data.message);

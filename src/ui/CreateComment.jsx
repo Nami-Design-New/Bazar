@@ -156,7 +156,6 @@ function CreateComment({ comment, setTargetedComment, refetch }) {
             <SubmitButton
               loading={commentLoading}
               name={comment ? t("publishReplay") : t("publishRate")}
-              onClick={handleSubmit}
             />
           </div>
           {!comment && (

@@ -34,9 +34,16 @@ function ForgetPassword() {
           otpData={otpData}
           setOtpData={setOtpData}
           phone={formData.phone}
+          formData={formData}
         />
       )}
-      {step === 3 && <ForgetStep3 setStep={setStep} code={otpData.code} />}
+      {step === 3 && (
+        <ForgetStep3
+          setStep={setStep}
+          code={otpData.code}
+          phone={formData?.phone}
+        />
+      )}
     </section>
   );
 }

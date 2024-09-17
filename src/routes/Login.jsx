@@ -110,7 +110,6 @@ function Login() {
                   loading={loading}
                   name={t("auth.login")}
                   className={"custom-btn filled"}
-                  onClick={handleSubmit}
                 />
                 <Link to="/" className="custom-btn stroke">
                   <span>{t("auth.loginAsGuest")}</span>

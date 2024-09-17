@@ -51,20 +51,20 @@ export const getTimeDifference = (createdAt) => {
 
   if (minutes < 0) {
     minutes += 60;
-    hours--;
+    if (hours > 0) hours--;
   }
   if (hours < 0) {
     hours += 24;
-    days--;
+    if (days > 0) days--;
   }
   if (days < 0) {
     const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
     days += lastMonth.getDate();
-    months--;
+    if (months > 0) months--;
   }
   if (months < 0) {
     months += 12;
-    years--;
+    if (years > 0) years--;
   }
   return { years, months, days, hours, minutes };
 };

@@ -37,7 +37,7 @@ function HeroSection() {
                     <div className="layer">
                       <h4>استكشف قطع غيار وإكسسواراتنا</h4>
                       <p>اكتشف أحدث القطع والإكسسوارات لتحسين سيارتك.</p>
-                      <a href="shop.html">تسوق الآن</a>
+                      <Link to="/ads?ad_type=sell">تسوق الآن</Link>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -48,7 +48,7 @@ function HeroSection() {
                     <div className="layer">
                       <h4>استكشف قطع غيار وإكسسواراتنا</h4>
                       <p>اكتشف أحدث القطع والإكسسوارات لتحسين سيارتك.</p>
-                      <a href="shop.html">تسوق الآن</a>
+                      <Link to="/ads?ad_type=sell">تسوق الآن</Link>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -59,7 +59,7 @@ function HeroSection() {
                     <div className="layer">
                       <h4>استكشف قطع غيار وإكسسواراتنا</h4>
                       <p>اكتشف أحدث القطع والإكسسوارات لتحسين سيارتك.</p>
-                      <a href="shop.html">تسوق الآن</a>
+                      <Link to="/ads?ad_type=sell">تسوق الآن</Link>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -125,7 +125,7 @@ function HeroSection() {
               </Link>
 
               <Link
-                to="/ads"
+                to="/ads?ad_type=sell"
                 className="category"
                 style={{ backgroundColor: "#F8CF734A" }}
               >

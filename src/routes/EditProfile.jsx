@@ -148,7 +148,6 @@ function EditProfile() {
             className={"custom-btn filled"}
             loading={loading}
             name={t("auth.saveChanges")}
-            onClick={handleSubmit}
           />
         </div>
       </form>

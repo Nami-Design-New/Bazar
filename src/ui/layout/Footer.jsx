@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
+import useSettings from "../../features/app/useSettings";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { data: settings } = useSettings();
+
   return (
     <footer>
       <div className="container">
@@ -15,8 +18,8 @@ export default function Footer() {
               <div className="links">
                 <Link>الرئيسية</Link>
                 <Link to="/about-us">من نحن</Link>
-                <Link>شروط الاستخدام</Link>
-                <Link>سياسة الخصوصية</Link>
+                <Link to={settings?.data?.terms_link}>شروط الاستخدام</Link>
+                <Link to={settings?.data?.privacy_link}>سياسة الخصوصية</Link>
                 <Link>اتصل بنا</Link>
               </div>
             </div>
