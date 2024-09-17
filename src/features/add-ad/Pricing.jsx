@@ -170,7 +170,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                 />
               </div>
               {formData?.whatsapp === 1 && (
-                <div className="check_phone">
+                <div className="check_phone d-flex">
                   <InputField
                     type="number"
                     name="whatsapp_number"
@@ -181,7 +181,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                     noFullWidth={true}
                   />
                   <SubmitButton
-                    className="custom-btn filled"
+                    className=""
                     name={"تحقق"}
                     loading={whatsappLoading}
                     onClick={applyWhatsapp}

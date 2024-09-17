@@ -352,8 +352,11 @@
     align-items: center;
     gap: 8px;
     padding: 8px;
-    a {
+    a,
+    button {
       flex: 1;
+      border: none;
+      outline: none;
       padding: 12px 16px;
       border-radius: 16px;
       gap: 8px;
