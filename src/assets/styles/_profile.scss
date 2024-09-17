@@ -25,6 +25,27 @@
       position: relative;
       justify-content: center;
 
+      &.package-container {
+        .verification-details {
+          flex-direction: column !important;
+          gap: 16px !important;
+          align-items: flex-start;
+        }
+
+        .colored {
+          color: $main !important;
+        }
+
+        .remainingDays {
+          span {
+            font-weight: 600;
+            font-size: 16px;
+            position: relative;
+            color: $main;
+          }
+        }
+      }
+
       @media screen and (max-width: 768px) {
         flex-direction: column;
       }

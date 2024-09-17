@@ -14,8 +14,9 @@ function ForgetStep1({ setStep, formData, handleChange, setOtpData }) {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("/user/sendOtpCode", formData);
+      const res = await axios.post("/user/check_phone", formData);
       if (res.data.code === 200) {
+        const res = await axios.post("/user/sendOtpCode", formData);
         toast.success(t("auth.otpSentSuccess"));
         setOtpData((prev) => ({
           ...prev,
@@ -59,9 +60,6 @@ function ForgetStep1({ setStep, formData, handleChange, setOtpData }) {
           className={"custom-btn filled"}
           name={t("auth.next")}
           loading={loading}
-          onClick={() => {
-            handleSubmit();
-          }}
         />
       </form>
     </>

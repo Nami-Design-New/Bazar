@@ -92,7 +92,8 @@
     "fillAllFieldsRequired": "املأ جميع الحقول لتتمكن من المتابعة",
     "registerSuccess": "تم تسجيل حسابك بنجاح",
     "profileEditedSuccessfully": "تم تعديل الملف الشخصي بنجاح",
-    "otpSentSuccess": "تم ارسال الرمز بنجاح، يرجى التحقق من الرسالة"
+    "otpSentSuccess": "تم ارسال الرمز بنجاح، يرجى التحقق من الرسالة",
+    "otpResentSuccess": "تم إعادة ارسال الرمز بنجاح، يرجى التحقق من الرسالة"
   },
   "profile": {
     "ads": "الاعلانات",
@@ -115,7 +116,7 @@
     "followings": "يتابع",
     "followers": "متابع",
     "ad": "اعلان",
-    "uploadImagesMax5": "قم بتحميل ما يصل إلى 5 صورة",
+    "uploadImagesMax5": "قم بتحميل ما يصل إلى 5 صور",
     "verificationBenifints": "مميزات التوثيق",
     "verififcationHint1": "عند توثيق حسابك ستظهر علامة صح ازرق عند اعلاناتك.",
     "verififcationHint2": "توثيق عضويتك يزيد من مبيعاتك و ثقة الأخرين في حسابك.",
@@ -125,7 +126,9 @@
     "noAds": "لا توجد إعلانات لهذا المستخدم",
     "noOrders": "لا توجد طلبات لهذا المستخدم",
     "rewards": "المكافآت",
-    "interests": "الاهتمامات"
+    "interests": "الاهتمامات",
+    "remainingDays": "الأيام المتبقية",
+    "noPackages": "عذرًا، لا توجد باقات متاحة لهذا المستخدم"
   },
   "error": {
     "pageNotFound": "هذا الرابط غير موجود لدينا او ربما تم حذفه. كيف وصلت الي هنا ؟",
@@ -308,5 +311,6 @@
   "now": "الان",
   "and": "و",
   "successfullyCommentReplayed": "تم إرسال الرد على التعليق بنجاح",
-  "successfullyRated": "تم إرسال التقييم بنجاح"
+  "successfullyRated": "تم إرسال التقييم بنجاح",
+  "payNow": "ادفع الان"
 }

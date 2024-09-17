@@ -1,6 +1,4 @@
-import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import banner from "../../assets/images/banner.png";
 
 function MarketBanner({ market }) {
@@ -32,17 +30,6 @@ function MarketBanner({ market }) {
               <span className="btn-box share">
                 <i className="fa-solid fa-share"></i>
               </span>
-
-              <Dropdown className="">
-                <Dropdown.Toggle className="btn-box butn" id="dropdown-basic">
-                  <i className="fa-regular fa-ellipsis-vertical"></i>
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item as={Link} to="/profile">
-                    {t("report")}
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
             </div>
           </div>
         </div>

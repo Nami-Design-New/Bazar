@@ -11,6 +11,8 @@ import { subscriptionRemainingDays } from "../../utils/helpers";
 import OrderCard from "../../ui/cards/OrderCard.jsx";
 import InterestMiniCard from "../../ui/cards/InterestMiniCard.jsx";
 import useUserInterests from "../interests/useUserInterests.js";
+import useUserRewards from "../rewards/useUserRewards.js";
+import useSettings from "../app/useSettings.js";
 
 function ProfileTabs({ user, isMyAccount }) {
   const { t } = useTranslation();
@@ -19,6 +21,12 @@ function ProfileTabs({ user, isMyAccount }) {
   const { isLoading: interestsLoading, data: interests } = useUserInterests(
     user?.id
   );
+  const { isLoading: rewardsLoading, data: rewards } = useUserRewards(user?.id);
+  const { isLoading: settingsLoading, data: settings } = useSettings();
+
+  console.log(rewards);
+
+  if (!settingsLoading) console.log(settings?.data);
 
   return (
     <div className="tabs-section">
@@ -214,12 +222,12 @@ function ProfileTabs({ user, isMyAccount }) {
             title={t("profile.rewards")}
             className="tab_item p-2"
           >
-            {ordersLoading ? (
+            {rewardsLoading ? (
               <DataLoader minHeight="200px" />
-            ) : ads?.data && ads?.data?.length > 0 ? (
-              ads?.data?.map((ad) => (
-                <div className="col-lg-6 col-12 p-3" key={ad?.id}>
-                  <FavoriteADCard ad={ad} isMyAccount={isMyAccount} />
+            ) : rewards?.data && rewards?.data?.length > 0 ? (
+              rewards?.data?.map((reward) => (
+                <div className="col-lg-6 col-12 p-3" key={reward?.id}>
+                  <FavoriteADCard ad={reward} isMyAccount={isMyAccount} />
                 </div>
               ))
             ) : (

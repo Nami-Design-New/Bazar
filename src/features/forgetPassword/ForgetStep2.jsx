@@ -6,15 +6,37 @@ import SubmitButton from "../../ui/form-elements/SubmitButton";
 import { toast } from "react-toastify";
 import axios from "../../utils/axios";
 
-function ForgetStep2({ setStep, otpData, setOtpData, phone }) {
+function ForgetStep2({ formData, setStep, otpData, setOtpData, phone }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [timer, setTimer] = useState(60);
   const [resendDisabled, setResendDisabled] = useState(true);
 
-  function handleResend() {
-    setTimer(60);
-  }
+  const handleResend = async (e) => {
+    e.preventDefault();
+    setResendDisabled(true);
+    setLoading(true);
+
+    try {
+      const res = await axios.post("/user/sendOtpCode", formData);
+      if (res.data.code === 200) {
+        setTimer(60);
+        toast.success(t("auth.otpResentSuccess"));
+        setOtpData((prev) => ({
+          ...prev,
+          hashed_code: res.data.data,
+        }));
+        setStep(2);
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.error("Forget password error:", error);
+      throw new Error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (timer > 0) {
@@ -75,12 +97,15 @@ function ForgetStep2({ setStep, otpData, setOtpData, phone }) {
           <OtpContainer formData={otpData} setFormData={setOtpData} />
         </div>
         <div className="resend-code">
-          <span
-            onClick={handleResend}
-            className={`resend_link ${resendDisabled ? "disabled" : ""}`}
-          >
+          <span className={`resend_link ${resendDisabled ? "disabled" : ""}`}>
             {t("auth.didnotReceiveCode")}
-            <span className="">{t("auth.resendCode")}</span>
+            <span
+              className=""
+              style={{ cursor: "pointer" }}
+              onClick={handleResend}
+            >
+              {t("auth.resendCode")}
+            </span>
           </span>
           <div className="timer">
             <span>
@@ -96,9 +121,6 @@ function ForgetStep2({ setStep, otpData, setOtpData, phone }) {
             className={"custom-btn filled"}
             name={t("auth.next")}
             loading={loading}
-            onClick={() => {
-              handleSubmit();
-            }}
           />
           <span
             to="/"

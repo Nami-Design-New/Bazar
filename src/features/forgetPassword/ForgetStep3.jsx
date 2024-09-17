@@ -7,11 +7,12 @@ import { toast } from "react-toastify";
 import headerImg from "../../assets/images/forget-3.svg";
 import axios from "../../utils/axios";
 
-function ForgetStep3({ setStep, code }) {
+function ForgetStep3({ setStep, code, phone }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [formData, setFormData] = useState({
+    phone,
     code,
     password: "",
   });
@@ -82,7 +83,6 @@ function ForgetStep3({ setStep, code }) {
         <div className="d-flex gap-3 align-items-center flex-column w-100">
           <SubmitButton
             className={"custom-btn filled"}
-            onClick={handleSubmit}
             name={t("auth.next")}
             loading={loading}
           />
@@ -90,7 +90,7 @@ function ForgetStep3({ setStep, code }) {
             to="/"
             className="custom-btn stroke"
             style={{ cursor: "pointer" }}
-            onClick={() => setStep(2)}
+            onClick={() => setStep(1)}
           >
             <span>{t("auth.back")}</span>
           </span>

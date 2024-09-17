@@ -8,6 +8,7 @@ import PhoneField from "../../ui/form-elements/PhoneField";
 import PasswordField from "../../ui/form-elements/PasswordField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axios from "../../utils/axios";
+import useSettings from "../app/useSettings";
 
 function RegisterForm({
   formData,
@@ -18,6 +19,7 @@ function RegisterForm({
 }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+  const { data: settings } = useSettings();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -132,11 +134,11 @@ function RegisterForm({
               </div>
               <p className="d-flex w-100 gap-2 terms-condition-alert">
                 {t("auth.acceptingTermsByContinue1")}
-                <Link to="/terms" className="">
+                <Link to={settings?.data?.terms_link} className="">
                   {t("auth.terms")}
                 </Link>
                 {t("auth.acceptingTermsByContinueAnd")}
-                <Link to="/privacy" className="">
+                <Link to={settings?.data?.privacy_link} className="">
                   {t("auth.privacy")}
                 </Link>
                 {t("auth.acceptingTermsByContinue2")}
@@ -146,7 +148,6 @@ function RegisterForm({
                   className={"custom-btn filled"}
                   loading={loading}
                   name={t("auth.createAccount")}
-                  onClick={handleSubmit}
                 />
               </div>
               <div className="d-flex gap-2 flex-lg-row flex-column w-100">

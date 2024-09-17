@@ -9,7 +9,7 @@ const containerStyle = {
   width: "100%",
   height: "300px",
   borderRadius: "12px",
-  overflow: "hidden"
+  overflow: "hidden",
 };
 
 function AboutTab({ market }) {
@@ -66,8 +66,7 @@ function AboutTab({ market }) {
               <i className="fa-solid fa-id-card "></i>
             </div>
             <span>
-              {t("markets.identity")}{" "}
-              <span className="">24232525</span>
+              {t("markets.identity")} <span className="">24232525</span>
             </span>
           </div>
         </div>
@@ -99,7 +98,7 @@ function AboutTab({ market }) {
               mapContainerStyle={containerStyle}
               center={{
                 lat: market?.data?.lat,
-                lng: market?.data?.lng
+                lng: market?.data?.lng,
               }}
               zoom={10}
             >
@@ -107,17 +106,11 @@ function AboutTab({ market }) {
                 icon={mapPin}
                 position={{
                   lat: market?.data?.lat,
-                  lng: market?.data?.lng
+                  lng: market?.data?.lng,
                 }}
               ></Marker>
             </GoogleMap>
           </LoadScript>
-        </div>
-        <div className="details-box">
-          <div className="title">
-            <span>{t("markets.workTimes")}</span>
-          </div>
-          <div className="sub-title">من الساعه 12 صباحا حتي الساعه 11 مساء</div>
         </div>
 
         <div className="details-box">
