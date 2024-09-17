@@ -18,25 +18,6 @@ import useGetAdById from "../features/ads/useGetAdById";
 import DataLoader from "../ui/DataLoader";
 import errorImg from "../assets/images/error.svg";
 
-/*
-Missed parts in UI: 
-  area / city id ???
-  ad_type: sell / buy
-  audio
-  video
-  statics: chats, comments, favorites, phones, share
-  rating
-  rate
-  simialr ads
-  verification badges
-  follow button
-
-Missed in data:
-  category and sub_category names
-  tags
-  benefits (main - additionally)
-*/
-
 function AdDetails() {
   const { t } = useTranslation();
   const { isLoading, data: ad } = useGetAdById();
