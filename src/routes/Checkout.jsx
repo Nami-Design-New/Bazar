@@ -33,7 +33,7 @@ function Checkout() {
     total: 0,
     coupon: "",
     payment_method: "cash",
-    delivery_price: ""
+    delivery_price: "",
   });
 
   useEffect(() => {
@@ -78,7 +78,7 @@ function Checkout() {
             marketLng,
             settings?.km_price
           )
-        : 0
+        : 0,
     }));
   }, [addresses, cart, settings, formData?.address_id]);
 
@@ -88,14 +88,14 @@ function Checkout() {
       total:
         Number(formData.sub_total) +
         Number(formData.taxes) +
-        Number(formData.delivery_price)
+        Number(formData.delivery_price),
     }));
   }, [formData.sub_total, formData.taxes, formData.delivery_price]);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -104,12 +104,12 @@ function Checkout() {
     setCouponLoading(true);
     try {
       const res = await axios.post("/user/get_coupon_user", {
-        coupon: formData.coupon
+        coupon: formData.coupon,
       });
       if (res?.data?.code === 200) {
         setFormData({
           ...formData,
-          discount: res?.data?.data?.discount
+          discount: res?.data?.data?.discount,
         });
       } else {
         toast.error(res?.data?.message);
@@ -125,10 +125,13 @@ function Checkout() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    if (!formData?.address_id) {
+      return;
+    }
     try {
       const res = await axios.post("/user/create_order", formData);
       if (res?.data?.code === 200) {
-        navigate(`/order-details/${res?.data?.id}`);
+        navigate(`/order-details/${res?.data?.data}`);
         toast.success("تم انشاء الطلب بنجاح");
       } else {
         toast.error(res?.data?.message);
@@ -222,6 +225,7 @@ function Checkout() {
                     onChange={(e) => handleChange(e)}
                     placeholder={t("writeHere")}
                     label={t("cart.orderDetails")}
+                    required={true}
                   />
 
                   {/* addresses */}
@@ -240,6 +244,7 @@ function Checkout() {
                               checked={
                                 Number(formData.address_id) === address?.id
                               }
+                              required={true}
                             />
                             <span className="address">
                               {address?.address_title}
@@ -272,6 +277,7 @@ function Checkout() {
                           value="cash"
                           checked={formData?.payment_method === "cash"}
                           onChange={(e) => handleChange(e)}
+                          required={true}
                         />
                         <span className="address">{t("cart.cash")}</span>
                       </label>
@@ -284,6 +290,7 @@ function Checkout() {
                           value="wallet"
                           checked={formData?.payment_method === "wallet"}
                           onChange={(e) => handleChange(e)}
+                          required={true}
                         />
                         <span className="address">{t("cart.wallet")}</span>
                       </label>

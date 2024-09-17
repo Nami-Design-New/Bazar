@@ -12,7 +12,7 @@ import useGetAdById from "../features/ads/useGetAdById";
 
 function AddAdvertisment() {
   const { t } = useTranslation();
-  const [form, setForm] = useState("main-info");
+  const [form, setForm] = useState("pricing-contact");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { isLoading, data: ad } = useGetAdById();

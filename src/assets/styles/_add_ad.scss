@@ -298,3 +298,20 @@
     }
   }
 }
+.check_phone {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  .custom-btn {
+    border-color: transparent !important;
+  }
+
+  input,
+  span,
+  button {
+    // width: unset !important;
+  }
+}

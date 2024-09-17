@@ -12,8 +12,6 @@ function CommercialVerification() {
   const [selectedPlan, setPlan] = useState("");
   const { isLoading: packagesLoading, data: packages } = usePackagesList();
 
-  console.log(packages);
-
   return packagesLoading ? (
     <DataLoader minHeight="200px" />
   ) : (
@@ -34,7 +32,7 @@ function CommercialVerification() {
             <h6>{t("profile.planMethod")}</h6>
             <div className="inputs-wrapper">
               {packages?.data?.map((plan) => (
-                <div className="radio-group" key={plan.value}>
+                <div className="radio-group" key={plan.id}>
                   <input
                     type="radio"
                     name="plan"
