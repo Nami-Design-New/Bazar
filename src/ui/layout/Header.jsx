@@ -1,38 +1,53 @@
-import HeaderTopBar from "./HeaderTopBar";
-import NotificationItem from "./NotificationItem";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Dropdown } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useCookies } from "react-cookie";
+import { setIsLogged, setUser } from "../../redux/slices/authedUser";
+import { useQueryClient } from "@tanstack/react-query";
+import { setLanguage } from "../../redux/slices/language";
 import {
   IconBell,
   IconCirclePlus,
+  IconLanguage,
   IconMessage,
-  IconShoppingBag,
+  IconShoppingBag
 } from "@tabler/icons-react";
-import { useDispatch, useSelector } from "react-redux";
-import { useCookies } from "react-cookie";
+import NotificationItem from "./NotificationItem";
 import axios from "../../utils/axios";
-import { setIsLogged, setUser } from "../../redux/slices/authedUser";
-import { useQueryClient } from "@tanstack/react-query";
+import i18next from "i18next";
 import Loader from "../Loader";
 
 export default function Header() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
   const [isOpen, setIsOpen] = useState(false);
   const [isFixedTop, setIsFixedTop] = useState(false);
+  const [isLogoutLoading, setIsLogoutLoading] = useState(false);
+
+  const lang = useSelector((state) => state.language.lang);
   const user = useSelector((state) => state.authedUser.user);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
+
   const [, , deleteCookie] = useCookies();
-  const [isLogoutLoading, setIsLogoutLoading] = useState(false);
-  const dispatch = useDispatch();
   const [cookies] = useCookies(["token"]);
   const token = cookies?.token;
-  const queryClient = useQueryClient();
-  const navigate = useNavigate();
 
   const handleClickOutSide = () => {
     setIsOpen(false);
+  };
+
+  const handleLang = (newLang) => {
+    dispatch(setLanguage(newLang));
+    i18next.changeLanguage(newLang);
+    const bodyElement = document.querySelector("body");
+    if (bodyElement) {
+      bodyElement.classList.toggle("en", newLang === "en");
+    }
   };
 
   const performLogout = async () => {
@@ -73,8 +88,6 @@ export default function Header() {
     <Loader />
   ) : (
     <header className={`header ${isFixedTop ? "sticky" : ""}`}>
-      <HeaderTopBar />
-
       <div
         className={`underLay ${isOpen ? "active" : ""}`}
         onClick={handleClickOutSide}
@@ -100,7 +113,11 @@ export default function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink className="nav-link" to="/videos" onClick={handleClickOutSide}>
+              <NavLink
+                className="nav-link"
+                to="/videos"
+                onClick={handleClickOutSide}
+              >
                 {t("header.videos")}
               </NavLink>
             </li>
@@ -162,6 +179,11 @@ export default function Header() {
           </ul>
 
           <div className="left_utils">
+            <button onClick={() => handleLang(lang === "en" ? "ar" : "en")}>
+              <span>{lang === "en" ? "AR" : "EN"}</span>
+              <IconLanguage stroke={1} />
+            </button>
+
             <Link to={"/cart"} className="cart_open" id="toggleSmallCart">
               <IconShoppingBag stroke={1.5} />
               <span>0</span>

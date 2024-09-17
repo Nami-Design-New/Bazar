@@ -841,7 +841,7 @@ body header nav .container .navigation_links li.logoo img {
   }
 }
 body header nav .container .left_utils {
-  flex: 1;
+  flex: 2;
   height: 100%;
   display: flex;
   align-items: center;
@@ -3319,6 +3319,7 @@ body main .fav-ad-card .card-header {
 }
 body main .fav-ad-card .card-header .image-wrapper {
   width: 120px;
+  aspect-ratio: 3/2;
   border-radius: 12px;
   position: relative;
   display: flex;
