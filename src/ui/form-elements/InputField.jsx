@@ -1,7 +1,13 @@
 import { Form } from "react-bootstrap";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
-export default function InputField({ label, toolTipContent, span, ...props }) {
+export default function InputField({
+  noFullWidth,
+  label,
+  toolTipContent,
+  span,
+  ...props
+}) {
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       {props.content}
@@ -9,7 +15,7 @@ export default function InputField({ label, toolTipContent, span, ...props }) {
   );
 
   return (
-    <div className="input-field w-100">
+    <div className={`input-field ${noFullWidth ? "" : "w-100"}`}>
       <label htmlFor={props.id}>
         <div className="d-flex justify-content-between align-items-center">
           {label}
@@ -17,7 +23,7 @@ export default function InputField({ label, toolTipContent, span, ...props }) {
             <OverlayTrigger
               placement="bottom"
               overlay={renderTooltip({
-                content: toolTipContent
+                content: toolTipContent,
               })}
             >
               <i className="info-label fa-light fa-circle-info"></i>

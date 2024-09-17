@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { ORDER_STATUS_AR, ORDER_STATUS_EN } from "../utils/constants";
 import { formatTimeDifference, getTimeDifference } from "../utils/helpers";
 import { Link } from "react-router-dom";
+import errorImg from "../assets/images/error.svg";
 
 function OrderDetails() {
   const { t } = useTranslation();
@@ -27,7 +28,7 @@ function OrderDetails() {
       <SectionHeader />
       {orderLoading ? (
         <DataLoader minHeight="200px" />
-      ) : (
+      ) : order?.data ? (
         <div className="order-details-wrapper container col-lg-10 col-12">
           <div className="status-wrapper">
             <div className="status-header">
@@ -370,6 +371,15 @@ function OrderDetails() {
             </div>
           )}
         </div>
+      ) : (
+        <section className="error-section">
+          <img src={errorImg} alt="error image" />
+          <h2>{t("error.pageNotFound")}</h2>
+          <Link to="/" className="backhome">
+            <i className="fa-solid fa-home"></i>
+            <span>{t("error.goHome")}</span>
+          </Link>
+        </section>
       )}
     </div>
   );

@@ -6395,6 +6395,16 @@ body main .images_grid_upload .uploaded_file .doc_icon img {
   width: auto;
   height: 50px;
 }
+body main .check_phone {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+body main .check_phone .custom-btn {
+  border-color: transparent !important;
+}
 body main .ads-page .content-wrapper {
   padding-top: 60px;
   padding-bottom: 60px;

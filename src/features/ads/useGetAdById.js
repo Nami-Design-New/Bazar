@@ -12,6 +12,7 @@ function useGetAdById() {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
+    enabled: !!id,
   });
 
   return { isLoading, data, error };

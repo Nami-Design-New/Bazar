@@ -5,14 +5,48 @@ import bestPrice from "../../assets/images/best-price.svg";
 import negotiable from "../../assets/images/negotiable.svg";
 import fixed from "../../assets/images/fixed.svg";
 import contact from "../../assets/images/contact.svg";
-import whatsapp from "../../assets/images/whatsapp-icon.svg";
+import whatsappImg from "../../assets/images/whatsapp-icon.svg";
 import call from "../../assets/images/call.svg";
 import message from "../../assets/images/Message.svg";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import axios from "../../utils/axios";
+import { useTranslation } from "react-i18next";
 
 function Pricing({ formData, setFormData, setForm, loading }) {
+  const { t } = useTranslation();
   const { id } = useParams();
+  const [whatsappLoading, setWhatsappLoading] = useState(false);
+  const [whatsapp, setWhatsapp] = useState(formData?.whatsapp_number || "");
+  const [phoneLoading, setPhoneLoading] = useState(false);
+  const [phone, setPhone] = useState(formData?.phone_number || "");
+
+  const applyWhatsapp = async (e) => {
+    e.preventDefault();
+    setWhatsappLoading(true);
+
+    try {
+      const res = await axios.post("/user/check_phone", {
+        phone: whatsapp,
+      });
+      if (res?.data?.code === 200) {
+        toast.success(t("ads.successfullyAdded"));
+        setFormData({
+          ...formData,
+          whatsapp_number: whatsapp,
+        });
+      } else {
+        toast.error(res?.data?.message);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      throw new Error(error);
+    } finally {
+      setWhatsappLoading(false);
+    }
+  };
 
   return (
     <div className="row w-100">
@@ -117,7 +151,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
             <div className="type">
               <div className="label">
                 <label htmlFor="whatsapp" className="content">
-                  <img src={whatsapp} alt="best" />
+                  <img src={whatsappImg} alt="best" />
                   <div className="text">
                     <h4>واتساب</h4>
                   </div>
@@ -136,14 +170,23 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                 />
               </div>
               {formData?.whatsapp === 1 && (
-                <InputField
-                  type="number"
-                  name="whatsapp_number"
-                  id="whatsapp_number"
-                  placeholder="رقم الواتساب"
-                  value={formData?.whatsapp_number}
-                  onChange={(e) => handleChange(e, setFormData)}
-                />
+                <div className="check_phone">
+                  <InputField
+                    type="number"
+                    name="whatsapp_number"
+                    id="whatsapp_number"
+                    placeholder="رقم الواتساب"
+                    value={whatsapp}
+                    onChange={(e) => setWhatsapp(e.target.value)}
+                    noFullWidth={true}
+                  />
+                  <SubmitButton
+                    className="custom-btn filled"
+                    name={"تحقق"}
+                    loading={whatsappLoading}
+                    onClick={applyWhatsapp}
+                  />
+                </div>
               )}
             </div>
 
