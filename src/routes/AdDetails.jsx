@@ -16,6 +16,7 @@ import clock from "../assets/images/clock.svg";
 import eye from "../assets/images/eye.svg";
 import useGetAdById from "../features/ads/useGetAdById";
 import DataLoader from "../ui/DataLoader";
+import errorImg from "../assets/images/error.svg";
 
 /*
 Missed parts in UI: 
@@ -62,7 +63,9 @@ function AdDetails() {
     navigate("/chats");
   };
 
-  return (
+  return isLoading ? (
+    <DataLoader minHeight="200px" />
+  ) : ad?.data ? (
     <section className="itemDetails">
       <div className="container">
         <div className="row">
@@ -193,34 +196,34 @@ function AdDetails() {
             </div>
           </div>
 
-            <div className="col-lg-4 p-0 p-md-3">
-              <div className="advertiserDetails">
-                <Link
-                  to={`/profile/${ad?.data?.user?.id}`}
-                  className="advertiser"
-                >
-                  <img
-                    src={ad?.data?.user?.image || avatar}
-                    loading="lazy"
-                    alt=""
-                  />
-                  <h3 className="name">
-                    {" "}
-                    {ad?.data?.user?.name || "Ahmed Elsayed"}{" "}
-                  </h3>
+          <div className="col-lg-4 p-0 p-md-3">
+            <div className="advertiserDetails">
+              <Link
+                to={`/profile/${ad?.data?.user?.id}`}
+                className="advertiser"
+              >
+                <img
+                  src={ad?.data?.user?.image || avatar}
+                  loading="lazy"
+                  alt=""
+                />
+                <h3 className="name">
+                  {" "}
+                  {ad?.data?.user?.name || "Ahmed Elsayed"}{" "}
+                </h3>
+              </Link>
+              <span className="date"> عضو منذ أغسطس 2023 </span>
+              <div className="contact">
+                <button className="chat" onClick={openChat}>
+                  <IconMessageCircle stroke={1.5} />
+                  <span> محادثة </span>
+                </button>
+                <Link to="tel:+966123456789" className="call">
+                  <IconPhone stroke={1.5} />
+                  <span> اتصل </span>
                 </Link>
-                <span className="date"> عضو منذ أغسطس 2023 </span>
-                <div className="contact">
-                  <button className="chat" onClick={openChat}>
-                    <IconMessageCircle stroke={1.5} />
-                    <span> محادثة </span>
-                  </button>
-                  <Link to="tel:+966123456789" className="call">
-                    <IconPhone stroke={1.5} />
-                    <span> اتصل </span>
-                  </Link>
-                </div>
               </div>
+            </div>
 
             <div className="itemDetailsBox">
               <h4 className="title"> سلامتك تهمنا </h4>
