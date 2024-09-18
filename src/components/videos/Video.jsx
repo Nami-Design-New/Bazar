@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Comments from "./Comments";
+import Share from "./Share";
 
 function Video({ ad }) {
   const videoRef = useRef(null);
   const [showComments, setShowComments] = useState(false);
+  const [showShare, setShowShare] = useState(false);
   const [canPlay, setCanPlay] = useState(false);
 
   useEffect(() => {
@@ -69,7 +71,7 @@ function Video({ ad }) {
           <span>{ad?.comments_count}</span>
         </div>
 
-        <div className="actions">
+        <div className="actions" onClick={() => setShowShare(true)}>
           <button>
             <i className="fa-solid fa-share"></i>
           </button>
@@ -89,6 +91,8 @@ function Video({ ad }) {
         setShow={setShowComments}
         element={videoRef}
       />
+
+      <Share show={showShare} setShow={setShowShare} element={videoRef} />
     </div>
   );
 }
