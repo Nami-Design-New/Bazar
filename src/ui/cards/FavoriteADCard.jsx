@@ -2,10 +2,15 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { calculateDate } from "../../utils/helpers";
+import { toast } from "react-toastify";
 import ConfirmationModal from "../modals/ConfirmationModal";
+import axios from "./../../utils/axios";
+import useUserAds from "../../hooks/ads/useUserAds";
 
 function FavoriteADCard({ ad, isMyAccount }) {
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
+  const { refetch } = useUserAds();
 
   function handleToggleFavorite(e) {
     e.stopPropagation();
@@ -19,9 +24,6 @@ function FavoriteADCard({ ad, isMyAccount }) {
     e.stopPropagation();
     setShowConfirmation(true);
   }
-  function handleDelete() {
-    setShowConfirmation(false);
-  }
 
   function handleLinkClick(e) {
     e.stopPropagation();
@@ -33,6 +35,25 @@ function FavoriteADCard({ ad, isMyAccount }) {
       e.preventDefault();
     }
   }
+
+  const deleteAd = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.post("/user/delete_ad", { id: ad?.id });
+      if (res.data?.code === 200) {
+        toast.success("تم حذف الاعلان بنجاح");
+        setShowConfirmation(false);
+        refetch();
+      } else {
+        toast.error(res.data?.message);
+      }
+    } catch (error) {
+      toast.error(error.response);
+      throw new Error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Link
@@ -120,8 +141,9 @@ function FavoriteADCard({ ad, isMyAccount }) {
         showModal={showConfirmation}
         setShowModal={setShowConfirmation}
         type="delete"
-        eventFun={handleDelete}
+        eventFun={deleteAd}
         buttonText={t("delete")}
+        loading={loading}
         text={t("ads.areYouSureYouWantToDeleteAD")}
       />
     </Link>

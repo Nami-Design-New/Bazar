@@ -24,7 +24,6 @@ function ProfileTabs({ user, isMyAccount }) {
   const { isLoading: ordersLoading, data: orders } = useUserOrders(user?.id);
   const { isLoading: rewardsLoading, data: rewards } = useUserRewards(user?.id);
   const { isLoading: settingsLoading, data: settings } = useGetSettings();
-
   const { isLoading: interestsLoading, data: interests } = useUserInterests(
     user?.id
   );
