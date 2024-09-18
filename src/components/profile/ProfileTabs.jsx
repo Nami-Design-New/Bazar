@@ -11,9 +11,9 @@ import OrderCard from "../../ui/cards/OrderCard.jsx";
 import InterestMiniCard from "../../ui/cards/InterestMiniCard.jsx";
 import useUserAds from "./../../hooks/ads/useUserAds";
 import useUserOrders from "./../../hooks/orders/useUserOrders";
-import useUserInterests from "./../../hooks/useUserInterests";
-import useUserRewards from "./../../hooks/useUserRewards";
-import useGetSettings from "./../../hooks/useGetSettings";
+import useUserInterests from "./../../hooks/profile/useUserInterests";
+import useUserRewards from "./../../hooks/profile/useUserRewards";
+import useGetSettings from "./../../hooks/settings/useGetSettings";
 import Transactions from "./../../ui/layout/Transactions";
 import ChargeModal from "./../../ui/modals/ChargeModal";
 import WithdrawModal from "./../../ui/modals/WithdrawModal";
@@ -24,7 +24,6 @@ function ProfileTabs({ user, isMyAccount }) {
   const { isLoading: ordersLoading, data: orders } = useUserOrders(user?.id);
   const { isLoading: rewardsLoading, data: rewards } = useUserRewards(user?.id);
   const { isLoading: settingsLoading, data: settings } = useGetSettings();
-
   const { isLoading: interestsLoading, data: interests } = useUserInterests(
     user?.id
   );
@@ -43,7 +42,11 @@ function ProfileTabs({ user, isMyAccount }) {
           id="uncontrolled-tab-example"
         >
           {/* ADs */}
-          <Tab eventKey="ads" title={t("profile.ads")} className="tab_item p-2">
+          <Tab
+            eventKey="ads"
+            title={t("profile.ads")}
+            className="tab_item p-2 pt-0"
+          >
             <>
               {isMyAccount && (
                 <div className="w-100 btn-wrapper d-flex justify-content-end mb-3 p-2">
@@ -55,11 +58,15 @@ function ProfileTabs({ user, isMyAccount }) {
                 </div>
               )}
               {adsLoading ? (
-                <DataLoader minHeight="200px" />
+                <DataLoader minHeight="400px" />
               ) : ads?.data && ads?.data?.length > 0 ? (
                 ads?.data?.map((ad) => (
-                  <div className="col-lg-6 col-12 p-3" key={ad?.id}>
-                    <FavoriteADCard ad={ad} isMyAccount={isMyAccount} />
+                  <div className="col-lg-6 col-12 p-2" key={ad?.id}>
+                    <FavoriteADCard
+                      userId={user?.id}
+                      ad={ad}
+                      isMyAccount={isMyAccount}
+                    />
                   </div>
                 ))
               ) : (
@@ -67,18 +74,19 @@ function ProfileTabs({ user, isMyAccount }) {
               )}
             </>
           </Tab>
+
           {/* Orders */}
           {isMyAccount && (
             <Tab
               eventKey="orders"
               title={t("profile.orders")}
-              className="tab_item p-2"
+              className="tab_item p-2 pt-0"
             >
               {ordersLoading ? (
-                <DataLoader minHeight="200px" />
+                <DataLoader minHeight="400px" />
               ) : orders?.data && orders?.data?.length > 0 ? (
                 orders?.data?.map((order) => (
-                  <div className="col-lg-6 col-12 p-3" key={order?.id}>
+                  <div className="col-lg-6 col-12 p-2" key={order?.id}>
                     <OrderCard order={order} isMyAccount={isMyAccount} />
                   </div>
                 ))
@@ -94,10 +102,10 @@ function ProfileTabs({ user, isMyAccount }) {
             <Tab
               eventKey="interests"
               title={t("profile.interests")}
-              className="tab_item p-2"
+              className="tab_item p-2 pt-0"
             >
               {interestsLoading ? (
-                <DataLoader minHeight="200px" />
+                <DataLoader minHeight="400px" />
               ) : interests?.data && interests?.data?.length > 0 ? (
                 interests?.data?.map((interest) => (
                   <div className="col-lg-6 col-12 p-3" key={interest?.id}>
@@ -118,7 +126,7 @@ function ProfileTabs({ user, isMyAccount }) {
           <Tab
             eventKey="verifications"
             title={t("profile.verifications")}
-            className="tab_item p-2"
+            className="tab_item p-2 pt-0"
           >
             <div className="profile-verification-wrapper">
               <ul className="hint-wrapper mx-3">
@@ -231,10 +239,10 @@ function ProfileTabs({ user, isMyAccount }) {
             <Tab
               eventKey="rewards"
               title={t("profile.rewards")}
-              className="tab_item p-2"
+              className="tab_item p-2 pt-0"
             >
               {rewardsLoading ? (
-                <DataLoader minHeight="200px" />
+                <DataLoader minHeight="400px" />
               ) : rewards?.data && rewards?.data?.length > 0 ? (
                 rewards?.data?.map((reward) => (
                   <div className="col-lg-6 col-12 p-3" key={reward?.id}>
@@ -252,7 +260,7 @@ function ProfileTabs({ user, isMyAccount }) {
             <Tab
               eventKey="balance"
               title={t("profile.balance")}
-              className="tab_item p-2"
+              className="tab_item p-2 pt-0"
             >
               <section className="balance_section">
                 <div className="balanceContainer">

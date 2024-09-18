@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { handleChange } from "../../utils/helpers";
 import SelectField from "./../../ui/form-elements/SelectField";
 import DataLoader from "./../../ui/DataLoader";
-import useGetCities from "../../hooks/useGetCities";
-import useGetAreas from "../../hooks/useGetAreas";
+import useGetCities from "../../hooks/settings/useGetCities";
+import useGetAreas from "../../hooks/settings/useGetAreas";
 import MapWithMarker from "../../ui/MapWithMarker";
 
 function Location({ formData, setFormData, setForm }) {

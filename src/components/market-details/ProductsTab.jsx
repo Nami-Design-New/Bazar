@@ -22,7 +22,7 @@ function ProductsTab({ market }) {
   return (
     <div className="content-wrapper">
       {sectionLoading ? (
-        <DataLoader minHeight="200px" />
+        <DataLoader minHeight="400px" />
       ) : sections?.data && sections?.data?.length > 0 ? (
         <>
           <div className="filter-wrapper">
@@ -47,7 +47,7 @@ function ProductsTab({ market }) {
           </div>
 
           {productsLoading ? (
-            <DataLoader minHeight="200px" />
+            <DataLoader minHeight="400px" />
           ) : products?.data && products?.data?.length > 0 ? (
             <div className="products-wrapper">
               <div className="row m-0">

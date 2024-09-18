@@ -8,7 +8,7 @@ body {
   @import "./form-ui";
 
   main {
-    min-height: calc(100vh - 130px);
+    min-height: calc(100vh - 80px);
     @import "./home";
     @import "./videos";
     @import "./auth";
@@ -26,7 +26,8 @@ body {
 
     .topHead {
       display: flex;
-      align-items: flex-end;
+      align-items: flex-start;
+      flex-direction: column;
       justify-content: space-between;
       gap: 16px;
       row-gap: 4px;
@@ -66,7 +67,7 @@ body {
             white-space: nowrap;
             color: $main;
             &.active {
-              background: linear-gradient(238.2deg, $second 0%, $main 100%);
+              background: $main;
               color: $white !important;
             }
           }
@@ -269,7 +270,7 @@ body {
 
   .custom-btn {
     width: 100%;
-    height: 56px;
+    height: 52px;
     gap: 6px;
     border-radius: 12px;
     border: 1px solid $main !important;
@@ -287,7 +288,7 @@ body {
       top: 0;
       left: 0;
       border-radius: inherit;
-      background: linear-gradient(238.2deg, $second 0%, $main 100%) !important;
+      background: $main !important;
       transition: $transition;
       opacity: 0;
       z-index: 1;

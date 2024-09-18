@@ -10,7 +10,7 @@
   .userInfo {
     background-color: $white;
     border-radius: 20px;
-    box-shadow: $bigShadow;
+    box-shadow: $shadow;
     padding: 20px;
     position: relative;
     display: flex;
@@ -213,6 +213,7 @@
     border: 1px solid #ccc;
     margin-bottom: 50px;
     position: relative;
+    gap: 12px !important;
     z-index: 2;
     display: flex;
     flex-direction: column;
@@ -308,7 +309,7 @@
 
   .tabs-section {
     display: flex;
-    padding: 0 !important ;
+    padding: 0 !important;
 
     @media screen and (max-width: 768px) {
       flex-direction: column;
@@ -317,7 +318,9 @@
     .nav-tabs {
       .nav-item {
         flex: unset !important;
-
+        button {
+          background: $inputBg;
+        }
         @media screen and (max-width: 768px) {
           flex: 1 0 !important;
         }

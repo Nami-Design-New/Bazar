@@ -1,3 +1,6 @@
+.swiper-slide {
+  height: auto;
+}
 .item {
   position: relative;
   display: flex;
@@ -8,6 +11,7 @@
   transition: $transition;
   border: 1px solid $LightGray;
   background-color: $white;
+  height: 100%;
   .favorite {
     @include clearInput();
     position: absolute;

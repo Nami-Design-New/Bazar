@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import useGetSettings from "../../hooks/useGetSettings";
+import useGetSettings from "../../hooks/settings/useGetSettings";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();

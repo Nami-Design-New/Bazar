@@ -1,15 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "./../utils/axios";
+import axios from "../../utils/axios";
 
-function useGetCities() {
+function useGetAreas(city_id, enabled) {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["cities"],
+    queryKey: ["areas", city_id],
     queryFn: async () => {
-      const res = await axios.get("/get_cities");
+      const res = await axios.post("/get_areas", { city_id });
       if (res.status === 200) {
         return res.data;
       }
     },
+    enabled,
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -19,4 +20,4 @@ function useGetCities() {
   return { isLoading, data, error };
 }
 
-export default useGetCities;
+export default useGetAreas;

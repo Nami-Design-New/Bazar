@@ -1,13 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap");
-@keyframes loading {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(120px);
-  }
-}
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -223,7 +215,15 @@ input[type=checkbox]:checked::after {
   width: 36px;
   background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
   height: 100%;
-  animation: loading 0.5s linear infinite alternate;
+  animation: appLoading 0.5s linear infinite alternate;
+}
+@keyframes appLoading {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(120px);
+  }
 }
 
 .dropdown-toggle::after {
@@ -350,14 +350,6 @@ body {
   font-family: "Baloo Bhaijaan 2", sans-serif;
   @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
   @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap");
-}
-@keyframes loading {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(120px);
-  }
 }
 @keyframes fadeInUp {
   0% {
@@ -556,7 +548,15 @@ body .loader span::after {
   width: 36px;
   background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
   height: 100%;
-  animation: loading 0.5s linear infinite alternate;
+  animation: appLoading 0.5s linear infinite alternate;
+}
+@keyframes appLoading {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(120px);
+  }
 }
 body .dropdown-toggle::after {
   display: none;
@@ -1476,7 +1476,7 @@ body .wizard_tabs .wizard_tab.active h6, body .wizard_tabs .wizard_tab:hover h6 
   color: #4381f8;
 }
 body main {
-  min-height: calc(100vh - 130px);
+  min-height: calc(100vh - 80px);
 }
 body main .hero-section {
   padding: 40px 0 0;
@@ -1728,9 +1728,12 @@ body main .sliders .slider_wrap {
 body main .sliders .slider_wrap:nth-child(even) {
   background-color: #fafafa;
 }
+body main .similar_ads {
+  padding-bottom: 60px;
+}
 body main .videos {
   padding: 20px 16px;
-  height: calc(100vh - 130px);
+  height: calc(100vh - 80px);
 }
 @media screen and (max-width: 768px) {
   body main .videos {
@@ -1765,14 +1768,14 @@ body main .videos .videos_wrapper .video {
   width: 100%;
   height: 100%;
   background: #000;
-  min-height: calc(100vh - 170px);
+  min-height: calc(100vh - 120px);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 @media screen and (max-width: 768px) {
   body main .videos .videos_wrapper .video {
-    min-height: calc(100vh - 130px);
+    min-height: calc(100vh - 80px);
   }
 }
 body main .videos .videos_wrapper .video video {
@@ -2308,7 +2311,7 @@ body main .profile .content-wrapper .row {
 body main .profile .userInfo {
   background-color: #fff;
   border-radius: 20px;
-  box-shadow: 0 16px 32px 0 rgba(7, 28, 31, 0.1019607843);
+  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
   padding: 20px;
   position: relative;
   display: flex;
@@ -2497,6 +2500,7 @@ body main .profile .profileNavCol {
   border: 1px solid #ccc;
   margin-bottom: 50px;
   position: relative;
+  gap: 12px !important;
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -2600,6 +2604,9 @@ body main .profile .tabs-section {
 }
 body main .profile .tabs-section .nav-tabs .nav-item {
   flex: unset !important;
+}
+body main .profile .tabs-section .nav-tabs .nav-item button {
+  background: #fafafa;
 }
 @media screen and (max-width: 768px) {
   body main .profile .tabs-section .nav-tabs .nav-item {
@@ -3601,7 +3608,7 @@ body main .fav-market-card .card-details .card-statistics .statistic .value {
 body main .fav-ad-card {
   background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1490196078);
+  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
   border: 1px solid #fdfdfd;
   display: flex;
   flex-direction: column;
@@ -3748,19 +3755,21 @@ body main .fav-ad-card .card-statistics .statistic .value {
 body main .order-card {
   background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1490196078);
+  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
   border: 1px solid #fdfdfd;
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 body main .order-card .card-header {
   width: 100%;
   display: flex;
   gap: 16px;
   position: relative;
-  background: #f6f6f6;
+  background: #fff;
+  height: 100%;
   padding: 16px;
 }
 body main .order-card .card-header .image-wrapper {
@@ -5584,8 +5593,8 @@ body main .advertiserDetails .advertiser {
 body main .advertiserDetails .advertiser img {
   width: 120px;
   height: 120px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 100px;
   transition: all 0.2s ease-in-out;
   box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
@@ -6239,6 +6248,9 @@ body main .empty_cart a {
   border-radius: 100px;
   padding: 6px 16px;
 }
+body main .swiper-slide {
+  height: auto;
+}
 body main .item {
   position: relative;
   display: flex;
@@ -6249,6 +6261,7 @@ body main .item {
   transition: all 0.2s ease-in-out;
   border: 1px solid #d9d9d9;
   background-color: #fff;
+  height: 100%;
 }
 body main .item .favorite {
   border: none;
@@ -7337,7 +7350,8 @@ body main .lottie_player_holder {
 }
 body main .topHead {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
   justify-content: space-between;
   gap: 16px;
   row-gap: 4px;
@@ -7382,7 +7396,7 @@ body main .tabs-section .nav-tabs .nav-item button {
   color: #4381f8;
 }
 body main .tabs-section .nav-tabs .nav-item button.active {
-  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
+  background: #4381f8;
   color: #fff !important;
 }
 body main .error-section {
@@ -7689,7 +7703,7 @@ body .section-head .img img {
 }
 body .custom-btn {
   width: 100%;
-  height: 56px;
+  height: 52px;
   gap: 6px;
   border-radius: 12px;
   border: 1px solid #4381f8 !important;
@@ -7712,7 +7726,7 @@ body .custom-btn::after {
   top: 0;
   left: 0;
   border-radius: inherit;
-  background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%) !important;
+  background: #4381f8 !important;
   transition: all 0.2s ease-in-out;
   opacity: 0;
   z-index: 1;

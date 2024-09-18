@@ -26,15 +26,6 @@
   outline: none;
 }
 
-@keyframes loading {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(120px);
-  }
-}
-
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -265,7 +256,15 @@ input[type="checkbox"] {
       width: 36px;
       background: linear-gradient(238.2deg, $second 0%, $main 100%);
       height: 100%;
-      animation: loading 0.5s linear infinite alternate;
+      animation: appLoading 0.5s linear infinite alternate;
+    }
+  }
+  @keyframes appLoading {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(120px);
     }
   }
 }

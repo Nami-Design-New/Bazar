@@ -25,7 +25,7 @@ function OrderDetails() {
     <div className="order-details-page ">
       <SectionHeader />
       {orderLoading ? (
-        <DataLoader minHeight="200px" />
+        <DataLoader minHeight="400px" />
       ) : order?.data ? (
         <div className="order-details-wrapper container col-lg-10 col-12">
           <div className="status-wrapper">

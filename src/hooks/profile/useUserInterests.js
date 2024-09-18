@@ -1,11 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUserRewards } from "../services/apiRewards";
+import { getUserInterests } from "../../services/apiInterests";
 
-
-function useUserRewards() {
+function useUserInterests() {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["userRewards"],
-    queryFn: getUserRewards,
+    queryKey: ["userInterests"],
+    queryFn: getUserInterests,
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -16,4 +15,4 @@ function useUserRewards() {
   return { isLoading, data, error };
 }
 
-export default useUserRewards
+export default useUserInterests

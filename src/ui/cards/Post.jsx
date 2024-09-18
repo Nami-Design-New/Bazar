@@ -1,19 +1,30 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 function Post({ post }) {
+  const { t } = useTranslation();
+
   return (
     <div className="item">
-      <button className="favorite active">
+      <button className={`favorite ${post?.is_favorite ? "active" : ""}`}>
         <img src="/images/heart.svg" alt="" />
       </button>
 
       <Link to={`/ad-details/${post?.id}`} className="itemImg">
-        <img src="/images/item (6).jpg" loading="lazy" alt="" />
+        <img
+          src={post?.image?.image || "/public/images/item (1).jpg"}
+          loading="lazy"
+          alt=""
+        />
       </Link>
 
       <div className="itemInfo">
-        <Link to={`/profile/${post?.user?.id}`} className="advertiser">
-          <img src="/images/user (13).png" loading="lazy" alt="" />
+        <Link className="advertiser">
+          <img
+            src={post?.user?.image || "/images/user (13).png"}
+            loading="lazy"
+            alt=""
+          />
         </Link>
 
         <div className="time">
@@ -21,17 +32,14 @@ function Post({ post }) {
         </div>
 
         <Link to={`/ad-details/${post?.id}`} className="title">
-          Apple MacBook Air (2023) Apple M2 Chip
+          {post?.title}
         </Link>
 
-        <p className="description one-line-wrap">
-          The Apple MacBook Air 13.6-Inch laptop is powered by the new M2 chip.
-          It is loaded with 8GB RAM and 256GB SSD.
-        </p>
+        <p className="description one-line-wrap">{post?.description}</p>
 
         <div className="location">
           <img src="/images/location.svg" alt="" />
-          <span> USA, California </span>
+          <span> {post?.address || "USA, California"} </span>
         </div>
 
         <div className="itemBottom">
@@ -43,7 +51,10 @@ function Post({ post }) {
           </Link>
 
           <div className="price">
-            <span> $ 1,200 </span>
+            <span>
+              {" "}
+              {post?.price || 0} {t("currency.sar")}{" "}
+            </span>
           </div>
         </div>
       </div>
