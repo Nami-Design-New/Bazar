@@ -1,12 +1,6 @@
 import axios from "../utils/axios";
 
-export async function getAdsByFilter(ad_type) {
-  const requestBody = {};
-
-  if (ad_type) {
-    requestBody.ad_type = ad_type;
-  }
-
+export async function getAdsByFilter(requestBody) {
   try {
     const req = await axios.post("/get_ads", requestBody);
 

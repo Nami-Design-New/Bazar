@@ -6,39 +6,39 @@ import SectionHeader from "../ui/layout/SectionHeader";
 import InputField from "../ui/form-elements/InputField";
 import RangeSlider from "../ui/form-elements/RangeSlider";
 import SelectField from "../ui/form-elements/SelectField";
-import FavoriteADCard from "../ui/cards/FavoriteADCard";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
 import DataLoader from "../ui/DataLoader";
 import EmptyData from "../ui/EmptyData";
 import useAdsByFilter from "./../hooks/ads/useAdsByFilter";
+import Post from "../ui/cards/Post";
 
 const cities = [
   {
     id: 1,
-    name: "الرياض"
+    name: "الرياض",
   },
   {
     id: 2,
-    name: "جدة"
+    name: "جدة",
   },
   {
     id: 3,
-    name: "مكة"
-  }
+    name: "مكة",
+  },
 ];
 const areas = [
   {
     id: 1,
-    name: "المنطقة الأولى"
+    name: "المنطقة الأولى",
   },
   {
     id: 2,
-    name: "المنطقة الثانية"
+    name: "المنطقة الثانية",
   },
   {
     id: 3,
-    name: "المنطقة الثالثة"
-  }
+    name: "المنطقة الثالثة",
+  },
 ];
 
 function WantedAds() {
@@ -68,7 +68,7 @@ function WantedAds() {
           .get("sub_category_id")
           .split("-")
           .map((subcategory) => Number(subcategory))
-      : []
+      : [],
   });
 
   const handleChange = (e) => {
@@ -77,7 +77,7 @@ function WantedAds() {
     if (name !== "categories" && name !== "sub_categories") {
       setSearchFilterData((prevState) => ({
         ...prevState,
-        [name]: parsedValue
+        [name]: parsedValue,
       }));
       return;
     }
@@ -121,7 +121,7 @@ function WantedAds() {
             .get("sub_category_id")
             .split("-")
             .map((subcategory) => Number(subcategory))
-        : []
+        : [],
     });
   }
 
@@ -130,13 +130,13 @@ function WantedAds() {
       setSearchFilterData((prevState) => ({
         ...prevState,
         duration_from: value[0],
-        duration_to: value[1]
+        duration_to: value[1],
       }));
     } else if (name === "price") {
       setSearchFilterData((prevState) => ({
         ...prevState,
         price_from: value[0],
-        price_to: value[1]
+        price_to: value[1],
       }));
     }
   };
@@ -184,7 +184,7 @@ function WantedAds() {
                   onChange={(e) => handleChange(e)}
                   options={cities?.map((city) => ({
                     name: city.name,
-                    value: city.id
+                    value: city.id,
                   }))}
                 />
                 <SelectField
@@ -196,7 +196,7 @@ function WantedAds() {
                   onChange={(e) => handleChange(e)}
                   options={areas?.map((area) => ({
                     name: area.name,
-                    value: area.id
+                    value: area.id,
                   }))}
                 />
                 <div className="w-100 mb-4 px-4">
@@ -207,7 +207,7 @@ function WantedAds() {
                     max={360}
                     value={[
                       searchFilterData.duration_from,
-                      searchFilterData.duration_to
+                      searchFilterData.duration_to,
                     ]}
                     handleSlide={(value) =>
                       handleSliderChange("duration", value)
@@ -224,7 +224,7 @@ function WantedAds() {
                     steps={5}
                     value={[
                       searchFilterData.price_from,
-                      searchFilterData.price_to
+                      searchFilterData.price_to,
                     ]}
                     handleSlide={(value) => handleSliderChange("price", value)}
                     minType="$"
@@ -260,8 +260,8 @@ function WantedAds() {
               <div className="row">
                 {ads && ads?.data?.length > 0 ? (
                   ads?.data?.map((ad) => (
-                    <div className="col-lg-6 col-12 p-2" key={ad.id}>
-                      <FavoriteADCard ad={ad} />
+                    <div className="col-lg-4 col-md-6 col-12 p-2" key={ad.id}>
+                      <Post post={ad} />
                     </div>
                   ))
                 ) : (

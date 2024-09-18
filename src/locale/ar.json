@@ -29,7 +29,9 @@
     "mostPopular": "الأكثر رواجًا الآن",
     "browseWithPopularity": "تصفح العناصر حسب الشعبية",
     "onlineMarkets": "المتاجر الإلكترونية",
-    "categories": "التصنيفات"
+    "categories": "التصنيفات",
+    "exploreOffers": "تصفّح عروض",
+    "categoryTitle": "خلّ أحلامك تمشي على أربع"
   },
   "routes": {
     "home": "الرئيسية",
