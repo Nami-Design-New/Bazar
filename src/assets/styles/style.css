@@ -7470,7 +7470,6 @@ body main .lottie_player_holder {
 body main .topHead {
   display: flex;
   align-items: flex-start;
-  flex-direction: column;
   justify-content: space-between;
   gap: 16px;
   row-gap: 4px;
@@ -8594,6 +8593,9 @@ body .bank-acc-card .icons button svg {
 }
 body .bank-acc-card .icons button:nth-child(2) {
   background: red;
+}
+body .categoryName {
+  color: #4381f8;
 }
 body.en {
   direction: ltr;

@@ -1,64 +1,87 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 
-function Post({ post }) {
+function Post({ post, category }) {
   const { t } = useTranslation();
 
+  console.log(post);
+
+  const timeDifference = getTimeDifference(post?.created_at);
+  const creationTime = formatTimeDifference(
+    timeDifference.years,
+    timeDifference.months,
+    timeDifference.days,
+    timeDifference.hours,
+    timeDifference.minutes,
+    t
+  );
+
   return (
-    <div className="item">
+    <Link to={`/ad-details/${post?.id}`} className="item">
       <button className={`favorite ${post?.is_favorite ? "active" : ""}`}>
         <img src="/images/heart.svg" alt="" />
       </button>
 
       <Link to={`/ad-details/${post?.id}`} className="itemImg">
-        <img
-          src={post?.image?.image || "/public/images/item (1).jpg"}
-          loading="lazy"
-          alt=""
-        />
+        <img src={post?.image?.image} loading="lazy" alt="" />
       </Link>
 
       <div className="itemInfo">
-        <Link className="advertiser">
+        {/* <Link className="advertiser">
           <img
             src={post?.user?.image || "/images/user (13).png"}
             loading="lazy"
             alt=""
           />
-        </Link>
+        </Link> */}
 
-        <div className="time">
-          <img src="/images/clock.svg" alt="" /> 1h ago
-        </div>
+        {post?.created_at && creationTime ? (
+          <div className="time">
+            <img src="/images/clock.svg" alt="" /> {creationTime}
+          </div>
+        ) : null}
 
-        <Link to={`/ad-details/${post?.id}`} className="title">
-          {post?.title}
-        </Link>
+        {post?.title && (
+          <h3 to={`/ad-details/${post?.id}`} className="title">
+            {post?.title}
+          </h3>
+        )}
 
-        <p className="description one-line-wrap">{post?.description}</p>
+        {post?.description && (
+          <p className="description one-line-wrap">{post?.description}</p>
+        )}
 
-        <div className="location">
-          <img src="/images/location.svg" alt="" />
-          <span> {post?.address || "USA, California"} </span>
-        </div>
+        {post?.address ? (
+          <div className="location">
+            <img src="/images/location.svg" alt="" />
+            <span className=" one-line-wrap"> {post?.address} </span>
+          </div>
+        ) : null}
 
         <div className="itemBottom">
-          <Link to={`/ads?category=electronics`} className="category">
-            <span className="img">
-              <img src="/images/icon (1).svg" alt="" />
-            </span>
-            Electronics
+          <Link to={`/ads?category=${category?.name}`} className="category">
+            {category && category?.image && (
+              <>
+                <span className="img">
+                  <img src={category?.image} alt="" />
+                </span>
+                {category?.name}
+              </>
+            )}
           </Link>
 
-          <div className="price">
-            <span>
-              {" "}
-              {post?.price || 0} {t("currency.sar")}{" "}
-            </span>
-          </div>
+          {post?.price ? (
+            <div className="price">
+              <span>
+                {" "}
+                {post?.price} {t("currency.sar")}{" "}
+              </span>
+            </div>
+          ) : null}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

@@ -4,17 +4,13 @@ function Sliders({ categories }) {
   return (
     <section className="sliders">
       {categories &&
-        categories?.data?.map(
-          (category) =>
-            category?.sub_categories &&
-            category?.sub_categories?.length > 0 && (
-              <Department
-                key={category.id}
-                index={category.id}
-                sub_categories={category?.sub_categories}
-              />
-            )
-        )}
+        categories?.data?.map((category) => (
+          <Department
+            key={category.id}
+            index={category.id}
+            category={category}
+          />
+        ))}
     </section>
   );
 }

@@ -29,7 +29,9 @@
     "mostPopular": "الأكثر رواجًا الآن",
     "browseWithPopularity": "تصفح العناصر حسب الشعبية",
     "onlineMarkets": "المتاجر الإلكترونية",
-    "categories": "التصنيفات"
+    "categories": "التصنيفات",
+    "exploreOffers": "تصفّح عروض",
+    "categoryTitle": "خلّ أحلامك تمشي على أربع"
   },
   "routes": {
     "home": "الرئيسية",
@@ -49,7 +51,8 @@
     "ads": "الاعلانات",
     "wanted-ads": "الاعلانات المطلوبة",
     "markets": "المتاجر",
-    "coupon-details": "تفاصيل الكوبون"
+    "coupon-details": "تفاصيل الكوبون",
+    "manage-accounts": "إدارة الحسابات"
   },
   "auth": {
     "login": "تسجيل الدخول",
