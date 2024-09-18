@@ -59,7 +59,7 @@ function ProfileTabs({ user, isMyAccount }) {
                 </div>
               )}
               {adsLoading ? (
-                <DataLoader minHeight="200px" />
+                <DataLoader minHeight="400px" />
               ) : ads?.data && ads?.data?.length > 0 ? (
                 ads?.data?.map((ad) => (
                   <div className="col-lg-6 col-12 p-2" key={ad?.id}>
@@ -80,7 +80,7 @@ function ProfileTabs({ user, isMyAccount }) {
               className="tab_item p-2 pt-0"
             >
               {ordersLoading ? (
-                <DataLoader minHeight="200px" />
+                <DataLoader minHeight="400px" />
               ) : orders?.data && orders?.data?.length > 0 ? (
                 orders?.data?.map((order) => (
                   <div className="col-lg-6 col-12 p-2" key={order?.id}>
@@ -102,7 +102,7 @@ function ProfileTabs({ user, isMyAccount }) {
               className="tab_item p-2 pt-0"
             >
               {interestsLoading ? (
-                <DataLoader minHeight="200px" />
+                <DataLoader minHeight="400px" />
               ) : interests?.data && interests?.data?.length > 0 ? (
                 interests?.data?.map((interest) => (
                   <div className="col-lg-6 col-12 p-3" key={interest?.id}>
@@ -239,7 +239,7 @@ function ProfileTabs({ user, isMyAccount }) {
               className="tab_item p-2 pt-0"
             >
               {rewardsLoading ? (
-                <DataLoader minHeight="200px" />
+                <DataLoader minHeight="400px" />
               ) : rewards?.data && rewards?.data?.length > 0 ? (
                 rewards?.data?.map((reward) => (
                   <div className="col-lg-6 col-12 p-3" key={reward?.id}>

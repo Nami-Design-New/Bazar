@@ -12,7 +12,7 @@ function CommercialVerification() {
   const { isLoading: packagesLoading, data: packages } = usePackagesList();
 
   return packagesLoading ? (
-    <DataLoader minHeight="200px" />
+    <DataLoader minHeight="400px" />
   ) : (
     <div className="verification-page">
       <SectionHeader />

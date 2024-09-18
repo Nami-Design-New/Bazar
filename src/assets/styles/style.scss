@@ -26,7 +26,8 @@ body {
 
     .topHead {
       display: flex;
-      align-items: flex-end;
+      align-items: flex-start;
+      flex-direction: column;
       justify-content: space-between;
       gap: 16px;
       row-gap: 4px;

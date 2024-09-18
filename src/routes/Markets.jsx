@@ -251,7 +251,7 @@ function Markets() {
                 {marketsLoading ? (
                   <>
                     {" "}
-                    <DataLoader minHeight="200px" />{" "}
+                    <DataLoader minHeight="400px" />{" "}
                   </>
                 ) : markets?.data && markets?.data?.length > 0 ? (
                   markets?.data?.map((market) => (

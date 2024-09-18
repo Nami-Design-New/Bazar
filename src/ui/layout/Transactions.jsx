@@ -10,7 +10,7 @@ function Transactions() {
   const { data: transactions, isLoading } = useGetWalletOperations();
 
   return isLoading ? (
-    <DataLoader minHeight="200px" />
+    <DataLoader minHeight="400px" />
   ) : (
     <div className="transactions-wrapper">
       <h3>{t("balance.transactions")}</h3>
