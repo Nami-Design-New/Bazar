@@ -60,14 +60,16 @@ function Post({ post, category }) {
         ) : null}
 
         <div className="itemBottom">
-          {category && <Link to={`/ads?category=${category?.name}`} className="category">
-            {category?.image && (
-              <span className="img">
-                <img src={category?.image} alt="" />
-              </span>
+          <Link to={`/ads?category=${category?.name}`} className="category">
+            {category && category?.image && (
+              <>
+                <span className="img">
+                  <img src={category?.image} alt="" />
+                </span>
+                {category?.name}
+              </>
             )}
-            {category?.name}
-          </Link>}
+          </Link>
 
           {post?.price ? (
             <div className="price">
