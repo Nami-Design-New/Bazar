@@ -62,7 +62,11 @@ function ProfileTabs({ user, isMyAccount }) {
               ) : ads?.data && ads?.data?.length > 0 ? (
                 ads?.data?.map((ad) => (
                   <div className="col-lg-6 col-12 p-2" key={ad?.id}>
-                    <FavoriteADCard ad={ad} isMyAccount={isMyAccount} />
+                    <FavoriteADCard
+                      userId={user?.id}
+                      ad={ad}
+                      isMyAccount={isMyAccount}
+                    />
                   </div>
                 ))
               ) : (

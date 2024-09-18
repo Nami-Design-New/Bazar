@@ -7,7 +7,7 @@ import ConfirmationModal from "../modals/ConfirmationModal";
 import axios from "./../../utils/axios";
 import useUserAds from "../../hooks/ads/useUserAds";
 
-function FavoriteADCard({ ad, isMyAccount }) {
+function FavoriteADCard({ ad, isMyAccount, userId }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const { refetch } = useUserAds();
@@ -43,7 +43,7 @@ function FavoriteADCard({ ad, isMyAccount }) {
       if (res.data?.code === 200) {
         toast.success("تم حذف الاعلان بنجاح");
         setShowConfirmation(false);
-        refetch();
+        refetch(userId);
       } else {
         toast.error(res.data?.message);
       }
