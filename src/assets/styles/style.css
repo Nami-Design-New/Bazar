@@ -1859,7 +1859,8 @@ body main .videos .videos_wrapper .video .adName .link {
   border-radius: 8px;
   color: #4381f8;
 }
-body main .videos .videos_wrapper .video .comments {
+body main .videos .videos_wrapper .video .comments,
+body main .videos .videos_wrapper .video .share {
   z-index: 99;
   width: 100%;
   display: flex;
@@ -1875,17 +1876,20 @@ body main .videos .videos_wrapper .video .comments {
   transition: 0.3s ease-in-out;
   gap: 16px;
 }
-body main .videos .videos_wrapper .video .comments .header {
+body main .videos .videos_wrapper .video .comments .header,
+body main .videos .videos_wrapper .video .share .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-body main .videos .videos_wrapper .video .comments .header button {
+body main .videos .videos_wrapper .video .comments .header button,
+body main .videos .videos_wrapper .video .share .header button {
   border: none;
   background: none;
   outline: none;
 }
-body main .videos .videos_wrapper .video .comments .comments_wrapper {
+body main .videos .videos_wrapper .video .comments .comments_wrapper,
+body main .videos .videos_wrapper .video .share .comments_wrapper {
   flex: 1 1;
   gap: 8px;
   display: flex;
@@ -1894,49 +1898,59 @@ body main .videos .videos_wrapper .video .comments .comments_wrapper {
   flex-direction: column;
   max-height: 286px;
 }
-body main .videos .videos_wrapper .video .comments .comments_wrapper::-webkit-scrollbar {
+body main .videos .videos_wrapper .video .comments .comments_wrapper::-webkit-scrollbar,
+body main .videos .videos_wrapper .video .share .comments_wrapper::-webkit-scrollbar {
   display: none;
 }
-body main .videos .videos_wrapper .video .comments .comments_wrapper .comment_wrap {
+body main .videos .videos_wrapper .video .comments .comments_wrapper .comment_wrap,
+body main .videos .videos_wrapper .video .share .comments_wrapper .comment_wrap {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-body main .videos .videos_wrapper .video .comments .comments_wrapper .comment_wrap .user_img {
+body main .videos .videos_wrapper .video .comments .comments_wrapper .comment_wrap .user_img,
+body main .videos .videos_wrapper .video .share .comments_wrapper .comment_wrap .user_img {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   overflow: hidden;
 }
-body main .videos .videos_wrapper .video .comments .comments_wrapper .comment_wrap .user_img img {
+body main .videos .videos_wrapper .video .comments .comments_wrapper .comment_wrap .user_img img,
+body main .videos .videos_wrapper .video .share .comments_wrapper .comment_wrap .user_img img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-body main .videos .videos_wrapper .video .comments .comments_wrapper .comment_wrap .user_details {
+body main .videos .videos_wrapper .video .comments .comments_wrapper .comment_wrap .user_details,
+body main .videos .videos_wrapper .video .share .comments_wrapper .comment_wrap .user_details {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-body main .videos .videos_wrapper .video .comments .comments_wrapper .comment_wrap .user_details h6 {
+body main .videos .videos_wrapper .video .comments .comments_wrapper .comment_wrap .user_details h6,
+body main .videos .videos_wrapper .video .share .comments_wrapper .comment_wrap .user_details h6 {
   font-size: 16px;
   line-height: 1.2;
 }
-body main .videos .videos_wrapper .video .comments .comments_wrapper .comment_wrap .user_details p {
+body main .videos .videos_wrapper .video .comments .comments_wrapper .comment_wrap .user_details p,
+body main .videos .videos_wrapper .video .share .comments_wrapper .comment_wrap .user_details p {
   font-size: 14px;
   color: #777777;
   line-height: 1.2;
 }
-body main .videos .videos_wrapper .video .comments .comments_wrapper .comment_wrap .user_details span {
+body main .videos .videos_wrapper .video .comments .comments_wrapper .comment_wrap .user_details span,
+body main .videos .videos_wrapper .video .share .comments_wrapper .comment_wrap .user_details span {
   font-size: 12px;
   color: #aaaaaa;
   line-height: normal;
 }
-body main .videos .videos_wrapper .video .comments.show {
+body main .videos .videos_wrapper .video .comments.show,
+body main .videos .videos_wrapper .video .share.show {
   bottom: 0;
 }
-body main .videos .videos_wrapper .video .comments .comment_form {
+body main .videos .videos_wrapper .video .comments .comment_form,
+body main .videos .videos_wrapper .video .share .comment_form {
   padding: 16px;
   position: absolute;
   bottom: 0;
@@ -1947,23 +1961,27 @@ body main .videos .videos_wrapper .video .comments .comment_form {
   align-items: center;
   gap: 8px;
 }
-body main .videos .videos_wrapper .video .comments .comment_form a {
+body main .videos .videos_wrapper .video .comments .comment_form a,
+body main .videos .videos_wrapper .video .share .comment_form a {
   font-size: 18px;
   color: red;
 }
-body main .videos .videos_wrapper .video .comments .comment_form .user_img {
+body main .videos .videos_wrapper .video .comments .comment_form .user_img,
+body main .videos .videos_wrapper .video .share .comment_form .user_img {
   width: 42px;
   height: 42px;
   overflow: hidden;
   border-radius: 50%;
 }
-body main .videos .videos_wrapper .video .comments .comment_form .user_img img {
+body main .videos .videos_wrapper .video .comments .comment_form .user_img img,
+body main .videos .videos_wrapper .video .share .comment_form .user_img img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-body main .videos .videos_wrapper .video .comments .comment_form input {
+body main .videos .videos_wrapper .video .comments .comment_form input,
+body main .videos .videos_wrapper .video .share .comment_form input {
   flex: 1;
   background: #fafafa;
   border: 1px solid #d9d9d9;
@@ -1973,7 +1991,8 @@ body main .videos .videos_wrapper .video .comments .comment_form input {
   border-radius: 60px;
   height: 42px;
 }
-body main .videos .videos_wrapper .video .comments .comment_form button {
+body main .videos .videos_wrapper .video .comments .comment_form button,
+body main .videos .videos_wrapper .video .share .comment_form button {
   outline: none;
   border: none;
   width: 42px;
@@ -1981,6 +2000,106 @@ body main .videos .videos_wrapper .video .comments .comment_form button {
   border-radius: 50%;
   background: #4381f8;
   color: #fff;
+}
+body main .videos .videos_wrapper .video .share {
+  height: auto;
+  bottom: -100%;
+}
+body main .videos .videos_wrapper .video .share .body p {
+  color: #777777;
+  margin: 12px 0;
+}
+body main .videos .videos_wrapper .video .share .body .link {
+  width: 100%;
+  padding: 14px;
+  background-color: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-radius: 16px;
+  position: relative;
+}
+body main .videos .videos_wrapper .video .share .body .link button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  outline: none;
+}
+body main .videos .videos_wrapper .video .share .body .link button i {
+  color: #4381f8;
+}
+body main .videos .videos_wrapper .video .share .body .link button:hover {
+  background: #4381f8;
+}
+body main .videos .videos_wrapper .video .share .body .link button:hover i {
+  color: #fff;
+}
+body main .videos .videos_wrapper .video .share .body .link span {
+  cursor: pointer;
+  color: #777777;
+  font-size: 12px;
+  position: relative;
+}
+body main .videos .videos_wrapper .video .share .body .link span .alert {
+  position: absolute;
+  background: #fafafa;
+  padding: 4px 8px;
+  margin: 0;
+  bottom: -42px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+}
+body main .videos .videos_wrapper .video .share .body .link span .alert::after {
+  -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  width: 16px;
+  height: 10px;
+  background: var(--input-bg);
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -10px;
+}
+body main .videos .videos_wrapper .video .share .body .social {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  gap: 20px;
+}
+@media (max-width: 576px) {
+  body main .videos .videos_wrapper .video .share .body .social {
+    gap: 16px;
+  }
+}
+body main .videos .videos_wrapper .video .share .body .social li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+body main .videos .videos_wrapper .video .share .body .social li a {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(67, 129, 248, 0.1019607843);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body main .videos .videos_wrapper .video .share .body .social li a i {
+  color: #4381f8;
 }
 body main .auth-form {
   position: relative;

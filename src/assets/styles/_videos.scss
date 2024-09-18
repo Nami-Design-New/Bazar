@@ -110,7 +110,8 @@
           color: $main;
         }
       }
-      .comments {
+      .comments,
+      .share {
         z-index: 99;
         width: 100%;
         display: flex;
@@ -224,6 +225,95 @@
             border-radius: 50%;
             background: $main;
             color: $white;
+          }
+        }
+      }
+      .share {
+        height: auto;
+        bottom: -100%;
+        .body {
+          p {
+            color: $textColor;
+            margin: 12px 0;
+          }
+          .link {
+            width: 100%;
+            padding: 14px;
+            background-color: $inputBg;
+            @include space-between();
+            gap: 12px;
+            border-radius: 16px;
+            position: relative;
+            button {
+              width: 32px;
+              height: 32px;
+              border-radius: 50%;
+              @include centerFlex();
+              @include clearInput();
+              i {
+                color: $main;
+              }
+              &:hover {
+                background: $main;
+                i {
+                  color: #fff;
+                }
+              }
+            }
+            span {
+              cursor: pointer;
+              color: $textColor;
+              font-size: 12px;
+              position: relative;
+              .alert {
+                position: absolute;
+                background: $inputBg;
+                padding: 4px 8px;
+                margin: 0;
+                bottom: -42px;
+                left: 50%;
+                transform: translateX(-50%);
+                transition: $transition;
+                opacity: 0;
+                &::after {
+                  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                  width: 16px;
+                  height: 10px;
+                  background: var(--input-bg);
+                  content: "";
+                  position: absolute;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  top: -10px;
+                }
+              }
+            }
+          }
+          .social {
+            width: 100%;
+            justify-content: center;
+            display: flex;
+            gap: 20px;
+            @media (max-width: 576px) {
+              gap: 16px;
+            }
+            li {
+              @include centerFlex();
+              flex-direction: column;
+              gap: 8px;
+              font-size: 14px;
+              white-space: nowrap;
+              a {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: $main10;
+                @include centerFlex();
+                i {
+                  color: $main;
+                }
+              }
+            }
           }
         }
       }
