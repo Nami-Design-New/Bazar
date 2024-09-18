@@ -1,7 +1,4 @@
 import SectionHeader from "./../ui/layout/SectionHeader";
-import address from "../assets/images/c-location.svg";
-import phone from "../assets/images/c-phone.svg";
-import email from "../assets/images/c-email.svg";
 
 function Contact() {
   function highlight(e) {
@@ -24,7 +21,7 @@ function Contact() {
                 <ul>
                   <li className="field" data-aos="fade-up">
                     <div className="icon">
-                      <img src={address} alt="address" />
+                      <img src="/images/c-location.svg" alt="address" />
                     </div>
                     <div className="text">
                       <h4> العنوان :</h4>
@@ -38,7 +35,7 @@ function Contact() {
                   </li>
                   <li className="field" data-aos="fade-up">
                     <div className="icon">
-                      <img src={email} alt="email" />
+                      <img src="/images/c-email.svg" alt="email" />
                     </div>
                     <div className="text">
                       <h4> البريد الالكتروني :</h4>
@@ -49,7 +46,7 @@ function Contact() {
                   </li>
                   <li className="field" data-aos="fade-up">
                     <div className="icon">
-                      <img src={phone} alt="phone" />
+                      <img src="/images/c-phone.svg" alt="phone" />
                     </div>
                     <div className="text">
                       <h4> رقم الهاتف :</h4>

@@ -1,6 +1,4 @@
 import { useTranslation } from "react-i18next";
-import female from "../../assets/images/female.svg";
-import male from "../../assets/images/male.svg";
 
 export default function Gender({ formData, setFormData, noLabel, dataKey }) {
   const { t } = useTranslation();
@@ -32,7 +30,8 @@ export default function Gender({ formData, setFormData, noLabel, dataKey }) {
             checked={formData[dataKey] === "female"}
             aria-label={t("auth.female")}
           />
-          <img src={female} alt="female" /> {t("auth.female")}
+          <img src="/images/female.svg" alt="female" />{" "}
+          {t("auth.female")}
         </label>
         <label
           htmlFor="male"
@@ -49,7 +48,7 @@ export default function Gender({ formData, setFormData, noLabel, dataKey }) {
             checked={formData[dataKey] === "male"}
             aria-label={t("auth.male")}
           />
-          <img src={male} alt="male" /> {t("auth.male")}
+          <img src="/images/male.svg" alt="male" /> {t("auth.male")}
         </label>
       </div>
     </div>

@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import CartItem from "../ui/cards/CartItem";
 import SectionHeader from "../ui/layout/SectionHeader";
-import emptyCart from "../assets/images/emptyCart.svg";
 
 function Cart() {
   const { t } = useTranslation();
@@ -18,7 +17,7 @@ function Cart() {
             {cart && cart?.length === 0 ? (
               <div className="col-12 p-2">
                 <div className="empty_cart">
-                  <img src={emptyCart} alt="empty-cart" />
+                  <img src="/images/emptyCart.svg" alt="empty-cart" />
                   <h3>{t("cart.empty")}</h3>
                   <Link to="/markets">{t("cart.markets")}</Link>
                 </div>

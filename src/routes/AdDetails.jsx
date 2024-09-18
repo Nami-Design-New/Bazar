@@ -3,20 +3,9 @@ import { IconMessageCircle, IconPhone } from "@tabler/icons-react";
 import { formatTimeDifference, getTimeDifference } from "../utils/helpers";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import AdDetailsSlider from "../features/ad-details/AdDetailsSlider";
-import avatar from "../assets/images/userr.webp";
-import heart from "../assets/images/heart.svg";
-import category from "../assets/images/icon (1).svg";
-import instgram from "../assets/images/instagram.svg";
-import twitter from "../assets/images/twitter.svg";
-import whatsapp from "../assets/images/whatsapp.svg";
-import facebook from "../assets/images/facebook.svg";
-import location from "../assets/images/location.svg";
-import clock from "../assets/images/clock.svg";
-import eye from "../assets/images/eye.svg";
-import useGetAdById from "../features/ads/useGetAdById";
+import AdDetailsSlider from "../components/ad-details/AdDetailsSlider";
 import DataLoader from "../ui/DataLoader";
-import errorImg from "../assets/images/error.svg";
+import useGetAdById from "./../hooks/ads/useGetAdById";
 
 function AdDetails() {
   const { t } = useTranslation();
@@ -60,28 +49,28 @@ function AdDetails() {
               <button
                 className={`favorite ${ad?.data?.is_favorite ? "active" : ""}`}
               >
-                <img src={heart} alt="heart" />
+                <img src="/images/heart.svg" alt="heart" />
               </button>
 
               <div className="actions">
                 <a href="listing.html" className="category">
-                  <img src={category} alt="category" />
+                  <img src="/images/icon (1).svg" alt="category" />
                   إلكترونيات
                 </a>
 
                 <div className="share">
                   <span className="ps-2 text-capitalize fw-bold">مشاركة :</span>
                   <Link className="twitter">
-                    <img src={twitter} alt="" />
+                    <img src="/images/twitter.svg" alt="" />
                   </Link>
                   <Link className="whatsapp">
-                    <img src={whatsapp} alt="" />
+                    <img src="/images/whatsapp.svg" alt="" />
                   </Link>
                   <Link className="instagram">
-                    <img src={instgram} alt="" />
+                    <img src="/images/instagram.svg" alt="" />
                   </Link>
                   <Link className="facebook">
-                    <img src={facebook} alt="" />
+                    <img src="/images/facebook.svg" alt="" />
                   </Link>
                 </div>
               </div>
@@ -94,15 +83,16 @@ function AdDetails() {
 
               <div className="itemBottom">
                 <Link className="location">
-                  <img src={location} alt="" />
+                  <img src="/images/location.svg" alt="" />
                   <span> {ad?.data?.address || "USA, California"} </span>
                 </Link>
                 <div className="time">
-                  <img src={clock} alt="" />{" "}
+                  <img src="/images/clock.svg" alt="" />{" "}
                   {ad?.data?.created_at ? creationTime : "1h ago"}
                 </div>
                 <div className="views">
-                  <img src={eye} alt="" /> {ad?.data?.view_count || "1.2k"}
+                  <img src="/images/eye.svg" alt="" />{" "}
+                  {ad?.data?.view_count || "1.2k"}
                 </div>
               </div>
               <p className="description">
@@ -117,63 +107,6 @@ function AdDetails() {
               المفضلة. يأتي Apple MacBook Air مزودًا بتبريد نشط يحافظ على
               الأداء السريع.`}
               </p>
-              <div className="instructions">
-                <span> Used </span>
-                <span> Shipping </span>
-                <span> Firm price </span>
-              </div>
-            </div>
-
-            <div className="itemDetailsBox">
-              <h4 className="title">الميزات الرئيسية</h4>
-              <ul>
-                <li>
-                  <span>MPN</span>
-                  <p> MLY33LL/A / MLY33ZP/A</p>
-                </li>
-                <li>
-                  <span>Model</span>
-                  <p> MacBook Air (2022) M2 Chip Model</p>
-                </li>
-                <li>
-                  <span>Processor</span>
-                  <p>
-                    Apple M2 chip, 8-core CPU with 4 performance cores and 4
-                    efficiency cores
-                  </p>
-                </li>
-                <li>
-                  <span>RAM</span>
-                  <p> 8GB, Storage: 256GB SSD</p>
-                </li>
-                <li>
-                  <span>Display</span>
-                  <p> 13.6 Liquid Retina display (2560 x 1664)</p>
-                </li>
-                <li>
-                  <span>Features</span>
-                  <p> Backlit Magic Keyboard and the Touch ID</p>
-                </li>
-                <li>
-                  <span>Processor Brand</span>
-                  <p> Apple</p>
-                </li>
-                <li>
-                  <span>Processor Model</span>
-                  <p> M2 Chip</p>
-                </li>
-              </ul>
-            </div>
-
-            <div className="itemDetailsBox">
-              <h4 className="title">مميزات اضافية</h4>
-              <div className="features">
-                <span> Airbag </span>
-                <span> ABS </span>
-                <span> Air Condioning </span>
-                <span> AM/FM Radio </span>
-                <span> EBD </span>
-              </div>
             </div>
           </div>
 
@@ -183,11 +116,7 @@ function AdDetails() {
                 to={`/profile/${ad?.data?.user?.id}`}
                 className="advertiser"
               >
-                <img
-                  src={ad?.data?.user?.image || avatar}
-                  loading="lazy"
-                  alt=""
-                />
+                <img src={ad?.data?.user?.image} loading="lazy" alt="" />
                 <h3 className="name">
                   {" "}
                   {ad?.data?.user?.name || "Ahmed Elsayed"}{" "}
@@ -232,7 +161,7 @@ function AdDetails() {
     </section>
   ) : (
     <section className="error-section">
-      <img src={errorImg} alt="error image" />
+      <img src="/images/error.svg" alt="error image" />
       <h2>{t("error.pageNotFound")}</h2>
       <Link to="/" className="backhome">
         <i className="fa-solid fa-home"></i>

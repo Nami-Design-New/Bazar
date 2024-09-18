@@ -14,7 +14,6 @@
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
     scrollbar-width: none;
-    border: 1px solid $LightGray;
     border-radius: 12px;
     @media screen and (max-width: 768px) {
       border-radius: 0;

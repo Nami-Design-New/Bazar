@@ -1,15 +1,12 @@
 import { useState } from "react";
-import SectionHeader from "../ui/layout/SectionHeader";
-import headerImg from "../assets/images/verification-2.svg";
-import galleryIcon from "../assets/images/gallery.svg";
-
 import { useTranslation } from "react-i18next";
+import SectionHeader from "../ui/layout/SectionHeader";
 import SubmitButton from "../ui/form-elements/SubmitButton";
 
 function FalVerification() {
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
-    images: [],
+    images: []
   });
 
   const handleRemoveImage = (index, image) => {
@@ -17,12 +14,12 @@ function FalVerification() {
       setFormData((prevState) => ({
         ...prevState,
         images: prevState.images.filter((_, i) => i !== index),
-        delete_images: [...prevState.delete_images, image.id],
+        delete_images: [...prevState.delete_images, image.id]
       }));
     } else {
       setFormData((prevState) => ({
         ...prevState,
-        images: prevState.images.filter((_, i) => i !== index),
+        images: prevState.images.filter((_, i) => i !== index)
       }));
     }
   };
@@ -36,7 +33,7 @@ function FalVerification() {
     }
     setFormData((prevState) => ({
       ...prevState,
-      images: [...prevState.images, ...newImages],
+      images: [...prevState.images, ...newImages]
     }));
   };
 
@@ -45,7 +42,7 @@ function FalVerification() {
       <SectionHeader />
       <form className="content-wrapper container col-lg-10 col-12">
         <div className="form-header-image">
-          <img src={headerImg} alt="verification" />
+          <img src="/images/verification-2.svg" alt="verification" />
         </div>
         <ul className="hint-wrapper">
           <h5>{t("profile.verificationBenifints")}:</h5>
@@ -72,7 +69,7 @@ function FalVerification() {
                       multiple
                       onChange={handleImagesChange}
                     />
-                    <img src={galleryIcon} alt="upload" />
+                    <img src="/images/gallery.svg" alt="upload" />
                     <div className="file_upload_dimensions"></div>
                   </label>
                 </div>

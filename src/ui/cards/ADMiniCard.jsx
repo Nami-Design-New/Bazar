@@ -1,8 +1,7 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import adImage from "../../assets/images/villa-1.png";
 import { Link } from "react-router-dom";
 import ConfirmationModal from "../modals/ConfirmationModal";
-import { useState } from "react";
 
 function ADMiniCard({ ad }) {
   const { t } = useTranslation();
@@ -32,7 +31,7 @@ function ADMiniCard({ ad }) {
     >
       <div className="card-header">
         <div className="image-wrapper">
-          <img src={ad?.image?.image || adImage} alt="AD image" />
+          <img src={ad?.image?.image} alt="AD image" />
         </div>
         <div className="card-content">
           <span className="price ">

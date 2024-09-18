@@ -2,17 +2,17 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { handleApplyFilters } from "../utils/helpers";
 import { useSearchParams } from "react-router-dom";
+import { Form } from "react-bootstrap";
 import SectionHeader from "../ui/layout/SectionHeader";
 import InputField from "../ui/form-elements/InputField";
 import SelectField from "../ui/form-elements/SelectField";
 import FavoriteMarketCard from "../ui/cards/FavoriteMarketCard";
-import useMarketsByFilter from "../features/markets/useMarketsByFilter";
 import DataLoader from "../ui/DataLoader";
 import EmptyData from "../ui/EmptyData";
 import useGetAreas from "./../hooks/useGetAreas";
 import useGetCities from "./../hooks/useGetCities";
-import useCategoriesList from "./../features/categories/useCategoriesList";
-import { Form } from "react-bootstrap";
+import useCategoriesList from "./../components/categories/useCategoriesList";
+import useMarketsByFilter from "./../hooks/markets/useMarketsByFilter";
 
 function Markets() {
   const { t } = useTranslation();
@@ -35,7 +35,7 @@ function Markets() {
           .get("sub_category_id")
           .split("-")
           .map((category) => Number(category))
-      : [],
+      : []
   });
 
   const { data: areas } = useGetAreas(
@@ -53,7 +53,7 @@ function Markets() {
     if (name !== "categories" && name !== "sub_categories") {
       setSearchFilterData((prevState) => ({
         ...prevState,
-        [name]: parsedValue,
+        [name]: parsedValue
       }));
       return;
     }
@@ -105,7 +105,7 @@ function Markets() {
             .get("sub_category_id")
             .split("-")
             .map((category) => Number(category))
-        : [],
+        : []
     });
   }
 
@@ -170,7 +170,7 @@ function Markets() {
                     onChange={(e) => handleChange(e)}
                     options={cities?.data?.map((city) => ({
                       name: city?.name,
-                      value: city?.id,
+                      value: city?.id
                     }))}
                   />
                   <SelectField
@@ -182,7 +182,7 @@ function Markets() {
                     onChange={(e) => handleChange(e)}
                     options={areas?.data?.map((area) => ({
                       name: area?.name,
-                      value: area?.id,
+                      value: area?.id
                     }))}
                   />
                   <div className="input-field">

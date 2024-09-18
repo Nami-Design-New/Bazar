@@ -1,7 +1,7 @@
 import { useState } from "react";
-import ForgetStep1 from "../features/forgetPassword/ForgetStep1";
-import ForgetStep2 from "../features/forgetPassword/ForgetStep2";
-import ForgetStep3 from "../features/forgetPassword/ForgetStep3";
+import ForgetStep1 from "../components/forgetPassword/ForgetStep1";
+import ForgetStep2 from "../components/forgetPassword/ForgetStep2";
+import ForgetStep3 from "../components/forgetPassword/ForgetStep3";
 
 function ForgetPassword() {
   const [step, setStep] = useState(1);

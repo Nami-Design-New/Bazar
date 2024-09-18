@@ -1,8 +1,7 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import orderImage from "../../assets/images/car-2.png";
 import { Link } from "react-router-dom";
 import ConfirmationModal from "../modals/ConfirmationModal";
-import { useState } from "react";
 
 function OrderMiniCard() {
   const { t } = useTranslation();
@@ -32,12 +31,10 @@ function OrderMiniCard() {
     >
       <div className="card-header">
         <div className="image-wrapper">
-          <img src={orderImage} alt="order image" />
+          <img src="/images/car-2.png" alt="order image" />
         </div>
         <div className="card-content">
-          <span className="price ">
-            200.000 {t("currency.sar")}
-          </span>
+          <span className="price ">200.000 {t("currency.sar")}</span>
           <h5 className="title ">مطلوب سياره AGM مستعمله</h5>
           <div className="categories-wrapper">
             <Link to="" className="category ">

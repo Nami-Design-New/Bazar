@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import StarsList from "../StarsList";
 import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
-import useGetReplays from "../../features/comments/useGetReplays";
+import StarsList from "../StarsList";
+import useGetReplays from "./../../hooks/useGetReplays";
 
 function RateCard({ setTargetedComment, rate }) {
   const { t } = useTranslation();

@@ -123,34 +123,6 @@
       margin: 0 -16px;
     }
   }
-  .skeleton-container {
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: nowrap;
-    position: relative;
-    transition: $transition;
-
-    .skeleton-item {
-      flex: 1;
-      border-radius: 12px;
-      height: 120px;
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-      background-size: 200% 100%;
-      animation: loading 1.5s infinite;
-
-      @keyframes loading {
-        0% {
-          background-position: 200% 0;
-        }
-        100% {
-          background-position: -200% 0;
-        }
-      }
-    }
-  }
   .category {
     display: flex;
     align-items: center;

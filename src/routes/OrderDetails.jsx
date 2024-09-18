@@ -1,18 +1,16 @@
-import SectionHeader from "../ui/layout/SectionHeader";
 import { useTranslation } from "react-i18next";
-import useOrderDetails from "../features/orders/useOrderDetails";
-import DataLoader from "../ui/DataLoader";
 import { useSelector } from "react-redux";
 import { ORDER_STATUS_AR, ORDER_STATUS_EN } from "../utils/constants";
 import { formatTimeDifference, getTimeDifference } from "../utils/helpers";
 import { Link } from "react-router-dom";
-import errorImg from "../assets/images/error.svg";
+import DataLoader from "../ui/DataLoader";
+import SectionHeader from "../ui/layout/SectionHeader";
+import useOrderDetails from "./../hooks/orders/useOrderDetails";
 
 function OrderDetails() {
   const { t } = useTranslation();
   const { isLoading: orderLoading, data: order } = useOrderDetails();
   const lang = useSelector((state) => state.language.lang);
-
   const timeDifference = getTimeDifference(order?.data?.created_at);
   const creationTime = formatTimeDifference(
     timeDifference.years,
@@ -373,7 +371,7 @@ function OrderDetails() {
         </div>
       ) : (
         <section className="error-section">
-          <img src={errorImg} alt="error image" />
+          <img src="/images/error.svg" alt="error image" />
           <h2>{t("error.pageNotFound")}</h2>
           <Link to="/" className="backhome">
             <i className="fa-solid fa-home"></i>

@@ -3,16 +3,16 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { calcDeliveryPrice } from "../utils/helpers";
 import { useNavigate } from "react-router-dom";
+import axios from "./../utils/axios";
 import TextField from "../ui/form-elements/TextField";
 import InputField from "../ui/form-elements/InputField";
 import SectionHeader from "../ui/layout/SectionHeader";
-import useGetCart from "./../features/cart/useGetCart";
-import useGetAddresses from "../features/addresses/useGetAddresses";
-import AddAddress from "../features/addresses/AddAddress";
-import useGetSettings from "../hooks/useGetSettings";
+import AddAddress from "../components/addresses/AddAddress";
 import DataLoader from "../ui/DataLoader";
 import SubmitButton from "../ui/form-elements/SubmitButton";
-import axios from "./../utils/axios";
+import useGetCart from "./../hooks/useGetCart";
+import useGetAddresses from "./../hooks/useGetAddresses";
+import useGetSettings from "./../hooks/useGetSettings";
 
 function Checkout() {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ function Checkout() {
     total: 0,
     coupon: "",
     payment_method: "cash",
-    delivery_price: "",
+    delivery_price: ""
   });
 
   useEffect(() => {
@@ -78,7 +78,7 @@ function Checkout() {
             marketLng,
             settings?.km_price
           )
-        : 0,
+        : 0
     }));
   }, [addresses, cart, settings, formData?.address_id]);
 
@@ -88,14 +88,14 @@ function Checkout() {
       total:
         Number(formData.sub_total) +
         Number(formData.taxes) +
-        Number(formData.delivery_price),
+        Number(formData.delivery_price)
     }));
   }, [formData.sub_total, formData.taxes, formData.delivery_price]);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -104,12 +104,12 @@ function Checkout() {
     setCouponLoading(true);
     try {
       const res = await axios.post("/user/get_coupon_user", {
-        coupon: formData.coupon,
+        coupon: formData.coupon
       });
       if (res?.data?.code === 200) {
         setFormData({
           ...formData,
-          discount: res?.data?.data?.discount,
+          discount: res?.data?.data?.discount
         });
       } else {
         toast.error(res?.data?.message);

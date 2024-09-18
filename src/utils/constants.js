@@ -26,3 +26,29 @@ export const ORDER_STATUS_EN = {
   canceled: "canceled",
   user_canceled: "user canceled",
 };
+
+export const TRANSACTIONS_STATUS = [
+  "charge",
+  "app_service_percentage",
+  "app_project_percentage",
+  "project_accept",
+  "refund_project",
+  "project_complete",
+  "service_order_finish",
+  "service_order_create",
+  "refund_service_order",
+  "withdraw_balance_complete",
+  "withdraw_balance_request",
+  "withdraw_balance_canceled",
+];
+
+export function formattedDate(date) {
+  let formattedDate = new Date(date);
+  formattedDate = new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(formattedDate);
+
+  return formattedDate;
+}

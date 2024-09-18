@@ -1,6 +1,3 @@
-import starFilledIcon from "../assets/images/star-filled.svg";
-import starIcon from "../assets/images/star.svg";
-
 const StarsList = ({ rate = 0 }) => {
   return (
     <div className="stars">
@@ -8,13 +5,19 @@ const StarsList = ({ rate = 0 }) => {
         .fill(0)
         .map(() => {
           return (
-            <img key={Math.random()} src={starFilledIcon} alt="filled star" />
+            <img
+              key={Math.random()}
+              src="/images/star-filled.svg"
+              alt="filled star"
+            />
           );
         })}
       {Array(5 - Math.round(rate))
         .fill(0)
         .map(() => {
-          return <img key={Math.random()} src={starIcon} alt="star" />;
+          return (
+            <img key={Math.random()} src="/images/star.svg" alt="star" />
+          );
         })}
     </div>
   );

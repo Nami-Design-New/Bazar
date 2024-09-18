@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { IconBrandWechat } from "@tabler/icons-react";
-import useGetChats from "./../features/chat/useGetChats";
-import useGetChat from "../features/chat/useGetChat";
 import DataLoader from "../ui/DataLoader";
-import ChatSideBar from "./../features/chat/ChatSideBar";
-import ChatRoom from "./../features/chat/ChatRoom";
+import ChatSideBar from "./../components/chat/ChatSideBar";
+import ChatRoom from "./../components/chat/ChatRoom";
+import useGetChat from "./../hooks/chats/useGetChat";
+import useGetChats from "./../hooks/chats/useGetChats";
 
 const Chats = () => {
   const { t } = useTranslation();
@@ -13,6 +13,7 @@ const Chats = () => {
   const [targetChat, setTargetChat] = useState(null);
 
   const { data: chats, isLoading } = useGetChats();
+  
   const { data: chat, isLoading: isChatLoading } = useGetChat({
     buyer_id: sessionStorage.getItem("buyer_id"),
     seller_id: sessionStorage.getItem("seller_id"),

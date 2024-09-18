@@ -1,17 +1,14 @@
 import { useTranslation } from "react-i18next";
-// import { useState } from "react";
-// import { Form } from "react-bootstrap";
 import CouponCard from "../ui/cards/CouponCard";
-import SectionHeader from "../ui/layout/SectionHeader";
-import MarketBanner from "../features/market-details/MarketBanner";
-import useMarketCoupons from "../features/markets/useMarketCoupons";
-import DataLoader from "../ui/DataLoader";
-import useMarketDetails from "../features/markets/useMarketDetails";
 import EmptyData from "../ui/EmptyData";
+import DataLoader from "../ui/DataLoader";
+import SectionHeader from "../ui/layout/SectionHeader";
+import MarketBanner from "../components/market-details/MarketBanner";
+import useMarketCoupons from './../hooks/markets/useMarketCoupons';
+import useMarketDetails from './../hooks/markets/useMarketDetails';
 
 function CouponDetails() {
   const { t } = useTranslation();
-  // const [wantNotifications, setWantNotifications] = useState(false);
   const { isLoading: couponsLoading, data: coupons } = useMarketCoupons();
   const { isLoading: marketLoading, data: market } = useMarketDetails();
 

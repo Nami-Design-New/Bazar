@@ -1,29 +1,23 @@
-import c1 from "../../assets/images/icon (1).svg";
-import loc from "../../assets/images/location.svg";
-import clock from "../../assets/images/clock.svg";
-import pro from "../../assets/images/item (6).jpg";
-import user from "../../assets/images/user (13).png";
-import heart from "../../assets/images/heart.svg";
 import { Link } from "react-router-dom";
 
 function Post({ post }) {
   return (
     <div className="item">
       <button className="favorite active">
-        <img src={heart} alt="" />
+        <img src="/images/heart.svg" alt="" />
       </button>
 
       <Link to={`/ad-details/${post?.id}`} className="itemImg">
-        <img src={pro} loading="lazy" alt="" />
+        <img src="/images/item (6).jpg" loading="lazy" alt="" />
       </Link>
 
       <div className="itemInfo">
         <Link to={`/profile/${post?.user?.id}`} className="advertiser">
-          <img src={user} loading="lazy" alt="" />
+          <img src="/images/user (13).png" loading="lazy" alt="" />
         </Link>
 
         <div className="time">
-          <img src={clock} alt="" /> 1h ago
+          <img src="/images/clock.svg" alt="" /> 1h ago
         </div>
 
         <Link to={`/ad-details/${post?.id}`} className="title">
@@ -36,14 +30,14 @@ function Post({ post }) {
         </p>
 
         <div className="location">
-          <img src={loc} alt="" />
+          <img src="/images/location.svg" alt="" />
           <span> USA, California </span>
         </div>
 
         <div className="itemBottom">
           <Link to={`/ads?category=electronics`} className="category">
             <span className="img">
-              <img src={c1} alt="" />
+              <img src="/images/icon (1).svg" alt="" />
             </span>
             Electronics
           </Link>

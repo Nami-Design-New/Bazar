@@ -1,6 +1,6 @@
-import useGetAdsVideos from "../features/ads/useGetAdsVideos";
-import Video from "../features/videos/Video";
+import Video from "../components/videos/Video";
 import DataLoader from "./../ui/DataLoader";
+import useGetAdsVideos from "./../hooks/ads/useGetAdsVideos";
 
 function Videos() {
   const { data: ads, isLoading } = useGetAdsVideos();

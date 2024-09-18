@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
-import useSettings from "../../features/app/useSettings";
+import useGetSettings from "../../hooks/useGetSettings";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const { data: settings } = useSettings();
+  const { data: settings } = useGetSettings();
 
   return (
     <footer>
@@ -13,11 +12,11 @@ export default function Footer() {
           <div className="col-lg-12 p-2">
             <div className="footer_about">
               <Link to="/" className="logo">
-                <img src={logo} alt="logo" />
+                <img src="/images/logo.png" alt="logo" />
               </Link>
               <div className="links">
                 <Link>الرئيسية</Link>
-                <Link to="/about-us">من نحن</Link>
+                <Link to={settings?.data?.about_link}>من نحن</Link>
                 <Link to={settings?.data?.terms_link}>شروط الاستخدام</Link>
                 <Link to={settings?.data?.privacy_link}>سياسة الخصوصية</Link>
                 <Link>اتصل بنا</Link>

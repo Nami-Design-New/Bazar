@@ -3,10 +3,10 @@ import { useTranslation } from "react-i18next";
 import SectionHeader from "../ui/layout/SectionHeader";
 import FavoriteMarketCard from "../ui/cards/FavoriteMarketCard";
 import FavoriteADCard from "../ui/cards/FavoriteADCard";
-import useFavoriteAds from "../features/ads/useFavoriteAds";
 import DataLoader from "../ui/DataLoader";
 import EmptyData from "../ui/EmptyData";
-import useFavoriteMarkets from "../features/markets/useFavoriteMarkets";
+import useFavoriteAds from "./../hooks/ads/useFavoriteAds";
+import useFavoriteMarkets from "./../hooks/markets/useFavoriteMarkets";
 
 function Favorites() {
   const { t } = useTranslation();

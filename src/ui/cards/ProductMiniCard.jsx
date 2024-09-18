@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { deleteProductFromCart } from "../../services/apiCart";
-import productImage from "../../assets/images/product-1.png";
 import axios from "./../../utils/axios";
 
 function ProductMiniCard({ product, marketId }) {
@@ -53,7 +52,7 @@ function ProductMiniCard({ product, marketId }) {
   return (
     <div className="product_crad">
       <div className="product_image">
-        <img src={product?.image || productImage} alt="product" />
+        <img src={product?.image} alt="product" />
         {/* <span>أوريون</span>
         <button>
           <i className="fa-sharp fa-light fa-heart"></i>

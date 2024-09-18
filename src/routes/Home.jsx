@@ -1,8 +1,8 @@
-import useCategoriesList from "../features/categories/useCategoriesList";
-import Categories from "../features/home/Categories";
-import HeroSection from "../features/home/HeroSection";
-import PopularItems from "../features/home/PopularItems";
-import Sliders from "../features/home/Sliders";
+import useCategoriesList from "../components/categories/useCategoriesList";
+import Categories from "../components/home/Categories";
+import HeroSection from "../components/home/HeroSection";
+import PopularItems from "../components/home/PopularItems";
+import Sliders from "../components/home/Sliders";
 import DownLoadApp from "../ui/layout/DownLoadApp";
 
 export default function Home() {

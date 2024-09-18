@@ -3,16 +3,16 @@ import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import SectionHeader from "../ui/layout/SectionHeader";
-import MainInfo from "../features/add-ad/MainInfo";
-import Location from "../features/add-ad/Location";
-import Gallery from "../features/add-ad/Gallery";
-import Pricing from "../features/add-ad/Pricing";
+import MainInfo from "../components/add-ad/MainInfo";
+import Location from "../components/add-ad/Location";
+import Gallery from "../components/add-ad/Gallery";
+import Pricing from "../components/add-ad/Pricing";
 import axios from "./../utils/axios";
-import useGetAdById from "../features/ads/useGetAdById";
+import useGetAdById from "./../hooks/ads/useGetAdById";
 
 function AddAdvertisment() {
   const { t } = useTranslation();
-  const [form, setForm] = useState("pricing-contact");
+  const [form, setForm] = useState("main-info");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { isLoading, data: ad } = useGetAdById();
@@ -36,7 +36,7 @@ function AddAdvertisment() {
     chat: 0,
     phone: 0,
     whatsapp: 0,
-    video: "",
+    video: ""
   });
 
   useEffect(() => {
@@ -59,10 +59,10 @@ function AddAdvertisment() {
         chat: ad?.data?.chat,
         phone: ad?.data?.phone,
         whatsapp: ad?.data?.whatsapp,
-        video: ad?.data?.video,
+        video: ad?.data?.video
       });
     }
-  }, [ad, isLoading]);
+  }, [ad, formData, isLoading]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,8 +73,8 @@ function AddAdvertisment() {
         { ...formData, id: +ad?.data?.id },
         {
           headers: {
-            "Content-Type": "multipart/form-data",
-          },
+            "Content-Type": "multipart/form-data"
+          }
         }
       );
       if (res.status === 201 || res.status === 200) {

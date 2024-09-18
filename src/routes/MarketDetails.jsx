@@ -1,8 +1,8 @@
-import useMarketDetails from "../features/markets/useMarketDetails.js";
 import DataLoader from "../ui/DataLoader";
 import SectionHeader from "./../ui/layout/SectionHeader";
-import MarketBanner from "./../features/market-details/MarketBanner";
-import MarketTabs from "./../features/market-details/MarketTabs";
+import MarketBanner from "./../components/market-details/MarketBanner";
+import MarketTabs from "./../components/market-details/MarketTabs";
+import useMarketDetails from "./../hooks/markets/useMarketDetails";
 
 function MarketDetails() {
   const { isLoading: marketLoading, data: market } = useMarketDetails();

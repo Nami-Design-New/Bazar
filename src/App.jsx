@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useJwt } from "react-jwt";
 import { useCookies } from "react-cookie";
+import { setCart } from "./redux/slices/cart";
 import { setIsLogged, setUser } from "./redux/slices/authedUser";
-import routerConfig from "./RouterConfig";
-import AppLayout from "./ui/layout/AppLayout";
 import i18n from "./utils/i18n";
 import axios from "./utils/axios";
-import useGetProfile from "./features/profile/useGetProfile";
-import ProtectedRoute from "./routes/ProtectedRoute";
 import Loader from "./ui/Loader";
-import useGetCart from "./features/cart/useGetCart";
-import { setCart } from "./redux/slices/cart";
+import AppLayout from "./ui/layout/AppLayout";
+import routerConfig from "./RouterConfig";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import useGetCart from "./hooks/useGetCart";
+import useGetProfile from "./hooks/useGetProfile";
 
 export default function App() {
   const location = useLocation();
@@ -26,6 +26,7 @@ export default function App() {
   axios.defaults.headers.common["Authorization"] = `${token}`;
 
   const { data: cart } = useGetCart();
+
   const {
     data: profile,
     isLoading,

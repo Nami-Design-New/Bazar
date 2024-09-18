@@ -24,6 +24,7 @@ import WantedAds from "./routes/WantedAds";
 import Markets from "./routes/Markets";
 import Videos from "./routes/Videos";
 import Chats from "./routes/Chats";
+import ManageAccounts from './routes/ManageAccounts';
 
 const routerConfig = [
   { path: "/", element: <Home /> },
@@ -59,6 +60,7 @@ const routerConfig = [
   { path: "/favorites", element: <Favorites /> },
   { path: "/add-ad", element: <AddAdvertisment /> },
   { path: "/add-ad/:id", element: <AddAdvertisment /> },
+  { path: "/manage-accounts", element: <ManageAccounts /> },
 
   // general
   { path: "contact", element: <Contact /> },

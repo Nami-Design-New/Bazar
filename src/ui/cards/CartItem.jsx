@@ -1,5 +1,3 @@
-import productImg from "../../assets/images/product-1.png";
-import ConfirmationModal from "../modals/ConfirmationModal";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -8,6 +6,7 @@ import {
   changeProductQuantity,
   deleteProductFromCart
 } from "../../services/apiCart";
+import ConfirmationModal from "../modals/ConfirmationModal";
 
 function CartItem({ type, item }) {
   const { t } = useTranslation();
@@ -60,7 +59,7 @@ function CartItem({ type, item }) {
       <div className="cart_item">
         <Link to="/ad-details" className="item-info">
           <div className="img">
-            <img src={item?.product?.image || productImg} alt="product" />
+            <img src={item?.product?.image} alt="product" />
           </div>
           <div className="details">
             <h6>{item?.product?.title}</h6>

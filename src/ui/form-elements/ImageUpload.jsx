@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import avatar from "../../assets/images/userr.webp";
 
 const ImageUpload = ({ formData, setFormData, image }) => {
   const { t } = useTranslation();
@@ -19,7 +18,7 @@ const ImageUpload = ({ formData, setFormData, image }) => {
   return (
     <div className="w-100 p-3 image-change-wrapper">
       <div className="img-wrap">
-        <img ref={imgView} src={avatar} alt="avatar" />
+        <img ref={imgView} src="/images/userr.webp" alt="avatar" />
       </div>
       <div className="d-flex w-100 justify-content-between align-items-center">
         <label htmlFor="img">{t("auth.personalPhoto")}</label>

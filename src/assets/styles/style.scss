@@ -691,6 +691,343 @@ body {
     padding-left: 16px;
   }
 
+  .conditions-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: $LightGray;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: $LightGray;
+    }
+    .checkbox-group {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      input {
+        &::after {
+          width: 16px;
+          height: 16px;
+        }
+      }
+      label {
+        font-size: 16px;
+      }
+    }
+    .condition-note {
+      position: relative;
+      font-size: 14px;
+      margin: 0;
+      color: $textColor;
+      line-height: 1.6;
+    }
+  }
+
+  .pay_modal {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    .tab-content {
+      position: relative;
+      padding-top: 20px;
+    }
+    .form {
+      align-items: flex-start !important;
+    }
+    .nav {
+      background-color: $grayBackground;
+      padding: 0 !important;
+      border-radius: 12px !important;
+      .nav-item {
+        border-radius: 12px !important;
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          font-size: 16px;
+          color: $black;
+          transition: $transition;
+          &.active {
+            background-color: $main;
+            color: $white;
+          }
+          i {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+    .cancel-btn {
+      border: 1px solid $black;
+      color: $black;
+      width: 100%;
+      outline: none;
+      background: none;
+      padding: 8px;
+      border-radius: 8px;
+    }
+    .order-now {
+      width: 100%;
+      padding: 8px;
+      background: $main;
+      color: $white;
+      border-radius: 8px;
+      border: 0;
+      outline: none;
+    }
+    .current_ballance {
+      @include centerFlex();
+      margin-bottom: 8px;
+      div {
+        margin: 0 !important;
+      }
+    }
+    h3 {
+      color: $black;
+      font-weight: bold;
+      text-align: center;
+      font-size: 16px;
+      span {
+        font-size: 24px;
+        color: $main;
+      }
+      i {
+        color: $textColor;
+      }
+      @media (max-width: 576px) {
+        font-size: 16px;
+      }
+    }
+
+    .btn {
+      border: 1px solid $main;
+      color: $main;
+      @include centerFlex();
+      padding: 8px 16px;
+      transition: $transition;
+      border-radius: 12px;
+      gap: 4px;
+      background: none;
+      i {
+        margin: 0 4px;
+      }
+      &:hover {
+        background: $main;
+        color: #fff;
+      }
+    }
+  }
+
+  .bank-transfer-box {
+    width: 100%;
+    input {
+      display: none;
+      &:checked + label {
+        border-color: $main;
+      }
+    }
+    label {
+      background-color: $grayBackground;
+      border: 2px solid $grayBackground;
+      width: 100%;
+      padding: 16px;
+      border-radius: 12px;
+      display: flex;
+      gap: 24px;
+      position: relative;
+      cursor: pointer;
+      transition: $transition;
+    }
+    .image-wrapper {
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+
+      img {
+        width: 100%;
+        object-fit: contain;
+      }
+      i {
+        font-size: 36px;
+      }
+    }
+    .info-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      h5 {
+        margin: 0;
+      }
+      .info-boxes-wrapper {
+        display: flex;
+        position: relative;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0 24px;
+        .info-box {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          position: relative;
+          font-size: 14px;
+          margin: 0;
+          color: $textColor;
+          i {
+            font-size: 12px;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: $textColor;
+          }
+        }
+      }
+    }
+  }
+
+  .skeleton-item {
+    flex: 1;
+    border-radius: 12px;
+    height: 120px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+
+    @keyframes loading {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+  }
+
+  .skeleton-container {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: nowrap;
+    position: relative;
+    transition: $transition;
+  }
+
+  .bank-acc-card {
+    background-color: $grayBackground;
+    border: 2px solid $grayBackground;
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    display: flex;
+    gap: 24px;
+    position: relative;
+    cursor: pointer;
+    transition: $transition;
+    .image-wrapper {
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+
+      img {
+        width: 100%;
+        object-fit: contain;
+      }
+      i {
+        font-size: 36px;
+      }
+    }
+    .info-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      flex: 1 0;
+      h5 {
+        margin: 0;
+      }
+      .info-boxes-wrapper {
+        display: flex;
+        position: relative;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0 24px;
+        .info-box {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          position: relative;
+          font-size: 14px;
+          margin: 0;
+          color: $textColor;
+          i {
+            font-size: 12px;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: $textColor;
+          }
+        }
+      }
+    }
+    .icons {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      gap: 8px;
+      button {
+        @include clearInput();
+        background: $inputHint;
+        border-radius: 50%;
+        color: $white;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        height: 36px;
+        width: 36px;
+        svg {
+          height: 16px;
+          width: 16px;
+        }
+        &:nth-child(2) {
+          background: red;
+        }
+      }
+    }
+  }
+
   &.en {
     direction: ltr;
     font-family: "Poppins", sans-serif;

@@ -1,11 +1,10 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import SubmitButton from "../ui/form-elements/SubmitButton";
 import SectionHeader from "../ui/layout/SectionHeader";
-import headerImg from "../assets/images/verification-3.svg";
-import { useState } from "react";
-import usePackagesList from "../features/packages/usePackagesList";
 import DataLoader from "../ui/DataLoader";
 import EmptyData from "../ui/EmptyData";
+import usePackagesList from "./../hooks/usePackagesList";
 
 function CommercialVerification() {
   const { t } = useTranslation();
@@ -20,7 +19,7 @@ function CommercialVerification() {
       {packages?.data && packages?.data?.length > 0 ? (
         <form className="content-wrapper container col-lg-10 col-12">
           <div className="form-header-image">
-            <img src={headerImg} alt="verification" />
+            <img src="/images/verification-3.svg" alt="verification" />
           </div>
           <ul className="hint-wrapper">
             <h5>{t("profile.verificationBenifints")}:</h5>

@@ -3,7 +3,6 @@
   .page-header {
     width: 100%;
     border-radius: 16px;
-    overflow: hidden;
     aspect-ratio: 16 / 3;
     @media screen and (max-width: 768px) {
       aspect-ratio: 3 / 2;
@@ -12,7 +11,6 @@
       width: 100%;
       height: 100%;
       position: relative;
-      overflow: hidden;
       display: flex;
       z-index: 2;
       &::after {
@@ -29,6 +27,7 @@
       img {
         object-fit: cover;
         width: 100%;
+        border-radius: 12px;
         object-position: center;
       }
       .market {
@@ -140,6 +139,104 @@
             font-size: 18px;
             position: relative;
             text-wrap: balance;
+          }
+        }
+      }
+    }
+    .dropdown {
+      .dropdown-menu {
+        inset: 8px auto auto 0 !important;
+        background: $white;
+        border: 1px solid $inputBg;
+        padding: 24px;
+        @media (max-width: 576px) {
+          padding: 16px 12px;
+        }
+        h5 {
+          text-align: start;
+          margin-bottom: 20px;
+          font-weight: 600;
+          font-size: 16px;
+        }
+        p {
+          color: $textColor;
+          margin: 12px 0;
+        }
+        .link {
+          width: 100%;
+          padding: 14px;
+          background-color: $inputBg;
+          @include space-between();
+          gap: 12px;
+          border-radius: 16px;
+          position: relative;
+          button {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            @include centerFlex();
+            @include clearInput();
+            i {
+              color: $main;
+            }
+            &:hover {
+              background: $main;
+              i {
+                color: #fff;
+              }
+            }
+          }
+          span {
+            cursor: pointer;
+            color: $textColor;
+            font-size: 12px;
+            position: relative;
+            .alert {
+              position: absolute;
+              background: $inputBg;
+              padding: 4px 8px;
+              margin: 0;
+              bottom: -42px;
+              left: 50%;
+              transform: translateX(-50%);
+              transition: $transition;
+              opacity: 0;
+              &::after {
+                clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                width: 16px;
+                height: 10px;
+                background: var(--input-bg);
+                content: "";
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                top: -10px;
+              }
+            }
+          }
+        }
+        .social {
+          display: flex;
+          gap: 20px;
+          @media (max-width: 576px) {
+            gap: 16px;
+          }
+          li {
+            @include centerFlex();
+            flex-direction: column;
+            gap: 8px;
+            font-size: 14px;
+            white-space: nowrap;
+            a {
+              width: 48px;
+              height: 48px;
+              border-radius: 50%;
+              background: $main10;
+              @include centerFlex();
+              i {
+                color: $main;
+              }
+            }
           }
         }
       }

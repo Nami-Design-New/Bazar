@@ -1,6 +1,6 @@
 import { useState } from "react";
-import ConfirmOtp from "../features/register/ConfirmOtp";
-import RegisterForm from "../features/register/RegisterForm";
+import ConfirmOtp from "../components/register/ConfirmOtp";
+import RegisterForm from "../components/register/RegisterForm";
 
 function Register() {
   const [formData, setFormData] = useState({

@@ -128,12 +128,97 @@
     "rewards": "المكافآت",
     "interests": "الاهتمامات",
     "remainingDays": "الأيام المتبقية",
-    "noPackages": "عذرًا، لا توجد باقات متاحة لهذا المستخدم"
+    "noPackages": "عذرًا، لا توجد باقات متاحة لهذا المستخدم",
+    "balance": "الرصيد",
+    "delete": "حذف"
   },
   "error": {
     "pageNotFound": "هذا الرابط غير موجود لدينا او ربما تم حذفه. كيف وصلت الي هنا ؟",
     "noAccountWithThisId": "لا يوجد مستخدم لدينا لديه هذا الـ ID. كيف وصلت الي هنا ؟",
     "goHome": "الرئيسية"
+  },
+  "share": {
+    "share": "مشاركة",
+    "facebook": "فيسبوك",
+    "instgram": "انستغرام",
+    "twitter": "تويتر",
+    "snapchat": "سناب شات",
+    "whatsapp": "واتساب",
+    "orCopyLink": "او نسخ الرابط",
+    "linkCopied": "تم نسخ الرابط"
+  },
+  "balance": {
+    "currentBalance": "الرصيد الحالي",
+    "accountBalance": "رصيد الحساب",
+    "depositBalance": "إيداع رصيد",
+    "withdrawBalance": "سحب رصيد",
+    "totalBalance": "الرصيد الكلى",
+    "totalBalanceTooltip": "الرصيد الكلى الذي تم الحصول عليه",
+    "pendingBalance": "الرصيد المعلق",
+    "pendingBalanceTooltip": "الرصيد المعلق: الرصيد المعلّق في انتظار الموافقة",
+    "availableBalance": "الرصيد المتوفر",
+    "availableBalanceTooltip": "الرصيد المتوفر = الرصيد الكلى - الرصيد المعلّق",
+    "wallet": "المحفظة",
+    "walletTooltip": "المحفظة: تحتوي على المبالغ الموجودة في حسابك",
+    "transactions": "المعاملات المالية",
+    "period": "الفترة",
+    "from": "من",
+    "to": "إلى",
+    "transactionType": "نوع المعاملة",
+    "deposit": "إيداع",
+    "fees": "رسوم",
+    "finishingProject": "انهاء مشروع",
+    "refund": "استرجاع",
+    "withdraw": "سحب",
+    "bankTransfer": "حوالة بنكية",
+    "amount": "المبلغ",
+    "bankName": "اسم البنك",
+    "status": "الحالة",
+    "feesCondition": "أعلم أن البنك الوسيط أو المحلي قد يقتطع رسوم إضافية **",
+    "responsibilityCondition": "أتحمل وحدي أي خسارة ناتجة عن إدخال معلومات خاطئة أو غير دقيقة",
+    "durationCondition": "أعلم أن الحوالات البنكية تستغرق حتى 7 أيام عمل لتصل",
+    "paypalAccount": "حساب PayPal",
+    "withdrawSuccessfully": "تم السحب بنجاح",
+    "noTransactions": "لا توجد معاملات مالية"
+  },
+  "manageAccounts": {
+    "headerText": "ادارة الحسابات البنكية",
+    "subHeader": "يمكنك من خلال هذه الصفحة إضافة حساباتك البنكية لتتمكن من سحب رصيدك إليها",
+    "areYouSureYouWantToDelete": "هل انت متاكد من انك تريد حذف هذا الحساب؟",
+    "addAccount": "اضافة حساب",
+    "editAccount": "تعديل حساب",
+    "userName": "الاسم",
+    "iban": "كود الــ IBAN",
+    "balance": "الرصيد",
+    "bankName": "اسم البنك",
+    "swift": "كود الــ SWIFT",
+    "address": "العنوان",
+    "zip": "مفتاح الرمز البريدي",
+    "country": "الدولة",
+    "city": "المدينة",
+    "area": "المنطقة",
+    "edit": "حفظ",
+    "add": "اضافة",
+    "nameMatchingCondition": "هذا حسابي واسم المستفيد يطابق الاسم المسجل في هويتي الموثقة",
+    "bankMatchingCondition": "معلومات حسابي التي أدخلتها مزودة من البنك وتطابق تمامًا المسجلة لديه",
+    "responsibilityCondition": "أتحمل وحدي أي خسارة ناتجة عن ادخال معلومات خاطئة أو غير دقيقة",
+    "bankAddedSuccessfully": "تمت اضافة الحساب بنجاح",
+    "bankUpdatedSuccessfully": "تمت تعديل الحساب بنجاح",
+    "bankDeletedSuccessfully": "تمت حذف الحساب بنجاح"
+  },
+  "transactions": {
+    "charge": "شحن",
+    "app_service_percentage": "نسبة التطبيق على الخدمة",
+    "app_project_percentage": "نسبة التطبيق على المشروع",
+    "project_accept": "قبول المشروع",
+    "refund_project": "إلغاء المشروع",
+    "project_complete": "اكتمال المشروع",
+    "service_order_finish": "اكتمال طلب الخدمة",
+    "service_order_create": "إنشاء طلب خدمة",
+    "refund_service_order": "إلغاء طلب الخدمة",
+    "withdraw_balance_complete": "اكتمال سحب الرصيد",
+    "withdraw_balance_request": "طلب سحب الرصيد",
+    "withdraw_balance_canceled": "إلغاء سحب الرصيد"
   },
   "currency": {
     "sar": "ريال"
@@ -239,7 +324,9 @@
     "empty": "السلة فارغة، تسوق الآن وأضف منتجاتك!",
     "markets": "تسوق الأن",
     "apply": "تطبيق الكوبون",
-    "sendOrder": "ارسال الطلب"
+    "sendOrder": "ارسال الطلب",
+    "youDontHaveEnoughBallance": "ليس لديك رصيد كافي لدفع مبلغ: ",
+    "chargeWallet": "شحن المحفظة"
   },
   "tabs": {
     "main-info": "المعلومات الرئيسية",
@@ -313,5 +400,7 @@
   "and": "و",
   "successfullyCommentReplayed": "تم إرسال الرد على التعليق بنجاح",
   "successfullyRated": "تم إرسال التقييم بنجاح",
-  "payNow": "ادفع الان"
+  "payNow": "ادفع الان",
+  "enterChargeValue": "ادخل قيمة الشحن",
+  "manageAccount": "إدارة الحسابات"
 }
