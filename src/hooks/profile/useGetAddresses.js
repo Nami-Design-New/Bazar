@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "../utils/axios";
+import axios from "../../utils/axios";
 
 function useGetAddresses() {
   const { isLoading, data, error } = useQuery({

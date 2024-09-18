@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
-import { getFilters } from "../services/apiFilters";
+import { getFilters } from "../../services/apiFilters";
 
 function useGetFilters() {
   const [searchParams] = useSearchParams();

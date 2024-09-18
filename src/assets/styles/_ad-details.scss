@@ -312,7 +312,7 @@
     img {
       width: 120px;
       height: 120px;
-      object-fit: contain;
+      object-fit: cover;
       border-radius: 100px;
       transition: $transition;
       box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);

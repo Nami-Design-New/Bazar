@@ -9,8 +9,8 @@ import SelectField from "../ui/form-elements/SelectField";
 import FavoriteMarketCard from "../ui/cards/FavoriteMarketCard";
 import DataLoader from "../ui/DataLoader";
 import EmptyData from "../ui/EmptyData";
-import useGetAreas from "./../hooks/useGetAreas";
-import useGetCities from "./../hooks/useGetCities";
+import useGetAreas from "./../hooks/settings/useGetAreas";
+import useGetCities from "./../hooks/settings/useGetCities";
 import useCategoriesList from "./../components/categories/useCategoriesList";
 import useMarketsByFilter from "./../hooks/markets/useMarketsByFilter";
 

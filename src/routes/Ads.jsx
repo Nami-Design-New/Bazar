@@ -12,7 +12,7 @@ import DataLoader from "../ui/DataLoader";
 import EmptyData from "../ui/EmptyData";
 import useCategoriesList from "../components/categories/useCategoriesList";
 import useAdsByFilter from "../hooks/ads/useAdsByFilter";
-import useGetFilters from "./../hooks/useGetFilters";
+import useGetFilters from "./../hooks/settings/useGetFilters";
 
 const cities = [
   {

@@ -11,8 +11,8 @@ import AddAddress from "../components/addresses/AddAddress";
 import DataLoader from "../ui/DataLoader";
 import SubmitButton from "../ui/form-elements/SubmitButton";
 import useGetCart from "./../hooks/useGetCart";
-import useGetAddresses from "./../hooks/useGetAddresses";
-import useGetSettings from "./../hooks/useGetSettings";
+import useGetAddresses from "./../hooks/profile/useGetAddresses";
+import useGetSettings from "./../hooks/settings/useGetSettings";
 
 function Checkout() {
   const navigate = useNavigate();

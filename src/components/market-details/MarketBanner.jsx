@@ -59,6 +59,10 @@ function MarketBanner({ market }) {
                 {market?.data?.is_follow ? t("following") : t("follow")}
               </button>
 
+              <button className="btn-box follow">
+                <img src="/images/heart.svg" alt="" />
+              </button>
+
               <Dropdown>
                 <Dropdown.Toggle className="btn-box share" id="dropdown-basic">
                   <i className="fa-solid fa-share"></i>

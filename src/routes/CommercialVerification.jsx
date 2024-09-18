@@ -4,7 +4,7 @@ import SubmitButton from "../ui/form-elements/SubmitButton";
 import SectionHeader from "../ui/layout/SectionHeader";
 import DataLoader from "../ui/DataLoader";
 import EmptyData from "../ui/EmptyData";
-import usePackagesList from "./../hooks/usePackagesList";
+import usePackagesList from "./../hooks/settings/usePackagesList";
 
 function CommercialVerification() {
   const { t } = useTranslation();

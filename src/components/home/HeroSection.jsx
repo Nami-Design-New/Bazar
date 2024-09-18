@@ -3,9 +3,11 @@ import { Autoplay, EffectFade } from "swiper/modules";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "swiper/swiper-bundle.css";
+import useGetHomeBanners from "../../hooks/settings/useGetHomeBanners";
 
 function HeroSection() {
   const { t } = useTranslation();
+  const { data: banners } = useGetHomeBanners();
 
   return (
     <section className="hero-section">
@@ -22,38 +24,18 @@ function HeroSection() {
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
                 className="hero_slider"
               >
-                <SwiperSlide>
-                  <div className="slide">
-                    <img src="/images/s1.jpg" alt="slide1" />
-                    <div className="layer">
-                      <h4>استكشف قطع غيار وإكسسواراتنا</h4>
-                      <p>اكتشف أحدث القطع والإكسسوارات لتحسين سيارتك.</p>
-                      <Link to="/ads?ad_type=sell">تسوق الآن</Link>
+                {banners?.data?.map((banner, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="slide">
+                      <img src={banner?.image} alt="slide1" />
+                      <div className="layer">
+                        {/* <h4>استكشف قطع غيار وإكسسواراتنا</h4>
+                        <p>اكتشف أحدث القطع والإكسسوارات لتحسين سيارتك.</p>
+                        <Link to="/ads?ad_type=sell">تسوق الآن</Link> */}
+                      </div>
                     </div>
-                  </div>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                  <div className="slide">
-                    <img src="/images/s2.jpg" alt="slide1" />
-                    <div className="layer">
-                      <h4>استكشف قطع غيار وإكسسواراتنا</h4>
-                      <p>اكتشف أحدث القطع والإكسسوارات لتحسين سيارتك.</p>
-                      <Link to="/ads?ad_type=sell">تسوق الآن</Link>
-                    </div>
-                  </div>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                  <div className="slide">
-                    <img src="/images/s3.jpg" alt="slide1" />
-                    <div className="layer">
-                      <h4>استكشف قطع غيار وإكسسواراتنا</h4>
-                      <p>اكتشف أحدث القطع والإكسسوارات لتحسين سيارتك.</p>
-                      <Link to="/ads?ad_type=sell">تسوق الآن</Link>
-                    </div>
-                  </div>
-                </SwiperSlide>
+                  </SwiperSlide>
+                ))}
               </Swiper>
             </div>
           </div>

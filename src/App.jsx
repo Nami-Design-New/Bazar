@@ -12,7 +12,7 @@ import AppLayout from "./ui/layout/AppLayout";
 import routerConfig from "./RouterConfig";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import useGetCart from "./hooks/useGetCart";
-import useGetProfile from "./hooks/useGetProfile";
+import useGetProfile from "./hooks/profile/useGetProfile";
 
 export default function App() {
   const location = useLocation();

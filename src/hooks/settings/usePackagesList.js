@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUserInterests } from "../services/apiInterests";
+import { getPackagesList } from "../../services/apiPackages";
 
-function useUserInterests() {
+
+function usePackagesList() {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["userInterests"],
-    queryFn: getUserInterests,
+    queryKey: ["packagesList"],
+    queryFn: getPackagesList,
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -15,4 +16,4 @@ function useUserInterests() {
   return { isLoading, data, error };
 }
 
-export default useUserInterests
+export default usePackagesList

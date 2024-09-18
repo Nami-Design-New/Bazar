@@ -15,7 +15,7 @@ function CouponDetails() {
   console.log(coupons);
 
   return couponsLoading || marketLoading ? (
-    <DataLoader minHeight="200px" />
+    <DataLoader/>
   ) : (
     <>
       <SectionHeader title={market?.data?.name} backLinks={["markets"]} />

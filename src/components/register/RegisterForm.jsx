@@ -8,7 +8,7 @@ import PhoneField from "../../ui/form-elements/PhoneField";
 import PasswordField from "../../ui/form-elements/PasswordField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axios from "../../utils/axios";
-import useGetSettings from "../../hooks/useGetSettings";
+import useGetSettings from "../../hooks/settings/useGetSettings";
 
 function RegisterForm({
   formData,

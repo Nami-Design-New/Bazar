@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPackagesList } from "../services/apiPackages";
+import { getUserRewards } from "../../services/apiRewards";
 
 
-function usePackagesList() {
+function useUserRewards() {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["packagesList"],
-    queryFn: getPackagesList,
+    queryKey: ["userRewards"],
+    queryFn: getUserRewards,
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -16,4 +16,4 @@ function usePackagesList() {
   return { isLoading, data, error };
 }
 
-export default usePackagesList
+export default useUserRewards
