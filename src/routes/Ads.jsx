@@ -4,7 +4,7 @@ import { handleApplyFilters } from "../utils/helpers";
 import { useSearchParams } from "react-router-dom";
 import SectionHeader from "../ui/layout/SectionHeader";
 import InputField from "../ui/form-elements/InputField";
-import RangeSlider from "../ui/form-elements/RangeSlider";
+// import RangeSlider from "../ui/form-elements/RangeSlider";
 import SelectField from "../ui/form-elements/SelectField";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
 import DataLoader from "../ui/DataLoader";
@@ -58,12 +58,12 @@ function Ads() {
 
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
-    price_from: Number(searchParams.get("price_from")) || 5,
-    price_to: Number(searchParams.get("price_to")) || 2000,
-    duration_from: Number(searchParams.get("duration_from")) || 1,
-    duration_to: Number(searchParams.get("duration_to")) || 360,
+    price_from: Number(searchParams.get("price_from")) || null,
+    price_to: Number(searchParams.get("price_to")) || null,
+    duration_from: Number(searchParams.get("duration_from")) || null,
+    duration_to: Number(searchParams.get("duration_to")) || null,
     page: Number(searchParams.get("page")) || null,
-    ad_type: Number(searchParams.get("ad_type")) || "",
+    ad_type: Number(searchParams.get("ad_type")) || "sell",
     city_id: Number(searchParams.get("city_id")) || "",
     area_id: Number(searchParams.get("area_id")) || "",
     category_id: searchParams.get("category_id")
@@ -84,7 +84,7 @@ function Ads() {
     const { name, checked, type, value } = e.target;
     const parsedValue = type === "checkbox" ? (checked ? 1 : 0) : value;
 
-    if (name !== "categories" && name !== "sub_categories") {
+    if (name !== "category_id" && name !== "sub_category_id") {
       setSearchFilterData((prevState) => ({
         ...prevState,
         [name]: parsedValue,
@@ -100,7 +100,7 @@ function Ads() {
         return add ? [...list, value] : list.filter((id) => id !== value);
       };
 
-      if (name === "categories") {
+      if (name === "category_id") {
         updatedState[name] = updateList(
           prevState[name],
           categoryValue,
@@ -108,7 +108,7 @@ function Ads() {
         );
       }
 
-      if (name === "sub_categories") {
+      if (name === "sub_category_id") {
         updatedState[name] = updateList(
           prevState[name],
           categoryValue,
@@ -124,12 +124,12 @@ function Ads() {
     setSearchParams({});
     setSearchFilterData({
       search: searchParams.get("search") || "",
-      price_from: Number(searchParams.get("price_from")) || 5,
-      price_to: Number(searchParams.get("price_to")) || 2000,
-      duration_from: Number(searchParams.get("duration_from")) || 1,
-      duration_to: Number(searchParams.get("duration_to")) || 360,
+      price_from: Number(searchParams.get("price_from")) || null,
+      price_to: Number(searchParams.get("price_to")) || null,
+      duration_from: Number(searchParams.get("duration_from")) || null,
+      duration_to: Number(searchParams.get("duration_to")) || null,
       page: Number(searchParams.get("page")) || null,
-      ad_type: Number(searchParams.get("ad_type")) || "",
+      ad_type: Number(searchParams.get("ad_type")) || "sell",
       city_id: Number(searchParams.get("city_id")) || "",
       area_id: Number(searchParams.get("area_id")) || "",
       category_id: searchParams.get("category_id")
@@ -147,21 +147,21 @@ function Ads() {
     });
   }
 
-  const handleSliderChange = (name, value) => {
-    if (name === "duration") {
-      setSearchFilterData((prevState) => ({
-        ...prevState,
-        duration_from: value[0],
-        duration_to: value[1],
-      }));
-    } else if (name === "price") {
-      setSearchFilterData((prevState) => ({
-        ...prevState,
-        price_from: value[0],
-        price_to: value[1],
-      }));
-    }
-  };
+  // const handleSliderChange = (name, value) => {
+  //   if (name === "duration") {
+  //     setSearchFilterData((prevState) => ({
+  //       ...prevState,
+  //       duration_from: value[0],
+  //       duration_to: value[1],
+  //     }));
+  //   } else if (name === "price") {
+  //     setSearchFilterData((prevState) => ({
+  //       ...prevState,
+  //       price_from: value[0],
+  //       price_to: value[1],
+  //     }));
+  //   }
+  // };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -226,7 +226,7 @@ function Ads() {
                       value: area.id,
                     }))}
                   />
-                  <div className="w-100 mb-4 px-4">
+                  {/* <div className="w-100 mb-4 px-4">
                     <h6 className="mb-2">{t("search.deliveryTime")}</h6>
                     <RangeSlider
                       min={1}
@@ -242,8 +242,8 @@ function Ads() {
                       minType={t("search.days")}
                       maxType={t("search.days")}
                     />
-                  </div>
-                  <div className="w-100 mb-4 px-4">
+                  </div> */}
+                  {/* <div className="w-100 mb-4 px-4">
                     <h6 className="mb-2">{t("search.budget")}</h6>
                     <RangeSlider
                       min={5}
@@ -259,7 +259,7 @@ function Ads() {
                       minType="$"
                       maxType="$"
                     />
-                  </div>
+                  </div> */}
                   <div className="d-flex gap-2 w-100">
                     <div className="search-btn">
                       <button onClick={handleSubmit}>
