@@ -20,8 +20,8 @@ function Markets() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
-    page: Number(searchParams.get("page")) || 1,
-    type: searchParams.get("ad_type") || "",
+    page: Number(searchParams.get("page")) || null,
+    type: Number(searchParams.get("type")) || "",
     city_id: Number(searchParams.get("city_id")) || "",
     area_id: Number(searchParams.get("area_id")) || "",
     category_id: searchParams.get("category_id")
@@ -35,7 +35,7 @@ function Markets() {
           .get("sub_category_id")
           .split("-")
           .map((category) => Number(category))
-      : []
+      : [],
   });
 
   const { data: areas } = useGetAreas(
@@ -50,10 +50,10 @@ function Markets() {
     const { name, checked, type, value } = e.target;
     const parsedValue = type === "checkbox" ? (checked ? 1 : 0) : value;
 
-    if (name !== "categories" && name !== "sub_categories") {
+    if (name !== "category_id" && name !== "sub_category_id") {
       setSearchFilterData((prevState) => ({
         ...prevState,
-        [name]: parsedValue
+        [name]: parsedValue,
       }));
       return;
     }
@@ -66,7 +66,7 @@ function Markets() {
         return add ? [...list, value] : list.filter((id) => id !== value);
       };
 
-      if (name === "categories") {
+      if (name === "category_id") {
         updatedState[name] = updateList(
           prevState[name],
           categoryValue,
@@ -74,7 +74,7 @@ function Markets() {
         );
       }
 
-      if (name === "sub_categories") {
+      if (name === "sub_category_id") {
         updatedState[name] = updateList(
           prevState[name],
           categoryValue,
@@ -91,7 +91,7 @@ function Markets() {
     setSearchFilterData({
       search: searchParams.get("search") || "",
       page: Number(searchParams.get("page")) || null,
-      type: Number(searchParams.get("ad_type")) || "",
+      type: Number(searchParams.get("type")) || "",
       city_id: Number(searchParams.get("city_id")) || "",
       area_id: Number(searchParams.get("area_id")) || "",
       category_id: searchParams.get("category_id")
@@ -105,7 +105,7 @@ function Markets() {
             .get("sub_category_id")
             .split("-")
             .map((category) => Number(category))
-        : []
+        : [],
     });
   }
 
@@ -150,7 +150,7 @@ function Markets() {
                       categories?.data?.map((category) => (
                         <Form.Check
                           key={category.id}
-                          type="radio"
+                          type="checkbox"
                           name="category_id"
                           value={category?.id}
                           checked={searchFilterData?.category_id?.includes(
@@ -170,7 +170,7 @@ function Markets() {
                     onChange={(e) => handleChange(e)}
                     options={cities?.data?.map((city) => ({
                       name: city?.name,
-                      value: city?.id
+                      value: city?.id,
                     }))}
                   />
                   <SelectField
@@ -182,7 +182,7 @@ function Markets() {
                     onChange={(e) => handleChange(e)}
                     options={areas?.data?.map((area) => ({
                       name: area?.name,
-                      value: area?.id
+                      value: area?.id,
                     }))}
                   />
                   <div className="input-field">
