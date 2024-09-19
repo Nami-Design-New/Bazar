@@ -36,6 +36,15 @@ export async function getFavoriteAds() {
     throw new Error(`Error fetching ads: ${err.message}`);
   }
 }
+export async function getMostPopularAds() {
+  try {
+    const req = await axios.get("/get_most_popular_ads");
+
+    return req.data;
+  } catch (err) {
+    throw new Error(`Error fetching ads: ${err.message}`);
+  }
+}
 
 export async function getAdById(id) {
   const requestBody = {};

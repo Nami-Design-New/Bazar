@@ -47,8 +47,6 @@ function Profile() {
     }
   }, [isMyAccount, authedUser, profile, id, setUser, navigate]);
 
-  console.log(user);
-
   return (
     <>
       <SectionHeader />

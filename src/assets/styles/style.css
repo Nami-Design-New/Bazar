@@ -6382,13 +6382,18 @@ body main .item {
   background-color: #fff;
   height: 100%;
 }
-body main .item .favorite {
-  border: none;
-  background: none;
-  outline: none;
+body main .item .actions-wrapper {
   position: absolute;
   top: 16px;
   left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+body main .item .actions-wrapper .action {
+  border: none;
+  background: none;
+  outline: none;
   z-index: 2;
   width: 32px;
   height: 32px;
@@ -6401,13 +6406,18 @@ body main .item .favorite {
           backdrop-filter: blur(4px);
   transition: all 0.2s ease-in-out;
 }
-body main .item .favorite img {
+body main .item .actions-wrapper .action i {
+  font-size: 16px;
+  font-weight: 300;
+  color: #fff;
+}
+body main .item .actions-wrapper .action img {
   width: 20px;
   height: 20px;
   transition: all 0.2s ease-in-out;
   filter: invert(1);
 }
-body main .item .favorite:hover, body main .item .favorite.active {
+body main .item .actions-wrapper .action.favorite:hover, body main .item .actions-wrapper .action.favorite.active, body main .item .actions-wrapper .action.delete:hover, body main .item .actions-wrapper .action.delete.active {
   background-color: red;
 }
 body main .item .itemImg {
@@ -8481,7 +8491,7 @@ body .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box i {
 body .skeleton-item {
   flex: 1;
   border-radius: 12px;
-  height: 120px;
+  min-height: 120px;
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
   animation: loading 1.5s infinite;

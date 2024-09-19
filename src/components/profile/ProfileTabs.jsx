@@ -17,6 +17,7 @@ import useGetSettings from "./../../hooks/settings/useGetSettings";
 import Transactions from "./../../ui/layout/Transactions";
 import ChargeModal from "./../../ui/modals/ChargeModal";
 import WithdrawModal from "./../../ui/modals/WithdrawModal";
+import Post from "../../ui/cards/Post.jsx";
 
 function ProfileTabs({ user, isMyAccount }) {
   const { t } = useTranslation();
@@ -61,10 +62,10 @@ function ProfileTabs({ user, isMyAccount }) {
                 <DataLoader minHeight="400px" />
               ) : ads?.data && ads?.data?.length > 0 ? (
                 ads?.data?.map((ad) => (
-                  <div className="col-lg-6 col-12 p-2" key={ad?.id}>
-                    <FavoriteADCard
+                  <div className="col-lg-4 col-md-6 col-12 p-2" key={ad?.id}>
+                    <Post
                       userId={user?.id}
-                      ad={ad}
+                      post={ad}
                       isMyAccount={isMyAccount}
                     />
                   </div>
