@@ -6,9 +6,7 @@ import { useState } from "react";
 function InterestMiniCard({ interest, isMyAccount }) {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
-
-  console.log(interest);
-
+  
   function handleOpenConfirmation(e) {
     e.stopPropagation();
     setShowConfirmation(true);

@@ -3,9 +3,15 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import Post from "../../ui/cards/Post";
 import { useTranslation } from "react-i18next";
+import useAdsByFilter from "../../hooks/ads/useAdsByFilter";
 
 function PopularItems() {
   const { t } = useTranslation();
+  const { isLoading, data: ads } = useAdsByFilter({ orderBy: "view_count" });
+
+  if (!isLoading) {
+    console.log(ads);
+  }
 
   return (
     <section className="popular my-4">
@@ -48,21 +54,20 @@ function PopularItems() {
             },
           }}
         >
-          <SwiperSlide>
-            <Post />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Post />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Post />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Post />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Post />
-          </SwiperSlide>
+          {isLoading ? (
+            <div className="skeleton-container">
+              <div className="skeleton-item" />
+              <div className="skeleton-item" />
+              <div className="skeleton-item" />
+              <div className="skeleton-item" />
+            </div>
+          ) : (
+            ads?.data?.map((ad) => (
+              <SwiperSlide key={ad.id}>
+                <Post post={ad} />
+              </SwiperSlide>
+            ))
+          )}
         </Swiper>
       </div>
     </section>

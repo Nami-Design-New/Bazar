@@ -5,7 +5,7 @@ import Post from "../../ui/cards/Post";
 import useAdsByFilter from "../../hooks/ads/useAdsByFilter";
 import { useTranslation } from "react-i18next";
 
-function Department({ index, category }) {
+function Department({ index, category, categoriesLoading }) {
   const { t } = useTranslation();
   const baseDelay = 1000;
   const delay = baseDelay + index * 1000;
@@ -14,12 +14,16 @@ function Department({ index, category }) {
     category_id: category?.id,
   });
 
-  return isLoading ? (
-    <div className="skeleton-container">
-      <div className="skeleton-item" />
-      <div className="skeleton-item" />
-      <div className="skeleton-item" />
-      <div className="skeleton-item" />
+  return (categoriesLoading || isLoading) ? (
+    <div className="slider_wrap">
+      <div className="container">
+        <div className="skeleton-container">
+          <div className="skeleton-item" />
+          <div className="skeleton-item" />
+          <div className="skeleton-item" />
+          <div className="skeleton-item" />
+        </div>
+      </div>
     </div>
   ) : (
     ads?.data && ads?.data?.length > 0 && (

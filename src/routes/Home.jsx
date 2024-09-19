@@ -6,14 +6,15 @@ import Sliders from "../components/home/Sliders";
 import DownLoadApp from "../ui/layout/DownLoadApp";
 
 export default function Home() {
-  const { data: categories } = useCategoriesList();
+  const { isLoading: categoriesLoading, data: categories } =
+    useCategoriesList();
 
   return (
     <>
       <HeroSection />
-      <Categories categories={categories} />
+      <Categories categories={categories} categoriesLoading={categoriesLoading}  />
       <PopularItems />
-      <Sliders categories={categories} />
+      <Sliders categories={categories} categoriesLoading={categoriesLoading} />
       <DownLoadApp />
     </>
   );

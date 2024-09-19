@@ -7,37 +7,41 @@ import useGetHomeBanners from "../../hooks/settings/useGetHomeBanners";
 
 function HeroSection() {
   const { t } = useTranslation();
-  const { data: banners } = useGetHomeBanners();
+  const { isLoading, data: banners } = useGetHomeBanners();
 
   return (
     <section className="hero-section">
       <div className="container p-0">
         <div className="row m-0 h-100">
           <div className="col-lg-7 col-12 p-2 h-100">
-            <div className="swiper_adds">
-              <Swiper
-                slidesPerView={1}
-                speed={1000}
-                loop={true}
-                modules={[Autoplay, EffectFade]}
-                effect="fade"
-                autoplay={{ delay: 3000, disableOnInteraction: false }}
-                className="hero_slider"
-              >
-                {banners?.data?.map((banner, index) => (
-                  <SwiperSlide key={index}>
-                    <div className="slide">
-                      <img src={banner?.image} alt="slide1" />
-                      <div className="layer">
-                        {/* <h4>استكشف قطع غيار وإكسسواراتنا</h4>
+            {isLoading ? (
+              <div className="skeleton-item"></div>
+            ) : (
+              <div className="swiper_adds">
+                <Swiper
+                  slidesPerView={1}
+                  speed={1000}
+                  loop={true}
+                  modules={[Autoplay, EffectFade]}
+                  effect="fade"
+                  autoplay={{ delay: 3000, disableOnInteraction: false }}
+                  className="hero_slider"
+                >
+                  {banners?.data?.map((banner, index) => (
+                    <SwiperSlide key={index}>
+                      <div className="slide">
+                        <img src={banner?.image} alt="slide1" />
+                        <div className="layer">
+                          {/* <h4>استكشف قطع غيار وإكسسواراتنا</h4>
                         <p>اكتشف أحدث القطع والإكسسوارات لتحسين سيارتك.</p>
                         <Link to="/ads?ad_type=sell">تسوق الآن</Link> */}
+                        </div>
                       </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+            )}
           </div>
 
           <div className="col-lg-5 col-12 p-2">

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-function Categories({ categories }) {
+function Categories({ categories, categoriesLoading }) {
   const { t } = useTranslation();
 
   return (
@@ -18,7 +18,22 @@ function Categories({ categories }) {
           </Link>
         </div>
 
-        {categories && categories?.data?.length > 0 ? (
+        {categoriesLoading ? (
+          <div className="row pt-3">
+            <div className="col-lg-3 col-md-4 col-6 p-2">
+              <div className="skeleton-item"></div>
+            </div>
+            <div className="col-lg-3 col-md-4 col-6 p-2">
+              <div className="skeleton-item"></div>
+            </div>
+            <div className="col-lg-3 col-md-4 col-6 p-2">
+              <div className="skeleton-item"></div>
+            </div>
+            <div className="col-lg-3 col-md-4 col-6 p-2">
+              <div className="skeleton-item"></div>
+            </div>
+          </div>
+        ) : categories && categories?.data?.length > 0 ? (
           <div className="row pt-3">
             {categories?.data?.map((category) => (
               <div className="col-lg-3 col-md-4 col-6 p-2" key={category.id}>
@@ -37,22 +52,7 @@ function Categories({ categories }) {
               </div>
             ))}
           </div>
-        ) : (
-          <div className="row pt-3">
-            <div className="col-lg-3 col-md-4 col-6 p-2">
-              <div className="skeleton-item"></div>
-            </div>
-            <div className="col-lg-3 col-md-4 col-6 p-2">
-              <div className="skeleton-item"></div>
-            </div>
-            <div className="col-lg-3 col-md-4 col-6 p-2">
-              <div className="skeleton-item"></div>
-            </div>
-            <div className="col-lg-3 col-md-4 col-6 p-2">
-              <div className="skeleton-item"></div>
-            </div>
-          </div>
-        )}
+        ) : null}
       </div>
     </section>
   );

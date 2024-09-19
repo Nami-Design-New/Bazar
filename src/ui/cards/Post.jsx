@@ -1,11 +1,17 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
+import ConfirmationModal from "../modals/ConfirmationModal";
+import { useState } from "react";
+import axios from "./../../utils/axios";
+import { toast } from "react-toastify";
+import useUserAds from "../../hooks/ads/useUserAds";
 
-function Post({ post, category }) {
+function Post({ post, category, isMyAccount, userId }) {
   const { t } = useTranslation();
-
-  console.log(post);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { refetch } = useUserAds();
 
   const timeDifference = getTimeDifference(post?.created_at);
   const creationTime = formatTimeDifference(
@@ -17,11 +23,74 @@ function Post({ post, category }) {
     t
   );
 
+  function handleToggleFavorite(e) {
+    e.stopPropagation();
+    e.preventDefault();
+  }
+
+  function handleOpenConfirmation(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowConfirmation(true);
+  }
+
+  function handleLinkClick(e) {
+    e.stopPropagation();
+    if (
+      e.target.classList.contains("delete") ||
+      e.target.classList.contains("favorite") ||
+      showConfirmation
+    ) {
+      e.preventDefault();
+    }
+  }
+
+  const deleteAd = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.post("/user/delete_ad", { id: post?.id });
+      if (res.data?.code === 200) {
+        toast.success("تم حذف الاعلان بنجاح");
+        setShowConfirmation(false);
+        refetch(userId);
+      } else {
+        toast.error(res.data?.message);
+      }
+    } catch (error) {
+      toast.error(error.response);
+      throw new Error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <Link to={`/ad-details/${post?.id}`} className="item">
-      <button className={`favorite ${post?.is_favorite ? "active" : ""}`}>
-        <img src="/images/heart.svg" alt="" />
-      </button>
+    <Link
+      to={`/ad-details/${post?.id}`}
+      className="item"
+      onClick={handleLinkClick}
+    >
+      <div className="actions-wrapper">
+        <button
+          className={`action favorite ${post?.is_favorite ? "active" : ""}`}
+          onClick={handleToggleFavorite}
+        >
+          <img src="/images/heart.svg" alt="" />
+        </button>
+        {isMyAccount && (
+          <>
+            <button
+              className={`action delete`}
+              onClick={handleOpenConfirmation}
+            >
+              <i className="fa-regular fa-trash "></i>
+            </button>
+            <Link to={`/add-ad/${post?.id}`} className={`action edit`}>
+              <i className="fa-regular fa-pen-to-square"></i>
+            </Link>
+          </>
+        )}
+      </div>
 
       <Link to={`/ad-details/${post?.id}`} className="itemImg">
         <img src={post?.image?.image} loading="lazy" alt="" />
@@ -81,6 +150,15 @@ function Post({ post, category }) {
           ) : null}
         </div>
       </div>
+      <ConfirmationModal
+        showModal={showConfirmation}
+        setShowModal={setShowConfirmation}
+        type="delete"
+        eventFun={deleteAd}
+        buttonText={t("delete")}
+        loading={loading}
+        text={t("ads.areYouSureYouWantToDeleteAD")}
+      />
     </Link>
   );
 }

@@ -12,30 +12,47 @@
   border: 1px solid $LightGray;
   background-color: $white;
   height: 100%;
-  .favorite {
-    @include clearInput();
+  .actions-wrapper {
     position: absolute;
     top: 16px;
     left: 16px;
-    z-index: 2;
-    width: 32px;
-    height: 32px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background-color: #0000004f;
-    backdrop-filter: blur(4px);
-    transition: $transition;
-    img {
-      width: 20px;
-      height: 20px;
+    gap: 8px;
+
+    .action {
+      @include clearInput();
+
+      z-index: 2;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: #0000004f;
+      backdrop-filter: blur(4px);
       transition: $transition;
-      filter: invert(1);
-    }
-    &:hover,
-    &.active {
-      background-color: red;
+
+      i {
+        font-size: 16px;
+        font-weight: 300;
+        color: $white;
+      }
+
+      img {
+        width: 20px;
+        height: 20px;
+        transition: $transition;
+        filter: invert(1);
+      }
+      &.favorite,
+      &.delete {
+        &:hover,
+        &.active {
+          background-color: red;
+        }
+      }
     }
   }
   .itemImg {
