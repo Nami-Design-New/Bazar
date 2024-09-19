@@ -2,11 +2,11 @@ import { Tab, Tabs } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import SectionHeader from "../ui/layout/SectionHeader";
 import FavoriteMarketCard from "../ui/cards/FavoriteMarketCard";
-import FavoriteADCard from "../ui/cards/FavoriteADCard";
 import DataLoader from "../ui/DataLoader";
 import EmptyData from "../ui/EmptyData";
 import useFavoriteAds from "./../hooks/ads/useFavoriteAds";
 import useFavoriteMarkets from "./../hooks/markets/useFavoriteMarkets";
+import Post from "../ui/cards/Post";
 
 function Favorites() {
   const { t } = useTranslation();
@@ -27,8 +27,8 @@ function Favorites() {
                 <DataLoader minHeight="400px" />
               ) : ads?.data && ads?.data?.length > 0 ? (
                 ads?.data?.map((ad) => (
-                  <div className="col-lg-6 col-12 p-3" key={ad?.id}>
-                    <FavoriteADCard type="favorite" ad={ad} />
+                  <div className="col-lg-4 col-md-6 col-12 p-3" key={ad?.id}>
+                    <Post post={ad} />
                   </div>
                 ))
               ) : (
