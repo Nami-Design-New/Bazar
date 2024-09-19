@@ -1,8 +1,33 @@
 import axios from "../utils/axios";
 
-export async function getMarketsByFilter() {
+export async function getMarketsByFilter(
+  search,
+  page,
+  type,
+  city_id,
+  area_id,
+  category_id,
+  sub_category_id
+) {
+  const requestBody = {};
+
+  if (search) requestBody.search = search;
+
+  if (page) requestBody.page = +page;
+
+  if (type) requestBody.type = type;
+
+  if (city_id) requestBody.city_id = +city_id;
+
+  if (area_id) requestBody.area_id = +area_id;
+
+  if (category_id && category_id.length) requestBody.category_ids = category_id;
+
+  if (sub_category_id && sub_category_id.length)
+    requestBody.sub_category_id = sub_category_id;
+
   try {
-    const req = await axios.post("/get_markets");
+    const req = await axios.post("/get_markets", requestBody);
 
     return req.data;
   } catch (err) {

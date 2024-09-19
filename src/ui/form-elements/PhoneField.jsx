@@ -8,7 +8,7 @@ const PhoneField = ({ label, span, ...props }) => {
           {label}
         </div>
       </label>
-      <Form.Control className="form-control" {...props} />
+      <Form.Control className="form-control" {...props} maxLength={9} />
       {span && <span className="input-span">{span}</span>}
     </div>
   );

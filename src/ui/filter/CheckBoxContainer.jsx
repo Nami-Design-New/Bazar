@@ -10,12 +10,42 @@ function CheckBoxContainer({
   const hasSubcategories =
     item?.sub_categories && item?.sub_categories?.length > 0;
 
-  const isParentChecked =
-    categoriesValue?.includes(+item.id) ||
-    (hasSubcategories &&
-      item?.sub_categorie?.every((sub_category) =>
+  const isParentChecked = hasSubcategories
+    ? item?.sub_categories?.every((sub_category) =>
         sub_categoriesValue?.includes(+sub_category.id)
-      ));
+      )
+    : categoriesValue?.includes(+item.id);
+
+  const handleParentCheckboxChange = (e) => {
+    const { checked } = e.target;
+    if (hasSubcategories) {
+      item?.sub_categories?.forEach((sub_category) => {
+        onChange({
+          target: {
+            name: "sub_category_id",
+            value: sub_category.id,
+            checked,
+          },
+        });
+      });
+
+      onChange({
+        target: {
+          name: "category_id",
+          value: item.id,
+          checked,
+        },
+      });
+    } else {
+      onChange({
+        target: {
+          name: "category_id",
+          value: item.id,
+          checked,
+        },
+      });
+    }
+  };
 
   return (
     <li className="department-item">
@@ -46,7 +76,7 @@ function CheckBoxContainer({
           value={item.id}
           id={item.id}
           checked={isParentChecked}
-          onChange={onChange}
+          onChange={handleParentCheckboxChange}
         />
       </div>
       {item?.sub_categories && sub_categoriesValue && viewSubCategories && (

@@ -1,13 +1,32 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import useAddToFavorite from "../../hooks/useAddToFavorite";
+import useRemoveFromFavorite from "../../hooks/useRemoveFromFavorite";
+import { useSelector } from "react-redux";
 
 function FavoriteMarketCard({ market }) {
-  const [isLiked, setIsLiked] = useState(false);
+  const { addToFavorite, isLoading: addingLoading } = useAddToFavorite();
+  const { removeFromFavorite, isLoading: removingLoading } =
+    useRemoveFromFavorite();
+  const isLogged = useSelector((state) => state.authedUser.isLogged);
+  const navigate = useNavigate();
 
   function handleToggleFavorite(e) {
     e.stopPropagation();
     e.preventDefault();
-    setIsLiked(!isLiked);
+    if (isLogged) {
+      console.log(market?.is_favorite);
+
+      if (market?.is_favorite) {
+        removeFromFavorite({ id: market?.id, type: "market_id" });
+      } else {
+        addToFavorite({
+          id: market?.id,
+          type: "market_id",
+        });
+      }
+    } else {
+      navigate("/login");
+    }
   }
 
   function handleLinkClick(e) {
@@ -55,6 +74,7 @@ function FavoriteMarketCard({ market }) {
                   market?.is_favorite ? "liked" : ""
                 }`}
                 onClick={handleToggleFavorite}
+                disabled={addingLoading || removingLoading}
               >
                 <i className="fa-solid fa-heart"></i>
               </span>

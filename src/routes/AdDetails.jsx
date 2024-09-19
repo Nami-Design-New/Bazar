@@ -10,6 +10,8 @@ import DataLoader from "../ui/DataLoader";
 import useGetAdById from "./../hooks/ads/useGetAdById";
 import "swiper/swiper-bundle.css";
 import Post from "./../ui/cards/Post";
+import useAddToFavorite from "../hooks/useAddToFavorite";
+import useRemoveFromFavorite from "../hooks/useRemoveFromFavorite";
 
 function AdDetails() {
   const { t } = useTranslation();
@@ -17,6 +19,10 @@ function AdDetails() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.authedUser.user);
   const currentPageLink = window.location.href;
+  const { addToFavorite, isLoading: addingLoading } = useAddToFavorite();
+  const { removeFromFavorite, isLoading: removingLoading } =
+    useRemoveFromFavorite();
+  const isLogged = useSelector((state) => state.authedUser.isLogged);
 
   const timeDifference = getTimeDifference(ad?.data?.created_at);
   const creationTime = formatTimeDifference(
@@ -27,6 +33,23 @@ function AdDetails() {
     timeDifference.minutes,
     t
   );
+
+  function handleToggleFavorite(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    if (isLogged) {
+      if (ad?.is_favorite) {
+        removeFromFavorite({ id: ad?.id, type: "ad_id" });
+      } else {
+        addToFavorite({
+          id: ad?.id,
+          type: "ad_id",
+        });
+      }
+    } else {
+      navigate("/login");
+    }
+  }
 
   const openChat = () => {
     console.log(user);
@@ -42,7 +65,7 @@ function AdDetails() {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${currentPageLink}`,
     instagram: `https://www.instagram.com/?url=${currentPageLink}`,
     twitter: `https://twitter.com/intent/tweet?url=${currentPageLink}`,
-    whatsapp: `https://wa.me/?text=${currentPageLink}`
+    whatsapp: `https://wa.me/?text=${currentPageLink}`,
   };
 
   return isLoading ? (
@@ -63,6 +86,8 @@ function AdDetails() {
                   className={`favorite ${
                     ad?.data?.is_favorite ? "active" : ""
                   }`}
+                  onClick={handleToggleFavorite}
+                  disabled={addingLoading || removingLoading}
                 >
                   <img src="/images/heart.svg" alt="heart" />
                 </button>
@@ -211,18 +236,18 @@ function AdDetails() {
               className="mainSliderContainer"
               navigation={{
                 nextEl: `similar-next`,
-                prevEl: `similar-prev`
+                prevEl: `similar-prev`,
               }}
               breakpoints={{
                 992: {
-                  slidesPerView: 4
+                  slidesPerView: 4,
                 },
                 768: {
-                  slidesPerView: 2
+                  slidesPerView: 2,
                 },
                 350: {
-                  slidesPerView: 1
-                }
+                  slidesPerView: 1,
+                },
               }}
             >
               {ad?.data?.similar_ads && ad?.data?.similar_ads?.length > 0 && (
