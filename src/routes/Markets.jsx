@@ -38,8 +38,6 @@ function Markets() {
       : [],
   });
 
-  console.log(searchFilterData?.category_id);
-
   const { data: areas } = useGetAreas(
     searchFilterData.city_id,
     searchFilterData.city_id ? true : false
