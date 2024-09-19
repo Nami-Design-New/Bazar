@@ -709,12 +709,15 @@ body header nav .container .logo {
 }
 body header nav .container .logo img {
   height: 42px;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 body header nav .container .navigation_links {
   flex: 8;
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
   height: 100%;
 }
 body header nav .container .navigation_links li {
@@ -748,10 +751,14 @@ body header nav .container .navigation_links li .add_ad:hover {
   color: #fff;
 }
 body header nav .container .navigation_links li.logoo {
+  margin-bottom: 24px;
   display: none;
 }
 body header nav .container .navigation_links li.logoo img {
-  height: 80px;
+  height: 50px;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 @media (max-width: 992px) {
   body header nav .container .navigation_links {
@@ -1592,7 +1599,7 @@ body main .hero-section .categories .category {
 }
 body main .hero-section .categories .category h2 {
   color: #000;
-  font-size: 18px;
+  font-size: 16px;
 }
 body main .hero-section .categories .category .img {
   display: flex;
@@ -1687,6 +1694,7 @@ body main .popular .container {
 body main .popular .container .topHead {
   flex: 1;
   min-width: 250px;
+  flex-direction: column;
 }
 body main .popular .container .topHead .sectionTitle .subtitle {
   color: #4381f8;
@@ -1717,6 +1725,9 @@ body main .popular .item .itemInfo .itemBottom {
   border-color: #38383a;
 }
 body main .popular .item .itemInfo .itemBottom .price {
+  color: #fff;
+}
+body main .popular .item .itemInfo .title {
   color: #fff;
 }
 body main .popular .item .itemInfo .description {
@@ -1797,7 +1808,9 @@ body main .videos .videos_wrapper .video .video_utils .user {
   position: relative;
 }
 body main .videos .videos_wrapper .video .video_utils .user img {
+  background: #fafafa;
   border-radius: 50%;
+  border: 2px solid #fff;
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -1891,7 +1904,7 @@ body main .videos .videos_wrapper .video .share .header button {
 body main .videos .videos_wrapper .video .comments .comments_wrapper,
 body main .videos .videos_wrapper .video .share .comments_wrapper {
   flex: 1 1;
-  gap: 8px;
+  gap: 16px;
   display: flex;
   overflow-y: scroll;
   scrollbar-width: 0;
@@ -1901,6 +1914,14 @@ body main .videos .videos_wrapper .video .share .comments_wrapper {
 body main .videos .videos_wrapper .video .comments .comments_wrapper::-webkit-scrollbar,
 body main .videos .videos_wrapper .video .share .comments_wrapper::-webkit-scrollbar {
   display: none;
+}
+body main .videos .videos_wrapper .video .comments .comments_wrapper .no_comments,
+body main .videos .videos_wrapper .video .share .comments_wrapper .no_comments {
+  text-align: center;
+  color: #777777;
+  font-size: 16px;
+  line-height: 2.4;
+  margin: auto 0;
 }
 body main .videos .videos_wrapper .video .comments .comments_wrapper .comment_wrap,
 body main .videos .videos_wrapper .video .share .comments_wrapper .comment_wrap {
@@ -4118,7 +4139,7 @@ body main .market-details-page .page-header .cover-wrapper::after {
   position: absolute;
   top: 0;
   left: 0;
-  border-radius: 12px 12px 0 0;
+  border-radius: 12px;
   z-index: 4;
 }
 body main .market-details-page .page-header .cover-wrapper img {
@@ -7500,6 +7521,9 @@ body main .topHead .subtitle {
 }
 body main .topHead a {
   color: #4381f8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 body main .tabs-section {
   padding: 36px 0;
@@ -7585,11 +7609,14 @@ body main .error-section a:hover {
   border-color: #d785f1;
   background-color: #d785f1;
 }
+body .download_app_section {
+  background-image: url("/public/images/banner.png");
+  background-size: cover;
+}
 body .download_app {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #fff;
 }
 @media screen and (max-width: 576px) {
   body .download_app {
@@ -7600,14 +7627,14 @@ body .download_app {
 body .download_app .content {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 28px;
 }
 body .download_app .content h3 {
-  color: #000;
-  font-size: 32px;
+  color: #fff;
+  font-size: 42px;
 }
 body .download_app .content h4 {
-  color: #4381f8;
+  color: #fff;
 }
 body .download_app .links {
   display: flex;
@@ -7616,7 +7643,6 @@ body .download_app .links {
 }
 body .download_app .links img {
   height: 42px;
-  filter: invert(1);
 }
 body footer {
   padding: 40px 0 0;
@@ -8490,6 +8516,7 @@ body .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box i {
 }
 body .skeleton-item {
   flex: 1;
+  height: 100%;
   border-radius: 12px;
   min-height: 120px;
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
@@ -8613,4 +8640,17 @@ body.en {
 }
 body.en header nav .container .left_utils .dropdown .dropdown-menu {
   transform: translate3d(0px, 50px, 0px) !important;
+}
+body.en .topHead .viewAll img {
+  transform: scale(-1);
+}
+body.en .swiperControl .swiperBtns {
+  flex-direction: row-reverse;
+}
+body.en header nav .container .navigation_links {
+  right: initial;
+  left: -100%;
+}
+body.en header nav .container .navigation_links.show {
+  left: 0;
 }/*# sourceMappingURL=style.css.map */

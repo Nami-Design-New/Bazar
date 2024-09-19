@@ -71,3 +71,12 @@ export async function getAdsVideos() {
     throw new Error(`Error fetching ads: ${err.message}`);
   }
 }
+
+export const getAdsComments = async (id) => {
+  try {
+    const res = await axios.post("/get_comments", { id: id });
+    return res.data;
+  } catch (error) {
+    throw new Error(`Error fetching comments: ${error.message}`);
+  }
+};

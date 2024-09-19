@@ -44,6 +44,9 @@ body {
       }
       a {
         color: $main;
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
     }
 
@@ -912,6 +915,7 @@ body {
 
   .skeleton-item {
     flex: 1;
+    height: 100%;
     border-radius: 12px;
     min-height: 120px;
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
@@ -1037,6 +1041,21 @@ body {
     font-family: "Poppins", sans-serif;
     header nav .container .left_utils .dropdown .dropdown-menu {
       transform: translate3d(0px, 50px, 0px) !important;
+    }
+    .topHead .viewAll {
+      img {
+        transform: scale(-1);
+      }
+    }
+    .swiperControl .swiperBtns {
+      flex-direction: row-reverse;
+    }
+    header nav .container .navigation_links{
+      right: initial;
+      left: -100%;
+      &.show{
+        left: 0;
+      }
     }
   }
 }

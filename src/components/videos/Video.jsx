@@ -1,19 +1,25 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Comments from "./Comments";
 import Share from "./Share";
 
 function Video({ ad }) {
+  const { t } = useTranslation();
   const videoRef = useRef(null);
   const [showComments, setShowComments] = useState(false);
   const [showShare, setShowShare] = useState(false);
   const [canPlay, setCanPlay] = useState(false);
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const videoElement = videoRef.current;
 
     const handleIntersection = (entries) => {
       entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        }
         if (entry.isIntersecting && canPlay) {
           videoElement.play().catch(() => {});
           videoElement.muted = false;
@@ -51,7 +57,7 @@ function Video({ ad }) {
 
       <div className="video_utils">
         <div className="user">
-          <img src="/images/userr.webp" alt="user" />
+          <img src={ad?.user?.image} alt="user" />
           <button className="follow">
             <i className="fa-solid fa-plus"></i>
           </button>
@@ -82,14 +88,14 @@ function Video({ ad }) {
       <div className="adName">
         <h6>{ad?.title}</h6>
         <Link className="link" to={`/ad-details/${ad?.id}`}>
-          التفاصيل
+          {t("see_more")}
         </Link>
       </div>
 
       <Comments
         show={showComments}
         setShow={setShowComments}
-        element={videoRef}
+        videoId={inView ? ad?.id : null}
       />
 
       <Share show={showShare} setShow={setShowShare} element={videoRef} />

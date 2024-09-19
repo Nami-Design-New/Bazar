@@ -1,6 +1,10 @@
+.download_app_section {
+  background-image: url("/public/images/banner.png");
+  background-size: cover;
+}
+
 .download_app {
   @include space-between();
-  background: $white;
   @media screen and (max-width: 576px) {
     flex-direction: column;
     gap: 64px;
@@ -8,13 +12,13 @@
   .content {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 28px;
     h3 {
-      color: $black;
-      font-size: 32px;
+      color: $white;
+      font-size: 42px;
     }
     h4 {
-      color: $main;
+      color: $white;
     }
   }
   .links {
@@ -23,7 +27,6 @@
     gap: 12px;
     img {
       height: 42px;
-      filter: invert(1);
     }
   }
 }

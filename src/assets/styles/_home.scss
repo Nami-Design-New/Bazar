@@ -100,7 +100,7 @@
       }
       h2 {
         color: $black;
-        font-size: 18px;
+        font-size: 16px;
       }
       .img {
         @include centerFlex();
@@ -195,6 +195,7 @@
     .topHead {
       flex: 1;
       min-width: 250px;
+      flex-direction: column;
       .sectionTitle {
         .subtitle {
           color: $main;
@@ -228,6 +229,9 @@
       .price {
         color: $white;
       }
+    }
+    .itemInfo .title {
+      color: $white;
     }
     .itemInfo .description {
       color: $inputHint;

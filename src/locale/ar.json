@@ -51,6 +51,9 @@
     "ads": "الاعلانات",
     "wanted-ads": "الاعلانات المطلوبة",
     "markets": "المتاجر",
+    "about": "من نحن",
+    "terms": "شروط الاستخدام",
+    "privacy": "سياسة الخصوصية",
     "coupon-details": "تفاصيل الكوبون",
     "manage-accounts": "إدارة الحسابات"
   },
@@ -405,5 +408,15 @@
   "successfullyRated": "تم إرسال التقييم بنجاح",
   "payNow": "ادفع الان",
   "enterChargeValue": "ادخل قيمة الشحن",
-  "manageAccount": "إدارة الحسابات"
+  "manageAccount": "إدارة الحسابات",
+  "downLoadAppTitle": "اعثر على صفقات مذهلة لدينا.",
+  "downLoadNow": "حمل التطبيق الآن!",
+  "copyRight": "حقوق الطبع والنشر",
+  "allRightsReserved": " جميع الحقوق محفوظة ل",
+  "bazar": "بازار",
+  "comments": "التعليقات",
+  "addComment": "اضف تعليقك ...",
+  "loginToComment":"تسجيل الدخول للتعليق",
+  "see_more": "التفاصيل",
+  "noComments": "لا يوجد تعليقات"
 }

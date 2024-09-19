@@ -13,7 +13,7 @@ function HeroSection() {
     <section className="hero-section">
       <div className="container p-0">
         <div className="row m-0 h-100">
-          <div className="col-lg-7 col-12 p-2 h-100">
+          <div className="col-lg-7 col-12 p-2">
             {isLoading ? (
               <div className="skeleton-item"></div>
             ) : (

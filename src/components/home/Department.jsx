@@ -11,10 +11,10 @@ function Department({ index, category, categoriesLoading }) {
   const delay = baseDelay + index * 1000;
 
   const { isLoading, data: ads } = useAdsByFilter({
-    category_id: category?.id,
+    category_id: category?.id
   });
 
-  return (categoriesLoading || isLoading) ? (
+  return categoriesLoading || isLoading ? (
     <div className="slider_wrap">
       <div className="container">
         <div className="skeleton-container">
@@ -31,7 +31,7 @@ function Department({ index, category, categoriesLoading }) {
         <div className="container">
           <div className="topHead">
             <div className="sectionTitle">
-              <span className="subtitle">{t("home.categoryTitle")}</span>
+              {/* <span className="subtitle">{t("home.categoryTitle")}</span> */}
               <h4 className="title">
                 {t("home.exploreOffers")}{" "}
                 <span className="categoryName"> {category?.name} </span>
@@ -55,18 +55,18 @@ function Department({ index, category, categoriesLoading }) {
             className="mainSliderContainer"
             navigation={{
               nextEl: `.btn_${index}`,
-              prevEl: `.btn_${index}`,
+              prevEl: `.btn_${index}`
             }}
             breakpoints={{
               992: {
-                slidesPerView: 4,
+                slidesPerView: 4
               },
               768: {
-                slidesPerView: 2,
+                slidesPerView: 2
               },
               350: {
-                slidesPerView: 1,
-              },
+                slidesPerView: 1
+              }
             }}
           >
             {ads?.data?.map((ad) => (

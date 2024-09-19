@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import useGetSettings from "../../hooks/settings/useGetSettings";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const { data: settings } = useGetSettings();
+  const { t } = useTranslation();
 
   return (
     <footer>
@@ -15,19 +17,21 @@ export default function Footer() {
                 <img src="/images/logo.png" alt="logo" />
               </Link>
               <div className="links">
-                <Link>الرئيسية</Link>
-                <Link to={settings?.data?.about_link}>من نحن</Link>
-                <Link to={settings?.data?.terms_link}>شروط الاستخدام</Link>
-                <Link to={settings?.data?.privacy_link}>سياسة الخصوصية</Link>
-                <Link>اتصل بنا</Link>
+                <Link>{t("routes.home")}</Link>
+                <Link to={settings?.data?.about_link}>{t("routes.about")}</Link>
+                <Link to={settings?.data?.terms_link}>{t("routes.terms")}</Link>
+                <Link to={settings?.data?.privacy_link}>
+                  {t("routes.privacy")}
+                </Link>
+                <Link>{t("routes.contact")}</Link>
               </div>
             </div>
           </div>
           <div className="col-12 p-2">
             <div className="copyrights">
               <p>
-                حقوق الطبع والنشر &copy; {currentYear} . جميع الحقوق محفوظة لدى{" "}
-                <Link to="/">بازار</Link>
+                {t("copyright")} &copy; {currentYear} . {t("allRightsReserved")}{" "}
+                <Link to="/">{t("bazar")}</Link>
               </p>
               <div className="social_media">
                 <Link to="/">
