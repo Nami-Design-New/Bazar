@@ -8607,6 +8607,20 @@ body .bank-acc-card .icons button:nth-child(2) {
 body .categoryName {
   color: #4381f8;
 }
+body .faqs-accordin {
+  padding: 60px 0;
+}
+body .faqs-accordin .accordion-button, body .faqs-accordin .accordion-button:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+body .faqs-accordin .accordion-button::after {
+  flex-grow: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  transform: none !important;
+}
 body.en {
   direction: ltr;
   font-family: "Poppins", sans-serif;
