@@ -9,3 +9,13 @@ export async function getSettings() {
     throw new Error(`Error fetching settings: ${err.message}`);
   }
 }
+
+export async function getFaqs() {
+  try {
+    const req = await axios.get("/faq_categories");
+
+    return req.data;
+  } catch (err) {
+    throw new Error(`Error fetching faqs: ${err.message}`);
+  }
+}
