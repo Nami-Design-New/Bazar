@@ -48,7 +48,7 @@ function Ads() {
   const { t } = useTranslation();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const { isLoading, data: ads } = useAdsByFilter();
+  const { isLoading: adsLoading, data: ads } = useAdsByFilter();
   const { isLoading: categoriesLoading, data: categories } =
     useCategoriesList();
 
@@ -168,137 +168,136 @@ function Ads() {
     handleApplyFilters(setSearchParams, searchFilterData);
   }
 
+  if (categoriesLoading || filtersLoading || adsLoading) {
+    return <DataLoader />;
+  }
+
   return (
     <div className="ads-page">
       <SectionHeader />
       <section className="content-wrapper container search-section col-lg-10 col-12">
         <div className="row">
-          {!filtersLoading || !categoriesLoading ? (
-            <>
-              <aside
-                className={`col-lg-3 p-2 pt-3 side-menu ${
-                  isFilterOpen ? "active" : ""
-                }`}
-              >
-                <div className="filter-wrap">
-                  <div className="colse" onClick={() => setIsFilterOpen(false)}>
-                    <i className="fa-light fa-xmark"></i>
-                  </div>
-                  <form className="form" onSubmit={handleSubmit}>
-                    <InputField
-                      id="search"
-                      name="search"
-                      value={searchFilterData.search}
-                      onChange={handleChange}
-                      label={t("search.search")}
-                      placeholder={t("search.searchFor")}
-                    />
-                    <DepartmentFilterBox
-                      categoriesValue={searchFilterData?.category_id}
-                      sub_categoriesValue={searchFilterData?.sub_category_id}
-                      onChange={handleChange}
-                      categoriesWithSubCategories={categories?.data}
-                    />
-                    <SelectField
-                      label={t("search.city")}
-                      id="city_id"
-                      name="city_id"
-                      disabledOption={t("select")}
-                      value={searchFilterData?.city_id}
-                      onChange={(e) => handleChange(e)}
-                      options={cities?.map((city) => ({
-                        name: city.name,
-                        value: city.id,
-                      }))}
-                    />
-                    <SelectField
-                      label={t("search.area")}
-                      id="area_id"
-                      name="area_id"
-                      disabledOption={t("select")}
-                      value={searchFilterData?.area_id}
-                      onChange={(e) => handleChange(e)}
-                      options={areas?.map((area) => ({
-                        name: area.name,
-                        value: area.id,
-                      }))}
-                    />
-                    <div className="w-100 mb-4 px-4">
-                      <h6 className="mb-2">{t("search.deliveryTime")}</h6>
-                      <RangeSlider
-                        min={1}
-                        steps={1}
-                        max={360}
-                        value={[
-                          searchFilterData.duration_from,
-                          searchFilterData.duration_to,
-                        ]}
-                        handleSlide={(value) =>
-                          handleSliderChange("duration", value)
-                        }
-                        minType={t("search.days")}
-                        maxType={t("search.days")}
-                      />
-                    </div>
-                    <div className="w-100 mb-4 px-4">
-                      <h6 className="mb-2">{t("search.budget")}</h6>
-                      <RangeSlider
-                        min={5}
-                        max={2000}
-                        steps={5}
-                        value={[
-                          searchFilterData.price_from,
-                          searchFilterData.price_to,
-                        ]}
-                        handleSlide={(value) =>
-                          handleSliderChange("price", value)
-                        }
-                        minType="$"
-                        maxType="$"
-                      />
-                    </div>
-                    <div className="d-flex gap-2 w-100">
-                      <div className="search-btn">
-                        <button onClick={handleSubmit}>
-                          {t("search.apply")}
-                        </button>
-                      </div>
-                      <div className="search-btn">
-                        <span onClick={handleClearFilters}>
-                          {t("search.clear")}
-                        </span>
-                      </div>
-                    </div>
-                  </form>
+          <>
+            <aside
+              className={`col-lg-3 p-2 pt-3 side-menu ${
+                isFilterOpen ? "active" : ""
+              }`}
+            >
+              <div className="filter-wrap">
+                <div className="colse" onClick={() => setIsFilterOpen(false)}>
+                  <i className="fa-light fa-xmark"></i>
                 </div>
-              </aside>
-              <div className="small-filter-header">
-                <h6>{t("projects.title")}</h6>
-                <button
-                  className="openfilter"
-                  onClick={() => setIsFilterOpen(true)}
-                >
-                  <i className="fa-light fa-sliders"></i>
-                </button>
-              </div>
-            </>
-          ) : null}
-          <div className="col-lg-9 col-12 p-2">
-            {isLoading ? (
-              <DataLoader />
-            ) : (
-              <div className="row">
-                {ads && ads?.data?.length > 0 ? (
-                  ads?.data?.map((ad) => (
-                    <div className="col-lg-4 col-md-6 col-12 p-2" key={ad.id}>
-                      <Post post={ad} />
+                <form className="form" onSubmit={handleSubmit}>
+                  <InputField
+                    id="search"
+                    name="search"
+                    value={searchFilterData.search}
+                    onChange={handleChange}
+                    label={t("search.search")}
+                    placeholder={t("search.searchFor")}
+                  />
+                  <DepartmentFilterBox
+                    categoriesValue={searchFilterData?.category_id}
+                    sub_categoriesValue={searchFilterData?.sub_category_id}
+                    onChange={handleChange}
+                    categoriesWithSubCategories={categories?.data}
+                  />
+                  <SelectField
+                    label={t("search.city")}
+                    id="city_id"
+                    name="city_id"
+                    disabledOption={t("select")}
+                    value={searchFilterData?.city_id}
+                    onChange={(e) => handleChange(e)}
+                    options={cities?.map((city) => ({
+                      name: city.name,
+                      value: city.id,
+                    }))}
+                  />
+                  <SelectField
+                    label={t("search.area")}
+                    id="area_id"
+                    name="area_id"
+                    disabledOption={t("select")}
+                    value={searchFilterData?.area_id}
+                    onChange={(e) => handleChange(e)}
+                    options={areas?.map((area) => ({
+                      name: area.name,
+                      value: area.id,
+                    }))}
+                  />
+                  <div className="w-100 mb-4 px-4">
+                    <h6 className="mb-2">{t("search.deliveryTime")}</h6>
+                    <RangeSlider
+                      min={1}
+                      steps={1}
+                      max={360}
+                      value={[
+                        searchFilterData.duration_from,
+                        searchFilterData.duration_to,
+                      ]}
+                      handleSlide={(value) =>
+                        handleSliderChange("duration", value)
+                      }
+                      minType={t("search.days")}
+                      maxType={t("search.days")}
+                    />
+                  </div>
+                  <div className="w-100 mb-4 px-4">
+                    <h6 className="mb-2">{t("search.budget")}</h6>
+                    <RangeSlider
+                      min={5}
+                      max={2000}
+                      steps={5}
+                      value={[
+                        searchFilterData.price_from,
+                        searchFilterData.price_to,
+                      ]}
+                      handleSlide={(value) =>
+                        handleSliderChange("price", value)
+                      }
+                      minType="$"
+                      maxType="$"
+                    />
+                  </div>
+                  <div className="d-flex gap-2 w-100">
+                    <div className="search-btn">
+                      <button onClick={handleSubmit}>
+                        {t("search.apply")}
+                      </button>
                     </div>
-                  ))
-                ) : (
-                  <EmptyData minHeight={"300px"}>{t("ads.noAds")}</EmptyData>
-                )}
+                    <div className="search-btn">
+                      <span onClick={handleClearFilters}>
+                        {t("search.clear")}
+                      </span>
+                    </div>
+                  </div>
+                </form>
               </div>
-            )}
+            </aside>
+            <div className="small-filter-header">
+              <h6>{t("projects.title")}</h6>
+              <button
+                className="openfilter"
+                onClick={() => setIsFilterOpen(true)}
+              >
+                <i className="fa-light fa-sliders"></i>
+              </button>
+            </div>
+          </>
+
+          <div className="col-lg-9 col-12 p-2">
+            <div className="row">
+              {ads && ads?.data?.length > 0 ? (
+                ads?.data?.map((ad) => (
+                  <div className="col-lg-4 col-md-6 col-12 p-2" key={ad.id}>
+                    <Post post={ad} />
+                  </div>
+                ))
+              ) : (
+                <EmptyData minHeight={"300px"}>{t("ads.noAds")}</EmptyData>
+              )}
+            </div>
           </div>
         </div>
       </section>
