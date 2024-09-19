@@ -13,6 +13,7 @@ import useGetAreas from "./../hooks/settings/useGetAreas";
 import useGetCities from "./../hooks/settings/useGetCities";
 import useCategoriesList from "./../components/categories/useCategoriesList";
 import useMarketsByFilter from "./../hooks/markets/useMarketsByFilter";
+import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
 
 function Markets() {
   const { t } = useTranslation();
@@ -27,12 +28,6 @@ function Markets() {
     category_id: searchParams.get("category_id")
       ? searchParams
           .get("category_id")
-          .split("-")
-          .map((category) => Number(category))
-      : [],
-    sub_category_id: searchParams.get("sub_category_id")
-      ? searchParams
-          .get("sub_category_id")
           .split("-")
           .map((category) => Number(category))
       : [],
@@ -100,12 +95,6 @@ function Markets() {
             .split("-")
             .map((category) => Number(category))
         : [],
-      sub_category_id: searchParams.get("sub_category_id")
-        ? searchParams
-            .get("sub_category_id")
-            .split("-")
-            .map((category) => Number(category))
-        : [],
     });
   }
 
@@ -143,24 +132,13 @@ function Markets() {
                     label={t("search.search")}
                     placeholder={t("search.searchFor")}
                   />
-                  <div className="input-field">
-                    <label>{t("search.category")}</label>
-                    {categories &&
-                      categories?.data?.length > 0 &&
-                      categories?.data?.map((category) => (
-                        <Form.Check
-                          key={category.id}
-                          type="checkbox"
-                          name="category_id"
-                          value={category?.id}
-                          checked={searchFilterData?.category_id?.includes(
-                            category?.id
-                          )}
-                          onChange={(e) => handleChange(e)}
-                          label={category?.name}
-                        />
-                      ))}
-                  </div>
+                  <DepartmentFilterBox
+                    categoriesValue={searchFilterData?.category_id}
+                    sub_categoriesValue={searchFilterData?.sub_category_id}
+                    onChange={handleChange}
+                    categoriesWithSubCategories={categories?.data}
+                    viewSubCategories={false}
+                  />
                   <SelectField
                     label={t("search.city")}
                     id="city_id"

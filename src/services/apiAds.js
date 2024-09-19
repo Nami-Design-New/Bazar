@@ -1,6 +1,6 @@
 import axios from "../utils/axios";
 
-export async function getAdsByFilter(
+export async function getAdsByFilter({
   search,
   price_from,
   price_to,
@@ -12,8 +12,8 @@ export async function getAdsByFilter(
   category_id,
   sub_category_id,
   ad_type,
-  requestData
-) {
+  requestData,
+}) {
   const requestBody = { ...requestData, random: 1 };
 
   if (search) requestBody.search = search;
@@ -32,6 +32,8 @@ export async function getAdsByFilter(
 
   if (city_id) requestBody.city_id = city_id;
 
+  if (area_id) requestBody.area_id = area_id;
+
   if (category_id && category_id.length) requestBody.category_ids = category_id;
 
   if (sub_category_id && sub_category_id.length)
@@ -40,6 +42,7 @@ export async function getAdsByFilter(
   try {
     const req = await axios.post("/get_ads", requestBody);
 
+    console.log(req);
     return req.data;
   } catch (err) {
     throw new Error(`Error fetching ads: ${err.message}`);

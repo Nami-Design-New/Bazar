@@ -9,10 +9,6 @@ function PopularItems() {
   const { t } = useTranslation();
   const { isLoading, data: ads } = useAdsByFilter({ orderBy: "view_count" });
 
-  if (!isLoading) {
-    console.log(ads);
-  }
-
   return (
     <section className="popular my-4">
       <div className="container">

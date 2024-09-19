@@ -44,7 +44,7 @@ function useAdsByFilter(requestData) {
       requestData,
     ],
     queryFn: () =>
-      getAdsByFilter(
+      getAdsByFilter({
         search,
         price_from,
         price_to,
@@ -56,8 +56,8 @@ function useAdsByFilter(requestData) {
         category_id,
         sub_category_id,
         ad_type,
-        requestData
-      ),
+        requestData,
+      }),
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,

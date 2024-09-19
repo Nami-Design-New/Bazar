@@ -97,6 +97,7 @@ function CheckBoxContainer({
                   sub_categoriesValue?.includes(+sub_category.id) ||
                   isParentChecked
                 }
+                disabled={!viewSubCategories}
               />
             ))}
           </div>

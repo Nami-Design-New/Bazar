@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import Post from "../../ui/cards/Post";
-import useAdsByFilter from "../../hooks/ads/useAdsByFilter";
+import useHomeAds from "../../hooks/ads/useHomeAds";
 import { useTranslation } from "react-i18next";
 
 function Department({ index, category, categoriesLoading }) {
@@ -10,8 +10,8 @@ function Department({ index, category, categoriesLoading }) {
   const baseDelay = 1000;
   const delay = baseDelay + index * 1000;
 
-  const { isLoading, data: ads } = useAdsByFilter({
-    category_id: category?.id
+  const { isLoading, data: ads } = useHomeAds({
+    category_ids: [+category?.id],
   });
 
   return categoriesLoading || isLoading ? (
