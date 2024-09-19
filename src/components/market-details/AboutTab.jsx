@@ -57,16 +57,19 @@ function AboutTab({ market }) {
             </div>
           ) : null}
         </div>
-        <div className="details-box">
-          <div className="title">
-            <div className="icon">
-              <i className="fa-solid fa-id-card "></i>
+        {market?.data?.identity_id ? (
+          <div className="details-box">
+            <div className="title">
+              <div className="icon">
+                <i className="fa-solid fa-id-card "></i>
+              </div>
+              <span>
+                {t("markets.identity")}{" "}
+                <span className="">{market?.data?.identity_id}</span>
+              </span>
             </div>
-            <span>
-              {t("markets.identity")} <span className="">24232525</span>
-            </span>
           </div>
-        </div>
+        ) : null}
         <div className="details-box">
           <div className="title">
             <div className="icon">
@@ -84,7 +87,7 @@ function AboutTab({ market }) {
           </div>
         </div>
         <div className="details-box">
-          <div className="title">
+          <div className="title mb-3">
             <div className="icon">
               <i className="fa-sharp fa-solid fa-location-dot "></i>
             </div>

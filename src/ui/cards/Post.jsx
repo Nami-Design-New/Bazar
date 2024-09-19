@@ -1,17 +1,25 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import { useState } from "react";
 import axios from "./../../utils/axios";
 import { toast } from "react-toastify";
 import useUserAds from "../../hooks/ads/useUserAds";
+import useAddToFavorite from "../../hooks/useAddToFavorite";
+import { useSelector } from "react-redux";
+import useRemoveFromFavorite from "../../hooks/useRemoveFromFavorite";
 
 function Post({ post, category, isMyAccount, userId }) {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [loading, setLoading] = useState(false);
   const { refetch } = useUserAds();
+  const { addToFavorite, isLoading: addingLoading } = useAddToFavorite();
+  const { removeFromFavorite, isLoading: removingLoading } =
+    useRemoveFromFavorite();
+  const isLogged = useSelector((state) => state.authedUser.isLogged);
+  const navigate = useNavigate();
 
   const timeDifference = getTimeDifference(post?.created_at);
   const creationTime = formatTimeDifference(
@@ -26,6 +34,20 @@ function Post({ post, category, isMyAccount, userId }) {
   function handleToggleFavorite(e) {
     e.stopPropagation();
     e.preventDefault();
+    if (isLogged) {
+      console.log(post?.is_favorite);
+
+      if (post?.is_favorite) {
+        removeFromFavorite({ id: post?.id, type: "ad_id" });
+      } else {
+        addToFavorite({
+          id: post?.id,
+          type: "ad_id",
+        });
+      }
+    } else {
+      navigate("/login");
+    }
   }
 
   function handleOpenConfirmation(e) {
@@ -74,6 +96,7 @@ function Post({ post, category, isMyAccount, userId }) {
         <button
           className={`action favorite ${post?.is_favorite ? "active" : ""}`}
           onClick={handleToggleFavorite}
+          disabled={removingLoading || addingLoading}
         >
           <img src="/images/heart.svg" alt="" />
         </button>
