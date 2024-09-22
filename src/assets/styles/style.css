@@ -719,6 +719,7 @@ body header nav .container .navigation_links {
   align-items: center;
   gap: 24px;
   height: 100%;
+  max-width: 300px;
 }
 body header nav .container .navigation_links li {
   display: flex;
