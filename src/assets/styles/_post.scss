@@ -148,6 +148,20 @@
       padding-top: 12px;
       margin-top: 8px;
       border-top: 1px solid $LightGray;
+
+      &.statics-wrapper {
+        gap: 12px;
+        .static-box {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 16px;
+          font-weight: 600;
+          position: relative;
+          color: $main;
+        }
+      }
+
       .category {
         display: flex;
         align-items: center;

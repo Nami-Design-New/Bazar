@@ -8,19 +8,38 @@ import InputField from "./../../ui/form-elements/InputField";
 import SubmitButton from "./../../ui/form-elements/SubmitButton";
 import MapWithMarker from "./../../ui/MapWithMarker";
 
-const AddAddress = ({ showModal, setShowModal }) => {
+const AddAddress = ({
+  showModal,
+  setShowModal,
+  setTargetAddress,
+  targetAddress,
+}) => {
+  console.log(targetAddress);
+
   const queryClient = useQueryClient();
   const { t } = useTranslation();
   const [mapLoaded, setMapLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    address_title: "",
-    recipient_name: "",
-    recipient_phone: "",
-    address: "",
-    lat: 24.7136,
-    lng: 46.6753
+    address_title: targetAddress?.address_title || "",
+    recipient_name: targetAddress?.recipient_name || "",
+    recipient_phone: targetAddress?.recipient_phone || "",
+    address: targetAddress?.address || "",
+    lat: targetAddress?.lat || 24.7136,
+    lng: targetAddress?.lat || 46.6753,
   });
+
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      address_title: targetAddress?.address_title || "",
+      recipient_name: targetAddress?.recipient_name || "",
+      recipient_phone: targetAddress?.recipient_phone || "",
+      address: targetAddress?.address || "",
+      lat: targetAddress?.lat || 24.7136,
+      lng: targetAddress?.lat || 46.6753,
+    });
+  }, [targetAddress]);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -38,9 +57,14 @@ const AddAddress = ({ showModal, setShowModal }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("/user/create_address", formData);
+      const res = await axios.post(
+        `/user${targetAddress ? "/edit_address" : "/create_address"}`,
+        formData
+      );
       if (res?.data?.code === 200) {
-        toast.success(t("addressAdded"));
+        toast.success(
+          t(`addresses.${targetAddress ? "addressUpdated" : "addressAdded"}`)
+        );
         setShowModal(false);
         queryClient.invalidateQueries(["addresses"]);
         setFormData({
@@ -49,8 +73,9 @@ const AddAddress = ({ showModal, setShowModal }) => {
           recipient_phone: "",
           address: "",
           lat: 24.7136,
-          lng: 46.6753
+          lng: 46.6753,
         });
+        setTargetAddress(null);
       }
     } catch (error) {
       toast.error(error.response.data.message);

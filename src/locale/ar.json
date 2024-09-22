@@ -141,7 +141,17 @@
     "remainingDays": "الأيام المتبقية",
     "noPackages": "عذرًا، لا توجد باقات متاحة لهذا المستخدم",
     "balance": "الرصيد",
-    "delete": "حذف"
+    "delete": "حذف",
+    "withdrawRewards": "سحب المكافآت",
+    "rewardsConditions": "شروط الحصول على المكافآة",
+    "noRewards": "عذرًا، لا توجد مكافآت حتى الآن، لم تجتاز إعلاناتك الشروط المطلوبة بعد",
+    "rewardsFavoritesConditions1": "أن يجتاز الإعلان ما لا يقل عن",
+    "rewardsFavoritesConditions2": "شخص أضافه للمفضلة لديه",
+    "rewardsRateConditions1": "أن يجتاز الإعلان ما لا يقل عن",
+    "rewardsRateConditions2": "تقييم",
+    "addresses": "العناوين",
+    "addAddress": "اضف عنوان جديد",
+    "areYouSureYouWantToDeleteLocation": "هل أنت متأكد من أنك تريد حذف هذا العنوان؟"
   },
   "error": {
     "pageNotFound": "هذا الرابط غير موجود لدينا او ربما تم حذفه. كيف وصلت الي هنا ؟",
@@ -417,7 +427,8 @@
     "recipientNamePlaceholder": "مثال: محمد",
     "recipientPhone": "رقم الهاتف",
     "recipientPhonePlaceholder": "هاتف المستلم",
-    "addressAdded": "تم اضافة العنوان بنجاح"
+    "addressAdded": "تم اضافة العنوان بنجاح",
+    "addressUpdated": "تم تحديث العنوان بنجاح"
   },
   "createdAt": "تم الإنشاء في",
   "orderedAt": "تم الطلب في",

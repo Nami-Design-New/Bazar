@@ -9,8 +9,15 @@ import useUserAds from "../../hooks/ads/useUserAds";
 import useAddToFavorite from "../../hooks/useAddToFavorite";
 import { useSelector } from "react-redux";
 import useRemoveFromFavorite from "../../hooks/useRemoveFromFavorite";
+import {
+  IconEye,
+  IconHeart,
+  IconMessageCircle,
+  IconPhone,
+  IconStar,
+} from "@tabler/icons-react";
 
-function Post({ post, category, isMyAccount, userId }) {
+function Post({ post, category, isMyAccount, userId, type }) {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -151,27 +158,73 @@ function Post({ post, category, isMyAccount, userId }) {
           </div>
         ) : null}
 
-        <div className="itemBottom">
-          <Link to={`/ads?category=${category?.name}`} className="category">
-            {category && category?.image && (
-              <>
-                <span className="img">
-                  <img src={category?.image} alt="" />
-                </span>
-                {category?.name}
-              </>
-            )}
-          </Link>
+        {type !== "reward" && (
+          <div className="itemBottom">
+            <Link to={`/ads?category=${category?.name}`} className="category">
+              {category && category?.image && (
+                <>
+                  <span className="img">
+                    <img src={category?.image} alt="" />
+                  </span>
+                  {category?.name}
+                </>
+              )}
+            </Link>
 
-          {post?.price ? (
-            <div className="price">
-              <span>
-                {" "}
-                {post?.price} {t("currency.sar")}{" "}
-              </span>
+            {post?.price ? (
+              <div className="price">
+                <span>
+                  {" "}
+                  {post?.price} {t("currency.sar")}{" "}
+                </span>
+              </div>
+            ) : null}
+          </div>
+        )}
+        {type !== "reward" ? (
+          post?.view_count ||
+          post?.view_count === 0 ||
+          post?.chats_count ||
+          post?.chats_count === 0 ||
+          post?.phones_count ||
+          post?.phones_count === 0 ? (
+            <div className="itemBottom statics-wrapper justify-content-around">
+              {post?.view_count || post?.view_count === 0 ? (
+                <div className="static-box">
+                  <IconEye stroke={1.5} />
+                  <span>{post?.view_count}</span>
+                </div>
+              ) : null}
+              {post?.chats_count || post?.chats_count === 0 ? (
+                <div className="static-box">
+                  <IconMessageCircle stroke={1.5} />
+                  <span>{post?.chats_count}</span>
+                </div>
+              ) : null}
+              {post?.phones_count || post?.phones_count === 0 ? (
+                <div className="static-box">
+                  <IconPhone stroke={1.5} />
+                  <span>{post?.phones_count}</span>
+                </div>
+              ) : null}
             </div>
-          ) : null}
-        </div>
+          ) : null
+        ) : post?.favorites_count || post?.favorites_count === 0 ? (
+          <div className="itemBottom statics-wrapper justify-content-around">
+            {post?.favorites_count || post?.favorites_count === 0 ? (
+              <div className="static-box">
+                <IconHeart stroke={1.5} />
+                <span>{post?.favorites_count}</span>
+              </div>
+            ) : null}
+            {post?.rate || post?.rate === 0 ? (
+              <div className="static-box">
+                <IconStar stroke={1.5} />
+                <span>{post?.rate}</span>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
       </div>
       <ConfirmationModal
         showModal={showConfirmation}
