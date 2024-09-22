@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   changeProductQuantity,
-  deleteProductFromCart
+  deleteProductFromCart,
 } from "../../services/apiCart";
 import ConfirmationModal from "../modals/ConfirmationModal";
 
@@ -53,6 +53,8 @@ function CartItem({ type, item }) {
       console.log(error);
     }
   };
+
+  console.log(item);
 
   return (
     <>

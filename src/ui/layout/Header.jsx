@@ -11,7 +11,7 @@ import {
   IconCirclePlus,
   IconLanguage,
   IconMessage,
-  IconShoppingBag
+  IconShoppingBag,
 } from "@tabler/icons-react";
 import axios from "../../utils/axios";
 import i18next from "i18next";

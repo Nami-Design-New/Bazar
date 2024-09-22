@@ -13,6 +13,7 @@ import useCategoriesList from "../components/categories/useCategoriesList";
 import useAdsByFilter from "../hooks/ads/useAdsByFilter";
 import useGetFilters from "./../hooks/settings/useGetFilters";
 import Post from "../ui/cards/Post";
+import FiltersGenerator from "../ui/filter/FiltersGenerator";
 
 const cities = [
   {
@@ -54,8 +55,7 @@ function Ads() {
 
   const { isLoading: filtersLoading, data: filters } = useGetFilters();
 
-  console.log("filters", filters?.data);
-
+  const [dynamicFilterData, setDynamicFilterData] = useState({});
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
     price_from: Number(searchParams.get("price_from")) || null,
@@ -147,22 +147,6 @@ function Ads() {
     });
   }
 
-  // const handleSliderChange = (name, value) => {
-  //   if (name === "duration") {
-  //     setSearchFilterData((prevState) => ({
-  //       ...prevState,
-  //       duration_from: value[0],
-  //       duration_to: value[1],
-  //     }));
-  //   } else if (name === "price") {
-  //     setSearchFilterData((prevState) => ({
-  //       ...prevState,
-  //       price_from: value[0],
-  //       price_to: value[1],
-  //     }));
-  //   }
-  // };
-
   function handleSubmit(e) {
     e.preventDefault();
     handleApplyFilters(setSearchParams, searchFilterData);
@@ -226,23 +210,11 @@ function Ads() {
                       value: area.id
                     }))}
                   />
-                  {/* <div className="w-100 mb-4 px-4">
-                    <h6 className="mb-2">{t("search.deliveryTime")}</h6>
-                    <RangeSlider
-                      min={1}
-                      steps={1}
-                      max={360}
-                      value={[
-                        searchFilterData.duration_from,
-                        searchFilterData.duration_to,
-                      ]}
-                      handleSlide={(value) =>
-                        handleSliderChange("duration", value)
-                      }
-                      minType={t("search.days")}
-                      maxType={t("search.days")}
-                    />
-                  </div> */}
+                  <FiltersGenerator
+                    filters={filters}
+                    setDynamicFilterData={setDynamicFilterData}
+                    dynamicFilterData={dynamicFilterData}
+                  />
                   {/* <div className="w-100 mb-4 px-4">
                     <h6 className="mb-2">{t("search.budget")}</h6>
                     <RangeSlider
@@ -277,7 +249,7 @@ function Ads() {
               </div>
             </aside>
             <div className="small-filter-header">
-              <h6>{t("projects.title")}</h6>
+              <h6></h6>
               <button
                 className="openfilter"
                 onClick={() => setIsFilterOpen(true)}
