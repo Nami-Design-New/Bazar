@@ -15,19 +15,18 @@ function Pricing({ formData, setFormData, setForm, loading }) {
   const [phoneLoading, setPhoneLoading] = useState(false);
   const [phone, setPhone] = useState(formData?.phone_number || "");
 
-  const applyWhatsapp = async (e) => {
+  const verifyPhone = async (e) => {
     e.preventDefault();
-    setWhatsappLoading(true);
-
+    setPhoneLoading(true);
     try {
       const res = await axios.post("/user/check_phone", {
-        phone: whatsapp
+        phone: phone
       });
       if (res?.data?.code === 200) {
         toast.success(t("ads.successfullyAdded"));
         setFormData({
           ...formData,
-          whatsapp_number: whatsapp
+          phone: phone
         });
       } else {
         toast.error(res?.data?.message);
@@ -36,7 +35,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
       toast.error(error.response.data.message);
       throw new Error(error);
     } finally {
-      setWhatsappLoading(false);
+      setPhoneLoading(false);
     }
   };
 
@@ -61,7 +60,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
         <div className="input-field">
           <label htmlFor="price_type">
             <img src="/images/price_type.svg" alt="price" />
-            نوع التسعير
+            {t("ads.priceType")}
           </label>
           <div className="types">
             <div className="type">
@@ -69,8 +68,8 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                 <label htmlFor="min" className="content">
                   <img src="/images/best-price.svg" alt="best" />
                   <div className="text">
-                    <h4>افضل سعر</h4>
-                    <p>لا يوجد سعر محدد سيتم قبول افضل سعر مقدم</p>
+                    <h4>{t("ads.best-price")}</h4>
+                    <p>{t("ads.bestHint")}</p>
                   </div>
                 </label>
                 <input
@@ -83,16 +82,13 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                 />
               </div>
             </div>
-
             <div className="type">
               <div className="label">
                 <label htmlFor="negotiable" className="content">
                   <img src="/images/negotiable.svg" alt="" />
                   <div className="text">
-                    <h4>سعر قابل لتفاوض</h4>
-                    <p>
-                      سيتمكن المشترين من تقديم طلبات شراء باقل من السعر المحدد
-                    </p>
+                    <h4>{t("ads.negotiable")}</h4>
+                    <p>{t("ads.negotiableHint")}</p>
                   </div>
                 </label>
                 <input
@@ -105,17 +101,13 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                 />
               </div>
             </div>
-
             <div className="type">
               <div className="label">
                 <label htmlFor="fixed" className="content">
                   <img src="/images/fixed.svg" alt="fixed" />
                   <div className="text">
-                    <h4>سعر ثابت</h4>
-                    <p>
-                      سيتمكن المشترين من الدفع مباشرة دون ارسال طلب شراء وانتظار
-                      القبول
-                    </p>
+                    <h4>{t("ads.fixed-price")}</h4>
+                    <p>{t("ads.fixedHint")}</p>
                   </div>
                 </label>
                 <input
@@ -136,7 +128,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
         <div className="input-field">
           <label htmlFor="price_type">
             <img src="/images/contact.svg" alt="price" />
-            نوع التواصل
+            {t("ads.contactType")}
           </label>
 
           <div className="types">
@@ -145,7 +137,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                 <label htmlFor="whatsapp" className="content">
                   <img src="/images/whatsapp-icon.svg" alt="best" />
                   <div className="text">
-                    <h4>واتساب</h4>
+                    <h4>{t("ads.whatsapp")}</h4>
                   </div>
                 </label>
                 <input
@@ -167,16 +159,16 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                     type="number"
                     name="whatsapp_number"
                     id="whatsapp_number"
-                    placeholder="رقم الواتساب"
-                    value={whatsapp}
-                    onChange={(e) => setWhatsapp(e.target.value)}
                     noFullWidth={true}
+                    value={whatsapp}
+                    placeholder={t("ads.whatsappNumber")}
+                    onChange={(e) => setWhatsapp(e.target.value)}
                   />
                   <SubmitButton
                     className=""
-                    name={"تحقق"}
+                    name={t("ads.verify")}
                     loading={whatsappLoading}
-                    onClick={applyWhatsapp}
+                    onClick={verifyPhone}
                   />
                 </div>
               )}
@@ -187,7 +179,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                 <label htmlFor="phone" className="content">
                   <img src="/images/call.svg" alt="" />
                   <div className="text">
-                    <h4>اتصال</h4>
+                    <h4>{t("ads.call")}</h4>
                   </div>
                 </label>
                 <input
@@ -204,14 +196,22 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                 />
               </div>
               {formData?.phone === 1 && (
-                <InputField
-                  type="number"
-                  name="phone_number"
-                  id="phone_number"
-                  placeholder="رقم الهاتف"
-                  value={formData?.phone_number}
-                  onChange={(e) => handleChange(e, setFormData)}
-                />
+                <div className="check_phone d-flex">
+                  <InputField
+                    type="number"
+                    name="phone_number"
+                    id="phone_number"
+                    placeholder={t("ads.callNumber")}
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                  <SubmitButton
+                    className=""
+                    name={t("ads.verify")}
+                    loading={phoneLoading}
+                    onClick={verifyPhone}
+                  />
+                </div>
               )}
             </div>
 
@@ -220,7 +220,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                 <label htmlFor="chat" className="content">
                   <img src="/images/Message.svg" alt="fixed" />
                   <div className="text">
-                    <h4>رسائل</h4>
+                    <h4>{t("ads.chat")}</h4>
                   </div>
                 </label>
                 <input

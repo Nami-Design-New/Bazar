@@ -719,7 +719,11 @@ body header nav .container .navigation_links {
   align-items: center;
   gap: 24px;
   height: 100%;
-  max-width: 300px;
+}
+@media screen and (max-width: 768px) {
+  body header nav .container .navigation_links {
+    max-width: 300px;
+  }
 }
 body header nav .container .navigation_links li {
   display: flex;
@@ -5578,16 +5582,7 @@ body main .itemDetails .category img {
   height: 24px;
   -o-object-fit: contain;
      object-fit: contain;
-  filter: brightness(0);
   transition: all 0.2s ease-in-out;
-}
-body main .itemDetails .category:hover {
-  background-color: #4381f8;
-  color: #fff;
-  border-color: #4381f8;
-}
-body main .itemDetails .category:hover img {
-  filter: brightness(0) invert(1);
 }
 body main .itemDetails .itemBottom {
   display: flex;
@@ -6980,10 +6975,24 @@ body main .check_phone {
   align-items: flex-end;
   gap: 16px;
 }
+@media screen and (max-width: 576px) {
+  body main .check_phone {
+    gap: 8px;
+  }
+}
+body main .check_phone input {
+  border-radius: 12px !important;
+}
 body main .check_phone button {
+  white-space: nowrap;
   width: -moz-fit-content;
   width: fit-content;
   padding: 0 42px;
+}
+@media screen and (max-width: 576px) {
+  body main .check_phone button {
+    padding: 0 16px;
+  }
 }
 body main .ads-page .content-wrapper {
   padding-top: 60px;
@@ -7753,6 +7762,7 @@ body .customBtn {
   color: #4381f8;
   border-radius: 12px;
   display: flex;
+  gap: 4px;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -7782,6 +7792,7 @@ body .confirm-delete p {
   color: #000;
   font-size: 16px;
   margin-bottom: 12px;
+  text-align: center;
 }
 body .confirm-delete p span {
   color: red;
@@ -8733,4 +8744,8 @@ body.en main .profile .userInfo .top-wrapper .user-avatar-wrapper .verified-badg
 }
 body.en main .add-advertisment .form .btns .wizard_btn i {
   transform: scale(-1);
+}
+body.en main .contact_section form .form-group .inputfield label {
+  left: 16px;
+  right: initial;
 }/*# sourceMappingURL=style.css.map */

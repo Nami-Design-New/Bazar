@@ -18,12 +18,19 @@ export default function Footer() {
               </Link>
               <div className="links">
                 <Link>{t("routes.home")}</Link>
-                <Link to={settings?.data?.about_link}>{t("routes.about")}</Link>
-                <Link to={settings?.data?.terms_link}>{t("routes.terms")}</Link>
-                <Link to={settings?.data?.privacy_link}>
+                <Link target="_blank" to={settings?.data?.about_link}>
+                  {t("routes.about")}
+                </Link>
+                <Link  to={"/faq"}>
+                  {t("routes.faq")}
+                </Link>
+                <Link target="_blank" to={settings?.data?.terms_link}>
+                  {t("routes.terms")}
+                </Link>
+                <Link target="_blank" to={settings?.data?.privacy_link}>
                   {t("routes.privacy")}
                 </Link>
-                <Link>{t("routes.contact")}</Link>
+                <Link to="/contact">{t("routes.contact")}</Link>
               </div>
             </div>
           </div>

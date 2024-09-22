@@ -101,7 +101,7 @@ function Location({ formData, setFormData, setForm }) {
               setForm("gallery");
             }}
           >
-            {t("ads.nex")} <i className="fa-regular fa-angle-left"></i>
+            {t("ads.next")} <i className="fa-regular fa-angle-left"></i>
           </button>
         </div>
       </div>
