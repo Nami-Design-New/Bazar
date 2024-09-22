@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addToFavorite as addToFavoriteApi } from "../services/apiFAvorites";
+import { addToFavorite as addToFavoriteApi } from "../services/apiFavorites";
 
 function useAddToFavorite() {
   const queryClient = useQueryClient();
@@ -8,8 +8,10 @@ function useAddToFavorite() {
     mutationFn: (requestBody) => addToFavoriteApi(requestBody),
 
     onSuccess: () => {
-      queryClient.invalidateQueries(["favoriteAds, adsByFilter, favoriteMarkets, marketsByFilter"]);
-    },
+      queryClient.invalidateQueries([
+        "favoriteAds, adsByFilter, favoriteMarkets, marketsByFilter"
+      ]);
+    }
   });
   return { addToFavorite, isLoading };
 }

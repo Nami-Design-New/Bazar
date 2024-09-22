@@ -1,14 +1,15 @@
 import { useState } from "react";
-import PhoneField from "../ui/form-elements/PhoneField";
-import PasswordField from "../ui/form-elements/PasswordField";
-import SubmitButton from "../ui/form-elements/SubmitButton";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "../utils/axios";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { setIsLogged, setUser } from "../redux/slices/authedUser";
 import { useCookies } from "react-cookie";
+import PhoneField from "../ui/form-elements/PhoneField";
+import PasswordField from "../ui/form-elements/PasswordField";
+import SubmitButton from "../ui/form-elements/SubmitButton";
+import axios from "../utils/axios";
+import SectionHeader from "../ui/layout/SectionHeader";
 
 function Login() {
   const { t } = useTranslation();
@@ -72,62 +73,60 @@ function Login() {
   };
 
   return (
-    <section className="container">
-      <div className="row m-0 justify-content-center">
-        <div className="col-lg-8 col-12 p-2">
-          <div className="auth-form">
-            {/* form title */}
-            <div className="form-title">
-              <h1 className="title">{t("auth.login")}</h1>
-              <h5 className="sub-title">{t("auth.loginSubtitle")}</h5>
-            </div>
+    <>
+      <SectionHeader />
+      <section className="container">
+        <div className="row m-0 justify-content-center">
+          <div className="col-lg-8 col-12 p-2">
+            <div className="auth-form">
+              {/* form title */}
+              <div className="form-title">
+                <h1 className="title">{t("auth.login")}</h1>
+                <h5 className="sub-title">{t("auth.loginSubtitle")}</h5>
+              </div>
 
-            {/* form */}
-            <form onSubmit={handleSubmit}>
-              <PhoneField
-                onChange={handleChange}
-                value={formData.phone}
-                id="phone"
-                name="phone"
-                type="tel"
-                placeholder={t("0XXXXXXXXXX")}
-              />
-
-              <PasswordField
-                label={t("auth.password")}
-                name={"password"}
-                id={"password"}
-                value={formData.password}
-                onChange={handleChange}
-              />
-
-              <Link to="/forget-password" className="forgetpass ">
-                {t("auth.forgetPassword")}
-              </Link>
-
-              <div className="d-flex gap-3 align-items-center flex-column w-100">
-                <SubmitButton
-                  loading={loading}
-                  name={t("auth.login")}
-                  className={"custom-btn filled"}
+              {/* form */}
+              <form onSubmit={handleSubmit}>
+                <PhoneField
+                  onChange={handleChange}
+                  value={formData.phone}
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder={t("0XXXXXXXXXX")}
                 />
-                <Link to="/" className="custom-btn stroke">
-                  <span>{t("auth.loginAsGuest")}</span>
+
+                <PasswordField
+                  label={t("auth.password")}
+                  name={"password"}
+                  id={"password"}
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+
+                <Link to="/forget-password" className="forgetpass ">
+                  {t("auth.forgetPassword")}
                 </Link>
-              </div>
-              <div className="d-flex gap-2 flex-lg-row flex-column w-100">
-                <Link to="/register" className="noAccount">
-                  {t("auth.don'tHaveAccount")}{" "}
-                  <span className="">
-                    {t("auth.createAccount")}
-                  </span>
-                </Link>
-              </div>
-            </form>
+
+                <div className="d-flex gap-3 align-items-center flex-column w-100">
+                  <SubmitButton
+                    loading={loading}
+                    name={t("auth.login")}
+                    className={"custom-btn filled"}
+                  />
+                </div>
+                <div className="d-flex gap-2 flex-lg-row flex-column w-100">
+                  <Link to="/register" className="noAccount">
+                    {t("auth.don'tHaveAccount")}{" "}
+                    <span className="">{t("auth.createAccount")}</span>
+                  </Link>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

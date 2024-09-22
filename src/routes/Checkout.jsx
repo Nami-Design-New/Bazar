@@ -132,12 +132,12 @@ function Checkout() {
       const res = await axios.post("/user/create_order", formData);
       if (res?.data?.code === 200) {
         navigate(`/order-details/${res?.data?.data}`);
-        toast.success("تم انشاء الطلب بنجاح");
+        toast.success(t("orderCreated"));
       } else {
         toast.error(res?.data?.message);
       }
     } catch (error) {
-      toast.error(error.response.data.message || "حدث خطأ ما");
+      toast.error(error.response.data.message || t("someThingWentWrong"));
       throw new Error(error);
     } finally {
       setLoading(false);
@@ -165,16 +165,16 @@ function Checkout() {
                       <h6>{c?.product?.title}</h6>
                       <div className="count_price">
                         <p>
-                          الكمية : <span>X{c?.quantity}</span>
+                          {t("cart.quantity")} : <span>X{c?.quantity}</span>
                         </p>
                         <p>
-                          الاجمالي :{" "}
+                          {t("cart.total")} :{" "}
                           <span>
                             {(c?.product?.offer_price
                               ? c?.product?.offer_price
                               : c?.product?.price) * c?.quantity}
                           </span>{" "}
-                          ريال
+                          {t("currency.sar")}
                         </p>
                       </div>
                     </div>
@@ -190,25 +190,33 @@ function Checkout() {
                   <ul>
                     <li>
                       <div className="title">{t("orders.orderPrice")}</div>
-                      <div className="value">{formData?.sub_total} ريال</div>
+                      <div className="value">
+                        {formData?.sub_total} {t("currency.sar")}
+                      </div>
                     </li>
                     <li>
                       <div className="title">{t("orders.taxes")}</div>
-                      <div className="value ">{formData?.taxes} ريال</div>
+                      <div className="value ">
+                        {formData?.taxes} {t("currency.sar")}
+                      </div>
                     </li>
                     <li className="discount">
                       <div className="title">{t("orders.discount")}</div>
-                      <div className="value ">{formData?.discount} ريال</div>
+                      <div className="value ">
+                        {formData?.discount} {t("currency.sar")}
+                      </div>
                     </li>
                     <li className="bigger">
                       <div className="title">{t("orders.deliveryCost")}</div>
                       <div className="value ">
-                        {formData?.delivery_price} ريال
+                        {formData?.delivery_price} {t("currency.sar")}
                       </div>
                     </li>
                     <li className="bigger">
                       <div className="title">{t("orders.total")}</div>
-                      <div className="value ">{formData?.total} ريال</div>
+                      <div className="value ">
+                        {formData?.total} {t("currency.sar")}
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -328,8 +336,8 @@ function Checkout() {
                       <i className="fa-regular fa-trash delete"></i>
                     </button>
                     <div className="details">
-                      <span className="details-box">الحد الادني ٢٠٠ ريال</span>
-                      <span className="details-box">الحد الاقصي ٢٠٠٠ ريال</span>
+                      <span className="details-box">الحد الادني ٢٠٠ {t("currency.sar")}</span>
+                      <span className="details-box">الحد الاقصي ٢٠٠٠ {t("currency.sar")}</span>
                     </div>
                   </div> */}
 

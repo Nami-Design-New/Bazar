@@ -45,7 +45,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
       <div className="col-12 p-2">
         <InputField
           required
-          label="السعر"
+          label={t("ads.price")}
           placeholder="00"
           name="price"
           id="price"
@@ -250,10 +250,10 @@ function Pricing({ formData, setFormData, setForm, loading }) {
               setForm("gallery");
             }}
           >
-            <i className="fa-regular fa-angle-right"></i> السابق
+            <i className="fa-regular fa-angle-right"></i> {t("ads.previous")}
           </button>
           <SubmitButton
-            name={id ? "حفظ" : "نشر الاعلان"}
+            name={id ? t("ads.save") : t("ads.publish")}
             className="wizard_btn next"
             loading={loading}
           />

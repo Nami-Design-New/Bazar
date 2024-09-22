@@ -8,13 +8,11 @@ import { setIsLogged, setUser } from "../../redux/slices/authedUser";
 import { useQueryClient } from "@tanstack/react-query";
 import { setLanguage } from "../../redux/slices/language";
 import {
-  IconBell,
   IconCirclePlus,
   IconLanguage,
   IconMessage,
   IconShoppingBag
 } from "@tabler/icons-react";
-import NotificationItem from "./NotificationItem";
 import axios from "../../utils/axios";
 import i18next from "i18next";
 import Loader from "../Loader";
@@ -189,7 +187,7 @@ export default function Header() {
               <span>0</span>
             </Link>
 
-            <Dropdown>
+            {/* <Dropdown>
               <Dropdown.Toggle
                 as="div"
                 id="dropdownMenuLink"
@@ -208,7 +206,7 @@ export default function Header() {
                   {t("header.allNotifications")}
                 </Link>
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown> */}
 
             <Link to="/chats">
               <IconMessage stroke={1.5} />

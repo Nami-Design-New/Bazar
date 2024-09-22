@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { handleChange } from "../../utils/helpers";
+import { useTranslation } from "react-i18next";
 import useCategoriesList from "../categories/useCategoriesList";
 import InputField from "./../../ui/form-elements/InputField";
 import SelectField from "./../../ui/form-elements/SelectField";
@@ -7,6 +8,7 @@ import TextField from "./../../ui/form-elements/TextField";
 
 function MainInfo({ formData, setFormData, setForm }) {
   const { data: categories } = useCategoriesList();
+  const { t } = useTranslation();
   const [subCategories, setSubCategories] = useState([]);
 
   useEffect(() => {
@@ -22,7 +24,7 @@ function MainInfo({ formData, setFormData, setForm }) {
       {/* ** */}
       <div className="col-lg-6 col-12 p-2">
         <div className="input-field">
-          <label htmlFor="ad_type">نوع الاعلان</label>
+          <label htmlFor="ad_type">{t("ads.ad_type")}</label>
           <div className="radios">
             <label htmlFor="sell">
               <input
@@ -33,7 +35,7 @@ function MainInfo({ formData, setFormData, setForm }) {
                 checked={formData?.ad_type === "sell"}
                 onChange={(e) => handleChange(e, setFormData)}
               />
-              <span>بيع</span>
+              <span>{t("ads.sell")}</span>
             </label>
             <label htmlFor="buy">
               <input
@@ -44,7 +46,7 @@ function MainInfo({ formData, setFormData, setForm }) {
                 checked={formData?.ad_type === "buy"}
                 onChange={(e) => handleChange(e, setFormData)}
               />
-              <span>شراء</span>
+              <span>{t("ads.buy")}</span>
             </label>
           </div>
         </div>
@@ -53,8 +55,8 @@ function MainInfo({ formData, setFormData, setForm }) {
       <div className="col-lg-6 col-12 p-2">
         <InputField
           required
-          label="عنوان الاعلان"
-          placeholder="مثال: موبايل"
+          label={t("ads.title")}
+          placeholder={t("ads.titlePlaceholder")}
           name="title"
           id="title"
           value={formData?.title}
@@ -67,12 +69,12 @@ function MainInfo({ formData, setFormData, setForm }) {
       <div className="col-lg-6 col-12 p-2">
         <SelectField
           required
-          label="التصنيف"
+          label={t("ads.category")}
           name="category_id"
           id="category_id"
           value={formData?.category_id}
           onChange={(e) => handleChange(e, setFormData)}
-          disabledOption={"اختر التصنيف"}
+          disabledOption={t("ads.selectCategory")}
           options={categories?.data?.map((category) => ({
             name: category.name,
             value: category.id
@@ -82,9 +84,11 @@ function MainInfo({ formData, setFormData, setForm }) {
       {/* ** */}
       <div className="col-lg-6 col-12 p-2">
         <SelectField
-          label="التصنيف الفرعي"
+          label={t("ads.subCategory")}
           disabledOption={
-            formData?.category_id ? "اختر التصنيف الفرعي" : "اختر التصنيف أولاً"
+            formData?.category_id
+              ? t("ads.selectSubCategory")
+              : t("ads.selectCategoryFirst")
           }
           name="sub_category_id"
           id="sub_category_id"
@@ -101,8 +105,8 @@ function MainInfo({ formData, setFormData, setForm }) {
       <div className="col-12 p-2">
         <TextField
           required
-          label="تفاصيل الاعلان"
-          placeholder="مثال: ايفون 15 للبيع جديد 512 جيجا"
+          label={t("ads.description")}
+          placeholder={t("ads.descriptionPlaceholder")}
           name="description"
           id="description"
           value={formData?.description}
@@ -121,7 +125,7 @@ function MainInfo({ formData, setFormData, setForm }) {
               setForm("location");
             }}
           >
-            التالى <i className="fa-regular fa-angle-left"></i>
+            {t("ads.next")} <i className="fa-regular fa-angle-left"></i>
           </button>
         </div>
       </div>

@@ -85,6 +85,11 @@
               font-size: 26px;
               filter: drop-shadow(-1px 2px 3px #868686);
             }
+            &.active {
+              i {
+                color: red;
+              }
+            }
           }
           span {
             color: $white;
@@ -145,7 +150,7 @@
           &::-webkit-scrollbar {
             display: none;
           }
-          .no_comments{
+          .no_comments {
             text-align: center;
             color: $textColor;
             font-size: 16px;

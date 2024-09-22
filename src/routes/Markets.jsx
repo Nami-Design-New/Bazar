@@ -30,7 +30,7 @@ function Markets() {
           .get("category_id")
           .split("-")
           .map((category) => Number(category))
-      : [],
+      : []
   });
 
   const { data: areas } = useGetAreas(
@@ -48,7 +48,7 @@ function Markets() {
     if (name !== "category_id" && name !== "sub_category_id") {
       setSearchFilterData((prevState) => ({
         ...prevState,
-        [name]: parsedValue,
+        [name]: parsedValue
       }));
       return;
     }
@@ -94,7 +94,7 @@ function Markets() {
             .get("category_id")
             .split("-")
             .map((category) => Number(category))
-        : [],
+        : []
     });
   }
 
@@ -148,7 +148,7 @@ function Markets() {
                     onChange={(e) => handleChange(e)}
                     options={cities?.data?.map((city) => ({
                       name: city?.name,
-                      value: city?.id,
+                      value: city?.id
                     }))}
                   />
                   <SelectField
@@ -160,7 +160,7 @@ function Markets() {
                     onChange={(e) => handleChange(e)}
                     options={areas?.data?.map((area) => ({
                       name: area?.name,
-                      value: area?.id,
+                      value: area?.id
                     }))}
                   />
                   <div className="input-field">
@@ -203,7 +203,10 @@ function Markets() {
                       <i className="fa-regular fa-check"></i>{" "}
                       {t("search.apply")}
                     </button>
-                    <button onClick={handleClearFilters} className="search-btn">
+                    <button
+                      onClick={handleClearFilters}
+                      className="search-btn clear"
+                    >
                       <i className="fa-regular fa-xmark"></i>{" "}
                       {t("search.clear")}
                     </button>

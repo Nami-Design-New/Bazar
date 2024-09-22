@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import { GoogleMap, Marker, StandaloneSearchBox } from "@react-google-maps/api";
+import { useTranslation } from "react-i18next";
 
 const MapWithMarker = ({ formData, setFormData }) => {
   const [markerPosition, setMarkerPosition] = useState({});
+  const { t } = useTranslation();
   const [searchInput, setSearchInput] = useState("");
   const searchBox = useRef(null);
 
@@ -107,7 +109,7 @@ const MapWithMarker = ({ formData, setFormData }) => {
       >
         <input
           type="search"
-          placeholder="ابحث عن العنوان....."
+          placeholder={t("searchMap")}
           className="mapSearchInput"
           value={searchInput}
           onChange={handleInputChange}

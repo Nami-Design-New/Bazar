@@ -38,6 +38,7 @@ footer {
   .footer_about {
     @include centerFlex();
     flex-direction: column;
+    gap: 24px;
     .logo img {
       height: 62px;
       filter: brightness(0) invert(1);

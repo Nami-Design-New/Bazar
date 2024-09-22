@@ -31,11 +31,11 @@ function HeroSection() {
                     <SwiperSlide key={index}>
                       <div className="slide">
                         <img src={banner?.image} alt="slide1" />
-                        <div className="layer">
-                          {/* <h4>استكشف قطع غيار وإكسسواراتنا</h4>
-                        <p>اكتشف أحدث القطع والإكسسوارات لتحسين سيارتك.</p>
-                        <Link to="/ads?ad_type=sell">تسوق الآن</Link> */}
-                        </div>
+                        {/* <div className="layer">
+                          <h4>استكشف قطع غيار وإكسسواراتنا</h4>
+                          <p>اكتشف أحدث القطع والإكسسوارات لتحسين سيارتك.</p>
+                          <Link to="/ads?ad_type=sell">تسوق الآن</Link>
+                        </div> */}
                       </div>
                     </SwiperSlide>
                   ))}

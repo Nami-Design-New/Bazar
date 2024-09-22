@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { handleFavourite, handleFollow } from "../../services/apiFollow";
 import Comments from "./Comments";
 import Share from "./Share";
 
-function Video({ ad }) {
+function Video({ ad, setVideos }) {
   const { t } = useTranslation();
   const videoRef = useRef(null);
   const [showComments, setShowComments] = useState(false);
@@ -58,13 +59,32 @@ function Video({ ad }) {
       <div className="video_utils">
         <div className="user">
           <img src={ad?.user?.image} alt="user" />
-          <button className="follow">
-            <i className="fa-solid fa-plus"></i>
-          </button>
+          {!ad?.user?.is_follow && (
+            <button
+              className="follow"
+              onClick={() =>
+                handleFollow("user", ad?.user?.id, setVideos, "/user/follow")
+              }
+            >
+              <i className="fa-solid fa-plus"></i>
+            </button>
+          )}
         </div>
 
         <div className="actions">
-          <button>
+          <button
+            className={ad?.is_favorite ? "active" : ""}
+            onClick={() =>
+              handleFavourite(
+                "ad_id",
+                ad?.id,
+                setVideos,
+                ad?.is_favorite
+                  ? "/user/remove_from_favorite"
+                  : "/user/add_to_favorite"
+              )
+            }
+          >
             <i className="fa-regular fa-heart"></i>
           </button>
           <span>{ad?.favorites_count}</span>
@@ -98,7 +118,7 @@ function Video({ ad }) {
         videoId={inView ? ad?.id : null}
       />
 
-      <Share show={showShare} setShow={setShowShare} element={videoRef} />
+      <Share id={ad?.id} show={showShare} setShow={setShowShare} />
     </div>
   );
 }

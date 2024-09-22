@@ -12,12 +12,11 @@ import useGetAdById from "./../hooks/ads/useGetAdById";
 
 function AddAdvertisment() {
   const { t } = useTranslation();
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [form, setForm] = useState("main-info");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
   const { isLoading, data: ad } = useGetAdById();
-
-  const { id } = useParams();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -78,14 +77,16 @@ function AddAdvertisment() {
         }
       );
       if (res.status === 201 || res.status === 200) {
-        toast.success(`${id ? "تم التعديل بنجاح" : "تم الاضافة بنجاح"}`);
+        toast.success(
+          `${id ? t("ads.successfullyEdited") : t("ads.successfullyAdded")}`
+        );
         setForm("main-info");
         navigate("/profile");
       } else {
-        toast.error("حدث خطأ ما");
+        toast.error(t("someThingWentWrong"));
       }
     } catch (error) {
-      toast.error(error?.response?.data?.message || "حدث خطأ ما");
+      toast.error(error?.response?.data?.message || t("someThingWentWrong"));
     } finally {
       setLoading(false);
     }

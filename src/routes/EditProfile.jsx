@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import axios from "../utils/axios";
 import { setUser } from "../redux/slices/authedUser";
 import { useNavigate } from "react-router-dom";
+import SectionHeader from "../ui/layout/SectionHeader";
 
 function EditProfile() {
   const { t } = useTranslation();
@@ -24,13 +25,13 @@ function EditProfile() {
     image: user.image || "",
     name: user.name || "",
     email: user.email || "",
-    phone: user.phone || "",
+    phone: user.phone || ""
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -38,7 +39,7 @@ function EditProfile() {
     e.preventDefault();
     setLoading(true);
     const requestBody = {
-      ...formData,
+      ...formData
     };
 
     if (password && wantChangePassword) {
@@ -50,8 +51,8 @@ function EditProfile() {
     try {
       const res = await axios.post("/user/update_profile", requestBody, {
         headers: {
-          "Content-Type": "multipart/form-data",
-        },
+          "Content-Type": "multipart/form-data"
+        }
       });
       if (res.data.code === 200) {
         toast.success(t("auth.profileEditedSuccessfully"));
@@ -69,89 +70,98 @@ function EditProfile() {
   };
 
   return (
-    <section className="auth-form container col-12 col-lg-6">
-      <div className="form-title">
-        <h1 className="title">{t("auth.editProfile")}</h1>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <ImageUpload
-          type="file"
-          name="userImage"
-          id="img-upload"
-          accept="image/*"
-          formData={formData}
-          image={user?.image}
-          setFormData={setFormData}
-        />
-        <div className="d-flex gap-2 flex-lg-row flex-column w-100">
-          <InputField
-            label={t("auth.name")}
-            placeholder={t("auth.name")}
-            name="name"
-            type="text"
-            id="name"
-            required={true}
-            value={formData.name}
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <div className="d-flex gap-2 flex-lg-row flex-column w-100">
-          <InputField
-            label={t("auth.email")}
-            placeholder="example@example.com"
-            type="email"
-            name="email"
-            id="email"
-            required={true}
-            formData={formData}
-            onChange={(e) => handleChange(e)}
-            value={formData.email}
-          />
-        </div>
-        <div className="d-flex gap-2 flex-lg-row flex-column w-100">
-          <PhoneField
-            label={t("auth.phone")}
-            onChange={handleChange}
-            value={formData.phone}
-            id="phone"
-            name="phone"
-            type="tel"
-            placeholder={t("0XXXXXXXXXX")}
-            maxLength={9}
-            required={true}
-          />
-        </div>
-        <div className="question p-0 pt-2">
-          <label htmlFor="wantChangePassword" className="quest">
-            {t("auth.doYouWantChangePassword")}
-          </label>
-          <Form.Switch
-            id="wantChangePassword"
-            name="wantChangePassword"
-            checked={wantChangePassword}
-            onChange={() => setWantChangePassword(!wantChangePassword)}
-          />
-        </div>
-        {wantChangePassword && (
-          <div className="d-flex gap-2 flex-lg-row flex-column w-100">
-            <PasswordField
-              label={t("auth.password")}
-              name={"password"}
-              id={"password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+    <>
+      <SectionHeader />
+      <section className="container">
+        <div className="row m-0 justify-content-center">
+          <div className="col-lg-8 col-12 p-2">
+            <div className="auth-form">
+              <div className="form-title">
+                <h1 className="title">{t("auth.editProfile")}</h1>
+              </div>
+              <form onSubmit={handleSubmit}>
+                <ImageUpload
+                  type="file"
+                  name="userImage"
+                  id="img-upload"
+                  accept="image/*"
+                  formData={formData}
+                  image={user?.image}
+                  setFormData={setFormData}
+                />
+                <div className="d-flex gap-2 flex-lg-row flex-column w-100">
+                  <InputField
+                    label={t("auth.name")}
+                    placeholder={t("auth.name")}
+                    name="name"
+                    type="text"
+                    id="name"
+                    required={true}
+                    value={formData.name}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
+                <div className="d-flex gap-2 flex-lg-row flex-column w-100">
+                  <InputField
+                    label={t("auth.email")}
+                    placeholder="example@example.com"
+                    type="email"
+                    name="email"
+                    id="email"
+                    required={true}
+                    formData={formData}
+                    onChange={(e) => handleChange(e)}
+                    value={formData.email}
+                  />
+                </div>
+                <div className="d-flex gap-2 flex-lg-row flex-column w-100">
+                  <PhoneField
+                    label={t("auth.phone")}
+                    onChange={handleChange}
+                    value={formData.phone}
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    placeholder={t("0XXXXXXXXXX")}
+                    maxLength={9}
+                    required={true}
+                  />
+                </div>
+                <div className="question p-0 pt-2">
+                  <label htmlFor="wantChangePassword" className="quest">
+                    {t("auth.doYouWantChangePassword")}
+                  </label>
+                  <Form.Switch
+                    id="wantChangePassword"
+                    name="wantChangePassword"
+                    checked={wantChangePassword}
+                    onChange={() => setWantChangePassword(!wantChangePassword)}
+                  />
+                </div>
+                {wantChangePassword && (
+                  <div className="d-flex gap-2 flex-lg-row flex-column w-100">
+                    <PasswordField
+                      label={t("auth.password")}
+                      name={"password"}
+                      id={"password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                )}
+                <div className="d-flex gap-2 flex-lg-row flex-column w-100">
+                  <SubmitButton
+                    className={"custom-btn filled"}
+                    loading={loading}
+                    name={t("auth.saveChanges")}
+                  />
+                </div>
+              </form>
+            </div>
           </div>
-        )}
-        <div className="d-flex gap-2 flex-lg-row flex-column w-100">
-          <SubmitButton
-            className={"custom-btn filled"}
-            loading={loading}
-            name={t("auth.saveChanges")}
-          />
         </div>
-      </form>
-    </section>
+      </section>
+    </>
   );
 }
 

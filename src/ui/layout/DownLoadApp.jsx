@@ -12,7 +12,7 @@ function DownLoadApp() {
             <div className="download_app">
               <div className="content">
                 <h3>{t("downLoadAppTitle")}</h3>
-                <h4>{t("downLoadAppSubTitle")}</h4>
+                <h4>{t("downLoadNow")}</h4>
                 <div className="links">
                   <Link>
                     <img src="/images/app-store.svg" alt="app store" />
