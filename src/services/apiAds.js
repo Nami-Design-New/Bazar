@@ -42,7 +42,6 @@ export async function getAdsByFilter({
   try {
     const req = await axios.post("/get_ads", requestBody);
 
-    console.log(req);
     return req.data;
   } catch (err) {
     throw new Error(`Error fetching ads: ${err.message}`);

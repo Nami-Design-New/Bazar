@@ -276,7 +276,7 @@ function WantedAds() {
               </div>
             </aside>
             <div className="small-filter-header">
-              <h6>{t("projects.title")}</h6>
+              <h6></h6>
               <button
                 className="openfilter"
                 onClick={() => setIsFilterOpen(true)}
