@@ -5,12 +5,15 @@ import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { deleteProductFromCart } from "../../services/apiCart";
 import axios from "./../../utils/axios";
+import DeleteCartAndAdd from "../modals/DeleteCartAndAdd";
 
 function ProductMiniCard({ product, marketId }) {
   const { t } = useTranslation();
   const cart = useSelector((state) => state.cart.cartList);
   const queryClient = useQueryClient();
+  const [loading, setLoading] = useState();
   const [inCart, setInCart] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (cart && cart?.length > 0) {
@@ -19,6 +22,10 @@ function ProductMiniCard({ product, marketId }) {
   }, [cart, product?.id]);
 
   const handleAddToCart = async () => {
+    if (marketId !== cart?.market?.id) {
+      setShowModal(true);
+      return;
+    }
     try {
       const res = await axios.post("/user/add_to_cart", {
         quantity: 1,
@@ -26,13 +33,13 @@ function ProductMiniCard({ product, marketId }) {
         product_id: product?.id
       });
       if (res.status === 200 || res.status === 201) {
-        toast.success("تم اضافة المنتج الي السلة بنجاح");
+        toast.success(t("cart.addedToCart"));
         queryClient.invalidateQueries(["cart"]);
         setInCart(true);
       }
     } catch (error) {
       console.log(error);
-      toast.error(error?.response?.data?.message || "حدث خطأ ما");
+      toast.error(error?.response?.data?.message || t("somethingWentWrong"));
     }
   };
 
@@ -41,11 +48,42 @@ function ProductMiniCard({ product, marketId }) {
       const res = await deleteProductFromCart(product?.id);
       if (res?.data?.code) {
         queryClient.invalidateQueries(["cart"]);
-        toast.success("تم حذف المنتج من السلة بنجاح");
+        toast.success(t("cart.productDeleted"));
         setInCart(false);
       }
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleConfirmModal = async () => {
+    setLoading(true);
+    try {
+      const deleteCart = await axios.post("/user/delete_cart");
+      if (deleteCart?.data?.code) {
+        try {
+          const res = await axios.post("/user/add_to_cart", {
+            quantity: 1,
+            market_id: marketId,
+            product_id: product?.id
+          });
+          if (res.status === 200 || res.status === 201) {
+            toast.success(t("cart.addedToCart"));
+            queryClient.invalidateQueries(["cart"]);
+            setInCart(true);
+          }
+        } catch (error) {
+          console.log(error);
+          toast.error(
+            error?.response?.data?.message || t("somethingWentWrong")
+          );
+        }
+      }
+    } catch (error) {
+      throw new Error(error);
+    } finally {
+      setLoading(false);
+      setShowModal(false);
     }
   };
 
@@ -75,7 +113,7 @@ function ProductMiniCard({ product, marketId }) {
             ) : (
               <i className="fa-light fa-cart-plus"></i>
             )}{" "}
-            {inCart ? "حذف من السلة" : "اضف الى السلة"}
+            {inCart ? t("cart.remove") : t("cart.add")}
           </button>
         </div>
         <div className="rate_sale">
@@ -85,7 +123,7 @@ function ProductMiniCard({ product, marketId }) {
                 {product?.price} {t("currency.sar")}
               </span>{" "}
               <span className="sale">
-                خصم{" "}
+                {t("cart.off")}{" "}
                 {((product?.price - product?.offer_price) / product?.price) *
                   100}
                 %
@@ -94,6 +132,12 @@ function ProductMiniCard({ product, marketId }) {
           )}
         </div>
       </div>
+      <DeleteCartAndAdd
+        showModal={showModal}
+        setShowModal={setShowModal}
+        eventFun={handleConfirmModal}
+        loading={loading}
+      />
     </div>
   );
 }

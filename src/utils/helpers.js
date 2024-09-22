@@ -1,3 +1,5 @@
+import { MONTHS } from "./constants";
+
 export const calculateDate = (createdAt) => {
   const createdDate = new Date(createdAt);
   const dd = String(createdDate.getDate()).padStart(2, "0");
@@ -134,3 +136,11 @@ export function calcDeliveryPrice(lat1, lng1, lat2, lng2, deliveryPrice) {
 
   return (distance * deliveryPrice).toFixed(2);
 }
+
+export const adUserMemberShip = (date, lang) => {
+  const createdAt = new Date(date);
+  const month = createdAt.getMonth();
+  const year = createdAt.getFullYear();
+
+  return `${lang === "en" ? MONTHS[month].ar : MONTHS[month].en}} ${year}`;
+};

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { removeFromFavorite as removeFromFavoriteApi } from "../services/apiFAvorites";
+import { removeFromFavorite as removeFromFavoriteApi } from "../services/apiFavorites"
 
 function useRemoveFromFavorite() {
   const queryClient = useQueryClient();

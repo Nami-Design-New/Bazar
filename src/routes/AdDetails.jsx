@@ -1,6 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { IconMessageCircle, IconPhone } from "@tabler/icons-react";
-import { formatTimeDifference, getTimeDifference } from "../utils/helpers";
+import {
+  adUserMemberShip,
+  formatTimeDifference,
+  getTimeDifference
+} from "../utils/helpers";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,6 +20,7 @@ import useRemoveFromFavorite from "../hooks/useRemoveFromFavorite";
 function AdDetails() {
   const { t } = useTranslation();
   const { isLoading, data: ad } = useGetAdById();
+  const lang = useSelector((state) => state.language.lang);
   const navigate = useNavigate();
   const user = useSelector((state) => state.authedUser.user);
   const currentPageLink = window.location.href;
@@ -43,7 +48,7 @@ function AdDetails() {
       } else {
         addToFavorite({
           id: ad?.id,
-          type: "ad_id",
+          type: "ad_id"
         });
       }
     } else {
@@ -65,7 +70,7 @@ function AdDetails() {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${currentPageLink}`,
     instagram: `https://www.instagram.com/?url=${currentPageLink}`,
     twitter: `https://twitter.com/intent/tweet?url=${currentPageLink}`,
-    whatsapp: `https://wa.me/?text=${currentPageLink}`,
+    whatsapp: `https://wa.me/?text=${currentPageLink}`
   };
 
   return isLoading ? (
@@ -94,13 +99,13 @@ function AdDetails() {
 
                 <div className="actions">
                   <a href="listing.html" className="category">
-                    <img src="/images/icon (1).svg" alt="category" />
-                    إلكترونيات
+                    <img src={ad?.data?.category?.image} alt="category" />
+                    {ad?.data?.category?.name}
                   </a>
 
                   <div className="share">
                     <span className="ps-2 text-capitalize fw-bold">
-                      مشاركة :
+                      {t("share.share")} :
                     </span>
                     <a
                       href={socialShareLinks.twitter}
@@ -172,36 +177,57 @@ function AdDetails() {
                     {ad?.data?.user?.name || "Ahmed Elsayed"}{" "}
                   </h3>
                 </Link>
-                <span className="date"> عضو منذ أغسطس 2023 </span>
+                <span className="date">
+                  {" "}
+                  {t("memberSince")}{" "}
+                  {adUserMemberShip(ad?.data?.user?.created_at, lang)}
+                </span>
                 <div className="contact">
-                  <button className="chat" onClick={openChat}>
-                    <IconMessageCircle stroke={1.5} />
-                    <span> محادثة </span>
-                  </button>
-                  <Link to="tel:+966123456789" className="call">
-                    <IconPhone stroke={1.5} />
-                    <span> اتصل </span>
-                  </Link>
+                  {Number(ad?.data?.chat) === 1 && (
+                    <button className="chat" onClick={openChat}>
+                      <IconMessageCircle stroke={1.5} />
+                      <span> {t("chating")} </span>
+                    </button>
+                  )}
+
+                  {Number(ad?.data?.phone) !== 0 && (
+                    <Link
+                      target="_blank"
+                      to={`tel:${ad?.data?.phone}`}
+                      className="call"
+                    >
+                      <IconPhone stroke={1.5} />
+                      <span> {t("calling")} </span>
+                    </Link>
+                  )}
+
+                  {Number(ad?.data?.whatsapp) !== 0 && (
+                    <Link
+                      target="_blank"
+                      to={`https://wa.me/${ad?.data?.whatsapp}`}
+                      className="chat"
+                    >
+                      <IconMessageCircle stroke={1.5} />
+                      <span> {t("ads.whatsapp")} </span>
+                    </Link>
+                  )}
                 </div>
               </div>
 
               <div className="itemDetailsBox">
-                <h4 className="title"> سلامتك تهمنا </h4>
+                <h4 className="title">{t("safetyTitle")}</h4>
                 <ul>
                   <li>
-                    <p>
-                      قابل البايع في مكان عام زي المترو أو المولات أو محطات
-                      البنزين
-                    </p>
+                    <p>{t("safety1")}</p>
                   </li>
                   <li>
-                    <p>خد حد معاك وانت رايح تقابل البايع أو المشتري</p>
+                    <p>{t("safety2")}</p>
                   </li>
                   <li>
-                    <p>عاين المنتج كويس قبل ما تشتري وتأكد ان سعره مناسب</p>
+                    <p>{t("safety3")}</p>
                   </li>
                   <li>
-                    <p>متدفعش او تحول فلوس الا لما تعاين المنتج كويس</p>
+                    <p>{t("safety4")}</p>
                   </li>
                 </ul>
               </div>
@@ -216,7 +242,7 @@ function AdDetails() {
           <div className="container">
             <div className="topHead">
               <div className="sectionTitle">
-                <h4 className="title">أعلانات مشابهة</h4>
+                <h4 className="title">{t("similar_ads")}</h4>
               </div>
               <div className="swiperControl">
                 <div className="swiperBtns">
@@ -236,18 +262,18 @@ function AdDetails() {
               className="mainSliderContainer"
               navigation={{
                 nextEl: `similar-next`,
-                prevEl: `similar-prev`,
+                prevEl: `similar-prev`
               }}
               breakpoints={{
                 992: {
-                  slidesPerView: 4,
+                  slidesPerView: 4
                 },
                 768: {
-                  slidesPerView: 2,
+                  slidesPerView: 2
                 },
                 350: {
-                  slidesPerView: 1,
-                },
+                  slidesPerView: 1
+                }
               }}
             >
               {ad?.data?.similar_ads && ad?.data?.similar_ads?.length > 0 && (

@@ -160,16 +160,7 @@
       width: 24px;
       height: 24px;
       object-fit: contain;
-      filter: brightness(0);
       transition: $transition;
-    }
-    &:hover {
-      background-color: $main;
-      color: $white;
-      border-color: $main;
-      img {
-        filter: brightness(0) invert(1);
-      }
     }
   }
   .itemBottom {

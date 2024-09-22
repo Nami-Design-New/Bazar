@@ -49,7 +49,6 @@
         }
         &.next {
           margin-inline-start: auto;
-          
         }
       }
     }
@@ -308,8 +307,18 @@
   display: flex;
   align-items: flex-end;
   gap: 16px;
+  @media screen and (max-width: 576px) {
+    gap: 8px;
+  }
+  input {
+    border-radius: 12px !important;
+  }
   button {
+    white-space: nowrap;
     width: fit-content;
     padding: 0 42px;
+    @media screen and (max-width: 576px) {
+      padding: 0 16px;
+    }
   }
 }
