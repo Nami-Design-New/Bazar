@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { subscriptionRemainingDays } from "../../utils/helpers";
 import DataLoader from "../../ui/DataLoader";
-import FavoriteADCard from "../../ui/cards/FavoriteADCard";
 import EmptyData from "../../ui/EmptyData";
 import OrderCard from "../../ui/cards/OrderCard.jsx";
 import InterestMiniCard from "../../ui/cards/InterestMiniCard.jsx";
@@ -18,9 +17,14 @@ import Transactions from "./../../ui/layout/Transactions";
 import ChargeModal from "./../../ui/modals/ChargeModal";
 import WithdrawModal from "./../../ui/modals/WithdrawModal";
 import Post from "../../ui/cards/Post.jsx";
+import useGetAddresses from "../../hooks/profile/useGetAddresses.js";
+import AddressCard from "../../ui/cards/AddressCard.jsx";
+import AddAddress from "../addresses/AddAddress.jsx";
 
 function ProfileTabs({ user, isMyAccount }) {
   const { t } = useTranslation();
+  const [showModal, setShowModal] = useState(false);
+  const [targetAddress, setTargetAddress] = useState(null);
   const { isLoading: adsLoading, data: ads } = useUserAds(user?.id);
   const { isLoading: ordersLoading, data: orders } = useUserOrders(user?.id);
   const { isLoading: rewardsLoading, data: rewards } = useUserRewards(user?.id);
@@ -28,18 +32,26 @@ function ProfileTabs({ user, isMyAccount }) {
   const { isLoading: interestsLoading, data: interests } = useUserInterests(
     user?.id
   );
+  const { isLoading: addressesLoading, data: addresses } = useGetAddresses(
+    user?.id
+  );
+
+  if (!addressesLoading) console.log(addresses?.data);
 
   const [showChargeModel, setShowChargeModel] = useState(false);
   const [showWithdrawModel, setShowWithdrawModel] = useState(false);
 
-  if (!settingsLoading) console.log(settings?.data);
+  const hasReward =
+    rewards?.data && rewards?.data?.length > 0
+      ? rewards?.data?.some((reward) => reward?.rewarded)
+      : false;
 
   return (
     <div className="col-12 p-2">
       <div className="tabs-section">
         <Tabs
           className="profileNavCol col-md-5 col-lg-4 col-xl-3 p-2"
-          defaultActiveKey="ads"
+          defaultActiveKey="addresses"
           id="uncontrolled-tab-example"
         >
           {/* ADs */}
@@ -242,14 +254,63 @@ function ProfileTabs({ user, isMyAccount }) {
               title={t("profile.rewards")}
               className="tab_item p-2 pt-0"
             >
-              {rewardsLoading ? (
+              {rewardsLoading || settingsLoading ? (
                 <DataLoader minHeight="400px" />
               ) : rewards?.data && rewards?.data?.length > 0 ? (
-                rewards?.data?.map((reward) => (
-                  <div className="col-lg-6 col-12 p-3" key={reward?.id}>
-                    <FavoriteADCard ad={reward} isMyAccount={isMyAccount} />
-                  </div>
-                ))
+                <>
+                  {isMyAccount &&
+                    (hasReward ? (
+                      <div className="w-100 btn-wrapper d-flex justify-content-end mb-3 p-2">
+                        <Link to="/" className="custom-btn stroke">
+                          <span>{t("profile.withdrawRewards")}</span>
+                        </Link>
+                      </div>
+                    ) : (
+                      <div className="w-100 btn-wrapper d-flex gap-3 justify-content-end flex-column mb-3 p-2">
+                        <h4
+                          className="text-center"
+                          style={{ textWrap: "balance" }}
+                        >
+                          {t("profile.noRewards")}
+                        </h4>
+                        {settings?.reward_rate_average ||
+                        settings?.reward_favorite_count ? (
+                          <>
+                            <h5>{t("profile.rewardsConditions")}:</h5>
+                            <ol className="px-4 d-flex flex-column gap-1">
+                              {settings?.reward_favorite_count ? (
+                                <li>
+                                  {t("profile.rewardsFavoritesConditions1")}{" "}
+                                  {settings?.reward_favorite_count}{" "}
+                                  {t("profile.rewardsFavoritesConditions2")}
+                                </li>
+                              ) : null}
+                              {settings?.reward_rate_average ? (
+                                <li>
+                                  {t("profile.rewardsRateConditions1")}{" "}
+                                  {settings?.reward_rate_average}{" "}
+                                  {t("profile.rewardsRateConditions2")}
+                                </li>
+                              ) : null}
+                            </ol>
+                          </>
+                        ) : null}
+                      </div>
+                    ))}
+                  {rewards?.data?.map((reward) => (
+                    <div
+                      className="col-lg-4 col-md-6 col-12 p-3"
+                      key={reward?.id}
+                    >
+                      <Post
+                        userId={user?.id}
+                        post={reward}
+                        isMyAccount={isMyAccount}
+                        type="reward"
+                      />
+                    </div>
+                  ))}
+                </>
               ) : (
                 <EmptyData minHeight={"300px"}>{t("profile.noAds")}</EmptyData>
               )}
@@ -309,8 +370,53 @@ function ProfileTabs({ user, isMyAccount }) {
               </section>
             </Tab>
           )}
+          {/* addresses */}
+          <Tab
+            eventKey="addresses"
+            title={t("profile.addresses")}
+            className="tab_item p-2 pt-0"
+          >
+            <>
+              {isMyAccount && (
+                <div className="w-100 btn-wrapper d-flex justify-content-end mb-3 p-2">
+                  <span
+                    className="custom-btn stroke"
+                    onClick={() => setShowModal(true)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <span>
+                      <IconCirclePlus stroke={2} /> {t("profile.addAddress")}
+                    </span>
+                  </span>
+                </div>
+              )}
+              {addressesLoading ? (
+                <DataLoader minHeight="400px" />
+              ) : addresses?.data && addresses?.data?.length > 0 ? (
+                addresses?.data?.map((address) => (
+                  <div className="col-lg-6 col-12 p-2" key={address?.id}>
+                    <AddressCard
+                      userId={user?.id}
+                      address={address}
+                      isMyAccount={isMyAccount}
+                      setTargetAddress={setTargetAddress}
+                      setShowModal={setShowModal}
+                    />
+                  </div>
+                ))
+              ) : (
+                <EmptyData minHeight={"300px"}>{t("profile.noAds")}</EmptyData>
+              )}
+            </>
+          </Tab>
         </Tabs>
       </div>
+      <AddAddress
+        showModal={showModal}
+        setShowModal={setShowModal}
+        targetAddress={targetAddress}
+        setTargetAddress={setTargetAddress}
+      />
     </div>
   );
 }

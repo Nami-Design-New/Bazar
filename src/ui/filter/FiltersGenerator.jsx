@@ -1,6 +1,5 @@
 import CheckBoxGenerator from "./CheckBoxGenerator";
 import RangeGenerator from "./RangeGenerator";
-import SelectGenerator from "./SelectGenerator";
 
 function FiltersGenerator({
   filters,
@@ -23,12 +22,13 @@ function FiltersGenerator({
           return null;
         } else if (filter?.type === "select") {
           return (
-            <SelectGenerator
-              key={filter?.id}
-              filter={filter}
-              setDynamicFilterData={setDynamicFilterData}
-              dynamicFilterData={dynamicFilterData}
-            />
+            // <SelectGenerator
+            //   key={filter?.id}
+            //   filter={filter}
+            //   setDynamicFilterData={setDynamicFilterData}
+            //   dynamicFilterData={dynamicFilterData}
+            // />
+            null
           );
         } else if (filter?.type === "boolean") {
           return (
