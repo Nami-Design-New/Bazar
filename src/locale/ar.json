@@ -56,7 +56,11 @@
     "privacy": "سياسة الخصوصية",
     "coupon-details": "تفاصيل الكوبون",
     "manage-accounts": "إدارة الحسابات",
-    "faq": "الأسئلة الشائعة"
+    "faq": "الأسئلة الشائعة",
+    "login": "تسجيل الدخول",
+    "forget-password": "نسيت كلمة المرور",
+    "register": "تسجيل حساب",
+    "edit-profile": "تعديل الملف الشخصي"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -259,7 +263,37 @@
     "noAds": "لا توجد اعلانات بهذه التفاصيل",
     "noFavAds": "لا توجد اعلانات مفضلة حتى الآن",
     "noFavMarkets": "لا توجد متاجر مفضلة حتى الآن",
-    "successfullyAdded": "تمت الاضافة بنجاح"
+    "successfullyAdded": "تم نشر الاعلان بنجاح",
+    "successfullyEdited": "تم تعديل الاعلان بنجاح",
+    "ad_type": "نوع الاعلان",
+    "sell": "بيع",
+    "buy": "شراء",
+    "title": "العنوان",
+    "titlePlaceholder": "مثال: موبايل",
+    "description": "تفاصيل الاعلان",
+    "descriptionPlaceholder": "مثال: ايفون 15 للبيع جديد 512 جيجا",
+    "category": "التصنيف",
+    "subCategory": "التصنيف الفرعي",
+    "selectCategory": "اختر التصنيف",
+    "selectSubCategory": "اختر التصنيف الفرعي",
+    "selectCategoryFirst": "الرجاء تحديد التصنيف",
+    "city": "المدينة",
+    "selectCity": "اختر المدينة",
+    "area": "المنطقة",
+    "selectArea": "اختر المنطقة",
+    "addressOnMap": "العنوان على الخريطه",
+    "addressOnMapHint": "( قم بتحريك المؤشر على الخريطة لتحديد موقعك بالتفصيل )",
+    "main_image": "الصورة الرئيسية",
+    "video": "فيديو الاعلان",
+    "videoHint": "( الحد الأقصى 10 MB )",
+    "images": "صور الاعلان",
+    "imagesHint": "( الحد الأقصى 10 صور )",
+    "audio": "الوصف الصوتى للإعلان",
+    "price": "السعر",
+    "save": "حفظ",
+    "publish": "نشر الإعلان",
+    "next": "التالي",
+    "previous": "السابق"
   },
   "markets": {
     "products": "المنتجات",
@@ -334,7 +368,9 @@
     "apply": "تطبيق الكوبون",
     "sendOrder": "ارسال الطلب",
     "youDontHaveEnoughBallance": "ليس لديك رصيد كافي لدفع مبلغ: ",
-    "chargeWallet": "شحن المحفظة"
+    "chargeWallet": "شحن المحفظة",
+    "total": "الاجمالي",
+    "quantity": "الكمية"
   },
   "tabs": {
     "main-info": "المعلومات الرئيسية",
@@ -372,6 +408,16 @@
     "value": "القيمة",
     "min": "الحد الادنى",
     "max": "الحد الاقصى"
+  },
+  "addresses": {
+    "addAddress": "اضف عنوان جديد",
+    "addressTitle": "اسم العنوان",
+    "addressTitlePlaceholder": "مثال: المنزل",
+    "recipientName": "اسم المستلم",
+    "recipientNamePlaceholder": "مثال: محمد",
+    "recipientPhone": "رقم الهاتف",
+    "recipientPhonePlaceholder": "هاتف المستلم",
+    "addressAdded": "تم اضافة العنوان بنجاح"
   },
   "createdAt": "تم الإنشاء في",
   "orderedAt": "تم الطلب في",
@@ -418,7 +464,10 @@
   "bazar": "بازار",
   "comments": "التعليقات",
   "addComment": "اضف تعليقك ...",
-  "loginToComment":"تسجيل الدخول للتعليق",
+  "loginToComment": "تسجيل الدخول للتعليق",
   "see_more": "التفاصيل",
-  "noComments": "لا يوجد تعليقات"
+  "noComments": "لا يوجد تعليقات",
+  "orderCreated": "تم انشاء الطلب بنجاح",
+  "someThingWentWrong": "حدث خطأ ما",
+  "searchMap": "ابحث عن العنوان....."
 }

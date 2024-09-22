@@ -17,30 +17,30 @@ import useGetFilters from "../hooks/settings/useGetFilters";
 const cities = [
   {
     id: 1,
-    name: "الرياض",
+    name: "الرياض"
   },
   {
     id: 2,
-    name: "جدة",
+    name: "جدة"
   },
   {
     id: 3,
-    name: "مكة",
-  },
+    name: "مكة"
+  }
 ];
 const areas = [
   {
     id: 1,
-    name: "المنطقة الأولى",
+    name: "المنطقة الأولى"
   },
   {
     id: 2,
-    name: "المنطقة الثانية",
+    name: "المنطقة الثانية"
   },
   {
     id: 3,
-    name: "المنطقة الثالثة",
-  },
+    name: "المنطقة الثالثة"
+  }
 ];
 
 function WantedAds() {
@@ -76,7 +76,7 @@ function WantedAds() {
           .get("sub_category_id")
           .split("-")
           .map((subcategory) => Number(subcategory))
-      : [],
+      : []
   });
 
   const handleChange = (e) => {
@@ -86,7 +86,7 @@ function WantedAds() {
     if (name !== "category_id" && name !== "sub_category_id") {
       setSearchFilterData((prevState) => ({
         ...prevState,
-        [name]: parsedValue,
+        [name]: parsedValue
       }));
       return;
     }
@@ -142,7 +142,7 @@ function WantedAds() {
             .get("sub_category_id")
             .split("-")
             .map((subcategory) => Number(subcategory))
-        : [],
+        : []
     });
   }
 
@@ -210,7 +210,7 @@ function WantedAds() {
                     onChange={(e) => handleChange(e)}
                     options={cities?.map((city) => ({
                       name: city.name,
-                      value: city.id,
+                      value: city.id
                     }))}
                   />
                   <SelectField
@@ -222,7 +222,7 @@ function WantedAds() {
                     onChange={(e) => handleChange(e)}
                     options={areas?.map((area) => ({
                       name: area.name,
-                      value: area.id,
+                      value: area.id
                     }))}
                   />
                   {/* <div className="w-100 mb-4 px-4">
@@ -260,16 +260,17 @@ function WantedAds() {
                     />
                   </div> */}
                   <div className="d-flex gap-2 w-100">
-                    <div className="search-btn">
-                      <button onClick={handleSubmit}>
-                        {t("search.apply")}
-                      </button>
-                    </div>
-                    <div className="search-btn">
-                      <span onClick={handleClearFilters}>
-                        {t("search.clear")}
-                      </span>
-                    </div>
+                    <button onClick={handleSubmit} className="search-btn">
+                      <i className="fa-regular fa-check"></i>{" "}
+                      {t("search.apply")}
+                    </button>
+                    <button
+                      onClick={handleClearFilters}
+                      className="search-btn clear"
+                    >
+                      <i className="fa-regular fa-xmark"></i>{" "}
+                      {t("search.clear")}
+                    </button>
                   </div>
                 </form>
               </div>

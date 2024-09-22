@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 function Gallery({ formData, setFormData, setForm }) {
   const [isRecording, setIsRecording] = useState(false);
   const [mediaRecorder, setMediaRecorder] = useState(null);
+  const { t } = useTranslation();
 
   const handleImagesChange = (e) => {
     e.preventDefault();
@@ -78,7 +80,7 @@ function Gallery({ formData, setFormData, setForm }) {
       {/* main image */}
       <div className="col-lg-6 col-12 p-2">
         <div className="input-field">
-          <label htmlFor="certificate-image">الصورة الرئيسية</label>
+          <label htmlFor="certificate-image">{t("ads.main_image")}</label>
           <label className="video_upload">
             <input
               type="file"
@@ -108,7 +110,7 @@ function Gallery({ formData, setFormData, setForm }) {
       <div className="col-lg-6 col-12 p-2">
         <div className="input-field">
           <label htmlFor="certificate-image">
-            فيديو الاعلان <span>( الحد الأقصى 10 MB )</span>
+            {t("ads.video")} <span>{t("ads.videoHint")}</span>
           </label>
 
           <label className="video_upload">
@@ -143,7 +145,7 @@ function Gallery({ formData, setFormData, setForm }) {
       <div className="col-12 p-2">
         <div className="input-field">
           <label htmlFor="certificate-image">
-            صور الاعلان <span>( الحد الأقصى 10 صور )</span>
+            {t("ads.images")} <span>{t("ads.imagesHint")}</span>
           </label>
           <div className="images_grid_upload">
             <div className="file_upload">
@@ -190,16 +192,14 @@ function Gallery({ formData, setFormData, setForm }) {
       {/* audio */}
       <div className="col-12 p-2">
         <div className="input-field">
-          <label htmlFor="audio">الوصف الصوتى للإعلان</label>
+          <label htmlFor="audio">{t("ads.audio")}</label>
           <div className="d-flex gap-3 align-items-center">
             <div
               className="record_btn"
               onClick={isRecording ? stopRecording : startRecording}
             >
               <img
-                src={
-                  isRecording ? "/images/stop.svg" : "/images/record.svg"
-                }
+                src={isRecording ? "/images/stop.svg" : "/images/record.svg"}
                 alt="record"
               />
             </div>
@@ -233,7 +233,7 @@ function Gallery({ formData, setFormData, setForm }) {
               setForm("location");
             }}
           >
-            <i className="fa-regular fa-angle-right"></i> السابق
+            <i className="fa-regular fa-angle-right"></i> {t("ads.previous")}
           </button>
           <button
             className="wizard_btn next"
@@ -242,7 +242,7 @@ function Gallery({ formData, setFormData, setForm }) {
               setForm("pricing-contact");
             }}
           >
-            التالى <i className="fa-regular fa-angle-left"></i>
+            {t("ads.next")} <i className="fa-regular fa-angle-left"></i>
           </button>
         </div>
       </div>

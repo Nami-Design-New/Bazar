@@ -32,7 +32,7 @@ function Cart() {
                 <div className="col-12">
                   <div className="cart_total">
                     <p>
-                      الإجمالى :{" "}
+                      {t("cart.total")} :{" "}
                       <span>
                         {cart?.reduce(
                           (count, item) =>
@@ -44,7 +44,7 @@ function Cart() {
                           0
                         )}
                       </span>{" "}
-                      ريال
+                      {t("currency.sar")}
                     </p>
                     <Link to="/checkout">
                       <span>{t("cart.completePurchese")}</span>

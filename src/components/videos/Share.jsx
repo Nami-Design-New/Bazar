@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
-function Share({ show, setShow }) {
+function Share({ show, setShow, id }) {
   const { t } = useTranslation();
-  const currentPageLink = window.location.href;
+  const currentPageLink = window.location.href + `?id=${id}`;
   const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function Share({ show, setShow }) {
   return (
     <div className={`share ${show ? "show" : ""}`}>
       <div className="header">
-        <h6>مشاركة</h6>
+        <h6>{t("share.share")}</h6>
         <button onClick={() => setShow(false)}>
           <IconXboxX stroke={1.5} />
         </button>

@@ -95,7 +95,8 @@ body {
         text-align: center;
         font-size: 24px;
         color: $black;
-        max-width: 400px;
+        line-height: 1.7;
+        max-width: 600px;
         margin: 0 auto;
         @media screen and (max-width: 576px) {
           font-size: 20px;
@@ -1057,7 +1058,7 @@ body {
 
   &.en {
     direction: ltr;
-    font-family: "Poppins", sans-serif;
+    // font-family: "Poppins", sans-serif;
     header nav .container .left_utils .dropdown .dropdown-menu {
       transform: translate3d(0px, 50px, 0px) !important;
     }
@@ -1069,11 +1070,61 @@ body {
     .swiperControl .swiperBtns {
       flex-direction: row-reverse;
     }
-    header nav .container .navigation_links{
+    header nav .container .navigation_links {
       right: initial;
       left: -100%;
-      &.show{
+      &.show {
         left: 0;
+      }
+    }
+    main .auth-form input,
+    select,
+    textarea {
+      direction: ltr !important;
+    }
+    .form .input-field input,
+    select,
+    textarea {
+      direction: ltr !important;
+    }
+    .search-section .filter-wrap .input-field .form-check {
+      gap: 10px;
+    }
+    main .auth-form .pass-group {
+      input {
+        border-radius: 12px 0 0 12px !important;
+        border-left: 1px solid $LightGray !important;
+        border-right: 0 !important;
+      }
+      span {
+        border-radius: 0 12px 12px 0 !important;
+        border-right: 1px solid $LightGray !important;
+        border-left: 0 !important;
+      }
+    }
+    .one-line-wrap {
+      padding-left: 0 !important;
+      padding-right: 16px !important;
+    }
+    main .item .actions-wrapper {
+      right: 16px !important;
+      left: initial !important;
+    }
+    main .activity-card.ad-mini-card .card-header .action-boxes {
+      left: initial !important;
+      right: 0 !important;
+    }
+    main .fav-ad-card .card-header .action-boxes {
+      left: initial !important;
+      right: 0 !important;
+    }
+    main .profile .userInfo .top-wrapper .user-avatar-wrapper .verified-badge {
+      left: initial !important;
+      right: 2px;
+    }
+    main .add-advertisment .form .btns .wizard_btn {
+      i {
+        transform: scale(-1);
       }
     }
   }

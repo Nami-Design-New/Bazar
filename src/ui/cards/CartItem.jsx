@@ -93,7 +93,7 @@ function CartItem({ type, item }) {
             </div>
             <div className="total">
               <p>
-                الاجمالي :{" "}
+                {t("cart.total")} :{" "}
                 <span>
                   {(item?.product?.offer_price
                     ? item?.product?.offer_price

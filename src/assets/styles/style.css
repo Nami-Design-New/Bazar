@@ -708,7 +708,7 @@ body header nav .container .logo {
   flex: 1;
 }
 body header nav .container .logo img {
-  height: 42px;
+  height: 36px;
   width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
@@ -755,7 +755,7 @@ body header nav .container .navigation_links li.logoo {
   display: none;
 }
 body header nav .container .navigation_links li.logoo img {
-  height: 50px;
+  height: 42px;
   width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
@@ -1846,6 +1846,9 @@ body main .videos .videos_wrapper .video .video_utils .actions button i {
   font-size: 26px;
   filter: drop-shadow(-1px 2px 3px #868686);
 }
+body main .videos .videos_wrapper .video .video_utils .actions button.active i {
+  color: red;
+}
 body main .videos .videos_wrapper .video .video_utils .actions span {
   color: #fff;
   filter: drop-shadow(-1px 2px 3px #868686);
@@ -2127,7 +2130,7 @@ body main .auth-form {
   display: flex;
   flex-direction: column;
   gap: 36px;
-  padding: 60px 0;
+  padding: 40px 0;
 }
 body main .auth-form .form-header-image {
   width: 100%;
@@ -2161,11 +2164,9 @@ body main .auth-form .form-title .title {
 body main .auth-form .form-title .sub-title {
   margin: 0;
   color: #6b6464;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  flex-wrap: wrap;
+  text-align: center;
   gap: 8px;
+  font-size: 16px;
   position: relative;
 }
 body main .auth-form form {
@@ -4711,7 +4712,6 @@ body main .market-details-page .content-wrapper .details-wrapper .details-box .m
   position: relative;
 }
 body main .market-details-page .content-wrapper .details-wrapper .details-box .menu.checkout-details {
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1490196078);
   width: 100%;
   padding: 16px !important;
   background-color: #fff;
@@ -5205,7 +5205,6 @@ body main .order-details-page .order-details-wrapper .details-wrapper .details-b
   color: #6b6464;
 }
 body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu.checkout-details {
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1490196078);
   width: 100%;
   padding: 16px !important;
   background-color: #fff;
@@ -6998,9 +6997,16 @@ body main .ads-page .search-btn span {
   border: none;
   font-size: 14px;
   color: #fff;
+  gap: 4px;
   border-radius: 12px;
   background: #4381f8;
   transition: all 0.2s ease-in-out;
+}
+body main .ads-page .search-btn.clear {
+  background: #000 !important;
+}
+body main .ads-page .search-btn.clear span {
+  background: #000 !important;
 }
 body main .small-filter-header {
   width: 100%;
@@ -7574,7 +7580,8 @@ body main .error-section h2 {
   text-align: center;
   font-size: 24px;
   color: #000;
-  max-width: 400px;
+  line-height: 1.7;
+  max-width: 600px;
   margin: 0 auto;
 }
 @media screen and (max-width: 576px) {
@@ -7653,6 +7660,7 @@ body footer .footer_about {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  gap: 24px;
 }
 body footer .footer_about .logo img {
   height: 62px;
@@ -8650,7 +8658,6 @@ body .faqs-accordin .accordion-button::after {
 }
 body.en {
   direction: ltr;
-  font-family: "Poppins", sans-serif;
 }
 body.en header nav .container .left_utils .dropdown .dropdown-menu {
   transform: translate3d(0px, 50px, 0px) !important;
@@ -8667,4 +8674,50 @@ body.en header nav .container .navigation_links {
 }
 body.en header nav .container .navigation_links.show {
   left: 0;
+}
+body.en main .auth-form input,
+body.en select,
+body.en textarea {
+  direction: ltr !important;
+}
+body.en .form .input-field input,
+body.en select,
+body.en textarea {
+  direction: ltr !important;
+}
+body.en .search-section .filter-wrap .input-field .form-check {
+  gap: 10px;
+}
+body.en main .auth-form .pass-group input {
+  border-radius: 12px 0 0 12px !important;
+  border-left: 1px solid #d9d9d9 !important;
+  border-right: 0 !important;
+}
+body.en main .auth-form .pass-group span {
+  border-radius: 0 12px 12px 0 !important;
+  border-right: 1px solid #d9d9d9 !important;
+  border-left: 0 !important;
+}
+body.en .one-line-wrap {
+  padding-left: 0 !important;
+  padding-right: 16px !important;
+}
+body.en main .item .actions-wrapper {
+  right: 16px !important;
+  left: initial !important;
+}
+body.en main .activity-card.ad-mini-card .card-header .action-boxes {
+  left: initial !important;
+  right: 0 !important;
+}
+body.en main .fav-ad-card .card-header .action-boxes {
+  left: initial !important;
+  right: 0 !important;
+}
+body.en main .profile .userInfo .top-wrapper .user-avatar-wrapper .verified-badge {
+  left: initial !important;
+  right: 2px;
+}
+body.en main .add-advertisment .form .btns .wizard_btn i {
+  transform: scale(-1);
 }/*# sourceMappingURL=style.css.map */

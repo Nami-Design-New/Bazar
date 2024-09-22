@@ -23,9 +23,16 @@
       border: none;
       font-size: 14px;
       color: $white;
+      gap: 4px;
       border-radius: 12px;
       background: $main;
       transition: $transition;
+    }
+    &.clear {
+      background: $black !important;
+      span {
+        background: $black !important;
+      }
     }
   }
 }

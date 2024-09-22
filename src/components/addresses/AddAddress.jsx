@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import axios from "./../../utils/axios";
 import InputField from "./../../ui/form-elements/InputField";
 import SubmitButton from "./../../ui/form-elements/SubmitButton";
-import MapWithMarker from './../../ui/MapWithMarker';
+import MapWithMarker from "./../../ui/MapWithMarker";
 
 const AddAddress = ({ showModal, setShowModal }) => {
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
   const [mapLoaded, setMapLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -38,7 +40,7 @@ const AddAddress = ({ showModal, setShowModal }) => {
     try {
       const res = await axios.post("/user/create_address", formData);
       if (res?.data?.code === 200) {
-        toast.success("تم اضافة العنوان بنجاح");
+        toast.success(t("addressAdded"));
         setShowModal(false);
         queryClient.invalidateQueries(["addresses"]);
         setFormData({
@@ -66,15 +68,15 @@ const AddAddress = ({ showModal, setShowModal }) => {
       aria-labelledby="contained-modal-title-vcenter"
     >
       <Modal.Header closeButton>
-        <h6>أضف عنوان جديد</h6>
+        <h6>{t("addresses.addAddress")}</h6>
       </Modal.Header>
       <Modal.Body>
         <form className="form" onSubmit={handleSubmit}>
           <div className="row m-0 w-100">
             <div className=" col-12 p-2">
               <InputField
-                label="اسم العنوان"
-                placeholder="مثال: المنزل"
+                label={t("addresses.addressTitle")}
+                placeholder={t("addresses.addressTitlePlaceholder")}
                 value={formData.address_title}
                 onChange={(e) =>
                   setFormData({ ...formData, address_title: e.target.value })
@@ -84,8 +86,8 @@ const AddAddress = ({ showModal, setShowModal }) => {
 
             <div className="col-lg-6 col-12 p-2">
               <InputField
-                label="اسم المستلم"
-                placeholder="اسم المستلم"
+                label={t("addresses.recipientName")}
+                placeholder={t("addresses.recipientNamePlaceholder")}
                 value={formData.recipient_name}
                 onChange={(e) =>
                   setFormData({ ...formData, recipient_name: e.target.value })
@@ -95,8 +97,8 @@ const AddAddress = ({ showModal, setShowModal }) => {
 
             <div className="col-lg-6 col-12 p-2">
               <InputField
-                label="رقم الهاتف"
-                placeholder="هاتف المستلم"
+                label={t("addresses.recipientPhone")}
+                placeholder={t("addresses.recipientPhonePlaceholder")}
                 value={formData.recipient_phone}
                 onChange={(e) =>
                   setFormData({ ...formData, recipient_phone: e.target.value })
