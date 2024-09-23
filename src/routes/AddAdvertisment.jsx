@@ -69,7 +69,26 @@ function AddAdvertisment() {
     try {
       const res = await axios.post(
         `/user/${id ? `update_ad` : "create_ad"}`,
-        { ...formData, id: +ad?.data?.id },
+        {
+          title: formData.title,
+          description: formData.description,
+          category_id: formData.category_id,
+          sub_category_id: formData.sub_category_id,
+          city_id: formData.city_id,
+          area_id: formData.area_id,
+          lat: formData.lat,
+          lng: formData.lng,
+          address: formData.address,
+          images: formData.images,
+          ad_type: formData.ad_type,
+          price: formData.price,
+          price_type: formData.price_type,
+          chat: formData.chat,
+          phone: formData.phone,
+          whatsapp: formData.whatsapp,
+          video: formData.video,
+          id: +ad?.data?.id
+        },
         {
           headers: {
             "Content-Type": "multipart/form-data"
