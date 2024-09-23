@@ -29,6 +29,7 @@ import Faq from "./routes/Faq";
 import About from "./routes/About";
 import TermsOfUse from "./routes/TermsOfUse";
 import Privacy from "./routes/Privacy";
+import AddInterest from "./routes/AddInterest";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
@@ -55,13 +56,13 @@ const routerConfig = [
   {
     path: "/app-verification",
     element: <AppVerification />,
-    protected: true
+    protected: true,
   },
   { path: "/fal-verification", element: <FalVerification /> },
   {
     path: "/commercial-verification",
     element: <CommercialVerification />,
-    protected: true
+    protected: true,
   },
 
   // user features
@@ -77,7 +78,9 @@ const routerConfig = [
   { path: "/favorites", element: <Favorites /> },
   { path: "/add-ad", element: <AddAdvertisment /> },
   { path: "/add-ad/:id", element: <AddAdvertisment /> },
-  { path: "/manage-accounts", element: <ManageAccounts /> }
+  { path: "/add-interest", element: <AddInterest /> },
+  { path: "/add-interest/:id", element: <AddInterest /> },
+  { path: "/manage-accounts", element: <ManageAccounts /> },
 ];
 
 export default routerConfig;

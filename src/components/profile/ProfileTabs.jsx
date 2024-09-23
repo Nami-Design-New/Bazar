@@ -20,11 +20,14 @@ import Post from "../../ui/cards/Post.jsx";
 import useGetAddresses from "../../hooks/profile/useGetAddresses.js";
 import AddressCard from "../../ui/cards/AddressCard.jsx";
 import AddAddress from "../addresses/AddAddress.jsx";
+import AddInterest from "../../routes/AddInterest.jsx";
 
 function ProfileTabs({ user, isMyAccount }) {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
+  const [showInterestModal, setShowInterestModal] = useState(false);
   const [targetAddress, setTargetAddress] = useState(null);
+  const [targetInterest, setTargetInterest] = useState(null);
   const { isLoading: adsLoading, data: ads } = useUserAds(user?.id);
   const { isLoading: ordersLoading, data: orders } = useUserOrders(user?.id);
   const { isLoading: rewardsLoading, data: rewards } = useUserRewards(user?.id);
@@ -118,11 +121,15 @@ function ProfileTabs({ user, isMyAccount }) {
             >
               {isMyAccount && (
                 <div className="w-100 btn-wrapper d-flex justify-content-end mb-3 p-2">
-                  <Link to="/add-interest" className="custom-btn stroke">
+                  <span
+                    className="custom-btn stroke"
+                    onClick={() => setShowInterestModal(true)}
+                    style={{ cursor: "pointer" }}
+                  >
                     <span>
                       <IconCirclePlus stroke={2} /> {t("profile.addInterest")}
                     </span>
-                  </Link>
+                  </span>
                 </div>
               )}
               {interestsLoading ? (
@@ -133,6 +140,8 @@ function ProfileTabs({ user, isMyAccount }) {
                     <InterestMiniCard
                       interest={interest}
                       isMyAccount={isMyAccount}
+                      setTargetInterest={setTargetInterest}
+                      setShowInterestModal={setShowInterestModal}
                     />
                   </div>
                 ))
@@ -427,6 +436,12 @@ function ProfileTabs({ user, isMyAccount }) {
         setShowModal={setShowModal}
         targetAddress={targetAddress}
         setTargetAddress={setTargetAddress}
+      />
+      <AddInterest
+        interest={targetInterest}
+        showModal={showInterestModal}
+        setShowModal={setShowInterestModal}
+        setTargetInterest={setTargetInterest}
       />
     </div>
   );

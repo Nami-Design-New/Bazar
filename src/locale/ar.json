@@ -63,7 +63,8 @@
     "edit-profile": "تعديل الملف الشخصي",
     "about-us": "من نحن",
     "terms-of-use": "شروط الاستخدام",
-    "privacy-policy": "سياسة الخصوصية"
+    "privacy-policy": "سياسة الخصوصية",
+    "add-interest": "اضافة اهتمام"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -177,6 +178,7 @@
     "accountBalance": "رصيد الحساب",
     "depositBalance": "إيداع رصيد",
     "withdrawBalance": "سحب رصيد",
+    "chargeBalance": "سحب رصيد",
     "totalBalance": "الرصيد الكلى",
     "totalBalanceTooltip": "الرصيد الكلى الذي تم الحصول عليه",
     "pendingBalance": "الرصيد المعلق",
@@ -283,6 +285,7 @@
     "sell": "بيع",
     "buy": "شراء",
     "title": "العنوان",
+    "name": "الاسم",
     "titlePlaceholder": "مثال: موبايل",
     "description": "تفاصيل الاعلان",
     "descriptionPlaceholder": "مثال: ايفون 15 للبيع جديد 512 جيجا",
@@ -375,7 +378,12 @@
   "interests": {
     "areYouSureYouWantToDeleteInterest": "هل انت متأكد من حذف هذا الاهتمام؟",
     "addInterest": "اضافة اهتمام",
-    "interestIn": "اهتمام ب"
+    "editInterest": "تعديل اهتمام",
+    "interestIn": "اهتمام ب",
+    "save": "حفظ",
+    "publish": "اضافة",
+    "successfullyAdded": "تم اضافة الاهتمام بنجاح",
+    "successfullyEdited": "تم تعديل الاهتمام بنجاح"
   },
   "products": {
     "newest": "الاحدث"

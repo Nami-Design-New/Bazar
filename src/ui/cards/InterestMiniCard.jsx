@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import { useState } from "react";
 
-function InterestMiniCard({ interest, isMyAccount }) {
+function InterestMiniCard({
+  interest,
+  isMyAccount,
+  setTargetInterest,
+  setShowInterestModal,
+}) {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
 
@@ -56,7 +61,13 @@ function InterestMiniCard({ interest, isMyAccount }) {
             >
               <i className="fa-regular fa-trash "></i>
             </span>
-            <span className="action-btn edit">
+            <span
+              className="action-btn edit"
+              onClick={() => {
+                setShowInterestModal(true);
+                setTargetInterest(interest);
+              }}
+            >
               <i className="fa-regular fa-pen-to-square "></i>
             </span>
           </div>
