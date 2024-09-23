@@ -6,7 +6,7 @@ import { useState } from "react";
 function InterestMiniCard({ interest, isMyAccount }) {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
-  
+
   function handleOpenConfirmation(e) {
     e.stopPropagation();
     setShowConfirmation(true);
@@ -23,20 +23,29 @@ function InterestMiniCard({ interest, isMyAccount }) {
         <div className="card-content">
           <h5 className="title ">{interest?.name}</h5>
           <div className="categories-wrapper">
-            <Link to="" className="category ">
-              <i className="fa-regular fa-apartment"></i>
-              {t("categories.estates")}
-            </Link>
-            <Link to="" className="category ">
-              <i className="fa-sharp fa-regular fa-building-columns"></i>
-              {t("categories.villas")}
-            </Link>
-            <Link to="" className="category ">
-              <i className="fa-sharp fa-solid fa-location-dot"></i> الرياض
-            </Link>
-            <Link to="" className="category ">
-              <i className="fa-regular fa-home"></i> الشارقة
-            </Link>
+            {interest?.category?.name ? (
+              <Link to="" className="category ">
+                <i className="fa-solid fa-cubes"></i>
+                {interest?.category?.name}
+              </Link>
+            ) : null}
+            {interest?.sub_category?.name ? (
+              <Link to="" className="category ">
+                <i className="fa-solid fa-cubes"></i>
+                {interest?.sub_category?.name}
+              </Link>
+            ) : null}
+            {interest?.city?.name ? (
+              <Link to="" className="category ">
+                <i className="fa-sharp fa-solid fa-location-dot"></i>{" "}
+                {interest?.city?.name}
+              </Link>
+            ) : null}
+            {interest?.area?.name ? (
+              <Link to="" className="category ">
+                <i className="fa-regular fa-home"></i> {interest?.area?.name}
+              </Link>
+            ) : null}
           </div>
         </div>
         {isMyAccount && (

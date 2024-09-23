@@ -148,7 +148,6 @@ function ProfileTabs({ user, isMyAccount }) {
             eventKey="verifications"
             title={t("profile.verifications")}
             className="tab_item p-2 pt-0"
-            
           >
             <div className="profile-verification-wrapper">
               <ul className="hint-wrapper mx-3">
