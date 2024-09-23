@@ -27,6 +27,9 @@ function Ads() {
 
   const { isLoading: filtersLoading, data: filters } = useGetFilters();
 
+  console.log(filters?.data);
+  
+
   const [dynamicFilterData, setDynamicFilterData] = useState({});
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
