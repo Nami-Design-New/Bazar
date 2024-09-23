@@ -8,6 +8,7 @@ import { setIsLogged, setUser } from "../../redux/slices/authedUser";
 import { useQueryClient } from "@tanstack/react-query";
 import { setLanguage } from "../../redux/slices/language";
 import {
+  IconBell,
   IconCirclePlus,
   IconLanguage,
   IconMessage,
@@ -16,6 +17,10 @@ import {
 import axios from "../../utils/axios";
 import i18next from "i18next";
 import Loader from "../Loader";
+import NotificationItem from "../layout/NotificationItem";
+import useGetNotifications from "../../hooks/useGetNotifications";
+import DataLoader from "../DataLoader";
+import EmptyData from "../EmptyData";
 
 export default function Header() {
   const { t } = useTranslation();
@@ -26,6 +31,9 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isFixedTop, setIsFixedTop] = useState(false);
   const [isLogoutLoading, setIsLogoutLoading] = useState(false);
+
+  const { isLoading: notificationsLoading, data: notifications } =
+    useGetNotifications();
 
   const lang = useSelector((state) => state.language.lang);
   const user = useSelector((state) => state.authedUser.user);
@@ -188,7 +196,7 @@ export default function Header() {
               <span>{cart?.length}</span>
             </Link>
 
-            {/* <Dropdown>
+            <Dropdown>
               <Dropdown.Toggle
                 as="div"
                 id="dropdownMenuLink"
@@ -199,15 +207,26 @@ export default function Header() {
 
               <Dropdown.Menu className="drop_Message_Menu" align="start">
                 <div className="scroll_menu">
-                  <Dropdown.Item className="drop_Message">
-                    <NotificationItem />
-                  </Dropdown.Item>
+                  {notificationsLoading ? (
+                    <DataLoader />
+                  ) : notifications?.data && notifications?.data?.length > 0 ? (
+                    <>
+                      {notifications?.data?.map((notification) => (
+                        <Dropdown.Item
+                          className="drop_Message"
+                          key={notification?.id}
+                        >
+                          <NotificationItem notification={notification} />
+                        </Dropdown.Item>
+                      ))}
+                      <Link className="showall" to="/notifications">
+                        {t("header.allNotifications")}
+                      </Link>
+                    </>
+                  ) : <EmptyData>{t("noNotifications")}</EmptyData>}
                 </div>
-                <Link className="showall" to="/notifications">
-                  {t("header.allNotifications")}
-                </Link>
               </Dropdown.Menu>
-            </Dropdown> */}
+            </Dropdown>
 
             <Link to="/chats">
               <IconMessage stroke={1.5} />

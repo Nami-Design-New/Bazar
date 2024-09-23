@@ -7,6 +7,8 @@ function NotificationItem({ notification }) {
 
   let status = "";
 
+  console.log(notification);
+
   switch (notification?.status) {
     case "pending":
       status = <i className="fa-solid fa-hourglass-end"></i>;
