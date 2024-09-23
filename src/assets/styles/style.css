@@ -3431,7 +3431,6 @@ body main .activity-card.ad-mini-card .card-header {
   display: flex;
   gap: 16px;
   position: relative;
-  background: #f6f6f6;
   border-radius: 12px;
 }
 body main .activity-card.ad-mini-card .card-header .image-wrapper {
@@ -3452,7 +3451,7 @@ body main .activity-card.ad-mini-card .card-header .card-content {
   padding: 56px 0 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 32px !important;
   position: relative;
 }
 body main .activity-card.ad-mini-card .card-header .card-content .title {
@@ -3552,10 +3551,18 @@ body main .favorites-section {
   padding-right: 16px;
 }
 body main .favorites-section .content-wrapper {
-  padding: 60px 0;
+  padding: 32px 0;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+}
+@media screen and (max-width: 576px) {
+  body main .favorites-section .content-wrapper {
+    padding: 16px 0;
+  }
+}
+body main .favorites-section .nav-tabs {
+  padding: 8px;
 }
 body main .fav-market-card {
   border-radius: 12px;
@@ -4804,7 +4811,12 @@ body main .market-details-page .content-wrapper .rate-form .btn-rate-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 16px;
+}
+@media screen and (max-width: 576px) {
+  body main .market-details-page .content-wrapper .rate-form .btn-rate-wrapper {
+    flex-direction: column-reverse;
+  }
 }
 body main .market-details-page .content-wrapper .rate-form .btn-rate-wrapper .submit-wrapper {
   flex: 1 0;
@@ -5796,16 +5808,11 @@ body main .advertiserDetails .contact button.chat {
 body main .contact_section {
   padding: 60px 0;
 }
-body main .contact_section {
-  padding: 60px 0;
-}
 body main .contact_section .contact_info {
   width: 100%;
   height: 100%;
-  border-radius: 16px;
-  padding: 24px;
   background: #fff;
-  box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.1019607843);
+  padding: 12px;
 }
 body main .contact_section .contact_info h3 {
   font-size: 22px;
@@ -5892,7 +5899,7 @@ body main .contact_section .contact_info .field:hover .icon::after {
 }
 body main .contact_section form {
   background: #fff;
-  box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.1019607843);
+  border: 1px solid #d9d9d9;
   padding: 42px 12px;
   border-radius: 16px;
   display: flex;
@@ -6556,8 +6563,8 @@ body main .item .itemInfo .itemBottom .category .img {
   justify-content: center;
 }
 body main .item .itemInfo .itemBottom .category .img img {
-  width: 20px;
-  height: 20px;
+  width: 36px;
+  height: 36px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -7520,11 +7527,16 @@ body main .chat-section .chat-container .chat-send form button i {
   }
 }
 body main .lottie_player_holder {
-  padding: 40px;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+body main .lottie_player_holder img {
+  max-height: 500px;
+}
+body main .about {
+  padding: 60px 0;
 }
 body main .topHead {
   display: flex;
@@ -7560,7 +7572,7 @@ body main .tabs-section {
 body main .tabs-section .nav-tabs {
   border: 0;
   border-radius: 12px;
-  gap: 24px;
+  gap: 16px;
 }
 body main .tabs-section .nav-tabs .nav-item {
   flex: 1;
@@ -7639,7 +7651,7 @@ body main .error-section a:hover {
   background-color: #d785f1;
 }
 body .download_app_section {
-  background-image: url("/public/images/banner.png");
+  background-image: url("/images/banner.png");
   background-size: cover;
 }
 body .download_app {

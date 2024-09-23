@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import useGetSettings from "../../hooks/settings/useGetSettings";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const { data: settings } = useGetSettings();
   const { t } = useTranslation();
 
   return (
@@ -17,19 +15,11 @@ export default function Footer() {
                 <img src="/images/logo.png" alt="logo" />
               </Link>
               <div className="links">
-                <Link>{t("routes.home")}</Link>
-                <Link target="_blank" to={settings?.data?.about_link}>
-                  {t("routes.about")}
-                </Link>
-                <Link  to={"/faq"}>
-                  {t("routes.faq")}
-                </Link>
-                <Link target="_blank" to={settings?.data?.terms_link}>
-                  {t("routes.terms")}
-                </Link>
-                <Link target="_blank" to={settings?.data?.privacy_link}>
-                  {t("routes.privacy")}
-                </Link>
+                <Link to="/">{t("routes.home")}</Link>
+                <Link to="/about-us">{t("routes.about")}</Link>
+                <Link to="/faq">{t("routes.faq")}</Link>
+                <Link to="/terms-of-use">{t("routes.terms")}</Link>
+                <Link to="/privacy-policy">{t("routes.privacy")}</Link>
                 <Link to="/contact">{t("routes.contact")}</Link>
               </div>
             </div>

@@ -55,12 +55,16 @@ const Chats = () => {
                     {isChatLoading ? <DataLoader /> : <ChatRoom chat={chat} />}
                   </>
                 ) : (
-                  <div className="lottie_player_holder"></div>
+                  <div className="lottie_player_holder">
+                    <img src="/images/chat-holder.svg" alt="" />
+                  </div>
                 )}
               </div>
             </>
           ) : (
-            <div className="lottie_player_holder"></div>
+            <div className="lottie_player_holder">
+              <img src="/images/chat-holder.svg" alt="" />
+            </div>
           )}
         </div>
       </div>

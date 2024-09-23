@@ -644,7 +644,10 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 24px;
+        gap: 16px;
+        @media screen and (max-width: 576px) {
+          flex-direction: column-reverse;
+        }
         .submit-wrapper {
           flex: 1 0;
           display: flex;
