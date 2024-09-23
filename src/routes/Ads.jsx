@@ -137,6 +137,8 @@ function Ads() {
     return <DataLoader />;
   }
 
+  console.log(filters?.data);
+
   return (
     <div className="ads-page">
       <SectionHeader />
