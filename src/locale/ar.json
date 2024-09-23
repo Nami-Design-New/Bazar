@@ -151,7 +151,8 @@
     "rewardsRateConditions2": "تقييم",
     "addresses": "العناوين",
     "addAddress": "اضف عنوان جديد",
-    "areYouSureYouWantToDeleteLocation": "هل أنت متأكد من أنك تريد حذف هذا العنوان؟"
+    "areYouSureYouWantToDeleteLocation": "هل أنت متأكد من أنك تريد حذف هذا العنوان؟",
+    "addInterest":"اضافة اهتمام"
   },
   "error": {
     "pageNotFound": "هذا الرابط غير موجود لدينا او ربما تم حذفه. كيف وصلت الي هنا ؟",

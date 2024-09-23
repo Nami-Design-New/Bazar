@@ -4258,6 +4258,9 @@ body main .market-details-page .page-header .cover-wrapper .market .top-wrapper 
   padding: 8px;
   cursor: pointer;
 }
+body main .market-details-page .page-header .cover-wrapper .market .top-wrapper .btns-wrapper .btn-box.follow.active i {
+  color: red;
+}
 body main .market-details-page .page-header .cover-wrapper .market .top-wrapper .btns-wrapper .btn-box i {
   font-size: 20px;
   color: #000;

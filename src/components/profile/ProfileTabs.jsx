@@ -36,8 +36,6 @@ function ProfileTabs({ user, isMyAccount }) {
     user?.id
   );
 
-  if (!addressesLoading) console.log(addresses?.data);
-
   const [showChargeModel, setShowChargeModel] = useState(false);
   const [showWithdrawModel, setShowWithdrawModel] = useState(false);
 
@@ -110,6 +108,7 @@ function ProfileTabs({ user, isMyAccount }) {
               )}
             </Tab>
           )}
+
           {/* Interests */}
           {isMyAccount && (
             <Tab
@@ -117,6 +116,15 @@ function ProfileTabs({ user, isMyAccount }) {
               title={t("profile.interests")}
               className="tab_item p-2 pt-0"
             >
+              {isMyAccount && (
+                <div className="w-100 btn-wrapper d-flex justify-content-end mb-3 p-2">
+                  <Link to="/add-interest" className="custom-btn stroke">
+                    <span>
+                      <IconCirclePlus stroke={2} /> {t("profile.addInterest")}
+                    </span>
+                  </Link>
+                </div>
+              )}
               {interestsLoading ? (
                 <DataLoader minHeight="400px" />
               ) : interests?.data && interests?.data?.length > 0 ? (
@@ -140,6 +148,7 @@ function ProfileTabs({ user, isMyAccount }) {
             eventKey="verifications"
             title={t("profile.verifications")}
             className="tab_item p-2 pt-0"
+            
           >
             <div className="profile-verification-wrapper">
               <ul className="hint-wrapper mx-3">
@@ -261,9 +270,15 @@ function ProfileTabs({ user, isMyAccount }) {
                   {isMyAccount &&
                     (hasReward ? (
                       <div className="w-100 btn-wrapper d-flex justify-content-end mb-3 p-2">
-                        <Link to="/" className="custom-btn stroke">
-                          <span>{t("profile.withdrawRewards")}</span>
-                        </Link>
+                        <div className="btns-wrapper">
+                          <button
+                            className="btn custom-btn filled"
+                            style={{ width: "unset !important" }}
+                            onClick={() => setShowWithdrawModel(true)}
+                          >
+                            <span>{t("profile.withdrawRewards")}</span>
+                          </button>
+                        </div>
                       </div>
                     ) : (
                       <div className="w-100 btn-wrapper d-flex gap-3 justify-content-end flex-column mb-3 p-2">

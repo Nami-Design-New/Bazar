@@ -47,9 +47,9 @@ const AddAddress = ({
     script.async = true;
     script.defer = true;
     script.onload = () => setMapLoaded(true);
-    document.head.appendChild(script);
+    document?.head?.appendChild(script);
     return () => {
-      document.head.removeChild(script);
+      document?.head?.removeChild(script);
     };
   }, []);
 
