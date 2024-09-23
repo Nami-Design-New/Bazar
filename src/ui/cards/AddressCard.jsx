@@ -141,7 +141,7 @@ function AddressCard({
 
         {address?.recipient_phone ? (
           <div className="location">
-            <img src="../../../images/phone.svg" alt="" />
+            <img src="/images/phone.svg" alt="" />
             <span className=" one-line-wrap"> {address?.recipient_phone} </span>
           </div>
         ) : null}

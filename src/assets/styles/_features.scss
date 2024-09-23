@@ -114,6 +114,13 @@
               justify-content: center;
               padding: 8px;
               cursor: pointer;
+              &.follow {
+                &.active {
+                  i {
+                    color: red;
+                  }
+                }
+              }
               i {
                 font-size: 20px;
                 color: $black;

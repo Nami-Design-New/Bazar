@@ -144,3 +144,7 @@ export const adUserMemberShip = (date, lang) => {
 
   return `${lang === "en" ? MONTHS[month].ar : MONTHS[month].en}} ${year}`;
 };
+
+export const renderHTML = (htmlContent) => {
+  return { __html: htmlContent };
+};

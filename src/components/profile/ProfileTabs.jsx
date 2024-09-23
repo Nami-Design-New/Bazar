@@ -20,11 +20,14 @@ import Post from "../../ui/cards/Post.jsx";
 import useGetAddresses from "../../hooks/profile/useGetAddresses.js";
 import AddressCard from "../../ui/cards/AddressCard.jsx";
 import AddAddress from "../addresses/AddAddress.jsx";
+import AddInterest from "../../routes/AddInterest.jsx";
 
 function ProfileTabs({ user, isMyAccount }) {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
+  const [showInterestModal, setShowInterestModal] = useState(false);
   const [targetAddress, setTargetAddress] = useState(null);
+  const [targetInterest, setTargetInterest] = useState(null);
   const { isLoading: adsLoading, data: ads } = useUserAds(user?.id);
   const { isLoading: ordersLoading, data: orders } = useUserOrders(user?.id);
   const { isLoading: rewardsLoading, data: rewards } = useUserRewards(user?.id);
@@ -35,8 +38,6 @@ function ProfileTabs({ user, isMyAccount }) {
   const { isLoading: addressesLoading, data: addresses } = useGetAddresses(
     user?.id
   );
-
-  if (!addressesLoading) console.log(addresses?.data);
 
   const [showChargeModel, setShowChargeModel] = useState(false);
   const [showWithdrawModel, setShowWithdrawModel] = useState(false);
@@ -110,6 +111,7 @@ function ProfileTabs({ user, isMyAccount }) {
               )}
             </Tab>
           )}
+
           {/* Interests */}
           {isMyAccount && (
             <Tab
@@ -117,6 +119,19 @@ function ProfileTabs({ user, isMyAccount }) {
               title={t("profile.interests")}
               className="tab_item p-2 pt-0"
             >
+              {isMyAccount && (
+                <div className="w-100 btn-wrapper d-flex justify-content-end mb-3 p-2">
+                  <span
+                    className="custom-btn stroke"
+                    onClick={() => setShowInterestModal(true)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <span>
+                      <IconCirclePlus stroke={2} /> {t("profile.addInterest")}
+                    </span>
+                  </span>
+                </div>
+              )}
               {interestsLoading ? (
                 <DataLoader minHeight="400px" />
               ) : interests?.data && interests?.data?.length > 0 ? (
@@ -125,6 +140,8 @@ function ProfileTabs({ user, isMyAccount }) {
                     <InterestMiniCard
                       interest={interest}
                       isMyAccount={isMyAccount}
+                      setTargetInterest={setTargetInterest}
+                      setShowInterestModal={setShowInterestModal}
                     />
                   </div>
                 ))
@@ -261,9 +278,15 @@ function ProfileTabs({ user, isMyAccount }) {
                   {isMyAccount &&
                     (hasReward ? (
                       <div className="w-100 btn-wrapper d-flex justify-content-end mb-3 p-2">
-                        <Link to="/" className="custom-btn stroke">
-                          <span>{t("profile.withdrawRewards")}</span>
-                        </Link>
+                        <div className="btns-wrapper">
+                          <button
+                            className="btn custom-btn filled"
+                            style={{ width: "unset !important" }}
+                            onClick={() => setShowWithdrawModel(true)}
+                          >
+                            <span>{t("profile.withdrawRewards")}</span>
+                          </button>
+                        </div>
                       </div>
                     ) : (
                       <div className="w-100 btn-wrapper d-flex gap-3 justify-content-end flex-column mb-3 p-2">
@@ -413,6 +436,12 @@ function ProfileTabs({ user, isMyAccount }) {
         setShowModal={setShowModal}
         targetAddress={targetAddress}
         setTargetAddress={setTargetAddress}
+      />
+      <AddInterest
+        interest={targetInterest}
+        showModal={showInterestModal}
+        setShowModal={setShowInterestModal}
+        setTargetInterest={setTargetInterest}
       />
     </div>
   );

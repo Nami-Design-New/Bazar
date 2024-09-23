@@ -12,8 +12,8 @@ export const handleFollow = async (type, id, setVideos, endpoint) => {
               ...video,
               user: {
                 ...video.user,
-                is_follow: !video.user.is_follow
-              }
+                is_follow: !video.user.is_follow,
+              },
             };
           }
           return video;
@@ -38,7 +38,7 @@ export const handleFavourite = async (type, id, setVideos, endpoint) => {
               is_favorite: !video.is_favorite,
               favorites_count: video.is_favorite
                 ? video.favorites_count - 1
-                : video.favorites_count + 1
+                : video.favorites_count + 1,
             };
           }
           return video;
@@ -50,3 +50,24 @@ export const handleFavourite = async (type, id, setVideos, endpoint) => {
     throw new Error(error.message);
   }
 };
+
+
+export async function follow(requestBody) {
+  try {
+    const req = await axios.post("/user/follow", requestBody);
+
+    return req.data;
+  } catch (err) {
+    throw new Error(`Error to follow: ${err.message}`);
+  }
+}
+
+export async function unfollow(requestBody) {
+  try {
+    const req = await axios.post("/user/un_follow", requestBody);
+
+    return req.data;
+  } catch (err) {
+    throw new Error(`Error to follow: ${err.message}`);
+  }
+}

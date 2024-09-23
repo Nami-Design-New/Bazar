@@ -14,36 +14,8 @@ import useAdsByFilter from "../hooks/ads/useAdsByFilter";
 import useGetFilters from "./../hooks/settings/useGetFilters";
 import Post from "../ui/cards/Post";
 import FiltersGenerator from "../ui/filter/FiltersGenerator";
-
-const cities = [
-  {
-    id: 1,
-    name: "الرياض"
-  },
-  {
-    id: 2,
-    name: "جدة"
-  },
-  {
-    id: 3,
-    name: "مكة"
-  }
-];
-
-const areas = [
-  {
-    id: 1,
-    name: "المنطقة الأولى"
-  },
-  {
-    id: 2,
-    name: "المنطقة الثانية"
-  },
-  {
-    id: 3,
-    name: "المنطقة الثالثة"
-  }
-];
+import useGetAreas from "../hooks/settings/useGetAreas";
+import useGetCities from "../hooks/settings/useGetCities";
 
 function Ads() {
   const { t } = useTranslation();
@@ -77,8 +49,14 @@ function Ads() {
           .get("sub_category_id")
           .split("-")
           .map((subcategory) => Number(subcategory))
-      : []
+      : [],
   });
+
+  const { data: areas } = useGetAreas(
+    searchFilterData.city_id,
+    searchFilterData.city_id ? true : false
+  );
+  const { data: cities, citiesLoading } = useGetCities();
 
   const handleChange = (e) => {
     const { name, checked, type, value } = e.target;
@@ -87,7 +65,7 @@ function Ads() {
     if (name !== "category_id" && name !== "sub_category_id") {
       setSearchFilterData((prevState) => ({
         ...prevState,
-        [name]: parsedValue
+        [name]: parsedValue,
       }));
       return;
     }
@@ -143,7 +121,7 @@ function Ads() {
             .get("sub_category_id")
             .split("-")
             .map((subcategory) => Number(subcategory))
-        : []
+        : [],
     });
   }
 
@@ -152,7 +130,7 @@ function Ads() {
     handleApplyFilters(setSearchParams, searchFilterData);
   }
 
-  if (categoriesLoading || filtersLoading || adsLoading) {
+  if (categoriesLoading || filtersLoading || adsLoading || citiesLoading) {
     return <DataLoader />;
   }
 
@@ -193,9 +171,9 @@ function Ads() {
                     disabledOption={t("select")}
                     value={searchFilterData?.city_id}
                     onChange={(e) => handleChange(e)}
-                    options={cities?.map((city) => ({
+                    options={cities?.data?.map((city) => ({
                       name: city.name,
-                      value: city.id
+                      value: city.id,
                     }))}
                   />
                   <SelectField
@@ -205,9 +183,9 @@ function Ads() {
                     disabledOption={t("select")}
                     value={searchFilterData?.area_id}
                     onChange={(e) => handleChange(e)}
-                    options={areas?.map((area) => ({
+                    options={areas?.data?.map((area) => ({
                       name: area.name,
-                      value: area.id
+                      value: area.id,
                     }))}
                   />
                   <FiltersGenerator
@@ -215,23 +193,6 @@ function Ads() {
                     setDynamicFilterData={setDynamicFilterData}
                     dynamicFilterData={dynamicFilterData}
                   />
-                  {/* <div className="w-100 mb-4 px-4">
-                    <h6 className="mb-2">{t("search.budget")}</h6>
-                    <RangeSlider
-                      min={5}
-                      max={2000}
-                      steps={5}
-                      value={[
-                        searchFilterData.price_from,
-                        searchFilterData.price_to,
-                      ]}
-                      handleSlide={(value) =>
-                        handleSliderChange("price", value)
-                      }
-                      minType="$"
-                      maxType="$"
-                    />
-                  </div> */}
                   <div className="d-flex gap-2 w-100">
                     <button onClick={handleSubmit} className="search-btn">
                       <i className="fa-regular fa-check"></i>{" "}

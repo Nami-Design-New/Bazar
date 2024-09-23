@@ -8,18 +8,16 @@ import PhoneField from "../../ui/form-elements/PhoneField";
 import PasswordField from "../../ui/form-elements/PasswordField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axios from "../../utils/axios";
-import useGetSettings from "../../hooks/settings/useGetSettings";
 
 function RegisterForm({
   formData,
   setFormData,
   handleChange,
   setShowOtp,
-  setOtpData
+  setOtpData,
 }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
-  const { data: settings } = useGetSettings();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,19 +39,19 @@ function RegisterForm({
         "/user/can_register",
         {
           ...formData,
-          phone: Number(formData.phone)
+          phone: Number(formData.phone),
         },
         {
           headers: {
-            "Content-Type": "multipart/form-data"
-          }
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
       if (res.data.code === 200) {
         setShowOtp(true);
         setOtpData((prev) => ({
           ...prev,
-          hashed_code: res.data.data
+          hashed_code: res.data.data,
         }));
       } else {
         toast.error(res.data.message);
@@ -129,11 +127,11 @@ function RegisterForm({
         </div>
         <p className="d-flex w-100 gap-2 terms-condition-alert">
           {t("auth.acceptingTermsByContinue1")}
-          <Link to={settings?.data?.terms_link} className="">
+          <Link to="/terms-of-use" className="">
             {t("auth.terms")}
           </Link>
           {t("auth.acceptingTermsByContinueAnd")}
-          <Link to={settings?.data?.privacy_link} className="">
+          <Link to="/privacy-policy" className="">
             {t("auth.privacy")}
           </Link>
           {t("auth.acceptingTermsByContinue2")}
