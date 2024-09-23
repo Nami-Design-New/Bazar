@@ -30,6 +30,10 @@
           flex-direction: column !important;
           gap: 16px !important;
           align-items: flex-start;
+
+          @media screen and (max-width: 768px) {
+            align-items: center;
+          }
         }
 
         .colored {

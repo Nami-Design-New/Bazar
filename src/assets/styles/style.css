@@ -2505,6 +2505,11 @@ body main .profile .userInfo .top-wrapper.package-container .verification-detail
   gap: 16px !important;
   align-items: flex-start;
 }
+@media screen and (max-width: 768px) {
+  body main .profile .userInfo .top-wrapper.package-container .verification-details {
+    align-items: center;
+  }
+}
 body main .profile .userInfo .top-wrapper.package-container .colored {
   color: #4381f8 !important;
 }
@@ -8361,6 +8366,7 @@ body .empty-section h2 {
   font-size: 36px;
   font-weight: 800;
   color: #cecece;
+  line-height: 1.6;
 }
 body .dropdown-item {
   text-align: right !important;
