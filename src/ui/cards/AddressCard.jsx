@@ -5,21 +5,13 @@ import useGetAddresses from "../../hooks/profile/useGetAddresses";
 import axios from "./../../utils/axios";
 import { toast } from "react-toastify";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-
-const containerStyle = {
-  width: "100%",
-  height: "300px",
-  borderRadius: "12px",
-  overflow: "hidden",
-};
 
 function AddressCard({
   userId,
   address,
   isMyAccount,
   setTargetAddress,
-  setShowModal,
+  setShowModal
 }) {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -96,27 +88,6 @@ function AddressCard({
             </span>
           </>
         )}
-      </div>
-
-      <div className="itemImg">
-        <LoadScript googleMapsApiKey="AIzaSyD_N1k4WKCdiZqCIjjgO0aaKz1Y19JqYqw">
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={{
-              lat: address?.lat,
-              lng: address?.lng,
-            }}
-            zoom={10}
-          >
-            <Marker
-              icon="/images/map-pin.svg"
-              position={{
-                lat: address?.lat,
-                lng: address?.lng,
-              }}
-            ></Marker>
-          </GoogleMap>
-        </LoadScript>
       </div>
 
       <div className="itemInfo">

@@ -42,17 +42,20 @@ const AddAddress = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetAddress]);
 
+  
   useEffect(() => {
     const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyD_N1k4WKCdiZqCIjjgO0aaKz1Y19JqYqw&libraries=places&callback=initMap`;
     script.async = true;
     script.defer = true;
     script.onload = () => setMapLoaded(true);
-    document?.head?.appendChild(script);
+    document.head.appendChild(script);
     return () => {
-      document?.head?.removeChild(script);
+      document.head.removeChild(script);
     };
   }, []);
+
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
