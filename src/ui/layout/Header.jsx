@@ -37,6 +37,7 @@ export default function Header() {
 
   const lang = useSelector((state) => state.language.lang);
   const user = useSelector((state) => state.authedUser.user);
+  const cart = useSelector((state) => state.cart.cartList);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
 
   const [, , deleteCookie] = useCookies();
@@ -192,7 +193,7 @@ export default function Header() {
 
             <Link to={"/cart"} className="cart_open" id="toggleSmallCart">
               <IconShoppingBag stroke={1.5} />
-              <span>0</span>
+              <span>{cart?.length}</span>
             </Link>
 
             <Dropdown>
