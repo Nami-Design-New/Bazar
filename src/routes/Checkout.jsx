@@ -21,6 +21,7 @@ function Checkout() {
   const { data: addresses, addressLoading } = useGetAddresses();
   const { data: settings, settingsLoading } = useGetSettings();
 
+  const [coupon, setCoupon] = useState({});
   const [loading, setLoading] = useState(false);
   const [couponLoading, setCouponLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -107,10 +108,8 @@ function Checkout() {
         coupon: formData.coupon
       });
       if (res?.data?.code === 200) {
-        setFormData({
-          ...formData,
-          discount: res?.data?.data?.discount
-        });
+        setCoupon(res?.data?.data);
+        toast.success(t("couponApplied"));
       } else {
         toast.error(res?.data?.message);
       }
@@ -327,19 +326,23 @@ function Checkout() {
                     />
                   </div>
 
-                  {/* <div className="coupon-card">
-                    <div className="header">
-                      <i className="fa-solid fa-receipt"></i>
-                      <h3>TAWFFER50%</h3>
+                  {coupon?.coupon && (
+                    <div className="coupon-card">
+                      <div className="header">
+                        <i className="fa-solid fa-receipt"></i>
+                        <h3>{coupon?.coupon}</h3>
+                      </div>
+
+                      <div className="details">
+                        <span className="details-box">
+                          {t("min")} {coupon?.min} {t("currency.sar")}
+                        </span>
+                        <span className="details-box">
+                          {t("max")} {coupon?.max} {t("currency.sar")}
+                        </span>
+                      </div>
                     </div>
-                    <button className="discard_coupon">
-                      <i className="fa-regular fa-trash delete"></i>
-                    </button>
-                    <div className="details">
-                      <span className="details-box">الحد الادني ٢٠٠ {t("currency.sar")}</span>
-                      <span className="details-box">الحد الاقصي ٢٠٠٠ {t("currency.sar")}</span>
-                    </div>
-                  </div> */}
+                  )}
 
                   <SubmitButton
                     className={"mt-4"}

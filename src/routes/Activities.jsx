@@ -29,13 +29,13 @@ function Activities() {
                 </Link>
               </div>
               <div className="cards-wrapper">
-                <div className="col-lg-6 col-12 p-3">
+                <div className="col-lg-6 col-12 p-2">
                   <ADMiniCard />
                 </div>
-                <div className="col-lg-6 col-12 p-3">
+                <div className="col-lg-6 col-12 p-2">
                   <ADMiniCard />
                 </div>
-                <div className="col-lg-6 col-12 p-3">
+                <div className="col-lg-6 col-12 p-2">
                   <ADMiniCard />
                 </div>
               </div>
@@ -55,13 +55,13 @@ function Activities() {
                 </Link>
               </div>
               <div className="cards-wrapper">
-                <div className="col-lg-6 col-12 p-3">
+                <div className="col-lg-6 col-12 p-2">
                   <InterestMiniCard />
                 </div>
-                <div className="col-lg-6 col-12 p-3">
+                <div className="col-lg-6 col-12 p-2">
                   <InterestMiniCard />
                 </div>
-                <div className="col-lg-6 col-12 p-3">
+                <div className="col-lg-6 col-12 p-2">
                   <InterestMiniCard />
                 </div>
               </div>
@@ -81,13 +81,13 @@ function Activities() {
                 </Link>
               </div>
               <div className="cards-wrapper">
-                <div className="col-lg-6 col-12 p-3">
+                <div className="col-lg-6 col-12 p-2">
                   <OrderMiniCard />
                 </div>
-                <div className="col-lg-6 col-12 p-3">
+                <div className="col-lg-6 col-12 p-2">
                   <OrderMiniCard />
                 </div>
-                <div className="col-lg-6 col-12 p-3">
+                <div className="col-lg-6 col-12 p-2">
                   <OrderMiniCard />
                 </div>
               </div>

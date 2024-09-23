@@ -53,51 +53,14 @@ function Contact() {
       <SectionHeader />
       <section className="contact_section">
         <div className="container">
-          <div className="row justify-content-center">
-            {/* <div className="col-lg-4 p-2" data-aos="fade-up">
+          <div className="row">
+            <div className="col-lg-4 p-2">
               <div className="contact_info">
                 <h3> {t("contact.keepinTouch")} </h3>
-                <ul>
-                  <li className="field" data-aos="fade-up">
-                    <div className="icon">
-                      <img src="/images/c-location.svg" alt="address" />
-                    </div>
-                    <div className="text">
-                      <h4> العنوان :</h4>
-                      <a
-                        target="_blank"
-                        href="https://maps.app.goo.gl/9Mg14qzeZY9tq7oeA"
-                      >
-                        السلام المدينة المنورة السعودية
-                      </a>
-                    </div>
-                  </li>
-                  <li className="field" data-aos="fade-up">
-                    <div className="icon">
-                      <img src="/images/c-email.svg" alt="email" />
-                    </div>
-                    <div className="text">
-                      <h4> البريد الالكتروني :</h4>
-                      <a target="_blank" href="mailto:info@ditchIt.com">
-                        info@bazar.com
-                      </a>
-                    </div>
-                  </li>
-                  <li className="field" data-aos="fade-up">
-                    <div className="icon">
-                      <img src="/images/c-phone.svg" alt="phone" />
-                    </div>
-                    <div className="text">
-                      <h4> رقم الهاتف :</h4>
-                      <a target="_blank" href="tel:+0123456789">
-                        +0123456789
-                      </a>
-                    </div>
-                  </li>
-                </ul>
+                <img src="/images/contact-ill.svg" alt="contact" />
               </div>
-            </div> */}
-            <div className="col-lg-8 p-2" data-aos="fade-up">
+            </div>
+            <div className="col-lg-8 p-2">
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <div className="inputfield">

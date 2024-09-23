@@ -121,7 +121,7 @@ function ProfileTabs({ user, isMyAccount }) {
                 <DataLoader minHeight="400px" />
               ) : interests?.data && interests?.data?.length > 0 ? (
                 interests?.data?.map((interest) => (
-                  <div className="col-lg-6 col-12 p-3" key={interest?.id}>
+                  <div className="col-lg-6 col-12 p-2" key={interest?.id}>
                     <InterestMiniCard
                       interest={interest}
                       isMyAccount={isMyAccount}
@@ -267,10 +267,7 @@ function ProfileTabs({ user, isMyAccount }) {
                       </div>
                     ) : (
                       <div className="w-100 btn-wrapper d-flex gap-3 justify-content-end flex-column mb-3 p-2">
-                        <h4
-                          className="text-center"
-                          style={{ textWrap: "balance" }}
-                        >
+                        <h4 style={{ textWrap: "balance" }}>
                           {t("profile.noRewards")}
                         </h4>
                         {settings?.reward_rate_average ||
@@ -299,7 +296,7 @@ function ProfileTabs({ user, isMyAccount }) {
                     ))}
                   {rewards?.data?.map((reward) => (
                     <div
-                      className="col-lg-4 col-md-6 col-12 p-3"
+                      className="col-lg-4 col-md-6 col-12 p-2"
                       key={reward?.id}
                     >
                       <Post

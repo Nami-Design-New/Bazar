@@ -26,32 +26,48 @@ import Videos from "./routes/Videos";
 import Chats from "./routes/Chats";
 import ManageAccounts from "./routes/ManageAccounts";
 import Faq from "./routes/Faq";
+import About from "./routes/About";
+import TermsOfUse from "./routes/TermsOfUse";
+import Privacy from "./routes/Privacy";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
   { path: "*", element: <ErrorPage /> },
+  { path: "/about-us", element: <About /> },
+  { path: "/terms-of-use", element: <TermsOfUse /> },
+  { path: "/privacy-Policy", element: <Privacy /> },
+  { path: "/faq", element: <Faq /> },
+  { path: "/contact", element: <Contact /> },
+  { path: "/videos", element: <Videos /> },
+  { path: "/markets", element: <Markets /> },
+  { path: "/coupons", element: <Coupons /> },
+  { path: "/coupon-details/:id", element: <CouponDetails /> },
+  { path: "/ads", element: <Ads /> },
+  { path: "/wanted-ads", element: <WantedAds /> },
 
   // user auth
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   { path: "/forget-password", element: <ForgetPassword /> },
   { path: "/edit-profile", element: <EditProfile /> },
-  { path: "/profile", element: <Profile /> },
-  { path: "/chats", element: <Chats /> },
-  { path: "/profile/:id", element: <Profile /> },
+
+  // verification
   {
     path: "/app-verification",
     element: <AppVerification />,
-    protected: true,
+    protected: true
   },
   { path: "/fal-verification", element: <FalVerification /> },
   {
     path: "/commercial-verification",
     element: <CommercialVerification />,
-    protected: true,
+    protected: true
   },
 
   // user features
+  { path: "/profile", element: <Profile /> },
+  { path: "/profile/:id", element: <Profile /> },
+  { path: "/chats", element: <Chats /> },
   { path: "/cart", element: <Cart />, protected: true },
   { path: "/checkout", element: <Checkout />, protected: true },
   { path: "/my-activities", element: <Activities />, protected: true },
@@ -61,17 +77,7 @@ const routerConfig = [
   { path: "/favorites", element: <Favorites /> },
   { path: "/add-ad", element: <AddAdvertisment /> },
   { path: "/add-ad/:id", element: <AddAdvertisment /> },
-  { path: "/manage-accounts", element: <ManageAccounts /> },
-
-  // general
-  { path: "/contact", element: <Contact /> },
-  { path: "/faq", element: <Faq /> },
-  { path: "/videos", element: <Videos /> },
-  { path: "/coupons", element: <Coupons /> },
-  { path: "/coupon-details/:id", element: <CouponDetails /> },
-  { path: "/ads", element: <Ads /> },
-  { path: "/wanted-ads", element: <WantedAds /> },
-  { path: "/markets", element: <Markets /> },
+  { path: "/manage-accounts", element: <ManageAccounts /> }
 ];
 
 export default routerConfig;

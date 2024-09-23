@@ -65,19 +65,19 @@ function Coupons() {
           </ul>
         </div>
         <div className="cards-wrapper d-flex flex-wrap">
-          <div className="col-lg-4 col-md-6 col-12 p-3">
+          <div className="col-lg-4 col-md-6 col-12 p-2">
             <FavoriteMarketCard type="coupon"/>
           </div>
-          <div className="col-lg-4 col-md-6 col-12 p-3">
+          <div className="col-lg-4 col-md-6 col-12 p-2">
             <FavoriteMarketCard type="coupon"/>
           </div>
-          <div className="col-lg-4 col-md-6 col-12 p-3">
+          <div className="col-lg-4 col-md-6 col-12 p-2">
             <FavoriteMarketCard type="coupon"/>
           </div>
-          <div className="col-lg-4 col-md-6 col-12 p-3">
+          <div className="col-lg-4 col-md-6 col-12 p-2">
             <FavoriteMarketCard type="coupon"/>
           </div>
-          <div className="col-lg-4 col-md-6 col-12 p-3">
+          <div className="col-lg-4 col-md-6 col-12 p-2">
             <FavoriteMarketCard type="coupon"/>
           </div>
         </div>
