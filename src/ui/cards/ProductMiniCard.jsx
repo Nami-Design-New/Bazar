@@ -22,7 +22,10 @@ function ProductMiniCard({ product, marketId }) {
   }, [cart, product?.id]);
 
   const handleAddToCart = async () => {
-    if (marketId !== cart?.market?.id) {
+    console.log("marketId", marketId);
+    console.log("marketIdcart", cart?.market?.id);
+
+    if (cart?.market?.id && marketId !== cart?.market?.id) {
       setShowModal(true);
       return;
     }

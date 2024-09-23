@@ -12,7 +12,7 @@ const AddAddress = ({
   showModal,
   setShowModal,
   setTargetAddress,
-  targetAddress,
+  targetAddress
 }) => {
   console.log(targetAddress);
 
@@ -26,7 +26,7 @@ const AddAddress = ({
     recipient_phone: targetAddress?.recipient_phone || "",
     address: targetAddress?.address || "",
     lat: targetAddress?.lat || 24.7136,
-    lng: targetAddress?.lat || 46.6753,
+    lng: targetAddress?.lat || 46.6753
   });
 
   useEffect(() => {
@@ -37,8 +37,9 @@ const AddAddress = ({
       recipient_phone: targetAddress?.recipient_phone || "",
       address: targetAddress?.address || "",
       lat: targetAddress?.lat || 24.7136,
-      lng: targetAddress?.lat || 46.6753,
+      lng: targetAddress?.lat || 46.6753
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetAddress]);
 
   useEffect(() => {
@@ -73,7 +74,7 @@ const AddAddress = ({
           recipient_phone: "",
           address: "",
           lat: 24.7136,
-          lng: 46.6753,
+          lng: 46.6753
         });
         setTargetAddress(null);
       }

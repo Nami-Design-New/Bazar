@@ -317,7 +317,10 @@
     "whatsappNumber": "WhatsApp Number",
     "callNumber": "Phone Number",
     "next": "Next",
-    "previous": "Previous"
+    "previous": "Previous",
+    "phoneVerified": "Phone Verified Successfully",
+    "checkTheCodeOnYourPhone": "Check the code on your phone",
+    "whatsappVerified": "WhatsApp number has been verified"
   },
   "markets": {
     "products": "Products",
