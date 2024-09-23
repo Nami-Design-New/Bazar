@@ -6,14 +6,12 @@ function RangeGenerator({ filter, setDynamicFilterData }) {
       ...prevState,
       [filterKey]: {
         min: value[0],
-        max: value[1],
-      },
+        max: value[1]
+      }
     }));
   };
 
-  return Number(filter?.range?.min) &&
-    Number(filter?.range?.max) &&
-    Number(filter?.range?.min) !== Number(filter?.range?.max) ? (
+  return Number(filter?.range?.min) && Number(filter?.range?.max) ? (
     <div className="w-100 mb-4 px-4">
       <h6 className="mb-2">{filter?.name}</h6>
       <RangeSlider
