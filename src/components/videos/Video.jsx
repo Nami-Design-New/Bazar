@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { handleFavourite, handleFollow } from "../../services/apiFollow";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
 import Comments from "./Comments";
 import Share from "./Share";
 
@@ -54,7 +56,28 @@ function Video({ ad, setVideos }) {
 
   return (
     <div className="video" onClick={handleUserInteraction}>
-      <video ref={videoRef} src={ad?.video} playsInline loop></video>
+      {ad?.video ? (
+        <video ref={videoRef} src={ad?.video} playsInline loop></video>
+      ) : (
+        <Swiper
+          spaceBetween={12}
+          slidesPerView={1}
+          speed={1000}
+          loop={true}
+          modules={[Autoplay, Pagination]}
+          autoplay={{ delay: 2000, disableOnInteraction: false }}
+          pagination={{
+            type: "fraction"
+          }}
+          className="videosSwiper"
+        >
+          {ad?.images?.map((img) => (
+            <SwiperSlide key={img.id}>
+              <img src={img.image} alt="" />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
 
       <div className="video_utils">
         <div className="user">

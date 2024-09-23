@@ -75,7 +75,7 @@ const routerConfig = [
   { path: "/order-details/:id", element: <OrderDetails />, protected: true },
   { path: "/market-details/:id", element: <MarketDetails /> },
   { path: "/favorites", element: <Favorites /> },
-  { path: "/add-ad", element: <AddAdvertisment /> },
+  { path: "/add-ad", element: <AddAdvertisment />, protected: true },
   { path: "/add-ad/:id", element: <AddAdvertisment /> },
   { path: "/manage-accounts", element: <ManageAccounts /> }
 ];

@@ -89,9 +89,15 @@ function Checkout() {
       total:
         Number(formData.sub_total) +
         Number(formData.taxes) +
-        Number(formData.delivery_price)
+        Number(formData.delivery_price) -
+        Number(formData.discount)
     }));
-  }, [formData.sub_total, formData.taxes, formData.delivery_price]);
+  }, [
+    formData.sub_total,
+    formData.taxes,
+    formData.delivery_price,
+    formData.discount
+  ]);
 
   const handleChange = (e) => {
     setFormData({
@@ -110,6 +116,11 @@ function Checkout() {
       if (res?.data?.code === 200) {
         setCoupon(res?.data?.data);
         toast.success(t("couponApplied"));
+        setFormData({
+          ...formData,
+          coupon: res?.data?.data?.coupon,
+          discount: res?.data?.data?.discount
+        });
       } else {
         toast.error(res?.data?.message);
       }

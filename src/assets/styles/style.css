@@ -1800,6 +1800,7 @@ body main .videos .videos_wrapper .video video {
 body main .videos .videos_wrapper .video .video_utils {
   position: absolute;
   right: 0;
+  z-index: 9;
   bottom: 60px;
   padding: 12px;
   display: flex;
@@ -1860,6 +1861,7 @@ body main .videos .videos_wrapper .video .video_utils .actions span {
 }
 body main .videos .videos_wrapper .video .adName {
   position: absolute;
+  z-index: 9;
   bottom: 20px;
   padding: 0 20px;
   right: 0;
@@ -2129,6 +2131,32 @@ body main .videos .videos_wrapper .video .share .body .social li a {
 }
 body main .videos .videos_wrapper .video .share .body .social li a i {
   color: #4381f8;
+}
+body main .videos .videos_wrapper .video .swiper-pagination-fraction {
+  z-index: 999;
+  top: 20px;
+  left: 20px;
+  color: #fff;
+  mix-blend-mode: difference;
+  font-weight: 600;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+body main .videos .videos_wrapper .video .videosSwiper {
+  width: 100%;
+  height: 100%;
+}
+body main .videos .videos_wrapper .video .videosSwiper .swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+body main .videos .videos_wrapper .video .videosSwiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 body main .auth-form {
   position: relative;
@@ -6825,7 +6853,7 @@ body main .add-advertisment .form .types .type .content .text p {
   font-size: 14px;
   color: #aaaaaa;
 }
-body main .add-advertisment .form .types .type input {
+body main .add-advertisment .form .types .type .form-input-check {
   cursor: pointer;
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -6837,7 +6865,7 @@ body main .add-advertisment .form .types .type input {
   border-color: #d9d9d9;
   position: relative;
 }
-body main .add-advertisment .form .types .type input::after {
+body main .add-advertisment .form .types .type .form-input-check::after {
   content: "\f00c";
   color: #4381f8;
   font-size: 18px;
@@ -6852,7 +6880,7 @@ body main .add-advertisment .form .types .type input::after {
   width: unset;
   height: unset;
 }
-body main .add-advertisment .form .types .type input:checked::after {
+body main .add-advertisment .form .types .type .form-input-check:checked::after {
   display: block;
 }
 body main .add-advertisment .form .types .type .input-field input {
@@ -7000,6 +7028,16 @@ body main .check_phone button {
   body main .check_phone button {
     padding: 0 16px;
   }
+}
+body main .otp_container {
+  margin: 24px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 500px !important;
+}
+body main .otp_container .otp-container {
+  margin: 0 auto;
 }
 body main .ads-page .content-wrapper {
   padding-top: 60px;

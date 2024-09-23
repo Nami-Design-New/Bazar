@@ -317,7 +317,10 @@
     "whatsappNumber": "رقم الواتساب",
     "callNumber": "رقم الهاتف",
     "next": "التالي",
-    "previous": "السابق"
+    "previous": "السابق",
+    "phoneVerified": "تم التحقق من رقم الهاتف",
+    "checkTheCodeOnYourPhone": "تحقق من الكود على الهاتف",
+    "whatsappVerified": "تم التحقق من رقم الواتساب"
   },
   "markets": {
     "products": "المنتجات",

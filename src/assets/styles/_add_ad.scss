@@ -160,7 +160,7 @@
             }
           }
         }
-        input {
+        .form-input-check {
           cursor: pointer;
           appearance: none;
           width: 28px;
@@ -302,6 +302,7 @@
     }
   }
 }
+
 .check_phone {
   width: 100%;
   display: flex;
@@ -320,5 +321,16 @@
     @media screen and (max-width: 576px) {
       padding: 0 16px;
     }
+  }
+}
+
+.otp_container {
+  margin: 24px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 500px !important;
+  .otp-container{
+    margin: 0 auto;
   }
 }
