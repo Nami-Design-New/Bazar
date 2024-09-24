@@ -30,25 +30,25 @@ function InterestMiniCard({
           <div className="categories-wrapper">
             {interest?.category?.name ? (
               <Link to="" className="category ">
-                <i className="fa-solid fa-cubes"></i>
+                <i className="far fa-cubes"></i>
                 {interest?.category?.name}
               </Link>
             ) : null}
             {interest?.sub_category?.name ? (
               <Link to="" className="category ">
-                <i className="fa-solid fa-cubes"></i>
+                <i className="far fa-cubes"></i>
                 {interest?.sub_category?.name}
               </Link>
             ) : null}
             {interest?.city?.name ? (
               <Link to="" className="category ">
-                <i className="fa-sharp fa-solid fa-location-dot"></i>{" "}
+                <i className="fa-sharp far fa-location-dot"></i>{" "}
                 {interest?.city?.name}
               </Link>
             ) : null}
             {interest?.area?.name ? (
               <Link to="" className="category ">
-                <i className="fa-regular fa-home"></i> {interest?.area?.name}
+                <i className="far fa-home"></i> {interest?.area?.name}
               </Link>
             ) : null}
           </div>
