@@ -1,33 +1,46 @@
 import { Link, useNavigate } from "react-router-dom";
 import { IconMessageCircle, IconPhone } from "@tabler/icons-react";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation } from "swiper/modules";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   adUserMemberShip,
   formatTimeDifference,
   getTimeDifference
 } from "../utils/helpers";
-import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
 import AdDetailsSlider from "../components/ad-details/AdDetailsSlider";
 import DataLoader from "../ui/DataLoader";
 import useGetAdById from "./../hooks/ads/useGetAdById";
-import "swiper/swiper-bundle.css";
 import Post from "./../ui/cards/Post";
 import useAddToFavorite from "../hooks/useAddToFavorite";
 import useRemoveFromFavorite from "../hooks/useRemoveFromFavorite";
+import "swiper/swiper-bundle.css";
+
+const containerStyle = {
+  width: "100%",
+  height: "300px",
+  borderRadius: "12px",
+  overflow: "hidden"
+};
 
 function AdDetails() {
   const { t } = useTranslation();
-  const { isLoading, data: ad } = useGetAdById();
-  const lang = useSelector((state) => state.language.lang);
   const navigate = useNavigate();
-  const user = useSelector((state) => state.authedUser.user);
   const currentPageLink = window.location.href;
+
+  const lang = useSelector((state) => state.language.lang);
+  const user = useSelector((state) => state.authedUser.user);
+  const isLogged = useSelector((state) => state.authedUser.isLogged);
+
+  const { isLoading, data: ad } = useGetAdById();
   const { addToFavorite, isLoading: addingLoading } = useAddToFavorite();
   const { removeFromFavorite, isLoading: removingLoading } =
     useRemoveFromFavorite();
-  const isLogged = useSelector((state) => state.authedUser.isLogged);
+
+  const queryClient = useQueryClient();
 
   const timeDifference = getTimeDifference(ad?.data?.created_at);
   const creationTime = formatTimeDifference(
@@ -44,12 +57,38 @@ function AdDetails() {
     e.preventDefault();
     if (isLogged) {
       if (ad?.is_favorite) {
-        removeFromFavorite({ id: ad?.id, type: "ad_id" });
+        removeFromFavorite(
+          { id: ad?.id, type: "ad_id" },
+          {
+            onSuccess: () => {
+              console.log("success");
+              queryClient.invalidateQueries([
+                "userAds",
+                "adsByFilter",
+                "favoriteAds"
+              ]);
+              queryClient.invalidateQueries(["adById", ad?.id]);
+            }
+          }
+        );
       } else {
-        addToFavorite({
-          id: ad?.id,
-          type: "ad_id"
-        });
+        addToFavorite(
+          {
+            id: ad?.id,
+            type: "ad_id"
+          },
+          {
+            onSuccess: () => {
+              console.log("success");
+              queryClient.invalidateQueries([
+                "userAds",
+                "adsByFilter",
+                "favoriteAds"
+              ]);
+              queryClient.invalidateQueries(["adById", ad?.id]);
+            }
+          }
+        );
       }
     } else {
       navigate("/login");
@@ -57,13 +96,17 @@ function AdDetails() {
   }
 
   const openChat = () => {
-    console.log(user);
-
     sessionStorage.setItem("buyer_id", user?.id);
     sessionStorage.setItem("seller_id", ad?.data?.user_id);
     sessionStorage.setItem("ad_id", ad?.data?.id);
 
-    navigate("/chats");
+    navigate(isLogged ? "/chats" : "/login");
+  };
+
+  const navigateToLogin = () => {
+    if (!isLogged) {
+      navigate("/login");
+    }
   };
 
   const socialShareLinks = {
@@ -83,10 +126,19 @@ function AdDetails() {
             <div className="col-lg-8 d-flex flex-column gap-4 p-0 pb-3 p-md-3">
               <AdDetailsSlider images={ad?.data?.images} />
 
+              {ad?.data?.audio && (
+                <div className="audioPlayer">
+                  <audio controls className="w-100">
+                    <source src={ad?.data?.audio} type="audio/mpeg" />
+                  </audio>
+                </div>
+              )}
+
               <div className="priceInfo">
                 <div className="price">
                   <span> ${ad?.data?.price || 200} </span>
                 </div>
+
                 <button
                   className={`favorite ${
                     ad?.data?.is_favorite ? "active" : ""
@@ -166,7 +218,7 @@ function AdDetails() {
             </div>
 
             <div className="col-lg-4 p-0 p-md-3">
-              <div className="advertiserDetails">
+              <div className="advertiserDetails mb-3">
                 <Link
                   to={`/profile/${ad?.data?.user?.id}`}
                   className="advertiser"
@@ -192,8 +244,8 @@ function AdDetails() {
 
                   {Number(ad?.data?.phone) !== 0 && (
                     <Link
-                      target="_blank"
-                      to={`tel:${ad?.data?.phone}`}
+                      target={isLogged ? "_blank" : "_self"}
+                      to={!isLogged ? "/login" : `tel:${ad?.data?.phone}`}
                       className="call"
                     >
                       <IconPhone stroke={1.5} />
@@ -203,9 +255,14 @@ function AdDetails() {
 
                   {Number(ad?.data?.whatsapp) !== 0 && (
                     <Link
-                      target="_blank"
-                      to={`https://wa.me/${ad?.data?.whatsapp}`}
+                      target={isLogged ? "_blank" : "_self"}
+                      to={
+                        !isLogged
+                          ? "/login"
+                          : `https://wa.me/${ad?.data?.whatsapp}`
+                      }
                       className="chat"
+                      onClick={navigateToLogin}
                     >
                       <IconMessageCircle stroke={1.5} />
                       <span> {t("ads.whatsapp")} </span>
@@ -214,7 +271,7 @@ function AdDetails() {
                 </div>
               </div>
 
-              <div className="itemDetailsBox">
+              <div className="itemDetailsBox mb-3">
                 <h4 className="title">{t("safetyTitle")}</h4>
                 <ul>
                   <li>
@@ -230,6 +287,27 @@ function AdDetails() {
                     <p>{t("safety4")}</p>
                   </li>
                 </ul>
+              </div>
+
+              <div className="itemDetailsBox mb-3">
+                <LoadScript googleMapsApiKey="AIzaSyD_N1k4WKCdiZqCIjjgO0aaKz1Y19JqYqw">
+                  <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    center={{
+                      lat: ad?.data?.lat,
+                      lng: ad?.data?.lng
+                    }}
+                    zoom={10}
+                  >
+                    <Marker
+                      icon="/images/map-pin.svg"
+                      position={{
+                        lat: ad?.data?.lat,
+                        lng: ad?.data?.lng
+                      }}
+                    ></Marker>
+                  </GoogleMap>
+                </LoadScript>
               </div>
             </div>
           </div>

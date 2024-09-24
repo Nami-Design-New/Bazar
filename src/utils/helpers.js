@@ -45,28 +45,32 @@ export const formatMessageTime = (timestamp) => {
 export const getTimeDifference = (createdAt) => {
   const now = new Date();
   const createdDate = new Date(createdAt);
-  let years = now.getFullYear() - createdDate.getFullYear();
-  let months = now.getMonth() - createdDate.getMonth();
-  let days = now.getDate() - createdDate.getDate();
-  let hours = now.getHours() - createdDate.getHours();
-  let minutes = now.getMinutes() - createdDate.getMinutes();
+  let years, months, days, hours, minutes;
 
-  if (minutes < 0) {
-    minutes += 60;
-    if (hours > 0) hours--;
-  }
-  if (hours < 0) {
-    hours += 24;
-    if (days > 0) days--;
-  }
-  if (days < 0) {
-    const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-    days += lastMonth.getDate();
-    if (months > 0) months--;
-  }
-  if (months < 0) {
-    months += 12;
-    if (years > 0) years--;
+  if (now && createdAt) {
+    years = now.getFullYear() - createdDate.getFullYear();
+    months = now.getMonth() - createdDate.getMonth();
+    days = now.getDate() - createdDate.getDate();
+    hours = now.getHours() - createdDate.getHours();
+    minutes = now.getMinutes() - createdDate.getMinutes();
+
+    if (minutes < 0) {
+      minutes += 60;
+      if (hours > 0) hours--;
+    }
+    if (hours < 0) {
+      hours += 24;
+      if (days > 0) days--;
+    }
+    if (days < 0) {
+      const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+      days += lastMonth.getDate();
+      if (months > 0) months--;
+    }
+    if (months < 0) {
+      months += 12;
+      if (years > 0) years--;
+    }
   }
   return { years, months, days, hours, minutes };
 };
@@ -139,7 +143,7 @@ export function calcDeliveryPrice(lat1, lng1, lat2, lng2, deliveryPrice) {
 
 export const adUserMemberShip = (date, lang) => {
   console.log(lang);
-  
+
   const createdAt = new Date(date);
   const month = createdAt.getMonth();
   const year = createdAt.getFullYear();

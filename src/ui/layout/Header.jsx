@@ -12,7 +12,7 @@ import {
   IconCirclePlus,
   IconLanguage,
   IconMessage,
-  IconShoppingBag,
+  IconShoppingBag
 } from "@tabler/icons-react";
 import axios from "../../utils/axios";
 import i18next from "i18next";
@@ -104,14 +104,14 @@ export default function Header() {
         <div className="container">
           <div className="logo">
             <Link to="/">
-              <img src="/images/logo.png" alt="logo" />
+              <img src="/images/logo.svg" alt="logo" />
             </Link>
           </div>
 
           <ul className={`navigation_links ${isOpen ? "show" : ""}`}>
             <li className="logoo">
               <NavLink className="nav-link" to="/" onClick={handleClickOutSide}>
-                <img src={`/images/logo.png`} alt="" />
+                <img src={`/images/logo.svg`} alt="" />
               </NavLink>
             </li>
             <li>
@@ -219,12 +219,14 @@ export default function Header() {
                           <NotificationItem notification={notification} />
                         </Dropdown.Item>
                       ))}
-                      <Link className="showall" to="/notifications">
-                        {t("header.allNotifications")}
-                      </Link>
                     </>
-                  ) : <EmptyData>{t("noNotifications")}</EmptyData>}
+                  ) : (
+                    <EmptyData>{t("noNotifications")}</EmptyData>
+                  )}
                 </div>
+                <Link className="showall" to="/notifications">
+                  {t("header.allNotifications")}
+                </Link>
               </Dropdown.Menu>
             </Dropdown>
 

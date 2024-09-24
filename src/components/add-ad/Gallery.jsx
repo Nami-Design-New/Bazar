@@ -80,7 +80,9 @@ function Gallery({ formData, setFormData, setForm }) {
       {/* main image */}
       <div className="col-lg-6 col-12 p-2">
         <div className="input-field">
-          <label htmlFor="certificate-image">{t("ads.main_image")}</label>
+          <label htmlFor="certificate-image">
+            {t("ads.main_image")} <span>( {t("ads.main_imageHint")} )</span>
+          </label>
           <label className="video_upload">
             <input
               type="file"
@@ -95,11 +97,32 @@ function Gallery({ formData, setFormData, setForm }) {
               }
             />
             {formData?.cover ? (
-              <img
-                style={{ objectFit: "cover", width: "100%", height: "100%" }}
-                src={URL.createObjectURL(formData?.cover)}
-                alt="upload"
-              />
+              <>
+                <img
+                  style={{
+                    objectFit: "contain",
+                    width: "100%",
+                    height: "100%"
+                  }}
+                  src={
+                    formData?.cover?.type?.startsWith("image")
+                      ? URL.createObjectURL(formData?.cover)
+                      : formData?.cover
+                  }
+                  alt="upload"
+                />
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setFormData({
+                      ...formData,
+                      cover: ""
+                    });
+                  }}
+                >
+                  <i className="fa-light fa-xmark"></i>
+                </button>
+              </>
             ) : (
               <img src="/images/gallery.svg" alt="upload" />
             )}
@@ -127,14 +150,35 @@ function Gallery({ formData, setFormData, setForm }) {
               }
             />
             {formData.video ? (
-              <video
-                src={URL.createObjectURL(formData.video)}
-                style={{ objectFit: "cover", width: "100%", height: "100%" }}
-                autoPlay
-                loop
-                muted
-                playsInline
-              />
+              <>
+                <video
+                  src={
+                    formData.video?.type?.startsWith("video")
+                      ? URL.createObjectURL(formData.video)
+                      : formData.video
+                  }
+                  style={{
+                    objectFit: "contain",
+                    width: "100%",
+                    height: "100%"
+                  }}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setFormData({
+                      ...formData,
+                      video: ""
+                    });
+                  }}
+                >
+                  <i className="fa-light fa-xmark"></i>
+                </button>
+              </>
             ) : (
               <img src="/images/video.svg" alt="upload" />
             )}

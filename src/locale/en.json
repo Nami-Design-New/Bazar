@@ -31,7 +31,8 @@
     "onlineMarkets": "Online Markets",
     "categories": "Categories",
     "exploreOffers": "Explore Offers",
-    "categoryTitle": "Let Your Dreams Walk on Four Wheels"
+    "categoryTitle": "Let Your Dreams Walk on Four Wheels",
+    "centers": "Markets and centers"
   },
   "routes": {
     "home": "Home",
@@ -320,7 +321,8 @@
     "previous": "Previous",
     "phoneVerified": "Phone Verified Successfully",
     "checkTheCodeOnYourPhone": "Check the code on your phone",
-    "whatsappVerified": "WhatsApp number has been verified"
+    "whatsappVerified": "WhatsApp number has been verified",
+    "main_imageHint": "Video Cover"
   },
   "markets": {
     "products": "Products",
@@ -522,5 +524,12 @@
   "memberSince": "Member since",
   "delete_cart_and_add": "You cannot add products from different stores to the cart. Do you want to delete the cart and add this product?",
   "delete_cart_and_add_product": "Delete cart and add",
-  "couponApplied": "Coupon applied successfully"
+  "couponApplied": "Coupon applied successfully",
+  "confirm": "Confirm",
+  "selectPlace": "Choose delivery address first.",
+  "messageSentSuccessfuly": "Your message has been sent successfully. A customer service representative will contact you shortly.",
+  "importantLinks": "Important Links",
+  "socialMedia": "Social Media",
+  "categoriess": "Catregories",
+  "footerAbout": "The best site for displaying ads and purchasing products in Saudi Arabia"
 }

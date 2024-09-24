@@ -69,7 +69,7 @@ function HeroSection() {
               </Link>
 
               <Link
-                to="/coupons"
+                to="/markets?type=coupon"
                 className="category"
                 style={{ backgroundColor: "#3FA21821" }}
               >
@@ -91,11 +91,11 @@ function HeroSection() {
               </Link>
 
               <Link
-                to="/categories"
+                to="/markets?type=online"
                 className="category"
                 style={{ backgroundColor: "#4B82F829" }}
               >
-                <h2>{t("home.categories")}</h2>
+                <h2>{t("home.centers")}</h2>
                 <div className="img">
                   <img src="/images/categories.png" alt="stores" />
                 </div>

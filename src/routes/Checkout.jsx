@@ -135,7 +135,9 @@ function Checkout() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (!formData?.address_id) {
+    if (!formData?.address_id && cart[0]?.market?.delivery) {
+      setLoading(false);
+      toast.error(t("selectPlace"));
       return;
     }
     try {
@@ -262,7 +264,6 @@ function Checkout() {
                               checked={
                                 Number(formData.address_id) === address?.id
                               }
-                              required={true}
                             />
                             <span className="address">
                               {address?.address_title}

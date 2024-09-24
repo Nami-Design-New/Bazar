@@ -62,7 +62,7 @@ function Profile() {
                         <img className="userImg" src={user?.image} alt="" />
                         {user?.verified ? (
                           <div className="verified-badge">
-                            <i className="fa-solid fa-badge-check"></i>
+                            <i className="fa-regular fa-badge-check"></i>
                           </div>
                         ) : null}
                       </div>
@@ -80,7 +80,7 @@ function Profile() {
                             </Link>
                           )}
                           {/* <span className="details-box location">
-      <i className="fa-sharp fa-solid fa-location-\ "></i>
+      <i className="fa-sharp fa-regular fa-location-\ "></i>
       السعودية, الرياض
     </span> */}
                         </div>
@@ -143,30 +143,21 @@ function Profile() {
                         <div className="userName d-flex flex-column ">
                           <div className="verification-details">
                             {subscriptionRemainingDays(user?.end_date) > 0 ? (
-                              <span
-                                className="verification-item"
-                                style={{ fontWeight: 600 }}
-                              >
+                              <span className="verification-item">
                                 <i className="fa-regular fa-box-circle-check "></i>
                                 {t("profile.verifiedCommercial")}
                               </span>
                             ) : null}
                             <div className="d-flex align-items-center gap-4">
                               <span className="verification-item">
-                                <i className="fa-solid fa-clock"></i>
-                                <span
-                                  className="colored"
-                                  style={{ fontWeight: 600 }}
-                                >
+                                <i className="fa-regular fa-clock"></i>
+                                <span className="colored">
                                   {packageCreationTime}
                                 </span>
                               </span>
                               <span className="verification-item">
                                 <i className="fa-regular fa-calendar-days"></i>
-                                <span
-                                  className="colored"
-                                  style={{ fontWeight: 600 }}
-                                >
+                                <span className="colored">
                                   {user?.package?.days}{" "}
                                   {t(
                                     `${
@@ -180,10 +171,7 @@ function Profile() {
                               </span>
                               <span className="verification-item">
                                 <i className="fa-regular fa-money-check-dollar"></i>
-                                <span
-                                  className="colored"
-                                  style={{ fontWeight: 600 }}
-                                >
+                                <span className="colored">
                                   {user?.package?.price}{" "}
                                 </span>
                               </span>
@@ -229,7 +217,7 @@ function Profile() {
             <img src="/images/error.svg" alt="error image" />
             <h2>{t("error.noAccountWithThisId")}</h2>
             <Link to="/" className="backhome">
-              <i className="fa-solid fa-home"></i>
+              <i className="fa-regular fa-home"></i>
               <span>{t("error.goHome")}</span>
             </Link>
           </section>

@@ -25,28 +25,24 @@ function Register() {
   return (
     <>
       <SectionHeader />
-      <section className="container">
-        <div className="row m-0 justify-content-center">
-          <div className="col-lg-8 col-12 p-2">
-            <div className="auth-form">
-              {showOtp ? (
-                <ConfirmOtp
-                  otpData={otpData}
-                  setOtpData={setOtpData}
-                  formData={formData}
-                  phone={formData?.phone}
-                />
-              ) : (
-                <RegisterForm
-                  formData={formData}
-                  setFormData={setFormData}
-                  setOtpData={setOtpData}
-                  setShowOtp={setShowOtp}
-                  handleChange={handleChange}
-                />
-              )}
-            </div>
-          </div>
+      <section className="auth-form">
+        <div className="container">
+          {showOtp ? (
+            <ConfirmOtp
+              otpData={otpData}
+              setOtpData={setOtpData}
+              formData={formData}
+              phone={formData?.phone}
+            />
+          ) : (
+            <RegisterForm
+              formData={formData}
+              setFormData={setFormData}
+              setOtpData={setOtpData}
+              setShowOtp={setShowOtp}
+              handleChange={handleChange}
+            />
+          )}
         </div>
       </section>
     </>

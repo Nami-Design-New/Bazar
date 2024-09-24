@@ -53,28 +53,32 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
     }
   };
   return (
-    <section className="auth-form container col-12 col-lg-6">
-      <div className="form-header-image">
-        <img src="/images/forget-2.svg" alt="forget password" />
+    <div className="row m-0">
+      <div className="col-lg-7 col-12 p-2 d-flex align-items-center">
+        <div className="otp_form_container">
+          <h5 className="sub-title">
+            {t(`${phone ? "auth.enterPhoneOTP" : "auth.enterOTP"}`)}{" "}
+            <span className="">{phone}</span>
+          </h5>
+          <form
+            className="form forgetpasswordForm otp-small"
+            onSubmit={handleSubmit}
+          >
+            <OtpContainer formData={otpData} setFormData={setOtpData} />
+            <SubmitButton
+              loading={loading}
+              name={t("confirm")}
+              className={"mt-3"}
+            />
+          </form>
+        </div>
       </div>
-      <div className="form-title">
-        <h5 className="sub-title">
-          {t(`${phone ? "auth.enterPhoneOTP" : "auth.enterOTP"}`)}{" "}
-          <span className="">{phone}</span>
-        </h5>
+      <div className="col-lg-5 col-12 p-2">
+        <div className="form-header-image">
+          <img src="/images/forget-2.svg" alt="forget password" />
+        </div>
       </div>
-      <form
-        className="form forgetpasswordForm otp-small"
-        onSubmit={handleSubmit}
-      >
-        <OtpContainer formData={otpData} setFormData={setOtpData} />
-        <SubmitButton
-          loading={loading}
-          name={t("auth.createAccount")}
-          className={"mt-3"}
-        />
-      </form>
-    </section>
+    </div>
   );
 };
 

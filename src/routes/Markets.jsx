@@ -170,6 +170,7 @@ function Markets() {
                       name="type"
                       value="store"
                       checked={searchFilterData.type === "store"}
+                      // style={{border}}
                       onChange={(e) => handleChange(e)}
                       label={t("search.store")}
                     />

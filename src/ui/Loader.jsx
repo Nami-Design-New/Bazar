@@ -1,7 +1,7 @@
 const Loader = () => {
   return (
     <div className="loader">
-      <img src="/images/logo.png" alt="fav" />
+      <img src="/images/logo.svg" alt="fav" />
       <span></span>
     </div>
   );

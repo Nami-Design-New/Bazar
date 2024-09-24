@@ -183,7 +183,7 @@ const ChatRoom = ({ chat }) => {
 
       {chat?.ad && (
         <Link to={`/ad-details/${chat?.ad?.id}`} className="adItem">
-          <img src={chat?.ad?.cover} alt="" />
+          <img src={chat?.ad?.cover || chat?.image?.image} alt="" />
           <p>{chat?.ad?.title}</p>
         </Link>
       )}

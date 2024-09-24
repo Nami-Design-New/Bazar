@@ -1,51 +1,104 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import useCategoriesList from "../../components/categories/useCategoriesList";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const { t } = useTranslation();
+  const { data: categories } = useCategoriesList();
 
   return (
     <footer>
       <div className="container">
         <div className="row">
-          <div className="col-lg-12 p-2">
-            <div className="footer_about">
-              <Link to="/" className="logo">
-                <img src="/images/logo.png" alt="logo" />
-              </Link>
-              <div className="links">
-                <Link to="/">{t("routes.home")}</Link>
-                <Link to="/about-us">{t("routes.about")}</Link>
-                <Link to="/faq">{t("routes.faq")}</Link>
-                <Link to="/terms-of-use">{t("routes.terms")}</Link>
-                <Link to="/privacy-policy">{t("routes.privacy")}</Link>
-                <Link to="/contact">{t("routes.contact")}</Link>
+          <div className="col-12 col-lg-3 p-3 px-lg-4">
+            <img
+              loading="lazy"
+              src="/images/logo.svg"
+              className="logo"
+              alt="logo"
+            />
+            <p className="info">{t("footerAbout")}</p>
+          </div>
+          <div className="col-6 col-lg-3 p-3 px-lg-4">
+            <div className="group">
+              <h5 className="title"> {t("categoriess")} </h5>
+              <ul>
+                {categories?.data?.map((category) => (
+                  <li key={category?.id}>
+                    <Link to={`/ads?category_id=${category?.id}`}>
+                      {" "}
+                      {category?.name}{" "}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="col col-lg-3 p-3 px-lg-4">
+            <div className="group">
+              <h5 className="title">{t("importantLinks")} </h5>
+              <ul>
+                <li>
+                  <Link to="/">{t("routes.home")}</Link>
+                </li>
+                <li>
+                  <Link to="/about-us">{t("routes.about")}</Link>
+                </li>
+                <li>
+                  <Link to="/faq">{t("routes.faq")}</Link>
+                </li>
+                <li>
+                  <Link to="/terms-of-use">{t("routes.terms")}</Link>
+                </li>
+                <li>
+                  <Link to="/privacy-policy">{t("routes.privacy")}</Link>
+                </li>
+                <li>
+                  <Link to="/contact">{t("routes.contact")}</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="col-6 col-lg-3 p-3 px-lg-4">
+            <div className="group">
+              <h5 className="title">{t("socialMedia")}</h5>
+              <div className="social">
+                <a href="#!" target="_blank">
+                  <span className="icon">
+                    <img
+                      loading="lazy"
+                      src="/public/images/facebook-footer.svg"
+                      alt="facebook"
+                    />
+                  </span>
+                  Facebook
+                </a>
+                <a href="#!" target="_blank">
+                  <span className="icon">
+                    <img
+                      loading="lazy"
+                      src="/public/images/instagram-footer.svg"
+                      alt="instagram"
+                    />
+                  </span>
+                  Instagram
+                </a>
+                <a href="#!" target="_blank">
+                  <span className="icon">
+                    <img loading="lazy" src="/public/images/X.svg" alt="X" />
+                  </span>
+                  X
+                </a>
               </div>
             </div>
           </div>
-          <div className="col-12 p-2">
-            <div className="copyrights">
-              <p>
-                {t("copyright")} &copy; {currentYear} . {t("allRightsReserved")}{" "}
-                <Link to="/">{t("bazar")}</Link>
-              </p>
-              <div className="social_media">
-                <Link to="/">
-                  <i className="fab fa-facebook-f"></i>
-                </Link>
-                <Link to="/">
-                  <i className="fab fa-twitter"></i>
-                </Link>
-                <Link to="/">
-                  <i className="fab fa-instagram"></i>
-                </Link>
-                <Link to="/">
-                  <i className="fab fa-tiktok"></i>
-                </Link>
-              </div>
-            </div>
-          </div>
+        </div>
+        <div className="copywriting">
+          <p>
+            {t("copyright")} &copy; {currentYear} . {t("allRightsReserved")}{" "}
+            <Link to="/">{t("bazar")}</Link>
+          </p>
         </div>
       </div>
     </footer>

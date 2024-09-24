@@ -202,6 +202,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                       id="whatsapp_number"
                       noFullWidth={true}
                       value={whatsapp}
+                      required
                       placeholder={t("ads.whatsappNumber")}
                       onChange={(e) => setWhatsapp(e.target.value)}
                     />
@@ -262,6 +263,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                       id="phone_number"
                       placeholder={t("ads.callNumber")}
                       value={phone}
+                      required
                       onChange={(e) => setPhone(e.target.value)}
                     />
                     <SubmitButton
