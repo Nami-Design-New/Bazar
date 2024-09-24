@@ -31,7 +31,8 @@
     "onlineMarkets": "المتاجر الإلكترونية",
     "categories": "التصنيفات",
     "exploreOffers": "تصفّح عروض",
-    "categoryTitle": "خلّ أحلامك تمشي على أربع"
+    "categoryTitle": "خلّ أحلامك تمشي على أربع",
+    "centers": "اسواق ومراكز"
   },
   "routes": {
     "home": "الرئيسية",
@@ -328,7 +329,8 @@
     "previous": "السابق",
     "phoneVerified": "تم التحقق من رقم الهاتف",
     "checkTheCodeOnYourPhone": "تحقق من الكود على الهاتف",
-    "whatsappVerified": "تم التحقق من رقم الواتساب"
+    "whatsappVerified": "تم التحقق من رقم الواتساب",
+    "main_imageHint": "فيديو كوفر"
   },
   "markets": {
     "products": "المنتجات",
@@ -540,7 +542,13 @@
   "min": "الحد الادنى",
   "max": "الحد الاقصى",
   "errorOccurs": "عذرًا، حدث خطأ ما في هذه الصفحة في الوقت الحالي",
-  "noNotifications": "لا توجد إشعارات في الوقت الحالي",
+  "confirm": "تاكيد",
+  "selectPlace": "اختر عنوان التوصيل اولاً",
+  "messageSentSuccessfuly": "تم ارسال رسالتك بنجاح سيتواصل معك احد ممثلى خدمة العملاء قريباً.",
+  "importantLinks": "راوابط تهمك",
+  "socialMedia": "التواصل الاجتماعي",
+  "categoriess": "الأقسام",
+  "footerAbout": "افضل موقع لعرض الاعلانات وشراء المنتجات فى السعودية"
   "successfullyContacted": "تم التواصل بنجاح",
   "errorContacted": "حدثت مشكلة أثناء التواصل",
   "createReport": "تقديم بلاغ",

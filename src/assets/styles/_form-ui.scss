@@ -407,7 +407,6 @@
     background: $inputBg;
     z-index: 3;
     padding: 8px;
-    cursor: pointer;
     .step_no {
       transition: $transition;
       font-weight: 500;
@@ -423,12 +422,11 @@
       font-weight: 500;
       transition: $transition;
     }
-    &.active,
-    &:hover {
+    &.active {
       .step_no {
         border-color: $main;
-        background: $main10;
-        color: $main;
+        background: $main;
+        color: $white;
       }
       h6 {
         color: $main;

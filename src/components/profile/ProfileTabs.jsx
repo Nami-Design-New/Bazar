@@ -175,7 +175,11 @@ function ProfileTabs({ user, isMyAccount }) {
                 </div>
                 <div className="btn-wrapper">
                   {user?.verified ? (
-                    <div className="btn-box custom-btn filled">
+                    <div
+                      className={`${
+                        user?.verified ? "green" : ""
+                      }  btn-box custom-btn filled`}
+                    >
                       <span>
                         <i className="fa-solid fa-check-double"></i>
                         {t(`profile.verified`)}
@@ -204,7 +208,7 @@ function ProfileTabs({ user, isMyAccount }) {
                 </div>
                 <div className="btn-wrapper">
                   {subscriptionRemainingDays(user?.end_date) > 0 ? (
-                    <div className="btn-box custom-btn filled">
+                    <div className="btn-box custom-btn filled green">
                       <span>
                         <i className="fa-solid fa-check-double"></i>
                         {t(`profile.subscribed`)}
@@ -242,7 +246,7 @@ function ProfileTabs({ user, isMyAccount }) {
                 </div>
                 <div className="btn-wrapper">
                   {user?.fal_verified ? (
-                    <div className="btn-box custom-btn filled">
+                    <div className="btn-box custom-btn filled green">
                       <span>
                         <i className="fa-solid fa-check-double"></i>
                         {t(`profile.verified`)}

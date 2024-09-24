@@ -35,8 +35,7 @@
             align-items: center;
           }
         }
-
-        .colored {
+        i {
           color: $main !important;
         }
 
@@ -361,7 +360,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 32px;
   position: relative;
 
   h6 {
@@ -378,7 +377,6 @@
     padding: 16px;
     border-radius: 12px;
     display: flex;
-    flex-direction: column;
     gap: 16px;
     align-items: center;
     justify-content: center;
@@ -420,10 +418,15 @@
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: end;
 
       .custom-btn {
         max-width: 300px !important;
+        &.green {
+          &::after {
+            background: #1fb91f !important;
+          }
+        }
       }
     }
   }
@@ -777,9 +780,8 @@
         border-radius: 12px;
         position: relative;
         display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         gap: 16px;
         padding: 16px;
         border-radius: 12px;
@@ -800,7 +802,8 @@
           color: $main;
           font-weight: bold;
           margin: 0;
-          font-size: 20px;
+          white-space: nowrap;
+          font-size: 28px;
           i {
             color: $textColor;
           }

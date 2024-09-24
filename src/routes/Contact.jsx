@@ -32,12 +32,12 @@ function Contact() {
 
       const res = await axios.post("/contact_us", formData);
       if (res.data.code === 200) {
-        toast.success(t("successfullyContacted"));
+        toast.success(t("messageSentSuccessfuly"));
         setFormData({
           name: "",
           email: "",
           phone: "",
-          message: "",
+          message: ""
         });
       }
     } catch (error) {

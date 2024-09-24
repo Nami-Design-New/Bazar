@@ -12,8 +12,8 @@ function Video({ ad, setVideos }) {
   const videoRef = useRef(null);
   const [showComments, setShowComments] = useState(false);
   const [showShare, setShowShare] = useState(false);
-  const [canPlay, setCanPlay] = useState(false);
   const [inView, setInView] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -22,13 +22,14 @@ function Video({ ad, setVideos }) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setInView(true);
-        }
-        if (entry.isIntersecting && canPlay) {
-          videoElement.play().catch(() => {});
-          videoElement.muted = false;
+          if (videoElement) {
+            videoElement.play().catch(() => {});
+          }
         } else {
-          videoElement.pause();
-          videoElement.muted = true;
+          setInView(false);
+          if (videoElement) {
+            videoElement.pause();
+          }
         }
       });
     };
@@ -46,18 +47,25 @@ function Video({ ad, setVideos }) {
         observer.unobserve(videoElement);
       }
     };
-  }, [canPlay]);
+  }, []);
 
   const handleUserInteraction = () => {
-    if (!canPlay) {
-      setCanPlay(true);
+    if (videoRef.current) {
+      setIsMuted(false);
+      videoRef.current.muted = false;
     }
   };
 
   return (
     <div className="video" onClick={handleUserInteraction}>
       {ad?.video ? (
-        <video ref={videoRef} src={ad?.video} playsInline loop></video>
+        <video
+          ref={videoRef}
+          src={ad?.video}
+          playsInline
+          loop
+          muted={isMuted}
+        ></video>
       ) : (
         <Swiper
           spaceBetween={12}
@@ -65,6 +73,7 @@ function Video({ ad, setVideos }) {
           speed={1000}
           loop={true}
           modules={[Autoplay, Pagination]}
+          ref={videoRef}
           autoplay={{ delay: 2000, disableOnInteraction: false }}
           pagination={{
             type: "fraction"

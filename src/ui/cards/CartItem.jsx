@@ -4,9 +4,10 @@ import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   changeProductQuantity,
-  deleteProductFromCart,
+  deleteProductFromCart
 } from "../../services/apiCart";
 import ConfirmationModal from "../modals/ConfirmationModal";
+import { IconTrashFilled } from "@tabler/icons-react";
 
 function CartItem({ type, item }) {
   const { t } = useTranslation();
@@ -104,7 +105,7 @@ function CartItem({ type, item }) {
                 {t("currency.sar")}
               </p>
               <button onClick={() => setShowConfirmation(true)}>
-                <i className="fa-regular fa-trash-can-list"></i>
+                <IconTrashFilled />
               </button>
             </div>
           </div>

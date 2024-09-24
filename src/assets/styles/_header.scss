@@ -59,10 +59,10 @@ header {
             font-size: 16px;
             transition: $transition;
             &.active {
-              color: $second;
+              color: $main;
             }
             &:hover {
-              color: $second;
+              color: $main;
             }
           }
           .add_ad {
@@ -126,7 +126,7 @@ header {
 
         button {
           @include clearInput();
-          color: $main;
+          color: $black;
           font-size: 18px;
           transition: $transition;
           &:hover {
@@ -135,11 +135,11 @@ header {
         }
 
         a {
-          color: $main;
+          color: $black;
           font-size: 18px;
           transition: $transition;
           &:hover {
-            color: $second;
+            color: $main;
           }
         }
 
@@ -177,7 +177,7 @@ header {
             box-shadow: none !important;
           }
           svg {
-            stroke: $main;
+            stroke: $black;
           }
           .user {
             width: 36px;
@@ -205,17 +205,11 @@ header {
               gap: 8px;
               &.showall {
                 background: #fafafa;
+                color: $main;
+                font-size: 16px;
                 padding: 8px 16px;
-              }
-
-              &:focus {
-                background: linear-gradient(
-                  238.2deg,
-                  $second 0%,
-                  $main 100%
-                ) !important;
-                background-clip: text !important;
-                color: transparent !important;
+                justify-content: center;
+                text-decoration: underline;
               }
             }
             border: 0;
@@ -227,7 +221,7 @@ header {
           display: flex;
           gap: 10px;
           svg {
-            stroke: $main;
+            stroke: $black;
           }
           span {
             padding: 4px;

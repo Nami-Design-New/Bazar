@@ -836,7 +836,7 @@
               color: #3fa218;
             }
             &.pending {
-              color: #0467d0;
+              color: #ecb01c;
             }
             &.accepted {
               color: #218838;
@@ -849,7 +849,7 @@
             }
             &.canceled,
             &.user_canceled {
-              color: #d9534f;
+              color: #ff403a;
             }
           }
         }
@@ -876,10 +876,10 @@
           background-color: transparent !important;
 
           &.pending-accepted {
-            background: linear-gradient(238.2deg, #0467d0 0%, #218838 100%);
+            background: linear-gradient(238.2deg, #ecb01c 0%, #218838 100%);
           }
           &.pending-canceled {
-            background: linear-gradient(238.2deg, #0467d0 0%, #d9534f 100%);
+            background: linear-gradient(238.2deg, #ecb01c 0%, #ff403a 100%);
           }
           &.accepted-delivering {
             background: linear-gradient(238.2deg, #218838 0%, #d29f05 100%);
@@ -920,7 +920,7 @@
             color: #beb3b3;
             &.active {
               &.pending {
-                color: #0467d0;
+                color: #ecb01c;
               }
               &.accepted {
                 color: #218838;
@@ -933,7 +933,7 @@
               }
               &.canceled,
               &.user_canceled {
-                color: #d9534f;
+                color: #ff403a;
               }
             }
           }

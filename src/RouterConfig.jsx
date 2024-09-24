@@ -7,7 +7,6 @@ import EditProfile from "./routes/EditProfile";
 import Activities from "./routes/Activities";
 import Favorites from "./routes/Favorites";
 import AdDetails from "./routes/AdDetails";
-import Coupons from "./routes/Coupons";
 import Contact from "./routes/Contact";
 import Profile from "./routes/Profile";
 import AppVerification from "./routes/AppVerification";
@@ -43,7 +42,6 @@ const routerConfig = [
   { path: "/contact", element: <Contact /> },
   { path: "/videos", element: <Videos /> },
   { path: "/markets", element: <Markets /> },
-  { path: "/coupons", element: <Coupons /> },
   { path: "/coupon-details/:id", element: <CouponDetails /> },
   { path: "/ads", element: <Ads /> },
   { path: "/wanted-ads", element: <WantedAds /> },

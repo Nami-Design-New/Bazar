@@ -16,7 +16,7 @@ function AddAdvertisment() {
   const navigate = useNavigate();
   const [form, setForm] = useState("main-info");
   const [loading, setLoading] = useState(false);
-  const { isLoading, data: ad } = useGetAdById();
+  const { data: ad } = useGetAdById();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -31,6 +31,7 @@ function AddAdvertisment() {
     images: [],
     ad_type: "sell",
     price: "",
+    cover: "",
     price_type: "fixed",
     chat: 0,
     phone: 0,
@@ -39,7 +40,7 @@ function AddAdvertisment() {
   });
 
   useEffect(() => {
-    if (ad && !isLoading) {
+    if (ad) {
       setFormData({
         ...formData,
         title: ad?.data?.title,
@@ -57,38 +58,46 @@ function AddAdvertisment() {
         price_type: ad?.data?.price_type,
         chat: ad?.data?.chat,
         phone: ad?.data?.phone,
+        cover: ad?.data?.cover,
         whatsapp: ad?.data?.whatsapp,
         video: ad?.data?.video
       });
     }
-  }, [ad, formData, isLoading]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ad]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const payLoad = {
+      title: formData.title,
+      description: formData.description,
+      category_id: formData.category_id,
+      sub_category_id: formData.sub_category_id,
+      city_id: formData.city_id,
+      area_id: formData.area_id,
+      lat: formData.lat,
+      lng: formData.lng,
+      address: formData.address,
+      images: formData.images,
+      ad_type: formData.ad_type,
+      price: formData.price,
+      price_type: formData.price_type,
+      chat: formData.chat,
+      cover: formData?.cover,
+      phone: formData.phone,
+      whatsapp: formData.whatsapp,
+      video: formData.video
+    };
+
+    if (id) {
+      payLoad.id = +ad?.data?.id;
+    }
+
     try {
       const res = await axios.post(
         `/user/${id ? `update_ad` : "create_ad"}`,
-        {
-          title: formData.title,
-          description: formData.description,
-          category_id: formData.category_id,
-          sub_category_id: formData.sub_category_id,
-          city_id: formData.city_id,
-          area_id: formData.area_id,
-          lat: formData.lat,
-          lng: formData.lng,
-          address: formData.address,
-          images: formData.images,
-          ad_type: formData.ad_type,
-          price: formData.price,
-          price_type: formData.price_type,
-          chat: formData.chat,
-          phone: formData.phone,
-          whatsapp: formData.whatsapp,
-          video: formData.video,
-          id: +ad?.data?.id
-        },
+        payLoad,
         {
           headers: {
             "Content-Type": "multipart/form-data"
@@ -124,7 +133,16 @@ function AddAdvertisment() {
                   (fo, i) => (
                     <div
                       key={i}
-                      className={`wizard_tab ${form === fo ? "active" : ""}`}
+                      className={`wizard_tab ${
+                        [
+                          "main-info",
+                          "location",
+                          "gallery",
+                          "pricing-contact"
+                        ].indexOf(form) >= i
+                          ? "active"
+                          : ""
+                      }`}
                     >
                       <div className="step_no">{i + 1}</div>
                       <h6>{t(`tabs.${fo}`)}</h6>

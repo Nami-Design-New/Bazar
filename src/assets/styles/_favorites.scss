@@ -57,7 +57,7 @@
         content: "";
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.61);
+        background-color: rgba(0, 0, 0, 0.2);
         position: absolute;
         top: 0;
         left: 0;
@@ -401,20 +401,20 @@
       }
 
       .progress-status {
-        padding: 8px;
+        padding: 4px 12px;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
-        font-size: 16px;
-        background-color: linear-gradient(238.2deg, $second 0%, $main 100%);
-        color: $white;
+        font-size: 12px;
+        background-color: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
+        color: #fff;
         border-radius: 12px;
-        transition: $transition;
+        transition: all 0.2s ease-in-out;
         min-width: 140px;
 
         &.pending {
-          background-color: #0467d0;
+          background-color: #ecb01c;
         }
         &.accepted {
           background-color: #218838;
@@ -427,7 +427,7 @@
         }
         &.canceled,
         &.user_canceled {
-          background-color: #d9534f;
+          background-color: #ff403a;
         }
       }
     }
@@ -512,7 +512,7 @@
   }
   .canceled,
   .user_canceled {
-    background-color: #d9534f;
+    background-color: #ff403a;
   }
   .card-statistics {
     width: 100%;

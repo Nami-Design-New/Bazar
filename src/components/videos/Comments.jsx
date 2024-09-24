@@ -19,10 +19,8 @@ function Comments({ show, setShow, videoId }) {
 
   useEffect(() => {
     if (show) {
-      document.body.style.overflow = "hidden";
       document.querySelector(".videos_wrapper").style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
       document.querySelector(".videos_wrapper").style.overflow = "scroll";
     }
   }, [show]);
