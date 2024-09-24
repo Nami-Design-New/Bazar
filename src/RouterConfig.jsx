@@ -28,7 +28,9 @@ import Faq from "./routes/Faq";
 import About from "./routes/About";
 import TermsOfUse from "./routes/TermsOfUse";
 import Privacy from "./routes/Privacy";
-import AddInterest from "./routes/AddInterest";
+import AddInterest from "./ui/modals/AddInterest";
+import Notifcations from "./routes/Notifcations";
+import ProductDetails from "./routes/ProductDetails";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
@@ -66,6 +68,7 @@ const routerConfig = [
   // user features
   { path: "/profile", element: <Profile /> },
   { path: "/profile/:id", element: <Profile /> },
+  { path: "/notifications", element: <Notifcations /> },
   { path: "/chats", element: <Chats /> },
   { path: "/cart", element: <Cart />, protected: true },
   { path: "/checkout", element: <Checkout />, protected: true },
@@ -75,10 +78,11 @@ const routerConfig = [
   { path: "/market-details/:id", element: <MarketDetails /> },
   { path: "/favorites", element: <Favorites /> },
   { path: "/add-ad", element: <AddAdvertisment />, protected: true },
-  { path: "/add-ad/:id", element: <AddAdvertisment /> },
-  { path: "/add-interest", element: <AddInterest /> },
-  { path: "/add-interest/:id", element: <AddInterest /> },
-  { path: "/manage-accounts", element: <ManageAccounts /> },
+  { path: "/add-ad/:id", element: <AddAdvertisment />, protected: true },
+  { path: "/add-interest", element: <AddInterest />, protected: true },
+  { path: "/add-interest/:id", element: <AddInterest />, protected: true },
+  { path: "/manage-accounts", element: <ManageAccounts />, protected: true },
+  { path: "/product-details/:id", element: <ProductDetails /> },
 ];
 
 export default routerConfig;

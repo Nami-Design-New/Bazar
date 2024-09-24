@@ -65,7 +65,8 @@
     "about-us": "من نحن",
     "terms-of-use": "شروط الاستخدام",
     "privacy-policy": "سياسة الخصوصية",
-    "add-interest": "اضافة اهتمام"
+    "add-interest": "اضافة اهتمام",
+    "notifications": "الاشعارات"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -378,7 +379,8 @@
     "totalPrice": "إجمالي التكلفة",
     "usedCoupon": "الكوبون المُستخدم",
     "canceled": "ملغى",
-    "user_canceled": "ملغى بواسطة المستخدم"
+    "user_canceled": "ملغى بواسطة المستخدم",
+    "orderCanceled": "تم الغاء الطلب بنجاح"
   },
   "interests": {
     "areYouSureYouWantToDeleteInterest": "هل انت متأكد من حذف هذا الاهتمام؟",
@@ -540,7 +542,6 @@
   "min": "الحد الادنى",
   "max": "الحد الاقصى",
   "errorOccurs": "عذرًا، حدث خطأ ما في هذه الصفحة في الوقت الحالي",
-  "noNotifications": "لا توجد إشعارات في الوقت الحالي",
   "confirm": "تاكيد",
   "selectPlace": "اختر عنوان التوصيل اولاً",
   "messageSentSuccessfuly": "تم ارسال رسالتك بنجاح سيتواصل معك احد ممثلى خدمة العملاء قريباً.",
@@ -548,4 +549,9 @@
   "socialMedia": "التواصل الاجتماعي",
   "categoriess": "الأقسام",
   "footerAbout": "افضل موقع لعرض الاعلانات وشراء المنتجات فى السعودية"
+  "successfullyContacted": "تم التواصل بنجاح",
+  "errorContacted": "حدثت مشكلة أثناء التواصل",
+  "createReport": "تقديم بلاغ",
+  "successfullyReported": "تم تقديم البلاغ بنجاح",
+  "reportComment": "محتوى البلاغ"
 }

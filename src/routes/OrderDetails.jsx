@@ -6,10 +6,15 @@ import { Link } from "react-router-dom";
 import DataLoader from "../ui/DataLoader";
 import SectionHeader from "../ui/layout/SectionHeader";
 import useOrderDetails from "./../hooks/orders/useOrderDetails";
+import { useState } from "react";
+import SubmitButton from "../ui/form-elements/SubmitButton";
+import axios from "../utils/axios";
+import { toast } from "react-toastify";
 
 function OrderDetails() {
   const { t } = useTranslation();
-  const { isLoading: orderLoading, data: order } = useOrderDetails();
+  const { isLoading: orderLoading, data: order, refetch } = useOrderDetails();
+  const [loading, setLoading] = useState(false);
   const lang = useSelector((state) => state.language.lang);
   const timeDifference = getTimeDifference(order?.data?.created_at);
   const creationTime = formatTimeDifference(
@@ -20,6 +25,29 @@ function OrderDetails() {
     timeDifference.minutes,
     t
   );
+  
+
+  const handleCancelOrder = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await axios.post("/user/update_order_status", {
+        id: order?.data?.id,
+        status: "user_canceled",
+      });
+      if (res?.data?.code === 200) {
+        toast.success(t("orders.orderCanceled"));
+        refetch();
+      } else {
+        toast.error(res?.data?.message);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message || t("someThingWentWrong"));
+      throw new Error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="order-details-page ">
@@ -344,12 +372,14 @@ function OrderDetails() {
                         {order?.data?.discount || 0}
                       </div>
                     </li>
-                    <li className="bigger">
-                      <div className="title">{t("orders.deliveryCost")}</div>
-                      <div className="value gradient-text">
-                        {order?.data?.delivery_price || 0}
-                      </div>
-                    </li>
+                    {order?.data?.delivery_price ? (
+                      <li className="bigger">
+                        <div className="title">{t("orders.deliveryCost")}</div>
+                        <div className="value gradient-text">
+                          {order?.data?.delivery_price || 0}
+                        </div>
+                      </li>
+                    ) : null}
                     <li className="bigger">
                       <div className="title">{t("orders.total")}</div>
                       <div className="value gradient-text">
@@ -363,9 +393,12 @@ function OrderDetails() {
           </div>
           {order?.data?.status === "pending" && (
             <div className="btn-wrapper">
-              <span className="custom-btn">
-                <span>{t("orders.cancelOrder")}</span>
-              </span>
+              <SubmitButton
+                className="custom-btn stroke"
+                loading={loading}
+                onClick={handleCancelOrder}
+                name={t("orders.cancelOrder")}
+              />
             </div>
           )}
         </div>

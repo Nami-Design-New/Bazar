@@ -11,7 +11,7 @@ function Contact() {
     name: "",
     email: "",
     phone: "",
-    message: ""
+    message: "",
   });
 
   function highlight(e) {
@@ -28,6 +28,8 @@ function Contact() {
     e.preventDefault();
     setLoading(true);
     try {
+      console.log(formData);
+
       const res = await axios.post("/contact_us", formData);
       if (res.data.code === 200) {
         toast.success(t("messageSentSuccessfuly"));
@@ -39,7 +41,7 @@ function Contact() {
         });
       }
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(t("errorContacted"));
       throw new Error(error.message);
     } finally {
       setLoading(false);

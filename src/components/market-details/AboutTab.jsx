@@ -113,7 +113,7 @@ function AboutTab({ market }) {
           </LoadScript>
         </div>
 
-        <div className="details-box">
+        <div className="details-box " style={{gap: "16px"}}>
           <div className="title">
             <span>{t("markets.contactWithMarket")}</span>
           </div>
@@ -132,7 +132,7 @@ function AboutTab({ market }) {
             >
               <i
                 className="fa-regular fa-envelope "
-                style={{ fontSize: "32px" }}
+                style={{ fontSize: "24px" }}
               ></i>
             </Link>
             <Link

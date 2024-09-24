@@ -18,6 +18,10 @@ import Post from "./../ui/cards/Post";
 import useAddToFavorite from "../hooks/useAddToFavorite";
 import useRemoveFromFavorite from "../hooks/useRemoveFromFavorite";
 import "swiper/swiper-bundle.css";
+import useFollow from "../hooks/useFollow";
+import useUnfollow from "../hooks/useUnfollow";
+import ReportModal from "../ui/modals/ReportModal";
+import { useState } from "react";
 
 const containerStyle = {
   width: "100%",
@@ -29,8 +33,12 @@ const containerStyle = {
 function AdDetails() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const currentPageLink = window.location.href;
+  const queryClient = useQueryClient();
 
+  const [showUserReportModal, setShowUserReportModal] = useState(false);
+  const [showAdReportModal, setShowAdReportModal] = useState(false);
+
+  const currentPageLink = window.location.href;
   const lang = useSelector((state) => state.language.lang);
   const user = useSelector((state) => state.authedUser.user);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
@@ -40,7 +48,11 @@ function AdDetails() {
   const { removeFromFavorite, isLoading: removingLoading } =
     useRemoveFromFavorite();
 
-  const queryClient = useQueryClient();
+  const { follow, isLoading: followingLoading } = useFollow();
+  const { unfollow, isLoading: unfollowingLoading } = useUnfollow();
+
+  const isMyAccount =
+    !user?.id || Number(ad?.data?.user?.id) === Number(user?.id);
 
   const timeDifference = getTimeDifference(ad?.data?.created_at);
   const creationTime = formatTimeDifference(
@@ -115,6 +127,23 @@ function AdDetails() {
     twitter: `https://twitter.com/intent/tweet?url=${currentPageLink}`,
     whatsapp: `https://wa.me/?text=${currentPageLink}`
   };
+
+  function handleToggleFollowing(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    if (isLogged) {
+      if (ad?.data?.user?.is_follow) {
+        unfollow({ id: ad?.data?.user?.id, type: "user" });
+      } else {
+        follow({
+          id: ad?.data?.user?.id,
+          type: "user"
+        });
+      }
+    } else {
+      navigate("/login");
+    }
+  }
 
   return isLoading ? (
     <DataLoader />
@@ -234,6 +263,28 @@ function AdDetails() {
                   {t("memberSince")}{" "}
                   {adUserMemberShip(ad?.data?.user?.created_at, lang)}
                 </span>
+                {isMyAccount ? null : (
+                  <div className="btns-wrapper">
+                    <button
+                      className="action-btn follow"
+                      onClick={handleToggleFollowing}
+                      disabled={followingLoading || unfollowingLoading}
+                    >
+                      <i
+                        className={`fa-regular fa-user-${
+                          ad?.data?.user?.is_follow ? "check" : "plus"
+                        }`}
+                      ></i>
+                    </button>
+                    <span
+                      className="action-btn report"
+                      onClick={() => setShowUserReportModal(true)}
+                    >
+                      <i className="fa-regular fa-flag"></i>
+                    </span>
+                  </div>
+                )}
+
                 <div className="contact">
                   {Number(ad?.data?.chat) === 1 && (
                     <button className="chat" onClick={openChat}>
@@ -367,6 +418,18 @@ function AdDetails() {
           </div>
         </div>
       </section>
+      <ReportModal
+        id={ad?.data?.user?.id}
+        type="user"
+        showModal={showUserReportModal}
+        setShowModal={setShowUserReportModal}
+      />
+      <ReportModal
+        id={ad?.data?.id}
+        type="ad"
+        showModal={showAdReportModal}
+        setShowModal={setShowAdReportModal}
+      />
     </>
   ) : (
     <section className="error-section">

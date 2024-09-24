@@ -61,7 +61,8 @@
     "login": "Login",
     "forget-password": "Forgot Password",
     "register": "Register",
-    "edit-profile": "Edit Profile"
+    "edit-profile": "Edit Profile",
+    "notifications": "Notifications"
   },
   "auth": {
     "login": "Login",
@@ -371,7 +372,8 @@
     "totalPrice": "Total Cost",
     "usedCoupon": "Used Coupon",
     "canceled": "Canceled",
-    "user_canceled": "Canceled by User"
+    "user_canceled": "Canceled by User",
+    "orderCanceled": "Order Canceled Successfully"
   },
   "interests": {
     "areYouSureYouWantToDeleteInterest": "Are you sure you want to delete this interest?",
@@ -532,4 +534,11 @@
   "socialMedia": "Social Media",
   "categoriess": "Catregories",
   "footerAbout": "The best site for displaying ads and purchasing products in Saudi Arabia"
+  "successfullyContacted": "Successfully conatcted",
+  "errorContacted": "Error occurs while contacting",
+  "errorOccurs": "Something went wrong in this page at the moment",
+  "noNotifications": "No notifications in this moment",
+  "createReport": "Report",
+  "successfullyReported": "Report sent successfully",
+  "reportComment": "Report Comment"
 }

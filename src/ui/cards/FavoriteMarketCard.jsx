@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAddToFavorite from "../../hooks/useAddToFavorite";
 import useRemoveFromFavorite from "../../hooks/useRemoveFromFavorite";
 import { useSelector } from "react-redux";
+import { useQueryClient } from "@tanstack/react-query";
 
 function FavoriteMarketCard({ market }) {
   const { addToFavorite, isLoading: addingLoading } = useAddToFavorite();
@@ -9,20 +10,33 @@ function FavoriteMarketCard({ market }) {
     useRemoveFromFavorite();
   const isLogged = useSelector((state) => state.authedUser.isLogged);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   function handleToggleFavorite(e) {
     e.stopPropagation();
     e.preventDefault();
     if (isLogged) {
-      console.log(market?.is_favorite);
-
       if (market?.is_favorite) {
-        removeFromFavorite({ id: market?.id, type: "market_id" });
+        removeFromFavorite(
+          { id: market?.id, type: "market_id" },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(["marketsByFilter"]);
+            },
+          }
+        );
       } else {
-        addToFavorite({
-          id: market?.id,
-          type: "market_id",
-        });
+        addToFavorite(
+          {
+            id: market?.id,
+            type: "market_id",
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(["marketsByFilter"]);
+            },
+          }
+        );
       }
     } else {
       navigate("/login");
@@ -59,13 +73,10 @@ function FavoriteMarketCard({ market }) {
 
           <div className="category_like">
             <div className="category_wrapper">
-              <Link
-                to={`/ads?category_id=${market?.category?.id}`}
-                className="category"
-              >
+              <div className="category">
                 <img src={market?.category?.image} alt="" />
                 {market?.category?.name}
-              </Link>
+              </div>
             </div>
 
             <div className="action-boxes">

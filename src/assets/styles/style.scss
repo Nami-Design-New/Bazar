@@ -1064,6 +1064,56 @@ body {
     }
   }
 
+  .notifications_section {
+    padding: 60px 0;
+    .notify {
+      padding: 16px;
+      background: $inputBg;
+      border-radius: 12px;
+      @include space-between();
+      .notify_info {
+        gap: 12px;
+        display: flex;
+        align-items: center;
+        .img {
+          min-width: 60px;
+          max-width: 60px;
+          height: 60px;
+          overflow: hidden;
+          border-radius: 50%;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .content {
+          h6 {
+            font-size: 12px;
+            color: $textColor;
+          }
+          p {
+            margin-top: 4px;
+            color: $black;
+            font-size: 12px;
+            line-height: 20px;
+          }
+        }
+      }
+      .date_time {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        span {
+          white-space: nowrap;
+          color: $textColor;
+          font-size: 12px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+
   &.en {
     direction: ltr;
     // font-family: "Poppins", sans-serif;
