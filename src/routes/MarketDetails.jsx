@@ -7,8 +7,6 @@ import useMarketDetails from "./../hooks/markets/useMarketDetails";
 function MarketDetails() {
   const { isLoading: marketLoading, data: market } = useMarketDetails();
 
-  console.log(market);
-
   return marketLoading ? (
     <DataLoader />
   ) : (

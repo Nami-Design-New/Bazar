@@ -20,7 +20,7 @@ import Post from "../../ui/cards/Post.jsx";
 import useGetAddresses from "../../hooks/profile/useGetAddresses.js";
 import AddressCard from "../../ui/cards/AddressCard.jsx";
 import AddAddress from "../addresses/AddAddress.jsx";
-import AddInterest from "../../routes/AddInterest.jsx";
+import AddInterest from "../../ui/modals/AddInterest.jsx";
 
 function ProfileTabs({ user, isMyAccount }) {
   const { t } = useTranslation();
@@ -80,6 +80,7 @@ function ProfileTabs({ user, isMyAccount }) {
                       userId={user?.id}
                       post={ad}
                       isMyAccount={isMyAccount}
+                      isMyPost={true}
                     />
                   </div>
                 ))

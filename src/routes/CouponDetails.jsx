@@ -12,6 +12,8 @@ function CouponDetails() {
   const { isLoading: couponsLoading, data: coupons } = useMarketCoupons();
   const { isLoading: marketLoading, data: market } = useMarketDetails();
 
+  console.log(market?.data);
+
   return couponsLoading || marketLoading ? (
     <DataLoader />
   ) : (
@@ -26,8 +28,8 @@ function CouponDetails() {
             <div className="col-12 p-2">
               <div className="content-wrapper">
                 <div className="container">
-                <div className="row m-0">
-                  {/* <div className="notification-box">
+                  <div className="row m-0">
+                    {/* <div className="notification-box">
                   <div className="icon-box">
                     <i className="fa-solid fa-bell gradient-icon"></i>
                   </div>
@@ -39,21 +41,21 @@ function CouponDetails() {
                     onChange={() => setWantNotifications(!wantNotifications)}
                   />
                 </div> */}
-                  {coupons?.data && coupons?.data?.length > 0 ? (
-                    coupons?.data?.map((coupon) => (
-                      <div
-                        className="col-lg-4 col-md-6 col-12 p-2"
-                        key={coupon?.id}
-                      >
-                        <CouponCard coupon={coupon} />
-                      </div>
-                    ))
-                  ) : (
-                    <EmptyData minHeight={"300px"}>
-                      {t("markets.noCoupons")}
-                    </EmptyData>
-                  )}
-                </div>
+                    {coupons?.data && coupons?.data?.length > 0 ? (
+                      coupons?.data?.map((coupon) => (
+                        <div
+                          className="col-lg-4 col-md-6 col-12 p-2"
+                          key={coupon?.id}
+                        >
+                          <CouponCard coupon={coupon} />
+                        </div>
+                      ))
+                    ) : (
+                      <EmptyData minHeight={"300px"}>
+                        {t("markets.noCoupons")}
+                      </EmptyData>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

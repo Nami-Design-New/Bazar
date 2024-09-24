@@ -6,7 +6,7 @@ import SectionHeader from "../ui/layout/SectionHeader";
 import {
   formatTimeDifference,
   getTimeDifference,
-  subscriptionRemainingDays
+  subscriptionRemainingDays,
 } from "../utils/helpers";
 import ProfileTabs from "../components/profile/ProfileTabs";
 import useGetUserById from "./../components/profile/useGetUserById";

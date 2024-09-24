@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useFollow from "../../hooks/useFollow";
 import useUnfollow from "../../hooks/useUnfollow";
+import { useQueryClient } from "@tanstack/react-query";
 
 function MarketBanner({ market }) {
   const { t } = useTranslation();
@@ -20,6 +21,7 @@ function MarketBanner({ market }) {
   const { unfollow, isLoading: unfollowingLoading } = useUnfollow();
   const isLogged = useSelector((state) => state.authedUser.isLogged);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   function handleToggleFavorite(e) {
     e.stopPropagation();
@@ -28,12 +30,32 @@ function MarketBanner({ market }) {
       console.log(market?.data?.is_favorite);
 
       if (market?.data?.is_favorite) {
-        removeFromFavorite({ id: market?.data?.id, type: "market_id" });
+        removeFromFavorite(
+          { id: market?.data?.id, type: "market_id" },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries([
+                "marketDetails",
+                market?.data?.id,
+              ]);
+            },
+          }
+        );
       } else {
-        addToFavorite({
-          id: market?.data?.id,
-          type: "market_id",
-        });
+        addToFavorite(
+          {
+            id: market?.data?.id,
+            type: "market_id",
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries([
+                "marketDetails",
+                market?.data?.id,
+              ]);
+            },
+          }
+        );
       }
     } else {
       navigate("/login");
@@ -44,9 +66,8 @@ function MarketBanner({ market }) {
     e.stopPropagation();
     e.preventDefault();
     if (isLogged) {
-      console.log(market?.data?.is_follow);
 
-      if (market?.data?.is_favorite) {
+      if (market?.data?.is_follow) {
         unfollow({ id: market?.data?.id, type: "market" });
       } else {
         follow({

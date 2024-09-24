@@ -3,7 +3,7 @@ import { IconMessageCircle, IconPhone } from "@tabler/icons-react";
 import {
   adUserMemberShip,
   formatTimeDifference,
-  getTimeDifference
+  getTimeDifference,
 } from "../utils/helpers";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -16,9 +16,16 @@ import "swiper/swiper-bundle.css";
 import Post from "./../ui/cards/Post";
 import useAddToFavorite from "../hooks/useAddToFavorite";
 import useRemoveFromFavorite from "../hooks/useRemoveFromFavorite";
+import { useQueryClient } from "@tanstack/react-query";
+import useFollow from "../hooks/useFollow";
+import useUnfollow from "../hooks/useUnfollow";
+import ReportModal from "../ui/modals/ReportModal";
+import { useState } from "react";
 
 function AdDetails() {
   const { t } = useTranslation();
+  const [showUserReportModal, setShowUserReportModal] = useState(false);
+  const [showAdReportModal, setShowAdReportModal] = useState(false);
   const { isLoading, data: ad } = useGetAdById();
   const lang = useSelector((state) => state.language.lang);
   const navigate = useNavigate();
@@ -27,7 +34,13 @@ function AdDetails() {
   const { addToFavorite, isLoading: addingLoading } = useAddToFavorite();
   const { removeFromFavorite, isLoading: removingLoading } =
     useRemoveFromFavorite();
+  const { follow, isLoading: followingLoading } = useFollow();
+  const { unfollow, isLoading: unfollowingLoading } = useUnfollow();
   const isLogged = useSelector((state) => state.authedUser.isLogged);
+  const queryClient = useQueryClient();
+  const authedUser = useSelector((state) => state.authedUser.user);
+  const isMyAccount =
+    !authedUser?.id || Number(ad?.data?.user?.id) === Number(authedUser?.id);
 
   const timeDifference = getTimeDifference(ad?.data?.created_at);
   const creationTime = formatTimeDifference(
@@ -44,12 +57,26 @@ function AdDetails() {
     e.preventDefault();
     if (isLogged) {
       if (ad?.is_favorite) {
-        removeFromFavorite({ id: ad?.id, type: "ad_id" });
+        removeFromFavorite(
+          { id: ad?.id, type: "ad_id" },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(["adById", ad?.id]);
+            },
+          }
+        );
       } else {
-        addToFavorite({
-          id: ad?.id,
-          type: "ad_id"
-        });
+        addToFavorite(
+          {
+            id: ad?.id,
+            type: "ad_id",
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(["adById", ad?.id]);
+            },
+          }
+        );
       }
     } else {
       navigate("/login");
@@ -70,8 +97,25 @@ function AdDetails() {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${currentPageLink}`,
     instagram: `https://www.instagram.com/?url=${currentPageLink}`,
     twitter: `https://twitter.com/intent/tweet?url=${currentPageLink}`,
-    whatsapp: `https://wa.me/?text=${currentPageLink}`
+    whatsapp: `https://wa.me/?text=${currentPageLink}`,
   };
+
+  function handleToggleFollowing(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    if (isLogged) {
+      if (ad?.data?.user?.is_follow) {
+        unfollow({ id: ad?.data?.user?.id, type: "user" });
+      } else {
+        follow({
+          id: ad?.data?.user?.id,
+          type: "user",
+        });
+      }
+    } else {
+      navigate("/login");
+    }
+  }
 
   return isLoading ? (
     <DataLoader />
@@ -182,6 +226,28 @@ function AdDetails() {
                   {t("memberSince")}{" "}
                   {adUserMemberShip(ad?.data?.user?.created_at, lang)}
                 </span>
+                {isMyAccount ? null : (
+                  <div className="btns-wrapper">
+                    <button
+                      className="action-btn follow"
+                      onClick={handleToggleFollowing}
+                      disabled={followingLoading || unfollowingLoading}
+                    >
+                      <i
+                        className={`fa-regular fa-user-${
+                          ad?.data?.user?.is_follow ? "check" : "plus"
+                        }`}
+                      ></i>
+                    </button>
+                    <span
+                      className="action-btn report"
+                      onClick={() => setShowUserReportModal(true)}
+                    >
+                      <i className="fa-regular fa-flag"></i>
+                    </span>
+                  </div>
+                )}
+
                 <div className="contact">
                   {Number(ad?.data?.chat) === 1 && (
                     <button className="chat" onClick={openChat}>
@@ -262,18 +328,18 @@ function AdDetails() {
               className="mainSliderContainer"
               navigation={{
                 nextEl: `similar-next`,
-                prevEl: `similar-prev`
+                prevEl: `similar-prev`,
               }}
               breakpoints={{
                 992: {
-                  slidesPerView: 4
+                  slidesPerView: 4,
                 },
                 768: {
-                  slidesPerView: 2
+                  slidesPerView: 2,
                 },
                 350: {
-                  slidesPerView: 1
-                }
+                  slidesPerView: 1,
+                },
               }}
             >
               {ad?.data?.similar_ads && ad?.data?.similar_ads?.length > 0 && (
@@ -289,6 +355,18 @@ function AdDetails() {
           </div>
         </div>
       </section>
+      <ReportModal
+        id={ad?.data?.user?.id}
+        type="user"
+        showModal={showUserReportModal}
+        setShowModal={setShowUserReportModal}
+      />
+      <ReportModal
+        id={ad?.data?.id}
+        type="ad"
+        showModal={showAdReportModal}
+        setShowModal={setShowAdReportModal}
+      />
     </>
   ) : (
     <section className="error-section">

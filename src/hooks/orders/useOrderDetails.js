@@ -2,11 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { getOrderDetails } from "../../services/apiOrders";
 
-
 function useOrderDetails() {
   const { id } = useParams();
 
-  const { isLoading, data, error } = useQuery({
+  const { isLoading, data, error, refetch } = useQuery({
     queryKey: ["marketDetails", id],
     queryFn: () => getOrderDetails(id),
     retry: false,
@@ -15,7 +14,7 @@ function useOrderDetails() {
     refetchOnReconnect: false,
   });
 
-  return { isLoading, data, error };
+  return { isLoading, data, error, refetch };
 }
 
-export default useOrderDetails
+export default useOrderDetails;
