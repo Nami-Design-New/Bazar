@@ -104,7 +104,7 @@ function ProductDetails() {
 
   return productLoading ? (
     <DataLoader minHeight="200px" />
-  ) : (
+  ) : product?.data ? (
     <section className="itemDetails">
       <div className="container">
         <div className="row">
@@ -184,6 +184,15 @@ function ProductDetails() {
         eventFun={handleConfirmModal}
         loading={loading}
       />
+    </section>
+  ) : (
+    <section className="error-section">
+      <img src="/images/error.svg" alt="error image" />
+      <h2>{t("error.pageNotFound")}</h2>
+      <Link to="/" className="backhome">
+        <i className="fa-solid fa-home"></i>
+        <span>{t("error.goHome")}</span>
+      </Link>
     </section>
   );
 }
