@@ -34,7 +34,7 @@ function Checkout() {
     total: 0,
     coupon: "",
     payment_method: "cash",
-    delivery_price: ""
+    delivery_price: "",
   });
 
   useEffect(() => {
@@ -71,15 +71,16 @@ function Checkout() {
           0
         ) * 0.15,
 
-      delivery_price: formData?.address_id
-        ? calcDeliveryPrice(
-            clientLat,
-            clientLng,
-            marketLat,
-            marketLng,
-            settings?.km_price
-          )
-        : 0
+      delivery_price:
+        formData?.address_id && cart?.[0]?.market?.delivery
+          ? calcDeliveryPrice(
+              clientLat,
+              clientLng,
+              marketLat,
+              marketLng,
+              settings?.km_price
+            )
+          : 0,
     }));
   }, [addresses, cart, settings, formData?.address_id]);
 
@@ -90,19 +91,19 @@ function Checkout() {
         Number(formData.sub_total) +
         Number(formData.taxes) +
         Number(formData.delivery_price) -
-        Number(formData.discount)
+        Number(formData.discount),
     }));
   }, [
     formData.sub_total,
     formData.taxes,
     formData.delivery_price,
-    formData.discount
+    formData.discount,
   ]);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -111,7 +112,7 @@ function Checkout() {
     setCouponLoading(true);
     try {
       const res = await axios.post("/user/get_coupon_user", {
-        coupon: formData.coupon
+        coupon: formData.coupon,
       });
       if (res?.data?.code === 200) {
         setCoupon(res?.data?.data);
@@ -119,7 +120,7 @@ function Checkout() {
         setFormData({
           ...formData,
           coupon: res?.data?.data?.coupon,
-          discount: res?.data?.data?.discount
+          discount: res?.data?.data?.discount,
         });
       } else {
         toast.error(res?.data?.message);
@@ -135,9 +136,12 @@ function Checkout() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (!formData?.address_id) {
+    if (!formData?.address_id && cart?.[0]?.market?.delivery) {
+      toast.error(t("addressRequired"));
+      setLoading(false);
       return;
     }
+
     try {
       const res = await axios.post("/user/create_order", formData);
       if (res?.data?.code === 200) {
@@ -216,12 +220,14 @@ function Checkout() {
                         {formData?.discount} {t("currency.sar")}
                       </div>
                     </li>
-                    <li className="bigger">
-                      <div className="title">{t("orders.deliveryCost")}</div>
-                      <div className="value ">
-                        {formData?.delivery_price} {t("currency.sar")}
-                      </div>
-                    </li>
+                    {cart?.[0]?.market?.delivery && (
+                      <li className="bigger">
+                        <div className="title">{t("orders.deliveryCost")}</div>
+                        <div className="value ">
+                          {formData?.delivery_price} {t("currency.sar")}
+                        </div>
+                      </li>
+                    )}
                     <li className="bigger">
                       <div className="title">{t("orders.total")}</div>
                       <div className="value ">
@@ -247,41 +253,35 @@ function Checkout() {
                   />
 
                   {/* addresses */}
-                  <div className="address-wrapper">
-                    <h6>{t("cart.orderAddress")}</h6>
-                    {addresses?.data?.length > 0 && (
-                      <div className="radios">
-                        {addresses?.data?.map((address) => (
-                          <label htmlFor={address?.id} key={address?.id}>
-                            <input
-                              type="radio"
-                              name="address_id"
-                              id={address?.id}
-                              value={address?.id}
-                              onChange={(e) => handleChange(e)}
-                              checked={
-                                Number(formData.address_id) === address?.id
-                              }
-                              required={true}
-                            />
-                            <span className="address">
-                              {address?.address_title}
-                            </span>
-                          </label>
-                        ))}
-                      </div>
-                    )}
-
-                    <div
-                      className="d-flex align-items-center gap-2"
-                      style={{ cursor: "pointer" }}
-                    >
-                      <i className="fa-regular fa-location-plus "></i>
-                      <span onClick={() => setShowModal(true)}>
-                        {t("cart.addAddress")}
-                      </span>
+                  {cart?.[0]?.market?.delivery && (
+                    <div className="address-wrapper">
+                      <h6>{t("cart.orderAddress")}</h6>
+                      {addresses?.data?.length > 0 && (
+                        <div className="radios">
+                          {addresses?.data?.map((address) => (
+                            <label htmlFor={address?.id} key={address?.id}>
+                              <input
+                                type="radio"
+                                name="address_id"
+                                id={address?.id}
+                                value={address?.id}
+                                onChange={(e) => handleChange(e)}
+                                checked={
+                                  Number(formData.address_id) === address?.id
+                                }
+                                required={
+                                  cart?.[0]?.market?.delivery ? true : false
+                                }
+                              />
+                              <span className="address">
+                                {address?.address_title}
+                              </span>
+                            </label>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                  </div>
+                  )}
 
                   {/* payment method */}
                   <div className="paymentMethod-wrapper">

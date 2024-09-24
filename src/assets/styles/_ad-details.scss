@@ -1,5 +1,64 @@
 .itemDetails {
   padding: 40px 0;
+  .btns-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 8px;
+    .follow {
+      @include clearInput();
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: $white;
+      color: $black;
+      padding: 4px 12px;
+      border-radius: 12px;
+    }
+    .dropdown-toggle {
+      border: none !important;
+      &::after {
+        content: none !important;
+      }
+    }
+    .action-btn {
+      border: none;
+      outline: none;
+      padding: 4px;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      background-color: $main;
+      color: $white;
+      text-transform: capitalize;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &.report {
+        background-color: #f5f5f5;
+        cursor: pointer;
+        i {
+          color: $black;
+        }
+      }
+
+      &.follow {
+        &.active {
+          i {
+            color: red;
+          }
+        }
+      }
+      i {
+        font-size: 16px;
+        color: $white;
+      }
+    }
+  }
   .itemDetailsSlider {
     display: flex;
     flex-direction: column;
@@ -7,6 +66,7 @@
     aspect-ratio: 3 / 2;
     .swiper-slide {
       position: relative;
+      width: 100% !important;
       iframe,
       video,
       img {
@@ -295,6 +355,7 @@
   background-position: top right;
   background-repeat: no-repeat;
   background-size: 150px;
+  position: relative;
   .advertiser {
     display: flex;
     flex-direction: column;

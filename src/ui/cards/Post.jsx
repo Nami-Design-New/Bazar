@@ -16,8 +16,9 @@ import {
   IconPhone,
   IconStar,
 } from "@tabler/icons-react";
+import { useQueryClient } from "@tanstack/react-query";
 
-function Post({ post, category, isMyAccount, userId, type }) {
+function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -27,6 +28,7 @@ function Post({ post, category, isMyAccount, userId, type }) {
     useRemoveFromFavorite();
   const isLogged = useSelector((state) => state.authedUser.isLogged);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const timeDifference = getTimeDifference(post?.created_at);
   const creationTime = formatTimeDifference(
@@ -45,12 +47,26 @@ function Post({ post, category, isMyAccount, userId, type }) {
       console.log(post?.is_favorite);
 
       if (post?.is_favorite) {
-        removeFromFavorite({ id: post?.id, type: "ad_id" });
+        removeFromFavorite(
+          { id: post?.id, type: "ad_id" },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(["userAds", "adsByFilter", "favoriteAds", ]);
+            },
+          }
+        );
       } else {
-        addToFavorite({
-          id: post?.id,
-          type: "ad_id",
-        });
+        addToFavorite(
+          {
+            id: post?.id,
+            type: "ad_id",
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(["userAds", "adsByFilter", "favoriteAds", ]);
+            },
+          }
+        );
       }
     } else {
       navigate("/login");
@@ -100,13 +116,15 @@ function Post({ post, category, isMyAccount, userId, type }) {
       onClick={handleLinkClick}
     >
       <div className="actions-wrapper">
-        <button
-          className={`action favorite ${post?.is_favorite ? "active" : ""}`}
-          onClick={handleToggleFavorite}
-          disabled={removingLoading || addingLoading}
-        >
-          <img src="/images/heart.svg" alt="" />
-        </button>
+        {!isMyPost && (
+          <button
+            className={`action favorite ${post?.is_favorite ? "active" : ""}`}
+            onClick={handleToggleFavorite}
+            disabled={removingLoading || addingLoading}
+          >
+            <img src="/images/heart.svg" alt="" />
+          </button>
+        )}
         {isMyAccount && (
           <>
             <button
@@ -181,50 +199,51 @@ function Post({ post, category, isMyAccount, userId, type }) {
             ) : null}
           </div>
         )}
-        {type !== "reward" ? (
-          post?.view_count ||
-          post?.view_count === 0 ||
-          post?.chats_count ||
-          post?.chats_count === 0 ||
-          post?.phones_count ||
-          post?.phones_count === 0 ? (
+        {isMyPost &&
+          (type !== "reward" ? (
+            post?.view_count ||
+            post?.view_count === 0 ||
+            post?.chats_count ||
+            post?.chats_count === 0 ||
+            post?.phones_count ||
+            post?.phones_count === 0 ? (
+              <div className="itemBottom statics-wrapper justify-content-around">
+                {post?.view_count || post?.view_count === 0 ? (
+                  <div className="static-box">
+                    <IconEye stroke={1.5} />
+                    <span>{post?.view_count}</span>
+                  </div>
+                ) : null}
+                {post?.chats_count || post?.chats_count === 0 ? (
+                  <div className="static-box">
+                    <IconMessageCircle stroke={1.5} />
+                    <span>{post?.chats_count}</span>
+                  </div>
+                ) : null}
+                {post?.phones_count || post?.phones_count === 0 ? (
+                  <div className="static-box">
+                    <IconPhone stroke={1.5} />
+                    <span>{post?.phones_count}</span>
+                  </div>
+                ) : null}
+              </div>
+            ) : null
+          ) : post?.favorites_count || post?.favorites_count === 0 ? (
             <div className="itemBottom statics-wrapper justify-content-around">
-              {post?.view_count || post?.view_count === 0 ? (
+              {post?.favorites_count || post?.favorites_count === 0 ? (
                 <div className="static-box">
-                  <IconEye stroke={1.5} />
-                  <span>{post?.view_count}</span>
+                  <IconHeart stroke={1.5} />
+                  <span>{post?.favorites_count}</span>
                 </div>
               ) : null}
-              {post?.chats_count || post?.chats_count === 0 ? (
+              {post?.rate || post?.rate === 0 ? (
                 <div className="static-box">
-                  <IconMessageCircle stroke={1.5} />
-                  <span>{post?.chats_count}</span>
-                </div>
-              ) : null}
-              {post?.phones_count || post?.phones_count === 0 ? (
-                <div className="static-box">
-                  <IconPhone stroke={1.5} />
-                  <span>{post?.phones_count}</span>
+                  <IconStar stroke={1.5} />
+                  <span>{post?.rate}</span>
                 </div>
               ) : null}
             </div>
-          ) : null
-        ) : post?.favorites_count || post?.favorites_count === 0 ? (
-          <div className="itemBottom statics-wrapper justify-content-around">
-            {post?.favorites_count || post?.favorites_count === 0 ? (
-              <div className="static-box">
-                <IconHeart stroke={1.5} />
-                <span>{post?.favorites_count}</span>
-              </div>
-            ) : null}
-            {post?.rate || post?.rate === 0 ? (
-              <div className="static-box">
-                <IconStar stroke={1.5} />
-                <span>{post?.rate}</span>
-              </div>
-            ) : null}
-          </div>
-        ) : null}
+          ) : null)}
       </div>
       <ConfirmationModal
         showModal={showConfirmation}

@@ -3,9 +3,12 @@ import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 import StarsList from "../StarsList";
+import ReportModal from "../modals/ReportModal";
+import { useState } from "react";
 
-function RateCard({ setTargetedComment, rate }) {
+function RateCard({ rate }) {
   const { t } = useTranslation();
+  const [showModal, setShowModal] = useState(false);
 
   const timeDifference = getTimeDifference(rate?.created_at);
   const creationTime = formatTimeDifference(
@@ -41,14 +44,8 @@ function RateCard({ setTargetedComment, rate }) {
               <i className="fa-regular fa-ellipsis-vertical"></i>
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item as={Link} to="/profile">
+              <Dropdown.Item onClick={() => setShowModal(true)}>
                 {t("report")}
-              </Dropdown.Item>
-              <Dropdown.Item
-                as={"span"}
-                onClick={() => setTargetedComment(rate)}
-              >
-                {t("repaly")}
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -56,6 +53,12 @@ function RateCard({ setTargetedComment, rate }) {
       </div>
 
       <p className="comment">{rate?.comment}</p>
+      <ReportModal
+        id={rate?.id}
+        type="rate"
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
     </div>
   );
 }

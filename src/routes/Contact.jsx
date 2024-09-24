@@ -11,8 +11,7 @@ function Contact() {
     name: "",
     email: "",
     phone: "",
-    subject: "",
-    message: ""
+    message: "",
   });
 
   function highlight(e) {
@@ -29,19 +28,20 @@ function Contact() {
     e.preventDefault();
     setLoading(true);
     try {
+      console.log(formData);
+
       const res = await axios.post("/contact_us", formData);
       if (res.data.code === 200) {
-        toast.success(res.data.message);
+        toast.success(t("successfullyContacted"));
         setFormData({
           name: "",
           email: "",
           phone: "",
-          subject: "",
-          message: ""
+          message: "",
         });
       }
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(t("errorContacted"));
       throw new Error(error.message);
     } finally {
       setLoading(false);
@@ -106,22 +106,6 @@ function Contact() {
                       value={formData.phone}
                       onChange={(e) =>
                         setFormData({ ...formData, phone: e.target.value })
-                      }
-                      onFocus={(e) => highlight(e)}
-                      onBlur={(e) => dehighlight(e)}
-                    />
-                    <span className="highlight"></span>
-                  </div>
-
-                  <div className="inputfield">
-                    <label htmlFor="subject">{t("contact.subject")}</label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={(e) =>
-                        setFormData({ ...formData, subject: e.target.value })
                       }
                       onFocus={(e) => highlight(e)}
                       onBlur={(e) => dehighlight(e)}

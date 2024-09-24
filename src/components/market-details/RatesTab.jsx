@@ -8,6 +8,10 @@ function RatesTab({ rates, ratesLoading }) {
 
   return (
     <div className="content-wrapper container">
+      <CreateComment
+        comment={targetedComment}
+        setTargetedComment={setTargetedComment}
+      />
       {ratesLoading ? (
         <DataLoader minHeight={"300px"} />
       ) : (
@@ -26,10 +30,6 @@ function RatesTab({ rates, ratesLoading }) {
           </>
         )
       )}
-      <CreateComment
-        comment={targetedComment}
-        setTargetedComment={setTargetedComment}
-      />
     </div>
   );
 }

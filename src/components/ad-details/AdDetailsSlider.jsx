@@ -1,45 +1,30 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
+import "swiper/swiper-bundle.css";
 
-function AdDetailsSlider({ images }) {
+function AdDetailsSlider({ images, className }) {
   return (
-    <div className="itemDetailsSlider">
-      <Swiper
-        modules={[Navigation, Autoplay]}
-        spaceBetween={12}
-        slidesPerView={1}
-        loop={true}
-        speed={1000}
-        className="itemDetailsSlider"
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        navigation={{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        }}
-      >
-        {images?.map((image) => (
-          <SwiperSlide key={image?.id}>
-            <a data-fancybox="gallery" href={image?.image}>
-              <img src={image?.image} alt="" />
-            </a>
-          </SwiperSlide>
-        ))}
-
-        {images?.length > 1 && (
-          <div className="swiperControl">
-            <div className="swiperBtns">
-              <div className="swiper-button-next"></div>
-              <div className="swiper-button-prev"></div>
-            </div>
-          </div>
-        )}
-      </Swiper>
-    </div>
+    <Swiper
+      spaceBetween={12}
+      slidesPerView={1}
+      speed={1000}
+      loop={true}
+      modules={[Autoplay, Navigation]}
+      autoplay={{ delay: 3000, disableOnInteraction: false }}
+      className={`itemDetailsSlider ${className}`}
+      navigation={{
+        nextEl: `swiper-btn-next`,
+        prevEl: `.swiper-btn-prev`,
+      }}
+    >
+      {images?.map((image) => (
+        <SwiperSlide key={image?.id}>
+          <a data-fancybox="gallery" href={image?.image}>
+            <img src={image?.image} alt="" />
+          </a>
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 }
 

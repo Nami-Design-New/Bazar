@@ -6,6 +6,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { deleteProductFromCart } from "../../services/apiCart";
 import axios from "./../../utils/axios";
 import DeleteCartAndAdd from "../modals/DeleteCartAndAdd";
+import { Link } from "react-router-dom";
 
 function ProductMiniCard({ product, marketId }) {
   const { t } = useTranslation();
@@ -22,10 +23,7 @@ function ProductMiniCard({ product, marketId }) {
   }, [cart, product?.id]);
 
   const handleAddToCart = async () => {
-    console.log("marketId", marketId);
-    console.log("marketIdcart", cart?.market?.id);
-
-    if (cart?.market?.id && marketId !== cart?.market?.id) {
+    if (cart?.[0]?.market?.id && marketId !== cart?.[0]?.market?.id) {
       setShowModal(true);
       return;
     }
@@ -33,7 +31,7 @@ function ProductMiniCard({ product, marketId }) {
       const res = await axios.post("/user/add_to_cart", {
         quantity: 1,
         market_id: marketId,
-        product_id: product?.id
+        product_id: product?.id,
       });
       if (res.status === 200 || res.status === 201) {
         toast.success(t("cart.addedToCart"));
@@ -68,7 +66,7 @@ function ProductMiniCard({ product, marketId }) {
           const res = await axios.post("/user/add_to_cart", {
             quantity: 1,
             market_id: marketId,
-            product_id: product?.id
+            product_id: product?.id,
           });
           if (res.status === 200 || res.status === 201) {
             toast.success(t("cart.addedToCart"));
@@ -91,7 +89,7 @@ function ProductMiniCard({ product, marketId }) {
   };
 
   return (
-    <div className="product_crad">
+    <Link to={`/product-details/${product?.id}`} className="product_crad">
       <div className="product_image">
         <img src={product?.image} alt="product" />
         {/* <span>أوريون</span>
@@ -141,7 +139,7 @@ function ProductMiniCard({ product, marketId }) {
         eventFun={handleConfirmModal}
         loading={loading}
       />
-    </div>
+    </Link>
   );
 }
 

@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import InputField from "../ui/form-elements/InputField";
+import InputField from "../form-elements/InputField";
 import { useTranslation } from "react-i18next";
-import { handleChange } from "../utils/helpers";
-import SelectField from "../ui/form-elements/SelectField";
-import useCategoriesList from "../components/categories/useCategoriesList";
-import useGetCities from "../hooks/settings/useGetCities";
-import useGetAreas from "../hooks/settings/useGetAreas";
-import SubmitButton from "../ui/form-elements/SubmitButton";
+import { handleChange } from "../../utils/helpers";
+import SelectField from "../form-elements/SelectField";
+import useCategoriesList from "../../components/categories/useCategoriesList";
+import useGetCities from "../../hooks/settings/useGetCities";
+import useGetAreas from "../../hooks/settings/useGetAreas";
+import SubmitButton from "../form-elements/SubmitButton";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "../utils/axios";
+import axios from "../../utils/axios";
 import { Modal } from "react-bootstrap";
+import { useQueryClient } from "@tanstack/react-query";
 
 function AddInterest({ interest, showModal, setShowModal, setTargetInterest }) {
   const { t } = useTranslation();
@@ -30,6 +31,7 @@ function AddInterest({ interest, showModal, setShowModal, setTargetInterest }) {
   );
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (formData?.category_id) {
@@ -54,10 +56,12 @@ function AddInterest({ interest, showModal, setShowModal, setTargetInterest }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const requestBody = { ...formData };
+    if (interest) requestBody.id = interest?.id;
     try {
       const res = await axios.post(
         `/user/${interest ? `update_interest` : "create_interest"}`,
-        { ...formData, id: +interest?.data?.id },
+        requestBody,
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -74,6 +78,8 @@ function AddInterest({ interest, showModal, setShowModal, setTargetInterest }) {
         );
         navigate("/profile");
         setTargetInterest(null);
+        setShowModal(false);
+        queryClient.invalidateQueries(["userInterests"]);
       } else {
         toast.error(t("someThingWentWrong"));
       }

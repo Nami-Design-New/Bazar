@@ -1,17 +1,9 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { removeFromFavorite as removeFromFavoriteApi } from "../services/apiFavorites"
+import { useMutation } from "@tanstack/react-query";
+import { removeFromFavorite as removeFromFavoriteApi } from "../services/apiFavorites";
 
 function useRemoveFromFavorite() {
-  const queryClient = useQueryClient();
-
   const { mutate: removeFromFavorite, isLoading } = useMutation({
     mutationFn: (requestBody) => removeFromFavoriteApi(requestBody),
-
-    onSuccess: () => {
-      queryClient.invalidateQueries([
-        "favoriteAds, adsByFilter, favoriteMarkets, marketsByFilter",
-      ]);
-    },
   });
   return { removeFromFavorite, isLoading };
 }

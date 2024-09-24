@@ -1,20 +1,66 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { calculateDate } from "../../utils/helpers";
 import { toast } from "react-toastify";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import axios from "./../../utils/axios";
 import useUserAds from "../../hooks/ads/useUserAds";
+import { useSelector } from "react-redux";
+import useAddToFavorite from "../../hooks/useAddToFavorite";
+import useRemoveFromFavorite from "../../hooks/useRemoveFromFavorite";
+import { useQueryClient } from "@tanstack/react-query";
 
 function RewardCard({ ad, isMyAccount, userId }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const { refetch } = useUserAds();
+  const { addToFavorite, isLoading: addingLoading } = useAddToFavorite();
+  const { removeFromFavorite, isLoading: removingLoading } =
+    useRemoveFromFavorite();
+  const isLogged = useSelector((state) => state.authedUser.isLogged);
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   function handleToggleFavorite(e) {
     e.stopPropagation();
     e.preventDefault();
+    if (isLogged) {
+      console.log(ad?.is_favorite);
+
+      if (ad?.is_favorite) {
+        removeFromFavorite(
+          { id: ad?.id, type: "ad_id" },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries([
+                "userAds",
+                "adsByFilter",
+                "favoriteAds",
+              ]);
+            },
+          }
+        );
+      } else {
+        addToFavorite(
+          {
+            id: ad?.id,
+            type: "ad_id",
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries([
+                "userAds",
+                "adsByFilter",
+                "favoriteAds",
+              ]);
+            },
+          }
+        );
+      }
+    } else {
+      navigate("/login");
+    }
   }
 
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -39,7 +85,7 @@ function RewardCard({ ad, isMyAccount, userId }) {
   const deleteAd = async () => {
     setLoading(true);
     try {
-      const res = await axios.post("/user/delete_ad", { id: ad?.id });
+      const res = await axios.ad("/user/delete_ad", { id: ad?.id });
       if (res.data?.code === 200) {
         toast.success("تم حذف الاعلان بنجاح");
         setShowConfirmation(false);
@@ -105,6 +151,7 @@ function RewardCard({ ad, isMyAccount, userId }) {
                 ad?.is_favorite ? "liked" : ""
               }`}
               onClick={handleToggleFavorite}
+              disabled={removingLoading || addingLoading}
             >
               <i className="fa-solid fa-heart"></i>
             </span>
