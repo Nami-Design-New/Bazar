@@ -14,6 +14,7 @@ import useGetCities from "./../hooks/settings/useGetCities";
 import useCategoriesList from "./../components/categories/useCategoriesList";
 import useMarketsByFilter from "./../hooks/markets/useMarketsByFilter";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
+import CustomPagination from "../ui/CustomPagination";
 
 function Markets() {
   const { t } = useTranslation();
@@ -236,14 +237,19 @@ function Markets() {
                     <DataLoader minHeight="400px" />{" "}
                   </>
                 ) : markets?.data && markets?.data?.length > 0 ? (
-                  markets?.data?.map((market) => (
-                    <div
-                      className="col-lg-4 col-md-6 col-12 p-2"
-                      key={market?.id}
-                    >
-                      <FavoriteMarketCard market={market} />
-                    </div>
-                  ))
+                  <>
+                    {markets?.data?.map((market) => (
+                      <div
+                        className="col-lg-4 col-md-6 col-12 p-2"
+                        key={market?.id}
+                      >
+                        <FavoriteMarketCard market={market} />
+                      </div>
+                    ))}
+                    {markets?.data && markets?.total > 10 && (
+                      <CustomPagination count={markets?.total} pageSize={10} />
+                    )}
+                  </>
                 ) : (
                   <EmptyData minHeight={"300px"}>
                     {t("markets.noMarkets")}

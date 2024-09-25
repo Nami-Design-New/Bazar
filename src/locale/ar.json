@@ -555,5 +555,6 @@
   "errorContacted": "حدثت مشكلة أثناء التواصل",
   "createReport": "تقديم بلاغ",
   "successfullyReported": "تم تقديم البلاغ بنجاح",
-  "reportComment": "محتوى البلاغ"
+  "reportComment": "محتوى البلاغ",
+  "loading": "جاري التحميل"
 }

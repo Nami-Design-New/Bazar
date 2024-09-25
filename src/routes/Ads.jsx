@@ -16,6 +16,7 @@ import Post from "../ui/cards/Post";
 import FiltersGenerator from "../ui/filter/FiltersGenerator";
 import useGetAreas from "../hooks/settings/useGetAreas";
 import useGetCities from "../hooks/settings/useGetCities";
+import CustomPagination from "../ui/CustomPagination";
 
 function Ads() {
   const { t } = useTranslation();
@@ -26,8 +27,6 @@ function Ads() {
     useCategoriesList();
 
   const { isLoading: filtersLoading, data: filters } = useGetFilters();
-
-  console.log(filters?.data);
 
   const [dynamicFilterData, setDynamicFilterData] = useState({});
   const [searchFilterData, setSearchFilterData] = useState({
@@ -136,8 +135,6 @@ function Ads() {
     return <DataLoader />;
   }
 
-  console.log(filters?.data);
-
   return (
     <div className="ads-page">
       <SectionHeader />
@@ -228,11 +225,16 @@ function Ads() {
             <div className="col-lg-9 col-12 p-2">
               <div className="row px-2">
                 {ads && ads?.data?.length > 0 ? (
-                  ads?.data?.map((ad) => (
-                    <div className="col-lg-4 col-md-6 col-12 p-2" key={ad.id}>
-                      <Post post={ad} />
-                    </div>
-                  ))
+                  <>
+                    {ads?.data?.map((ad) => (
+                      <div className="col-lg-4 col-md-6 col-12 p-2" key={ad.id}>
+                        <Post post={ad} />
+                      </div>
+                    ))}{" "}
+                    {ads?.data && ads?.total > 10 && (
+                      <CustomPagination count={ads?.total} pageSize={10} />
+                    )}
+                  </>
                 ) : (
                   <EmptyData minHeight={"300px"}>{t("ads.noAds")}</EmptyData>
                 )}

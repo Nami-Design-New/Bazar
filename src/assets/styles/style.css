@@ -9008,6 +9008,104 @@ body .notifications_section .notify .date_time span {
   font-size: 12px;
   line-height: 20px;
 }
+body .smallLoader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4381f8;
+}
+body .pagination_component {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  justify-content: center;
+}
+body .pagination_component img {
+  opacity: 50%;
+  transition: opacity 0.2s;
+}
+body .pagination_component button:hover img {
+  opacity: 100%;
+}
+body .pagination_component button.disabled:hover {
+  cursor: default;
+}
+body .pagination_component button.disabled:hover img {
+  opacity: 50%;
+}
+body .pagination_component .reverse img {
+  transform: rotate(180deg);
+}
+body .pagination_component p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+body .pagination_component p span {
+  color: #000;
+  font-weight: 600;
+}
+body .numbers {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+}
+body .numbers button {
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  font-size: 15px;
+  color: #000;
+  font-weight: 500;
+  transition: 0.3s;
+  color: #777777;
+}
+body .numbers button:hover {
+  background: rgba(67, 129, 248, 0.302);
+}
+body .numbers button.active {
+  background: #4381f8;
+  color: #fff;
+}
+body .paginator_btns {
+  display: flex;
+  align-items: center;
+}
+body .paginator_btns.rotate button {
+  transform: rotate(180deg);
+}
+body .paginator_btns button {
+  background: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+body .paginator_btns button i {
+  color: #777777;
+  font-size: 18px;
+}
+body .paginator_btns button.disabled {
+  opacity: 50%;
+  pointer-events: none;
+}
+body .paginator_btns button:hover {
+  background: rgba(67, 129, 248, 0.302);
+}
+body .paginator_btns button:hover i {
+  color: #000;
+}
 body.en {
   direction: ltr;
 }

@@ -16,6 +16,7 @@ import useGetFilters from "../hooks/settings/useGetFilters";
 import useGetAreas from "../hooks/settings/useGetAreas";
 import useGetCities from "../hooks/settings/useGetCities";
 import FiltersGenerator from "../ui/filter/FiltersGenerator";
+import CustomPagination from "../ui/CustomPagination";
 
 function WantedAds() {
   const { t } = useTranslation();
@@ -224,11 +225,16 @@ function WantedAds() {
             <div className="col-lg-9 col-12 p-2">
               <div className="row px-2">
                 {ads && ads?.data?.length > 0 ? (
-                  ads?.data?.map((ad) => (
-                    <div className="col-lg-4 col-md-6 col-12 p-2" key={ad.id}>
-                      <Post post={ad} />
-                    </div>
-                  ))
+                  <>
+                    {ads?.data?.map((ad) => (
+                      <div className="col-lg-4 col-md-6 col-12 p-2" key={ad.id}>
+                        <Post post={ad} />
+                      </div>
+                    ))}
+                    {ads?.data && ads?.total > 10 && (
+                      <CustomPagination count={ads?.total} pageSize={10} />
+                    )}
+                  </>
                 ) : (
                   <EmptyData minHeight={"300px"}>{t("ads.noAds")}</EmptyData>
                 )}
