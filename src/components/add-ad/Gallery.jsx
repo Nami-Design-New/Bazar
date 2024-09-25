@@ -142,12 +142,12 @@ function Gallery({ formData, setFormData, setForm }) {
               id="video"
               accept="video/*"
               name="video"
-              onChange={(e) =>
+              onChange={(e) => {
                 setFormData((prevState) => ({
                   ...prevState,
                   video: e.target.files[0],
-                }))
-              }
+                }));
+              }}
             />
             {formData.video ? (
               <>
@@ -170,10 +170,12 @@ function Gallery({ formData, setFormData, setForm }) {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
+
                     setFormData({
                       ...formData,
                       delete_video: 1,
                       video: "",
+                      cover: "",
                     });
                   }}
                 >

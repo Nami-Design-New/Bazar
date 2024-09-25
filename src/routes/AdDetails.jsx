@@ -252,7 +252,7 @@ function AdDetails() {
                   to={`/profile/${ad?.data?.user?.id}`}
                   className="advertiser"
                 >
-                  <div className="image-wrapper relative">
+                  <div className="image-wrapper" style={{position: "relative"}}>
                     <img src={ad?.data?.user?.image} loading="lazy" alt="" />
                     {ad?.data?.user?.verified ? (
                       <div className="verified-badge">
@@ -390,7 +390,7 @@ function AdDetails() {
 
             <Swiper
               spaceBetween={12}
-              slidesPerView={1}
+              slidesPerView={4}
               speed={1000}
               loop={true}
               modules={[Autoplay, Navigation]}
@@ -408,6 +408,9 @@ function AdDetails() {
                   slidesPerView: 2,
                 },
                 350: {
+                  slidesPerView: 1,
+                },
+                0: {
                   slidesPerView: 1,
                 },
               }}

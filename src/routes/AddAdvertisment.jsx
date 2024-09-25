@@ -72,6 +72,15 @@ function AddAdvertisment() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    const uploadedImages = [];
+
+    formData?.images?.forEach((image) => {
+      if (String(image?.type)?.startsWith("image")) {
+        uploadedImages.push(image);
+      }
+    });
+
     const payLoad = {
       title: formData.title,
       description: formData.description,
@@ -82,19 +91,29 @@ function AddAdvertisment() {
       lat: formData.lat,
       lng: formData.lng,
       address: formData.address,
-      images: formData.images,
       ad_type: formData.ad_type,
       price: formData.price,
       price_type: formData.price_type,
       chat: formData.chat,
-      cover: formData?.cover,
       phone: formData.phone,
       whatsapp: formData.whatsapp,
-      video: formData.video,
       delete_audio: formData.delete_audio,
+      images: uploadedImages,
       delete_images: formData.delete_images,
       delete_video: formData.delete_video,
     };
+
+    if (!ad) {
+      payLoad.cover = formData.cover;
+      payLoad.video = formData.video;
+    } else {
+      if (formData?.video?.type?.startsWith("video")) {
+        payLoad.video = formData.video;
+      }
+      if (formData?.cover?.type?.startsWith("image")) {
+        payLoad.cover = formData.cover;
+      }
+    }
 
     if (id) {
       payLoad.id = +ad?.data?.id;

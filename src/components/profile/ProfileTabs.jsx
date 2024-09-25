@@ -21,6 +21,8 @@ import useGetAddresses from "../../hooks/profile/useGetAddresses.js";
 import AddressCard from "../../ui/cards/AddressCard.jsx";
 import AddAddress from "../addresses/AddAddress.jsx";
 import AddInterest from "../../ui/modals/AddInterest.jsx";
+import useAvailableCoupons from "../../hooks/coupons/useAvailableCoupons.js";
+import CouponCard from "../../ui/cards/CouponCard.jsx";
 
 function ProfileTabs({ user, isMyAccount }) {
   const { t } = useTranslation();
@@ -33,6 +35,9 @@ function ProfileTabs({ user, isMyAccount }) {
   const { isLoading: rewardsLoading, data: rewards } = useUserRewards(user?.id);
   const { isLoading: settingsLoading, data: settings } = useGetSettings();
   const { isLoading: interestsLoading, data: interests } = useUserInterests(
+    user?.id
+  );
+  const { isLoading: couponsLoading, data: coupons } = useAvailableCoupons(
     user?.id
   );
   const { isLoading: addressesLoading, data: addresses } = useGetAddresses(
@@ -268,6 +273,30 @@ function ProfileTabs({ user, isMyAccount }) {
               </div>
             </div>
           </Tab>
+
+          {/* coupons */}
+          {isMyAccount && (
+            <Tab
+              eventKey="coupons"
+              title={t("profile.coupons")}
+              className="tab_item p-2 pt-0"
+            >
+              {couponsLoading ? (
+                <DataLoader minHeight="400px" />
+              ) : coupons?.data && coupons?.data?.length > 0 ? (
+                coupons?.data?.map((coupon) => (
+                  <div
+                    className="col-lg-4 col-md-6 col-12 p-2"
+                    key={coupon?.id}
+                  >
+                    <CouponCard coupon={coupon} type="profile" />
+                  </div>
+                ))
+              ) : (
+                <EmptyData minHeight={"300px"}>{t("profile.noAds")}</EmptyData>
+              )}
+            </Tab>
+          )}
 
           {/* reward */}
           {isMyAccount && (

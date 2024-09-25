@@ -158,7 +158,8 @@
     "addresses": "العناوين",
     "addAddress": "اضف عنوان جديد",
     "areYouSureYouWantToDeleteLocation": "هل أنت متأكد من أنك تريد حذف هذا العنوان؟",
-    "addInterest": "اضافة اهتمام"
+    "addInterest": "اضافة اهتمام",
+    "coupons": "الكوبونات"
   },
   "error": {
     "pageNotFound": "هذا الرابط غير موجود لدينا او ربما تم حذفه. كيف وصلت الي هنا ؟",
