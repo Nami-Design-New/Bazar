@@ -66,7 +66,6 @@ function MarketBanner({ market }) {
     e.stopPropagation();
     e.preventDefault();
     if (isLogged) {
-
       if (market?.data?.is_follow) {
         unfollow({ id: market?.data?.id, type: "market" });
       } else {
@@ -112,7 +111,10 @@ function MarketBanner({ market }) {
   return (
     <div className="page-header">
       <div className="cover-wrapper">
-        <img src="/images/banner.png" alt="market cover image" />
+        <img
+          src={market?.data?.banner || "/images/banner.png"}
+          alt="market cover image"
+        />
         <div className="market">
           <div className="top-wrapper">
             <div className="logo-follow-wrapper">

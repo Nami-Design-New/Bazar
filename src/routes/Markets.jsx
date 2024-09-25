@@ -30,7 +30,7 @@ function Markets() {
           .get("category_id")
           .split("-")
           .map((category) => Number(category))
-      : []
+      : [],
   });
 
   const { data: areas } = useGetAreas(
@@ -48,7 +48,7 @@ function Markets() {
     if (name !== "category_id" && name !== "sub_category_id") {
       setSearchFilterData((prevState) => ({
         ...prevState,
-        [name]: parsedValue
+        [name]: parsedValue,
       }));
       return;
     }
@@ -94,7 +94,7 @@ function Markets() {
             .get("category_id")
             .split("-")
             .map((category) => Number(category))
-        : []
+        : [],
     });
   }
 
@@ -111,7 +111,7 @@ function Markets() {
     <>
       <SectionHeader />
       <section className="ads-page search-section">
-        <section className="container">
+        <div className="container">
           <div className="row">
             {/* side menu filter */}
             <aside
@@ -148,7 +148,7 @@ function Markets() {
                     onChange={(e) => handleChange(e)}
                     options={cities?.data?.map((city) => ({
                       name: city?.name,
-                      value: city?.id
+                      value: city?.id,
                     }))}
                   />
                   <SelectField
@@ -160,7 +160,7 @@ function Markets() {
                     onChange={(e) => handleChange(e)}
                     options={areas?.data?.map((area) => ({
                       name: area?.name,
-                      value: area?.id
+                      value: area?.id,
                     }))}
                   />
                   <div className="input-field">
@@ -229,7 +229,7 @@ function Markets() {
 
             {/* markets */}
             <div className="col-lg-9 col-12 p-2">
-              <div className="row">
+              <div className="row px-2">
                 {marketsLoading ? (
                   <>
                     {" "}
@@ -252,7 +252,7 @@ function Markets() {
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </section>
     </>
   );

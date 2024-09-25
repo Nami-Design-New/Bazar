@@ -127,8 +127,10 @@
     }
     .types {
       display: flex;
+      flex-wrap: wrap;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
+
       .type {
         width: 100%;
         background: $white;
@@ -142,6 +144,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
+          flex: 1;
         }
         .content {
           cursor: pointer;
@@ -191,6 +194,11 @@
           width: 100% !important;
           height: 56px !important;
           cursor: auto;
+          transition: $transition;
+
+          &:disabled {
+            background-color: $LightGray;
+          }
         }
       }
     }
@@ -346,5 +354,21 @@
         height: 48px !important;
       }
     }
+  }
+}
+.reverify {
+  padding: 8px 16px;
+  border-radius: 12px;
+  background-color: $main;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  cursor: pointer;
+
+  i {
+    font-size: 20px;
+    color: $white;
   }
 }

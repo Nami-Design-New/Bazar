@@ -868,7 +868,8 @@ body header nav .container .left_utils .dropdown .user img {
   height: 100%;
 }
 body header nav .container .left_utils .dropdown .dropdown-menu {
-  transform: translate3d(0px, 60px, 0px) !important;
+  max-width: calc(100% - 16px);
+  inset: 30px auto auto 0px !important;
   padding: 8px;
   overflow: hidden;
   border: 0;
@@ -2554,24 +2555,6 @@ body main .profile .userInfo .top-wrapper .user-avatar-wrapper .userImg {
      object-fit: cover;
   border-radius: 50%;
 }
-body main .profile .userInfo .top-wrapper .user-avatar-wrapper .verified-badge {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background-color: #fff;
-  bottom: -6px;
-  left: -6px;
-  box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.2509803922);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-}
-body main .profile .userInfo .top-wrapper .user-avatar-wrapper .verified-badge i {
-  font-size: 20px;
-  color: green;
-}
 body main .profile .userInfo .top-wrapper .userName {
   flex: 1;
   white-space: nowrap;
@@ -2847,6 +2830,7 @@ body main .profile-verification-wrapper .verification-box {
   justify-content: center;
   position: relative;
   background-color: #fff;
+  flex-wrap: wrap;
 }
 body main .profile-verification-wrapper .verification-box .box-info {
   width: 100%;
@@ -3400,6 +3384,24 @@ body main .balance_section .content-body .transactions-wrapper .transactions-bod
   justify-content: center;
   align-items: center;
   color: #777777;
+}
+body main .verified-badge {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #fff;
+  bottom: -6px;
+  left: -6px;
+  box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+body main .verified-badge i {
+  font-size: 20px;
+  color: green;
 }
 body main .activities-section {
   padding-left: 16px;
@@ -4549,12 +4551,15 @@ body main .market-details-page .content-wrapper .products-wrapper {
   width: 100%;
 }
 body main .market-details-page .content-wrapper .products-wrapper .product_crad {
-  width: 100%;
-  height: 100%;
   border: 1px solid #d9d9d9 !important;
   transition: all 0.2s ease-in-out;
   border-radius: 8px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2) !important;
+  gap: 16px;
+  padding-bottom: 16px;
 }
 body main .market-details-page .content-wrapper .products-wrapper .product_crad .product_image {
   width: 100%;
@@ -5847,6 +5852,10 @@ body main .advertiserDetails .advertiser {
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  position: relative;
+}
+body main .advertiserDetails .advertiser .verified-badge {
+  left: 6px;
 }
 body main .advertiserDetails .advertiser img {
   width: 120px;
@@ -6904,8 +6913,9 @@ body main .add-advertisment .form .images_grid_upload .uploaded_file .doc_icon i
 }
 body main .add-advertisment .form .types {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 body main .add-advertisment .form .types .type {
   width: 100%;
@@ -6921,6 +6931,7 @@ body main .add-advertisment .form .types .type .label {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex: 1;
 }
 body main .add-advertisment .form .types .type .content {
   cursor: pointer;
@@ -6971,6 +6982,10 @@ body main .add-advertisment .form .types .type .input-field input {
   width: 100% !important;
   height: 56px !important;
   cursor: auto;
+  transition: all 0.2s ease-in-out;
+}
+body main .add-advertisment .form .types .type .input-field input:disabled {
+  background-color: #d9d9d9;
 }
 body main .add-advertisment .form .video_upload {
   border: 1px solid #d9d9d9;
@@ -7136,6 +7151,21 @@ body main .otp_container .otp-container {
   body main .otp_container .otp-container .otp-input {
     height: 48px !important;
   }
+}
+body main .reverify {
+  padding: 8px 16px;
+  border-radius: 12px;
+  background-color: #4381f8;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  cursor: pointer;
+}
+body main .reverify i {
+  font-size: 20px;
+  color: #fff;
 }
 body main .ads-page .content-wrapper {
   padding-top: 60px;
@@ -8524,6 +8554,7 @@ body .search-section .filter-wrap .input-field .form-check input[type=radio]:che
     transition: all 0.2s ease-in-out;
     height: calc(100dvh - 80px);
     padding: 32px 24px;
+    z-index: 9999;
   }
   body .search-section aside.active {
     left: 0;

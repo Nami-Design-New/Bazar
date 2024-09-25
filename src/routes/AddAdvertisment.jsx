@@ -36,7 +36,10 @@ function AddAdvertisment() {
     chat: 0,
     phone: 0,
     whatsapp: 0,
-    video: ""
+    video: "",
+    delete_video: 0,
+    delete_audio: 0,
+    delete_images: [],
   });
 
   useEffect(() => {
@@ -60,7 +63,7 @@ function AddAdvertisment() {
         phone: ad?.data?.phone,
         cover: ad?.data?.cover,
         whatsapp: ad?.data?.whatsapp,
-        video: ad?.data?.video
+        video: ad?.data?.video,
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -87,7 +90,10 @@ function AddAdvertisment() {
       cover: formData?.cover,
       phone: formData.phone,
       whatsapp: formData.whatsapp,
-      video: formData.video
+      video: formData.video,
+      delete_audio: formData.delete_audio,
+      delete_images: formData.delete_images,
+      delete_video: formData.delete_video,
     };
 
     if (id) {
@@ -100,8 +106,8 @@ function AddAdvertisment() {
         payLoad,
         {
           headers: {
-            "Content-Type": "multipart/form-data"
-          }
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
       if (res.status === 201 || res.status === 200) {
@@ -138,7 +144,7 @@ function AddAdvertisment() {
                           "main-info",
                           "location",
                           "gallery",
-                          "pricing-contact"
+                          "pricing-contact",
                         ].indexOf(form) >= i
                           ? "active"
                           : ""

@@ -137,100 +137,102 @@ function WantedAds() {
   return (
     <div className="ads-page">
       <SectionHeader />
-      <section className="content-wrapper container search-section col-lg-10 col-12">
-        <div className="row">
-          <>
-            <aside
-              className={`col-lg-3 p-2 pt-3 side-menu ${
-                isFilterOpen ? "active" : ""
-              }`}
-            >
-              <div className="filter-wrap">
-                <div className="colse" onClick={() => setIsFilterOpen(false)}>
-                  <i className="fa-light fa-xmark"></i>
-                </div>
-                <form className="form" onSubmit={handleSubmit}>
-                  <InputField
-                    id="search"
-                    name="search"
-                    value={searchFilterData.search}
-                    onChange={handleChange}
-                    label={t("search.search")}
-                    placeholder={t("search.searchFor")}
-                  />
-                  <DepartmentFilterBox
-                    categoriesValue={searchFilterData?.category_id}
-                    sub_categoriesValue={searchFilterData?.sub_category_id}
-                    onChange={handleChange}
-                    categoriesWithSubCategories={categories?.data}
-                  />
-                  <SelectField
-                    label={t("search.city")}
-                    id="city_id"
-                    name="city_id"
-                    disabledOption={t("select")}
-                    value={searchFilterData?.city_id}
-                    onChange={(e) => handleChange(e)}
-                    options={cities?.data?.map((city) => ({
-                      name: city.name,
-                      value: city.id,
-                    }))}
-                  />
-                  <SelectField
-                    label={t("search.area")}
-                    id="area_id"
-                    name="area_id"
-                    disabledOption={t("select")}
-                    value={searchFilterData?.area_id}
-                    onChange={(e) => handleChange(e)}
-                    options={areas?.data?.map((area) => ({
-                      name: area.name,
-                      value: area.id,
-                    }))}
-                  />
-                  <FiltersGenerator
-                    filters={filters}
-                    setDynamicFilterData={setDynamicFilterData}
-                    dynamicFilterData={dynamicFilterData}
-                  />
-                  <div className="d-flex gap-2 w-100">
-                    <button onClick={handleSubmit} className="search-btn">
-                      <i className="fa-regular fa-check"></i>{" "}
-                      {t("search.apply")}
-                    </button>
-                    <button
-                      onClick={handleClearFilters}
-                      className="search-btn clear"
-                    >
-                      <i className="fa-regular fa-xmark"></i>{" "}
-                      {t("search.clear")}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </aside>
-            <div className="small-filter-header">
-              <h6></h6>
-              <button
-                className="openfilter"
-                onClick={() => setIsFilterOpen(true)}
+      <section className="content-wrapper search-section">
+        <div className="container">
+          <div className="row">
+            <>
+              <aside
+                className={`col-lg-3 p-2 pt-3 side-menu ${
+                  isFilterOpen ? "active" : ""
+                }`}
               >
-                <i className="fa-light fa-sliders"></i>
-              </button>
-            </div>
-          </>
-
-          <div className="col-lg-9 col-12 p-2">
-            <div className="row">
-              {ads && ads?.data?.length > 0 ? (
-                ads?.data?.map((ad) => (
-                  <div className="col-lg-4 col-md-6 col-12 p-2" key={ad.id}>
-                    <Post post={ad} />
+                <div className="filter-wrap">
+                  <div className="colse" onClick={() => setIsFilterOpen(false)}>
+                    <i className="fa-light fa-xmark"></i>
                   </div>
-                ))
-              ) : (
-                <EmptyData minHeight={"300px"}>{t("ads.noAds")}</EmptyData>
-              )}
+                  <form className="form" onSubmit={handleSubmit}>
+                    <InputField
+                      id="search"
+                      name="search"
+                      value={searchFilterData.search}
+                      onChange={handleChange}
+                      label={t("search.search")}
+                      placeholder={t("search.searchFor")}
+                    />
+                    <DepartmentFilterBox
+                      categoriesValue={searchFilterData?.category_id}
+                      sub_categoriesValue={searchFilterData?.sub_category_id}
+                      onChange={handleChange}
+                      categoriesWithSubCategories={categories?.data}
+                    />
+                    <SelectField
+                      label={t("search.city")}
+                      id="city_id"
+                      name="city_id"
+                      disabledOption={t("select")}
+                      value={searchFilterData?.city_id}
+                      onChange={(e) => handleChange(e)}
+                      options={cities?.data?.map((city) => ({
+                        name: city.name,
+                        value: city.id,
+                      }))}
+                    />
+                    <SelectField
+                      label={t("search.area")}
+                      id="area_id"
+                      name="area_id"
+                      disabledOption={t("select")}
+                      value={searchFilterData?.area_id}
+                      onChange={(e) => handleChange(e)}
+                      options={areas?.data?.map((area) => ({
+                        name: area.name,
+                        value: area.id,
+                      }))}
+                    />
+                    <FiltersGenerator
+                      filters={filters}
+                      setDynamicFilterData={setDynamicFilterData}
+                      dynamicFilterData={dynamicFilterData}
+                    />
+                    <div className="d-flex gap-2 w-100">
+                      <button onClick={handleSubmit} className="search-btn">
+                        <i className="fa-regular fa-check"></i>{" "}
+                        {t("search.apply")}
+                      </button>
+                      <button
+                        onClick={handleClearFilters}
+                        className="search-btn clear"
+                      >
+                        <i className="fa-regular fa-xmark"></i>{" "}
+                        {t("search.clear")}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </aside>
+              <div className="small-filter-header">
+                <h6></h6>
+                <button
+                  className="openfilter"
+                  onClick={() => setIsFilterOpen(true)}
+                >
+                  <i className="fa-light fa-sliders"></i>
+                </button>
+              </div>
+            </>
+
+            <div className="col-lg-9 col-12 p-2">
+              <div className="row px-2">
+                {ads && ads?.data?.length > 0 ? (
+                  ads?.data?.map((ad) => (
+                    <div className="col-lg-4 col-md-6 col-12 p-2" key={ad.id}>
+                      <Post post={ad} />
+                    </div>
+                  ))
+                ) : (
+                  <EmptyData minHeight={"300px"}>{t("ads.noAds")}</EmptyData>
+                )}
+              </div>
             </div>
           </div>
         </div>

@@ -68,26 +68,6 @@
           object-fit: cover;
           border-radius: 50%;
         }
-
-        .verified-badge {
-          position: absolute;
-          width: 28px;
-          height: 28px;
-          border-radius: 50%;
-          background-color: $white;
-          bottom: -6px;
-          left: -6px;
-          box-shadow: 0 1px 4px 0px #00000040;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 8px;
-
-          i {
-            font-size: 20px;
-            color: green;
-          }
-        }
       }
       .userName {
         flex: 1;
@@ -382,6 +362,7 @@
     justify-content: center;
     position: relative;
     background-color: $white;
+    flex-wrap: wrap;
 
     .box-info {
       width: 100%;
@@ -949,5 +930,24 @@
         }
       }
     }
+  }
+}
+.verified-badge {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: $white;
+  bottom: -6px;
+  left: -6px;
+  box-shadow: 0 1px 4px 0px #00000040;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+
+  i {
+    font-size: 20px;
+    color: green;
   }
 }

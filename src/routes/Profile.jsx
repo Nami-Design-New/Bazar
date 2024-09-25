@@ -148,7 +148,7 @@ function Profile() {
                                 {t("profile.verifiedCommercial")}
                               </span>
                             ) : null}
-                            <div className="d-flex align-items-center gap-4">
+                            <div className="d-flex align-items-center gap-4 flex-wrap">
                               <span className="verification-item">
                                 <i className="fa-regular fa-clock"></i>
                                 <span className="colored">
