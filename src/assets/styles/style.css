@@ -2833,7 +2833,11 @@ body main .profile-verification-wrapper .verification-box {
   justify-content: center;
   position: relative;
   background-color: #fff;
-  flex-wrap: wrap;
+}
+@media screen and (max-width: 768px) {
+  body main .profile-verification-wrapper .verification-box {
+    flex-direction: column;
+  }
 }
 body main .profile-verification-wrapper .verification-box .box-info {
   width: 100%;

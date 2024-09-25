@@ -363,7 +363,10 @@
     justify-content: center;
     position: relative;
     background-color: $white;
-    flex-wrap: wrap;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
 
     .box-info {
       width: 100%;
