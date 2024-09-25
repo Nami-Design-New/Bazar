@@ -68,7 +68,7 @@ export default function Footer() {
                   <span className="icon">
                     <img
                       loading="lazy"
-                      src="/public/images/facebook-footer.svg"
+                      src="/images/facebook-footer.svg"
                       alt="facebook"
                     />
                   </span>
@@ -78,7 +78,7 @@ export default function Footer() {
                   <span className="icon">
                     <img
                       loading="lazy"
-                      src="/public/images/instagram-footer.svg"
+                      src="/images/instagram-footer.svg"
                       alt="instagram"
                     />
                   </span>
@@ -86,7 +86,7 @@ export default function Footer() {
                 </a>
                 <a href="#!" target="_blank">
                   <span className="icon">
-                    <img loading="lazy" src="/public/images/X.svg" alt="X" />
+                    <img loading="lazy" src="/images/X.svg" alt="X" />
                   </span>
                   X
                 </a>

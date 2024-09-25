@@ -158,7 +158,8 @@
     "addresses": "العناوين",
     "addAddress": "اضف عنوان جديد",
     "areYouSureYouWantToDeleteLocation": "هل أنت متأكد من أنك تريد حذف هذا العنوان؟",
-    "addInterest": "اضافة اهتمام"
+    "addInterest": "اضافة اهتمام",
+    "coupons": "الكوبونات"
   },
   "error": {
     "pageNotFound": "هذا الرابط غير موجود لدينا او ربما تم حذفه. كيف وصلت الي هنا ؟",
@@ -350,7 +351,8 @@
     "noSectionProducts": "لا يوجد منتجات في هذا الصنف",
     "noRates": "عذرًا، لا توجد تقييمات لهذا المتجر في الوقت الحالي",
     "noCoupons": "عذرًا، لا توجد كوبونات لهذا المتجر في الوقت الحالي",
-    "noMarkets": "عذرًا، لا توجد متاجر بهذه المواصفات"
+    "noMarkets": "عذرًا، لا توجد متاجر بهذه المواصفات",
+    "coupons": "الكوبونات"
   },
   "orders": {
     "areYouSureYouWantToDeleteOrder": "هل انت متأكد من حذف هذا الطلب؟",
@@ -553,5 +555,6 @@
   "errorContacted": "حدثت مشكلة أثناء التواصل",
   "createReport": "تقديم بلاغ",
   "successfullyReported": "تم تقديم البلاغ بنجاح",
-  "reportComment": "محتوى البلاغ"
+  "reportComment": "محتوى البلاغ",
+  "loading": "جاري التحميل"
 }

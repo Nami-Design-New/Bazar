@@ -24,8 +24,26 @@ function useMarketsByFilter() {
     : [];
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["marketsByFilter", search, page, type, city_id, area_id, category_id, sub_category_id],
-    queryFn: () => getMarketsByFilter(search, page, type, city_id, area_id, category_id, sub_category_id ),
+    queryKey: [
+      "marketsByFilter",
+      search,
+      page,
+      type,
+      city_id,
+      area_id,
+      category_id,
+      sub_category_id,
+    ],
+    queryFn: () =>
+      getMarketsByFilter(
+        search,
+        page,
+        type,
+        city_id,
+        area_id,
+        category_id,
+        sub_category_id
+      ),
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,

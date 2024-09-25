@@ -9,7 +9,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import {
   adUserMemberShip,
   formatTimeDifference,
-  getTimeDifference
+  getTimeDifference,
 } from "../utils/helpers";
 import AdDetailsSlider from "../components/ad-details/AdDetailsSlider";
 import DataLoader from "../ui/DataLoader";
@@ -27,7 +27,7 @@ const containerStyle = {
   width: "100%",
   height: "300px",
   borderRadius: "12px",
-  overflow: "hidden"
+  overflow: "hidden",
 };
 
 function AdDetails() {
@@ -77,17 +77,17 @@ function AdDetails() {
               queryClient.invalidateQueries([
                 "userAds",
                 "adsByFilter",
-                "favoriteAds"
+                "favoriteAds",
               ]);
               queryClient.invalidateQueries(["adById", ad?.id]);
-            }
+            },
           }
         );
       } else {
         addToFavorite(
           {
             id: ad?.id,
-            type: "ad_id"
+            type: "ad_id",
           },
           {
             onSuccess: () => {
@@ -95,10 +95,10 @@ function AdDetails() {
               queryClient.invalidateQueries([
                 "userAds",
                 "adsByFilter",
-                "favoriteAds"
+                "favoriteAds",
               ]);
               queryClient.invalidateQueries(["adById", ad?.id]);
-            }
+            },
           }
         );
       }
@@ -125,7 +125,7 @@ function AdDetails() {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${currentPageLink}`,
     instagram: `https://www.instagram.com/?url=${currentPageLink}`,
     twitter: `https://twitter.com/intent/tweet?url=${currentPageLink}`,
-    whatsapp: `https://wa.me/?text=${currentPageLink}`
+    whatsapp: `https://wa.me/?text=${currentPageLink}`,
   };
 
   function handleToggleFollowing(e) {
@@ -137,7 +137,7 @@ function AdDetails() {
       } else {
         follow({
           id: ad?.data?.user?.id,
-          type: "user"
+          type: "user",
         });
       }
     } else {
@@ -151,7 +151,7 @@ function AdDetails() {
     <>
       <section className="itemDetails">
         <div className="container">
-          <div className="row">
+          <div className="row px-2">
             <div className="col-lg-8 d-flex flex-column gap-4 p-0 pb-3 p-md-3">
               <AdDetailsSlider images={ad?.data?.images} />
 
@@ -248,16 +248,23 @@ function AdDetails() {
 
             <div className="col-lg-4 p-0 p-md-3">
               <div className="advertiserDetails mb-3">
-                <Link
+                <div
                   to={`/profile/${ad?.data?.user?.id}`}
                   className="advertiser"
                 >
-                  <img src={ad?.data?.user?.image} loading="lazy" alt="" />
+                  <div className="image-wrapper" style={{position: "relative"}}>
+                    <img src={ad?.data?.user?.image} loading="lazy" alt="" />
+                    {ad?.data?.user?.verified ? (
+                      <div className="verified-badge">
+                        <i className="fa-regular fa-badge-check"></i>
+                      </div>
+                    ) : null}
+                  </div>
                   <h3 className="name">
                     {" "}
                     {ad?.data?.user?.name || "Ahmed Elsayed"}{" "}
                   </h3>
-                </Link>
+                </div>
                 <span className="date">
                   {" "}
                   {t("memberSince")}{" "}
@@ -346,7 +353,7 @@ function AdDetails() {
                     mapContainerStyle={containerStyle}
                     center={{
                       lat: ad?.data?.lat,
-                      lng: ad?.data?.lng
+                      lng: ad?.data?.lng,
                     }}
                     zoom={10}
                   >
@@ -354,7 +361,7 @@ function AdDetails() {
                       icon="/images/map-pin.svg"
                       position={{
                         lat: ad?.data?.lat,
-                        lng: ad?.data?.lng
+                        lng: ad?.data?.lng,
                       }}
                     ></Marker>
                   </GoogleMap>
@@ -391,18 +398,21 @@ function AdDetails() {
               className="mainSliderContainer"
               navigation={{
                 nextEl: `similar-next`,
-                prevEl: `similar-prev`
+                prevEl: `similar-prev`,
               }}
               breakpoints={{
                 992: {
-                  slidesPerView: 4
+                  slidesPerView: 4,
                 },
                 768: {
-                  slidesPerView: 2
+                  slidesPerView: 2,
                 },
                 350: {
-                  slidesPerView: 1
-                }
+                  slidesPerView: 1,
+                },
+                0: {
+                  slidesPerView: 1,
+                },
               }}
             >
               {ad?.data?.similar_ads && ad?.data?.similar_ads?.length > 0 && (

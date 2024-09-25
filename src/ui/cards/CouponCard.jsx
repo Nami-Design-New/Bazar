@@ -1,11 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-function CouponCard({ coupon }) {
+function CouponCard({ coupon, type }) {
   const { t } = useTranslation();
   const [isCopied, setIsCopied] = useState(false);
-
-  console.log(coupon);
 
   function handleCopyCoupon() {
     const couponCode = coupon?.coupon;
@@ -23,12 +22,26 @@ function CouponCard({ coupon }) {
   return (
     <div className="fav-market-card coupon-card">
       <div className="card-header no-overlay">
-        <div className="cover-wrapper">
-          <img src={coupon?.image} alt="market cover image" />
-        </div>
+        {type === "profile" ? (
+          <Link
+            to={`/coupon-details/${coupon?.market_id}`}
+            className="cover-wrapper"
+          >
+            <img
+              src={coupon?.image || coupon?.market?.logo}
+              alt="market cover image"
+            />
+          </Link>
+        ) : (
+          <div className="cover-wrapper">
+            <img src={coupon?.image} alt="market cover image" />
+          </div>
+        )}
       </div>
       <div className="card-details">
-        <h5 className="coupon-title">{coupon?.name}</h5>
+        <h5 className="coupon-title">
+          {type === "profile" ? coupon?.market?.name : coupon?.name}
+        </h5>
         <div className="details d-flex w-100 align-items-center justify-content-between gap-2 flex-wrap">
           {coupon?.min ? (
             <span className="details-box">

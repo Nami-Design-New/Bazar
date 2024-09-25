@@ -6,8 +6,10 @@ export const ORDER_STATUS_PERSENTAGE = {
   delivering: 75,
   completed: 100,
   canceled: 100,
-  user_canceled: 100
+  user_canceled: 100,
 };
+
+export const PAGE_SIZE = 10;
 
 export const ORDER_STATUS_AR = {
   pending: "معلّق",
@@ -15,7 +17,7 @@ export const ORDER_STATUS_AR = {
   delivering: "جاري الشحن",
   completed: "تم الاكتمال",
   canceled: "ملغى",
-  user_canceled: "ملغى بواسطة المستخدم"
+  user_canceled: "ملغى بواسطة المستخدم",
 };
 
 export const ORDER_STATUS_EN = {
@@ -24,7 +26,7 @@ export const ORDER_STATUS_EN = {
   delivering: "in delivery",
   completed: "completed",
   canceled: "canceled",
-  user_canceled: "user canceled"
+  user_canceled: "user canceled",
 };
 
 export const TRANSACTIONS_STATUS = [
@@ -39,7 +41,7 @@ export const TRANSACTIONS_STATUS = [
   "refund_service_order",
   "withdraw_balance_complete",
   "withdraw_balance_request",
-  "withdraw_balance_canceled"
+  "withdraw_balance_canceled",
 ];
 
 export function formattedDate(date) {
@@ -47,7 +49,7 @@ export function formattedDate(date) {
   formattedDate = new Intl.DateTimeFormat("en-US", {
     day: "numeric",
     month: "long",
-    year: "numeric"
+    year: "numeric",
   }).format(formattedDate);
 
   return formattedDate;
@@ -56,50 +58,50 @@ export function formattedDate(date) {
 export const MONTHS = [
   {
     en: "January",
-    ar: "يناير"
+    ar: "يناير",
   },
   {
     en: "February",
-    ar: "فبراير"
+    ar: "فبراير",
   },
   {
     en: "March",
-    ar: "مارس"
+    ar: "مارس",
   },
   {
     en: "April",
-    ar: "أبريل"
+    ar: "أبريل",
   },
   {
     en: "May",
-    ar: "مايو"
+    ar: "مايو",
   },
   {
     en: "June",
-    ar: "يونيو"
+    ar: "يونيو",
   },
   {
     en: "July",
-    ar: "يوليو"
+    ar: "يوليو",
   },
   {
     en: "August",
-    ar: "أغسطس"
+    ar: "أغسطس",
   },
   {
     en: "September",
-    ar: "سبتمبر"
+    ar: "سبتمبر",
   },
   {
     en: "October",
-    ar: "أكتوبر"
+    ar: "أكتوبر",
   },
   {
     en: "November",
-    ar: "نوفمبر"
+    ar: "نوفمبر",
   },
   {
     en: "December",
-    ar: "ديسمبر"
-  }
+    ar: "ديسمبر",
+  },
 ];

@@ -11,7 +11,7 @@ function Gallery({ formData, setFormData, setForm }) {
     const newImages = Array.from(e.target.files);
     setFormData((prevState) => ({
       ...prevState,
-      images: [...prevState.images, ...newImages]
+      images: [...prevState.images, ...newImages],
     }));
   };
 
@@ -20,12 +20,12 @@ function Gallery({ formData, setFormData, setForm }) {
       setFormData((prevState) => ({
         ...prevState,
         images: prevState.images.filter((_, i) => i !== index),
-        delete_images: [...prevState.delete_images, image.id]
+        delete_images: [...prevState.delete_images, image.id],
       }));
     } else {
       setFormData((prevState) => ({
         ...prevState,
-        images: prevState.images.filter((_, i) => i !== index)
+        images: prevState.images.filter((_, i) => i !== index),
       }));
     }
   };
@@ -37,7 +37,7 @@ function Gallery({ formData, setFormData, setForm }) {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const mediaRecorderInstance = new MediaRecorder(stream, {
-        mimeType: "audio/webm"
+        mimeType: "audio/webm",
       });
 
       mediaRecorderInstance.ondataavailable = (event) => {
@@ -51,7 +51,7 @@ function Gallery({ formData, setFormData, setForm }) {
 
         setFormData((prevState) => ({
           ...prevState,
-          audio: audioBlob
+          audio: audioBlob,
         }));
 
         mediaRecorderInstance.stream.getTracks().forEach((track) => {
@@ -92,7 +92,7 @@ function Gallery({ formData, setFormData, setForm }) {
               onChange={(e) =>
                 setFormData((prevState) => ({
                   ...prevState,
-                  cover: e.target.files[0]
+                  cover: e.target.files[0],
                 }))
               }
             />
@@ -102,7 +102,7 @@ function Gallery({ formData, setFormData, setForm }) {
                   style={{
                     objectFit: "contain",
                     width: "100%",
-                    height: "100%"
+                    height: "100%",
                   }}
                   src={
                     formData?.cover?.type?.startsWith("image")
@@ -116,7 +116,7 @@ function Gallery({ formData, setFormData, setForm }) {
                     e.preventDefault();
                     setFormData({
                       ...formData,
-                      cover: ""
+                      cover: "",
                     });
                   }}
                 >
@@ -142,12 +142,12 @@ function Gallery({ formData, setFormData, setForm }) {
               id="video"
               accept="video/*"
               name="video"
-              onChange={(e) =>
+              onChange={(e) => {
                 setFormData((prevState) => ({
                   ...prevState,
-                  video: e.target.files[0]
-                }))
-              }
+                  video: e.target.files[0],
+                }));
+              }}
             />
             {formData.video ? (
               <>
@@ -160,7 +160,7 @@ function Gallery({ formData, setFormData, setForm }) {
                   style={{
                     objectFit: "contain",
                     width: "100%",
-                    height: "100%"
+                    height: "100%",
                   }}
                   autoPlay
                   loop
@@ -170,9 +170,12 @@ function Gallery({ formData, setFormData, setForm }) {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
+
                     setFormData({
                       ...formData,
-                      video: ""
+                      delete_video: 1,
+                      video: "",
+                      cover: "",
                     });
                   }}
                 >
@@ -258,7 +261,11 @@ function Gallery({ formData, setFormData, setForm }) {
               <div
                 className="delete_btn"
                 onClick={() =>
-                  setFormData((prev) => ({ ...prev, audio: null }))
+                  setFormData((prev) => ({
+                    ...prev,
+                    audio: "",
+                    delete_audio: 1,
+                  }))
                 }
               >
                 <i className="fa-light fa-trash"></i>

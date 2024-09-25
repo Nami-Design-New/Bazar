@@ -6,6 +6,8 @@ import SectionHeader from "../ui/layout/SectionHeader";
 import MarketBanner from "../components/market-details/MarketBanner";
 import useMarketCoupons from "./../hooks/markets/useMarketCoupons";
 import useMarketDetails from "./../hooks/markets/useMarketDetails";
+import { Tab, Tabs } from "react-bootstrap";
+import AboutTab from "../components/market-details/AboutTab";
 
 function CouponDetails() {
   const { t } = useTranslation();
@@ -26,21 +28,15 @@ function CouponDetails() {
               <MarketBanner market={market} />
             </div>
             <div className="col-12 p-2">
-              <div className="content-wrapper">
-                <div className="container">
-                  <div className="row m-0">
-                    {/* <div className="notification-box">
-                  <div className="icon-box">
-                    <i className="fa-solid fa-bell gradient-icon"></i>
-                  </div>
-                  <p>ارسل لي اشعار عندما يتم اضافة عروض جديده على هذا الكود</p>
-                  <Form.Switch
-                    id="wantChangePassword"
-                    name="wantChangePassword"
-                    checked={wantNotifications}
-                    onChange={() => setWantNotifications(!wantNotifications)}
-                  />
-                </div> */}
+              <div className="tabs-section">
+                <Tabs
+                  defaultActiveKey="aboutMarket"
+                  id="uncontrolled-tab-example"
+                >
+                  <Tab eventKey="aboutMarket" title={t("markets.aboutMarket")}>
+                    <AboutTab market={market} type="coupon" />
+                  </Tab>
+                  <Tab eventKey="coupons" title={t("markets.coupons")}>
                     {coupons?.data && coupons?.data?.length > 0 ? (
                       coupons?.data?.map((coupon) => (
                         <div
@@ -55,8 +51,8 @@ function CouponDetails() {
                         {t("markets.noCoupons")}
                       </EmptyData>
                     )}
-                  </div>
-                </div>
+                  </Tab>
+                </Tabs>
               </div>
             </div>
           </div>

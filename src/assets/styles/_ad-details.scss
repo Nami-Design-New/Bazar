@@ -360,6 +360,10 @@
     flex-direction: column;
     align-items: center;
     gap: 8px;
+    position: relative;
+    .verified-badge {
+      left: 6px;
+    }
     img {
       width: 120px;
       height: 120px;

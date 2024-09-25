@@ -5,15 +5,20 @@ import { useNavigate } from "react-router-dom";
 import OtpContainer from "../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axios from "../../utils/axios";
+import { setIsLogged, setUser } from "../../redux/slices/authedUser";
+import { useDispatch } from "react-redux";
+import { useCookies } from "react-cookie";
 
 const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [, setCookie] = useCookies(["token", "id"]);
 
   const headers = {
     Accept: "application/json",
-    "Content-Type": "multipart/form-data"
+    "Content-Type": "multipart/form-data",
   };
 
   const checkCodeRequest = {
@@ -22,9 +27,9 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
     data: {
       ...otpData,
       ...formData,
-      type: "register"
+      type: "register",
     },
-    url: "/user/check_code"
+    url: "/user/check_code",
   };
 
   const handleSubmit = async (e) => {
@@ -38,7 +43,22 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
         const req = await axios.post("/user/register", formData);
         if (req.data.code === 200) {
           toast.success(t("auth.registerSuccess"));
-          navigate("/login");
+          dispatch(setUser(req.data.data));
+          dispatch(setIsLogged(true));
+          setCookie("token", req.data.data.token, {
+            path: "/",
+            secure: true,
+            sameSite: "Strict"
+          });
+          setCookie("id", req.data.data.id, {
+            path: "/",
+            secure: true,
+            sameSite: "Strict"
+          });
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `${req.data.data.token}`;
+          navigate("/");
         } else {
           toast.error(req.data.message);
         }

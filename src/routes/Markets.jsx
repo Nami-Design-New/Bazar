@@ -14,6 +14,7 @@ import useGetCities from "./../hooks/settings/useGetCities";
 import useCategoriesList from "./../components/categories/useCategoriesList";
 import useMarketsByFilter from "./../hooks/markets/useMarketsByFilter";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
+import CustomPagination from "../ui/CustomPagination";
 
 function Markets() {
   const { t } = useTranslation();
@@ -30,7 +31,7 @@ function Markets() {
           .get("category_id")
           .split("-")
           .map((category) => Number(category))
-      : []
+      : [],
   });
 
   const { data: areas } = useGetAreas(
@@ -48,7 +49,7 @@ function Markets() {
     if (name !== "category_id" && name !== "sub_category_id") {
       setSearchFilterData((prevState) => ({
         ...prevState,
-        [name]: parsedValue
+        [name]: parsedValue,
       }));
       return;
     }
@@ -94,7 +95,7 @@ function Markets() {
             .get("category_id")
             .split("-")
             .map((category) => Number(category))
-        : []
+        : [],
     });
   }
 
@@ -111,7 +112,7 @@ function Markets() {
     <>
       <SectionHeader />
       <section className="ads-page search-section">
-        <section className="container">
+        <div className="container">
           <div className="row">
             {/* side menu filter */}
             <aside
@@ -148,7 +149,7 @@ function Markets() {
                     onChange={(e) => handleChange(e)}
                     options={cities?.data?.map((city) => ({
                       name: city?.name,
-                      value: city?.id
+                      value: city?.id,
                     }))}
                   />
                   <SelectField
@@ -160,7 +161,7 @@ function Markets() {
                     onChange={(e) => handleChange(e)}
                     options={areas?.data?.map((area) => ({
                       name: area?.name,
-                      value: area?.id
+                      value: area?.id,
                     }))}
                   />
                   <div className="input-field">
@@ -229,21 +230,26 @@ function Markets() {
 
             {/* markets */}
             <div className="col-lg-9 col-12 p-2">
-              <div className="row">
+              <div className="row px-2">
                 {marketsLoading ? (
                   <>
                     {" "}
                     <DataLoader minHeight="400px" />{" "}
                   </>
                 ) : markets?.data && markets?.data?.length > 0 ? (
-                  markets?.data?.map((market) => (
-                    <div
-                      className="col-lg-4 col-md-6 col-12 p-2"
-                      key={market?.id}
-                    >
-                      <FavoriteMarketCard market={market} />
-                    </div>
-                  ))
+                  <>
+                    {markets?.data?.map((market) => (
+                      <div
+                        className="col-lg-4 col-md-6 col-12 p-2"
+                        key={market?.id}
+                      >
+                        <FavoriteMarketCard market={market} />
+                      </div>
+                    ))}
+                    {markets?.data && markets?.total > 10 && (
+                      <CustomPagination count={markets?.total} pageSize={10} />
+                    )}
+                  </>
                 ) : (
                   <EmptyData minHeight={"300px"}>
                     {t("markets.noMarkets")}
@@ -252,7 +258,7 @@ function Markets() {
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </section>
     </>
   );

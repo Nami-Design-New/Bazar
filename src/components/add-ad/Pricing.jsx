@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
@@ -15,6 +15,13 @@ function Pricing({ formData, setFormData, setForm, loading }) {
   const [otpLoading, setOtpLoading] = useState(false);
   const [phoneLoading, setPhoneLoading] = useState(false);
   const [whatsappLoading, setWhatsappLoading] = useState(false);
+  const [verified, setVerified] = useState({
+    whatsapp: false,
+    phone: false,
+  });
+
+  const whatsappInputRef = useRef(null);
+  const phoneInputRef = useRef(null);
 
   const [phone, setPhone] = useState(formData?.phone_number || "");
   const [whatsapp, setWhatsapp] = useState(formData?.whatsapp_number || "");
@@ -38,13 +45,21 @@ function Pricing({ formData, setFormData, setForm, loading }) {
           toast.success(t(`ads.${type}Verified`));
           setFormData((prev) => ({
             ...prev,
-            [`${type}_number`]: phone
+            [`${type}_number`]: phone,
           }));
+          setVerified({
+            ...verified,
+            [`${type}`]: true,
+          });
+          console.log({
+            ...verified,
+            [`${type}`]: true,
+          });
         } else {
           toast.success(t("ads.checkTheCodeOnYourPhone"));
           setFormData((prev) => ({
             ...prev,
-            hashed_code: res?.data?.data?.code
+            hashed_code: res?.data?.data?.code,
           }));
           setShowOtp(true);
         }
@@ -65,7 +80,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
         phone,
         type: "add_phone_ad",
         code: formData?.code,
-        hashed_code: formData?.hashed_code
+        hashed_code: formData?.hashed_code,
       });
       if (res?.data?.code === 200) {
         toast.success(t("ads.phoneVerified"));
@@ -175,7 +190,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
             {t("ads.contactType")}
           </label>
 
-          <div className="types">
+          <div className="types ">
             <div className="type">
               <div className="label">
                 <label htmlFor="whatsapp" className="content">
@@ -191,6 +206,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                   className="form-input-check"
                   checked={whatsappChecked}
                   onChange={() => setWhatsappChecked(!whatsappChecked)}
+                  ref={whatsappInputRef}
                 />
               </div>
               {whatsappChecked && (
@@ -205,20 +221,36 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                       required
                       placeholder={t("ads.whatsappNumber")}
                       onChange={(e) => setWhatsapp(e.target.value)}
+                      disabled={verified?.whatsapp}
                     />
-                    <SubmitButton
-                      className=""
-                      name={t("ads.verify")}
-                      loading={whatsappLoading}
-                      onClick={() =>
-                        verifyContact(
-                          whatsapp,
-                          setWhatsappLoading,
-                          setShowWhatsappOtp,
-                          "whatsapp"
-                        )
-                      }
-                    />
+                    {!verified?.whatsapp ? (
+                      <SubmitButton
+                        className=""
+                        name={t("ads.verify")}
+                        loading={whatsappLoading}
+                        onClick={() =>
+                          verifyContact(
+                            whatsapp,
+                            setWhatsappLoading,
+                            setShowWhatsappOtp,
+                            "whatsapp"
+                          )
+                        }
+                      />
+                    ) : (
+                      <span
+                        className="reverify"
+                        onClick={() => {
+                          setVerified({
+                            ...verified,
+                            whatsapp: false,
+                          });
+                          whatsappInputRef?.current?.focus();
+                        }}
+                      >
+                        <i className="fa-solid fa-arrows-repeat"></i>
+                      </span>
+                    )}
                   </div>
                   {showWhatsappOtp && (
                     <div className="otp_container">
@@ -226,6 +258,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                         formData={formData}
                         setFormData={setFormData}
                       />
+
                       <SubmitButton
                         name={t("ads.verify")}
                         loading={otpLoading}
@@ -252,6 +285,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                   className="form-input-check"
                   checked={phoneChecked}
                   onChange={() => setPhoneChecked(!phoneChecked)}
+                  ref={phoneInputRef}
                 />
               </div>
               {phoneChecked && (
@@ -266,19 +300,34 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                       required
                       onChange={(e) => setPhone(e.target.value)}
                     />
-                    <SubmitButton
-                      className=""
-                      name={t("ads.verify")}
-                      loading={phoneLoading}
-                      onClick={() =>
-                        verifyContact(
-                          phone,
-                          setPhoneLoading,
-                          setShowPhoneOtp,
-                          "phone"
-                        )
-                      }
-                    />
+                    {!verified?.phone ? (
+                      <SubmitButton
+                        className=""
+                        name={t("ads.verify")}
+                        loading={phoneLoading}
+                        onClick={() =>
+                          verifyContact(
+                            phone,
+                            setPhoneLoading,
+                            setShowPhoneOtp,
+                            "phone"
+                          )
+                        }
+                      />
+                    ) : (
+                      <span
+                        className="reverify"
+                        onClick={() => {
+                          setVerified({
+                            ...verified,
+                            phone: false,
+                          });
+                          phoneInputRef?.current?.focus();
+                        }}
+                      >
+                        <i className="fa-solid fa-arrows-repeat"></i>
+                      </span>
+                    )}
                   </div>
                   {showPhoneOtp && (
                     <div className="otp_container">
@@ -314,7 +363,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                   onChange={(e) =>
                     setFormData((prev) => ({
                       ...prev,
-                      chat: e.target.checked ? 1 : 0
+                      chat: e.target.checked ? 1 : 0,
                     }))
                   }
                 />

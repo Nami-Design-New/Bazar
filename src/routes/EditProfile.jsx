@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import ImageUpload from "../ui/form-elements/ImageUpload";
 import PhoneField from "../ui/form-elements/PhoneField";
@@ -22,37 +22,58 @@ function EditProfile() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.authedUser.user);
   const [formData, setFormData] = useState({
-    image: user.image || "",
-    name: user.name || "",
-    email: user.email || "",
-    phone: user.phone || ""
+    image: "",
+    name: "",
+    email: "",
+    phone: "",
   });
+
+  useEffect(() => {
+    setFormData({
+      image: user?.image || "",
+      name: user?.name || "",
+      email: user?.email || "",
+      phone: user?.phone || "",
+    });
+  }, [user]);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const requestBody = {
-      ...formData
-    };
+    const requestBody = {};
+
+    if (formData.image && formData.image !== user?.image) {
+      requestBody.image = formData.image;
+    }
+
+    if (formData.name && formData.name !== user?.name) {
+      requestBody.name = formData.name;
+    }
+
+    if (formData.email && formData.email !== user?.email) {
+      requestBody.email = formData.email;
+    }
+
+    if (formData.phone && formData.phone !== user?.phone) {
+      requestBody.phone = formData.phone;
+    }
 
     if (password && wantChangePassword) {
       requestBody.password = password;
     }
 
-    console.log(requestBody);
-
     try {
       const res = await axios.post("/user/update_profile", requestBody, {
         headers: {
-          "Content-Type": "multipart/form-data"
-        }
+          "Content-Type": "multipart/form-data",
+        },
       });
       if (res.data.code === 200) {
         toast.success(t("auth.profileEditedSuccessfully"));

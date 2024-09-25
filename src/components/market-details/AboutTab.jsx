@@ -9,7 +9,7 @@ const containerStyle = {
   overflow: "hidden",
 };
 
-function AboutTab({ market }) {
+function AboutTab({ market, type }) {
   const { t } = useTranslation();
 
   return (
@@ -18,45 +18,49 @@ function AboutTab({ market }) {
         <div className="details-header">
           <div className="heading">
             <h3>{market?.data?.name}</h3>
-            <div className="statistic">
-              <i className="fa-regular fa-eye "></i>
-              <span className="value">{market?.data?.views_count}</span>
-            </div>
+            {type === "coupon" ? null : (
+              <div className="statistic">
+                <i className="fa-regular fa-eye "></i>
+                <span className="value">{market?.data?.views_count}</span>
+              </div>
+            )}
           </div>
           <p>{market?.data?.bio}</p>
         </div>
-        <div className="details-box">
-          <div className="title">
-            <span>
-              {t(
-                `markets.${
-                  market?.data?.refund_duration > 0
-                    ? "acceptsRecovery"
-                    : "doesnotAcceptsRecovery"
-                }`
-              )}
-            </span>
-          </div>
-          {market?.data?.have_refund ? (
-            <div className="menu">
-              <ul>
-                <li>{t("markets.recoveryCondition1")}</li>
-                <li>
-                  {t("markets.recoveryCondition2")}{" "}
-                  {market?.data?.refund_duration}{" "}
-                  {t(
-                    `${
-                      market?.data?.refund_duration > 1 &&
-                      market?.data?.refund_duration < 10
-                        ? "days"
-                        : "day"
-                    }`
-                  )}
-                </li>
-              </ul>
+        {type === "coupon" ? null : (
+          <div className="details-box">
+            <div className="title">
+              <span>
+                {t(
+                  `markets.${
+                    market?.data?.refund_duration > 0
+                      ? "acceptsRecovery"
+                      : "doesnotAcceptsRecovery"
+                  }`
+                )}
+              </span>
             </div>
-          ) : null}
-        </div>
+            {market?.data?.have_refund ? (
+              <div className="menu">
+                <ul>
+                  <li>{t("markets.recoveryCondition1")}</li>
+                  <li>
+                    {t("markets.recoveryCondition2")}{" "}
+                    {market?.data?.refund_duration}{" "}
+                    {t(
+                      `${
+                        market?.data?.refund_duration > 1 &&
+                        market?.data?.refund_duration < 10
+                          ? "days"
+                          : "day"
+                      }`
+                    )}
+                  </li>
+                </ul>
+              </div>
+            ) : null}
+          </div>
+        )}
         {market?.data?.identity_id ? (
           <div className="details-box">
             <div className="title">
@@ -70,22 +74,24 @@ function AboutTab({ market }) {
             </div>
           </div>
         ) : null}
-        <div className="details-box">
-          <div className="title">
-            <div className="icon">
-              <i className={`fa-regular fa-truck-container  `}></i>
+        {type === "coupon" ? null : (
+          <div className="details-box">
+            <div className="title">
+              <div className="icon">
+                <i className={`fa-regular fa-truck-container  `}></i>
+              </div>
+              <span>
+                {t(
+                  `markets.${
+                    market?.data?.delivery
+                      ? "deliveryExisting"
+                      : "noDeliveryExisting"
+                  }`
+                )}
+              </span>
             </div>
-            <span>
-              {t(
-                `markets.${
-                  market?.data?.delivery
-                    ? "deliveryExisting"
-                    : "noDeliveryExisting"
-                }`
-              )}
-            </span>
           </div>
-        </div>
+        )}
         <div className="details-box">
           <div className="title mb-3">
             <div className="icon">
@@ -113,7 +119,7 @@ function AboutTab({ market }) {
           </LoadScript>
         </div>
 
-        <div className="details-box " style={{gap: "16px"}}>
+        <div className="details-box " style={{ gap: "16px" }}>
           <div className="title">
             <span>{t("markets.contactWithMarket")}</span>
           </div>
