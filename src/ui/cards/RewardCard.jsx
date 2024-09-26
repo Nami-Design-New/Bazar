@@ -26,8 +26,6 @@ function RewardCard({ ad, isMyAccount, userId }) {
     e.stopPropagation();
     e.preventDefault();
     if (isLogged) {
-      console.log(ad?.is_favorite);
-
       if (ad?.is_favorite) {
         removeFromFavorite(
           { id: ad?.id, type: "ad_id" },

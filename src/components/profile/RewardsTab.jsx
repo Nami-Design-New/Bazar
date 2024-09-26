@@ -13,8 +13,6 @@ function RewardsTab({ isMyAccount, user }) {
   const { isLoading: settingsLoading, data: settings } = useGetSettings();
   const [showWithdrawModel, setShowWithdrawModel] = useState(false);
 
-  console.log(rewards);
-
   const hasReward =
     rewards?.data && rewards?.data?.length > 0
       ? rewards?.data?.some((reward) => reward?.rewarded)

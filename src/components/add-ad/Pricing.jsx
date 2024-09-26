@@ -51,10 +51,6 @@ function Pricing({ formData, setFormData, setForm, loading }) {
             ...verified,
             [`${type}`]: true,
           });
-          console.log({
-            ...verified,
-            [`${type}`]: true,
-          });
         } else {
           toast.success(t("ads.checkTheCodeOnYourPhone"));
           setFormData((prev) => ({

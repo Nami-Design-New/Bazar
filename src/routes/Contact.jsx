@@ -28,8 +28,6 @@ function Contact() {
     e.preventDefault();
     setLoading(true);
     try {
-      console.log(formData);
-
       const res = await axios.post("/contact_us", formData);
       if (res.data.code === 200) {
         toast.success(t("messageSentSuccessfuly"));

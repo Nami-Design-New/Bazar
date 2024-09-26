@@ -142,8 +142,6 @@ export function calcDeliveryPrice(lat1, lng1, lat2, lng2, deliveryPrice) {
 }
 
 export const adUserMemberShip = (date, lang) => {
-  console.log(lang);
-
   const createdAt = new Date(date);
   const month = createdAt.getMonth();
   const year = createdAt.getFullYear();

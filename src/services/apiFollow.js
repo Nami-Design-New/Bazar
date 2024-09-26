@@ -21,7 +21,6 @@ export const handleFollow = async (type, id, setVideos, endpoint) => {
       );
     }
   } catch (error) {
-    console.log(error);
     throw new Error(error.message);
   }
 };
@@ -46,7 +45,6 @@ export const handleFavourite = async (type, id, setVideos, endpoint) => {
       );
     }
   } catch (error) {
-    console.log(error);
     throw new Error(error.message);
   }
 };

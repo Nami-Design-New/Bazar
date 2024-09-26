@@ -39,8 +39,8 @@ function ProductMiniCard({ product, marketId }) {
         setInCart(true);
       }
     } catch (error) {
-      console.log(error);
       toast.error(error?.response?.data?.message || t("somethingWentWrong"));
+      throw new Error(error);
     }
   };
 
@@ -53,7 +53,7 @@ function ProductMiniCard({ product, marketId }) {
         setInCart(false);
       }
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 
@@ -74,10 +74,10 @@ function ProductMiniCard({ product, marketId }) {
             setInCart(true);
           }
         } catch (error) {
-          console.log(error);
           toast.error(
             error?.response?.data?.message || t("somethingWentWrong")
           );
+          throw new Error(error);
         }
       }
     } catch (error) {

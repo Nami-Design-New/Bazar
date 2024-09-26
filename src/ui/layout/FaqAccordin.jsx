@@ -9,7 +9,6 @@ function FaqAccordin() {
   const { t } = useTranslation();
   const { isLoading: faqsLoading, data: faqs } = useFaq();
   const [activeTab, setActiveTab] = useState();
-  console.log(faqs?.data);
 
   useEffect(() => {
     if (!faqsLoading) {

@@ -31,8 +31,6 @@ function ProductDetails() {
     t
   );
 
-  console.log(product);
-
   const handleAddToCart = async () => {
     if (
       cart?.[0]?.market?.id &&
@@ -53,8 +51,8 @@ function ProductDetails() {
         setInCart(true);
       }
     } catch (error) {
-      console.log(error);
       toast.error(error?.response?.data?.message || t("somethingWentWrong"));
+      throw new Error(error);
     }
   };
 
@@ -67,7 +65,7 @@ function ProductDetails() {
         setInCart(false);
       }
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 
@@ -88,10 +86,10 @@ function ProductDetails() {
             setInCart(true);
           }
         } catch (error) {
-          console.log(error);
           toast.error(
             error?.response?.data?.message || t("somethingWentWrong")
           );
+          throw new Error(error);
         }
       }
     } catch (error) {

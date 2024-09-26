@@ -14,8 +14,6 @@ function ForgetStep1({ setStep, formData, handleChange, setOtpData }) {
     setLoading(true);
     try {
       const res = await axios.post("/user/check_phone", formData);
-      console.log(res.data);
-
       if (res.data.code === 200) {
         toast.success(t("auth.otpSentSuccess"));
         setOtpData((prev) => ({

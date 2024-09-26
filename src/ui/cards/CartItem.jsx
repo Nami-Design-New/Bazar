@@ -24,7 +24,7 @@ function CartItem({ type, item }) {
         queryClient.invalidateQueries(["cart"]);
       }
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 
@@ -37,7 +37,7 @@ function CartItem({ type, item }) {
         queryClient.invalidateQueries(["cart"]);
       }
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 
@@ -51,11 +51,9 @@ function CartItem({ type, item }) {
         setLoading(false);
       }
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
-
-  console.log(item);
 
   return (
     <>

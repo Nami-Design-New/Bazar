@@ -14,8 +14,6 @@ function CouponDetails() {
   const { isLoading: couponsLoading, data: coupons } = useMarketCoupons();
   const { isLoading: marketLoading, data: market } = useMarketDetails();
 
-  console.log(market?.data);
-
   return couponsLoading || marketLoading ? (
     <DataLoader />
   ) : (

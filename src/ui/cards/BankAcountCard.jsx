@@ -11,8 +11,6 @@ function BankAcountCard({ targetBank, setShowModal, setTargetBank, bank }) {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const queryClient = useQueryClient();
 
-  console.log(bank);
-
   const handleDelete = async () => {
     try {
       await deleteBank(targetBank?.id, queryClient);

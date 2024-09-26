@@ -6,8 +6,6 @@ import SectionHeader from "../ui/layout/SectionHeader";
 const Notifcations = () => {
   const { isLoading, data: notifications } = useGetNotifications();
 
-  console.log(notifications);
-
   return isLoading ? (
     <DataLoader minHeight="200px" />
   ) : (
