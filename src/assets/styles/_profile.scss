@@ -17,6 +17,27 @@
     flex-direction: column;
     gap: 24px;
 
+    .user-dropdown {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      .dropdown-toggle {
+        background: none !important;
+        border: none !important;
+        outline: none !important;
+        padding: 4px !important;
+        border-radius: 50% !important;
+
+        i {
+          color: $black;
+        }
+      }
+    }
+
+    .dropdown-toggle {
+      position: relative;
+    }
+
     .top-wrapper {
       width: 100%;
       display: flex;
@@ -135,7 +156,7 @@
       .action-boxes {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 8px;
         align-items: center;
         position: relative;
 

@@ -44,13 +44,16 @@ function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
     e.stopPropagation();
     e.preventDefault();
     if (isLogged) {
-
       if (post?.is_favorite) {
         removeFromFavorite(
           { id: post?.id, type: "ad_id" },
           {
             onSuccess: () => {
-              queryClient.invalidateQueries(["userAds", "adsByFilter", "favoriteAds", ]);
+              queryClient.invalidateQueries([
+                "userAds",
+                "adsByFilter",
+                "favoriteAds",
+              ]);
             },
           }
         );
@@ -62,7 +65,11 @@ function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
           },
           {
             onSuccess: () => {
-              queryClient.invalidateQueries(["userAds", "adsByFilter", "favoriteAds", ]);
+              queryClient.invalidateQueries([
+                "userAds",
+                "adsByFilter",
+                "favoriteAds",
+              ]);
             },
           }
         );
@@ -112,7 +119,10 @@ function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
     <Link
       to={`/ad-details/${post?.id}`}
       className="item"
-      onClick={handleLinkClick}
+      onClick={(e) => {
+        e.stopPropagation();
+        handleLinkClick();
+      }}
     >
       <div className="actions-wrapper">
         {!isMyPost && (
@@ -177,7 +187,11 @@ function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
 
         {type !== "reward" && (
           <div className="itemBottom">
-            <Link to={`/ads?category=${category?.name}`} className="category">
+            <Link
+              to={`/ads?category_id=${category?.id}`}
+              className="category"
+              onClick={(e) => e.stopPropagation()}
+            >
               {category && category?.image && (
                 <>
                   <span className="img">

@@ -136,7 +136,7 @@ const AddAddress = ({
               )}
             </div>
             <div className="col-12 p-2">
-              <SubmitButton name={"Save"} loading={loading} />
+              <SubmitButton name={t("save")} loading={loading} />
             </div>
           </div>
         </form>

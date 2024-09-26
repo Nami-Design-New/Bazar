@@ -5,33 +5,7 @@
     border-radius: 16px;
     background: $inputBg;
     border: 1px solid $grayBackground;
-    .radios {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      label {
-        width: 100%;
-        span {
-          height: 56px;
-          width: 100%;
-          background: $white;
-          color: $black;
-          font-size: 16px;
-          cursor: pointer;
-          border: 1px solid $LightGray;
-          @include centerFlex();
-          border-radius: 12px;
-        }
-        input {
-          display: none;
-          &:checked + span {
-            background: $main;
-            border-color: $main;
-            color: $white;
-          }
-        }
-      }
-    }
+
     .btns {
       display: flex;
       align-items: center;
@@ -370,5 +344,32 @@
   i {
     font-size: 20px;
     color: $white;
+  }
+}
+.radios {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  label {
+    width: 100%;
+    span {
+      height: 56px;
+      width: 100%;
+      background: $white;
+      color: $black;
+      font-size: 16px;
+      cursor: pointer;
+      border: 1px solid $LightGray;
+      @include centerFlex();
+      border-radius: 12px;
+    }
+    input {
+      display: none;
+      &:checked + span {
+        background: $main;
+        border-color: $main;
+        color: $white;
+      }
+    }
   }
 }

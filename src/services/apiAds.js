@@ -65,6 +65,17 @@ export async function getuserAds(id) {
     throw new Error(`Error fetching ads: ${err.message}`);
   }
 }
+
+export async function getCommissionAds() {
+  try {
+    const req = await axios.get("/user/get_commission_ad");
+
+    return req.data;
+  } catch (err) {
+    throw new Error(`Error fetching ads: ${err.message}`);
+  }
+}
+
 export async function getFavoriteAds() {
   try {
     const req = await axios.get("/user/get_ad_favorites");
