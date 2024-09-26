@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import SectionHeader from "../ui/layout/SectionHeader";
 import {
@@ -13,15 +13,31 @@ import useGetUserById from "./../components/profile/useGetUserById";
 import DataLoader from "../ui/DataLoader";
 import useFollow from "../hooks/useFollow";
 import useUnfollow from "../hooks/useUnfollow";
+import { Dropdown } from "react-bootstrap";
+import ConfirmationModal from "../ui/modals/ConfirmationModal";
+import { toast } from "react-toastify";
+import { logout, setIsLogged } from "../redux/slices/authedUser";
+import axios from "../utils/axios";
+import ReportModal from "../ui/modals/ReportModal";
+import EmptyData from "../ui/EmptyData";
+import Post from "../ui/cards/Post";
+import { IconCirclePlus } from "@tabler/icons-react";
+import useUserAds from "../hooks/ads/useUserAds";
 
 function Profile() {
   const { id } = useParams();
   const { t } = useTranslation();
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
   const [user, setUser] = useState({});
   const authedUser = useSelector((state) => state.authedUser.user);
   const { isLoading, data: profile } = useGetUserById(id);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const isLogged = useSelector((state) => state.authedUser.isLogged);
+
+  const { isLoading: adsLoading, data: ads } = useUserAds(user?.id);
 
   const isMyAccount = !id || Number(id) === Number(authedUser?.id);
 
@@ -75,6 +91,29 @@ function Profile() {
     }
   }
 
+  const handleDeleteAccount = async () => {
+    try {
+      setDeleteLoading(true);
+      const res = await handleDeleteAccount();
+      if (res.data.code === 200) {
+        delete axios.defaults.headers.common["Authorization"];
+        toast.success(t("cart.orderSuccess"));
+        dispatch(setUser({}));
+        dispatch(setIsLogged(false));
+        dispatch(logout());
+        navigate("/");
+      } else {
+        toast.error(res.message);
+        console.error(res.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+    } finally {
+      setDeleteLoading(false);
+      setShowDeleteModal(false);
+    }
+  };
+
   return (
     <>
       <SectionHeader />
@@ -88,6 +127,28 @@ function Profile() {
                 <div className="row m-0">
                   <div className="col-12 p-2 d-flex flex-column gap-3">
                     <div className="userInfo">
+                      <div className="user-dropdown d-flex algin-items-center justify-content-end">
+                        <Dropdown>
+                          <Dropdown.Toggle className="butn" id="dropdown-basic">
+                            <i className="fa-regular fa-ellipsis-vertical"></i>
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu>
+                            {isMyAccount ? (
+                              <Dropdown.Item
+                                onClick={() => setShowDeleteModal(true)}
+                              >
+                                {t("profile.deleteAccount")}
+                              </Dropdown.Item>
+                            ) : (
+                              <Dropdown.Item
+                                onClick={() => setShowReportModal(true)}
+                              >
+                                {t("profile.report")}
+                              </Dropdown.Item>
+                            )}
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </div>
                       <div className="top-wrapper">
                         <div className="user-avatar-wrapper">
                           <img className="userImg" src={user?.image} alt="" />
@@ -110,10 +171,6 @@ function Profile() {
                                 +966{user?.phone}
                               </Link>
                             )}
-                            {/* <span className="details-box location">
-      <i className="fa-sharp fa-regular fa-location-\ "></i>
-      السعودية, الرياض
-    </span> */}
                           </div>
                           <div className="verification-details">
                             {user?.fal_verified ? (
@@ -124,7 +181,7 @@ function Profile() {
                             ) : null}
                           </div>
                         </div>
-                        <div className="action-boxes">
+                        <div className="action-boxes mt-4">
                           <div className="following-details">
                             {(user?.follow_count ||
                               user?.follow_count === 0) && (
@@ -225,37 +282,74 @@ function Profile() {
                               </div>
                             </div>
                           </div>
-                          <div className="action-boxes">
-                            <div className="remainingDays d-flex align-items-center gap-2">
-                              {t("profile.remainingDays")}
-                              <span>
-                                {subscriptionRemainingDays(user?.end_date)}{" "}
-                                {t(
-                                  `${
-                                    user?.package?.days > 1 &&
-                                    user?.package?.days < 11
-                                      ? "days"
-                                      : "day"
-                                  }`
+                          {isMyAccount && (
+                            <div className="action-boxes">
+                              <div className="remainingDays d-flex align-items-center gap-2">
+                                {t("profile.remainingDays")}
+                                <span>
+                                  {subscriptionRemainingDays(user?.end_date)}{" "}
+                                  {t(
+                                    `${
+                                      user?.package?.days > 1 &&
+                                      user?.package?.days < 11
+                                        ? "days"
+                                        : "day"
+                                    }`
+                                  )}
+                                </span>
+                              </div>
+                              {subscriptionRemainingDays(user?.end_date) <= 1 &&
+                                isMyAccount && (
+                                  <Link
+                                    to="/commercial-verification"
+                                    className="btn-box custom-btn filled"
+                                  >
+                                    <span>{t(`profile.renewSubscribe`)}</span>
+                                  </Link>
                                 )}
-                              </span>
                             </div>
-                            {subscriptionRemainingDays(user?.end_date) <= 1 &&
-                              isMyAccount && (
-                                <Link
-                                  to="/commercial-verification"
-                                  className="btn-box custom-btn filled"
-                                >
-                                  <span>{t(`profile.renewSubscribe`)}</span>
-                                </Link>
-                              )}
-                          </div>
+                          )}
                         </div>
                       </div>
                     )}
                   </div>
 
-                  <ProfileTabs user={user} isMyAccount={isMyAccount} />
+                  {isMyAccount ? (
+                    <ProfileTabs user={user} isMyAccount={isMyAccount} />
+                  ) : (
+                    <>
+                      {isMyAccount && (
+                        <div className="w-100 btn-wrapper d-flex justify-content-end mb-3 p-2">
+                          <Link to="/add-ad" className="custom-btn stroke">
+                            <span>
+                              <IconCirclePlus stroke={2} /> {t("ads.addAD")}
+                            </span>
+                          </Link>
+                        </div>
+                      )}
+                      {adsLoading ? (
+                        <DataLoader minHeight="400px" />
+                      ) : ads?.data && ads?.data?.length > 0 ? (
+                        ads?.data?.map((ad) => (
+                          <div
+                            className="col-lg-3 col-md-6 col-12 p-2"
+                            key={ad?.id}
+                          >
+                            <Post
+                              userId={user?.id}
+                              post={ad}
+                              isMyAccount={isMyAccount}
+                              isMyPost={true}
+                            />
+                          </div>
+                        ))
+                      ) : (
+                        <EmptyData minHeight={"300px"}>
+                          {t("profile.noAds")}
+                        </EmptyData>
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -271,6 +365,21 @@ function Profile() {
           )}
         </section>
       )}
+      <ConfirmationModal
+        showModal={showDeleteModal}
+        setShowModal={setShowDeleteModal}
+        type="delete"
+        eventFun={handleDeleteAccount}
+        loading={deleteLoading}
+        buttonText={t("delete")}
+        text={t("auth.areYouSureYouWantToDeleteAccount")}
+      />
+      <ReportModal
+        id={user?.id}
+        type="user"
+        showModal={showReportModal}
+        setShowModal={setShowReportModal}
+      />
     </>
   );
 }

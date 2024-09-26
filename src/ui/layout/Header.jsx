@@ -4,7 +4,7 @@ import { Dropdown } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
-import { logout, setIsLogged, setUser } from "../../redux/slices/authedUser";
+import { setIsLogged, setUser } from "../../redux/slices/authedUser";
 import { useQueryClient } from "@tanstack/react-query";
 import { setLanguage } from "../../redux/slices/language";
 import {
@@ -21,18 +21,12 @@ import NotificationItem from "../layout/NotificationItem";
 import useGetNotifications from "../../hooks/useGetNotifications";
 import DataLoader from "../DataLoader";
 import EmptyData from "../EmptyData";
-import ConfirmationModal from "../modals/ConfirmationModal";
-import { toast } from "react-toastify";
-import { deleteAccount } from "../../services/apiAuth";
 
 export default function Header() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [deleteLoading, setDeleteLoading] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
   const [isFixedTop, setIsFixedTop] = useState(false);
@@ -96,29 +90,6 @@ export default function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const handleDeleteAccount = async () => {
-    try {
-      setDeleteLoading(true);
-      const res = await deleteAccount();
-      if (res.data.code === 200) {
-        delete axios.defaults.headers.common["Authorization"];
-        toast.success(t("cart.orderSuccess"));
-        dispatch(setUser({}));
-        dispatch(setIsLogged(false));
-        dispatch(logout());
-        navigate("/");
-      } else {
-        toast.error(res.message);
-        console.error(res.message);
-      }
-    } catch (error) {
-      console.error(error.message);
-    } finally {
-      setDeleteLoading(false);
-      setShowConfirmation(false);
-    }
-  };
 
   return isLogoutLoading ? (
     <Loader />
@@ -300,11 +271,6 @@ export default function Header() {
                       {t("header.appCommission")}
                     </Dropdown.Item>
 
-                    <Dropdown.Item onClick={() => setShowConfirmation(true)}>
-                      <i className="fa-regular fa-trash"></i>
-                      {t("header.deleteAccount")}
-                    </Dropdown.Item>
-
                     <Dropdown.Item onClick={performLogout}>
                       <i className="fa-regular fa-arrow-right-from-bracket"></i>
                       {t("header.logout")}
@@ -340,15 +306,6 @@ export default function Header() {
           </div>
         </div>
       </nav>
-      <ConfirmationModal
-        showModal={showConfirmation}
-        setShowModal={setShowConfirmation}
-        type="delete"
-        eventFun={handleDeleteAccount}
-        loading={deleteLoading}
-        buttonText={t("delete")}
-        text={t("auth.areYouSureYouWantToDeleteAccount")}
-      />
     </header>
   );
 }

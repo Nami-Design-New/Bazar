@@ -75,7 +75,7 @@ function CheckBoxContainer({
           name="category_id"
           value={item.id}
           id={item.id}
-          checked={isParentChecked}
+          checked={isParentChecked || categoriesValue?.includes(+item.id)}
           onChange={handleParentCheckboxChange}
         />
       </div>

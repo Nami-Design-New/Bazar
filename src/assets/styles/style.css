@@ -2514,6 +2514,24 @@ body main .profile .userInfo {
   flex-direction: column;
   gap: 24px;
 }
+body main .profile .userInfo .user-dropdown {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+}
+body main .profile .userInfo .user-dropdown .dropdown-toggle {
+  background: none !important;
+  border: none !important;
+  outline: none !important;
+  padding: 4px !important;
+  border-radius: 50% !important;
+}
+body main .profile .userInfo .user-dropdown .dropdown-toggle i {
+  color: #000;
+}
+body main .profile .userInfo .dropdown-toggle {
+  position: relative;
+}
 body main .profile .userInfo .top-wrapper {
   width: 100%;
   display: flex;
@@ -2630,7 +2648,7 @@ body main .profile .userInfo .top-wrapper .verification-details .verification-it
 body main .profile .userInfo .top-wrapper .action-boxes {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   align-items: center;
   position: relative;
 }
@@ -6815,35 +6833,6 @@ body main .add-advertisment .form {
   background: #fafafa;
   border: 1px solid #f4f4f4;
 }
-body main .add-advertisment .form .radios {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-body main .add-advertisment .form .radios label {
-  width: 100%;
-}
-body main .add-advertisment .form .radios label span {
-  height: 56px;
-  width: 100%;
-  background: #fff;
-  color: #000;
-  font-size: 16px;
-  cursor: pointer;
-  border: 1px solid #d9d9d9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-}
-body main .add-advertisment .form .radios label input {
-  display: none;
-}
-body main .add-advertisment .form .radios label input:checked + span {
-  background: #4381f8;
-  border-color: #4381f8;
-  color: #fff;
-}
 body main .add-advertisment .form .btns {
   display: flex;
   align-items: center;
@@ -7200,6 +7189,35 @@ body main .reverify {
 }
 body main .reverify i {
   font-size: 20px;
+  color: #fff;
+}
+body main .radios {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+body main .radios label {
+  width: 100%;
+}
+body main .radios label span {
+  height: 56px;
+  width: 100%;
+  background: #fff;
+  color: #000;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+body main .radios label input {
+  display: none;
+}
+body main .radios label input:checked + span {
+  background: #4381f8;
+  border-color: #4381f8;
   color: #fff;
 }
 body main .ads-page .content-wrapper {
@@ -7735,6 +7753,90 @@ body main .lottie_player_holder {
 }
 body main .lottie_player_holder img {
   max-height: 500px;
+}
+body main .commission-page {
+  padding: 40px 0;
+}
+body main .commission-page .form-header-image {
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+body main .commission-page .form-header-image img {
+  width: 300px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+body main .commission-page .form-body {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+body main .commission-page .form-body .info-wrapper {
+  justify-content: center;
+}
+body main .commission-page .form-body .info-wrapper .title-wrapper h5,
+body main .commission-page .form-body .info-wrapper .title-wrapper h6,
+body main .commission-page .form-body .info-wrapper .title-wrapper a,
+body main .commission-page .form-body .info-wrapper .title-wrapper span {
+  color: #000 !important;
+}
+body main .commission-page .form-body .info-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+  font-size: 16px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  padding: 16px;
+  border-radius: 12px;
+}
+body main .commission-page .form-body .info-item .value {
+  color: #4381f8;
+  font-weight: 600;
+}
+body main .commission-page .form-body .label-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  font-size: 14px;
+  color: #6b6464;
+}
+body main .commission-page .form-body .total-details {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  position: relative;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2509803922);
+}
+body main .commission-page .form-body .total-details h6 {
+  padding-bottom: 8px;
+  position: relative;
+  color: #000;
+  font-weight: 400;
+  white-space: nowrap;
+}
+body main .commission-page .form-body .total-details h6 span {
+  color: #4381f8;
+  font-weight: 600;
+}
+body main .commission-page .form-body .total-details .details-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  flex-wrap: wrap;
+}
+body main .commission-page .radios input:checked + span {
+  background: #4381f8;
+  border-color: #4381f8;
+  color: #fff !important;
 }
 body main a {
   transition: all 0.2s ease-in-out;
@@ -8824,6 +8926,7 @@ body .bank-transfer-box .image-wrapper i {
   font-size: 36px;
 }
 body .bank-transfer-box .info-wrapper {
+  flex: 1 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -8856,6 +8959,21 @@ body .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box i {
   justify-content: center;
   align-items: center;
   color: #777777;
+}
+body .bank-transfer-box .commision-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  gap: 8px;
+  color: #4381f8;
+  line-height: 1;
+  font-weight: 600;
+  font-size: 16px;
+}
+body .bank-transfer-box .commision-box span {
+  font-weight: 400;
+  color: #000;
 }
 body .skeleton-item {
   flex: 1;
