@@ -73,14 +73,10 @@ function CreateComment({ comment, setTargetedComment, refetch }) {
       }
 
       try {
-        console.log("requestBody", requestBody);
-
         const res = await axios.post(
           `/user/${comment ? "create_replay" : "create_market_rate"}`,
           requestBody
         );
-
-        console.log(res);
 
         if (res.data.code === 200) {
           toast.success(

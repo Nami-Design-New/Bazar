@@ -27,8 +27,6 @@ function MarketBanner({ market }) {
     e.stopPropagation();
     e.preventDefault();
     if (isLogged) {
-      console.log(market?.data?.is_favorite);
-
       if (market?.data?.is_favorite) {
         removeFromFavorite(
           { id: market?.data?.id, type: "market_id" },

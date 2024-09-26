@@ -73,7 +73,6 @@ function AdDetails() {
           { id: ad?.id, type: "ad_id" },
           {
             onSuccess: () => {
-              console.log("success");
               queryClient.invalidateQueries([
                 "userAds",
                 "adsByFilter",
@@ -91,7 +90,6 @@ function AdDetails() {
           },
           {
             onSuccess: () => {
-              console.log("success");
               queryClient.invalidateQueries([
                 "userAds",
                 "adsByFilter",
@@ -248,11 +246,14 @@ function AdDetails() {
 
             <div className="col-lg-4 p-0 p-md-3">
               <div className="advertiserDetails mb-3">
-                <div
+                <Link
                   to={`/profile/${ad?.data?.user?.id}`}
                   className="advertiser"
                 >
-                  <div className="image-wrapper" style={{position: "relative"}}>
+                  <div
+                    className="image-wrapper"
+                    style={{ position: "relative" }}
+                  >
                     <img src={ad?.data?.user?.image} loading="lazy" alt="" />
                     {ad?.data?.user?.verified ? (
                       <div className="verified-badge">
@@ -264,7 +265,7 @@ function AdDetails() {
                     {" "}
                     {ad?.data?.user?.name || "Ahmed Elsayed"}{" "}
                   </h3>
-                </div>
+                </Link>
                 <span className="date">
                   {" "}
                   {t("memberSince")}{" "}

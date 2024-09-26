@@ -44,7 +44,6 @@ function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
     e.stopPropagation();
     e.preventDefault();
     if (isLogged) {
-      console.log(post?.is_favorite);
 
       if (post?.is_favorite) {
         removeFromFavorite(

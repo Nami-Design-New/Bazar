@@ -7,8 +7,6 @@ function FiltersGenerator({
   setDynamicFilterData,
   dynamicFilterData,
 }) {
-  console.log(filters?.data);
-
   return filters?.data && filters?.data?.length > 0
     ? filters?.data?.map((filter) => {
         if (filter?.type === "number") {

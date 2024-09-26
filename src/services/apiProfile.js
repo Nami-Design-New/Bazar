@@ -13,3 +13,17 @@ export default async function getProfile(id) {
     throw error;
   }
 }
+
+export async function getUserProfileById(id) {
+  try {
+    const res = await axios.post(`/get_user`, { user_id: id });
+    if (res.data.code === 200) {
+      return res.data.data;
+    } else {
+      throw new Error(res.data.message || "Error fetching profile");
+    }
+  } catch (error) {
+    console.error("Error fetching profile:", error.message);
+    throw error;
+  }
+}

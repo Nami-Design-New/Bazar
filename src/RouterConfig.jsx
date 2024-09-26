@@ -31,6 +31,7 @@ import Privacy from "./routes/Privacy";
 import AddInterest from "./ui/modals/AddInterest";
 import Notifcations from "./routes/Notifcations";
 import ProductDetails from "./routes/ProductDetails";
+import Commission from "./routes/Commission";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
@@ -50,7 +51,7 @@ const routerConfig = [
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   { path: "/forget-password", element: <ForgetPassword /> },
-  { path: "/edit-profile", element: <EditProfile /> },
+  { path: "/edit-profile", element: <EditProfile />, protected: true },
 
   // verification
   {
@@ -58,7 +59,7 @@ const routerConfig = [
     element: <AppVerification />,
     protected: true,
   },
-  { path: "/fal-verification", element: <FalVerification /> },
+  { path: "/fal-verification", element: <FalVerification />, protected: true },
   {
     path: "/commercial-verification",
     element: <CommercialVerification />,
@@ -66,21 +67,22 @@ const routerConfig = [
   },
 
   // user features
-  { path: "/profile", element: <Profile /> },
-  { path: "/profile/:id", element: <Profile /> },
+  { path: "/profile", element: <Profile />, protected: true },
+  { path: "/profile/:id", element: <Profile />, protected: true },
   { path: "/notifications", element: <Notifcations /> },
-  { path: "/chats", element: <Chats /> },
+  { path: "/chats", element: <Chats />, protected: true },
   { path: "/cart", element: <Cart />, protected: true },
   { path: "/checkout", element: <Checkout />, protected: true },
   { path: "/my-activities", element: <Activities />, protected: true },
   { path: "/ad-details/:id", element: <AdDetails /> },
   { path: "/order-details/:id", element: <OrderDetails />, protected: true },
   { path: "/market-details/:id", element: <MarketDetails /> },
-  { path: "/favorites", element: <Favorites /> },
+  { path: "/favorites", element: <Favorites />, protected: true },
   { path: "/add-ad", element: <AddAdvertisment />, protected: true },
   { path: "/add-ad/:id", element: <AddAdvertisment />, protected: true },
   { path: "/add-interest", element: <AddInterest />, protected: true },
   { path: "/add-interest/:id", element: <AddInterest />, protected: true },
+  { path: "/commission", element: <Commission />, protected: true },
   { path: "/manage-accounts", element: <ManageAccounts />, protected: true },
   { path: "/product-details/:id", element: <ProductDetails /> },
 ];

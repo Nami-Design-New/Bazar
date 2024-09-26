@@ -17,7 +17,9 @@
     "coupons": "كوبونات",
     "markets": "المتاجر",
     "addNewAccount": "تسجيل حساب جديد",
-    "login": "تسجيل الدخول"
+    "login": "تسجيل الدخول",
+    "appCommission": "عمولة التطبيق",
+    "deleteAccount": "حذف الحساب"
   },
   "home": {
     "markets": "المتاجر",
@@ -66,7 +68,8 @@
     "terms-of-use": "شروط الاستخدام",
     "privacy-policy": "سياسة الخصوصية",
     "add-interest": "اضافة اهتمام",
-    "notifications": "الاشعارات"
+    "notifications": "الاشعارات",
+    "commission": "عمولة التطبيق"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -110,7 +113,8 @@
     "registerSuccess": "تم تسجيل حسابك بنجاح",
     "profileEditedSuccessfully": "تم تعديل الملف الشخصي بنجاح",
     "otpSentSuccess": "تم ارسال الرمز بنجاح، يرجى التحقق من الرسالة",
-    "otpResentSuccess": "تم إعادة ارسال الرمز بنجاح، يرجى التحقق من الرسالة"
+    "otpResentSuccess": "تم إعادة ارسال الرمز بنجاح، يرجى التحقق من الرسالة",
+    "areYouSureYouWantToDeleteAccount": "هل أنت متأكد من أنك تريد حذف هذا الحساب؟"
   },
   "profile": {
     "ads": "الاعلانات",

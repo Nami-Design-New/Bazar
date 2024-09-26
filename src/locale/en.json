@@ -17,7 +17,9 @@
     "coupons": "Coupons",
     "markets": "Markets",
     "addNewAccount": "Register New Account",
-    "login": "Login"
+    "login": "Login",
+    "appCommission": "App Commission",
+    "deleteAccount": "Delete Account"
   },
   "home": {
     "markets": "Markets",
@@ -62,7 +64,8 @@
     "forget-password": "Forgot Password",
     "register": "Register",
     "edit-profile": "Edit Profile",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "commission": "App Commission"
   },
   "auth": {
     "login": "Login",
@@ -106,7 +109,8 @@
     "registerSuccess": "Your account has been registered successfully",
     "profileEditedSuccessfully": "Profile successfully updated",
     "otpSentSuccess": "Code sent successfully, please check your message",
-    "otpResentSuccess": "Code resent successfully, please check your message"
+    "otpResentSuccess": "Code resent successfully, please check your message",
+    "areYouSureYouWantToDeleteAccount": "Are you sure you want to delete this account?"
   },
   "profile": {
     "ads": "Ads",

@@ -42,7 +42,6 @@ function Login() {
           "Content-Type": "multipart/form-data"
         }
       });
-      console.log(res);
       if (res.data.code === 200) {
         toast.success(t("auth.loginSuccess"));
         dispatch(setUser(res.data.data));

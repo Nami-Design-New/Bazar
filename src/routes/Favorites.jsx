@@ -13,8 +13,6 @@ function Favorites() {
   const { isLoading: adsLoading, data: ads } = useFavoriteAds();
   const { isLoading: marketsLoading, data: markets } = useFavoriteMarkets();
 
-  console.log(markets);
-
   return (
     <>
       <SectionHeader />

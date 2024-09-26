@@ -13,7 +13,6 @@ function useGetWalletOperations() {
           total: res.data.total,
         };
       } catch (error) {
-        console.log(error);
         throw new Error(error.message);
       }
     },
