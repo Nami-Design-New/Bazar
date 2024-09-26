@@ -7,7 +7,7 @@ import {
   deleteProductFromCart
 } from "../../services/apiCart";
 import ConfirmationModal from "../modals/ConfirmationModal";
-import { IconTrashFilled } from "@tabler/icons-react";
+// import { IconTrashFilled } from "@tabler/icons-react";
 
 function CartItem({ type, item }) {
   const { t } = useTranslation();
@@ -103,7 +103,7 @@ function CartItem({ type, item }) {
                 {t("currency.sar")}
               </p>
               <button onClick={() => setShowConfirmation(true)}>
-                <IconTrashFilled />
+                <i className="fa-regular fa-trash-can"></i>
               </button>
             </div>
           </div>

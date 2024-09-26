@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import ProductMiniCard from "./../../ui/cards/ProductMiniCard";
 import DataLoader from "../../ui/DataLoader";
 import EmptyData from "../../ui/EmptyData";
-import useMarketSections from './../../hooks/markets/useMarketSections';
-import useSectionProducts from './../../hooks/markets/useSectionProducts';
+import useMarketSections from "./../../hooks/markets/useMarketSections";
+import useSectionProducts from "./../../hooks/markets/useSectionProducts";
 
 function ProductsTab({ market }) {
   const { t } = useTranslation();
@@ -53,7 +53,7 @@ function ProductsTab({ market }) {
               <div className="row m-0">
                 {products?.data?.map((product) => (
                   <div
-                    className="col-lg-3 col-md-4 col-12 p-2"
+                    className="col-sm-6 col-lg-4 col-12 p-2"
                     key={product?.id}
                   >
                     <ProductMiniCard

@@ -17,12 +17,16 @@ function MarketDetails() {
       <SectionHeader title={market?.data?.name} backLinks={["markets"]} />
       <section className="market-details-page ">
         <div className="container">
-          <div className="row m-0">
-            <div className="col-12 p-2">
-              <MarketBanner market={market} />
-            </div>
-            <div className="col-12 p-2">
-              <MarketTabs market={market} />
+          <div className="row justify-content-center m-0">
+            <div className="col-lg-10 p-0">
+              <div className="row m-0">
+                <div className="col-12 p-2">
+                  <MarketBanner market={market} />
+                </div>
+                <div className="col-12 p-2">
+                  <MarketTabs market={market} />
+                </div>
+              </div>
             </div>
           </div>
         </div>

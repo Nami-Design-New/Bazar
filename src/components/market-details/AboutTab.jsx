@@ -27,6 +27,41 @@ function AboutTab({ market, type }) {
           </div>
           <p>{market?.data?.bio}</p>
         </div>
+        <div className="details-box " style={{ gap: "16px" }}>
+          {/* <div className="title">
+            <span>{t("markets.contactWithMarket")}</span>
+          </div> */}
+          <div className="contact-wrapper">
+            <Link
+              target="_blank"
+              to={`https://wa.me/${market?.data?.whatsapp}`}
+              className="contact-link"
+            >
+              <i className="fa-brands fa-whatsapp "></i>
+            </Link>
+            <Link
+              target="_blank"
+              to={`mailto:${market?.data?.email}`}
+              className="contact-link"
+            >
+              <i className="fa-regular fa-envelope "></i>
+            </Link>
+            <Link
+              target="_blank"
+              to={market?.data?.instagram}
+              className="contact-link"
+            >
+              <i className="fa-brands fa-instagram "></i>
+            </Link>
+            <Link
+              target="_blank"
+              to={`tel:+966${market?.data?.phone}`}
+              className="contact-link"
+            >
+              <i className="fa-regular fa-phone "></i>
+            </Link>
+          </div>
+        </div>
         {type === "coupon" ? null : (
           <div className="details-box">
             <div className="title">
@@ -65,7 +100,7 @@ function AboutTab({ market, type }) {
           <div className="details-box">
             <div className="title">
               <div className="icon">
-                <i className="fa-solid fa-id-card "></i>
+                <i className="fa-regular fa-id-card "></i>
               </div>
               <span>
                 {t("markets.identity")}{" "}
@@ -92,6 +127,7 @@ function AboutTab({ market, type }) {
             </div>
           </div>
         )}
+       
         <div className="details-box">
           <div className="title mb-3">
             <div className="icon">
@@ -117,45 +153,6 @@ function AboutTab({ market, type }) {
               ></Marker>
             </GoogleMap>
           </LoadScript>
-        </div>
-
-        <div className="details-box " style={{ gap: "16px" }}>
-          <div className="title">
-            <span>{t("markets.contactWithMarket")}</span>
-          </div>
-          <div className="contact-wrapper">
-            <Link
-              target="_blank"
-              to={`https://wa.me/${market?.data?.whatsapp}`}
-              className="contact-link"
-            >
-              <img src="/images/whatsapp-icon.svg" alt="WhatsApp" />
-            </Link>
-            <Link
-              target="_blank"
-              to={`mailto:${market?.data?.email}`}
-              className="contact-link"
-            >
-              <i
-                className="fa-regular fa-envelope "
-                style={{ fontSize: "24px" }}
-              ></i>
-            </Link>
-            <Link
-              target="_blank"
-              to={market?.data?.instagram}
-              className="contact-link"
-            >
-              <img src="/images/instagram-icon.svg" alt="Instagram" />
-            </Link>
-            <Link
-              target="_blank"
-              to={`tel:+966${market?.data?.phone}`}
-              className="contact-link"
-            >
-              <i className="fa-regular fa-phone "></i>
-            </Link>
-          </div>
         </div>
       </div>
     </div>

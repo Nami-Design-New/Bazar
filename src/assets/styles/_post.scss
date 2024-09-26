@@ -131,7 +131,7 @@
       align-items: center;
       gap: 4px;
       font-size: 13px;
-      color: $inputHint;
+      color: $black;
       img {
         width: 16px;
         height: 16px;
@@ -158,7 +158,13 @@
           font-size: 16px;
           font-weight: 600;
           position: relative;
-          color: $main;
+          // color: $main;
+          svg{
+            width: 20px;
+            height: 20px;
+            stroke: $main;
+           
+          }
         }
       }
 

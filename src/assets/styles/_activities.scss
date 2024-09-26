@@ -121,12 +121,19 @@
           gap: 0 24px;
           flex-wrap: wrap;
           position: relative;
-
+          color: $black;
           .category {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 16px;
+            color: $black;
+            i {
+              color: $main;
+            }
+            &:hover {
+              color: $main;
+            }
           }
         }
 
@@ -169,7 +176,7 @@
       align-items: center;
       flex-wrap: wrap;
       justify-content: space-around;
-      gap: 16px;
+      gap: 8px;
       position: relative;
       padding: 0 16px 16px;
 
@@ -184,7 +191,7 @@
         white-space: nowrap;
 
         i {
-          font-size: 20px;
+          font-size: 16px;
         }
 
         .value {

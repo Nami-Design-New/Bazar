@@ -7,7 +7,6 @@ import { deleteProductFromCart } from "../../services/apiCart";
 import axios from "./../../utils/axios";
 import DeleteCartAndAdd from "../modals/DeleteCartAndAdd";
 import { Link } from "react-router-dom";
-
 function ProductMiniCard({ product, marketId }) {
   const { t } = useTranslation();
   const cart = useSelector((state) => state.cart.cartList);
@@ -15,14 +14,13 @@ function ProductMiniCard({ product, marketId }) {
   const [loading, setLoading] = useState();
   const [inCart, setInCart] = useState(false);
   const [showModal, setShowModal] = useState(false);
-
   useEffect(() => {
     if (cart && cart?.length > 0) {
       setInCart(cart?.some((c) => c?.product?.id === product?.id));
     }
   }, [cart, product?.id]);
-
-  const handleAddToCart = async () => {
+  const handleAddToCart = async (e) => {
+    e.stopPropagation();
     if (cart?.[0]?.market?.id && marketId !== cart?.[0]?.market?.id) {
       setShowModal(true);
       return;
@@ -43,8 +41,8 @@ function ProductMiniCard({ product, marketId }) {
       throw new Error(error);
     }
   };
-
-  const handleDeleteItem = async () => {
+  const handleDeleteItem = async (e) => {
+    e.stopPropagation();
     try {
       const res = await deleteProductFromCart(product?.id);
       if (res?.data?.code) {
@@ -56,7 +54,6 @@ function ProductMiniCard({ product, marketId }) {
       throw new Error(error);
     }
   };
-
   const handleConfirmModal = async () => {
     setLoading(true);
     try {
@@ -87,22 +84,24 @@ function ProductMiniCard({ product, marketId }) {
       setShowModal(false);
     }
   };
-
   return (
-    <Link to={`/product-details/${product?.id}`} className="product_crad">
+    <div className="product_crad">
       <div className="product_image">
-        <img src={product?.image} alt="product" />
+        <Link to={`/product-details/${product?.id}`}>
+          <img src={product?.image} alt="product" />
+        </Link>
         {/* <span>أوريون</span>
         <button>
           <i className="fa-sharp fa-light fa-heart"></i>
         </button> */}
       </div>
       <div className="product_info">
-        <h5 className="pro_name">{product?.title || "مشروم thio"}</h5>
+        <Link to={`/product-details/${product?.id}`}>
+          <h5 className="pro_name">{product?.title || "مشروم thio"}</h5>
+        </Link>
         <p className="pro_number one-line-wrap">
           {product?.description || "مشروم طازج ٢٠٠ جرام"}
         </p>
-
         <div className="price_buy">
           <h6>
             {product?.offer_price ? product?.offer_price : product?.price}{" "}
@@ -125,8 +124,10 @@ function ProductMiniCard({ product, marketId }) {
               </span>{" "}
               <span className="sale">
                 {t("cart.off")}{" "}
-                {((product?.price - product?.offer_price) / product?.price) *
-                  100}
+                {(
+                  ((product?.price - product?.offer_price) / product?.price) *
+                  100
+                ).toFixed(2)}
                 %
               </span>
             </p>
@@ -139,8 +140,7 @@ function ProductMiniCard({ product, marketId }) {
         eventFun={handleConfirmModal}
         loading={loading}
       />
-    </Link>
+    </div>
   );
 }
-
 export default ProductMiniCard;
