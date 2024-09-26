@@ -25,7 +25,8 @@
           width: 100%;
           height: 100%;
           display: block;
-          object-fit: contain;
+          object-fit: cover;
+          border-radius: 12px;
         }
       }
       .details {
@@ -123,13 +124,22 @@
         }
         button {
           @include clearInput();
-          width: 42px;
-          height: 42px;
-          background: red;
+          width: 40px;
+          height: 40px;
+          color: #ff0000;
+          transition: $transition;
           border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color:#ff00001a ;
           svg {
             height: 20px;
             fill: $white;
+          }
+          &:hover {
+            background: #ff0000;
+            color: #fff;
           }
         }
       }
@@ -182,10 +192,11 @@
         width: 80px;
         height: 80px;
         img {
-          object-fit: contain;
+          object-fit: cover;
           width: 100%;
           height: 100%;
-          mix-blend-mode: multiply;
+          border-radius: 12px;
+          // mix-blend-mode: multiply;
         }
       }
       .info {
@@ -196,7 +207,6 @@
         justify-content: center;
         h6 {
           font-size: 14px;
-          color: $main;
           font-weight: 600;
         }
         .count_price {
@@ -205,10 +215,9 @@
             font-size: 14px;
             white-space: nowrap;
             flex: 1;
-            color: $main;
             font-weight: 600;
             span {
-              color: $second;
+              color: $main;
             }
           }
         }

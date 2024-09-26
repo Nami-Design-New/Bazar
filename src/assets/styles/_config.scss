@@ -186,6 +186,7 @@ input[type="checkbox"] {
 }
 
 .tableLoader {
+  flex: 1;
   @include centerFlex();
   flex-direction: column;
   .loader--style8 {

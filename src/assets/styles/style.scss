@@ -9,6 +9,9 @@ body {
 
   main {
     min-height: calc(100vh - 369px);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     @import "./home";
     @import "./videos";
     @import "./auth";
@@ -24,6 +27,9 @@ body {
     @import "./ads";
     @import "./chat";
 
+    a {
+      transition: $transition;
+    }
     .about {
       padding: 60px 0;
     }
@@ -1295,4 +1301,14 @@ body {
       object-position: left;
     }
   }
+}
+
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+  max-width: unset;
+  width: min(100%, 1320px);
 }

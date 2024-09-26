@@ -27,7 +27,7 @@ function NotificationItem({ notification }) {
   return (
     <Link to="/notification">
       <div className="text-wrap w-100">
-        <div className="header d-flex align-items-center gap-3 justify-content-between">
+        <div className="header d-flex align-items-center gap-2 justify-content-between">
           <div className="image-wrapper">
             {imgError ? (
               <i className="fa-regular fa-bell"></i>

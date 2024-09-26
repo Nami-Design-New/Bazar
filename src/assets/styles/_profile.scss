@@ -303,7 +303,7 @@
       .nav-item {
         flex: unset !important;
         button {
-          background: $inputBg;
+          background: #f3f3f3;
         }
         @media screen and (max-width: 768px) {
           flex: 1 0 !important;
@@ -949,9 +949,9 @@
   align-items: center;
   justify-content: center;
   padding: 8px;
-
+  background-color: #11c711;
   i {
     font-size: 20px;
-    color: green;
+    color: $white;
   }
 }

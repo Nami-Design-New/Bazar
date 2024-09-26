@@ -110,7 +110,7 @@ function FavoriteMarketCard({ market }) {
           ) : null}
           {market?.rate || market?.rate === 0 ? (
             <div className="statistic">
-              <i className="fa-solid fa-star"></i>
+              <i className="fa-regular fa-star"></i>
               <span className="value">{market?.rate}</span>
             </div>
           ) : null}
