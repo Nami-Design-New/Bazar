@@ -4,35 +4,66 @@ import DataLoader from "../../ui/DataLoader";
 import EmptyData from "../../ui/EmptyData";
 import useUserRewards from "../../hooks/profile/useUserRewards";
 import useGetSettings from "../../hooks/settings/useGetSettings";
+import SubmitButton from "../../ui/form-elements/SubmitButton";
 import { useState } from "react";
-import WithdrawModal from "../../ui/modals/WithdrawModal";
+import axios from "../../utils/axios";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 
 function RewardsTab({ isMyAccount, user }) {
   const { t } = useTranslation();
   const { isLoading: rewardsLoading, data: rewards } = useUserRewards(user?.id);
   const { isLoading: settingsLoading, data: settings } = useGetSettings();
-  const [showWithdrawModel, setShowWithdrawModel] = useState(false);
+  const [finishLoading, setFinishLoading] = useState(false);
+
+  const queryClient = useQueryClient();
 
   const hasReward =
     rewards?.data && rewards?.data?.length > 0
       ? rewards?.data?.some((reward) => reward?.rewarded)
       : false;
 
+  const handleFinishReward = async (e) => {
+    e.preventDefault();
+    setFinishLoading(true);
+    try {
+      const res = await axios.get("/user/finish_reward");
+      if (res.data.code === 200) {
+        toast.success(t("profile.successfullyWithdrawRewards"));
+        queryClient.invalidateQueries("userRewards");
+      } else {
+        toast.error("profile.finishRewardError");
+        setFinishLoading(false);
+      }
+    } catch (error) {
+      toast.error("profile.finishRewardError");
+      setFinishLoading(false);
+      throw new Error(error.message);
+    } finally {
+      setFinishLoading(false);
+    }
+  };
+
   return rewardsLoading || settingsLoading ? (
     <DataLoader minHeight="400px" />
   ) : rewards?.data && rewards?.data?.length > 0 ? (
     <>
       {isMyAccount &&
-        (hasReward ? (
+        (!hasReward ? (
           <div className="w-100 btn-wrapper d-flex justify-content-end mb-3 p-2">
             <div className="btns-wrapper">
               <button
                 className="btn custom-btn filled"
                 style={{ width: "unset !important" }}
-                onClick={() => setShowWithdrawModel(true)}
+                onClick={handleFinishReward}
               >
-                <span>{t("profile.withdrawRewards")}</span>
+                <span></span>
               </button>
+              <SubmitButton
+                name={t("profile.withdrawRewards")}
+                loading={finishLoading}
+                onClick={handleFinishReward}
+              />
             </div>
           </div>
         ) : (
@@ -73,10 +104,6 @@ function RewardsTab({ isMyAccount, user }) {
           />
         </div>
       ))}
-      <WithdrawModal
-        showModal={showWithdrawModel}
-        setShowModal={setShowWithdrawModel}
-      />
     </>
   ) : (
     <EmptyData minHeight={"300px"}>{t("profile.noAds")}</EmptyData>

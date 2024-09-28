@@ -9257,6 +9257,38 @@ body .paginator_btns button:hover {
 body .paginator_btns button:hover i {
   color: #000;
 }
+body .recipe-image {
+  padding: 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .recipe-image input {
+  display: none !important;
+}
+body .recipe-image img {
+  height: 60px !important;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+body .recipe-image button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
 body.en {
   direction: ltr;
 }

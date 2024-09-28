@@ -90,7 +90,12 @@ function Commission() {
           setLoading(false);
         }
       } else if (paymentMethod === "wallet") {
-        setShowModal(true);
+        if (selectedAds) {
+          setShowModal(true);
+        } else {
+          toast.error(t("commissions.fillAllFields"));
+        }
+        setLoading(false);
       }
     }
   };
@@ -213,7 +218,12 @@ function Commission() {
           </div>
         </div>
       )}
-      <CommissionWalletModal show={showModal} setShow={setShowModal} />
+      <CommissionWalletModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        ids={selectedAds}
+        price={totalCost}
+      />
     </>
   );
 }

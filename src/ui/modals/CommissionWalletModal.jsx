@@ -6,38 +6,38 @@ import { toast } from "react-toastify";
 import { Modal } from "react-bootstrap";
 import { createTransfer } from "../../services/apiCommissions";
 import BankTransferCard from "../cards/BankTransferCard";
-import InputField from "../form-elements/InputField";
 import { Link } from "react-router-dom";
+import InputField from "../form-elements/InputField";
+import { handleChange } from "../../utils/helpers";
+import PhoneField from "../form-elements/PhoneField";
 
-function CommissionWalletModal({ setShowModal, showModal, cartTotalPrice }) {
+function CommissionWalletModal({ setShowModal, showModal, ids, price }) {
   const { t } = useTranslation();
   const { isLoading, data: banks } = useBanksList();
-  const [amount, setAmount] = useState("");
   const [bankId, setBankId] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const [conditionsCheck, setConditionsCheck] = useState({
-    responsibility: false,
-    duration: false,
-    fees: false,
+  const [formData, setFormData] = useState({
+    date: "",
+    name: "",
+    image: "",
   });
-
-  const handleConditionsChange = (e) => {
-    setConditionsCheck({
-      ...conditionsCheck,
-      [e.target.name]: e.target.checked,
-    });
-  };
 
   const queryClint = useQueryClient();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const requestBody = {};
+    const requestBody = {
+      ids: ids,
+      price: price,
+      ...formData,
+    };
 
-    requestBody.amount = amount;
-    requestBody.bank_id = bankId;
+    if (bankId) {
+      requestBody.bank_id = bankId;
+    } else {
+      return;
+    }
 
     try {
       await createTransfer(requestBody, queryClint);
@@ -55,30 +55,18 @@ function CommissionWalletModal({ setShowModal, showModal, cartTotalPrice }) {
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
       <Modal.Header className="pb-0" closeButton>
-        <h5>{t("balance.withdrawBalance")}</h5>
+        <h5>{t("commissions.transferCommissions")}</h5>
       </Modal.Header>
       <Modal.Body className="pay_modal">
-        {cartTotalPrice && (
-          <h3 className="text-center">
-            {t("cart.youDontHaveEnoughBallance")}{" "}
-            <span>
-              {cartTotalPrice}
-              <i className="fa-solid fa-dollar-sign"></i>
-            </span>
-          </h3>
-        )}
-
         <form className="form">
           <InputField
             type="number"
             id="amount"
             name="amount"
             placeholder={"00"}
-            value={amount}
-            label={`${t("balance.amount")} *`}
-            onChange={(e) => setAmount(e.target.value)}
-            disabled={loading}
-            required={true}
+            value={price}
+            label={`${t("commissions.amount")} `}
+            disabled={true}
           />
 
           {isLoading ? (
@@ -100,59 +88,90 @@ function CommissionWalletModal({ setShowModal, showModal, cartTotalPrice }) {
             ))
           )}
 
-          <Link to="/manage-accounts" className="btn custom-btn filled">
+          <Link to="/manage-accounts" className="btn custom-btn stroke">
             <span>{t("manageAccount")}</span>
           </Link>
 
-          <div className="conditions-wrapper">
-            <div className="checkbox-group">
-              <input
-                type="checkbox"
-                name="fees"
-                id="fees"
-                checked={conditionsCheck.fees}
-                onChange={handleConditionsChange}
-                disabled={loading}
-                required={true}
-              />
+          <InputField
+            type="text"
+            id="name"
+            name="name"
+            placeholder={"writeHere"}
+            value={formData?.name}
+            onChange={(e) => handleChange(e, setFormData)}
+            label={`${t("commissions.name")} `}
+            disabled={true}
+          />
 
-              <label htmlFor="fees">{t("balance.feesCondition")}</label>
-            </div>
-            <div className="checkbox-group">
+          <InputField
+            type="date"
+            id="date"
+            name="date"
+            value={formData?.date}
+            onChange={(e) => handleChange(e, setFormData)}
+            label={`${t("commissions.date")} `}
+            disabled={true}
+          />
+
+          <PhoneField
+            label={t("commissions.phone")}
+            onChange={(e) => handleChange(e, setFormData)}
+            value={formData.phone}
+            id="phone"
+            name="phone"
+            type="tel"
+            placeholder={t("0XXXXXXXXXX")}
+            maxLength={9}
+            required={true}
+          />
+
+          <div className="input-field recipe-image-wrapper">
+            <label htmlFor="recipe-image">{t("commissions.image")}</label>
+            <label className="recipe-image">
               <input
-                type="checkbox"
-                name="duration"
-                id="duration"
-                checked={conditionsCheck.duration}
-                onChange={handleConditionsChange}
-                disabled={loading}
+                type="file"
+                id="image"
+                accept="image/*"
+                name="image"
+                onChange={(e) =>
+                  setFormData((prevState) => ({
+                    ...prevState,
+                    image: e.target.files[0],
+                  }))
+                }
                 required={true}
               />
-              <label htmlFor="duration">{t("balance.durationCondition")}</label>
-            </div>
-            <div className="checkbox-group">
-              <input
-                type="checkbox"
-                name="responsibility"
-                id="responsibility"
-                checked={conditionsCheck.responsibility}
-                onChange={handleConditionsChange}
-                disabled={loading}
-                required={true}
-              />
-              <label htmlFor="responsibility">
-                {t("balance.responsibilityCondition")}
-              </label>
-            </div>
-            <p className="condition-note">
-              الحوالات البنكية التي ترسلها دولية، وحسب البنك الذي تتعامل معه. قد
-              تمر الحوالة عبر بنك وسيط لاتمام التحويل مما يؤدي لاقتطاع رسوم
-              إضافية.
-            </p>
-            <p className="condition-note">
-              قد يقتطع البنك المحلي الذي تستخدمه رسوم إضافية لاستقبال حوالات
-              بنكية دولية أو رسوم لتحويل العملة من الدولار إلى العملة المحلية.
-            </p>
+              {formData?.image ? (
+                <>
+                  <img
+                    style={{
+                      objectFit: "contain",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                    src={
+                      formData?.image?.type?.startsWith("image")
+                        ? URL.createObjectURL(formData?.image)
+                        : formData?.image
+                    }
+                    alt="upload"
+                  />
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setFormData({
+                        ...formData,
+                        image: "",
+                      });
+                    }}
+                  >
+                    <i className="fa-light fa-xmark"></i>
+                  </button>
+                </>
+              ) : (
+                <img src="/images/gallery.svg" alt="upload" />
+              )}
+            </label>
           </div>
         </form>
 
@@ -168,7 +187,7 @@ function CommissionWalletModal({ setShowModal, showModal, cartTotalPrice }) {
             type="submit"
             onClick={handleSubmit}
           >
-            <span>{t("balance.withdrawBalance")}</span>
+            <span>{t("commissions.createTransfer")}</span>
           </button>
         </div>
       </Modal.Body>
