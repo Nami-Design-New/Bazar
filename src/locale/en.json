@@ -159,7 +159,9 @@
     "addAddress": "Add New Address",
     "areYouSureYouWantToDeleteLocation": "Are you sure you want to delete this address?",
     "deleteAccount": "Delete Account",
-    "report": "Report"
+    "report": "Report",
+    "finishRewardError": "An error occurred while withdrawing rewards",
+    "successfullyWithdrawRewards": "Rewards withdrawn successfully"
   },
   "error": {
     "pageNotFound": "This link doesn't exist or might have been deleted. How did you get here?",
@@ -473,7 +475,23 @@
   },
   "commissions": {
     "ads": "Ads that have a commission",
-    "selectAdsSubtitle": "If you don't want to pay the full commission, you can select a specific number of ads to pay for."
+    "selectAdsSubtitle": "If you don't want to pay the full commission, you can select a specific number of ads to pay for.",
+    "appPrecentage": "App percentage",
+    "online": "Online",
+    "wallet": "Wallet",
+    "paymentMethod": "Payment Method",
+    "totalHeading": "Site receipts including VAT are:",
+    "payNow": "Pay Now",
+    "fillAllFields": "Please, you must select at least one ad and payment method to complete the process.",
+    "noAds": "There are currently no ads to apply commission on.",
+    "payedSuccessfully": "Payment was successful.",
+    "amount": "Receipt amount",
+    "date": "Receipt Date",
+    "createTransfer": "Send",
+    "name": "Adapter name",
+    "phone": "Mobile number associated with your membership",
+    "image": "Receipt image",
+    "transferCommissions": "Bank transfer receipt"
   },
   "createdAt": "Created At",
   "orderedAt": "Ordered At",

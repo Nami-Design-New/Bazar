@@ -165,7 +165,9 @@
     "addInterest": "اضافة اهتمام",
     "coupons": "الكوبونات",
     "deleteAccount": "حذف الحساب",
-    "report": "إبلاغ"
+    "report": "إبلاغ",
+    "finishRewardError": "حدث خطأ في سحب المكافآت",
+    "successfullyWithdrawRewards": "تم سحب المكافآت بنجاح"
   },
   "error": {
     "pageNotFound": "هذا الرابط غير موجود لدينا او ربما تم حذفه. كيف وصلت الي هنا ؟",
