@@ -1241,6 +1241,36 @@ body {
     }
   }
 
+  .recipe-image {
+    padding: 16px;
+    border: 1px solid $LightGray;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    input {
+      display: none !important;
+    }
+    @include centerFlex();
+    img {
+      height: 60px !important;
+      object-fit: contain;
+    }
+    button {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      position: absolute;
+      top: 8px;
+      left: 8px;
+    }
+  }
+
   &.en {
     direction: ltr;
     // font-family: "Poppins", sans-serif;

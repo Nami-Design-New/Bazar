@@ -1,19 +1,34 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { handleFavourite, handleFollow } from "../../services/apiFollow";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import Comments from "./Comments";
 import Share from "./Share";
+import useAddToFavorite from "../../hooks/useAddToFavorite";
+import useFollow from "../../hooks/useFollow";
+import useUnfollow from "../../hooks/useUnfollow";
+import useRemoveFromFavorite from "../../hooks/useRemoveFromFavorite";
+import { useSelector } from "react-redux";
+import { useQueryClient } from "@tanstack/react-query";
 
-function Video({ ad, setVideos }) {
+function Video({ ad }) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const videoRef = useRef(null);
   const [showComments, setShowComments] = useState(false);
   const [showShare, setShowShare] = useState(false);
   const [inView, setInView] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+
+  const isLogged = useSelector((state) => state.authedUser.isLogged);
+
+  const { addToFavorite } = useAddToFavorite();
+  const { removeFromFavorite } = useRemoveFromFavorite();
+
+  const { follow } = useFollow();
+  const { unfollow } = useUnfollow();
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -35,7 +50,7 @@ function Video({ ad, setVideos }) {
     };
 
     const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.5
+      threshold: 0.5,
     });
 
     if (videoElement) {
@@ -55,6 +70,64 @@ function Video({ ad, setVideos }) {
       videoRef.current.muted = false;
     }
   };
+
+  function handleToggleFavorite(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    if (isLogged) {
+      if (ad?.is_favorite) {
+        removeFromFavorite(
+          { id: ad?.id, type: "ad_id" },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries([
+                "userAds",
+                "adsByFilter",
+                "favoriteAds",
+              ]);
+              queryClient.invalidateQueries(["adById", ad?.id]);
+            },
+          }
+        );
+      } else {
+        addToFavorite(
+          {
+            id: ad?.id,
+            type: "ad_id",
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries([
+                "userAds",
+                "adsByFilter",
+                "favoriteAds",
+              ]);
+              queryClient.invalidateQueries(["adById", ad?.id]);
+            },
+          }
+        );
+      }
+    } else {
+      navigate("/login");
+    }
+  }
+
+  function handleToggleFollowing(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    if (isLogged) {
+      if (ad?.data?.user?.is_follow) {
+        unfollow({ id: ad?.data?.user?.id, type: "user" });
+      } else {
+        follow({
+          id: ad?.data?.user?.id,
+          type: "user",
+        });
+      }
+    } else {
+      navigate("/login");
+    }
+  }
 
   return (
     <div className="video" onClick={handleUserInteraction}>
@@ -76,7 +149,7 @@ function Video({ ad, setVideos }) {
           ref={videoRef}
           autoplay={{ delay: 2000, disableOnInteraction: false }}
           pagination={{
-            type: "fraction"
+            type: "fraction",
           }}
           className="videosSwiper"
         >
@@ -92,12 +165,7 @@ function Video({ ad, setVideos }) {
         <div className="user">
           <img src={ad?.user?.image} alt="user" />
           {!ad?.user?.is_follow && (
-            <button
-              className="follow"
-              onClick={() =>
-                handleFollow("user", ad?.user?.id, setVideos, "/user/follow")
-              }
-            >
+            <button className="follow" onClick={handleToggleFollowing}>
               <i className="fa-solid fa-plus"></i>
             </button>
           )}
@@ -106,16 +174,7 @@ function Video({ ad, setVideos }) {
         <div className="actions">
           <button
             className={ad?.is_favorite ? "active" : ""}
-            onClick={() =>
-              handleFavourite(
-                "ad_id",
-                ad?.id,
-                setVideos,
-                ad?.is_favorite
-                  ? "/user/remove_from_favorite"
-                  : "/user/add_to_favorite"
-              )
-            }
+            onClick={handleToggleFavorite}
           >
             <i className="fa-regular fa-heart"></i>
           </button>
@@ -156,3 +215,4 @@ function Video({ ad, setVideos }) {
 }
 
 export default Video;
+  
