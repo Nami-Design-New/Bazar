@@ -493,6 +493,39 @@
   }
 }
 .verification-page {
+  .radios {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    .label-content {
+      height: unset !important;
+      padding: 8px 0 !important;
+      flex-direction: column !important;
+      gap: 8px;
+    }
+    label {
+      width: 100%;
+      span {
+        height: 56px;
+        width: 100%;
+        background: $white;
+        color: $black;
+        font-size: 16px;
+        cursor: pointer;
+        border: 1px solid $LightGray;
+        @include centerFlex();
+        border-radius: 12px;
+      }
+      input {
+        display: none;
+        &:checked + span {
+          background: $main;
+          border-color: $main;
+          color: $white;
+        }
+      }
+    }
+  }
   .content-wrapper {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -543,7 +576,7 @@
           display: none;
 
           &:checked + label {
-            background: linear-gradient(238.2deg, $second 0%, $main 100%);
+            background: $main;
             color: $white;
           }
         }

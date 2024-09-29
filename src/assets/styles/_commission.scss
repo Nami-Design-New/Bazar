@@ -88,6 +88,12 @@
     }
   }
   .radios {
+    .label-content {
+      height: unset !important;
+      padding: 8px 0 !important;
+      flex-direction: column !important;
+      gap: 8px;
+    }
     input {
       &:checked + span {
         background: $main;

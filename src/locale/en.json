@@ -573,5 +573,7 @@
   "rates": "Rates",
   "createComment": "Create Comment",
   "successfullyCommented": "Comment sent successfully",
-  "createRate": "Create Rate"
+  "createRate": "Create Rate",
+  "subscripedSuccessfully": "Subscribed successfully",
+  "paymentMethod": "Payment Method"
 }
