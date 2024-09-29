@@ -5,11 +5,54 @@ import SectionHeader from "../ui/layout/SectionHeader";
 import DataLoader from "../ui/DataLoader";
 import EmptyData from "../ui/EmptyData";
 import usePackagesList from "./../hooks/settings/usePackagesList";
+import axios from "./../utils/axios";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 function CommercialVerification() {
   const { t } = useTranslation();
-  const [selectedPlan, setPlan] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
   const { isLoading: packagesLoading, data: packages } = usePackagesList();
+  const [loading, setLoading] = useState(false);
+
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const requestBody = {};
+
+    if (selectedPlan) {
+      requestBody.package_id = +selectedPlan?.id;
+    } else {
+      return;
+    }
+    if (paymentMethod) {
+      requestBody.payment_method = +paymentMethod;
+    } else {
+      return;
+    }
+
+    try {
+      const res = await axios.post("/user/subscribe_package", requestBody);
+      if (res.data.code === 200) {
+        toast.success(t("subscripedSuccessfully"));
+        setSelectedPlan("");
+        setPaymentMethod("");
+        queryClient.invalidateQueries(["profile"]);
+        navigate("/profile");
+      }
+    } catch (error) {
+      toast.error(t("someThingWentWrong"));
+      throw new Error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return packagesLoading ? (
     <DataLoader minHeight="400px" />
@@ -17,7 +60,10 @@ function CommercialVerification() {
     <div className="verification-page">
       <SectionHeader />
       {packages?.data && packages?.data?.length > 0 ? (
-        <form className="content-wrapper container col-lg-10 col-12">
+        <form
+          className="content-wrapper container col-lg-10 col-12"
+          onSubmit={handleSubmit}
+        >
           <div className="form-header-image">
             <img src="/images/verification-3.svg" alt="verification" />
           </div>
@@ -36,9 +82,9 @@ function CommercialVerification() {
                     type="radio"
                     name="plan"
                     id={plan.id}
-                    checked={selectedPlan.id === plan.id}
+                    checked={selectedPlan?.id === plan?.id}
                     value={plan.id}
-                    onChange={() => setPlan(plan)}
+                    onChange={() => setSelectedPlan(plan)}
                   />
                   <label
                     htmlFor={plan.id}
@@ -89,17 +135,55 @@ function CommercialVerification() {
                       }`
                     )}
                   </span>
-                  <span className="price ">{selectedPlan?.price}</span>
+                  <span className="price d-flex align-items-center gap-1">
+                    <i className="fa-regular fa-money-check-dollar"></i>
+                    {selectedPlan?.price}
+                  </span>
                 </div>
               </div>
               <div className="submit-wrapper col-12">
                 <SubmitButton
                   name={t("payNow")}
                   className="custom-btn filled"
+                  loading={loading}
                 />
               </div>
             </>
           )}
+          <div className="col-12 plan-wrapper d-flex flex-column gap-2">
+            <h6>{t("paymentMethod")}</h6>
+            <div className="radios">
+              <label htmlFor="online">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  id="online"
+                  value="online"
+                  checked={paymentMethod === "online"}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                />
+
+                <span className="label-content">
+                  <i className="fa-regular fa-globe"></i>{" "}
+                  {t("commissions.online")}
+                </span>
+              </label>
+              <label htmlFor="wallet">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  id="wallet"
+                  value="wallet"
+                  checked={paymentMethod === "wallet"}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                />
+                <span className="label-content">
+                  <i className="fa-regular fa-building-columns"></i>
+                  {t("commissions.wallet")}
+                </span>
+              </label>
+            </div>
+          </div>
         </form>
       ) : (
         <EmptyData minHeight={"300px"}>{t("profile.noPackages")}</EmptyData>

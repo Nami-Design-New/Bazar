@@ -589,5 +589,7 @@
   "rates": "التقييمات",
   "createComment": "اضافة تعليق",
   "successfullyCommented": "تم اضافة التعليق بنجاح",
-  "createRate": "اضافة تقييم"
+  "createRate": "اضافة تقييم",
+  "subscripedSuccessfully": "تم الاشتراك بنجاح",
+  "paymentMethod": "طريقة الدفع"
 }
