@@ -1421,6 +1421,33 @@ body .form .verify_image_field {
 body .form .verify_image_field input {
   display: none;
 }
+body .phone-field input {
+  border-radius: 0 12px 12px 0 !important;
+}
+body .phone-field .phone-key {
+  color: #000;
+  direction: rtl;
+  height: 56px;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  border-radius: 12px 0 0 12px;
+  background: #fafafa;
+  border: 1px solid #d9d9d9;
+  font-size: 14px;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  line-height: 24px;
+  cursor: not-allowed;
+}
+body .phone-field .phone-key img {
+  width: 24px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 body .wizard_tabs {
   display: flex;
   align-items: center;

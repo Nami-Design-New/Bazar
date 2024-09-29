@@ -371,6 +371,36 @@
   }
 }
 
+.phone-field {
+  input {
+    border-radius: 0 12px 12px 0 !important;
+  }
+  .phone-key {
+    color: $black;
+    direction: rtl;
+    height: 56px;
+    border: none;
+    outline: none;
+    padding: 8px 12px;
+    border-radius: 12px 0 0 12px;
+    background: $inputBg;
+    border: 1px solid $LightGray;
+    font-size: 14px;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    line-height: 24px;
+    cursor: not-allowed;
+
+    img {
+      width: 24px;
+      object-fit: contain;
+    }
+  }
+}
+
 .wizard_tabs {
   @include space-between();
   position: relative;
