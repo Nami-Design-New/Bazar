@@ -97,9 +97,6 @@ function EditProfile() {
         <div className="row m-0 justify-content-center">
           <div className="col-lg-8 col-12 p-2">
             <div className="auth-form">
-              <div className="form-title">
-                <h1 className="title">{t("auth.editProfile")}</h1>
-              </div>
               <form onSubmit={handleSubmit}>
                 <ImageUpload
                   type="file"

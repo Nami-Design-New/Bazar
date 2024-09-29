@@ -152,7 +152,7 @@
     }
     .dropdown {
       .dropdown-menu {
-        inset: 8px auto auto 0 !important;
+        margin-top: 8px;
         background: $white;
         border: 1px solid $inputBg;
         padding: 24px;
@@ -873,7 +873,6 @@
     .status-progress {
       width: 100%;
       display: flex;
-      align-items: center;
       justify-content: space-around;
       position: relative;
       margin-bottom: 40px;
@@ -918,6 +917,7 @@
           position: absolute;
           white-space: nowrap;
           top: calc(100% + 16px);
+          right: 0;
         }
         .icon-box {
           box-shadow: 0px 4px 4px 0px #00000040;
@@ -959,6 +959,7 @@
       width: 100%;
       display: flex;
       position: relative;
+      flex-wrap: wrap;
 
       .order-section {
         background-color: $inputBg;

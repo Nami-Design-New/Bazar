@@ -1259,10 +1259,26 @@ body {
   &.en {
     direction: ltr;
     // font-family: "Poppins", sans-serif;
-    header nav .container .left_utils .dropdown .dropdown-menu {
-      transform: translate3d(0px, 50px, 0px) !important;
+    // header nav .container .left_utils .dropdown .dropdown-menu {
+    // transform: translate3d(0px, 50px, 0px) !important;
+    // }
+    .itemDetails .btns-wrapper {
+      left: unset !important;
+      right: 0 !important;
+    }
+    .bank-acc-card {
+      .icons {
+        left: unset !important;
+        right: 12px !important;
+      }
+    }
+    .phone-field {
+      .col-12 {
+        flex-direction: row-reverse !important;
+      }
     }
     .topHead .viewAll {
+      white-space: nowrap;
       img {
         transform: scale(-1);
       }
@@ -1333,6 +1349,10 @@ body {
     }
     footer .logo {
       object-position: left;
+
+      @media screen and (max-width: 768px) {
+        object-position: center;
+      }
     }
   }
 }

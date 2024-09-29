@@ -9,6 +9,16 @@
     flex-direction: column;
     gap: 64px;
   }
+
+  .img {
+    display: flex;
+    position: relative;
+
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
   .content {
     display: flex;
     flex-direction: column;
@@ -101,8 +111,9 @@ footer {
   }
   .social {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
     a {
       display: flex;
       align-items: center;

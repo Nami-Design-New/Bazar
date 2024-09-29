@@ -23,7 +23,6 @@ import WantedAds from "./routes/WantedAds";
 import Markets from "./routes/Markets";
 import Videos from "./routes/Videos";
 import Chats from "./routes/Chats";
-import ManageAccounts from "./routes/ManageAccounts";
 import Faq from "./routes/Faq";
 import About from "./routes/About";
 import TermsOfUse from "./routes/TermsOfUse";
@@ -83,7 +82,6 @@ const routerConfig = [
   { path: "/add-interest", element: <AddInterest />, protected: true },
   { path: "/add-interest/:id", element: <AddInterest />, protected: true },
   { path: "/commission", element: <Commission />, protected: true },
-  { path: "/manage-accounts", element: <ManageAccounts />, protected: true },
   { path: "/product-details/:id", element: <ProductDetails /> },
 ];
 

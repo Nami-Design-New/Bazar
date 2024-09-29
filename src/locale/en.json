@@ -9,6 +9,7 @@
     "profile": "Profile",
     "editProfile": "Edit Profile",
     "myActivities": "My Activities",
+
     "favourites": "Favourites",
     "logout": "Logout",
     "categories": "Categories",
@@ -65,7 +66,8 @@
     "register": "Register",
     "edit-profile": "Edit Profile",
     "notifications": "Notifications",
-    "commission": "App Commission"
+    "commission": "App Commission",
+    "about-us": "About Us"
   },
   "auth": {
     "login": "Login",
@@ -76,8 +78,8 @@
     "don'tHaveAccount": "Don't have an account?",
     "createAccount": "Create an Account",
     "alreadyHaveAccount": "Already have an account",
-    "forgetPassword": "Recover Password",
-    "forgetPasswordSubtitle": "Enter the phone number registered to recover your password",
+    "forgetPassword": "Forget Password",
+    "forgetPasswordSubtitle": "Enter the phone number registered to forget your password",
     "editProfile": "Edit Profile",
     "doYouWantChangePassword": "Change Password",
     "send": "Send",
@@ -115,6 +117,8 @@
   "profile": {
     "ads": "Ads",
     "orders": "Orders",
+    "coupons": "Coupons",
+    "addInterest": "Add Interest",
     "verifications": "Verifications",
     "verificationHeading": "When your account is verified, a blue check mark will appear on your ads. Verifying your membership increases your sales and others' trust in your account. The verification data is confidential and is not shared or disclosed to any other party.",
     "verify": "Verify",
@@ -179,6 +183,7 @@
     "linkCopied": "Link copied"
   },
   "balance": {
+    "chargeBalance": "Charge Balance",
     "currentBalance": "Current Balance",
     "accountBalance": "Account Balance",
     "depositBalance": "Deposit Balance",
@@ -210,7 +215,9 @@
     "durationCondition": "I acknowledge that bank transfers may take up to 7 working days to arrive",
     "paypalAccount": "PayPal Account",
     "withdrawSuccessfully": "Withdrawal completed successfully",
-    "noTransactions": "No financial transactions available"
+    "noTransactions": "No financial transactions available",
+    "conditionNote1": "Bank transfers you send are international, and depending on your bank, the transfer may go through an intermediary bank to complete the transfer, which will result in additional fees being deducted.",
+    "conditionNote2": "The local bank you use may charge additional fees for receiving international wire transfers or fees for converting currency from dollars to local currency."
   },
   "manageAccounts": {
     "headerText": "Manage Bank Accounts",
@@ -483,7 +490,7 @@
     "totalHeading": "Site receipts including VAT are:",
     "payNow": "Pay Now",
     "fillAllFields": "Please, you must select at least one ad and payment method to complete the process.",
-    "noAds": "There are currently no ads to apply commission on.",
+    "noAds": "There are no ads right now to apply commission on.",
     "payedSuccessfully": "Payment was successful.",
     "amount": "Receipt amount",
     "date": "Receipt Date",

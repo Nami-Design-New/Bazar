@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import { Modal } from "react-bootstrap";
 import { createTransfer } from "../../services/apiCommissions";
 import BankTransferCard from "../cards/BankTransferCard";
-import { Link } from "react-router-dom";
 import InputField from "../form-elements/InputField";
 import { handleChange } from "../../utils/helpers";
 import PhoneField from "../form-elements/PhoneField";
@@ -87,10 +86,6 @@ function CommissionWalletModal({ setShowModal, showModal, ids, price }) {
               />
             ))
           )}
-
-          <Link to="/manage-accounts" className="btn custom-btn stroke">
-            <span>{t("manageAccount")}</span>
-          </Link>
 
           <InputField
             type="text"

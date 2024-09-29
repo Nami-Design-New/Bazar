@@ -8,6 +8,9 @@
     display: flex;
     padding: 10px 0 0;
     justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+
     .resend_link {
       color: $main;
       cursor: pointer;
@@ -15,8 +18,13 @@
         pointer-events: none;
       }
     }
-    .timer span {
-      color: $textColor;
+    .timer {
+      flex: 1 0;
+      display: flex;
+      justify-content: flex-end;
+      span {
+        color: $textColor;
+      }
     }
   }
 
