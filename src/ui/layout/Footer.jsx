@@ -72,7 +72,6 @@ export default function Footer() {
                       alt="facebook"
                     />
                   </span>
-                  Facebook
                 </a>
                 <a href="#!" target="_blank">
                   <span className="icon">
@@ -82,13 +81,11 @@ export default function Footer() {
                       alt="instagram"
                     />
                   </span>
-                  Instagram
                 </a>
                 <a href="#!" target="_blank">
                   <span className="icon">
                     <img loading="lazy" src="/images/X.svg" alt="X" />
                   </span>
-                  X
                 </a>
               </div>
             </div>

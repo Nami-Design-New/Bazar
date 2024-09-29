@@ -3,7 +3,7 @@ import { formattedDate } from "../../utils/constants";
 import { Link } from "react-router-dom";
 import DataLoader from "../../ui/DataLoader";
 import EmptyData from "./../../ui/EmptyData";
-import useGetWalletOperations from './../../hooks/banks/useGetWalletOperations';
+import useGetWalletOperations from "./../../hooks/banks/useGetWalletOperations";
 
 function Transactions() {
   const { t } = useTranslation();
@@ -14,7 +14,7 @@ function Transactions() {
   ) : (
     <div className="transactions-wrapper">
       <h3>{t("balance.transactions")}</h3>
-      <div className="row">
+      <div className="row m-0">
         <div className="col-12 p-2">
           {transactions?.data && transactions?.data?.length > 0 ? (
             <div className="transactions-body">

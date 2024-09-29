@@ -59,6 +59,13 @@ function ForgetStep1({ setStep, formData, handleChange, setOtpData }) {
           name={t("auth.next")}
           loading={loading}
         />
+        {/* <Link
+          to="/login"
+          className="custom-btn stroke"
+          style={{ cursor: "pointer" }}
+        >
+          <span>{t("auth.login")}</span>
+        </Link> */}
       </form>
     </>
   );

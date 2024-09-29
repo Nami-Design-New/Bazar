@@ -147,7 +147,15 @@
   }
   .cart_total {
     padding: 24px 0;
+    flex-wrap: wrap;
     @include space-between();
+    gap: 8px;
+    
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      justify-content: center;
+    }
+
     p {
       font-size: 16px;
       color: $black;

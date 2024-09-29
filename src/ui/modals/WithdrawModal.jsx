@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Modal, Nav, Row, Tab } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import InputField from "../form-elements/InputField";
 import { useQueryClient } from "@tanstack/react-query";
 import { createWithdraw } from "../../services/apiBanks";
@@ -143,10 +142,6 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                     ))
                   )}
 
-                  <Link to="/manage-accounts" className="btn custom-btn filled">
-                    <span>{t("manageAccount")}</span>
-                  </Link>
-
                   <div className="conditions-wrapper">
                     <div className="checkbox-group">
                       <input
@@ -190,14 +185,10 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                       </label>
                     </div>
                     <p className="condition-note">
-                      الحوالات البنكية التي ترسلها دولية، وحسب البنك الذي تتعامل
-                      معه. قد تمر الحوالة عبر بنك وسيط لاتمام التحويل مما يؤدي
-                      لاقتطاع رسوم إضافية.
+                      {t("balance.conditionNote1")}
                     </p>
                     <p className="condition-note">
-                      قد يقتطع البنك المحلي الذي تستخدمه رسوم إضافية لاستقبال
-                      حوالات بنكية دولية أو رسوم لتحويل العملة من الدولار إلى
-                      العملة المحلية.
+                      {t("balance.conditionNote2")}
                     </p>
                   </div>
                 </form>

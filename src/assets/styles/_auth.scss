@@ -201,6 +201,8 @@
     display: flex;
     padding: 10px 0 0;
     justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
     .resend_link {
       display: flex;
       align-items: center;
@@ -224,8 +226,13 @@
         }
       }
     }
-    .timer span {
-      color: $textColor;
+    .timer {
+      flex: 1 0;
+      display: flex;
+      justify-content: flex-end;
+      span {
+        color: $textColor;
+      }
     }
   }
 

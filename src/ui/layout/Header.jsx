@@ -186,7 +186,10 @@ export default function Header() {
           </ul>
 
           <div className="left_utils">
-            <button onClick={() => handleLang(lang === "en" ? "ar" : "en")}>
+            <button
+              className="d-flex align-items-center gap-1"
+              onClick={() => handleLang(lang === "en" ? "ar" : "en")}
+            >
               <span>{lang === "en" ? "AR" : "EN"}</span>
               <IconLanguage stroke={1} />
             </button>

@@ -872,8 +872,8 @@ body header nav .container .left_utils .dropdown .user img {
   height: 100%;
 }
 body header nav .container .left_utils .dropdown .dropdown-menu {
-  max-width: calc(100% - 16px);
-  inset: 30px auto auto 0px !important;
+  max-width: calc(100vw - 16px);
+  margin-top: 30px;
   padding: 8px;
   overflow: hidden;
   border: 0;
@@ -1030,6 +1030,8 @@ body .form .resend-code {
   display: flex;
   padding: 10px 0 0;
   justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 body .form .resend-code .resend_link {
   color: #4381f8;
@@ -1037,6 +1039,11 @@ body .form .resend-code .resend_link {
 }
 body .form .resend-code .resend_link.disabled {
   pointer-events: none;
+}
+body .form .resend-code .timer {
+  flex: 1 0;
+  display: flex;
+  justify-content: flex-end;
 }
 body .form .resend-code .timer span {
   color: #777777;
@@ -1671,6 +1678,11 @@ body main .categories_section .category {
   background: #fff;
   height: 100%;
   transition: all 0.2s ease-in-out;
+}
+@media screen and (max-width: 768px) {
+  body main .categories_section .category {
+    flex-direction: column-reverse;
+  }
 }
 body main .categories_section .category .text {
   flex: 1;
@@ -2398,6 +2410,8 @@ body main .auth-form .resend-code {
   display: flex;
   padding: 10px 0 0;
   justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 body main .auth-form .resend-code .resend_link {
   display: flex;
@@ -2418,6 +2432,11 @@ body main .auth-form .resend-code .resend_link.disabled {
 body main .auth-form .resend-code .resend_link.disabled span {
   color: rgba(67, 129, 248, 0.6039215686);
   cursor: default;
+}
+body main .auth-form .resend-code .timer {
+  flex: 1 0;
+  display: flex;
+  justify-content: flex-end;
 }
 body main .auth-form .resend-code .timer span {
   color: #777777;
@@ -3254,16 +3273,19 @@ body main .balance_section .blanceHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 16px;
   position: relative;
 }
 body main .balance_section .blanceHeader .btns-wrapper {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 16px;
   position: relative;
 }
 body main .balance_section .btn {
+  flex: 1 0;
   width: unset !important;
   white-space: nowrap;
   border: 1px solid #4381f8;
@@ -3312,7 +3334,8 @@ body main .balance_section .content-body .balance-boxes-wrapper .balance-box {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 16px;
   padding: 16px;
   border-radius: 12px;
@@ -3618,7 +3641,7 @@ body main .activity-card.ad-mini-card .card-header .card-content .sub-title {
 body main .activity-card.ad-mini-card .card-header .card-content .categories-wrapper {
   width: 100%;
   display: flex;
-  gap: 0 24px;
+  gap: 8px 24px;
   flex-wrap: wrap;
   position: relative;
   color: #000;
@@ -3973,7 +3996,7 @@ body main .fav-ad-card .card-header .card-content .sub-title {
 body main .fav-ad-card .card-header .card-content .categories-wrapper {
   width: 100%;
   display: flex;
-  gap: 0 24px;
+  gap: 8px 24px;
   flex-wrap: wrap;
   position: relative;
   color: #000;
@@ -4435,7 +4458,7 @@ body main .market-details-page .page-header .cover-wrapper .market .info-wrapper
   text-wrap: balance;
 }
 body main .market-details-page .page-header .dropdown .dropdown-menu {
-  inset: 8px auto auto 0 !important;
+  margin-top: 8px;
   background: #fff;
   border: 1px solid #fafafa;
   padding: 24px;
@@ -5169,7 +5192,6 @@ body main .order-details-page .order-details-wrapper .status-wrapper .status-hea
 body main .order-details-page .order-details-wrapper .status-progress {
   width: 100%;
   display: flex;
-  align-items: center;
   justify-content: space-around;
   position: relative;
   margin-bottom: 40px;
@@ -5215,6 +5237,7 @@ body main .order-details-page .order-details-wrapper .status-progress .progress-
   position: absolute;
   white-space: nowrap;
   top: calc(100% + 16px);
+  right: 0;
 }
 body main .order-details-page .order-details-wrapper .status-progress .progress-box .icon-box {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
@@ -5251,6 +5274,7 @@ body main .order-details-page .order-details-wrapper .details-wrapper {
   width: 100%;
   display: flex;
   position: relative;
+  flex-wrap: wrap;
 }
 body main .order-details-page .order-details-wrapper .details-wrapper .order-section {
   background-color: #fafafa;
@@ -6377,9 +6401,17 @@ body main .shopping_cart .cart_item .price_count .total button:hover {
 }
 body main .shopping_cart .cart_total {
   padding: 24px 0;
+  flex-wrap: wrap;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 8px;
+}
+@media screen and (max-width: 768px) {
+  body main .shopping_cart .cart_total {
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 body main .shopping_cart .cart_total p {
   font-size: 16px;
@@ -7447,7 +7479,7 @@ body main .chat-section .side-menu::-webkit-scrollbar {
 body main .chat-section .side-menu .colse {
   display: none;
   margin-bottom: 32px;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   cursor: pointer;
 }
@@ -8057,6 +8089,15 @@ body .download_app {
     gap: 64px;
   }
 }
+body .download_app .img {
+  display: flex;
+  position: relative;
+}
+body .download_app .img img {
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 body .download_app .content {
   display: flex;
   flex-direction: column;
@@ -8153,8 +8194,9 @@ body footer .copywriting .hint a img {
 }
 body footer .social {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
 }
 body footer .social a {
   display: flex;
@@ -9367,8 +9409,19 @@ body .recipe-image button {
 body.en {
   direction: ltr;
 }
-body.en header nav .container .left_utils .dropdown .dropdown-menu {
-  transform: translate3d(0px, 50px, 0px) !important;
+body.en .itemDetails .btns-wrapper {
+  left: unset !important;
+  right: 0 !important;
+}
+body.en .bank-acc-card .icons {
+  left: unset !important;
+  right: 12px !important;
+}
+body.en .phone-field .col-12 {
+  flex-direction: row-reverse !important;
+}
+body.en .topHead .viewAll {
+  white-space: nowrap;
 }
 body.en .topHead .viewAll img {
   transform: scale(-1);
@@ -9436,6 +9489,12 @@ body.en main .contact_section form .form-group .inputfield label {
 body.en footer .logo {
   -o-object-position: left;
      object-position: left;
+}
+@media screen and (max-width: 768px) {
+  body.en footer .logo {
+    -o-object-position: center;
+       object-position: center;
+  }
 }
 
 .container,
