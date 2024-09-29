@@ -49,7 +49,7 @@ function RewardsTab({ isMyAccount, user }) {
   ) : rewards?.data && rewards?.data?.length > 0 ? (
     <>
       {isMyAccount &&
-        (!hasReward ? (
+        (hasReward ? (
           <div className="w-100 btn-wrapper d-flex justify-content-end mb-3 p-2">
             <div className="btns-wrapper">
               <button
