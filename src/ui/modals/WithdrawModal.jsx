@@ -7,7 +7,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { createWithdraw } from "../../services/apiBanks";
 import { toast } from "react-toastify";
 import BankTransferCard from "../cards/BankTransferCard";
-import useBanksList from './../../hooks/banks/useBanksList';
+import useBanksList from "./../../hooks/banks/useBanksList";
 
 const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
   const { t } = useTranslation();
@@ -31,7 +31,7 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
     });
   };
 
-  const queryClint = useQueryClient();
+  const queryClient = useQueryClient();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,7 +62,7 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
           conditionsCheck.fees &&
           conditionsCheck.duration)
       ) {
-        await createWithdraw(requestBody, queryClint);
+        await createWithdraw(requestBody, queryClient);
         toast.success(t("balance.withdrawSuccessfully"));
         setShowModal(false);
       }

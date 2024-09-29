@@ -192,6 +192,10 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 40px;
+    .time,
+    .location {
+      color: #aaa !important;
+    }
     .topHead {
       flex: 1;
       min-width: 250px;

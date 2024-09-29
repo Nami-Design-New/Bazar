@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getReplays } from "../services/apiComments";
+import { getRates } from "../services/apiComments";
 
-function useGetReplays(id) {
+function useGetRates(id) {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["replays", id],
-    queryFn: () => getReplays(id),
+    queryKey: ["rates", id],
+    queryFn: () => getRates(id),
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -15,4 +15,4 @@ function useGetReplays(id) {
   return { isLoading, data, error };
 }
 
-export default useGetReplays;
+export default useGetRates;
