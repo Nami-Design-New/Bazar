@@ -141,13 +141,6 @@ function CommercialVerification() {
                   </span>
                 </div>
               </div>
-              <div className="submit-wrapper col-12">
-                <SubmitButton
-                  name={t("payNow")}
-                  className="custom-btn filled"
-                  loading={loading}
-                />
-              </div>
             </>
           )}
           <div className="col-12 plan-wrapper d-flex flex-column gap-2">
@@ -183,6 +176,13 @@ function CommercialVerification() {
                 </span>
               </label>
             </div>
+          </div>
+          <div className="submit-wrapper col-12">
+            <SubmitButton
+              name={t("payNow")}
+              className="custom-btn filled"
+              loading={loading}
+            />
           </div>
         </form>
       ) : (
