@@ -33,10 +33,12 @@ function RateCard({ rate }) {
             </Link>
             <span>{creationTime}</span>
           </div>
-          <div className="rate">
-            <StarsList rate={rate?.rate} />
-            <span>{rate?.rate}</span>
-          </div>
+          {rate?.rate ? (
+            <div className="rate">
+              <StarsList rate={rate?.rate} />
+              <span>{rate?.rate}</span>
+            </div>
+          ) : null}
         </div>
         <div className="btns-wrapper">
           <Dropdown>

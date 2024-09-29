@@ -569,5 +569,6 @@
   "noNotifications": "No notifications in this moment",
   "createReport": "Report",
   "successfullyReported": "Report sent successfully",
-  "reportComment": "Report Comment"
+  "reportComment": "Report Comment",
+  "rates": "Rates"
 }

@@ -1701,6 +1701,10 @@ body main .popular .container {
   flex-wrap: wrap;
   gap: 40px;
 }
+body main .popular .container .time,
+body main .popular .container .location {
+  color: #aaa !important;
+}
 body main .popular .container .topHead {
   flex: 1;
   min-width: 250px;
@@ -5411,6 +5415,7 @@ body main .rate-card .info-wrapper .info-rate-wrapper {
   gap: 8px;
   position: relative;
   align-items: flex-start;
+  flex-direction: column;
   flex-wrap: wrap;
 }
 body main .rate-card .info-wrapper .image-wrapper {

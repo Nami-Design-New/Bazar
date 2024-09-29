@@ -22,7 +22,7 @@ function CommissionWalletModal({ setShowModal, showModal, ids, price }) {
     image: "",
   });
 
-  const queryClint = useQueryClient();
+  const queryClient = useQueryClient();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,7 +40,7 @@ function CommissionWalletModal({ setShowModal, showModal, ids, price }) {
     }
 
     try {
-      await createTransfer(requestBody, queryClint);
+      await createTransfer(requestBody, queryClient);
       toast.success(t("commissions.payedSuccessfully"));
       setShowModal(false);
     } catch (error) {

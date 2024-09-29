@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { IconMessageCircle, IconPhone } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -22,6 +22,11 @@ import useFollow from "../hooks/useFollow";
 import useUnfollow from "../hooks/useUnfollow";
 import ReportModal from "../ui/modals/ReportModal";
 import { useState } from "react";
+import axios from "../utils/axios";
+import { toast } from "react-toastify";
+import useGetComments from "../hooks/useGetComments";
+import RateCard from "../ui/cards/RateCard";
+import useGetRates from "../hooks/useGetRates";
 
 const containerStyle = {
   width: "100%",
@@ -34,6 +39,7 @@ function AdDetails() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { id } = useParams();
 
   const [showUserReportModal, setShowUserReportModal] = useState(false);
   const [showAdReportModal, setShowAdReportModal] = useState(false);
@@ -44,6 +50,9 @@ function AdDetails() {
   const isLogged = useSelector((state) => state.authedUser.isLogged);
 
   const { isLoading, data: ad } = useGetAdById();
+  const { isLoading: commentsLoading, data: comments } = useGetComments(id);
+  const { isLoading: ratesLoading, data: rates } = useGetRates(id);
+
   const { addToFavorite, isLoading: addingLoading } = useAddToFavorite();
   const { removeFromFavorite, isLoading: removingLoading } =
     useRemoveFromFavorite();
@@ -105,12 +114,35 @@ function AdDetails() {
     }
   }
 
-  const openChat = () => {
-    sessionStorage.setItem("buyer_id", user?.id);
-    sessionStorage.setItem("seller_id", ad?.data?.user_id);
-    sessionStorage.setItem("ad_id", ad?.data?.id);
+  const openChat = async () => {
+    if (isLogged) {
+      sessionStorage.setItem("buyer_id", user?.id);
+      sessionStorage.setItem("seller_id", ad?.data?.user_id);
+      sessionStorage.setItem("ad_id", ad?.data?.id);
+    } else {
+      navigate("/login");
+    }
+  };
 
-    navigate(isLogged ? "/chats" : "/login");
+  const handleIncreasePhoneCount = async () => {
+    if (isLogged) {
+      try {
+        await axios.post("/user/increase_phone_count", {
+          ids: ad?.data?.id,
+        });
+        queryClient.invalidateQueries([
+          "userAds",
+          "adsByFilter",
+          "favoriteAds",
+        ]);
+        queryClient.invalidateQueries(["adById", ad?.id]);
+      } catch (err) {
+        toast.error(t("commissions.failed"));
+        throw new Error(err.message);
+      }
+    } else {
+      navigate("/login");
+    }
   };
 
   const navigateToLogin = () => {
@@ -143,7 +175,7 @@ function AdDetails() {
     }
   }
 
-  return isLoading ? (
+  return isLoading || commentsLoading || ratesLoading ? (
     <DataLoader />
   ) : ad?.data ? (
     <>
@@ -306,6 +338,7 @@ function AdDetails() {
                       target={isLogged ? "_blank" : "_self"}
                       to={!isLogged ? "/login" : `tel:${ad?.data?.phone}`}
                       className="call"
+                      onClick={handleIncreasePhoneCount}
                     >
                       <IconPhone stroke={1.5} />
                       <span> {t("calling")} </span>
@@ -368,6 +401,24 @@ function AdDetails() {
                   </GoogleMap>
                 </LoadScript>
               </div>
+
+              {comments?.data && comments?.data?.length > 0 && (
+                <div className="itemDetailsBox mb-3 d-flex flex-column gap-3">
+                  <h5>{t("comments")}</h5>
+                  {comments?.data?.map((comment) => (
+                    <RateCard key={comment?.id} rate={comment} />
+                  ))}
+                </div>
+              )}
+
+              {rates?.data && rates?.data?.length > 0 && (
+                <div className="itemDetailsBox mb-3 d-flex flex-column gap-3">
+                  <h5>{t("rates")}</h5>
+                  {rates?.data?.map((rate) => (
+                    <RateCard key={rate?.id} rate={rate} />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

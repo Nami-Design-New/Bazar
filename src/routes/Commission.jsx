@@ -25,7 +25,7 @@ function Commission() {
 
   const [totalCost, setTotalCost] = useState(0);
 
-  const queryClint = useQueryClient();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     const newCost = ads?.data?.reduce((acc, ad) => {
@@ -81,7 +81,7 @@ function Commission() {
           });
           toast.success(t("commissions.success"));
           setLoading(false);
-          queryClint.invalidateQueries["commissionAds"];
+          queryClient.invalidateQueries["commissionAds"];
         } catch (err) {
           setLoading(false);
           toast.error(t("commissions.failed"));
