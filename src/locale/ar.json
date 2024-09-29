@@ -586,5 +586,8 @@
   "reportComment": "محتوى البلاغ",
   "loading": "جاري التحميل",
   "save": "حفظ",
-  "rates": "التقييمات"
+  "rates": "التقييمات",
+  "createComment": "اضافة تعليق",
+  "successfullyCommented": "تم اضافة التعليق بنجاح",
+  "createRate": "اضافة تقييم"
 }
