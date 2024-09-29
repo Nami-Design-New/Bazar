@@ -8,16 +8,24 @@ import CouponsTab from "./CouponsTab.jsx";
 import RewardsTab from "./RewardsTab.jsx";
 import BalanceTab from "./BalanceTab.jsx";
 import AddressTab from "./AddressTab.jsx";
+import { useSearchParams } from "react-router-dom";
 
 function ProfileTabs({ user, isMyAccount }) {
   const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = searchParams.get("tab") || "ads";
+
+  function handleTabChange(tab) {
+    setSearchParams({ tab });
+  }
 
   return (
     <div className="col-12 p-2">
       <div className="tabs-section">
         <Tabs
           className="profileNavCol col-md-5 col-lg-4 col-xl-3 p-2"
-          defaultActiveKey="ads"
+          activeKey={activeTab}
+          onSelect={(tab) => handleTabChange(tab)}
           id="uncontrolled-tab-example"
         >
           {/* ADs */}
@@ -60,7 +68,7 @@ function ProfileTabs({ user, isMyAccount }) {
             <VerificationTab isMyAccount={isMyAccount} user={user} />
           </Tab>
 
-          {/* coupons */}
+          {/* Coupons */}
           {isMyAccount && (
             <Tab
               eventKey="coupons"
@@ -71,7 +79,7 @@ function ProfileTabs({ user, isMyAccount }) {
             </Tab>
           )}
 
-          {/* reward */}
+          {/* Rewards */}
           {isMyAccount && (
             <Tab
               eventKey="rewards"
@@ -82,7 +90,7 @@ function ProfileTabs({ user, isMyAccount }) {
             </Tab>
           )}
 
-          {/* balance */}
+          {/* Balance */}
           {isMyAccount && (
             <Tab
               eventKey="balance"
@@ -93,7 +101,7 @@ function ProfileTabs({ user, isMyAccount }) {
             </Tab>
           )}
 
-          {/* addresses */}
+          {/* Addresses */}
           <Tab
             eventKey="addresses"
             title={t("profile.addresses")}

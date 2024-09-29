@@ -1,10 +1,16 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { subscriptionRemainingDays } from "../../utils/helpers";
+import useVerificationFAQ from "../../hooks/settings/useVerificationFAQ";
+import DataLoader from "../../ui/DataLoader";
+import { Accordion } from "react-bootstrap";
 
 function VerificationTab({ isMyAccount, user }) {
   const { t } = useTranslation();
-  return (
+  const { isLoading: faqLoading, data: faqs } = useVerificationFAQ();
+  return faqLoading ? (
+    <DataLoader minHeight="200px" />
+  ) : (
     <div className="profile-verification-wrapper">
       <ul className="hint-wrapper mx-3">
         <h5>{t("profile.verificationBenifints")}:</h5>
@@ -105,6 +111,20 @@ function VerificationTab({ isMyAccount, user }) {
             </div>
           )}
         </div>
+      </div>
+      <div className="col-12 w-100">
+        {faqs?.data && faqs?.data?.length > 0 && (
+          <Accordion defaultActiveKey={faqs?.data?.[0]?.id}>
+            {faqs?.data?.map((faq) => (
+              <Accordion.Item eventKey={faq?.id} key={faq?.id}>
+                <Accordion.Header>{faq?.title}</Accordion.Header>
+                <Accordion.Body>
+                  <p>{faq?.description}</p>
+                </Accordion.Body>
+              </Accordion.Item>
+            ))}
+          </Accordion>
+        )}
       </div>
     </div>
   );
