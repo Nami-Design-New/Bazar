@@ -19,3 +19,14 @@ export async function getFaqs() {
     throw new Error(`Error fetching faqs: ${err.message}`);
   }
 }
+
+export async function getVerificationFaqs() {
+  try {
+    const req = await axios.get("/get_verifications");
+
+    return req.data;
+  } catch (err) {
+    throw new Error(`Error fetching faqs: ${err.message}`);
+  }
+}
+

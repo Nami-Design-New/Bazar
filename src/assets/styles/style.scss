@@ -1073,21 +1073,6 @@ body {
 
   .faqs-accordin {
     padding: 60px 0;
-
-    .accordion-button {
-      &,
-      &:focus {
-        box-shadow: none !important;
-        outline: none !important;
-      }
-      &::after {
-        flex-grow: 1 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        transform: none !important;
-      }
-    }
   }
 
   .notifications_section {
@@ -1360,4 +1345,18 @@ body {
 .container-xxl {
   max-width: unset;
   width: min(100%, 1320px);
+}
+.accordion-button {
+  &,
+  &:focus {
+    box-shadow: none !important;
+    outline: none !important;
+  }
+  &::after {
+    flex-grow: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    transform: none !important;
+  }
 }
