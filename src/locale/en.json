@@ -570,5 +570,8 @@
   "createReport": "Report",
   "successfullyReported": "Report sent successfully",
   "reportComment": "Report Comment",
-  "rates": "Rates"
+  "rates": "Rates",
+  "createComment": "Create Comment",
+  "successfullyCommented": "Comment sent successfully",
+  "createRate": "Create Rate"
 }

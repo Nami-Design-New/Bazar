@@ -1,5 +1,9 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { IconMessageCircle, IconPhone } from "@tabler/icons-react";
+import {
+  IconCirclePlus,
+  IconMessageCircle,
+  IconPhone,
+} from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -27,6 +31,8 @@ import { toast } from "react-toastify";
 import useGetComments from "../hooks/useGetComments";
 import RateCard from "../ui/cards/RateCard";
 import useGetRates from "../hooks/useGetRates";
+import CreateCommentModal from "../ui/modals/CreateCommentModal";
+import CreateRateModal from "../ui/modals/CreateRateModal";
 
 const containerStyle = {
   width: "100%",
@@ -42,6 +48,7 @@ function AdDetails() {
   const { id } = useParams();
 
   const [showUserReportModal, setShowUserReportModal] = useState(false);
+  const [showCommentModal, setShowCommentModal] = useState(false);
   const [showAdReportModal, setShowAdReportModal] = useState(false);
 
   const currentPageLink = window.location.href;
@@ -60,8 +67,7 @@ function AdDetails() {
   const { follow, isLoading: followingLoading } = useFollow();
   const { unfollow, isLoading: unfollowingLoading } = useUnfollow();
 
-  const isMyAccount =
-    !user?.id || Number(ad?.data?.user?.id) === Number(user?.id);
+  const isMyAd = !user?.id || Number(ad?.data?.user?.id) === Number(user?.id);
 
   const timeDifference = getTimeDifference(ad?.data?.created_at);
   const creationTime = formatTimeDifference(
@@ -174,6 +180,8 @@ function AdDetails() {
       navigate("/login");
     }
   }
+
+  console.log(comments?.data?.length);
 
   return isLoading || commentsLoading || ratesLoading ? (
     <DataLoader />
@@ -303,7 +311,7 @@ function AdDetails() {
                   {t("memberSince")}{" "}
                   {adUserMemberShip(ad?.data?.user?.created_at, lang)}
                 </span>
-                {isMyAccount ? null : (
+                {isMyAd ? null : (
                   <div className="btns-wrapper">
                     <button
                       className="action-btn follow"
@@ -326,14 +334,14 @@ function AdDetails() {
                 )}
 
                 <div className="contact">
-                  {Number(ad?.data?.chat) === 1 && (
+                  {Number(ad?.data?.chat) && !isMyAd ? (
                     <button className="chat" onClick={openChat}>
                       <IconMessageCircle stroke={1.5} />
                       <span> {t("chating")} </span>
                     </button>
-                  )}
+                  ) : null}
 
-                  {Number(ad?.data?.phone) !== 0 && (
+                  {Number(ad?.data?.phone) && !isMyAd ? (
                     <Link
                       target={isLogged ? "_blank" : "_self"}
                       to={!isLogged ? "/login" : `tel:${ad?.data?.phone}`}
@@ -343,9 +351,9 @@ function AdDetails() {
                       <IconPhone stroke={1.5} />
                       <span> {t("calling")} </span>
                     </Link>
-                  )}
+                  ) : null}
 
-                  {Number(ad?.data?.whatsapp) !== 0 && (
+                  {Number(ad?.data?.whatsapp) && !isMyAd ? (
                     <Link
                       target={isLogged ? "_blank" : "_self"}
                       to={
@@ -359,7 +367,7 @@ function AdDetails() {
                       <IconMessageCircle stroke={1.5} />
                       <span> {t("ads.whatsapp")} </span>
                     </Link>
-                  )}
+                  ) : null}
                 </div>
               </div>
 
@@ -402,23 +410,63 @@ function AdDetails() {
                 </LoadScript>
               </div>
 
-              {comments?.data && comments?.data?.length > 0 && (
-                <div className="itemDetailsBox mb-3 d-flex flex-column gap-3">
-                  <h5>{t("comments")}</h5>
-                  {comments?.data?.map((comment) => (
-                    <RateCard key={comment?.id} rate={comment} />
-                  ))}
-                </div>
-              )}
+              {comments &&
+                (comments?.data?.length === 0
+                  ? null
+                  : comments?.data?.length > 0 && (
+                      <div className="itemDetailsBox mb-3 d-flex flex-column gap-3">
+                        <div className="w-100 d-flex align-items-center justify-content-between gap-2">
+                          <h5>{t("comments")}</h5>
+                          {isMyAd ? null : (
+                            <span
+                              className="custom-btn filled"
+                              style={{
+                                width: "unset !important",
+                                aspectRatio: " 1 / 1",
+                                cursor: "pointer",
+                              }}
+                              onClick={() => setShowCommentModal(true)}
+                            >
+                              <span>
+                                <IconCirclePlus stroke={1.5} />
+                              </span>
+                            </span>
+                          )}
+                        </div>
+                        {comments?.data?.map((comment) => (
+                          <RateCard key={comment?.id} rate={comment} />
+                        ))}
+                      </div>
+                    ))}
 
-              {rates?.data && rates?.data?.length > 0 && (
-                <div className="itemDetailsBox mb-3 d-flex flex-column gap-3">
-                  <h5>{t("rates")}</h5>
-                  {rates?.data?.map((rate) => (
-                    <RateCard key={rate?.id} rate={rate} />
-                  ))}
-                </div>
-              )}
+              {rates?.data &&
+                (rates?.data?.length === 0 && isMyAd
+                  ? null
+                  : rates?.data?.length > 0 && (
+                      <div className="itemDetailsBox mb-3 d-flex flex-column gap-3">
+                        <div className="w-100 d-flex align-items-center justify-content-between gap-2">
+                          <h5>{t("rates")}</h5>
+                          {ad?.data?.is_rated || isMyAd ? null : (
+                            <span
+                              className="custom-btn filled"
+                              style={{
+                                width: "unset !important",
+                                aspectRatio: " 1 / 1",
+                                cursor: "pointer",
+                              }}
+                              onClick={() => setShowCommentModal(true)}
+                            >
+                              <span>
+                                <IconCirclePlus stroke={1.5} />
+                              </span>
+                            </span>
+                          )}
+                        </div>
+                        {rates?.data?.map((rate) => (
+                          <RateCard key={rate?.id} rate={rate} />
+                        ))}
+                      </div>
+                    ))}
             </div>
           </div>
         </div>
@@ -491,6 +539,16 @@ function AdDetails() {
         type="ad"
         showModal={showAdReportModal}
         setShowModal={setShowAdReportModal}
+      />
+      <CreateCommentModal
+        id={ad?.data?.id}
+        showModal={showCommentModal}
+        setShowModal={setShowCommentModal}
+      />
+      <CreateRateModal
+        id={ad?.data?.id}
+        showModal={showCommentModal}
+        setShowModal={setShowCommentModal}
       />
     </>
   ) : (
