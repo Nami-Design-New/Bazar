@@ -181,8 +181,6 @@ function AdDetails() {
     }
   }
 
-  console.log(comments?.data?.length);
-
   return isLoading || commentsLoading || ratesLoading ? (
     <DataLoader />
   ) : ad?.data ? (
@@ -411,62 +409,58 @@ function AdDetails() {
               </div>
 
               {comments &&
-                (comments?.data?.length === 0
-                  ? null
-                  : comments?.data?.length > 0 && (
-                      <div className="itemDetailsBox mb-3 d-flex flex-column gap-3">
-                        <div className="w-100 d-flex align-items-center justify-content-between gap-2">
-                          <h5>{t("comments")}</h5>
-                          {isMyAd ? null : (
-                            <span
-                              className="custom-btn filled"
-                              style={{
-                                width: "unset !important",
-                                aspectRatio: " 1 / 1",
-                                cursor: "pointer",
-                              }}
-                              onClick={() => setShowCommentModal(true)}
-                            >
-                              <span>
-                                <IconCirclePlus stroke={1.5} />
-                              </span>
-                            </span>
-                          )}
-                        </div>
-                        {comments?.data?.map((comment) => (
-                          <RateCard key={comment?.id} rate={comment} />
-                        ))}
-                      </div>
+                (!comments?.data && isMyAd ? null : (
+                  <div className="itemDetailsBox mb-3 d-flex flex-column gap-3">
+                    <div className="w-100 d-flex align-items-center justify-content-between gap-2">
+                      <h5>{t("comments")}</h5>
+                      {isMyAd ? null : (
+                        <span
+                          className="custom-btn filled"
+                          style={{
+                            width: "unset !important",
+                            aspectRatio: " 1 / 1",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => setShowCommentModal(true)}
+                        >
+                          <span>
+                            <IconCirclePlus stroke={1.5} />
+                          </span>
+                        </span>
+                      )}
+                    </div>
+                    {comments?.data?.map((comment) => (
+                      <RateCard key={comment?.id} rate={comment} />
                     ))}
+                  </div>
+                ))}
 
-              {rates?.data &&
-                (rates?.data?.length === 0 && isMyAd
-                  ? null
-                  : rates?.data?.length > 0 && (
-                      <div className="itemDetailsBox mb-3 d-flex flex-column gap-3">
-                        <div className="w-100 d-flex align-items-center justify-content-between gap-2">
-                          <h5>{t("rates")}</h5>
-                          {ad?.data?.is_rated || isMyAd ? null : (
-                            <span
-                              className="custom-btn filled"
-                              style={{
-                                width: "unset !important",
-                                aspectRatio: " 1 / 1",
-                                cursor: "pointer",
-                              }}
-                              onClick={() => setShowCommentModal(true)}
-                            >
-                              <span>
-                                <IconCirclePlus stroke={1.5} />
-                              </span>
-                            </span>
-                          )}
-                        </div>
-                        {rates?.data?.map((rate) => (
-                          <RateCard key={rate?.id} rate={rate} />
-                        ))}
-                      </div>
+              {rates &&
+                (!rates?.data && isMyAd ? null : (
+                  <div className="itemDetailsBox mb-3 d-flex flex-column gap-3">
+                    <div className="w-100 d-flex align-items-center justify-content-between gap-2">
+                      <h5>{t("rates")}</h5>
+                      {ad?.data?.is_rated || isMyAd ? null : (
+                        <span
+                          className="custom-btn filled"
+                          style={{
+                            width: "unset !important",
+                            aspectRatio: " 1 / 1",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => setShowCommentModal(true)}
+                        >
+                          <span>
+                            <IconCirclePlus stroke={1.5} />
+                          </span>
+                        </span>
+                      )}
+                    </div>
+                    {rates?.data?.map((rate) => (
+                      <RateCard key={rate?.id} rate={rate} />
                     ))}
+                  </div>
+                ))}
             </div>
           </div>
         </div>

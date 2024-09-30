@@ -14,7 +14,7 @@ function RegisterForm({
   setFormData,
   handleChange,
   setShowOtp,
-  setOtpData
+  setOtpData,
 }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
@@ -38,20 +38,20 @@ function RegisterForm({
       const res = await axios.post(
         "/user/can_register",
         {
-          ...formData,
-          phone: Number(formData.phone)
+          email: formData.email,
+          phone: Number(formData.phone),
         },
         {
           headers: {
-            "Content-Type": "multipart/form-data"
-          }
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
       if (res.data.code === 200) {
         setShowOtp(true);
         setOtpData((prev) => ({
           ...prev,
-          hashed_code: res.data.data
+          hashed_code: res.data.data,
         }));
       } else {
         toast.error(res.data.message);
@@ -114,7 +114,7 @@ function RegisterForm({
               id="phone"
               name="phone"
               type="tel"
-              placeholder={t("0XXXXXXXXXX")}
+              placeholder={t("5xxxXXXXXXX")}
               maxLength={9}
               required={true}
             />

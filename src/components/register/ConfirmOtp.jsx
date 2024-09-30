@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,8 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [, setCookie] = useCookies(["token", "id"]);
+  const [timer, setTimer] = useState(60);
+  const [resendDisabled, setResendDisabled] = useState(true);
 
   const headers = {
     Accept: "application/json",
@@ -30,6 +32,40 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
       type: "register",
     },
     url: "/user/check_code",
+  };
+
+  useEffect(() => {
+    if (timer > 0) {
+      const countdown = setTimeout(() => setTimer(timer - 1), 1000);
+      return () => clearTimeout(countdown);
+    } else {
+      setResendDisabled(false);
+    }
+  }, [timer]);
+
+  const handleResend = async (e) => {
+    e.preventDefault();
+    setResendDisabled(true);
+    setLoading(true);
+
+    try {
+      const res = await axios.post("/user/can_register", formData);
+      if (res.data.code === 200) {
+        setTimer(60);
+        toast.success(t("auth.otpResentSuccess"));
+        setOtpData((prev) => ({
+          ...prev,
+          hashed_code: res.data.data,
+        }));
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.error("Forget password error:", error);
+      throw new Error(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -48,12 +84,12 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
           setCookie("token", req.data.data.token, {
             path: "/",
             secure: true,
-            sameSite: "Strict"
+            sameSite: "Strict",
           });
           setCookie("id", req.data.data.id, {
             path: "/",
             secure: true,
-            sameSite: "Strict"
+            sameSite: "Strict",
           });
           axios.defaults.headers.common[
             "Authorization"
@@ -72,6 +108,7 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
       setLoading(false);
     }
   };
+
   return (
     <div className="row m-0">
       <div className="col-lg-7 col-12 p-2 d-flex align-items-center">
@@ -84,7 +121,34 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
             className="form forgetpasswordForm otp-small"
             onSubmit={handleSubmit}
           >
-            <OtpContainer formData={otpData} setFormData={setOtpData} />
+            <div className="d-flex gap-2 flex-lg-row flex-column w-100">
+              <OtpContainer formData={otpData} setFormData={setOtpData} />
+            </div>
+            <div className="resend-code">
+              <span
+                className={`resend_link ${resendDisabled ? "disabled" : ""}`}
+              >
+                {t("auth.didnotReceiveCode")}
+                <span
+                  className=""
+                  style={{ cursor: "pointer" }}
+                  onClick={handleResend}
+                >
+                  {t("auth.resendCode")}
+                </span>
+              </span>
+              <div
+                className="timer flex-row-reverse"
+                style={{ justifyContent: "end !important" }}
+              >
+                <span>
+                  {Math.floor(timer / 60)
+                    .toString()
+                    .padStart(2, "0")}
+                </span>
+                :<span>{(timer % 60).toString().padStart(2, "0")}</span>
+              </div>
+            </div>
             <SubmitButton
               loading={loading}
               name={t("confirm")}
