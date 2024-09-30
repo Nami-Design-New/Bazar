@@ -10,15 +10,15 @@ function Register() {
     email: "",
     phone: "",
     password: "",
-    token: 123
+    token: 123,
   });
-  const [showOtp, setShowOtp] = useState(false);
+  const [showOtp, setShowOtp] = useState(true);
   const [otpData, setOtpData] = useState({});
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 

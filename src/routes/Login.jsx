@@ -16,7 +16,7 @@ function Login() {
   const [formData, setFormData] = useState({
     phone: "",
     password: "",
-    token: 123234
+    token: 123234,
   });
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ function Login() {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -39,8 +39,8 @@ function Login() {
     try {
       const res = await axios.post("/user/login", formData, {
         headers: {
-          "Content-Type": "multipart/form-data"
-        }
+          "Content-Type": "multipart/form-data",
+        },
       });
       if (res.data.code === 200) {
         toast.success(t("auth.loginSuccess"));
@@ -50,12 +50,12 @@ function Login() {
         setCookie("token", res.data.data.token, {
           path: "/",
           secure: true,
-          sameSite: "Strict"
+          sameSite: "Strict",
         });
         setCookie("id", res.data.data.id, {
           path: "/",
           secure: true,
-          sameSite: "Strict"
+          sameSite: "Strict",
         });
         axios.defaults.headers.common[
           "Authorization"
@@ -92,7 +92,7 @@ function Login() {
                   id="phone"
                   name="phone"
                   type="tel"
-                  placeholder={t("0XXXXXXXXXX")}
+                  placeholder={t("5xxxXXXXXXX")}
                 />
 
                 <PasswordField
