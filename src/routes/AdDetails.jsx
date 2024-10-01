@@ -67,7 +67,9 @@ function AdDetails() {
   const { follow, isLoading: followingLoading } = useFollow();
   const { unfollow, isLoading: unfollowingLoading } = useUnfollow();
 
-  const isMyAd = !user?.id || Number(ad?.data?.user?.id) === Number(user?.id);
+  const isMyAd =
+    Boolean(Object.keys(user).length) ||
+    Number(ad?.data?.user?.id) === Number(user?.id);
 
   const timeDifference = getTimeDifference(ad?.data?.created_at);
   const creationTime = formatTimeDifference(
@@ -324,7 +326,13 @@ function AdDetails() {
                     </button>
                     <span
                       className="action-btn report"
-                      onClick={() => setShowUserReportModal(true)}
+                      onClick={() => {
+                        if (isLogged) {
+                          setShowUserReportModal(true);
+                        } else {
+                          navigate("/login");
+                        }
+                      }}
                     >
                       <i className="fa-regular fa-flag"></i>
                     </span>
@@ -332,14 +340,14 @@ function AdDetails() {
                 )}
 
                 <div className="contact">
-                  {Number(ad?.data?.chat) && !isMyAd ? (
+                  {ad?.data?.chat && !isMyAd ? (
                     <button className="chat" onClick={openChat}>
                       <IconMessageCircle stroke={1.5} />
                       <span> {t("chating")} </span>
                     </button>
                   ) : null}
 
-                  {Number(ad?.data?.phone) && !isMyAd ? (
+                  {ad?.data?.phone && !isMyAd ? (
                     <Link
                       target={isLogged ? "_blank" : "_self"}
                       to={!isLogged ? "/login" : `tel:${ad?.data?.phone}`}
@@ -351,7 +359,7 @@ function AdDetails() {
                     </Link>
                   ) : null}
 
-                  {Number(ad?.data?.whatsapp) && !isMyAd ? (
+                  {ad?.data?.whatsapp && !isMyAd ? (
                     <Link
                       target={isLogged ? "_blank" : "_self"}
                       to={

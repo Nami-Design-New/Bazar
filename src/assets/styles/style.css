@@ -1043,7 +1043,7 @@ body .form .resend-code .resend_link.disabled {
 body .form .resend-code .timer {
   flex: 1 0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: end !important;
 }
 body .form .resend-code .timer span {
   color: #777777;
@@ -2436,7 +2436,7 @@ body main .auth-form .resend-code .resend_link.disabled span {
 body main .auth-form .resend-code .timer {
   flex: 1 0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: end !important;
 }
 body main .auth-form .resend-code .timer span {
   color: #777777;
@@ -5336,7 +5336,7 @@ body main .order-details-page .order-details-wrapper .details-wrapper .details-b
   align-items: center;
   justify-content: center;
   position: relative;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  border: 1px solid #d9d9d9;
   overflow: hidden;
 }
 body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu .order-product-item .image-wrapper img {
@@ -9405,6 +9405,76 @@ body .recipe-image button {
   position: absolute;
   top: 8px;
   left: 8px;
+}
+body input[type=radio] {
+  width: 8px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  position: relative;
+}
+body input[type=radio]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  width: 18px !important;
+  height: 18px !important;
+  border: 1px solid #aaaaaa;
+}
+body input[type=radio]::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  background: #000;
+  display: none;
+}
+body input[type=radio]:checked::after {
+  border-color: #000;
+}
+body input[type=radio]:checked::before {
+  display: block;
+}
+body input[type=radio] {
+  width: 18px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  position: relative;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: transparent !important;
+}
+body input[type=radio]::after {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  content: "";
+  font-family: "Font Awesome 6 pro";
+  width: 18px;
+  height: 18px;
+  border: 1px solid #aaaaaa;
+  border-radius: 50%;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4381f8;
+}
+body input[type=radio]:checked::after {
+  content: "\f00c";
+  background: #4381f8;
+  color: #fff;
+  border-color: #4381f8;
 }
 body.en {
   direction: ltr;

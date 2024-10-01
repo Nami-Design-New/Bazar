@@ -6,7 +6,7 @@ function useOrderDetails() {
   const { id } = useParams();
 
   const { isLoading, data, error, refetch } = useQuery({
-    queryKey: ["marketDetails", id],
+    queryKey: ["orderDetails", id],
     queryFn: () => getOrderDetails(id),
     retry: false,
     refetchOnWindowFocus: false,

@@ -27,11 +27,8 @@ function Markets() {
     city_id: Number(searchParams.get("city_id")) || "",
     area_id: Number(searchParams.get("area_id")) || "",
     category_id: searchParams.get("category_id")
-      ? searchParams
-          .get("category_id")
-          .split("-")
-          .map((category) => Number(category))
-      : [],
+      ? Number(searchParams.get("category_id"))
+      : "",
   });
 
   const { data: areas } = useGetAreas(
@@ -46,40 +43,38 @@ function Markets() {
     const { name, checked, type, value } = e.target;
     const parsedValue = type === "checkbox" ? (checked ? 1 : 0) : value;
 
-    if (name !== "category_id" && name !== "sub_category_id") {
+    if (name === "category_id") {
+      if (searchFilterData?.sub_category_id) {
+        setSearchFilterData((prevState) => ({
+          ...prevState,
+          [name]: parsedValue,
+          sub_category_id: "",
+        }));
+      } else {
+        setSearchFilterData((prevState) => ({
+          ...prevState,
+          [name]: parsedValue,
+        }));
+      }
+    } else if (name === "sub_category_id") {
+      if (searchFilterData?.category_id) {
+        setSearchFilterData((prevState) => ({
+          ...prevState,
+          [name]: parsedValue,
+          category_id: "",
+        }));
+      } else {
+        setSearchFilterData((prevState) => ({
+          ...prevState,
+          [name]: parsedValue,
+        }));
+      }
+    } else {
       setSearchFilterData((prevState) => ({
         ...prevState,
         [name]: parsedValue,
       }));
-      return;
     }
-
-    const categoryValue = Number(value);
-    setSearchFilterData((prevState) => {
-      const updatedState = { ...prevState };
-
-      const updateList = (list = [], value, add) => {
-        return add ? [...list, value] : list.filter((id) => id !== value);
-      };
-
-      if (name === "category_id") {
-        updatedState[name] = updateList(
-          prevState[name],
-          categoryValue,
-          checked
-        );
-      }
-
-      if (name === "sub_category_id") {
-        updatedState[name] = updateList(
-          prevState[name],
-          categoryValue,
-          checked
-        );
-      }
-
-      return updatedState;
-    });
   };
 
   function handleClearFilters() {
@@ -91,11 +86,8 @@ function Markets() {
       city_id: Number(searchParams.get("city_id")) || "",
       area_id: Number(searchParams.get("area_id")) || "",
       category_id: searchParams.get("category_id")
-        ? searchParams
-            .get("category_id")
-            .split("-")
-            .map((category) => Number(category))
-        : [],
+        ? Number(searchParams.get("category_id"))
+        : "",
     });
   }
 
@@ -135,7 +127,6 @@ function Markets() {
                   />
                   <DepartmentFilterBox
                     categoriesValue={searchFilterData?.category_id}
-                    sub_categoriesValue={searchFilterData?.sub_category_id}
                     onChange={handleChange}
                     categoriesWithSubCategories={categories?.data}
                     viewSubCategories={false}

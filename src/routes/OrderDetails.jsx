@@ -305,9 +305,6 @@ function OrderDetails() {
                               </div>
                               <div className="header">
                                 <h6>{product?.product?.title} </h6>
-                                <p className="description">
-                                  {product?.product?.description}
-                                </p>
                                 <div className="d-flex align-items-center justify-content-between">
                                   <div className="d-flex align-items-center gap-2">
                                     <div className="title">

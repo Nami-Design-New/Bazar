@@ -1256,6 +1256,68 @@ body {
     }
   }
 
+  input[type="radio"] {
+    width: 8px;
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    &::after {
+      content: "";
+      @include centerAbsolute();
+      border-radius: 50%;
+      width: 18px !important;
+      height: 18px !important;
+      border: 1px solid $inputHint;
+    }
+    &::before {
+      content: "";
+      @include centerAbsolute();
+      border-radius: 50%;
+      width: 6px;
+      height: 6px;
+      background: $black;
+      display: none;
+    }
+    &:checked {
+      &::after {
+        border-color: $black;
+      }
+      &::before {
+        display: block;
+      }
+    }
+  }
+
+  input[type="radio"] {
+    width: 18px;
+    appearance: none;
+    position: relative;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: transparent !important;
+    &::after {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      content: "";
+      font-family: "Font Awesome 6 pro";
+      width: 18px;
+      height: 18px;
+      border: 1px solid $inputHint;
+      border-radius: 50%;
+      font-size: 12px;
+      @include centerFlex();
+      color: $main;
+    }
+    &:checked::after {
+      content: "\f00c";
+      background: $main;
+      color: #fff;
+      border-color: $main;
+    }
+  }
+
   &.en {
     direction: ltr;
     // font-family: "Poppins", sans-serif;

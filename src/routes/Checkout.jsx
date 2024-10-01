@@ -249,7 +249,6 @@ function Checkout() {
                     onChange={(e) => handleChange(e)}
                     placeholder={t("writeHere")}
                     label={t("cart.orderDetails")}
-                    required={true}
                   />
 
                   {/* addresses */}

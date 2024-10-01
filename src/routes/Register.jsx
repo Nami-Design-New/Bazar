@@ -12,7 +12,7 @@ function Register() {
     password: "",
     token: 123,
   });
-  const [showOtp, setShowOtp] = useState(true);
+  const [showOtp, setShowOtp] = useState(false);
   const [otpData, setOtpData] = useState({});
 
   const handleChange = (e) => {
