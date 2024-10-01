@@ -5,6 +5,7 @@ import useCategoriesList from "../categories/useCategoriesList";
 import InputField from "./../../ui/form-elements/InputField";
 import SelectField from "./../../ui/form-elements/SelectField";
 import TextField from "./../../ui/form-elements/TextField";
+import { toast } from "react-toastify";
 
 function MainInfo({ formData, setFormData, setForm }) {
   const { data: categories } = useCategoriesList();
@@ -19,6 +20,22 @@ function MainInfo({ formData, setFormData, setForm }) {
       );
     }
   }, [formData?.category_id, categories]);
+
+  const handleGetNextPage = (e) => {
+    e.preventDefault();
+    if (
+      formData?.title &&
+      formData?.ad_type &&
+      formData?.category_id &&
+      formData?.sub_category_id &&
+      formData?.description
+    ) {
+      setForm("location");
+    } else {
+      toast.error(t("fillAllRequiredFields"));
+    }
+  };
+
   return (
     <div className="row w-100">
       {/* ** */}
@@ -77,7 +94,7 @@ function MainInfo({ formData, setFormData, setForm }) {
           disabledOption={t("ads.selectCategory")}
           options={categories?.data?.map((category) => ({
             name: category.name,
-            value: category.id
+            value: category.id,
           }))}
         />
       </div>
@@ -97,7 +114,7 @@ function MainInfo({ formData, setFormData, setForm }) {
           onChange={(e) => handleChange(e, setFormData)}
           options={subCategories?.map((category) => ({
             name: category.name,
-            value: category.id
+            value: category.id,
           }))}
         />
       </div>
@@ -120,10 +137,7 @@ function MainInfo({ formData, setFormData, setForm }) {
           <button
             type="submit"
             className="wizard_btn next"
-            onClick={(e) => {
-              e.preventDefault();
-              setForm("location");
-            }}
+            onClick={handleGetNextPage}
           >
             {t("ads.next")} <i className="fa-regular fa-angle-left"></i>
           </button>

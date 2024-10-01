@@ -5756,6 +5756,25 @@ body main .itemDetails .priceInfo .actions {
   gap: 8px;
   flex-wrap: wrap;
 }
+body main .itemDetails .priceInfo .report {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #d9d9d9;
+  padding: 8px 12px;
+  border-radius: 100px;
+  height: 42px;
+  font-weight: bold;
+  font-size: 14px;
+  border: 1px solid #d9d9d9;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+body main .itemDetails .priceInfo .report img {
+  width: 24px;
+  height: 24px;
+  transition: all 0.2s ease-in-out;
+}
 body main .itemDetails .priceInfo .favorite {
   min-width: 42px;
   height: 42px;
@@ -6551,7 +6570,7 @@ body main .checkout_section .paymentMethod-wrapper .radios label input {
 body main .checkout_section .address-wrapper .radios label input:checked + span,
 body main .checkout_section .paymentMethod-wrapper .radios label input:checked + span {
   border-color: #4381f8;
-  background: rgba(67, 129, 248, 0.1019607843);
+  background: #4381f8;
 }
 body main .checkout_section .address-wrapper .radios label .address,
 body main .checkout_section .paymentMethod-wrapper .radios label .address {
@@ -9406,6 +9425,13 @@ body .recipe-image button {
   top: 8px;
   left: 8px;
 }
+body .label-with-hint {
+  flex-wrap: wrap;
+  white-space: nowrap;
+}
+body .label-with-hint span {
+  white-space: unset !important;
+}
 body input[type=radio] {
   width: 8px;
   cursor: pointer;
@@ -9413,6 +9439,9 @@ body input[type=radio] {
      -moz-appearance: none;
           appearance: none;
   position: relative;
+}
+body input[type=radio]::before {
+  content: none !important;
 }
 body input[type=radio]::after {
   content: "";

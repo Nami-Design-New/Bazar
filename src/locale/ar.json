@@ -341,7 +341,9 @@
     "phoneVerified": "تم التحقق من رقم الهاتف",
     "checkTheCodeOnYourPhone": "تحقق من الكود على الهاتف",
     "whatsappVerified": "تم التحقق من رقم الواتساب",
-    "main_imageHint": "فيديو كوفر"
+    "main_imageHint": "فيديو كوفر",
+    "main_imageHintDescription": "الصورة الثابتة التي تظهر قبل تشغيل الفيديو. يمكن أن تكون هذه الصورة أي لقطة ترغب في إظهارها للمستخدمين قبل مشاهدة الفيديو.",
+    "successfullyDeleted": "تم حذف الإعلان بنجاح"
   },
   "markets": {
     "products": "المنتجات",
@@ -402,7 +404,8 @@
     "save": "حفظ",
     "publish": "اضافة",
     "successfullyAdded": "تم اضافة الاهتمام بنجاح",
-    "successfullyEdited": "تم تعديل الاهتمام بنجاح"
+    "successfullyEdited": "تم تعديل الاهتمام بنجاح",
+    "successfullyDeleted": "تم حذف الاهتمام بنجاح"
   },
   "products": {
     "newest": "الاحدث"
@@ -593,5 +596,7 @@
   "successfullyCommented": "تم اضافة التعليق بنجاح",
   "createRate": "اضافة تقييم",
   "subscripedSuccessfully": "تم الاشتراك بنجاح",
-  "paymentMethod": "طريقة الدفع"
+  "paymentMethod": "طريقة الدفع",
+  "fillAllRequiredFields": "يرجى ملأ جميع الحقول المطلوبة لتتمكن من المتابعة",
+  "value": "القيمة"
 }

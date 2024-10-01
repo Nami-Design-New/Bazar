@@ -37,6 +37,7 @@ function AddAdvertisment() {
     phone: 0,
     whatsapp: 0,
     video: "",
+    audio: "",
     delete_video: 0,
     delete_audio: 0,
     delete_images: [],
@@ -62,6 +63,7 @@ function AddAdvertisment() {
         chat: ad?.data?.chat,
         phone: ad?.data?.phone,
         cover: ad?.data?.cover,
+        audio: ad?.data?.audio,
         whatsapp: ad?.data?.whatsapp,
         video: ad?.data?.video,
       });
@@ -97,15 +99,16 @@ function AddAdvertisment() {
       chat: formData.chat,
       phone: formData.phone,
       whatsapp: formData.whatsapp,
-      delete_audio: formData.delete_audio,
       images: uploadedImages,
+      audio: formData.audio ? formData.audio : null,
+      video: formData.video ? formData.video : null,
       delete_images: formData.delete_images,
+      delete_audio: formData.delete_audio,
       delete_video: formData.delete_video,
     };
 
     if (!ad) {
       payLoad.cover = formData.cover;
-      payLoad.video = formData.video;
     } else {
       if (formData?.video?.type?.startsWith("video")) {
         payLoad.video = formData.video;

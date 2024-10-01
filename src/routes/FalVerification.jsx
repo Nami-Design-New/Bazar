@@ -6,7 +6,7 @@ import SubmitButton from "../ui/form-elements/SubmitButton";
 function FalVerification() {
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
-    images: []
+    images: [],
   });
 
   const handleRemoveImage = (index, image) => {
@@ -14,12 +14,12 @@ function FalVerification() {
       setFormData((prevState) => ({
         ...prevState,
         images: prevState.images.filter((_, i) => i !== index),
-        delete_images: [...prevState.delete_images, image.id]
+        delete_images: [...prevState.delete_images, image.id],
       }));
     } else {
       setFormData((prevState) => ({
         ...prevState,
-        images: prevState.images.filter((_, i) => i !== index)
+        images: prevState.images.filter((_, i) => i !== index),
       }));
     }
   };
@@ -33,7 +33,7 @@ function FalVerification() {
     }
     setFormData((prevState) => ({
       ...prevState,
-      images: [...prevState.images, ...newImages]
+      images: [...prevState.images, ...newImages],
     }));
   };
 
@@ -54,7 +54,7 @@ function FalVerification() {
         {/* images */}
         <div className="col-12 p-2">
           <div className="input-field d-flex flex-column gap-3">
-            <label htmlFor="certificate-image">
+            <label htmlFor="certificate-image" className="label-with-hint">
               {t("profile.uploadImagesMax5")}
             </label>
             <div className="images_grid_upload">

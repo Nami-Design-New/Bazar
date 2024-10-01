@@ -95,7 +95,6 @@ function Pricing({ formData, setFormData, setForm, loading }) {
     <div className="row w-100">
       <div className="col-12 p-2">
         <InputField
-          required
           label={t("ads.price")}
           placeholder="00"
           name="price"
@@ -214,7 +213,6 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                       id="whatsapp_number"
                       noFullWidth={true}
                       value={whatsapp}
-                      required
                       placeholder={t("ads.whatsappNumber")}
                       onChange={(e) => setWhatsapp(e.target.value)}
                       disabled={verified?.whatsapp}
@@ -293,7 +291,6 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                       id="phone_number"
                       placeholder={t("ads.callNumber")}
                       value={phone}
-                      required
                       onChange={(e) => setPhone(e.target.value)}
                     />
                     {!verified?.phone ? (

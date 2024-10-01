@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 function Gallery({ formData, setFormData, setForm }) {
   const [isRecording, setIsRecording] = useState(false);
@@ -52,6 +53,7 @@ function Gallery({ formData, setFormData, setForm }) {
         setFormData((prevState) => ({
           ...prevState,
           audio: audioBlob,
+          delete_audio: 0,
         }));
 
         mediaRecorderInstance.stream.getTracks().forEach((track) => {
@@ -75,13 +77,31 @@ function Gallery({ formData, setFormData, setForm }) {
     }
   };
 
+  const handleGetNextPage = (e) => {
+    e.preventDefault();
+    if (formData?.images?.length > 0) {
+      if (!formData?.video) {
+        setForm("pricing-contact");
+      } else {
+        if (formData?.cover) {
+          setForm("pricing-contact");
+        } else {
+          toast.error(t("fillAllRequiredFields"));
+        }
+      }
+    } else {
+      toast.error(t("fillAllRequiredFields"));
+    }
+  };
+
   return (
     <div className="row w-100">
       {/* main image */}
       <div className="col-lg-6 col-12 p-2">
         <div className="input-field">
-          <label htmlFor="certificate-image">
-            {t("ads.main_image")} <span>( {t("ads.main_imageHint")} )</span>
+          <label htmlFor="certificate-image" className="label-with-hint">
+            {t("ads.main_imageHint")}{" "}
+            <span>( {t("ads.main_imageHintDescription")} )</span>
           </label>
           <label className="video_upload">
             <input
@@ -132,7 +152,7 @@ function Gallery({ formData, setFormData, setForm }) {
       {/* video */}
       <div className="col-lg-6 col-12 p-2">
         <div className="input-field">
-          <label htmlFor="certificate-image">
+          <label htmlFor="certificate-image" className="label-with-hint">
             {t("ads.video")} <span>{t("ads.videoHint")}</span>
           </label>
 
@@ -146,6 +166,7 @@ function Gallery({ formData, setFormData, setForm }) {
                 setFormData((prevState) => ({
                   ...prevState,
                   video: e.target.files[0],
+                  delete_video: 0,
                 }));
               }}
             />
@@ -191,7 +212,7 @@ function Gallery({ formData, setFormData, setForm }) {
       {/* images */}
       <div className="col-12 p-2">
         <div className="input-field">
-          <label htmlFor="certificate-image">
+          <label htmlFor="certificate-image" className="label-with-hint">
             {t("ads.images")} <span>{t("ads.imagesHint")}</span>
           </label>
           <div className="images_grid_upload">
@@ -286,13 +307,7 @@ function Gallery({ formData, setFormData, setForm }) {
           >
             <i className="fa-regular fa-angle-right"></i> {t("ads.previous")}
           </button>
-          <button
-            className="wizard_btn next"
-            onClick={(e) => {
-              e.preventDefault();
-              setForm("pricing-contact");
-            }}
-          >
+          <button className="wizard_btn next" onClick={handleGetNextPage}>
             {t("ads.next")} <i className="fa-regular fa-angle-left"></i>
           </button>
         </div>

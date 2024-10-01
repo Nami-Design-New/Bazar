@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { handleChange } from "../../utils/helpers";
 import SubmitButton from "../form-elements/SubmitButton";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "../../utils/axios";
 import { Modal } from "react-bootstrap";
@@ -16,7 +15,6 @@ function ReportModal({ id, type, showModal, setShowModal }) {
     reported_id: "",
   });
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     setFormData({
@@ -37,7 +35,6 @@ function ReportModal({ id, type, showModal, setShowModal }) {
       });
       if (res.status === 201 || res.status === 200) {
         toast.success(`t("interests.successfullyReported")`);
-        navigate("/profile");
         setShowModal(false);
       } else {
         toast.error(t("someThingWentWrong"));

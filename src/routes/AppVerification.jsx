@@ -53,7 +53,7 @@ function AppVerification() {
         {/* images */}
         <div className="col-12 p-2">
           <div className="input-field d-flex flex-column gap-3">
-            <label htmlFor="certificate-image">
+            <label htmlFor="certificate-image" className="label-with-hint">
               {t("profile.uploadImagesMax5")}
             </label>
             <div className="images_grid_upload">

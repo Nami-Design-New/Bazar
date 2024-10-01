@@ -101,8 +101,9 @@ function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
     try {
       const res = await axios.post("/user/delete_ad", { id: post?.id });
       if (res.data?.code === 200) {
-        toast.success("تم حذف الاعلان بنجاح");
+        toast.success(t("ads.successfullyDeleted"));
         setShowConfirmation(false);
+        queryClient.invalidateQueries(["userAds", userId]);
         refetch(userId);
       } else {
         toast.error(res.data?.message);
