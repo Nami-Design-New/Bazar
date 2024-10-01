@@ -91,11 +91,18 @@ function Pricing({ formData, setFormData, setForm, loading }) {
     }
   };
 
+  const handleGetNextPage = () => {
+    if (formData?.price && formData?.price_type) {
+      setForm("gallery");
+    } else {
+      toast.error(t("fillAllRequiredFields"));
+    }
+  };
+
   return (
     <div className="row w-100">
       <div className="col-12 p-2">
         <InputField
-          required
           label={t("ads.price")}
           placeholder="00"
           name="price"
@@ -214,7 +221,6 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                       id="whatsapp_number"
                       noFullWidth={true}
                       value={whatsapp}
-                      required
                       placeholder={t("ads.whatsappNumber")}
                       onChange={(e) => setWhatsapp(e.target.value)}
                       disabled={verified?.whatsapp}
@@ -293,7 +299,6 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                       id="phone_number"
                       placeholder={t("ads.callNumber")}
                       value={phone}
-                      required
                       onChange={(e) => setPhone(e.target.value)}
                     />
                     {!verified?.phone ? (
@@ -384,6 +389,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
             name={id ? t("ads.save") : t("ads.publish")}
             className="wizard_btn next"
             loading={loading}
+            onClick={handleGetNextPage}
           />
         </div>
       </div>

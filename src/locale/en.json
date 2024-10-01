@@ -338,7 +338,8 @@
     "phoneVerified": "Phone Verified Successfully",
     "checkTheCodeOnYourPhone": "Check the code on your phone",
     "whatsappVerified": "WhatsApp number has been verified",
-    "main_imageHint": "Video Cover"
+    "main_imageHint": "Video Cover",
+    "main_imageHintDescription": "This is the still image that appears before the video plays. It can be any frame you want to display to the audience before watching the video."
   },
   "markets": {
     "products": "Products",
@@ -582,5 +583,6 @@
   "successfullyCommented": "Comment sent successfully",
   "createRate": "Create Rate",
   "subscripedSuccessfully": "Subscribed successfully",
-  "paymentMethod": "Payment Method"
+  "paymentMethod": "Payment Method",
+  "fillAllRequiredFields": "Please fill all required fields to continue"
 }

@@ -6,6 +6,7 @@ import DataLoader from "./../../ui/DataLoader";
 import useGetCities from "../../hooks/settings/useGetCities";
 import useGetAreas from "../../hooks/settings/useGetAreas";
 import MapWithMarker from "../../ui/MapWithMarker";
+import { toast } from "react-toastify";
 
 function Location({ formData, setFormData, setForm }) {
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -40,6 +41,15 @@ function Location({ formData, setFormData, setForm }) {
       }
     };
   }, []);
+
+  const handleGetNextPage = (e) => {
+    e.preventDefault();
+    if (formData?.city_id && formData?.area_id && formData?.address) {
+      setForm("gallery");
+    } else {
+      toast.error(t("fillAllRequiredFields"));
+    }
+  };
 
   return (
     <div className="row w-100">
@@ -94,13 +104,7 @@ function Location({ formData, setFormData, setForm }) {
           >
             <i className="fa-regular fa-angle-right"></i> {t("ads.previous")}
           </button>
-          <button
-            className="wizard_btn next"
-            onClick={(e) => {
-              e.preventDefault();
-              setForm("gallery");
-            }}
-          >
+          <button className="wizard_btn next" onClick={handleGetNextPage}>
             {t("ads.next")} <i className="fa-regular fa-angle-left"></i>
           </button>
         </div>

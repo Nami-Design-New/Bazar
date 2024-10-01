@@ -1256,11 +1256,23 @@ body {
     }
   }
 
+  .label-with-hint {
+    flex-wrap: wrap;
+    white-space: nowrap;
+
+    span {
+      white-space: unset !important;
+    }
+  }
+
   input[type="radio"] {
     width: 8px;
     cursor: pointer;
     appearance: none;
     position: relative;
+    &::before {
+      content: none !important;
+    }
     &::after {
       content: "";
       @include centerAbsolute();

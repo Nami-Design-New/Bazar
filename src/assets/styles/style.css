@@ -9406,6 +9406,13 @@ body .recipe-image button {
   top: 8px;
   left: 8px;
 }
+body .label-with-hint {
+  flex-wrap: wrap;
+  white-space: nowrap;
+}
+body .label-with-hint span {
+  white-space: unset !important;
+}
 body input[type=radio] {
   width: 8px;
   cursor: pointer;
@@ -9413,6 +9420,9 @@ body input[type=radio] {
      -moz-appearance: none;
           appearance: none;
   position: relative;
+}
+body input[type=radio]::before {
+  content: none !important;
 }
 body input[type=radio]::after {
   content: "";
