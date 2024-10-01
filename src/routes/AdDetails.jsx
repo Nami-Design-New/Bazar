@@ -47,7 +47,6 @@ function AdDetails() {
   const queryClient = useQueryClient();
   const { id } = useParams();
 
-  const [showUserReportModal, setShowUserReportModal] = useState(false);
   const [showCommentModal, setShowCommentModal] = useState(false);
   const [showAdReportModal, setShowAdReportModal] = useState(false);
 
@@ -68,7 +67,7 @@ function AdDetails() {
   const { unfollow, isLoading: unfollowingLoading } = useUnfollow();
 
   const isMyAd =
-    Boolean(Object.keys(user).length) ||
+    !Object.keys(user).length ||
     Number(ad?.data?.user?.id) === Number(user?.id);
 
   const timeDifference = getTimeDifference(ad?.data?.created_at);
@@ -259,6 +258,19 @@ function AdDetails() {
                       <img src="/images/facebook.svg" alt="" />
                     </a>
                   </div>
+
+                  <span
+                    className="action-btn report"
+                    onClick={() => {
+                      if (isLogged) {
+                        setShowAdReportModal(true);
+                      } else {
+                        navigate("/login");
+                      }
+                    }}
+                  >
+                    <i className="fa-regular fa-flag"></i> {t("report")}
+                  </span>
                 </div>
               </div>
 
@@ -324,18 +336,6 @@ function AdDetails() {
                         }`}
                       ></i>
                     </button>
-                    <span
-                      className="action-btn report"
-                      onClick={() => {
-                        if (isLogged) {
-                          setShowUserReportModal(true);
-                        } else {
-                          navigate("/login");
-                        }
-                      }}
-                    >
-                      <i className="fa-regular fa-flag"></i>
-                    </span>
                   </div>
                 )}
 
@@ -530,12 +530,6 @@ function AdDetails() {
           </div>
         </div>
       </section>
-      <ReportModal
-        id={ad?.data?.user?.id}
-        type="user"
-        showModal={showUserReportModal}
-        setShowModal={setShowUserReportModal}
-      />
       <ReportModal
         id={ad?.data?.id}
         type="ad"

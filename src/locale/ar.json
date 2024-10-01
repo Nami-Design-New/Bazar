@@ -597,5 +597,6 @@
   "createRate": "اضافة تقييم",
   "subscripedSuccessfully": "تم الاشتراك بنجاح",
   "paymentMethod": "طريقة الدفع",
-  "fillAllRequiredFields": "يرجى ملأ جميع الحقول المطلوبة لتتمكن من المتابعة"
+  "fillAllRequiredFields": "يرجى ملأ جميع الحقول المطلوبة لتتمكن من المتابعة",
+  "value": "القيمة"
 }

@@ -14,7 +14,7 @@ import RateScale from "../form-elements/RateScale";
 function CreateRateModal({ showModal, setShowModal, id }) {
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
-    ad_id: "",
+    ad_id: id,
     comment: "",
     rate: "",
   });
@@ -31,6 +31,8 @@ function CreateRateModal({ showModal, setShowModal, id }) {
     });
   };
 
+  console.log(id);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -41,7 +43,7 @@ function CreateRateModal({ showModal, setShowModal, id }) {
       try {
         const res = await axios.post(`/user/create_rate`, formData);
         if (res.status === 201 || res.status === 200) {
-          toast.success(`t("successfullyRated")`);
+          toast.success(t("successfullyRated"));
           queryClient.invalidateQueries(["rates", id]);
           setShowModal(false);
         } else {

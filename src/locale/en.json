@@ -590,5 +590,6 @@
   "createRate": "Create Rate",
   "subscripedSuccessfully": "Subscribed successfully",
   "paymentMethod": "Payment Method",
-  "fillAllRequiredFields": "Please fill all required fields to continue"
+  "fillAllRequiredFields": "Please fill all required fields to continue",
+  "value": "Value"
 }

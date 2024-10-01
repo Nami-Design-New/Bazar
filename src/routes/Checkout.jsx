@@ -345,11 +345,21 @@ function Checkout() {
 
                       <div className="details">
                         <span className="details-box">
-                          {t("min")} {coupon?.min} {t("currency.sar")}
+                          {t("value")} {coupon?.value}
+                          {coupon?.type === "fixed"
+                            ? ` ${t("currency.sar")}`
+                            : "%"}
                         </span>
-                        <span className="details-box">
-                          {t("max")} {coupon?.max} {t("currency.sar")}
-                        </span>
+                        {coupon?.type === "fixed" ? (
+                          <span className="details-box">
+                            {t("min")} {coupon?.min} {t("currency.sar")}
+                          </span>
+                        ) : null}
+                        {coupon?.type === "percentage" ? (
+                          <span className="details-box">
+                            {t("max")} {coupon?.max} {t("currency.sar")}
+                          </span>
+                        ) : null}
                       </div>
                     </div>
                   )}

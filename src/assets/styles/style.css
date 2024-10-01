@@ -5756,6 +5756,25 @@ body main .itemDetails .priceInfo .actions {
   gap: 8px;
   flex-wrap: wrap;
 }
+body main .itemDetails .priceInfo .report {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #d9d9d9;
+  padding: 8px 12px;
+  border-radius: 100px;
+  height: 42px;
+  font-weight: bold;
+  font-size: 14px;
+  border: 1px solid #d9d9d9;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+body main .itemDetails .priceInfo .report img {
+  width: 24px;
+  height: 24px;
+  transition: all 0.2s ease-in-out;
+}
 body main .itemDetails .priceInfo .favorite {
   min-width: 42px;
   height: 42px;
