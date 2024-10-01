@@ -227,7 +227,11 @@ export default function Header() {
                     <EmptyData>{t("noNotifications")}</EmptyData>
                   )}
                 </div>
-                <Link className="showall" to="/notifications">
+                <Link
+                  className="showall"
+                  to="/notifications"
+                  style={{ textDecoration: "none" }}
+                >
                   {t("header.allNotifications")}
                 </Link>
               </Dropdown.Menu>

@@ -161,17 +161,19 @@ function Profile() {
                         <div className="userName">
                           <h4 className="name"> {user?.name} </h4>
                           <h6 className="email">{user?.email}</h6>
-                          <div className="userDetails">
-                            {user?.phone && (
-                              <Link
-                                to={`tel:+966${user?.phone}`}
-                                className="details-box phone"
-                              >
-                                <i className="fa-regular fa-phone "></i>
-                                +966{user?.phone}
-                              </Link>
-                            )}
-                          </div>
+                          {isMyAccount && (
+                            <div className="userDetails">
+                              {user?.phone && (
+                                <Link
+                                  to={`tel:+966${user?.phone}`}
+                                  className="details-box phone"
+                                >
+                                  <i className="fa-regular fa-phone "></i>
+                                  +966{user?.phone}
+                                </Link>
+                              )}
+                            </div>
+                          )}
                           <div className="verification-details">
                             {user?.fal_verified ? (
                               <span className="verification-item">

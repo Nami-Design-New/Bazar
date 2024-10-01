@@ -14,7 +14,7 @@ const Notifcations = () => {
       <div className="notifications_section">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-lg-8 col-12 d-flex flex-column gap-2">
+            <div className="col-12 d-flex flex-column gap-2">
               {notifications?.data?.map((notification) => (
                 <div className="notify" key={notification?.id}>
                   <div className="notify_info">
@@ -24,9 +24,9 @@ const Notifcations = () => {
                     </div>
                   </div>
                   <div className="date_time">
-                    <span>
-                      {calculateDate(notification?.created_at)}{" "}
+                    <span className="d-flex align-items-center gap-2">
                       <i className="fa-thin fa-calendar-days"></i>
+                      {calculateDate(notification?.created_at)}{" "}
                     </span>
                   </div>
                 </div>

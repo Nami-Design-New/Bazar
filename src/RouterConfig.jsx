@@ -67,7 +67,7 @@ const routerConfig = [
 
   // user features
   { path: "/profile", element: <Profile />, protected: true },
-  { path: "/profile/:id", element: <Profile />, protected: true },
+  { path: "/profile/:id", element: <Profile /> },
   { path: "/notifications", element: <Notifcations /> },
   { path: "/chats", element: <Chats />, protected: true },
   { path: "/cart", element: <Cart />, protected: true },
