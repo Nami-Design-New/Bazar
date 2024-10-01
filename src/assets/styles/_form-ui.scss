@@ -21,7 +21,7 @@
     .timer {
       flex: 1 0;
       display: flex;
-      justify-content: flex-end;
+      justify-content: end !important;
       span {
         color: $textColor;
       }

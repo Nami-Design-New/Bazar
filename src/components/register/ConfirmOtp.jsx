@@ -28,7 +28,6 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
     headers: headers,
     data: {
       ...otpData,
-      ...formData,
       type: "register",
     },
     url: "/user/check_code",
