@@ -339,7 +339,8 @@
     "checkTheCodeOnYourPhone": "Check the code on your phone",
     "whatsappVerified": "WhatsApp number has been verified",
     "main_imageHint": "Video Cover",
-    "main_imageHintDescription": "This is the still image that appears before the video plays. It can be any frame you want to display to the audience before watching the video."
+    "main_imageHintDescription": "This is the still image that appears before the video plays. It can be any frame you want to display to the audience before watching the video.",
+    "successfullyDeleted": "Ad deleted successfully"
   },
   "markets": {
     "products": "Products",
@@ -395,7 +396,12 @@
   "interests": {
     "areYouSureYouWantToDeleteInterest": "Are you sure you want to delete this interest?",
     "addInterest": "Add Interest",
-    "interestIn": "Interest in"
+    "interestIn": "Interest in",
+    "save": "Save",
+    "publish": "Add",
+    "successfullyAdded": "Interest added successfully",
+    "successfullyEdited": "Interest edited successfully",
+    "successfullyDeleted": "Interest deleted successfully"
   },
   "products": {
     "newest": "Newest"

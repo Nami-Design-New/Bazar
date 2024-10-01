@@ -6551,7 +6551,7 @@ body main .checkout_section .paymentMethod-wrapper .radios label input {
 body main .checkout_section .address-wrapper .radios label input:checked + span,
 body main .checkout_section .paymentMethod-wrapper .radios label input:checked + span {
   border-color: #4381f8;
-  background: rgba(67, 129, 248, 0.1019607843);
+  background: #4381f8;
 }
 body main .checkout_section .address-wrapper .radios label .address,
 body main .checkout_section .paymentMethod-wrapper .radios label .address {

@@ -91,14 +91,6 @@ function Pricing({ formData, setFormData, setForm, loading }) {
     }
   };
 
-  const handleGetNextPage = () => {
-    if (formData?.price && formData?.price_type) {
-      setForm("gallery");
-    } else {
-      toast.error(t("fillAllRequiredFields"));
-    }
-  };
-
   return (
     <div className="row w-100">
       <div className="col-12 p-2">
@@ -389,7 +381,6 @@ function Pricing({ formData, setFormData, setForm, loading }) {
             name={id ? t("ads.save") : t("ads.publish")}
             className="wizard_btn next"
             loading={loading}
-            onClick={handleGetNextPage}
           />
         </div>
       </div>

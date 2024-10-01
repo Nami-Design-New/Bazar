@@ -2,6 +2,9 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
+import axios from "./../../utils/axios";
 
 function InterestMiniCard({
   interest,
@@ -11,14 +14,35 @@ function InterestMiniCard({
 }) {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const queryClient = useQueryClient();
 
   function handleOpenConfirmation(e) {
     e.stopPropagation();
     setShowConfirmation(true);
   }
-  function handleDelete() {
-    setShowConfirmation(false);
-  }
+  const handleDelete = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.post("/user/delete_interest", {
+        id: interest?.id,
+      });
+      if (res.data?.code === 200) {
+        toast.success(t("interests.successfullyDeleted"));
+        setShowConfirmation(false);
+        queryClient.invalidateQueries(["userInterests"]);
+      } else {
+        toast.error(res.data?.message);
+      }
+    } catch (error) {
+      toast.error(error.response);
+      throw new Error(error.message);
+    } finally {
+      setShowConfirmation(false);
+      setLoading(false);
+    }
+  };
   return (
     <div
       className="interest-mini-card ad-mini-card activity-card"
@@ -80,6 +104,7 @@ function InterestMiniCard({
         eventFun={handleDelete}
         buttonText={t("delete")}
         text={t("interests.areYouSureYouWantToDeleteInterest")}
+        loading={loading}
       />
     </div>
   );

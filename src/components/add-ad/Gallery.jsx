@@ -53,6 +53,7 @@ function Gallery({ formData, setFormData, setForm }) {
         setFormData((prevState) => ({
           ...prevState,
           audio: audioBlob,
+          delete_audio: 0,
         }));
 
         mediaRecorderInstance.stream.getTracks().forEach((track) => {
@@ -165,6 +166,7 @@ function Gallery({ formData, setFormData, setForm }) {
                 setFormData((prevState) => ({
                   ...prevState,
                   video: e.target.files[0],
+                  delete_video: 0,
                 }));
               }}
             />
