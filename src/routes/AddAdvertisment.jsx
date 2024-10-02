@@ -142,7 +142,9 @@ function AddAdvertisment() {
         toast.error(t("someThingWentWrong"));
       }
     } catch (error) {
-      toast.error(error?.response?.data?.message || t("someThingWentWrong"));
+      throw new Error(
+        error?.response?.data?.message || t("someThingWentWrong")
+      );
     } finally {
       setLoading(false);
     }

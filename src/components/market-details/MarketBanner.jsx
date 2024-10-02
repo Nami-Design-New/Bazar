@@ -65,12 +65,40 @@ function MarketBanner({ market }) {
     e.preventDefault();
     if (isLogged) {
       if (market?.data?.is_follow) {
-        unfollow({ id: market?.data?.id, type: "market" });
+        unfollow(
+          { id: market?.data?.id, type: "market" },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries([
+                "marketDetails",
+                market?.data?.id,
+              ]);
+              queryClient.invalidateQueries([
+                "marketsByFilter",
+                "favoriteMarkets",
+              ]);
+            },
+          }
+        );
       } else {
-        follow({
-          id: market?.data?.id,
-          type: "market",
-        });
+        follow(
+          {
+            id: market?.data?.id,
+            type: "market",
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries([
+                "marketDetails",
+                market?.data?.id,
+              ]);
+              queryClient.invalidateQueries([
+                "marketsByFilter",
+                "favoriteMarkets",
+              ]);
+            },
+          }
+        );
       }
     } else {
       navigate("/login");
@@ -124,7 +152,9 @@ function MarketBanner({ market }) {
 
             <div className="btns-wrapper">
               <button
-                className="action-btn follow"
+                className={`action-btn follow ${
+                  market?.data?.is_follow ? "following" : ""
+                }`}
                 onClick={handleToggleFollowing}
                 disabled={followingLoading || unfollowingLoading}
               >
@@ -137,7 +167,7 @@ function MarketBanner({ market }) {
               </button>
 
               <button
-                className={`btn-box follow ${
+                className={`btn-box follow favorite ${
                   market?.data?.is_favorite ? "active" : ""
                 }`}
                 onClick={handleToggleFavorite}

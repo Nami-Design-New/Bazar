@@ -51,7 +51,7 @@ export const getTimeDifference = (createdAt) => {
     years = now.getFullYear() - createdDate.getFullYear();
     months = now.getMonth() - createdDate.getMonth();
     days = now.getDate() - createdDate.getDate();
-    hours = now.getHours() - createdDate.getHours();
+    hours = now.getHours() + 3 - createdDate.getHours();
     minutes = now.getMinutes() - createdDate.getMinutes();
 
     if (minutes < 0) {
@@ -72,6 +72,7 @@ export const getTimeDifference = (createdAt) => {
       if (years > 0) years--;
     }
   }
+
   return { years, months, days, hours, minutes };
 };
 

@@ -13,10 +13,7 @@ function OrderCard({ order }) {
   const lang = useSelector((state) => state.language.lang);
 
   return (
-    <Link
-      to={`/order-details/${order?.id}`}
-      className={`order-card`}
-    >
+    <Link to={`/order-details/${order?.id}`} className={`order-card`}>
       <div className="card-header">
         <div className="card-content">
           <div className="heading">

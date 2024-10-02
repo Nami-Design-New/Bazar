@@ -170,12 +170,36 @@ function AdDetails() {
     e.preventDefault();
     if (isLogged) {
       if (ad?.data?.user?.is_follow) {
-        unfollow({ id: ad?.data?.user?.id, type: "user" });
+        unfollow(
+          { id: ad?.data?.user?.id, type: "user" },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(["adById", id]);
+              queryClient.invalidateQueries([
+                "ads-videos",
+                "favoriteAds",
+                "adsByFilter",
+              ]);
+            },
+          }
+        );
       } else {
-        follow({
-          id: ad?.data?.user?.id,
-          type: "user",
-        });
+        follow(
+          {
+            id: ad?.data?.user?.id,
+            type: "user",
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(["adById", id]);
+              queryClient.invalidateQueries([
+                "ads-videos",
+                "favoriteAds",
+                "adsByFilter",
+              ]);
+            },
+          }
+        );
       }
     } else {
       navigate("/login");
@@ -326,7 +350,9 @@ function AdDetails() {
                 {isMyAd ? null : (
                   <div className="btns-wrapper">
                     <button
-                      className="action-btn follow"
+                      className={`action-btn follow ${
+                        ad?.data?.user?.is_follow ? "following" : ""
+                      }`}
                       onClick={handleToggleFollowing}
                       disabled={followingLoading || unfollowingLoading}
                     >
@@ -335,6 +361,7 @@ function AdDetails() {
                           ad?.data?.user?.is_follow ? "check" : "plus"
                         }`}
                       ></i>
+                      {/* {ad?.data?.user?.is_follow ? t("following") : t("follow")} */}
                     </button>
                   </div>
                 )}

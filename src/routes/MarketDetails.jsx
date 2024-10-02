@@ -10,6 +10,8 @@ function MarketDetails() {
   const { t } = useTranslation();
   const { isLoading: marketLoading, data: market } = useMarketDetails();
 
+  
+
   return marketLoading ? (
     <DataLoader />
   ) : market?.data ? (

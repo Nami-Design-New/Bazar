@@ -20,7 +20,8 @@
     "addNewAccount": "Register New Account",
     "login": "Login",
     "appCommission": "App Commission",
-    "deleteAccount": "Delete Account"
+    "deleteAccount": "Delete Account",
+    "followers": "Followers"
   },
   "home": {
     "markets": "Markets",
@@ -38,6 +39,7 @@
     "centers": "Markets and centers"
   },
   "routes": {
+    "followers": "Followers",
     "home": "Home",
     "my-activities": "My Activities",
     "favorites": "Favorites",
@@ -165,7 +167,10 @@
     "deleteAccount": "Delete Account",
     "report": "Report",
     "finishRewardError": "An error occurred while withdrawing rewards",
-    "successfullyWithdrawRewards": "Rewards withdrawn successfully"
+    "successfullyWithdrawRewards": "Rewards withdrawn successfully",
+    "addTheImages": "Add the required images to continue",
+    "successfullyVerified": "The request has been sent successfully, you will be replied to by the admin soon",
+    "FailedToVerify": "Failed to Verify"
   },
   "error": {
     "pageNotFound": "This link doesn't exist or might have been deleted. How did you get here?",
@@ -340,7 +345,8 @@
     "whatsappVerified": "WhatsApp number has been verified",
     "main_imageHint": "Video Cover",
     "main_imageHintDescription": "This is the still image that appears before the video plays. It can be any frame you want to display to the audience before watching the video.",
-    "successfullyDeleted": "Ad deleted successfully"
+    "successfullyDeleted": "Ad deleted successfully",
+    "contactTypeHint": "After entering the number, you must press the Verify button to add the number after verifying it."
   },
   "markets": {
     "products": "Products",
@@ -415,6 +421,7 @@
     "paymentMethod": "Payment Method",
     "visa": "Visa",
     "cash": "Cash",
+    "online": "Online",
     "wallet": "Wallet",
     "visaNumber": "Visa Number",
     "empty": "The cart is empty. Shop now and add your products!",
@@ -505,7 +512,8 @@
     "name": "Adapter name",
     "phone": "Mobile number associated with your membership",
     "image": "Receipt image",
-    "transferCommissions": "Bank transfer receipt"
+    "transferCommissions": "Bank transfer receipt",
+    "selectBank": "Select the bank you want to send the receipt to"
   },
   "createdAt": "Created At",
   "orderedAt": "Ordered At",
@@ -591,5 +599,7 @@
   "subscripedSuccessfully": "Subscribed successfully",
   "paymentMethod": "Payment Method",
   "fillAllRequiredFields": "Please fill all required fields to continue",
-  "value": "Value"
+  "value": "Value",
+  "selectAtLeastOneField": "Select at least one field to continue",
+  "walletNotEnough": "You do not have enough money in your wallet to complete the transaction."
 }

@@ -57,12 +57,15 @@ function VerificationTab({ isMyAccount, user }) {
         </div>
         <div className="btn-wrapper">
           {subscriptionRemainingDays(user?.end_date) > 0 ? (
-            <div className="btn-box custom-btn filled green">
+            <Link
+              to="/commercial-verification"
+              className="btn-box custom-btn filled green"
+            >
               <span>
-                <i className="fa-solid fa-check-double"></i>
-                {t(`profile.subscribed`)}
+                <i className="fa-solid fa-recycle"></i>{" "}
+                {t(`profile.renewSubscribe`)}
               </span>
-            </div>
+            </Link>
           ) : isMyAccount ? (
             user?.end_date ? (
               <Link

@@ -49,7 +49,6 @@ export const handleFavourite = async (type, id, setVideos, endpoint) => {
   }
 };
 
-
 export async function follow(requestBody) {
   try {
     const req = await axios.post("/user/follow", requestBody);
@@ -57,6 +56,26 @@ export async function follow(requestBody) {
     return req.data;
   } catch (err) {
     throw new Error(`Error to follow: ${err.message}`);
+  }
+}
+
+export async function getFollowers() {
+  try {
+    const req = await axios.get("/user/get_followers");
+
+    return req.data;
+  } catch (err) {
+    throw new Error(`Error in fetching followers: ${err.message}`);
+  }
+}
+
+export async function getFollowings(requestBody) {
+  try {
+    const req = await axios.post("/user/get_following", requestBody);
+
+    return req.data;
+  } catch (err) {
+    throw new Error(`Error in fetching followings: ${err.message}`);
   }
 }
 

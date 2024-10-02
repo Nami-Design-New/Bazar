@@ -117,12 +117,34 @@ function Video({ ad }) {
     e.preventDefault();
     if (isLogged) {
       if (ad?.data?.user?.is_follow) {
-        unfollow({ id: ad?.data?.user?.id, type: "user" });
+        unfollow(
+          { id: ad?.data?.user?.id, type: "user" },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries([
+                "ads-videos",
+                "favoriteAds",
+                "adsByFilter",
+              ]);
+            },
+          }
+        );
       } else {
-        follow({
-          id: ad?.data?.user?.id,
-          type: "user",
-        });
+        follow(
+          {
+            id: ad?.data?.user?.id,
+            type: "user",
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries([
+                "ads-videos",
+                "favoriteAds",
+                "adsByFilter",
+              ]);
+            },
+          }
+        );
       }
     } else {
       navigate("/login");
@@ -165,7 +187,7 @@ function Video({ ad }) {
         <div className="user">
           <img src={ad?.user?.image} alt="user" />
           {!ad?.user?.is_follow && (
-            <button className="follow" onClick={handleToggleFollowing}>
+            <button className={`follow `} onClick={handleToggleFollowing}>
               <i className="fa-solid fa-plus"></i>
             </button>
           )}
@@ -215,4 +237,3 @@ function Video({ ad }) {
 }
 
 export default Video;
-  

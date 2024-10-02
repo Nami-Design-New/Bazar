@@ -31,6 +31,7 @@ import AddInterest from "./ui/modals/AddInterest";
 import Notifcations from "./routes/Notifcations";
 import ProductDetails from "./routes/ProductDetails";
 import Commission from "./routes/Commission";
+import Followers from "./routes/Followers";
 
 const routerConfig = [
   { path: "/", element: <Home /> },
@@ -77,6 +78,7 @@ const routerConfig = [
   { path: "/order-details/:id", element: <OrderDetails />, protected: true },
   { path: "/market-details/:id", element: <MarketDetails /> },
   { path: "/favorites", element: <Favorites />, protected: true },
+  { path: "/followers", element: <Followers />, protected: true },
   { path: "/add-ad", element: <AddAdvertisment />, protected: true },
   { path: "/add-ad/:id", element: <AddAdvertisment />, protected: true },
   { path: "/add-interest", element: <AddInterest />, protected: true },

@@ -273,6 +273,11 @@ export default function Header() {
                       {t("header.favourites")}
                     </Dropdown.Item>
 
+                    <Dropdown.Item as={Link} to="/followers">
+                      <i className="fa-regular fa-user-plus"></i>
+                      {t("header.followers")}
+                    </Dropdown.Item>
+
                     <Dropdown.Item as={Link} to="/commission">
                       <i className="fa-sharp fa-regular fa-badge-percent"></i>
                       {t("header.appCommission")}

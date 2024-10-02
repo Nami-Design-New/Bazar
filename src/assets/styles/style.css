@@ -2548,6 +2548,9 @@ body main .otp-container .otp-input::-webkit-inner-spin-button {
     height: 60px !important;
   }
 }
+body main .profile .follow.following::after {
+  background-color: #1fb91f !important;
+}
 body main .profile .content-wrapper .row {
   display: flex;
   flex-direction: column;
@@ -2563,24 +2566,6 @@ body main .profile .userInfo {
   display: flex;
   flex-direction: column;
   gap: 24px;
-}
-body main .profile .userInfo .user-dropdown {
-  position: absolute;
-  left: 12px;
-  top: 12px;
-}
-body main .profile .userInfo .user-dropdown .dropdown-toggle {
-  background: none !important;
-  border: none !important;
-  outline: none !important;
-  padding: 4px !important;
-  border-radius: 50% !important;
-}
-body main .profile .userInfo .user-dropdown .dropdown-toggle i {
-  color: #000;
-}
-body main .profile .userInfo .dropdown-toggle {
-  position: relative;
 }
 body main .profile .userInfo .top-wrapper {
   width: 100%;
@@ -2602,6 +2587,9 @@ body main .profile .userInfo .top-wrapper.package-container .verification-detail
 }
 body main .profile .userInfo .top-wrapper.package-container i {
   color: #4381f8 !important;
+}
+body main .profile .userInfo .top-wrapper.package-container .custom-btn i {
+  color: #fff !important;
 }
 body main .profile .userInfo .top-wrapper.package-container .remainingDays span {
   font-weight: 600;
@@ -3525,6 +3513,62 @@ body main .verified-badge i {
   font-size: 20px;
   color: #fff;
 }
+body main .user-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
+  padding: 24px;
+  border-radius: 12px;
+  position: relative;
+}
+body main .user-card .user-dropdown {
+  position: relative !important;
+  left: unset !important;
+  top: unset !important;
+}
+body main .user-card .image-wrapper {
+  position: relative;
+  display: flex;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+body main .user-card .image-wrapper img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body main .user-card .info {
+  flex: 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+body main .user-card .info h6 {
+  color: #000 !important;
+}
+body main .user-dropdown {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+}
+body main .user-dropdown .dropdown-toggle {
+  background: none !important;
+  border: none !important;
+  outline: none !important;
+  padding: 4px !important;
+  border-radius: 50% !important;
+}
+body main .user-dropdown .dropdown-toggle i {
+  color: #000;
+}
+body main .dropdown-toggle {
+  position: relative;
+}
 body main .activities-section {
   padding-left: 16px;
   padding-right: 16px;
@@ -4308,6 +4352,11 @@ body main .market-details-page .page-header {
   body main .market-details-page .page-header {
     aspect-ratio: 3/2;
   }
+}
+body main .market-details-page .page-header .follow.following {
+  background-color: #1fb91f !important;
+  color: #fff !important;
+  border: 1px solid #b3e4b3;
 }
 body main .market-details-page .page-header .cover-wrapper {
   width: 100%;
@@ -5997,6 +6046,11 @@ body main .advertiserDetails {
   background-repeat: no-repeat;
   background-size: 150px;
   position: relative;
+}
+body main .advertiserDetails .follow.following {
+  background-color: #1fb91f !important;
+  color: #fff !important;
+  border: 1px solid #b3e4b3;
 }
 body main .advertiserDetails .advertiser {
   display: flex;
@@ -9426,11 +9480,14 @@ body .recipe-image button {
   left: 8px;
 }
 body .label-with-hint {
+  flex-direction: column;
+  align-items: flex-start !important;
   flex-wrap: wrap;
-  white-space: nowrap;
+  max-width: 100%;
 }
 body .label-with-hint span {
   white-space: unset !important;
+  text-wrap: balance !important;
 }
 body input[type=radio] {
   width: 8px;
