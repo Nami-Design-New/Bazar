@@ -67,6 +67,12 @@
           color: $main !important;
         }
 
+        .custom-btn {
+          i {
+            color: $white !important;
+          }
+        }
+
         .remainingDays {
           span {
             font-weight: 600;

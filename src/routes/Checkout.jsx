@@ -13,6 +13,7 @@ import SubmitButton from "../ui/form-elements/SubmitButton";
 import useGetCart from "./../hooks/useGetCart";
 import useGetAddresses from "./../hooks/profile/useGetAddresses";
 import useGetSettings from "./../hooks/settings/useGetSettings";
+import { useSelector } from "react-redux";
 
 function Checkout() {
   const navigate = useNavigate();
@@ -36,6 +37,8 @@ function Checkout() {
     payment_method: "cash",
     delivery_price: "",
   });
+
+  const user = useSelector((state) => state.authedUser.user);
 
   useEffect(() => {
     const clientLocation = addresses?.data?.find(
@@ -142,19 +145,28 @@ function Checkout() {
       return;
     }
 
-    try {
-      const res = await axios.post("/user/create_order", formData);
-      if (res?.data?.code === 200) {
-        navigate(`/order-details/${res?.data?.data}`);
-        toast.success(t("orderCreated"));
-      } else {
-        toast.error(res?.data?.message);
-      }
-    } catch (error) {
-      toast.error(error.response.data.message || t("someThingWentWrong"));
-      throw new Error(error);
-    } finally {
+    if (
+      formData?.payment_method === "wallet" &&
+      (!user?.wallet || user?.wallet < formData?.total)
+    ) {
+      toast?.error(t("walletNotEnough"));
       setLoading(false);
+      return;
+    } else {
+      try {
+        const res = await axios.post("/user/create_order", formData);
+        if (res?.data?.code === 200) {
+          navigate(`/order-details/${res?.data?.data}`);
+          toast.success(t("orderCreated"));
+        } else {
+          toast.error(res?.data?.message);
+        }
+      } catch (error) {
+        toast.error(error.response.data.message || t("someThingWentWrong"));
+        throw new Error(error);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 

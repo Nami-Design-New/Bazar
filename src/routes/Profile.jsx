@@ -320,8 +320,12 @@ function Profile() {
                                   <Link
                                     to="/commercial-verification"
                                     className="btn-box custom-btn filled"
+                                    style={{ minWidth: "160px" }}
                                   >
-                                    <span>{t(`profile.renewSubscribe`)}</span>
+                                    <span>
+                                      <i className="fa-solid fa-recycle"></i>
+                                      {t(`profile.renewSubscribe`)}
+                                    </span>
                                   </Link>
                                 )}
                             </div>

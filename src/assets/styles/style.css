@@ -2606,6 +2606,9 @@ body main .profile .userInfo .top-wrapper.package-container .verification-detail
 body main .profile .userInfo .top-wrapper.package-container i {
   color: #4381f8 !important;
 }
+body main .profile .userInfo .top-wrapper.package-container .custom-btn i {
+  color: #fff !important;
+}
 body main .profile .userInfo .top-wrapper.package-container .remainingDays span {
   font-weight: 600;
   font-size: 16px;
