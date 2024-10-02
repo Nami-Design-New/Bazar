@@ -220,14 +220,14 @@ function Checkout() {
                         {formData?.discount} {t("currency.sar")}
                       </div>
                     </li>
-                    {cart?.[0]?.market?.delivery && (
+                    {cart?.[0]?.market?.delivery ? (
                       <li className="bigger">
                         <div className="title">{t("orders.deliveryCost")}</div>
                         <div className="value ">
                           {formData?.delivery_price} {t("currency.sar")}
                         </div>
                       </li>
-                    )}
+                    ) : null}
                     <li className="bigger">
                       <div className="title">{t("orders.total")}</div>
                       <div className="value ">
@@ -252,10 +252,10 @@ function Checkout() {
                   />
 
                   {/* addresses */}
-                  {cart?.[0]?.market?.delivery && (
+                  {cart?.[0]?.market?.delivery ? (
                     <div className="address-wrapper">
                       <h6>{t("cart.orderAddress")}</h6>
-                      {addresses?.data?.length > 0 && (
+                      {addresses?.data?.length > 0 ? (
                         <div className="radios">
                           {addresses?.data?.map((address) => (
                             <label htmlFor={address?.id} key={address?.id}>
@@ -278,25 +278,25 @@ function Checkout() {
                             </label>
                           ))}
                         </div>
-                      )}
+                      ) : null}
                     </div>
-                  )}
+                  ) : null}
 
                   {/* payment method */}
                   <div className="paymentMethod-wrapper">
                     <h6>{t("cart.paymentMethod")}</h6>
                     <div className="radios">
-                      <label htmlFor="cash">
+                      <label htmlFor="online">
                         <input
                           type="radio"
                           name="payment_method"
-                          id="cash"
-                          value="cash"
-                          checked={formData?.payment_method === "cash"}
+                          id="online"
+                          value="online"
+                          checked={formData?.payment_method === "online"}
                           onChange={(e) => handleChange(e)}
                           required={true}
                         />
-                        <span className="address">{t("cart.cash")}</span>
+                        <span className="address">{t("cart.online")}</span>
                       </label>
 
                       <label htmlFor="wallet">
@@ -336,7 +336,7 @@ function Checkout() {
                     />
                   </div>
 
-                  {coupon?.coupon && (
+                  {coupon?.coupon ? (
                     <div className="coupon-card">
                       <div className="header">
                         <i className="fa-solid fa-receipt"></i>
@@ -362,7 +362,7 @@ function Checkout() {
                         ) : null}
                       </div>
                     </div>
-                  )}
+                  ) : null}
 
                   <SubmitButton
                     className={"mt-4"}

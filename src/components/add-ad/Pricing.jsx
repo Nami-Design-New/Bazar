@@ -104,6 +104,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
           onChange={(e) => {
             handleChange(e, setFormData);
           }}
+          required={true}
         />
       </div>
 
@@ -131,6 +132,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                   className="form-input-check"
                   checked={formData?.price_type === "min"}
                   onChange={(e) => handleChange(e, setFormData)}
+                  required={true}
                 />
               </div>
             </div>
@@ -151,6 +153,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                   className="form-input-check"
                   checked={formData?.price_type === "negotiable"}
                   onChange={(e) => handleChange(e, setFormData)}
+                  required={true}
                 />
               </div>
             </div>
@@ -171,6 +174,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
                   className="form-input-check"
                   checked={formData?.price_type === "fixed"}
                   onChange={(e) => handleChange(e, setFormData)}
+                  required={true}
                 />
               </div>
             </div>
@@ -183,6 +187,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
           <label htmlFor="price_type">
             <img src="/images/contact.svg" alt="price" />
             {t("ads.contactType")}
+            <span>( {t("ads.contactTypeHint")} )</span>
           </label>
 
           <div className="types ">

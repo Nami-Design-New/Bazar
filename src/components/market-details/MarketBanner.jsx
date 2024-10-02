@@ -65,12 +65,40 @@ function MarketBanner({ market }) {
     e.preventDefault();
     if (isLogged) {
       if (market?.data?.is_follow) {
-        unfollow({ id: market?.data?.id, type: "market" });
+        unfollow(
+          { id: market?.data?.id, type: "market" },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries([
+                "marketDetails",
+                market?.data?.id,
+              ]);
+              queryClient.invalidateQueries([
+                "marketsByFilter",
+                "favoriteMarkets",
+              ]);
+            },
+          }
+        );
       } else {
-        follow({
-          id: market?.data?.id,
-          type: "market",
-        });
+        follow(
+          {
+            id: market?.data?.id,
+            type: "market",
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries([
+                "marketDetails",
+                market?.data?.id,
+              ]);
+              queryClient.invalidateQueries([
+                "marketsByFilter",
+                "favoriteMarkets",
+              ]);
+            },
+          }
+        );
       }
     } else {
       navigate("/login");

@@ -42,7 +42,7 @@ function ProductDetails() {
     try {
       const res = await axios.post("/user/add_to_cart", {
         quantity: 1,
-        market_id: product?.data?.market?.id,
+        market_id: product?.data?.market_id,
         product_id: product?.data?.id,
       });
       if (res.status === 200 || res.status === 201) {

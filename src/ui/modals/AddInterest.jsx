@@ -93,7 +93,7 @@ function AddInterest({ interest, showModal, setShowModal, setTargetInterest }) {
         toast.error(t("someThingWentWrong"));
       }
     } catch (error) {
-      throw new error(
+      throw new Error(
         error?.response?.data?.message || t("someThingWentWrong")
       );
     } finally {

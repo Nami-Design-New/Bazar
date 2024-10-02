@@ -117,12 +117,34 @@ function Video({ ad }) {
     e.preventDefault();
     if (isLogged) {
       if (ad?.data?.user?.is_follow) {
-        unfollow({ id: ad?.data?.user?.id, type: "user" });
+        unfollow(
+          { id: ad?.data?.user?.id, type: "user" },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries([
+                "ads-videos",
+                "favoriteAds",
+                "adsByFilter",
+              ]);
+            },
+          }
+        );
       } else {
-        follow({
-          id: ad?.data?.user?.id,
-          type: "user",
-        });
+        follow(
+          {
+            id: ad?.data?.user?.id,
+            type: "user",
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries([
+                "ads-videos",
+                "favoriteAds",
+                "adsByFilter",
+              ]);
+            },
+          }
+        );
       }
     } else {
       navigate("/login");

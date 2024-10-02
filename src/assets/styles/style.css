@@ -9439,11 +9439,14 @@ body .recipe-image button {
   left: 8px;
 }
 body .label-with-hint {
+  flex-direction: column;
+  align-items: flex-start !important;
   flex-wrap: wrap;
-  white-space: nowrap;
+  max-width: 100%;
 }
 body .label-with-hint span {
   white-space: unset !important;
+  text-wrap: balance !important;
 }
 body input[type=radio] {
   width: 8px;

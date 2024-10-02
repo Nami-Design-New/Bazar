@@ -49,7 +49,7 @@ function ForgetStep1({ setStep, formData, handleChange, setOtpData }) {
             id="phone"
             name="phone"
             type="tel"
-            placeholder={t("5xxxXXXXXXX")}
+            placeholder={t("5XXXXXXX")}
             maxLength={9}
             required={true}
           />

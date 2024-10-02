@@ -3,11 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import SectionHeader from "../ui/layout/SectionHeader";
-import {
-  formatTimeDifference,
-  getTimeDifference,
-  subscriptionRemainingDays,
-} from "../utils/helpers";
+import { subscriptionRemainingDays } from "../utils/helpers";
 import ProfileTabs from "../components/profile/ProfileTabs";
 import useGetUserById from "./../components/profile/useGetUserById";
 import DataLoader from "../ui/DataLoader";
@@ -23,6 +19,7 @@ import EmptyData from "../ui/EmptyData";
 import Post from "../ui/cards/Post";
 import { IconCirclePlus } from "@tabler/icons-react";
 import useUserAds from "../hooks/ads/useUserAds";
+import { useQueryClient } from "@tanstack/react-query";
 
 function Profile() {
   const { id } = useParams();
@@ -37,6 +34,8 @@ function Profile() {
   const dispatch = useDispatch();
   const isLogged = useSelector((state) => state.authedUser.isLogged);
 
+  const queryClient = useQueryClient();
+
   const { isLoading: adsLoading, data: ads } = useUserAds(user?.id);
 
   const isMyAccount = !id || Number(id) === Number(authedUser?.id);
@@ -44,15 +43,15 @@ function Profile() {
   const { follow, isLoading: followingLoading } = useFollow();
   const { unfollow, isLoading: unfollowingLoading } = useUnfollow();
 
-  const timeDifference = getTimeDifference(user?.package?.created_at);
-  const packageCreationTime = formatTimeDifference(
-    timeDifference.years,
-    timeDifference.months,
-    timeDifference.days,
-    timeDifference.hours,
-    timeDifference.minutes,
-    t
-  );
+  // const timeDifference = getTimeDifference(user?.start_date);
+  // const packageCreationTime = formatTimeDifference(
+  //   timeDifference.years,
+  //   timeDifference.months,
+  //   timeDifference.days,
+  //   timeDifference.hours,
+  //   timeDifference.minutes,
+  //   t
+  // );
 
   useEffect(() => {
     if (id) {
@@ -76,15 +75,29 @@ function Profile() {
 
     if (isLogged) {
       if (user?.is_follow) {
-        unfollow({
-          id: user?.id,
-          type: "user",
-        });
+        unfollow(
+          {
+            id: user?.id,
+            type: "user",
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(["userById", id]);
+            },
+          }
+        );
       } else {
-        follow({
-          id: user?.id,
-          type: "user",
-        });
+        follow(
+          {
+            id: user?.id,
+            type: "user",
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(["userById", id]);
+            },
+          }
+        );
       }
     } else {
       navigate("/login");
@@ -257,12 +270,12 @@ function Profile() {
                                 </span>
                               ) : null}
                               <div className="d-flex align-items-center gap-4 flex-wrap">
-                                <span className="verification-item">
+                                {/* <span className="verification-item">
                                   <i className="fa-regular fa-clock"></i>
                                   <span className="colored">
                                     {packageCreationTime}
                                   </span>
-                                </span>
+                                </span> */}
                                 <span className="verification-item">
                                   <i className="fa-regular fa-calendar-days"></i>
                                   <span className="colored">
