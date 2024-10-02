@@ -20,7 +20,8 @@
     "addNewAccount": "Register New Account",
     "login": "Login",
     "appCommission": "App Commission",
-    "deleteAccount": "Delete Account"
+    "deleteAccount": "Delete Account",
+    "followers": "Followers"
   },
   "home": {
     "markets": "Markets",
@@ -38,6 +39,7 @@
     "centers": "Markets and centers"
   },
   "routes": {
+    "followers": "Followers",
     "home": "Home",
     "my-activities": "My Activities",
     "favorites": "Favorites",

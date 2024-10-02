@@ -19,7 +19,8 @@
     "addNewAccount": "تسجيل حساب جديد",
     "login": "تسجيل الدخول",
     "appCommission": "عمولة التطبيق",
-    "deleteAccount": "حذف الحساب"
+    "deleteAccount": "حذف الحساب",
+    "followers": "المتابعين"
   },
   "home": {
     "markets": "المتاجر",
@@ -37,6 +38,7 @@
     "centers": "اسواق ومراكز"
   },
   "routes": {
+    "followers": "المتابعين",
     "home": "الرئيسية",
     "my-activities": "نشاطاتي",
     "favorites": "المفضلة",
@@ -135,7 +137,9 @@
     "falVerification": "اضافة رخصة فال للوساطة و التسويق",
     "verifiedVal": "موثق فال",
     "followings": "يتابع",
+    "followingsTab": "تتابع",
     "followers": "متابع",
+    "followersTab": "متابعين",
     "ad": "اعلان",
     "uploadImagesMax5": "قم بتحميل ما يصل إلى 5 صور",
     "verificationBenifints": "مميزات التوثيق",
