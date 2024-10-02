@@ -56,6 +56,15 @@ function AddInterest({ interest, showModal, setShowModal, setTargetInterest }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    if (
+      !formData?.category_id ||
+      !formData?.sub_category_id ||
+      !formData?.city_id ||
+      !formData?.area_id
+    ) {
+      toast.error(t("fillAllRequiredFields"));
+      setLoading(false);
+    }
     const requestBody = { ...formData };
     if (interest) requestBody.id = interest?.id;
     try {
@@ -76,7 +85,7 @@ function AddInterest({ interest, showModal, setShowModal, setTargetInterest }) {
               : t("interests.successfullyAdded")
           }`
         );
-        navigate("/profile");
+        navigate("/profile?tab=interests");
         setTargetInterest(null);
         setShowModal(false);
         queryClient.invalidateQueries(["userInterests"]);
@@ -84,7 +93,9 @@ function AddInterest({ interest, showModal, setShowModal, setTargetInterest }) {
         toast.error(t("someThingWentWrong"));
       }
     } catch (error) {
-      toast.error(error?.response?.data?.message || t("someThingWentWrong"));
+      throw new error(
+        error?.response?.data?.message || t("someThingWentWrong")
+      );
     } finally {
       setLoading(false);
     }
@@ -116,7 +127,6 @@ function AddInterest({ interest, showModal, setShowModal, setTargetInterest }) {
                 {/* ** */}
                 <div className="col-12 py-2 px-0">
                   <SelectField
-                    required
                     label={t("ads.category")}
                     name="category_id"
                     id="category_id"
@@ -140,7 +150,6 @@ function AddInterest({ interest, showModal, setShowModal, setTargetInterest }) {
                     }
                     name="sub_category_id"
                     id="sub_category_id"
-                    required
                     value={formData?.sub_category_id}
                     onChange={(e) => handleChange(e, setFormData)}
                     options={subCategories?.map((category) => ({
@@ -152,7 +161,6 @@ function AddInterest({ interest, showModal, setShowModal, setTargetInterest }) {
                 {/* ** */}
                 <div className="col-12 py-2 px-0">
                   <SelectField
-                    required
                     label={t("ads.city")}
                     name="city_id"
                     id="city_id"
@@ -166,7 +174,6 @@ function AddInterest({ interest, showModal, setShowModal, setTargetInterest }) {
                 </div>
                 <div className="col-12 py-2 px-0">
                   <SelectField
-                    required
                     label={t("ads.area")}
                     name="area_id"
                     id="area_id"

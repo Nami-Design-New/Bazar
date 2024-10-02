@@ -2548,6 +2548,9 @@ body main .otp-container .otp-input::-webkit-inner-spin-button {
     height: 60px !important;
   }
 }
+body main .profile .follow.following::after {
+  background-color: #1fb91f !important;
+}
 body main .profile .content-wrapper .row {
   display: flex;
   flex-direction: column;
@@ -4309,6 +4312,11 @@ body main .market-details-page .page-header {
     aspect-ratio: 3/2;
   }
 }
+body main .market-details-page .page-header .follow.following {
+  background-color: #1fb91f !important;
+  color: #fff !important;
+  border: 1px solid #b3e4b3;
+}
 body main .market-details-page .page-header .cover-wrapper {
   width: 100%;
   height: 100%;
@@ -5997,6 +6005,11 @@ body main .advertiserDetails {
   background-repeat: no-repeat;
   background-size: 150px;
   position: relative;
+}
+body main .advertiserDetails .follow.following {
+  background-color: #1fb91f !important;
+  color: #fff !important;
+  border: 1px solid #b3e4b3;
 }
 body main .advertiserDetails .advertiser {
   display: flex;

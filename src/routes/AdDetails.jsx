@@ -326,7 +326,9 @@ function AdDetails() {
                 {isMyAd ? null : (
                   <div className="btns-wrapper">
                     <button
-                      className="action-btn follow"
+                      className={`action-btn follow ${
+                        ad?.data?.user?.is_follow ? "following" : ""
+                      }`}
                       onClick={handleToggleFollowing}
                       disabled={followingLoading || unfollowingLoading}
                     >
@@ -335,6 +337,7 @@ function AdDetails() {
                           ad?.data?.user?.is_follow ? "check" : "plus"
                         }`}
                       ></i>
+                      {/* {ad?.data?.user?.is_follow ? t("following") : t("follow")} */}
                     </button>
                   </div>
                 )}

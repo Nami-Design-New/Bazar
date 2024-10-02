@@ -165,7 +165,7 @@ function Video({ ad }) {
         <div className="user">
           <img src={ad?.user?.image} alt="user" />
           {!ad?.user?.is_follow && (
-            <button className="follow" onClick={handleToggleFollowing}>
+            <button className={`follow `} onClick={handleToggleFollowing}>
               <i className="fa-solid fa-plus"></i>
             </button>
           )}
@@ -215,4 +215,3 @@ function Video({ ad }) {
 }
 
 export default Video;
-  

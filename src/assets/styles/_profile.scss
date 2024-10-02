@@ -1,4 +1,11 @@
 .profile {
+  .follow {
+    &.following {
+      &::after {
+        background-color: #1fb91f !important;
+      }
+    }
+  }
   .content-wrapper {
     .row {
       display: flex;

@@ -591,5 +591,6 @@
   "subscripedSuccessfully": "Subscribed successfully",
   "paymentMethod": "Payment Method",
   "fillAllRequiredFields": "Please fill all required fields to continue",
-  "value": "Value"
+  "value": "Value",
+  "selectAtLeastOneField": "Select at least one field to continue"
 }

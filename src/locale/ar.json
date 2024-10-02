@@ -598,5 +598,6 @@
   "subscripedSuccessfully": "تم الاشتراك بنجاح",
   "paymentMethod": "طريقة الدفع",
   "fillAllRequiredFields": "يرجى ملأ جميع الحقول المطلوبة لتتمكن من المتابعة",
-  "value": "القيمة"
+  "value": "القيمة",
+  "selectAtLeastOneField": "يرجى تحديد حقل واحد على الاقل لتتمكن من المتابعة"
 }

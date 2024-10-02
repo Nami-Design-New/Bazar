@@ -124,7 +124,9 @@ function MarketBanner({ market }) {
 
             <div className="btns-wrapper">
               <button
-                className="action-btn follow"
+                className={`action-btn follow ${
+                  market?.data?.is_follow ? "following" : ""
+                }`}
                 onClick={handleToggleFollowing}
                 disabled={followingLoading || unfollowingLoading}
               >
@@ -137,7 +139,7 @@ function MarketBanner({ market }) {
               </button>
 
               <button
-                className={`btn-box follow ${
+                className={`btn-box follow favorite ${
                   market?.data?.is_favorite ? "active" : ""
                 }`}
                 onClick={handleToggleFavorite}

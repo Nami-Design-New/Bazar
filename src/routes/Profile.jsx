@@ -217,7 +217,9 @@ function Profile() {
                           {!isMyAccount && (
                             <div className="actions-wrapper">
                               <button
-                                className="custom-btn filled follow"
+                                className={`custom-btn filled follow ${
+                                  user?.is_follow ? "following" : ""
+                                }`}
                                 onClick={handleToggleFollowing}
                                 disabled={
                                   followingLoading || unfollowingLoading

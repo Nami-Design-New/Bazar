@@ -374,6 +374,13 @@
   background-repeat: no-repeat;
   background-size: 150px;
   position: relative;
+  .follow {
+    &.following {
+      background-color: #1fb91f !important;
+      color: $white !important;
+      border: 1px solid #b3e4b3;
+    }
+  }
   .advertiser {
     display: flex;
     flex-direction: column;
