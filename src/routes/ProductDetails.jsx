@@ -106,71 +106,68 @@ function ProductDetails() {
     <section className="itemDetails">
       <div className="container">
         <div className="row">
-          <div className="col-12 d-flex flex-row gap-4 p-0 pb-3 p-md-3">
-            <AdDetailsSlider
-              images={product?.data?.images}
-              className="col-lg-6 col-12 p-0"
-            />
-            <div className="col-lg-6 col-12 p-0">
-              <div className="priceInfo d-flex align-items-center justify-content-between gap-3 w-100">
-                {product?.data?.title && (
-                  <h3 className="title">{product?.data?.title}</h3>
-                )}
-                {product?.data?.price ? (
-                  <div
-                    className="price"
-                    style={{
-                      width: "unset !important",
-                      flex: "unset !important",
-                    }}
-                  >
-                    <span> ${product?.data?.price} </span>
+          <div className="col-lg-7 col-12 p-2">
+            <AdDetailsSlider images={product?.data?.images} />
+          </div>
+          <div className="col-lg-5 col-12 p-2">
+            <div className="priceInfo d-flex align-items-center justify-content-between gap-3 w-100">
+              {product?.data?.title && (
+                <h3 className="title">{product?.data?.title}</h3>
+              )}
+              {product?.data?.price ? (
+                <div
+                  className="price"
+                  style={{
+                    width: "unset !important",
+                    flex: "unset !important",
+                  }}
+                >
+                  <span> ${product?.data?.price} </span>
+                </div>
+              ) : null}
+            </div>
+
+            <div className="itemInfo">
+              <div className="itemBottom">
+                <Link className="location">
+                  {product?.data?.address ? (
+                    <>
+                      <img src="/images/location.svg" alt="" />
+                      <span> {product?.data?.address} </span>
+                    </>
+                  ) : null}
+                </Link>
+                {product?.data?.created_at ? (
+                  <div className="time">
+                    <img src="/images/clock.svg" alt="" />{" "}
+                    {product?.data?.created_at ? creationTime : "1h ago"}
+                  </div>
+                ) : null}
+                {product?.data?.view_count ? (
+                  <div className="views">
+                    <img src="/images/eye.svg" alt="" />{" "}
+                    {product?.data?.view_count}
                   </div>
                 ) : null}
               </div>
-
-              <div className="itemInfo">
-                <div className="itemBottom">
-                  <Link className="location">
-                    {product?.data?.address ? (
-                      <>
-                        <img src="/images/location.svg" alt="" />
-                        <span> {product?.data?.address} </span>
-                      </>
-                    ) : null}
-                  </Link>
-                  {product?.data?.created_at ? (
-                    <div className="time">
-                      <img src="/images/clock.svg" alt="" />{" "}
-                      {product?.data?.created_at ? creationTime : "1h ago"}
-                    </div>
-                  ) : null}
-                  {product?.data?.view_count ? (
-                    <div className="views">
-                      <img src="/images/eye.svg" alt="" />{" "}
-                      {product?.data?.view_count}
-                    </div>
-                  ) : null}
-                </div>
-                {product?.data?.description && (
-                  <p className="description">{product?.data?.description}</p>
-                )}
-                <div className="actions-wrapper w-100 d-flex justify-content-end mt-4">
-                  <button
-                    onClick={inCart ? handleDeleteItem : handleAddToCart}
-                    className="custom-btn stroke"
-                    style={{ maxWidth: "300px" }}
-                  >
-                    <span>
-                      {inCart ? (
-                        <i className="fa-light fa-trash"></i>
-                      ) : (
-                        <i className="fa-light fa-cart-plus"></i>
-                      )}{" "}
-                      {inCart ? t("cart.remove") : t("cart.add")}
-                    </span>
-                  </button>
-                </div>
+              {product?.data?.description && (
+                <p className="description">{product?.data?.description}</p>
+              )}
+              <div className="actions-wrapper w-100 d-flex justify-content-end mt-4">
+                <button
+                  onClick={inCart ? handleDeleteItem : handleAddToCart}
+                  className="custom-btn stroke"
+                  style={{ maxWidth: "300px" }}
+                >
+                  <span>
+                    {inCart ? (
+                      <i className="fa-light fa-trash"></i>
+                    ) : (
+                      <i className="fa-light fa-cart-plus"></i>
+                    )}{" "}
+                    {inCart ? t("cart.remove") : t("cart.add")}
+                  </span>
+                </button>
               </div>
             </div>
           </div>
