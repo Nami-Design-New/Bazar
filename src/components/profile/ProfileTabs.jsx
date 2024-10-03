@@ -29,11 +29,7 @@ function ProfileTabs({ user, isMyAccount }) {
           id="uncontrolled-tab-example"
         >
           {/* ADs */}
-          <Tab
-            eventKey="ads"
-            title={t("profile.ads")}
-            className="tab_item p-2 pt-0"
-          >
+          <Tab eventKey="ads" title={t("profile.ads")} className="tab_item">
             <AdsTab isMyAccount={isMyAccount} user={user} />
           </Tab>
 
@@ -42,7 +38,7 @@ function ProfileTabs({ user, isMyAccount }) {
             <Tab
               eventKey="orders"
               title={t("profile.orders")}
-              className="tab_item p-2 pt-0"
+              className="tab_item"
             >
               <OrderTab isMyAccount={isMyAccount} user={user} />
             </Tab>
@@ -53,7 +49,7 @@ function ProfileTabs({ user, isMyAccount }) {
             <Tab
               eventKey="interests"
               title={t("profile.interests")}
-              className="tab_item p-2 pt-0"
+              className="tab_item"
             >
               <InterestsTab isMyAccount={isMyAccount} user={user} />
             </Tab>
@@ -63,7 +59,7 @@ function ProfileTabs({ user, isMyAccount }) {
           <Tab
             eventKey="verifications"
             title={t("profile.verifications")}
-            className="tab_item p-2 pt-0"
+            className="tab_item"
           >
             <VerificationTab isMyAccount={isMyAccount} user={user} />
           </Tab>
@@ -73,7 +69,7 @@ function ProfileTabs({ user, isMyAccount }) {
             <Tab
               eventKey="coupons"
               title={t("profile.coupons")}
-              className="tab_item p-2 pt-0"
+              className="tab_item"
             >
               <CouponsTab user={user} isMyAccount={isMyAccount} />
             </Tab>
@@ -84,7 +80,7 @@ function ProfileTabs({ user, isMyAccount }) {
             <Tab
               eventKey="rewards"
               title={t("profile.rewards")}
-              className="tab_item p-2 pt-0"
+              className="tab_item"
             >
               <RewardsTab user={user} isMyAccount={isMyAccount} />
             </Tab>
@@ -95,7 +91,7 @@ function ProfileTabs({ user, isMyAccount }) {
             <Tab
               eventKey="balance"
               title={t("profile.balance")}
-              className="tab_item p-2 pt-0"
+              className="tab_item"
             >
               <BalanceTab user={user} isMyAccount={isMyAccount} />
             </Tab>
@@ -105,7 +101,7 @@ function ProfileTabs({ user, isMyAccount }) {
           <Tab
             eventKey="addresses"
             title={t("profile.addresses")}
-            className="tab_item p-2 pt-0"
+            className="tab_item"
           >
             <AddressTab user={user} isMyAccount={isMyAccount} />
           </Tab>

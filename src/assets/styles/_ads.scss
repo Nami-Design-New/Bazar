@@ -29,9 +29,15 @@
       transition: $transition;
     }
     &.clear {
-      background: $black !important;
+      background: transparent ;
+      color: $black ;
+      border: 1px solid $black ;
       span {
-        background: $black !important;
+        background: $black ;
+      }
+      &:hover {
+        background: $black ;
+        color: $white ;
       }
     }
   }

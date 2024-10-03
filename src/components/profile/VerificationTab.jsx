@@ -12,7 +12,7 @@ function VerificationTab({ isMyAccount, user }) {
     <DataLoader minHeight="200px" />
   ) : (
     <div className="profile-verification-wrapper">
-      <ul className="hint-wrapper mx-3">
+      <ul className="hint-wrapper mx-3 p-2">
         <h5>{t("profile.verificationBenifints")}:</h5>
         <li className="px-3">{t("profile.verififcationHint1")}</li>
         <li className="px-3">{t("profile.verififcationHint2")}</li>
@@ -62,7 +62,7 @@ function VerificationTab({ isMyAccount, user }) {
               className="btn-box custom-btn filled green"
             >
               <span>
-                <i className="fa-solid fa-recycle"></i>{" "}
+              <i className="fa-regular fa-arrows-rotate"></i>{" "}
                 {t(`profile.renewSubscribe`)}
               </span>
             </Link>

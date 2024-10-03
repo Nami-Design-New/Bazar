@@ -47,6 +47,8 @@ footer {
   background-color: $white;
   isolation: isolate;
   overflow: hidden;
+  // box-shadow: 0px -4px 10px 0 #00000010;
+border-top: 1px solid $LightGray;
   &::after {
     content: "";
     width: 0px;
@@ -174,7 +176,7 @@ footer {
         align-items: baseline;
         gap: 8px;
         position: relative;
-        min-width: 150px;
+        min-width: 135px;
         img {
           width: 20px;
           aspect-ratio: 1;

@@ -75,7 +75,7 @@ function CommissionWalletModal({ setShowModal, showModal, ids, price }) {
             id="amount"
             name="amount"
             placeholder={"00"}
-            value={price.toFixed(2)}
+            value={price?.toFixed(2)}
             label={`${t("commissions.amount")} `}
             disabled={true}
           />

@@ -192,16 +192,17 @@ function Markets() {
                     />
                   </div>
                   <div className="d-flex gap-2 w-100">
-                    <button onClick={handleSubmit} className="search-btn">
-                      <i className="fa-regular fa-check"></i>{" "}
-                      {t("search.apply")}
-                    </button>
+                   
                     <button
                       onClick={handleClearFilters}
                       className="search-btn clear"
                     >
                       <i className="fa-regular fa-xmark"></i>{" "}
                       {t("search.clear")}
+                    </button>
+                    <button onClick={handleSubmit} className="search-btn">
+                      <i className="fa-regular fa-check"></i>{" "}
+                      {t("search.apply")}
                     </button>
                   </div>
                 </form>

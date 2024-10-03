@@ -36,7 +36,7 @@
 
     &.no-overlay {
       .cover-wrapper {
-        box-shadow: 0px -1px 6px 0px rgba(0, 0, 0, 0.1490196078);
+        border-bottom: 1px solid $LightGray;
         &::after {
           content: none !important;
         }
@@ -356,8 +356,8 @@
 .order-card {
   background-color: $white;
   border-radius: 12px;
-  box-shadow: $shadow;
-  border: 1px solid #fdfdfd;
+  // box-shadow: $shadow;
+  border: 1px dashed #cecece;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -409,7 +409,7 @@
         color: #fff;
         border-radius: 12px;
         transition: all 0.2s ease-in-out;
-        min-width: 140px;
+        // min-width: 140px;
 
         &.pending {
           background-color: #ecb01c;
@@ -492,6 +492,14 @@
         }
       }
     }
+  }
+  .logo {
+    width: 50px !important;
+    aspect-ratio: 1 !important;
+    border-radius: 100px;
+    background-color: #eee;
+    border: 1px solid #eee;
+    object-fit: cover;
   }
   .progress {
     border-radius: 0 !important;

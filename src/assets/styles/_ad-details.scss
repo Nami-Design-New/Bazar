@@ -123,7 +123,6 @@
       color: $main;
       span {
         font-size: 32px;
-        font-family: "Poppins", sans-serif;
       }
     }
     .actions {
@@ -279,7 +278,7 @@
       font-weight: bold;
     }
     .description {
-      color: $inputHint;
+      color: $textColor;
       padding: 8px 0;
     }
   }
@@ -299,7 +298,7 @@
     }
   }
   .itemDetailsBox {
-    padding: 24px;
+    padding: 16px;
     border: 1px solid $LightGray;
     border-radius: 16px;
     background-color: $white;
@@ -311,6 +310,13 @@
       ul {
         padding: 0 12px;
       }
+    }
+    .scrollVertical {
+      max-height: 400px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
     .title {
       font-weight: bold;
@@ -399,7 +405,6 @@
       box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
     }
     h3 {
-      font-family: "Poppins", sans-serif;
       font-size: 26px;
       transition: $transition;
       text-transform: capitalize;

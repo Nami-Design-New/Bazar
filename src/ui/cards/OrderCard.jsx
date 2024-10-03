@@ -34,12 +34,13 @@ function OrderCard({ order }) {
               </Link>
             </div>
           )}
-          <div className="d-flex align-items-center gap-2 justify-content-between">
+          <div className="d-flex align-items-center gap-2 justify-content-between mt-auto">
             <Link
               to={`/market-details/${order?.market?.id}`}
               className="date d-flex align-items-center gap-2"
             >
-              <i className="fa-solid fa-shop gradient-icon"></i>
+              {/* <i className="fa-solid fa-shop gradient-icon"></i> */}
+              <img className="logo" src={order?.market?.logo} alt="" />
               {order?.market?.name}
             </Link>
             {order?.created_at ? (

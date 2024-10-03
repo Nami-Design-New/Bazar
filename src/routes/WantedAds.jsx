@@ -63,40 +63,38 @@ function WantedAds() {
     const { name, checked, type, value } = e.target;
     const parsedValue = type === "checkbox" ? (checked ? 1 : 0) : value;
 
-    if (name !== "category_id" && name !== "sub_category_id") {
+    if (name === "category_id") {
+      if (searchFilterData?.sub_category_id) {
+        setSearchFilterData((prevState) => ({
+          ...prevState,
+          [name]: parsedValue,
+          sub_category_id: "",
+        }));
+      } else {
+        setSearchFilterData((prevState) => ({
+          ...prevState,
+          [name]: parsedValue,
+        }));
+      }
+    } else if (name === "sub_category_id") {
+      if (searchFilterData?.category_id) {
+        setSearchFilterData((prevState) => ({
+          ...prevState,
+          [name]: parsedValue,
+          category_id: "",
+        }));
+      } else {
+        setSearchFilterData((prevState) => ({
+          ...prevState,
+          [name]: parsedValue,
+        }));
+      }
+    } else {
       setSearchFilterData((prevState) => ({
         ...prevState,
         [name]: parsedValue,
       }));
-      return;
     }
-
-    const categoryValue = Number(value);
-    setSearchFilterData((prevState) => {
-      const updatedState = { ...prevState };
-
-      const updateList = (list = [], value, add) => {
-        return add ? [...list, value] : list.filter((id) => id !== value);
-      };
-
-      if (name === "category_id") {
-        updatedState[name] = updateList(
-          prevState[name],
-          categoryValue,
-          checked
-        );
-      }
-
-      if (name === "sub_category_id") {
-        updatedState[name] = updateList(
-          prevState[name],
-          categoryValue,
-          checked
-        );
-      }
-
-      return updatedState;
-    });
   };
 
   function handleClearFilters() {
@@ -142,7 +140,7 @@ function WantedAds() {
         <div className="container">
           <div className="row">
             <>
-              <aside
+            <aside
                 className={`col-lg-3 p-2 pt-3 side-menu ${
                   isFilterOpen ? "active" : ""
                 }`}
@@ -196,16 +194,17 @@ function WantedAds() {
                       dynamicFilterData={dynamicFilterData}
                     />
                     <div className="d-flex gap-2 w-100">
-                      <button onClick={handleSubmit} className="search-btn">
-                        <i className="fa-regular fa-check"></i>{" "}
-                        {t("search.apply")}
-                      </button>
+                     
                       <button
                         onClick={handleClearFilters}
                         className="search-btn clear"
                       >
                         <i className="fa-regular fa-xmark"></i>{" "}
                         {t("search.clear")}
+                      </button>
+                      <button onClick={handleSubmit} className="search-btn">
+                        <i className="fa-regular fa-check"></i>{" "}
+                        {t("search.apply")}
                       </button>
                     </div>
                   </form>

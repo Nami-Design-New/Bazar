@@ -14,7 +14,7 @@ function CouponsTab({user}) {
     <DataLoader minHeight="400px" />
   ) : coupons?.data && coupons?.data?.length > 0 ? (
     coupons?.data?.map((coupon) => (
-      <div className="col-lg-4 col-md-6 col-12 p-2" key={coupon?.id}>
+      <div className="col-lg-4 col-md-6 col-12 p-1" key={coupon?.id}>
         <CouponCard coupon={coupon} type="profile" />
       </div>
     ))

@@ -35,7 +35,7 @@ function AddressTab({ user, isMyAccount }) {
         <DataLoader minHeight="400px" />
       ) : addresses?.data && addresses?.data?.length > 0 ? (
         addresses?.data?.map((address) => (
-          <div className="col-lg-6 col-12 p-2" key={address?.id}>
+          <div className="col-lg-6 col-12 p-1" key={address?.id}>
             <AddressCard
               userId={user?.id}
               address={address}

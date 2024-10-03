@@ -251,7 +251,7 @@ export default function Header() {
                   {user?.image ? (
                     <img src={user?.image} alt={user?.name} />
                   ) : (
-                    <i className="fa-light fa-user"></i>
+                    <i className="fa-regular fa-user"></i>
                   )}
                 </div>
               </Dropdown.Toggle>
@@ -260,11 +260,11 @@ export default function Header() {
                 {isLogged && user ? (
                   <>
                     <Dropdown.Item as={Link} to="/profile">
-                      <i className="fa-solid fa-user"></i> {t("header.profile")}
+                      <i className="fa-regular fa-user"></i> {t("header.profile")}
                     </Dropdown.Item>
 
                     <Dropdown.Item as={Link} to="/edit-profile">
-                      <i className="fa-light fa-pen-to-square"></i>
+                      <i className="fa-regular fa-pen-to-square"></i>
                       {t("header.editProfile")}
                     </Dropdown.Item>
 

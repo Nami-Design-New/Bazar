@@ -10,13 +10,14 @@
     .row {
       display: flex;
       flex-direction: column;
-      gap: 36px;
+      gap: 16px;
       position: relative;
     }
   }
+  .subscriptionDiv,
   .userInfo {
     background-color: $white;
-    border-radius: 20px;
+    border-radius: 12px;
     box-shadow: $shadow;
     padding: 20px;
     position: relative;
@@ -141,7 +142,12 @@
           font-size: 16px;
 
           i {
-            font-size: 18px;
+            font-size: 16px;
+            width: 20px;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
@@ -203,6 +209,10 @@
         }
       }
     }
+  }
+  .subscriptionDiv {
+    box-shadow: none;
+    background-color: $main10;
   }
   .profileNavCol {
     border-radius: 16px;
@@ -299,8 +309,7 @@
   }
 
   .content-wrapper {
-    padding-top: 60px;
-    padding-bottom: 60px;
+    padding: 20px 0;
   }
 
   .tabs-section {
@@ -341,7 +350,9 @@
 
     .tab-pane {
       width: 100%;
-
+      padding: 8px !important;
+      background: #f9f9f9;
+      border-radius: 12px;
       &.active {
         display: flex !important;
         flex-wrap: wrap;
@@ -354,7 +365,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
   position: relative;
 
   h6 {
@@ -367,7 +378,7 @@
   }
 
   .verification-box {
-    box-shadow: 0 1px 4px 0px #00000040;
+    box-shadow: 0 1px 10px 0px #0000001e;
     padding: 16px;
     border-radius: 12px;
     display: flex;
@@ -744,7 +755,7 @@
 }
 
 .balance_section {
-  padding: 60px 8px;
+  padding: 8px;
   width: 100%;
   .balanceContainer,
   .container {
@@ -798,7 +809,7 @@
     flex-direction: column;
     position: relative;
     overflow: hidden;
-    gap: 32px;
+    gap: 24px;
     .balance-boxes-wrapper {
       width: 100%;
       display: flex;
@@ -807,40 +818,41 @@
       position: relative;
       flex-wrap: wrap;
       .balance-box {
+        background-color: $main;
         min-width: 300px;
         flex: 1 0;
-        background-color: $grayBackground;
         padding: 16px;
         border-radius: 12px;
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-wrap: wrap;
         gap: 16px;
         padding: 16px;
         border-radius: 12px;
-        background: $grayBackground;
         span,
         p {
           margin: 0;
         }
         span {
           font-size: 14px;
-          color: $black;
+          color: $white;
           font-weight: 600;
           @media (max-width: 576px) {
             font-size: 12px;
           }
         }
         h6 {
-          color: $main;
+          color: $white;
           font-weight: bold;
           margin: 0;
           white-space: nowrap;
           font-size: 28px;
+
           i {
-            color: $textColor;
+            color: $LightGray;
+            font-size: 20px;
+
           }
           @media (max-width: 576px) {
             font-size: 16px;
@@ -913,8 +925,10 @@
         display: flex;
         flex-direction: column;
         position: relative;
-        gap: 16px;
+        gap: 8px;
         color: $black;
+        max-height: 500px;
+        overflow-y: auto;
         .transaction-box {
           width: 100%;
           position: relative;
@@ -923,7 +937,7 @@
           gap: 24px;
           padding: 16px;
           border-radius: 16px;
-          background: $grayBackground;
+          background: $white;
           .money-wrapper {
             display: flex;
             align-items: center;
@@ -1048,14 +1062,20 @@
 }
 .user-dropdown {
   position: absolute;
-  left: 12px;
-  top: 12px;
+  left: 20px;
+  top: 20px;
+  z-index: 2;
+
   .dropdown-toggle {
     background: none !important;
     border: none !important;
     outline: none !important;
     padding: 4px !important;
-    border-radius: 50% !important;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     i {
       color: $black;

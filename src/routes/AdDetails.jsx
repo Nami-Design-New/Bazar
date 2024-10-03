@@ -33,43 +33,32 @@ import RateCard from "../ui/cards/RateCard";
 import useGetRates from "../hooks/useGetRates";
 import CreateCommentModal from "../ui/modals/CreateCommentModal";
 import CreateRateModal from "../ui/modals/CreateRateModal";
-
 const containerStyle = {
   width: "100%",
   height: "300px",
   borderRadius: "12px",
   overflow: "hidden",
 };
-
 function AdDetails() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { id } = useParams();
-
   const [showCommentModal, setShowCommentModal] = useState(false);
   const [showAdReportModal, setShowAdReportModal] = useState(false);
-
   const currentPageLink = window.location.href;
   const lang = useSelector((state) => state.language.lang);
   const user = useSelector((state) => state.authedUser.user);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
-
   const { isLoading, data: ad } = useGetAdById();
   const { isLoading: commentsLoading, data: comments } = useGetComments(id);
   const { isLoading: ratesLoading, data: rates } = useGetRates(id);
-
   const { addToFavorite, isLoading: addingLoading } = useAddToFavorite();
   const { removeFromFavorite, isLoading: removingLoading } =
     useRemoveFromFavorite();
-
   const { follow, isLoading: followingLoading } = useFollow();
   const { unfollow, isLoading: unfollowingLoading } = useUnfollow();
-
-  const isMyAd =
-    !Object.keys(user).length ||
-    Number(ad?.data?.user?.id) === Number(user?.id);
-
+  const isMyAd = Number(ad?.data?.user?.id) === Number(user?.id);
   const timeDifference = getTimeDifference(ad?.data?.created_at);
   const creationTime = formatTimeDifference(
     timeDifference.years,
@@ -79,7 +68,6 @@ function AdDetails() {
     timeDifference.minutes,
     t
   );
-
   function handleToggleFavorite(e) {
     e.stopPropagation();
     e.preventDefault();
@@ -120,17 +108,16 @@ function AdDetails() {
       navigate("/login");
     }
   }
-
   const openChat = async () => {
     if (isLogged) {
       sessionStorage.setItem("buyer_id", user?.id);
       sessionStorage.setItem("seller_id", ad?.data?.user_id);
       sessionStorage.setItem("ad_id", ad?.data?.id);
+      navigate("/chats");
     } else {
       navigate("/login");
     }
   };
-
   const handleIncreasePhoneCount = async () => {
     if (isLogged) {
       try {
@@ -151,20 +138,17 @@ function AdDetails() {
       navigate("/login");
     }
   };
-
   const navigateToLogin = () => {
     if (!isLogged) {
       navigate("/login");
     }
   };
-
   const socialShareLinks = {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${currentPageLink}`,
     instagram: `https://www.instagram.com/?url=${currentPageLink}`,
     twitter: `https://twitter.com/intent/tweet?url=${currentPageLink}`,
     whatsapp: `https://wa.me/?text=${currentPageLink}`,
   };
-
   function handleToggleFollowing(e) {
     e.stopPropagation();
     e.preventDefault();
@@ -205,7 +189,6 @@ function AdDetails() {
       navigate("/login");
     }
   }
-
   return isLoading || commentsLoading || ratesLoading ? (
     <DataLoader />
   ) : ad?.data ? (
@@ -215,7 +198,6 @@ function AdDetails() {
           <div className="row px-2">
             <div className="col-lg-8 d-flex flex-column gap-4 p-0 pb-3 p-md-3">
               <AdDetailsSlider images={ad?.data?.images} />
-
               {ad?.data?.audio && (
                 <div className="audioPlayer">
                   <audio controls className="w-100">
@@ -223,12 +205,10 @@ function AdDetails() {
                   </audio>
                 </div>
               )}
-
               <div className="priceInfo">
                 <div className="price">
                   <span> ${ad?.data?.price || 200} </span>
                 </div>
-
                 <button
                   className={`favorite ${
                     ad?.data?.is_favorite ? "active" : ""
@@ -238,13 +218,11 @@ function AdDetails() {
                 >
                   <img src="/images/heart.svg" alt="heart" />
                 </button>
-
                 <div className="actions">
                   <a href="listing.html" className="category">
                     <img src={ad?.data?.category?.image} alt="category" />
                     {ad?.data?.category?.name}
                   </a>
-
                   <div className="share">
                     <span className="ps-2 text-capitalize fw-bold">
                       {t("share.share")} :
@@ -282,7 +260,6 @@ function AdDetails() {
                       <img src="/images/facebook.svg" alt="" />
                     </a>
                   </div>
-
                   <span
                     className="action-btn report"
                     onClick={() => {
@@ -297,12 +274,8 @@ function AdDetails() {
                   </span>
                 </div>
               </div>
-
               <div className="itemInfo">
-                <h3 className="title">
-                  {ad?.data?.title || "Apple MacBook Air (2023) Apple M2 Chip"}
-                </h3>
-
+                <h3 className="title">{ad?.data?.title}</h3>
                 <div className="itemBottom">
                   <Link className="location">
                     <img src="/images/location.svg" alt="" />
@@ -318,8 +291,63 @@ function AdDetails() {
                 </div>
                 <p className="description">{ad?.data?.description}</p>
               </div>
+              {comments &&
+                (!comments?.data && isMyAd ? null : (
+                  <div className="itemDetailsBox d-flex flex-column gap-2">
+                    <div className="w-100 d-flex align-items-center justify-content-between gap-2">
+                      <h5>{t("comments")}</h5>
+                      {isMyAd ? null : (
+                        <span
+                          className="custom-btn filled"
+                          style={{
+                            width: "unset !important",
+                            aspectRatio: " 1 / 1",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => setShowCommentModal(true)}
+                        >
+                          <span>
+                            <IconCirclePlus stroke={1.5} />
+                          </span>
+                        </span>
+                      )}
+                    </div>
+                    <div className="scrollVertical">
+                      {comments?.data?.map((comment) => (
+                        <RateCard key={comment?.id} rate={comment} />
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              {rates &&
+                (!rates?.data && isMyAd ? null : (
+                  <div className="itemDetailsBox d-flex flex-column gap-2">
+                    <div className="w-100 d-flex align-items-center justify-content-between gap-2">
+                      <h5>{t("rates")}</h5>
+                      {ad?.data?.is_rated || isMyAd ? null : (
+                        <span
+                          className="custom-btn filled"
+                          style={{
+                            width: "unset !important",
+                            aspectRatio: " 1 / 1",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => setShowCommentModal(true)}
+                        >
+                          <span>
+                            <IconCirclePlus stroke={1.5} />
+                          </span>
+                        </span>
+                      )}
+                    </div>
+                    <div className="scrollVertical">
+                      {rates?.data?.map((rate) => (
+                        <RateCard key={rate?.id} rate={rate} />
+                      ))}
+                    </div>
+                  </div>
+                ))}
             </div>
-
             <div className="col-lg-4 p-0 p-md-3">
               <div className="advertiserDetails mb-3">
                 <Link
@@ -365,7 +393,6 @@ function AdDetails() {
                     </button>
                   </div>
                 )}
-
                 <div className="contact">
                   {ad?.data?.chat && !isMyAd ? (
                     <button className="chat" onClick={openChat}>
@@ -373,7 +400,6 @@ function AdDetails() {
                       <span> {t("chating")} </span>
                     </button>
                   ) : null}
-
                   {ad?.data?.phone && !isMyAd ? (
                     <Link
                       target={isLogged ? "_blank" : "_self"}
@@ -385,7 +411,6 @@ function AdDetails() {
                       <span> {t("calling")} </span>
                     </Link>
                   ) : null}
-
                   {ad?.data?.whatsapp && !isMyAd ? (
                     <Link
                       target={isLogged ? "_blank" : "_self"}
@@ -403,7 +428,6 @@ function AdDetails() {
                   ) : null}
                 </div>
               </div>
-
               <div className="itemDetailsBox mb-3">
                 <h4 className="title">{t("safetyTitle")}</h4>
                 <ul>
@@ -421,7 +445,6 @@ function AdDetails() {
                   </li>
                 </ul>
               </div>
-
               <div className="itemDetailsBox mb-3">
                 <LoadScript googleMapsApiKey="AIzaSyD_N1k4WKCdiZqCIjjgO0aaKz1Y19JqYqw">
                   <GoogleMap
@@ -442,65 +465,10 @@ function AdDetails() {
                   </GoogleMap>
                 </LoadScript>
               </div>
-
-              {comments &&
-                (!comments?.data && isMyAd ? null : (
-                  <div className="itemDetailsBox mb-3 d-flex flex-column gap-3">
-                    <div className="w-100 d-flex align-items-center justify-content-between gap-2">
-                      <h5>{t("comments")}</h5>
-                      {isMyAd ? null : (
-                        <span
-                          className="custom-btn filled"
-                          style={{
-                            width: "unset !important",
-                            aspectRatio: " 1 / 1",
-                            cursor: "pointer",
-                          }}
-                          onClick={() => setShowCommentModal(true)}
-                        >
-                          <span>
-                            <IconCirclePlus stroke={1.5} />
-                          </span>
-                        </span>
-                      )}
-                    </div>
-                    {comments?.data?.map((comment) => (
-                      <RateCard key={comment?.id} rate={comment} />
-                    ))}
-                  </div>
-                ))}
-
-              {rates &&
-                (!rates?.data && isMyAd ? null : (
-                  <div className="itemDetailsBox mb-3 d-flex flex-column gap-3">
-                    <div className="w-100 d-flex align-items-center justify-content-between gap-2">
-                      <h5>{t("rates")}</h5>
-                      {ad?.data?.is_rated || isMyAd ? null : (
-                        <span
-                          className="custom-btn filled"
-                          style={{
-                            width: "unset !important",
-                            aspectRatio: " 1 / 1",
-                            cursor: "pointer",
-                          }}
-                          onClick={() => setShowCommentModal(true)}
-                        >
-                          <span>
-                            <IconCirclePlus stroke={1.5} />
-                          </span>
-                        </span>
-                      )}
-                    </div>
-                    {rates?.data?.map((rate) => (
-                      <RateCard key={rate?.id} rate={rate} />
-                    ))}
-                  </div>
-                ))}
             </div>
           </div>
         </div>
       </section>
-
       {/* similar ads */}
       <section className="similar_ads">
         <div className="slider_wrap">
@@ -516,7 +484,6 @@ function AdDetails() {
                 </div>
               </div>
             </div>
-
             <Swiper
               spaceBetween={12}
               slidesPerView={4}
@@ -585,5 +552,4 @@ function AdDetails() {
     </section>
   );
 }
-
 export default AdDetails;

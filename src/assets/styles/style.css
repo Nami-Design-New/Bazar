@@ -23,7 +23,7 @@
 * {
   margin: 0;
   padding: 0;
-  line-height: 28px;
+  line-height: 1.4;
   box-sizing: border-box;
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
@@ -375,7 +375,7 @@ body {
 body * {
   margin: 0;
   padding: 0;
-  line-height: 28px;
+  line-height: 1.4;
   box-sizing: border-box;
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
@@ -746,7 +746,7 @@ body header nav .container .navigation_links li a:hover {
 body header nav .container .navigation_links li .add_ad {
   background: #4381f8;
   color: #fff;
-  padding: 2px 12px;
+  padding: 8px 12px;
   border-radius: 60px;
   font-size: 14px;
 }
@@ -873,17 +873,25 @@ body header nav .container .left_utils .dropdown .user img {
 }
 body header nav .container .left_utils .dropdown .dropdown-menu {
   max-width: calc(100vw - 16px);
-  margin-top: 30px;
-  padding: 8px;
+  margin-top: 24px;
+  padding: 8px 0px;
   overflow: hidden;
   border: 0;
 }
 body header nav .container .left_utils .dropdown .dropdown-menu a {
-  font-size: 12px;
+  font-size: 13px;
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
+  padding: 8px;
+}
+body header nav .container .left_utils .dropdown .dropdown-menu a i {
+  width: 20px;
+  aspect-ratio: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 body header nav .container .left_utils .dropdown .dropdown-menu a.showall {
   background: #fafafa;
@@ -1793,7 +1801,8 @@ body main .sliders .slider_wrap:nth-child(even) {
   background-color: #fafafa;
 }
 body main .similar_ads {
-  padding-bottom: 60px;
+  padding: 40px 0;
+  background-color: #fafafa;
 }
 body main .videos {
   padding: 20px 16px;
@@ -2554,12 +2563,13 @@ body main .profile .follow.following::after {
 body main .profile .content-wrapper .row {
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 16px;
   position: relative;
 }
+body main .profile .subscriptionDiv,
 body main .profile .userInfo {
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 12px;
   box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
   padding: 20px;
   position: relative;
@@ -2567,6 +2577,7 @@ body main .profile .userInfo {
   flex-direction: column;
   gap: 24px;
 }
+body main .profile .subscriptionDiv .top-wrapper,
 body main .profile .userInfo .top-wrapper {
   width: 100%;
   display: flex;
@@ -2575,22 +2586,27 @@ body main .profile .userInfo .top-wrapper {
   position: relative;
   justify-content: center;
 }
+body main .profile .subscriptionDiv .top-wrapper.package-container .verification-details,
 body main .profile .userInfo .top-wrapper.package-container .verification-details {
   flex-direction: column !important;
   gap: 16px !important;
   align-items: flex-start;
 }
 @media screen and (max-width: 768px) {
+  body main .profile .subscriptionDiv .top-wrapper.package-container .verification-details,
   body main .profile .userInfo .top-wrapper.package-container .verification-details {
     align-items: center;
   }
 }
+body main .profile .subscriptionDiv .top-wrapper.package-container i,
 body main .profile .userInfo .top-wrapper.package-container i {
   color: #4381f8 !important;
 }
+body main .profile .subscriptionDiv .top-wrapper.package-container .custom-btn i,
 body main .profile .userInfo .top-wrapper.package-container .custom-btn i {
   color: #fff !important;
 }
+body main .profile .subscriptionDiv .top-wrapper.package-container .remainingDays span,
 body main .profile .userInfo .top-wrapper.package-container .remainingDays span {
   font-weight: 600;
   font-size: 16px;
@@ -2598,10 +2614,12 @@ body main .profile .userInfo .top-wrapper.package-container .remainingDays span 
   color: #4381f8;
 }
 @media screen and (max-width: 768px) {
+  body main .profile .subscriptionDiv .top-wrapper,
   body main .profile .userInfo .top-wrapper {
     flex-direction: column;
   }
 }
+body main .profile .subscriptionDiv .top-wrapper .user-avatar-wrapper,
 body main .profile .userInfo .top-wrapper .user-avatar-wrapper {
   width: 80px;
   height: 80px;
@@ -2611,6 +2629,7 @@ body main .profile .userInfo .top-wrapper .user-avatar-wrapper {
   box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.2509803922);
   margin: 0 8px;
 }
+body main .profile .subscriptionDiv .top-wrapper .user-avatar-wrapper .userImg,
 body main .profile .userInfo .top-wrapper .user-avatar-wrapper .userImg {
   width: 100%;
   aspect-ratio: 1/1;
@@ -2618,6 +2637,7 @@ body main .profile .userInfo .top-wrapper .user-avatar-wrapper .userImg {
      object-fit: cover;
   border-radius: 50%;
 }
+body main .profile .subscriptionDiv .top-wrapper .userName,
 body main .profile .userInfo .top-wrapper .userName {
   flex: 1;
   white-space: nowrap;
@@ -2625,24 +2645,29 @@ body main .profile .userInfo .top-wrapper .userName {
   flex-direction: column;
   gap: 8px;
 }
+body main .profile .subscriptionDiv .top-wrapper .userName .name,
 body main .profile .userInfo .top-wrapper .userName .name {
   font-weight: bold;
 }
 @media screen and (max-width: 768px) {
+  body main .profile .subscriptionDiv .top-wrapper .userName .name,
   body main .profile .userInfo .top-wrapper .userName .name {
     text-align: center;
   }
 }
+body main .profile .subscriptionDiv .top-wrapper .userName .email,
 body main .profile .userInfo .top-wrapper .userName .email {
   font-weight: normal;
   color: #6b6464;
   font-size: 14px;
 }
 @media screen and (max-width: 768px) {
+  body main .profile .subscriptionDiv .top-wrapper .userName .email,
   body main .profile .userInfo .top-wrapper .userName .email {
     text-align: center;
   }
 }
+body main .profile .subscriptionDiv .top-wrapper .userName .userDetails,
 body main .profile .userInfo .top-wrapper .userName .userDetails {
   width: 100%;
   display: flex;
@@ -2651,11 +2676,13 @@ body main .profile .userInfo .top-wrapper .userName .userDetails {
   position: relative;
 }
 @media screen and (max-width: 768px) {
+  body main .profile .subscriptionDiv .top-wrapper .userName .userDetails,
   body main .profile .userInfo .top-wrapper .userName .userDetails {
     text-align: center;
     justify-content: center;
   }
 }
+body main .profile .subscriptionDiv .top-wrapper .userName .userDetails .details-box,
 body main .profile .userInfo .top-wrapper .userName .userDetails .details-box {
   display: flex;
   align-items: center;
@@ -2664,9 +2691,11 @@ body main .profile .userInfo .top-wrapper .userName .userDetails .details-box {
   position: relative;
   color: #6b6464;
 }
+body main .profile .subscriptionDiv .top-wrapper .userName .userDetails .details-box i,
 body main .profile .userInfo .top-wrapper .userName .userDetails .details-box i {
   font-size: 18px;
 }
+body main .profile .subscriptionDiv .top-wrapper .verification-details,
 body main .profile .userInfo .top-wrapper .verification-details {
   width: 100%;
   display: flex;
@@ -2674,15 +2703,23 @@ body main .profile .userInfo .top-wrapper .verification-details {
   gap: 24px;
   position: relative;
 }
+body main .profile .subscriptionDiv .top-wrapper .verification-details .verification-item,
 body main .profile .userInfo .top-wrapper .verification-details .verification-item {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 16px;
 }
+body main .profile .subscriptionDiv .top-wrapper .verification-details .verification-item i,
 body main .profile .userInfo .top-wrapper .verification-details .verification-item i {
-  font-size: 18px;
+  font-size: 16px;
+  width: 20px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+body main .profile .subscriptionDiv .top-wrapper .action-boxes,
 body main .profile .userInfo .top-wrapper .action-boxes {
   display: flex;
   flex-direction: column;
@@ -2690,6 +2727,7 @@ body main .profile .userInfo .top-wrapper .action-boxes {
   align-items: center;
   position: relative;
 }
+body main .profile .subscriptionDiv .top-wrapper .action-boxes .following-details,
 body main .profile .userInfo .top-wrapper .action-boxes .following-details {
   width: 100%;
   display: flex;
@@ -2698,19 +2736,23 @@ body main .profile .userInfo .top-wrapper .action-boxes .following-details {
   gap: 24px;
   position: relative;
 }
+body main .profile .subscriptionDiv .top-wrapper .action-boxes .following-details .details-box,
 body main .profile .userInfo .top-wrapper .action-boxes .following-details .details-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 16px;
 }
+body main .profile .subscriptionDiv .top-wrapper .action-boxes .following-details .details-box .value,
 body main .profile .userInfo .top-wrapper .action-boxes .following-details .details-box .value {
   font-weight: 600;
   font-size: 18px;
 }
+body main .profile .subscriptionDiv .top-wrapper .action-boxes .following-details .details-box .title,
 body main .profile .userInfo .top-wrapper .action-boxes .following-details .details-box .title {
   font-weight: 600;
 }
+body main .profile .subscriptionDiv .top-wrapper .action-boxes .actions-wrapper,
 body main .profile .userInfo .top-wrapper .action-boxes .actions-wrapper {
   width: 100%;
   display: flex;
@@ -2719,6 +2761,7 @@ body main .profile .userInfo .top-wrapper .action-boxes .actions-wrapper {
   align-items: center;
   position: relative;
 }
+body main .profile .subscriptionDiv .top-wrapper .action-boxes .actions-wrapper .action-btn,
 body main .profile .userInfo .top-wrapper .action-boxes .actions-wrapper .action-btn {
   padding: 8px 16px;
   height: 40px;
@@ -2733,6 +2776,10 @@ body main .profile .userInfo .top-wrapper .action-boxes .actions-wrapper .action
   background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+}
+body main .profile .subscriptionDiv {
+  box-shadow: none;
+  background-color: rgba(67, 129, 248, 0.1019607843);
 }
 body main .profile .profileNavCol {
   border-radius: 16px;
@@ -2829,8 +2876,7 @@ body main .profile .cardForm {
   border: 1px solid #e9e9e9;
 }
 body main .profile .content-wrapper {
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding: 20px 0;
 }
 body main .profile .tabs-section {
   display: flex;
@@ -2866,6 +2912,9 @@ body main .profile .tab-content {
 }
 body main .profile .tab-content .tab-pane {
   width: 100%;
+  padding: 8px !important;
+  background: #f9f9f9;
+  border-radius: 12px;
 }
 body main .profile .tab-content .tab-pane.active {
   display: flex !important;
@@ -2875,7 +2924,7 @@ body main .profile-verification-wrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
   position: relative;
 }
 body main .profile-verification-wrapper h6 {
@@ -2887,7 +2936,7 @@ body main .profile-verification-wrapper h6 {
   line-height: 1.6;
 }
 body main .profile-verification-wrapper .verification-box {
-  box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  box-shadow: 0 1px 10px 0px rgba(0, 0, 0, 0.1176470588);
   padding: 16px;
   border-radius: 12px;
   display: flex;
@@ -3246,7 +3295,7 @@ body main .transactions-wrapper .transactions-body .transaction-box .info-wrappe
   color: #777777;
 }
 body main .balance_section {
-  padding: 60px 8px;
+  padding: 8px;
   width: 100%;
 }
 body main .balance_section .balanceContainer,
@@ -3303,7 +3352,7 @@ body main .balance_section .content-body {
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  gap: 32px;
+  gap: 24px;
 }
 body main .balance_section .content-body .balance-boxes-wrapper {
   width: 100%;
@@ -3314,20 +3363,18 @@ body main .balance_section .content-body .balance-boxes-wrapper {
   flex-wrap: wrap;
 }
 body main .balance_section .content-body .balance-boxes-wrapper .balance-box {
+  background-color: #4381f8;
   min-width: 300px;
   flex: 1 0;
-  background-color: #f4f4f4;
   padding: 16px;
   border-radius: 12px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 16px;
   padding: 16px;
   border-radius: 12px;
-  background: #f4f4f4;
 }
 body main .balance_section .content-body .balance-boxes-wrapper .balance-box span,
 body main .balance_section .content-body .balance-boxes-wrapper .balance-box p {
@@ -3335,7 +3382,7 @@ body main .balance_section .content-body .balance-boxes-wrapper .balance-box p {
 }
 body main .balance_section .content-body .balance-boxes-wrapper .balance-box span {
   font-size: 14px;
-  color: #000;
+  color: #fff;
   font-weight: 600;
 }
 @media (max-width: 576px) {
@@ -3344,14 +3391,15 @@ body main .balance_section .content-body .balance-boxes-wrapper .balance-box spa
   }
 }
 body main .balance_section .content-body .balance-boxes-wrapper .balance-box h6 {
-  color: #4381f8;
+  color: #fff;
   font-weight: bold;
   margin: 0;
   white-space: nowrap;
   font-size: 28px;
 }
 body main .balance_section .content-body .balance-boxes-wrapper .balance-box h6 i {
-  color: #777777;
+  color: #d9d9d9;
+  font-size: 20px;
 }
 @media (max-width: 576px) {
   body main .balance_section .content-body .balance-boxes-wrapper .balance-box h6 {
@@ -3424,8 +3472,10 @@ body main .balance_section .content-body .transactions-wrapper .transactions-bod
   display: flex;
   flex-direction: column;
   position: relative;
-  gap: 16px;
+  gap: 8px;
   color: #000;
+  max-height: 500px;
+  overflow-y: auto;
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-body .transaction-box {
   width: 100%;
@@ -3435,7 +3485,7 @@ body main .balance_section .content-body .transactions-wrapper .transactions-bod
   gap: 24px;
   padding: 16px;
   border-radius: 16px;
-  background: #f4f4f4;
+  background: #fff;
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-body .transaction-box .money-wrapper {
   display: flex;
@@ -3553,15 +3603,20 @@ body main .user-card .info h6 {
 }
 body main .user-dropdown {
   position: absolute;
-  left: 12px;
-  top: 12px;
+  left: 20px;
+  top: 20px;
+  z-index: 2;
 }
 body main .user-dropdown .dropdown-toggle {
   background: none !important;
   border: none !important;
   outline: none !important;
   padding: 4px !important;
-  border-radius: 50% !important;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 body main .user-dropdown .dropdown-toggle i {
   color: #000;
@@ -3634,7 +3689,6 @@ body main .activities-section .content-wrapper .cards-wrapper {
 body main .activity-card {
   background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1490196078);
   border: 1px solid #fdfdfd;
 }
 body main .activity-card.ad-mini-card {
@@ -3810,7 +3864,7 @@ body main .fav-market-card .card-header {
   aspect-ratio: 3/2;
 }
 body main .fav-market-card .card-header.no-overlay .cover-wrapper {
-  box-shadow: 0px -1px 6px 0px rgba(0, 0, 0, 0.1490196078);
+  border-bottom: 1px solid #d9d9d9;
 }
 body main .fav-market-card .card-header.no-overlay .cover-wrapper::after {
   content: none !important;
@@ -4128,8 +4182,7 @@ body main .fav-ad-card .card-statistics .statistic .value {
 body main .order-card {
   background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
-  border: 1px solid #fdfdfd;
+  border: 1px dashed #cecece;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -4183,7 +4236,6 @@ body main .order-card .card-header .heading .progress-status {
   color: #fff;
   border-radius: 12px;
   transition: all 0.2s ease-in-out;
-  min-width: 140px;
 }
 body main .order-card .card-header .heading .progress-status.pending {
   background-color: #ecb01c;
@@ -4262,6 +4314,15 @@ body main .order-card .card-header .action-boxes .action-btn {
 }
 body main .order-card .card-header .action-boxes .action-btn i {
   font-size: 18px;
+}
+body main .order-card .logo {
+  width: 50px !important;
+  aspect-ratio: 1 !important;
+  border-radius: 100px;
+  background-color: #eee;
+  border: 1px solid #eee;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 body main .order-card .progress {
   border-radius: 0 !important;
@@ -4622,11 +4683,12 @@ body main .market-details-page .tabs-section {
   position: relative;
 }
 body main .market-details-page .tabs-section .nav-tabs {
-  padding: 0 !important;
+  padding: 4px;
   border: 0;
-  border-radius: 0 !important;
-  gap: 12px !important;
+  gap: 8px;
   margin-bottom: 16px;
+  border: 1px dashed #cecece;
+  border-radius: 12px;
 }
 @media screen and (max-width: 768px) {
   body main .market-details-page .tabs-section .nav-tabs {
@@ -4659,18 +4721,19 @@ body main .market-details-page .tabs-section .nav-tabs .nav-item button.active {
   }
 }
 body main .market-details-page .content-wrapper {
-  padding: 16px 0;
+  padding: 12px;
   display: flex;
+  border-radius: 12px;
+  background-color: #f9f9f9;
   flex-direction: column;
-  gap: 36px;
+  gap: 24px;
   position: relative;
 }
 body main .market-details-page .content-wrapper .rates-wrapper {
   width: 100%;
-  padding-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 8px;
   position: relative;
 }
 body main .market-details-page .content-wrapper .filter-wrapper {
@@ -4771,6 +4834,10 @@ body main .market-details-page .content-wrapper .products-wrapper .product_crad 
 }
 body main .market-details-page .content-wrapper .products-wrapper .product_crad .product_info {
   padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: white;
 }
 body main .market-details-page .content-wrapper .products-wrapper .product_crad .product_info .pro_name {
   font-size: 16px;
@@ -4839,7 +4906,7 @@ body main .market-details-page .content-wrapper .details-wrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   position: relative;
 }
 body main .market-details-page .content-wrapper .details-wrapper .details-header {
@@ -4907,7 +4974,7 @@ body main .market-details-page .content-wrapper .details-wrapper .details-box .t
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
   position: relative;
   font-size: 18px;
 }
@@ -4918,14 +4985,16 @@ body main .market-details-page .content-wrapper .details-wrapper .details-box .t
   gap: 8px;
 }
 body main .market-details-page .content-wrapper .details-wrapper .details-box .title .icon {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: white;
+  border-radius: 8px;
 }
 body main .market-details-page .content-wrapper .details-wrapper .details-box .title .icon i {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
   color: #4381f8;
 }
@@ -5028,13 +5097,13 @@ body main .market-details-page .content-wrapper .details-wrapper .details-box .c
 }
 body main .market-details-page .content-wrapper .rate-form {
   background: #fff;
-  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
   padding: 16px;
   border-radius: 16px;
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  border: 1px dashed #cecece;
 }
 body main .market-details-page .content-wrapper .rate-form.replay-to {
   border-radius: 0 0 12px 12px;
@@ -5286,7 +5355,7 @@ body main .order-details-page .order-details-wrapper .status-progress .progress-
   position: absolute;
   white-space: nowrap;
   top: calc(100% + 16px);
-  right: 0;
+  left: 0;
 }
 body main .order-details-page .order-details-wrapper .status-progress .progress-box .icon-box {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
@@ -5499,11 +5568,10 @@ body main .order-details-page .order-details-wrapper .btn-wrapper {
 }
 body main .rate-card {
   width: 100%;
-  background-color: #fff;
+  background-color: #ffffff;
   padding: 16px;
   border-radius: 12px;
   position: relative;
-  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -5584,9 +5652,15 @@ body main .rate-card .info-wrapper .user-info .time {
   color: rgba(0, 0, 0, 0.6);
 }
 body main .rate-card .info-wrapper .dropdown-toggle {
-  background-color: #fff !important;
+  background-color: transparent !important;
   border: none !important;
   position: relative;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 body main .rate-card .info-wrapper .dropdown-toggle i {
   color: #000 !important;
@@ -5797,7 +5871,6 @@ body main .itemDetails .priceInfo .price {
 }
 body main .itemDetails .priceInfo .price span {
   font-size: 32px;
-  font-family: "Poppins", sans-serif;
 }
 body main .itemDetails .priceInfo .actions {
   display: flex;
@@ -5952,7 +6025,7 @@ body main .itemDetails .itemInfo .title {
   font-weight: bold;
 }
 body main .itemDetails .itemInfo .description {
-  color: #aaaaaa;
+  color: #777777;
   padding: 8px 0;
 }
 body main .itemDetails .instructions {
@@ -5971,7 +6044,7 @@ body main .itemDetails .instructions span {
   border-radius: 100px;
 }
 body main .itemDetails .itemDetailsBox {
-  padding: 24px;
+  padding: 16px;
   border: 1px solid #d9d9d9;
   border-radius: 16px;
   background-color: #fff;
@@ -5986,6 +6059,13 @@ body main .itemDetails .itemDetailsBox {
   body main .itemDetails .itemDetailsBox ul {
     padding: 0 12px;
   }
+}
+body main .itemDetails .itemDetailsBox .scrollVertical {
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 body main .itemDetails .itemDetailsBox .title {
   font-weight: bold;
@@ -6072,7 +6152,6 @@ body main .advertiserDetails .advertiser img {
   box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
 }
 body main .advertiserDetails .advertiser h3 {
-  font-family: "Poppins", sans-serif;
   font-size: 26px;
   transition: all 0.2s ease-in-out;
   text-transform: capitalize;
@@ -6835,12 +6914,21 @@ body main .item .itemInfo {
 body main .item .itemInfo .title {
   font-weight: bold;
   font-size: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 body main .item .itemInfo .description {
   color: #777777;
   flex: 1;
   line-height: 24px;
   font-size: 14px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 body main .item .itemInfo .advertiser {
   position: absolute;
@@ -7436,10 +7524,16 @@ body main .ads-page .search-btn span {
   transition: all 0.2s ease-in-out;
 }
 body main .ads-page .search-btn.clear {
-  background: #000 !important;
+  background: transparent;
+  color: #000;
+  border: 1px solid #000;
 }
 body main .ads-page .search-btn.clear span {
-  background: #000 !important;
+  background: #000;
+}
+body main .ads-page .search-btn.clear:hover {
+  background: #000;
+  color: #fff;
 }
 body main .small-filter-header {
   width: 100%;
@@ -8029,6 +8123,7 @@ body main .commission-page .radios input:checked + span {
   border-color: #4381f8;
   color: #fff !important;
 }
+body main button,
 body main a {
   transition: all 0.2s ease-in-out;
 }
@@ -8197,6 +8292,7 @@ body footer {
   background-color: #fff;
   isolation: isolate;
   overflow: hidden;
+  border-top: 1px solid #d9d9d9;
 }
 body footer::after {
   content: "";
@@ -8333,7 +8429,7 @@ body footer .group ul li {
   align-items: baseline;
   gap: 8px;
   position: relative;
-  min-width: 150px;
+  min-width: 135px;
 }
 body footer .group ul li img {
   width: 20px;
@@ -8662,7 +8758,7 @@ body .search-section .filter-wrap form .input-field {
   display: flex;
   flex-direction: column;
 }
-body .search-section .filter-wrap form .input-field label {
+body .search-section .filter-wrap form .input-field > label {
   color: #aaaaaa;
 }
 body .search-section .filter-wrap form .input-field input,
@@ -9565,6 +9661,10 @@ body input[type=radio]:checked::after {
 body.en {
   direction: ltr;
 }
+body.en main .order-details-page .order-details-wrapper .status-progress .progress-box .status {
+  left: unset;
+  right: 0;
+}
 body.en .itemDetails .btns-wrapper {
   left: unset !important;
   right: 0 !important;
@@ -9673,4 +9773,19 @@ body.en footer .logo {
   align-items: center !important;
   justify-content: flex-start !important;
   transform: none !important;
+}
+
+.swiper {
+  width: 100%;
+}
+
+.no-rewards {
+  background-color: #f7e9c1;
+  border-radius: 12px;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
 }/*# sourceMappingURL=style.css.map */

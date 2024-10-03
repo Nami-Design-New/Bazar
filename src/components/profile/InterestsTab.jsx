@@ -34,7 +34,7 @@ function InterestsTab({ isMyAccount, user }) {
         <DataLoader minHeight="400px" />
       ) : interests?.data && interests?.data?.length > 0 ? (
         interests?.data?.map((interest) => (
-          <div className="col-lg-6 col-12 p-2" key={interest?.id}>
+          <div className=" col-12 p-1" key={interest?.id}>
             <InterestMiniCard
               interest={interest}
               isMyAccount={isMyAccount}

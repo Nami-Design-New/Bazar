@@ -138,7 +138,7 @@ function Profile() {
             <div className="content-wrapper">
               <div className="container">
                 <div className="row m-0">
-                  <div className="col-12 p-2 d-flex flex-column gap-3">
+                  <div className="col-12 p-0 d-flex flex-column gap-3">
                     <div className="userInfo">
                       <div className="user-dropdown d-flex algin-items-center justify-content-end">
                         <Dropdown>
@@ -259,7 +259,7 @@ function Profile() {
                       </div>
                     </div>
                     {subscriptionRemainingDays(user?.end_date) > 0 && (
-                      <div className="userInfo">
+                      <div className="subscriptionDiv">
                         <div className="top-wrapper package-container">
                           <div className="userName d-flex flex-column ">
                             <div className="verification-details">
@@ -323,7 +323,7 @@ function Profile() {
                                     style={{ minWidth: "160px" }}
                                   >
                                     <span>
-                                      <i className="fa-solid fa-recycle"></i>
+                                       <i className="fa-regular fa-arrows-rotate"></i>
                                       {t(`profile.renewSubscribe`)}
                                     </span>
                                   </Link>
