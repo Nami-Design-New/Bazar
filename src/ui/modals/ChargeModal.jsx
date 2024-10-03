@@ -51,7 +51,7 @@ const ChargeModal = ({ showModal, setShowModal, cartTotalPrice }) => {
             to={
               chargeValue === 0 || chargeValue === ""
                 ? ""
-                : `https://api.bazar.com.sa/payment/${chargeValue}?Authorization=${token}&Redirect_url=${window.location.href}`
+                : `https://api.bazar.com.sa/payment/${chargeValue}/wallet?Authorization=${token}&Redirect_url=${window.location.href}`
             }
           >
             <span>{t("cart.chargeWallet")}</span>

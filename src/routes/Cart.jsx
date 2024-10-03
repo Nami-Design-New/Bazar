@@ -1,12 +1,31 @@
+import { deleteCart } from "../services/apiCart";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import CartItem from "../ui/cards/CartItem";
 import SectionHeader from "../ui/layout/SectionHeader";
+import SubmitButton from "../ui/form-elements/SubmitButton";
 
 function Cart() {
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
+  const [loading, setLoading] = useState(false);
   const cart = useSelector((state) => state.cart.cartList);
+
+  const handleDelete = async () => {
+    try {
+      setLoading(true);
+      await deleteCart(queryClient);
+      toast.success(t("cart.cartDelted"));
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -25,31 +44,42 @@ function Cart() {
             ) : (
               <>
                 {cart?.map((c) => (
-                  <div className="col-12" key={c.id}>
+                  <div className="col-12 p-2" key={c.id}>
                     <CartItem type="cart" item={c} />
                   </div>
                 ))}
-                <div className="col-12">
-                  <div className="cart_total">
-                    <p>
-                      {t("cart.total")} :{" "}
-                      <span>
-                        {cart?.reduce(
-                          (count, item) =>
-                            count +
-                            item.quantity *
-                              (item?.product?.offer_price
-                                ? item?.product?.offer_price
-                                : item?.product?.price),
-                          0
-                        )}
-                      </span>{" "}
-                      {t("currency.sar")}
-                    </p>
-                    <Link to="/checkout">
-                      <span>{t("cart.completePurchese")}</span>
-                    </Link>
+
+                <div className="col-lg-8 col-12 p-2">
+                  <div className="cartTotalPrice">
+                    <p>{t("cart.total")}:</p>
+                    <h6 className="mb-0">
+                      {cart?.reduce(
+                        (count, item) =>
+                          count +
+                          item.quantity *
+                            (item?.product?.offer_price
+                              ? item?.product?.offer_price
+                              : item?.product?.price),
+                        0
+                      )}
+                      <i className="fa-solid fa-dollar-sign"></i>
+                    </h6>
                   </div>
+                </div>
+
+                <div className="col-lg-6 col-md-6 col-12">
+                  <SubmitButton
+                    className="order-now delete"
+                    name={t("cart.deleteCart")}
+                    onClick={handleDelete}
+                    loading={loading}
+                  />
+                </div>
+
+                <div className="col-lg-6 col-md-6 col-12">
+                  <Link to="/checkout" className="order-now">
+                    {t("cart.completePurchese")}
+                  </Link>
                 </div>
               </>
             )}

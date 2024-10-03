@@ -12,7 +12,7 @@ import {
   IconCirclePlus,
   IconLanguage,
   IconMessage,
-  IconShoppingBag,
+  IconShoppingBag
 } from "@tabler/icons-react";
 import axios from "../../utils/axios";
 import i18next from "i18next";
@@ -52,6 +52,7 @@ export default function Header() {
     dispatch(setLanguage(newLang));
     i18next.changeLanguage(newLang);
     const bodyElement = document.querySelector("body");
+    navigate(0);
     if (bodyElement) {
       bodyElement.classList.toggle("en", newLang === "en");
     }
@@ -260,7 +261,8 @@ export default function Header() {
                 {isLogged && user ? (
                   <>
                     <Dropdown.Item as={Link} to="/profile">
-                      <i className="fa-regular fa-user"></i> {t("header.profile")}
+                      <i className="fa-regular fa-user"></i>{" "}
+                      {t("header.profile")}
                     </Dropdown.Item>
 
                     <Dropdown.Item as={Link} to="/edit-profile">

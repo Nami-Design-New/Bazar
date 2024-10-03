@@ -30,3 +30,12 @@ export const changeProductQuantity = async (endPoint, id) => {
     throw new Error(`Error increasing product quantity: ${error.message}`);
   }
 };
+
+export async function deleteCart(querClient) {
+  try {
+    await axios.post("/user/delete_cart");
+    querClient.invalidateQueries("cart");
+  } catch (error) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+}

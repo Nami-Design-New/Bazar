@@ -1,180 +1,252 @@
 .shopping_cart {
   padding: 40px 0;
   .cart_item {
-    padding: 16px 0;
-    border-bottom: 1px solid $LightGray;
-    position: relative;
-    display: flex;
-    align-items: center;
-    @media (max-width: 768px) {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    background: $inputBg;
+    padding: 8px;
+    border-radius: 16px;
+    &:last-child {
+      border-bottom: 0 !important;
     }
-    .item-info {
-      flex: 1;
+    .service-head {
       display: flex;
-      gap: 16px;
-      @media (max-width: 768px) {
-        width: 100%;
+      align-items: center;
+      gap: 24px;
+      @media (max-width: 576px) {
+        gap: 18px;
       }
-      .img {
-        width: 100px;
-        height: 80px;
+      &.mini {
+        .request-owner-img {
+          width: 56px;
+          height: 56px;
+        }
+        .owner {
+          span {
+            font-size: 16px !important;
+          }
+        }
+        .title {
+          h5 {
+            font-size: 14px !important;
+          }
+        }
+      }
+      .request-owner-img {
+        min-width: 56px;
+        height: 56px;
+        max-width: 56px;
+        border-radius: 50%;
+        overflow: hidden;
         img {
           width: 100%;
           height: 100%;
-          display: block;
           object-fit: cover;
-          border-radius: 12px;
         }
       }
-      .details {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        h6 {
-          font-size: 14px;
-          color: $black;
-          font-weight: 600;
+      .img {
+        max-width: 150px;
+        min-width: 150px;
+        aspect-ratio: 3 / 2;
+        border-radius: 4px;
+        overflow: hidden;
+        @media (max-width: 576px) {
+          max-width: 106px;
         }
-        p {
-          font-size: 14px;
-          color: $black;
-          span {
-            font-size: 16px;
-            font-weight: 600;
-            color: $main;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+      .title {
+        h5 {
+          font-size: 16px;
+          font-weight: 600;
+          line-height: 24px;
+          margin-bottom: 10px;
+          color: var(--black-color);
+          @media (max-width: 576px) {
+            font-size: 14px;
           }
-          i {
-            color: $main;
+        }
+        .owner {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          span {
+            color: var(--black-color);
+            font-weight: 500;
+          }
+          .owner-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: center;
+            }
+            @media (max-width: 576px) {
+              width: 40px;
+              height: 40px;
+            }
+          }
+        }
+        &.requester-title {
+          h5 {
+            font-weight: 400;
+          }
+          .owner span {
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 18px;
           }
         }
       }
     }
-    .price_count {
-      flex: 1;
+    .add-cart {
+      width: 100%;
+      border-radius: 14px;
+      padding: 24px 16px;
       display: flex;
-      gap: 32px;
-      height: 50px;
-      @media (max-width: 768px) {
-        width: 100%;
-        gap: 12px;
-      }
-      @media screen and (max-width: 576px) {
-        flex-direction: column;
-      }
-      .count {
-        width: 60%;
-        background: $white;
+      align-items: center;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 8px;
+      .input-field {
         display: flex;
-        flex: 1;
-        border-radius: 100px;
-        overflow: hidden;
-        @media screen and (max-width: 576px) {
-          width: 100%;
-        }
-        input {
-          flex: 3;
-          width: 100%;
-          color: $black;
-          font-size: 20px;
-          font-weight: 600;
-          outline: none;
-          background: $inputBg;
-          text-align: center;
-          border: 0;
-          &::-webkit-inner-spin-button {
-            display: none;
-          }
-          @media screen and (max-width: 576px) {
-            height: 48px;
-          }
-        }
+        gap: 12px;
+        width: 100%;
         button {
           @include clearInput();
-          width: 70px;
-          background: $inputBg;
+          min-width: 48px;
+          max-width: 48px;
+          height: 48px;
+          background: $main10;
+          border-radius: 12px;
+          @include centerFlex();
           i {
-            color: $black;
+            color: $main;
           }
         }
-        button {
-          flex: 1;
-          width: initial;
+        input {
+          outline: none;
+          text-align: center;
+          width: 100%;
+          height: 48px;
+          border: 1px solid $LightGray;
+          background: $white;
+          font-weight: 600;
+          color: $black;
+          border-radius: 12px;
+          &::-webkit-outer-spin-button {
+            appearance: none;
+          }
+          &::-webkit-inner-spin-button {
+            appearance: none;
+          }
         }
       }
       .total {
-        width: 60%;
+        width: 100%;
+        p {
+          margin: 0;
+          color: $black;
+          span {
+            color: $textColor;
+          }
+        }
+        .delete_btn {
+          width: 32px;
+          height: 32px;
+          @include clearInput();
+          border-radius: 50%;
+          color: $white;
+          background: $main;
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+        h6 {
+          color: $main;
+          font-weight: bold;
+          font-size: 22px;
+          i {
+            margin: 0 4px;
+            color: $textColor;
+          }
+        }
+      }
+      .request-order {
+        height: 50px;
+        width: 100%;
+        font-size: 16px;
+        @include clearInput();
+        background: $main;
+        color: #fff;
+        border-radius: 16px;
+      }
+      .add-to-collection-btn {
+        height: 50px;
+        width: 100%;
+        cursor: pointer;
+        outline: none;
+        padding: 8px 16px;
+        border: none;
+        font-size: 14px;
+        color: $white;
+        border-radius: 12px;
+        background: $main;
+        transition: $transition;
         display: flex;
         align-items: center;
-        flex: 1;
-        @media screen and (max-width: 576px) {
-          width: 100%;
-        }
-        p {
-          flex: 2;
-          font-size: 14px;
-          color: $black;
-          font-weight: 600;
-          span {
-            color: $main;
-          }
-        }
-        button {
-          @include clearInput();
-          width: 40px;
-          height: 40px;
-          color: #ff0000;
-          transition: $transition;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: #ff00001a;
-          svg {
-            height: 20px;
-            fill: $white;
-          }
-          &:hover {
-            background: #ff0000;
-            color: #fff;
-          }
-        }
+        justify-content: center;
+        min-width: 140px;
+        max-width: 140px;
+        font-size: 16px;
+        white-space: nowrap;
+        gap: 8px;
       }
     }
   }
-  .cart_total {
-    padding: 24px 0;
-    flex-wrap: wrap;
+
+  .cartTotalPrice {
     @include space-between();
-    gap: 8px;
-
-    @media screen and (max-width: 768px) {
-      flex-direction: column;
-      justify-content: center;
-    }
-
+    margin-bottom: 32px;
     p {
-      font-size: 16px;
-      color: $black;
-      font-weight: 600;
-      span {
-        font-size: 24px;
-        color: $main;
+      margin: 0;
+      font-size: 18px;
+    }
+    h6 {
+      color: $main;
+      font-weight: bold;
+      font-size: 22px;
+      i {
+        margin: 0 4px;
+        color: $textColor;
       }
     }
-    a {
-      padding: 8px 48px;
-      font-size: 16px;
-      background: $main;
-      color: $white;
-      transition: $transition;
-      border-radius: 8px;
-      &:hover {
-        background: $second;
-      }
+  }
+
+  .order-now {
+    height: 50px;
+    width: 100%;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    background: $main;
+    color: #fff;
+    border-radius: 16px;
+    @include centerFlex();
+    gap: 4px;
+    &.delete {
+      background: red;
     }
   }
 }

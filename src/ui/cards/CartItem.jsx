@@ -6,14 +6,16 @@ import {
   changeProductQuantity,
   deleteProductFromCart
 } from "../../services/apiCart";
+import { IconTrashFilled } from "@tabler/icons-react";
 import ConfirmationModal from "../modals/ConfirmationModal";
-// import { IconTrashFilled } from "@tabler/icons-react";
 
-function CartItem({ type, item }) {
+function CartItem({ item }) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+
+  console.log(item);
 
   const handleDecrease = async () => {
     try {
@@ -57,58 +59,69 @@ function CartItem({ type, item }) {
 
   return (
     <>
-      <div className="cart_item">
-        <Link to="/ad-details" className="item-info">
-          <div className="img">
-            <img src={item?.product?.image} alt="product" />
-          </div>
-          <div className="details">
-            <h6>{item?.product?.title}</h6>
-            <p>
-              {" "}
-              <i className="fa-regular fa-tags"></i>{" "}
-              <span>
-                {item?.product?.offer_price
-                  ? item?.product?.offer_price
-                  : item?.product?.price}
-              </span>{" "}
-              {t("currency.sar")}
-            </p>
-          </div>
-        </Link>
-        {type === "cart" && (
-          <div className="price_count">
-            <div className="count">
-              <button disabled={loading} onClick={handleDecrease}>
-                <i className="fa-sharp fa-solid fa-minus"></i>
-              </button>
-              <input
-                type="number"
-                value={item?.quantity}
-                disabled
-                placeholder="0"
-              />
-              <button disabled={loading} onClick={handleIncrease}>
-                <i className="fa-sharp fa-solid fa-plus"></i>
-              </button>
-            </div>
-            <div className="total">
-              <p>
-                {t("cart.total")} :{" "}
-                <span>
-                  {(item?.product?.offer_price
-                    ? item?.product?.offer_price
-                    : item?.product?.price) * item.quantity}
-                </span>{" "}
-                {t("currency.sar")}
-              </p>
-              <button onClick={() => setShowConfirmation(true)}>
-                <i className="fa-regular fa-trash-can"></i>
-              </button>
+      <div className="cart_item container">
+        <div className="row m-0 w-100">
+          <div className="col-lg-7 col-12 p-2">
+            <div className="service-head">
+              <Link
+                to={`/product-details/${item?.product?.id}`}
+                className="img"
+              >
+                <img src={item?.product?.image} alt="service" />
+              </Link>
+              <div className="title">
+                <h5>{item?.product?.title}</h5>
+                <div className="owner">
+                  <div className="owner-avatar">
+                    <img src={item?.market?.logo} alt="owner" />
+                  </div>
+                  <span>{item?.market?.name}</span>
+                </div>
+              </div>
             </div>
           </div>
-        )}
+          <div className="col-lg-5 col-12 p-2">
+            <div className="add-cart">
+              <div className="input-field">
+                <button
+                  className="add"
+                  disabled={loading}
+                  onClick={() => handleIncrease()}
+                >
+                  <i className="fa-solid fa-plus"></i>
+                </button>
+                <input type="number" min={1} readOnly value={item?.quantity} />
+                <button
+                  className="minus"
+                  disabled={loading}
+                  onClick={() => handleDecrease()}
+                >
+                  <i className="fa-solid fa-minus"></i>
+                </button>
+              </div>
+              <div className="total d-flex justify-content-between align-items-center">
+                <p>{t("cart.total")} :</p>
+                <div className="d-flex gap-3 align-items-center">
+                  <h6 className="mb-0">
+                    {(item?.product?.offer_price
+                      ? item?.product?.offer_price
+                      : item?.product?.price) * item.quantity}
+                    <i className="fa-solid fa-dollar-sign"></i>
+                  </h6>
+                  <button
+                    className="delete_btn"
+                    onClick={() => handleDeleteItem()}
+                    disabled={loading}
+                  >
+                    <IconTrashFilled />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
       <ConfirmationModal
         showModal={showConfirmation}
         setShowModal={setShowConfirmation}
