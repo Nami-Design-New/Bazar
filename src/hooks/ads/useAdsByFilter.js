@@ -11,7 +11,7 @@ function useAdsByFilter(requestData) {
   const price_to = Number(searchParams.get("price_to")) || null;
   const duration_from = Number(searchParams.get("duration_from")) || null;
   const duration_to = Number(searchParams.get("duration_to")) || null;
-  const page = Number(searchParams.get("page")) || null;
+  const page = Number(searchParams.get("page")) || 1;
   const city_id = Number(searchParams.get("city_id")) || "";
   const area_id = Number(searchParams.get("area_id")) || "";
   const category_id = searchParams.get("category_id")

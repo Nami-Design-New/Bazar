@@ -44,7 +44,7 @@ function Followers() {
                   <DataLoader minHeight="400px" />
                 ) : followers?.data && followers?.data?.length > 0 ? (
                   followers?.data?.map((user) => (
-                    <div className="col-lg-6 col-12 p-2" key={user?.id}>
+                    <div className="col-md-6 col-lg-3 col-12 p-2" key={user?.id}>
                       <UserCard user={user} type="follower" />
                     </div>
                   ))
@@ -67,7 +67,7 @@ function Followers() {
                   <DataLoader minHeight="400px" />
                 ) : followings?.data && followings?.data?.length > 0 ? (
                   followings?.data?.map((user) => (
-                    <div className="col-lg-6 col-12 p-2" key={user?.id}>
+                    <div className="col-md-6 col-lg-3 col-12 p-2" key={user?.id}>
                       <UserCard user={user} type="following" />
                     </div>
                   ))

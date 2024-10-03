@@ -3599,12 +3599,14 @@ body main .verified-badge i {
 body main .user-card {
   width: 100%;
   display: flex;
-  align-items: center;
   gap: 16px;
-  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
+  border: 1px dashed #c7c7c7;
+  text-align: center;
+  flex-direction: column;
   padding: 24px;
   border-radius: 12px;
   position: relative;
+  margin-bottom: 24px;
 }
 body main .user-card .user-dropdown {
   position: relative !important;
@@ -3618,9 +3620,14 @@ body main .user-card .image-wrapper {
   height: 64px;
   border-radius: 50%;
   overflow: hidden;
+  margin: auto;
+  background-color: #d9d9d9;
+  margin-top: -50px;
+  outline: 1px dashed #d9d9d9;
 }
 body main .user-card .image-wrapper img {
   width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -3630,6 +3637,7 @@ body main .user-card .info {
   align-items: center;
   justify-content: flex-start;
   position: relative;
+  justify-content: center;
 }
 body main .user-card .info h6 {
   color: #000 !important;

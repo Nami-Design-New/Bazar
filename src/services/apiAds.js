@@ -14,7 +14,7 @@ export async function getAdsByFilter({
   ad_type,
   requestData,
 }) {
-  const requestBody = { ...requestData, random: 1 };
+  const requestBody = { ...requestData, random: 1, skip: 9 };
 
   if (search) requestBody.search = search;
 
