@@ -169,7 +169,9 @@
     "successfullyWithdrawRewards": "Rewards withdrawn successfully",
     "addTheImages": "Add the required images to continue",
     "successfullyVerified": "The request has been sent successfully, you will be replied to by the admin soon",
-    "FailedToVerify": "Failed to Verify"
+    "FailedToVerify": "Failed to Verify",
+    "noFollowers": "No followers yet",
+    "noFollowings": "No followings yet"
   },
   "error": {
     "pageNotFound": "This link doesn't exist or might have been deleted. How did you get here?",
