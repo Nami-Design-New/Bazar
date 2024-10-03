@@ -680,7 +680,7 @@ body header {
   display: flex;
   position: relative;
   flex-direction: column;
-  background: #fff;
+  background: #4381f8;
 }
 body header .underLay {
   position: fixed;
@@ -714,12 +714,13 @@ body header nav .container .logo img {
   width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 body header nav .container .navigation_links {
   flex: 8;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 2px;
   height: 100%;
 }
 @media screen and (max-width: 768px) {
@@ -733,19 +734,41 @@ body header nav .container .navigation_links li {
   justify-content: center;
 }
 body header nav .container .navigation_links li a {
-  color: #000;
+  color: #fff;
   font-size: 16px;
   transition: all 0.2s ease-in-out;
+  padding: 6px 16px;
+  border-radius: 100px;
+}
+@media screen and (max-width: 768px) {
+  body header nav .container .navigation_links li a {
+    color: #000;
+  }
 }
 body header nav .container .navigation_links li a.active {
-  color: #4381f8;
+  color: #fff;
+  background-color: #d785f1;
+  color: #fff;
+}
+@media screen and (max-width: 768px) {
+  body header nav .container .navigation_links li a.active {
+    color: #000;
+    background: transparent;
+  }
 }
 body header nav .container .navigation_links li a:hover {
-  color: #4381f8;
+  color: #fff;
+  background-color: #d785f1;
+}
+@media screen and (max-width: 768px) {
+  body header nav .container .navigation_links li a:hover {
+    color: #000;
+    background: transparent;
+  }
 }
 body header nav .container .navigation_links li .add_ad {
-  background: #4381f8;
-  color: #fff;
+  background: #fff;
+  color: #4381f8;
   padding: 8px 12px;
   border-radius: 60px;
   font-size: 14px;
@@ -753,9 +776,15 @@ body header nav .container .navigation_links li .add_ad {
 body header nav .container .navigation_links li .add_ad svg {
   height: 18px;
 }
+@media screen and (max-width: 768px) {
+  body header nav .container .navigation_links li .add_ad {
+    background: #4381f8;
+    color: #fff;
+  }
+}
 body header nav .container .navigation_links li .add_ad:hover {
-  background: #4381f8;
   color: #fff;
+  background-color: #d785f1;
 }
 body header nav .container .navigation_links li.logoo {
   margin-bottom: 24px;
@@ -803,20 +832,20 @@ body header nav .container .left_utils button {
   border: none;
   background: none;
   outline: none;
-  color: #000;
+  color: #fff;
   font-size: 18px;
   transition: all 0.2s ease-in-out;
 }
 body header nav .container .left_utils button:hover {
-  color: #4381f8;
+  color: #d785f1;
 }
 body header nav .container .left_utils a {
-  color: #000;
+  color: #fff;
   font-size: 18px;
   transition: all 0.2s ease-in-out;
 }
 body header nav .container .left_utils a:hover {
-  color: #4381f8;
+  color: #d785f1;
 }
 body header nav .container .left_utils .drop_Message_Menu {
   min-width: 350px;
@@ -850,9 +879,13 @@ body header nav .container .left_utils .drop_Message_Menu .drop_Message p {
 }
 body header nav .container .left_utils .dropdown a {
   box-shadow: none !important;
+  color: #000;
+}
+body header nav .container .left_utils .dropdown a:hover {
+  color: #4381f8;
 }
 body header nav .container .left_utils .dropdown svg {
-  stroke: #000;
+  stroke: #fff;
 }
 body header nav .container .left_utils .dropdown .user {
   width: 36px;
@@ -908,7 +941,7 @@ body header nav .container .left_utils .cart_open {
   gap: 10px;
 }
 body header nav .container .left_utils .cart_open svg {
-  stroke: #000;
+  stroke: #fff;
 }
 body header nav .container .left_utils .cart_open span {
   padding: 4px;
@@ -961,7 +994,7 @@ body header nav .container .left_utils .toggleMenu .checkmark {
 body header nav .container .left_utils .toggleMenu .checkmark span {
   width: 24px;
   height: 2px;
-  background-color: #4381f8;
+  background-color: #fff;
   position: absolute;
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
@@ -5459,6 +5492,7 @@ body main .order-details-page .order-details-wrapper .details-wrapper .details-b
 }
 body main .order-details-page .order-details-wrapper .details-wrapper .details-box .menu .order-product-item .image-wrapper img {
   width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -9191,6 +9225,7 @@ body .bank-transfer-box input {
 }
 body .bank-transfer-box input:checked + label {
   border-color: #4381f8;
+  background-color: rgba(67, 129, 248, 0.1019607843);
 }
 body .bank-transfer-box label {
   background-color: #f4f4f4;
@@ -9210,14 +9245,15 @@ body .bank-transfer-box .image-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
 }
 body .bank-transfer-box .image-wrapper img {
   width: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 body .bank-transfer-box .image-wrapper i {
   font-size: 36px;
