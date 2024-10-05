@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 function UserCard({ user, type }) {
-  console.log(type, user);
   const { t } = useTranslation();
   const { authedUser, isLogged } = useSelector((state) => state.authedUser);
   const isMyAccount = !user || Number(user?.id) === Number(authedUser?.id);
@@ -51,19 +50,35 @@ function UserCard({ user, type }) {
     }
   }
 
-  return (
-    <Link to={`/profile/${user?.user?.id}`} className="user-card">
+  return type === "following" && user?.followed ? (
+    <Link
+      to={`/profile/${
+        type === "following" ? user?.followed_id : user?.user_id
+      }`}
+      className="user-card"
+    >
       <div className="image-wrapper">
-        <img src={user?.user?.image} alt="" />
+        <img
+          src={type === "following" ? user?.followed?.image : user?.user?.image}
+          alt=""
+        />
       </div>
       <div className="info">
-        <h6>{user?.user?.name}</h6>
+        <h6>
+          {type === "following" ? user?.followed?.name : user?.user?.name}
+        </h6>
       </div>
       {!isMyAccount && (
         <div className="actions-wrapper">
           <button
             className={`custom-btn filled follow ${
-              user?.is_follow ? "following" : ""
+              type === "following"
+                ? user?.followed?.is_follow
+                  ? "following"
+                  : ""
+                : user?.is_follow
+                ? "following"
+                : ""
             }`}
             onClick={handleToggleFollowing}
             disabled={followingLoading || unfollowingLoading}
@@ -78,13 +93,19 @@ function UserCard({ user, type }) {
                   user?.is_follow ? "check" : "plus"
                 }`}
               ></i>
-              {user?.is_follow ? t("following") : t("follow")}
+              {type === "following"
+                ? user?.followed?.is_follow
+                  ? t("following")
+                  : t("follow")
+                : user?.is_follow
+                ? t("following")
+                : t("follow")}
             </span>
           </button>
         </div>
       )}
     </Link>
-  );
+  ) : null;
 }
 
 export default UserCard;

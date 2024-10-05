@@ -439,7 +439,10 @@
     "addedToCart": "The product was added to the cart successfully.",
     "productDeleted": "The product was deleted successfully.",
     "deleteCart": "Delete Cart",
-    "cartDelted": "The cart was deleted successfully."
+    "cartDelted": "The cart was deleted successfully.",
+    "currentBallance": "Current Ballance",
+    "valueWillbediscountedfromyourballance": "An amount will be deducted: ",
+    "fromYourWallet": "From Your Wallet"
   },
   "tabs": {
     "main-info": "Main Information",
@@ -604,5 +607,6 @@
   "fillAllRequiredFields": "Please fill all required fields to continue",
   "value": "Value",
   "selectAtLeastOneField": "Select at least one field to continue",
-  "walletNotEnough": "You do not have enough money in your wallet to complete the transaction."
+  "walletNotEnough": "You do not have enough money in your wallet to complete the transaction.",
+  "orderNow": "Order Now"
 }
