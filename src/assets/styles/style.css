@@ -2775,6 +2775,7 @@ body main .profile .userInfo .top-wrapper .action-boxes .following-details .deta
   flex-direction: column;
   align-items: center;
   font-size: 16px;
+  color: #000;
 }
 body main .profile .subscriptionDiv .top-wrapper .action-boxes .following-details .details-box .value,
 body main .profile .userInfo .top-wrapper .action-boxes .following-details .details-box .value {

@@ -14,7 +14,7 @@ const ChargeModal = ({ showModal, setShowModal, cartTotalPrice }) => {
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
       <Modal.Header className="pb-0" closeButton>
-        <h5>{t("balance.chargeBalance")}</h5>
+        <h5>{t("cart.chargeWallet")}</h5>
       </Modal.Header>
       <Modal.Body className="pay_modal">
         {cartTotalPrice && (

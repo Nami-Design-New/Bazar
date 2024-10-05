@@ -198,28 +198,52 @@ function Profile() {
                         </div>
                         <div className="action-boxes mt-4">
                           <div className="following-details">
-                            {(user?.follow_count ||
-                              user?.follow_count === 0) && (
-                              <div className="details-box">
-                                <span className="value ">
-                                  {user?.following_count}
-                                </span>
-                                <span className="title">
-                                  {t("profile.followings")}
-                                </span>
-                              </div>
-                            )}
-                            {(user?.follow_count ||
-                              user?.follow_count === 0) && (
-                              <div className="details-box">
-                                <span className="value ">
-                                  {user?.follow_count}
-                                </span>
-                                <span className="title">
-                                  {t("profile.followers")}
-                                </span>
-                              </div>
-                            )}
+                            {(user?.follow_count || user?.follow_count === 0) &&
+                              (isMyAccount ? (
+                                <Link
+                                  to="/followers?tab=followings"
+                                  className="details-box"
+                                >
+                                  <span className="value ">
+                                    {user?.following_count}
+                                  </span>
+                                  <span className="title">
+                                    {t(`profile.followingsTab`)}
+                                  </span>
+                                </Link>
+                              ) : (
+                                <div className="details-box">
+                                  <span className="value ">
+                                    {user?.following_count}
+                                  </span>
+                                  <span className="title">
+                                    {t(`profile.followings`)}
+                                  </span>
+                                </div>
+                              ))}
+                            {(user?.follow_count || user?.follow_count === 0) &&
+                              (isMyAccount ? (
+                                <Link
+                                  to="/followers?tab=followers"
+                                  className="details-box"
+                                >
+                                  <span className="value ">
+                                    {user?.follow_count}
+                                  </span>
+                                  <span className="title">
+                                    {t("profile.followers")}
+                                  </span>
+                                </Link>
+                              ) : (
+                                <div className="details-box">
+                                  <span className="value ">
+                                    {user?.follow_count}
+                                  </span>
+                                  <span className="title">
+                                    {t("profile.followers")}
+                                  </span>
+                                </div>
+                              ))}
                             {(user?.ad_count || user?.ad_count === 0) && (
                               <div className="details-box">
                                 <span className="value ">{user?.ad_count}</span>
@@ -323,7 +347,7 @@ function Profile() {
                                     style={{ minWidth: "160px" }}
                                   >
                                     <span>
-                                       <i className="fa-regular fa-arrows-rotate"></i>
+                                      <i className="fa-regular fa-arrows-rotate"></i>
                                       {t(`profile.renewSubscribe`)}
                                     </span>
                                   </Link>
