@@ -7,13 +7,16 @@ function useFollow() {
   const { mutate: follow, isLoading } = useMutation({
     mutationFn: (requestBody) => followApi(requestBody),
 
-    onSuccess: () => {
-      queryClient.invalidateQueries([
-        "marketDetails",
-        "favoriteMarkets",
-        "marketsByFilter",
-        "profile",
-      ]);
+    onSuccess: (res) => {
+      if (res?.code !== 200) throw new Error(res?.message);
+      else {
+        queryClient.invalidateQueries([
+          "marketDetails",
+          "favoriteMarkets",
+          "marketsByFilter",
+          "profile",
+        ]);
+      }
     },
   });
   return { follow, isLoading };

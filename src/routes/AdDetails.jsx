@@ -76,13 +76,16 @@ function AdDetails() {
         removeFromFavorite(
           { id: ad?.id, type: "ad_id" },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries([
-                "userAds",
-                "adsByFilter",
-                "favoriteAds",
-              ]);
-              queryClient.invalidateQueries(["adById", ad?.id]);
+            onSuccess: (res) => {
+              if (res?.code !== 200) throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries([
+                  "userAds",
+                  "adsByFilter",
+                  "favoriteAds",
+                ]);
+                queryClient.invalidateQueries(["adById", ad?.id]);
+              }
             },
           }
         );
@@ -93,13 +96,16 @@ function AdDetails() {
             type: "ad_id",
           },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries([
-                "userAds",
-                "adsByFilter",
-                "favoriteAds",
-              ]);
-              queryClient.invalidateQueries(["adById", ad?.id]);
+            onSuccess: (res) => {
+              if (res?.code !== 200) throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries([
+                  "userAds",
+                  "adsByFilter",
+                  "favoriteAds",
+                ]);
+                queryClient.invalidateQueries(["adById", ad?.id]);
+              }
             },
           }
         );
@@ -157,13 +163,16 @@ function AdDetails() {
         unfollow(
           { id: ad?.data?.user?.id, type: "user" },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries(["adById", id]);
-              queryClient.invalidateQueries([
-                "ads-videos",
-                "favoriteAds",
-                "adsByFilter",
-              ]);
+            onSuccess: (res) => {
+              if (res?.code !== 200) throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries(["adById", id]);
+                queryClient.invalidateQueries([
+                  "ads-videos",
+                  "favoriteAds",
+                  "adsByFilter",
+                ]);
+              }
             },
           }
         );
@@ -174,13 +183,16 @@ function AdDetails() {
             type: "user",
           },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries(["adById", id]);
-              queryClient.invalidateQueries([
-                "ads-videos",
-                "favoriteAds",
-                "adsByFilter",
-              ]);
+            onSuccess: (res) => {
+              if (res?.code !== 200) throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries(["adById", id]);
+                queryClient.invalidateQueries([
+                  "ads-videos",
+                  "favoriteAds",
+                  "adsByFilter",
+                ]);
+              }
             },
           }
         );

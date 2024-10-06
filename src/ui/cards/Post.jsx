@@ -48,12 +48,15 @@ function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
         removeFromFavorite(
           { id: post?.id, type: "ad_id" },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries([
-                "userAds",
-                "adsByFilter",
-                "favoriteAds",
-              ]);
+            onSuccess: (res) => {
+              if (res?.code !== 200) throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries([
+                  "userAds",
+                  "adsByFilter",
+                  "favoriteAds",
+                ]);
+              }
             },
           }
         );
@@ -64,12 +67,15 @@ function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
             type: "ad_id",
           },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries([
-                "userAds",
-                "adsByFilter",
-                "favoriteAds",
-              ]);
+            onSuccess: (res) => {
+              if (res?.code !== 200) throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries([
+                  "userAds",
+                  "adsByFilter",
+                  "favoriteAds",
+                ]);
+              }
             },
           }
         );
