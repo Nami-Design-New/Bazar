@@ -40,7 +40,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
     setLoading(true);
     try {
       const res = await axios.post("/user/check_verify_phone", { phone });
-      if (res?.data?.code === 200) {
+      if (res?.data?.code === 200 || res?.data?.code === 201) {
         if (res?.data?.data?.check) {
           toast.success(t(`ads.${type}Verified`));
           setFormData((prev) => ({
@@ -78,7 +78,7 @@ function Pricing({ formData, setFormData, setForm, loading }) {
         code: formData?.code,
         hashed_code: formData?.hashed_code,
       });
-      if (res?.data?.code === 200) {
+      if (res?.data?.code === 200 || res?.data?.code === 201) {
         toast.success(t("ads.phoneVerified"));
         type === "phone" ? setShowPhoneOtp(false) : setShowWhatsappOtp(false);
       } else {

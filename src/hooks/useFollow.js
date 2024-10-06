@@ -8,7 +8,8 @@ function useFollow() {
     mutationFn: (requestBody) => followApi(requestBody),
 
     onSuccess: (res) => {
-      if (res?.code !== 200) throw new Error(res?.message);
+      if (res?.code !== 200 || res?.data?.code !== 201)
+        throw new Error(res?.message);
       else {
         queryClient.invalidateQueries([
           "marketDetails",

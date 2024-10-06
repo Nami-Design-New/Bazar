@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   changeProductQuantity,
-  deleteProductFromCart
+  deleteProductFromCart,
 } from "../../services/apiCart";
 import { IconTrashFilled } from "@tabler/icons-react";
 import ConfirmationModal from "../modals/ConfirmationModal";
@@ -47,7 +47,7 @@ function CartItem({ item }) {
     setLoading(true);
     try {
       const res = await deleteProductFromCart(item?.id);
-      if (res?.data?.code) {
+      if (res?.data?.code === 200 || res?.data?.code === 201) {
         queryClient.invalidateQueries(["cart"]);
         setShowConfirmation(false);
         setLoading(false);

@@ -21,7 +21,8 @@ function FavoriteMarketCard({ market }) {
           { id: market?.id, type: "market_id" },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200) throw new Error(res?.message);
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
               else {
                 queryClient.invalidateQueries(["marketsByFilter"]);
               }
@@ -36,7 +37,8 @@ function FavoriteMarketCard({ market }) {
           },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200) throw new Error(res?.message);
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
               else {
                 queryClient.invalidateQueries(["marketsByFilter"]);
               }

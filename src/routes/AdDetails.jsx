@@ -77,7 +77,8 @@ function AdDetails() {
           { id: ad?.id, type: "ad_id" },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200) throw new Error(res?.message);
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
               else {
                 queryClient.invalidateQueries([
                   "userAds",
@@ -97,7 +98,8 @@ function AdDetails() {
           },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200) throw new Error(res?.message);
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
               else {
                 queryClient.invalidateQueries([
                   "userAds",
@@ -127,15 +129,26 @@ function AdDetails() {
   const handleIncreasePhoneCount = async () => {
     if (isLogged) {
       try {
-        await axios.post("/user/increase_phone_count", {
-          ids: ad?.data?.id,
-        });
-        queryClient.invalidateQueries([
-          "userAds",
-          "adsByFilter",
-          "favoriteAds",
-        ]);
-        queryClient.invalidateQueries(["adById", ad?.id]);
+        await axios.post(
+          "/user/increase_phone_count",
+          {
+            ids: ad?.data?.id,
+          },
+          {
+            onSuccess: (res) => {
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries([
+                  "userAds",
+                  "adsByFilter",
+                  "favoriteAds",
+                ]);
+                queryClient.invalidateQueries(["adById", ad?.id]);
+              }
+            },
+          }
+        );
       } catch (err) {
         toast.error(t("commissions.failed"));
         throw new Error(err.message);
@@ -164,7 +177,8 @@ function AdDetails() {
           { id: ad?.data?.user?.id, type: "user" },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200) throw new Error(res?.message);
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
               else {
                 queryClient.invalidateQueries(["adById", id]);
                 queryClient.invalidateQueries([
@@ -184,7 +198,8 @@ function AdDetails() {
           },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200) throw new Error(res?.message);
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
               else {
                 queryClient.invalidateQueries(["adById", id]);
                 queryClient.invalidateQueries([

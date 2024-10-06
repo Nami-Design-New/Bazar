@@ -31,7 +31,8 @@ function RewardCard({ ad, isMyAccount, userId }) {
           { id: ad?.id, type: "ad_id" },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200) throw new Error(res?.message);
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
               else {
                 queryClient.invalidateQueries([
                   "userAds",
@@ -50,7 +51,8 @@ function RewardCard({ ad, isMyAccount, userId }) {
           },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200) throw new Error(res?.message);
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
               else {
                 queryClient.invalidateQueries([
                   "userAds",

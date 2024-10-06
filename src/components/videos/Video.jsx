@@ -80,7 +80,8 @@ function Video({ ad }) {
           { id: ad?.id, type: "ad_id" },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200) throw new Error(res?.message);
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
               else {
                 queryClient.invalidateQueries([
                   "userAds",
@@ -100,7 +101,8 @@ function Video({ ad }) {
           },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200) throw new Error(res?.message);
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
               else {
                 queryClient.invalidateQueries([
                   "userAds",
@@ -127,7 +129,8 @@ function Video({ ad }) {
           { id: ad?.data?.user?.id, type: "user" },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200) throw new Error(res?.message);
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
               else {
                 queryClient.invalidateQueries([
                   "ads-videos",
@@ -146,7 +149,8 @@ function Video({ ad }) {
           },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200) throw new Error(res?.message);
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
               else {
                 queryClient.invalidateQueries([
                   "ads-videos",
