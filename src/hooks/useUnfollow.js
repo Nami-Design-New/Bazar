@@ -7,13 +7,17 @@ function useUnfollow() {
   const { mutate: unfollow, isLoading } = useMutation({
     mutationFn: (requestBody) => unfollowApi(requestBody),
 
-    onSuccess: () => {
-      queryClient.invalidateQueries([
-        "marketDetails",
-        "favoriteMarkets",
-        "marketsByFilter",
-        "profile",
-      ]);
+    onSuccess: (res) => {
+      if (res?.code !== 200 || res?.data?.code !== 201)
+        throw new Error(res?.message);
+      else {
+        queryClient.invalidateQueries([
+          "marketDetails",
+          "favoriteMarkets",
+          "marketsByFilter",
+          "profile",
+        ]);
+      }
     },
   });
   return { unfollow, isLoading };

@@ -20,8 +20,12 @@ function FavoriteMarketCard({ market }) {
         removeFromFavorite(
           { id: market?.id, type: "market_id" },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries(["marketsByFilter"]);
+            onSuccess: (res) => {
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries(["marketsByFilter"]);
+              }
             },
           }
         );
@@ -32,8 +36,12 @@ function FavoriteMarketCard({ market }) {
             type: "market_id",
           },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries(["marketsByFilter"]);
+            onSuccess: (res) => {
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries(["marketsByFilter"]);
+              }
             },
           }
         );

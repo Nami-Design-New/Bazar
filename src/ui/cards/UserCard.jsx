@@ -27,8 +27,12 @@ function UserCard({ user, type }) {
             type: "user",
           },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries(["userById", user?.id]);
+            onSuccess: (res) => {
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries(["userById", user?.id]);
+              }
             },
           }
         );
@@ -39,8 +43,12 @@ function UserCard({ user, type }) {
             type: "user",
           },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries(["userById", user?.id]);
+            onSuccess: (res) => {
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries(["userById", user?.id]);
+              }
             },
           }
         );

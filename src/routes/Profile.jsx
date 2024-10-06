@@ -81,8 +81,12 @@ function Profile() {
             type: "user",
           },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries(["userById", id]);
+            onSuccess: (res) => {
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries(["userById", id]);
+              }
             },
           }
         );
@@ -93,8 +97,12 @@ function Profile() {
             type: "user",
           },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries(["userById", id]);
+            onSuccess: (res) => {
+              if (res?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries(["userById", id]);
+              }
             },
           }
         );
