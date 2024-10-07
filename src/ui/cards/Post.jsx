@@ -49,7 +49,7 @@ function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
           { id: post?.id, type: "ad_id" },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200 || res?.data?.code !== 201)
+              if (res?.data?.code !== 200 || res?.data?.code !== 201)
                 throw new Error(res?.message);
               else {
                 queryClient.invalidateQueries([
@@ -69,7 +69,7 @@ function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
           },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200 || res?.data?.code !== 201)
+              if (res?.data?.code !== 200 || res?.data?.code !== 201)
                 throw new Error(res?.message);
               else {
                 queryClient.invalidateQueries([

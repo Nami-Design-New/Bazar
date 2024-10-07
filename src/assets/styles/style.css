@@ -3666,6 +3666,16 @@ body main .user-dropdown .dropdown-toggle i {
 body main .dropdown-toggle {
   position: relative;
 }
+body main .followed-user {
+  background-color: #000 !important;
+}
+body main .followed-user::after {
+  background-color: #000 !important;
+}
+body main .followed-user,
+body main .followed-user span {
+  color: #fff !important;
+}
 body main .activities-section {
   padding-left: 16px;
   padding-right: 16px;
@@ -4368,7 +4378,10 @@ body main .order-card .logo {
 }
 body main .order-card .progress {
   border-radius: 0 !important;
-  background: #fff !important;
+  background: #ededed !important;
+}
+body main .order-card .progress .progress-bar {
+  border-radius: 8px !important;
 }
 body main .order-card .new {
   background-color: #0467d0;
