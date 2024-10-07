@@ -383,19 +383,21 @@ function Profile() {
                       {adsLoading ? (
                         <DataLoader minHeight="400px" />
                       ) : ads?.data && ads?.data?.length > 0 ? (
-                        ads?.data?.map((ad) => (
-                          <div
-                            className="col-lg-3 col-md-6 col-12 p-2"
-                            key={ad?.id}
-                          >
-                            <Post
-                              userId={user?.id}
-                              post={ad}
-                              isMyAccount={isMyAccount}
-                              isMyPost={true}
-                            />
-                          </div>
-                        ))
+                        <div className="row flex-row m-0 gap-0">
+                          {ads?.data?.map((ad) => (
+                            <div
+                              className="col-lg-3 col-md-6 col-12 p-2"
+                              key={ad?.id}
+                            >
+                              <Post
+                                userId={user?.id}
+                                post={ad}
+                                isMyAccount={isMyAccount}
+                                isMyPost={true}
+                              />
+                            </div>
+                          ))}
+                        </div>
                       ) : (
                         <EmptyData minHeight={"300px"}>
                           {t("profile.noAds")}

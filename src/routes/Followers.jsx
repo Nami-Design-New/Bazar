@@ -69,14 +69,16 @@ function Followers() {
                 {followingsLoading ? (
                   <DataLoader minHeight="400px" />
                 ) : followings?.data && followings?.data?.length > 0 ? (
-                  followings?.data?.map((user) => (
-                    <div
-                      className="col-md-6 col-lg-3 col-12 p-2"
-                      key={user?.id}
-                    >
-                      <UserCard user={user} type="following" />
-                    </div>
-                  ))
+                  followings?.data?.map((user) =>
+                    user?.followed ? (
+                      <div
+                        className="col-md-6 col-lg-3 col-12 p-2"
+                        key={user?.id}
+                      >
+                        <UserCard user={user} type="following" />
+                      </div>
+                    ) : null
+                  )
                 ) : (
                   <EmptyData minHeight={"300px"}>
                     {t("profile.noFollowings")}

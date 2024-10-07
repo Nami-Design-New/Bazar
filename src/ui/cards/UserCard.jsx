@@ -58,7 +58,9 @@ function UserCard({ user, type }) {
     }
   }
 
-  return type === "following" && user?.followed ? (
+  console.log(type, user, user?.followed);
+
+  return (
     <Link
       to={`/profile/${
         type === "following" ? user?.followed_id : user?.user_id
@@ -113,7 +115,7 @@ function UserCard({ user, type }) {
         </div>
       )}
     </Link>
-  ) : null;
+  );
 }
 
 export default UserCard;
