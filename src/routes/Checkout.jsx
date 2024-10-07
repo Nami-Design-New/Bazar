@@ -169,7 +169,7 @@ function Checkout() {
       return;
     }
 
-    if (formData?.payment_method === "wallet") {
+    if (formData?.payment_method === "online") {
       if (user?.wallet >= formData?.total) {
         setShowConfirmPayModel(true);
       } else {
@@ -335,17 +335,17 @@ function Checkout() {
                         <span className="address">{t("cart.online")}</span>
                       </label>
 
-                      <label htmlFor="wallet">
+                      <label htmlFor="cash">
                         <input
                           type="radio"
                           name="payment_method"
-                          id="wallet"
-                          value="wallet"
-                          checked={formData?.payment_method === "wallet"}
+                          id="cash"
+                          value="cash"
+                          checked={formData?.payment_method === "cash"}
                           onChange={(e) => handleChange(e)}
                           required={true}
                         />
-                        <span className="address">{t("cart.wallet")}</span>
+                        <span className="address">{t("cart.cash")}</span>
                       </label>
                     </div>
                   </div>
