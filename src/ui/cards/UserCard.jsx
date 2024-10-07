@@ -123,7 +123,7 @@ function UserCard({ user, type }) {
                 ? user?.followed?.is_follow
                   ? t("following")
                   : t("follow")
-                : user?.is_follow
+                : user?.user?.is_follow
                 ? t("following")
                 : t("follow")}
             </span>
