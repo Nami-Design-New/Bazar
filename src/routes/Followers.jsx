@@ -12,7 +12,9 @@ function Followers() {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get("tab") || "followers";
-  const { isLoading: followersLoading, data: followers } = useGetFollowers();
+  const { isLoading: followersLoading, data: followers } = useGetFollowers({
+    type: "followed",
+  });
   const { isLoading: followingsLoading, data: followings } = useGetFollowings({
     type: "user",
   });
@@ -42,7 +44,10 @@ function Followers() {
                   <DataLoader minHeight="400px" />
                 ) : followers?.data && followers?.data?.length > 0 ? (
                   followers?.data?.map((user) => (
-                    <div className="col-lg-6 col-12 p-2" key={user?.id}>
+                    <div
+                      className="col-md-6 col-lg-3 col-12 p-2"
+                      key={user?.id}
+                    >
                       <UserCard user={user} type="follower" />
                     </div>
                   ))
@@ -64,11 +69,16 @@ function Followers() {
                 {followingsLoading ? (
                   <DataLoader minHeight="400px" />
                 ) : followings?.data && followings?.data?.length > 0 ? (
-                  followings?.data?.map((user) => (
-                    <div className="col-lg-6 col-12 p-2" key={user?.id}>
-                      <UserCard user={user} type="following" />
-                    </div>
-                  ))
+                  followings?.data?.map((user) =>
+                    user?.followed ? (
+                      <div
+                        className="col-md-6 col-lg-3 col-12 p-2"
+                        key={user?.id}
+                      >
+                        <UserCard user={user} type="following" />
+                      </div>
+                    ) : null
+                  )
                 ) : (
                   <EmptyData minHeight={"300px"}>
                     {t("profile.noFollowings")}

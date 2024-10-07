@@ -13,6 +13,9 @@ import SubmitButton from "../ui/form-elements/SubmitButton";
 import useGetCart from "./../hooks/useGetCart";
 import useGetAddresses from "./../hooks/profile/useGetAddresses";
 import useGetSettings from "./../hooks/settings/useGetSettings";
+
+import ChargeModal from "../ui/modals/ChargeModal";
+import OrderModal from "../ui/modals/OrderModal";
 import { useSelector } from "react-redux";
 
 function Checkout() {
@@ -24,8 +27,11 @@ function Checkout() {
 
   const [coupon, setCoupon] = useState({});
   const [loading, setLoading] = useState(false);
+  const [payLoading, setPayLoading] = useState(false);
   const [couponLoading, setCouponLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showChargeModel, setShowChargeModel] = useState(false);
+  const [showConfirmPayModel, setShowConfirmPayModel] = useState(false);
   const [formData, setFormData] = useState({
     address_id: "",
     notes: "",
@@ -136,6 +142,24 @@ function Checkout() {
     }
   };
 
+  const handlePlaceOrder = async () => {
+    setPayLoading(true);
+    try {
+      const res = await axios.post("/user/create_order", formData);
+      if (res?.data?.code === 200) {
+        navigate(`/order-details/${res?.data?.data}`);
+        toast.success(t("orderCreated"));
+      } else {
+        toast.error(res?.data?.message);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message || t("someThingWentWrong"));
+      throw new Error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -145,13 +169,13 @@ function Checkout() {
       return;
     }
 
-    if (
-      formData?.payment_method === "wallet" &&
-      (!user?.wallet || user?.wallet < formData?.total)
-    ) {
-      toast?.error(t("walletNotEnough"));
+    if (formData?.payment_method === "online") {
+      if (user?.wallet >= formData?.total) {
+        setShowConfirmPayModel(true);
+      } else {
+        setShowChargeModel(true);
+      }
       setLoading(false);
-      return;
     } else {
       try {
         const res = await axios.post("/user/create_order", formData);
@@ -311,17 +335,17 @@ function Checkout() {
                         <span className="address">{t("cart.online")}</span>
                       </label>
 
-                      <label htmlFor="wallet">
+                      <label htmlFor="cash">
                         <input
                           type="radio"
                           name="payment_method"
-                          id="wallet"
-                          value="wallet"
-                          checked={formData?.payment_method === "wallet"}
+                          id="cash"
+                          value="cash"
+                          checked={formData?.payment_method === "cash"}
                           onChange={(e) => handleChange(e)}
                           required={true}
                         />
-                        <span className="address">{t("cart.wallet")}</span>
+                        <span className="address">{t("cart.cash")}</span>
                       </label>
                     </div>
                   </div>
@@ -387,6 +411,20 @@ function Checkout() {
           </div>
         </div>
         <AddAddress showModal={showModal} setShowModal={setShowModal} />
+        <ChargeModal
+          cartTotalPrice={formData?.total}
+          showModal={showChargeModel}
+          setShowModal={setShowChargeModel}
+          title={t("cart.charge")}
+        />
+        <OrderModal
+          setShowModal={setShowConfirmPayModel}
+          showModal={showConfirmPayModel}
+          ballance={user?.wallet}
+          cartTotalPrice={formData?.total}
+          eventFunction={handlePlaceOrder}
+          loading={payLoading}
+        />
       </section>
     </>
   );

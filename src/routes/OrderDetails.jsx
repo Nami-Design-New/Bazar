@@ -71,9 +71,7 @@ function OrderDetails() {
                         />
                       </Link>
                       <div className="d-flex flex-column gap-2">
-                        {lang === "ar"
-                          ? ORDER_STATUS_AR[order?.data?.status]
-                          : ORDER_STATUS_EN[order?.data?.status]}
+                      {order?.data?.market?.name}
                         <span className="box gradient-text">
                           <i className="fa-solid fa-clock"></i>
                           {creationTime}

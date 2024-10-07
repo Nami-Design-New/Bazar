@@ -3,7 +3,7 @@ import { getFollowings } from "../../services/apiFollow";
 
 function useGetFollowings(requestBody) {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["followings", requestBody],
+    queryKey: ["followings"],
     queryFn: () => getFollowings(requestBody),
     retry: false,
     refetchOnWindowFocus: false,

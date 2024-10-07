@@ -79,13 +79,17 @@ function Video({ ad }) {
         removeFromFavorite(
           { id: ad?.id, type: "ad_id" },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries([
-                "userAds",
-                "adsByFilter",
-                "favoriteAds",
-              ]);
-              queryClient.invalidateQueries(["adById", ad?.id]);
+            onSuccess: (res) => {
+              if (res?.data?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries([
+                  "userAds",
+                  "adsByFilter",
+                  "favoriteAds",
+                ]);
+                queryClient.invalidateQueries(["adById", ad?.id]);
+              }
             },
           }
         );
@@ -96,13 +100,17 @@ function Video({ ad }) {
             type: "ad_id",
           },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries([
-                "userAds",
-                "adsByFilter",
-                "favoriteAds",
-              ]);
-              queryClient.invalidateQueries(["adById", ad?.id]);
+            onSuccess: (res) => {
+              if (res?.data?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries([
+                  "userAds",
+                  "adsByFilter",
+                  "favoriteAds",
+                ]);
+                queryClient.invalidateQueries(["adById", ad?.id]);
+              }
             },
           }
         );
@@ -120,12 +128,16 @@ function Video({ ad }) {
         unfollow(
           { id: ad?.data?.user?.id, type: "user" },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries([
-                "ads-videos",
-                "favoriteAds",
-                "adsByFilter",
-              ]);
+            onSuccess: (res) => {
+              if (res?.data?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries([
+                  "ads-videos",
+                  "favoriteAds",
+                  "adsByFilter",
+                ]);
+              }
             },
           }
         );
@@ -136,12 +148,16 @@ function Video({ ad }) {
             type: "user",
           },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries([
-                "ads-videos",
-                "favoriteAds",
-                "adsByFilter",
-              ]);
+            onSuccess: (res) => {
+              if (res?.data?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries([
+                  "ads-videos",
+                  "favoriteAds",
+                  "adsByFilter",
+                ]);
+              }
             },
           }
         );

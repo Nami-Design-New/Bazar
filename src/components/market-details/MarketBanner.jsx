@@ -31,11 +31,15 @@ function MarketBanner({ market }) {
         removeFromFavorite(
           { id: market?.data?.id, type: "market_id" },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries([
-                "marketDetails",
-                market?.data?.id,
-              ]);
+            onSuccess: (res) => {
+              if (res?.data?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries([
+                  "marketDetails",
+                  market?.data?.id,
+                ]);
+              }
             },
           }
         );
@@ -46,11 +50,15 @@ function MarketBanner({ market }) {
             type: "market_id",
           },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries([
-                "marketDetails",
-                market?.data?.id,
-              ]);
+            onSuccess: (res) => {
+              if (res?.data?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries([
+                  "marketDetails",
+                  market?.data?.id,
+                ]);
+              }
             },
           }
         );
@@ -68,15 +76,19 @@ function MarketBanner({ market }) {
         unfollow(
           { id: market?.data?.id, type: "market" },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries([
-                "marketDetails",
-                market?.data?.id,
-              ]);
-              queryClient.invalidateQueries([
-                "marketsByFilter",
-                "favoriteMarkets",
-              ]);
+            onSuccess: (res) => {
+              if (res?.data?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries([
+                  "marketDetails",
+                  market?.data?.id,
+                ]);
+                queryClient.invalidateQueries([
+                  "marketsByFilter",
+                  "favoriteMarkets",
+                ]);
+              }
             },
           }
         );
@@ -87,15 +99,19 @@ function MarketBanner({ market }) {
             type: "market",
           },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries([
-                "marketDetails",
-                market?.data?.id,
-              ]);
-              queryClient.invalidateQueries([
-                "marketsByFilter",
-                "favoriteMarkets",
-              ]);
+            onSuccess: (res) => {
+              if (res?.data?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries([
+                  "marketDetails",
+                  market?.data?.id,
+                ]);
+                queryClient.invalidateQueries([
+                  "marketsByFilter",
+                  "favoriteMarkets",
+                ]);
+              }
             },
           }
         );

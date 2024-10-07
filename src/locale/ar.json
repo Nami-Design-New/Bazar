@@ -174,7 +174,9 @@
     "successfullyWithdrawRewards": "تم سحب المكافآت بنجاح",
     "addTheImages": "اضف الصور المطلوبة لتتمكن من المتابعة",
     "successfullyVerified": "تم إرسال الطلب بنجاح، سيتم الرد عليك من الأدمن قريبًا",
-    "FailedToVerify": "فشل التوثيق"
+    "FailedToVerify": "فشل التوثيق",
+    "noFollowers": "لا يوجد متابعين",
+    "noFollowings": "لا تتابع أي مستخدم في الوقت الحالي"
   },
   "error": {
     "pageNotFound": "هذا الرابط غير موجود لدينا او ربما تم حذفه. كيف وصلت الي هنا ؟",
@@ -444,7 +446,10 @@
     "addedToCart": "تم اضافة المنتج الي السلة بنجاح",
     "productDeleted": "تم حذف المنتج من السلة بنجاح",
     "deleteCart": "حذف السلة",
-    "cartDelted": "تم حذف السلة بنجاح"
+    "currentBallance": "الرصيد الحالى",
+    "valueWillbediscountedfromyourballance": "سوف يتم خصم مبلغ: ",
+    "fromYourWallet": "من محفظتك",
+    "charge": "شحن المحفظة"
   },
   "tabs": {
     "main-info": "المعلومات الرئيسية",
@@ -612,5 +617,6 @@
   "fillAllRequiredFields": "يرجى ملأ جميع الحقول المطلوبة لتتمكن من المتابعة",
   "value": "القيمة",
   "selectAtLeastOneField": "يرجى تحديد حقل واحد على الاقل لتتمكن من المتابعة",
-  "walletNotEnough": "ليس لديك في المحفظة المال الكافي لإتمام العملية"
+  "walletNotEnough": "ليس لديك في المحفظة المال الكافي لإتمام العملية",
+  "orderNow": "اطلب الان"
 }

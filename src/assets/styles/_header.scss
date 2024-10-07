@@ -6,7 +6,7 @@ header {
   display: flex;
   position: relative;
   flex-direction: column;
-  background: $white;
+  background: $main;
 
   .underLay {
     position: fixed;
@@ -38,6 +38,7 @@ header {
           height: 36px;
           width: 100%;
           object-fit: contain;
+          filter: brightness(0) invert(1);
         }
       }
 
@@ -45,7 +46,7 @@ header {
         flex: 8;
         display: flex;
         align-items: center;
-        gap: 24px;
+        gap: 2px;
         height: 100%;
 
         @media screen and (max-width: 768px) {
@@ -55,28 +56,50 @@ header {
         li {
           @include centerFlex();
           a {
-            color: $black;
+            color: $white;
+            @media screen and (max-width: 768px) {
+              color: $black;
+            }
             font-size: 16px;
             transition: $transition;
+            padding: 6px 16px;
+            border-radius: 100px;
+
             &.active {
-              color: $main;
+              color: $white;
+              background-color: $second;
+              color: $white;
+              @media screen and (max-width: 768px) {
+                color: $black;
+                background: transparent;
+              }
             }
             &:hover {
-              color: $main;
+              color: $white;
+              background-color: $second;
+              @media screen and (max-width: 768px) {
+                color: $black;
+                background: transparent;
+              }
             }
           }
           .add_ad {
-            background: $main;
-            color: $white;
+            background: $white;
+            color: $main;
             padding: 8px 12px;
             border-radius: 60px;
             font-size: 14px;
             svg {
               height: 18px;
             }
-            &:hover {
+            @media screen and (max-width: 768px) {
               background: $main;
               color: $white;
+            }
+            &:hover {
+              color: $white;
+              background-color: $second;
+             
             }
           }
           &.logoo {
@@ -126,20 +149,20 @@ header {
 
         button {
           @include clearInput();
-          color: $black;
+          color: $white;
           font-size: 18px;
           transition: $transition;
           &:hover {
-            color: $main;
+            color: $second;
           }
         }
 
         a {
-          color: $black;
+          color: $white;
           font-size: 18px;
           transition: $transition;
           &:hover {
-            color: $main;
+            color: $second;
           }
         }
 
@@ -177,9 +200,13 @@ header {
         .dropdown {
           a {
             box-shadow: none !important;
+            color: $black;
+            &:hover {
+              color: $main;
+            }
           }
           svg {
-            stroke: $black;
+            stroke: $white;
           }
           .user {
             width: 36px;
@@ -208,7 +235,7 @@ header {
               align-items: center;
               gap: 4px;
               padding: 8px;
-              i{
+              i {
                 width: 20px;
                 aspect-ratio: 1;
                 display: inline-flex;
@@ -233,7 +260,7 @@ header {
           display: flex;
           gap: 10px;
           svg {
-            stroke: $black;
+            stroke: $white;
           }
           span {
             padding: 4px;
@@ -279,7 +306,7 @@ header {
             span {
               width: 24px;
               height: 2px;
-              background-color: $main;
+              background-color: $white;
               position: absolute;
               transition: all 0.3s ease-in-out;
               -webkit-transition: all 0.3s ease-in-out;

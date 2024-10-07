@@ -45,7 +45,7 @@ function ProductMiniCard({ product, marketId }) {
     e.stopPropagation();
     try {
       const res = await deleteProductFromCart(product?.id);
-      if (res?.data?.code) {
+      if (res?.data?.code === 200 || res?.data?.code === 201) {
         queryClient.invalidateQueries(["cart"]);
         toast.success(t("cart.productDeleted"));
         setInCart(false);

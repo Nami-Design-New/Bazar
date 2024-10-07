@@ -1,8 +1,8 @@
 export const ORDER_STATUS_PERSENTAGE = {
   pending: 25,
-  pendingWithDelivery: 35,
+  pendingWithoutDelivery: 35,
   accepted: 50,
-  acceptedWithDelivery: 70,
+  acceptedWithoutDelivery: 70,
   delivering: 75,
   completed: 100,
   canceled: 100,

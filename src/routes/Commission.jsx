@@ -75,13 +75,24 @@ function Commission() {
     } else {
       if (paymentMethod === "online") {
         try {
-          await axios.post("/user/finish_commission", {
-            ids: selectedAds,
-            payment_method: paymentMethod,
-          });
-          toast.success(t("commissions.success"));
-          setLoading(false);
-          queryClient.invalidateQueries["commissionAds"];
+          await axios.post(
+            "/user/finish_commission",
+            {
+              ids: selectedAds,
+              payment_method: paymentMethod,
+            },
+            {
+              onSuccess: (res) => {
+                if (res?.data?.code !== 200 || res?.data?.code !== 201)
+                  throw new Error(res?.message);
+                else {
+                  toast.success(t("commissions.success"));
+                  setLoading(false);
+                  queryClient.invalidateQueries["commissionAds"];
+                }
+              },
+            }
+          );
         } catch (err) {
           setLoading(false);
           toast.error(t("commissions.failed"));

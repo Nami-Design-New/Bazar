@@ -30,12 +30,16 @@ function RewardCard({ ad, isMyAccount, userId }) {
         removeFromFavorite(
           { id: ad?.id, type: "ad_id" },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries([
-                "userAds",
-                "adsByFilter",
-                "favoriteAds",
-              ]);
+            onSuccess: (res) => {
+              if (res?.data?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries([
+                  "userAds",
+                  "adsByFilter",
+                  "favoriteAds",
+                ]);
+              }
             },
           }
         );
@@ -46,12 +50,16 @@ function RewardCard({ ad, isMyAccount, userId }) {
             type: "ad_id",
           },
           {
-            onSuccess: () => {
-              queryClient.invalidateQueries([
-                "userAds",
-                "adsByFilter",
-                "favoriteAds",
-              ]);
+            onSuccess: (res) => {
+              if (res?.data?.code !== 200 || res?.data?.code !== 201)
+                throw new Error(res?.message);
+              else {
+                queryClient.invalidateQueries([
+                  "userAds",
+                  "adsByFilter",
+                  "favoriteAds",
+                ]);
+              }
             },
           }
         );

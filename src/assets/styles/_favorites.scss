@@ -503,7 +503,11 @@
   }
   .progress {
     border-radius: 0 !important;
-    background: $white !important;
+    background: #ededed !important;
+
+    .progress-bar {
+      border-radius: 8px !important;
+    }
   }
   .new {
     background-color: #0467d0;

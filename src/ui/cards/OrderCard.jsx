@@ -4,13 +4,51 @@ import { calculateDate } from "../../utils/helpers";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,
-  // ORDER_STATUS_PERSENTAGE,
+  ORDER_STATUS_PERSENTAGE,
 } from "../../utils/constants";
 import { useSelector } from "react-redux";
 
 function OrderCard({ order }) {
   const { t } = useTranslation();
   const lang = useSelector((state) => state.language.lang);
+
+  const progressWidth = () => {
+    let status = "";
+    switch (order?.status) {
+      case "pending":
+        if (order?.delivery_price > 0 || order?.address_id) {
+          status = ORDER_STATUS_PERSENTAGE.pending;
+        } else {
+          status = ORDER_STATUS_PERSENTAGE.pendingWithoutDelivery;
+        }
+        break;
+      case "accepted":
+        if (order?.delivery_price > 0 || order?.address_id) {
+          status = ORDER_STATUS_PERSENTAGE.accepted;
+        } else {
+          status = ORDER_STATUS_PERSENTAGE.acceptedWithoutDelivery;
+        }
+        break;
+      case "delivering":
+        status = ORDER_STATUS_PERSENTAGE.delivering;
+        break;
+      case "completed":
+        status = ORDER_STATUS_PERSENTAGE.completed;
+        break;
+      case "canceled":
+        status = ORDER_STATUS_PERSENTAGE.canceled;
+        break;
+      case "user_canceled":
+        status = ORDER_STATUS_PERSENTAGE.user_canceled;
+        break;
+      default:
+        status = "";
+        break;
+    }
+    return status;
+  };
+
+  console.log(progressWidth());
 
   return (
     <Link to={`/order-details/${order?.id}`} className={`order-card`}>
@@ -52,20 +90,20 @@ function OrderCard({ order }) {
           </div>
         </div>
       </div>
-      {/* <div className="progress-wrapper">
+      <div className="progress-wrapper">
         <div className="progress">
           <div
             className={`progress-bar ${order?.status}`}
             role="progressbar"
             style={{
-              width: `${ORDER_STATUS_PERSENTAGE[order?.status]}%`,
+              width: `${progressWidth()}%`,
             }}
             aria-valuenow={ORDER_STATUS_PERSENTAGE[order?.status]}
             aria-valuemin="0"
             aria-valuemax="100"
           ></div>
         </div>
-      </div> */}
+      </div>
     </Link>
   );
 }

@@ -37,7 +37,7 @@ function ForgetStep3({ setStep, code, phone }) {
       setLoading(true);
       try {
         const res = await axios.post("/user/update_password", formData);
-        if (res.data.code === 200) {
+        if (res.data.code === 200 || res?.data?.code === 201) {
           toast.success(t("auth.newPasswordSuccess"));
           navigate("/login");
         } else {
