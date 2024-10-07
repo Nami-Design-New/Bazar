@@ -83,7 +83,7 @@ function Commission() {
             },
             {
               onSuccess: (res) => {
-                if (res?.code !== 200 || res?.data?.code !== 201)
+                if (res?.data?.code !== 200 || res?.data?.code !== 201)
                   throw new Error(res?.message);
                 else {
                   toast.success(t("commissions.success"));

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useFollow from "../../hooks/useFollow";
 import useUnfollow from "../../hooks/useUnfollow";
 import { useQueryClient } from "@tanstack/react-query";
@@ -7,20 +7,36 @@ import { useSelector } from "react-redux";
 
 function UserCard({ user, type }) {
   const { t } = useTranslation();
-  const { authedUser, isLogged } = useSelector((state) => state.authedUser);
+  const { authedUser } = useSelector((state) => state.authedUser);
   const isMyAccount = !user || Number(user?.id) === Number(authedUser?.id);
   const queryClient = useQueryClient();
   const { follow, isLoading: followingLoading } = useFollow();
   const { unfollow, isLoading: unfollowingLoading } = useUnfollow();
 
-  const navigate = useNavigate();
-
   function handleToggleFollowing(e) {
     e.stopPropagation();
     e.preventDefault();
 
-    if (isLogged) {
-      if (user?.is_follow) {
+    console.log(user);
+
+    if (type === "following") {
+      unfollow(
+        {
+          id: user?.followed_id,
+          type: "user",
+        },
+        {
+          onSuccess: (res) => {
+            if (res?.data?.code !== 200 || res?.data?.code !== 201)
+              throw new Error(res?.message);
+            else {
+              queryClient.invalidateQueries(["followers", "followings"]);
+            }
+          },
+        }
+      );
+    } else {
+      if (user?.user?.is_follow) {
         unfollow(
           {
             id: user?.id,
@@ -28,10 +44,10 @@ function UserCard({ user, type }) {
           },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200 || res?.data?.code !== 201)
+              if (res?.data?.code !== 200 || res?.data?.code !== 201)
                 throw new Error(res?.message);
               else {
-                queryClient.invalidateQueries(["userById", user?.id]);
+                queryClient.invalidateQueries(["followers", "followings"]);
               }
             },
           }
@@ -44,21 +60,17 @@ function UserCard({ user, type }) {
           },
           {
             onSuccess: (res) => {
-              if (res?.code !== 200 || res?.data?.code !== 201)
+              if (res?.data?.code !== 200 || res?.data?.code !== 201)
                 throw new Error(res?.message);
               else {
-                queryClient.invalidateQueries(["userById", user?.id]);
+                queryClient.invalidateQueries(["followers", "followings"]);
               }
             },
           }
         );
       }
-    } else {
-      navigate("/login");
     }
   }
-
-  console.log(type, user, user?.followed);
 
   return (
     <Link
@@ -84,10 +96,10 @@ function UserCard({ user, type }) {
             className={`custom-btn filled follow ${
               type === "following"
                 ? user?.followed?.is_follow
-                  ? "following"
+                  ? "followed-user"
                   : ""
-                : user?.is_follow
-                ? "following"
+                : user?.user?.is_follow
+                ? "followed-user"
                 : ""
             }`}
             onClick={handleToggleFollowing}
@@ -100,7 +112,11 @@ function UserCard({ user, type }) {
             <span>
               <i
                 className={`fa-regular fa-user-${
-                  user?.is_follow ? "check" : "plus"
+                  type === "following"
+                    ? "check"
+                    : user?.user?.is_follow
+                    ? "check"
+                    : "plus"
                 }`}
               ></i>
               {type === "following"
