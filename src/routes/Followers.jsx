@@ -12,9 +12,9 @@ function Followers() {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get("tab") || "followers";
-  const { isLoading: followersLoading, data: followers } = useGetFollowers({
-    type: "followed",
-  });
+  const { isLoading: followersLoading, data: followers } = useGetFollowers(
+    { type: "followed" }
+  );
   const { isLoading: followingsLoading, data: followings } = useGetFollowings({
     type: "user",
   });
