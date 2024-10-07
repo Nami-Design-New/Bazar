@@ -39,7 +39,7 @@ function UserCard({ user, type }) {
       if (user?.user?.is_follow) {
         unfollow(
           {
-            id: user?.id,
+            id: user?.user?.id,
             type: "user",
           },
           {
@@ -55,7 +55,7 @@ function UserCard({ user, type }) {
       } else {
         follow(
           {
-            id: user?.id,
+            id: user?.user?.id,
             type: "user",
           },
           {
