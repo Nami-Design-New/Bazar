@@ -628,5 +628,9 @@
   "value": "القيمة",
   "selectAtLeastOneField": "يرجى تحديد حقل واحد على الاقل لتتمكن من المتابعة",
   "walletNotEnough": "ليس لديك في المحفظة المال الكافي لإتمام العملية",
-  "orderNow": "اطلب الان"
+  "orderNow": "اطلب الان",
+  "replay": "رد",
+  "addReplay": "اضافة رد",
+  "add": "اضف",
+  "successfullyReplied": "تم الرد بنجاح"
 }

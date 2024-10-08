@@ -9,11 +9,12 @@ import axios from "../../utils/axios";
 import { handleChange } from "../../utils/helpers";
 import { useSelector } from "react-redux";
 import { useQueryClient } from "@tanstack/react-query";
+import ReplayCard from "../cards/ReplayCard";
 
-function CreateCommentModal({ showModal, setShowModal, id }) {
+function CreateReplayModal({ showModal, setShowModal, targetComment }) {
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
-    ad_id: id,
+    comment_id: targetComment?.id,
     comment: "",
   });
   const [loading, setLoading] = useState(false);
@@ -27,10 +28,10 @@ function CreateCommentModal({ showModal, setShowModal, id }) {
     setLoading(true);
     if (isLogged) {
       try {
-        const res = await axios.post(`/user/create_comment`, formData);
+        const res = await axios.post(`/user/create_replay`, formData);
         if (res.status === 201 || res.status === 200) {
-          toast.success(t("successfullyCommented"));
-          queryClient.invalidateQueries(["comments"]);
+          toast.success(t("successfullyReplied"));
+          queryClient.invalidateQueries(["comments", "replays"]);
           setShowModal(false);
         } else {
           toast.error(t("someThingWentWrong"));
@@ -48,10 +49,13 @@ function CreateCommentModal({ showModal, setShowModal, id }) {
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
       <Modal.Header className="pb-0" closeButton>
-        <h5>{t(`createComment`)}</h5>
+        <h5>{t(`addReplay`)}</h5>
       </Modal.Header>
       <Modal.Body>
         <div className="container">
+          <div className="col-12 p-2">
+            <ReplayCard targetComment={targetComment} type="replay" />
+          </div>
           <div className="col-12 p-2">
             <form onSubmit={handleSubmit} className="form">
               <div className="row w-100">
@@ -70,7 +74,7 @@ function CreateCommentModal({ showModal, setShowModal, id }) {
                 <div className="col-12 py-2 px-0">
                   <div className="btns">
                     <SubmitButton
-                      name={t("send")}
+                      name={t("add")}
                       className="wizard_btn next"
                       loading={loading}
                     />
@@ -85,4 +89,4 @@ function CreateCommentModal({ showModal, setShowModal, id }) {
   );
 }
 
-export default CreateCommentModal;
+export default CreateReplayModal;

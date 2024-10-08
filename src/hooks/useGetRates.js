@@ -1,15 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { getRates } from "../services/apiComments";
 
-function useGetRates(id) {
+function useGetRates(requestBody) {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["rates", id],
-    queryFn: () => getRates(id),
+    queryKey: ["rates", requestBody],
+    queryFn: () => getRates(requestBody),
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
-    enabled: !!id,
   });
 
   return { isLoading, data, error };

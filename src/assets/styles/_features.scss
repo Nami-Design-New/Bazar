@@ -1181,6 +1181,25 @@
     gap: 16px;
     padding-right: 26px;
   }
+  ul {
+    padding: 0 24px;
+    .replay-card {
+      border-style: dashed !important;
+
+      .image-wrapper {
+        width: 36px !important;
+        height: 36px !important;
+      }
+
+      .name {
+        font-size: 14px;
+      }
+
+      .time {
+        font-size: 12px;
+      }
+    }
+  }
   .close-btn {
     width: 28px;
     height: 28px;

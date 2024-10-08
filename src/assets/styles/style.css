@@ -5644,6 +5644,22 @@ body main .rate-card.replay-to {
   gap: 16px;
   padding-right: 26px;
 }
+body main .rate-card ul {
+  padding: 0 24px;
+}
+body main .rate-card ul .replay-card {
+  border-style: dashed !important;
+}
+body main .rate-card ul .replay-card .image-wrapper {
+  width: 36px !important;
+  height: 36px !important;
+}
+body main .rate-card ul .replay-card .name {
+  font-size: 14px;
+}
+body main .rate-card ul .replay-card .time {
+  font-size: 12px;
+}
 body main .rate-card .close-btn {
   width: 28px;
   height: 28px;
@@ -9827,6 +9843,135 @@ body input[type=radio]:checked::after {
   color: #fff;
   border-color: #4381f8;
 }
+body .replay-card {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 12px;
+  position: relative;
+  border: 1px solid #d9d9d9;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+body .replay-card.replay-to {
+  width: 100%;
+  padding: 16px;
+  border-radius: 66px 66px 0 0;
+  position: relative;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2509803922);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-right: 26px;
+}
+body .replay-card .close-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  padding: 8px;
+  position: absolute;
+  top: 26px;
+  left: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2509803922);
+  cursor: pointer;
+}
+body .replay-card .close-btn i {
+  font-size: 18px;
+  color: #6b6464;
+}
+body .replay-card .info-wrapper {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  position: relative;
+  align-items: flex-start;
+}
+body .replay-card .info-wrapper .info-rate-wrapper {
+  flex: 1 0;
+  display: flex;
+  gap: 8px;
+  position: relative;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+body .replay-card .info-wrapper .image-wrapper {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+}
+body .replay-card .info-wrapper .image-wrapper img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+body .replay-card .info-wrapper .user-info {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+body .replay-card .info-wrapper .user-info .name {
+  color: #000;
+  font-size: 16px;
+  position: relative;
+  margin: 0;
+}
+body .replay-card .info-wrapper .user-info .time {
+  display: flex;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+}
+body .replay-card .info-wrapper .dropdown-toggle {
+  background-color: transparent !important;
+  border: none !important;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+body .replay-card .info-wrapper .dropdown-toggle i {
+  color: #000 !important;
+  font-size: 20px;
+}
+body .replay-card .info-wrapper .dropdown-menu {
+  padding: 0 !important;
+}
+body .replay-card .info-wrapper .dropdown-menu a,
+body .replay-card .info-wrapper .dropdown-menu span {
+  width: 100% !important;
+  display: flex;
+  padding: 8px 16px;
+  color: #000 !important;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+body .replay-card .info-wrapper .dropdown-menu a:hover,
+body .replay-card .info-wrapper .dropdown-menu span:hover {
+  color: #4381f8 !important;
+}
+body .replay-card .info-wrapper .rate {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+body .replay-card .comment {
+  font-size: 16px;
+  color: #000;
+  margin: 0;
+  padding-right: 72px;
+}
 body.en {
   direction: ltr;
 }
@@ -9957,4 +10102,19 @@ body.en footer .logo {
   flex-direction: column;
   gap: 4px;
   margin-bottom: 12px;
+}
+
+.dropdown-toggle {
+  background-color: transparent !important;
+  border: none !important;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.dropdown-toggle i {
+  color: #000 !important;
 }/*# sourceMappingURL=style.css.map */

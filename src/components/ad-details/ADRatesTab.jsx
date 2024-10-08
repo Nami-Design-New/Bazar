@@ -8,7 +8,7 @@ import DataLoader from "../../ui/DataLoader";
 import CustomPagination from "../../ui/CustomPagination";
 import EmptyData from "../../ui/EmptyData";
 
-function ADRatesTab({ ad, rates, ratesLoading, isMyAd }) {
+function ADRatesTab({ ad, rates, ratesLoading, isMyAd, refetch }) {
   const { t } = useTranslation();
 
   const [showRateModal, setShowRateModal] = useState(false);
@@ -17,27 +17,31 @@ function ADRatesTab({ ad, rates, ratesLoading, isMyAd }) {
     <DataLoader minHeight={"200px"} />
   ) : (
     <>
-      {!rates?.data && isMyAd ? <EmptyData minHeight={"300px"} >{t("ads.noRates")}</EmptyData> : (
+      {!rates?.data && isMyAd ? (
+        <EmptyData minHeight={"300px"}>{t("ads.noRates")}</EmptyData>
+      ) : (
         <div className="itemDetailsBox d-flex flex-column gap-2">
-          <div className="w-100 d-flex align-items-center justify-content-end gap-2">
-            <span
-              className="custom-btn filled"
-              style={{
-                width: "unset !important",
-                aspectRatio: " 1 / 1",
-                cursor: "pointer",
-              }}
-              onClick={() => setShowRateModal(true)}
-            >
+          {ad?.data?.is_rated ? null : (
+            <div className="w-100 d-flex align-items-center justify-content-end gap-2">
               <span
-                className="d-flex align-items-center justify-content-center gap-2"
-                style={{ padding: "8px 16px", whiteSpace: "nowrap" }}
+                className="custom-btn filled"
+                style={{
+                  width: "unset !important",
+                  aspectRatio: " 1 / 1",
+                  cursor: "pointer",
+                }}
+                onClick={() => setShowRateModal(true)}
               >
-                <IconCirclePlus stroke={1.5} />
-                {t("ads.addRate")}
+                <span
+                  className="d-flex align-items-center justify-content-center gap-2"
+                  style={{ padding: "8px 16px", whiteSpace: "nowrap" }}
+                >
+                  <IconCirclePlus stroke={1.5} />
+                  {t("ads.addRate")}
+                </span>
               </span>
-            </span>
-          </div>
+            </div>
+          )}
           {rates?.data?.map((rate) => (
             <RateCard key={rate?.id} rate={rate} />
           ))}
@@ -55,6 +59,7 @@ function ADRatesTab({ ad, rates, ratesLoading, isMyAd }) {
         id={ad?.data?.id}
         showModal={showRateModal}
         setShowModal={setShowRateModal}
+        refetch={refetch}
       />
     </>
   );
