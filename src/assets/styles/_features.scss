@@ -1183,9 +1183,8 @@
   }
   ul {
     padding: 0 24px;
+    border: 1px dashed $LightGray !important;
     .replay-card {
-      border-style: dashed !important;
-
       .image-wrapper {
         width: 36px !important;
         height: 36px !important;
