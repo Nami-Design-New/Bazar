@@ -1,36 +1,37 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import StarsList from "../StarsList";
+import { Link } from "react-router-dom";
 import ReportModal from "../modals/ReportModal";
-import { useState } from "react";
 
-function RateCard({ rate }) {
+function ReplayCard({ targetComment, type }) {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="rate-card">
+    <div className="replay-card">
       <div className="info-wrapper">
-        <Link to={`/profile/${rate?.user?.id}`} className="image-wrapper">
-          <img src={rate?.user?.image} alt="user" />
+        <Link
+          to={`/profile/${targetComment?.user?.id}`}
+          className="image-wrapper"
+        >
+          <img src={targetComment?.user?.image} alt="user" />
         </Link>
         <div className="info-rate-wrapper">
           <div className="user-info">
-            <Link to={`/profile/${rate?.user?.id}`} className="name">
-              {rate?.user?.name}
+            <Link to={`/profile/${targetComment?.user?.id}`} className="name">
+              {targetComment?.user?.name}
             </Link>
-            <span>{`${new Date(rate?.created_at).toDateString()}, ${new Date(
-              rate?.created_at
+            <span>{`${new Date(
+              targetComment?.created_at
+            ).toDateString()}, ${new Date(
+              targetComment?.created_at
             ).toLocaleTimeString()}`}</span>
           </div>
-          {rate?.rate ? (
-            <div className="rate">
-              <StarsList rate={rate?.rate} />
-              <span>{rate?.rate}</span>
-            </div>
-          ) : null}
         </div>
+      </div>
+
+      {type === "replay" ? null : (
         <div className="btns-wrapper">
           <Dropdown>
             <Dropdown.Toggle className="butn" id="dropdown-basic">
@@ -43,12 +44,12 @@ function RateCard({ rate }) {
             </Dropdown.Menu>
           </Dropdown>
         </div>
-      </div>
+      )}
 
-      <p className="comment">{rate?.comment}</p>
+      <p className="comment">{targetComment?.comment}</p>
       <ReportModal
-        id={rate?.id}
-        type={"rate"}
+        id={targetComment?.id}
+        type={"replay"}
         showModal={showModal}
         setShowModal={setShowModal}
       />
@@ -56,4 +57,4 @@ function RateCard({ rate }) {
   );
 }
 
-export default RateCard;
+export default ReplayCard;

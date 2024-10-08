@@ -3,7 +3,7 @@ import DataLoader from "../../ui/DataLoader";
 import CreateCommentModal from "../../ui/modals/CreateCommentModal";
 import { useTranslation } from "react-i18next";
 import { IconCirclePlus } from "@tabler/icons-react";
-import RateCard from "../../ui/cards/RateCard";
+import CommentCard from "../../ui/cards/CommentCard";
 import CustomPagination from "../../ui/CustomPagination";
 
 function ADCommentsTab({ ad, comments, commentsLoading, isMyAd }) {
@@ -38,7 +38,7 @@ function ADCommentsTab({ ad, comments, commentsLoading, isMyAd }) {
           </div>
 
           {comments?.data?.map((comment) => (
-            <RateCard key={comment?.id} rate={comment} />
+            <CommentCard key={comment?.id} comment={comment} />
           ))}
           {comments?.data && comments?.total > 10 && (
             <CustomPagination

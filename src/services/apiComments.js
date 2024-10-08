@@ -1,12 +1,6 @@
 import axios from "../utils/axios";
 
-export async function getReplays(id) {
-  const requestBody = {};
-
-  if (id) {
-    requestBody.id = +id;
-  }
-
+export async function getReplays(requestBody) {
   try {
     const req = await axios.post("/get_replays", requestBody);
 

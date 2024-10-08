@@ -1,15 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { getReplays } from "../services/apiComments";
 
-function useGetReplays(id) {
+function useGetReplays(requestBody) {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["replays", id],
-    queryFn: () => getReplays(id),
+    queryKey: ["replays", requestBody],
+    queryFn: () => getReplays(requestBody),
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
-    enabled: !!id,
   });
 
   return { isLoading, data, error };
