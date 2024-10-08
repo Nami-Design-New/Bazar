@@ -31,8 +31,6 @@ function CreateRateModal({ showModal, setShowModal, id }) {
     });
   };
 
-  console.log(id);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
