@@ -48,6 +48,7 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
 
     try {
       const res = await axios.post("/user/can_register", formData);
+
       if (res.data.code === 200) {
         setTimer(60);
         toast.success(t("auth.otpResentSuccess"));
@@ -59,7 +60,7 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
         toast.error(res.data.message);
       }
     } catch (error) {
-      console.error("Forget password error:", error);
+      console.error("Confirming error:", error);
       throw new Error(error.message);
     } finally {
       setLoading(false);
@@ -72,10 +73,12 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
     try {
       const res = await axios.request(checkCodeRequest);
       if (res.data.code === 200) {
-        toast.success(t("auth.registerSuccess"));
-        navigate("/");
+        console.log(formData);
         const req = await axios.post("/user/register", formData);
+
         if (req.data.code === 200) {
+          toast.success(t("auth.registerSuccess"));
+          navigate("/");
           toast.success(t("auth.registerSuccess"));
           dispatch(setUser(req.data.data));
           dispatch(setIsLogged(true));
@@ -100,7 +103,7 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
         toast.error(res.data.message);
       }
     } catch (error) {
-      console.error("Forget password error:", error);
+      toast.error(t("auth.registerError"));
       throw new Error(error.message);
     } finally {
       setLoading(false);

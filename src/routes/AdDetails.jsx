@@ -10,11 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useQueryClient } from "@tanstack/react-query";
-import {
-  adUserMemberShip,
-  formatTimeDifference,
-  getTimeDifference,
-} from "../utils/helpers";
+import { adUserMemberShip } from "../utils/helpers";
 import AdDetailsSlider from "../components/ad-details/AdDetailsSlider";
 import DataLoader from "../ui/DataLoader";
 import useGetAdById from "./../hooks/ads/useGetAdById";
@@ -59,15 +55,7 @@ function AdDetails() {
   const { follow, isLoading: followingLoading } = useFollow();
   const { unfollow, isLoading: unfollowingLoading } = useUnfollow();
   const isMyAd = Number(ad?.data?.user?.id) === Number(user?.id);
-  const timeDifference = getTimeDifference(ad?.data?.created_at);
-  const creationTime = formatTimeDifference(
-    timeDifference.years,
-    timeDifference.months,
-    timeDifference.days,
-    timeDifference.hours,
-    timeDifference.minutes,
-    t
-  );
+
   function handleToggleFavorite(e) {
     e.stopPropagation();
     e.preventDefault();
@@ -310,7 +298,11 @@ function AdDetails() {
                   </Link>
                   <div className="time">
                     <img src="/images/clock.svg" alt="" />{" "}
-                    {ad?.data?.created_at ? creationTime : "1h ago"}
+                    {`${new Date(
+                      ad?.data?.created_at
+                    ).toDateString()}, ${new Date(
+                      ad?.data?.created_at
+                    ).toLocaleTimeString()}`}
                   </div>
                   <div className="views">
                     <img src="/images/eye.svg" alt="" /> {ad?.data?.view_count}

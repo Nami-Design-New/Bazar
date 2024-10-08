@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
-import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import { useState } from "react";
 import axios from "./../../utils/axios";
@@ -29,16 +28,6 @@ function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
   const isLogged = useSelector((state) => state.authedUser.isLogged);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-
-  const timeDifference = getTimeDifference(post?.created_at);
-  const creationTime = formatTimeDifference(
-    timeDifference.years,
-    timeDifference.months,
-    timeDifference.days,
-    timeDifference.hours,
-    timeDifference.minutes,
-    t
-  );
 
   function handleToggleFavorite(e) {
     e.stopPropagation();
@@ -171,9 +160,12 @@ function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
           />
         </Link> */}
 
-        {post?.created_at && creationTime ? (
+        {post?.created_at ? (
           <div className="time">
-            <img src="/images/clock.svg" alt="" /> {creationTime}
+            <img src="/images/clock.svg" alt="" />{" "}
+            {`${new Date(post?.created_at).toDateString()}, ${new Date(
+              post?.created_at
+            ).toLocaleTimeString()}`}
           </div>
         ) : null}
 

@@ -109,12 +109,15 @@ function Gallery({ formData, setFormData, setForm }) {
               id="cover"
               accept="image/*"
               name="cover"
-              onChange={(e) =>
-                setFormData((prevState) => ({
-                  ...prevState,
-                  cover: e.target.files[0],
-                }))
-              }
+              onChange={(e) => {
+                const newCover = e.target.files[0];
+                if (newCover) {
+                  setFormData((prevState) => ({
+                    ...prevState,
+                    cover: newCover,
+                  }));
+                }
+              }}
             />
             {formData?.cover ? (
               <>
@@ -163,11 +166,14 @@ function Gallery({ formData, setFormData, setForm }) {
               accept="video/*"
               name="video"
               onChange={(e) => {
-                setFormData((prevState) => ({
-                  ...prevState,
-                  video: e.target.files[0],
-                  delete_video: 0,
-                }));
+                const newVideo = e.target.files[0];
+                if (newVideo) {
+                  setFormData((prevState) => ({
+                    ...prevState,
+                    video: newVideo,
+                    delete_video: 0,
+                  }));
+                }
               }}
             />
             {formData.video ? (

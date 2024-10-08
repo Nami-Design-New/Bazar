@@ -4,29 +4,18 @@ import { useState } from "react";
 import useGetAddresses from "../../hooks/profile/useGetAddresses";
 import axios from "./../../utils/axios";
 import { toast } from "react-toastify";
-import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 
 function AddressCard({
   userId,
   address,
   isMyAccount,
   setTargetAddress,
-  setShowModal
+  setShowModal,
 }) {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [loading, setLoading] = useState(false);
   const { refetch } = useGetAddresses();
-
-  const timeDifference = getTimeDifference(address?.created_at);
-  const creationTime = formatTimeDifference(
-    timeDifference.years,
-    timeDifference.months,
-    timeDifference.days,
-    timeDifference.hours,
-    timeDifference.minutes,
-    t
-  );
 
   function handleOpenConfirmation(e) {
     e.preventDefault();
@@ -91,9 +80,12 @@ function AddressCard({
       </div>
 
       <div className="itemInfo">
-        {address?.created_at && creationTime ? (
+        {address?.created_at ? (
           <div className="time">
-            <img src="/images/clock.svg" alt="" /> {creationTime}
+            <img src="/images/clock.svg" alt="" />{" "}
+            {`${new Date(address?.created_at).toDateString()}, ${new Date(
+              address?.created_at
+            ).toLocaleTimeString()}`}
           </div>
         ) : null}
 

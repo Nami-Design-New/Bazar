@@ -32,6 +32,10 @@ function RegisterForm({
       toast.error(t("auth.fillAllFieldsRequired"));
       setLoading(false);
       return;
+    } else if (!formData?.image) {
+      toast.error(t("auth.imageRequired"));
+      setLoading(false);
+      return;
     }
 
     try {

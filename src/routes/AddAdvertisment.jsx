@@ -43,6 +43,13 @@ function AddAdvertisment() {
     delete_images: [],
   });
 
+  const [phoneChecked, setPhoneChecked] = useState(
+    Boolean(formData?.phone_number)
+  );
+  const [whatsappChecked, setWhatsappChecked] = useState(
+    Boolean(formData?.whatsapp_number)
+  );
+
   useEffect(() => {
     if (ad) {
       setFormData({
@@ -82,6 +89,22 @@ function AddAdvertisment() {
         uploadedImages.push(image);
       }
     });
+
+    if (whatsappChecked) {
+      if (!formData.whatsapp_number) {
+        toast.error(t("ads.whatsappRequired"));
+        setLoading(false);
+        return;
+      }
+    }
+
+    if (phoneChecked) {
+      if (!formData.phone_number) {
+        toast.error(t("ads.phoneRequired"));
+        setLoading(false);
+        return;
+      }
+    }
 
     const payLoad = {
       title: formData.title,
@@ -142,6 +165,7 @@ function AddAdvertisment() {
         toast.error(t("someThingWentWrong"));
       }
     } catch (error) {
+      toast.error(error?.response?.data?.message || t("someThingWentWrong"));
       throw new Error(
         error?.response?.data?.message || t("someThingWentWrong")
       );
@@ -212,6 +236,10 @@ function AddAdvertisment() {
                     formData={formData}
                     setFormData={setFormData}
                     setForm={setForm}
+                    phoneChecked={phoneChecked}
+                    setPhoneChecked={setPhoneChecked}
+                    whatsappChecked={whatsappChecked}
+                    setWhatsappChecked={setWhatsappChecked}
                   />
                 )}
               </form>

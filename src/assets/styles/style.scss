@@ -472,6 +472,8 @@ body {
               flex-direction: column;
               gap: 10px;
               align-items: flex-start !important;
+              border-bottom: 1px solid #cacaca;
+              padding-bottom: 8px;
               input {
                 width: 18px;
                 height: 18px;
@@ -1342,10 +1344,15 @@ body {
     // header nav .container .left_utils .dropdown .dropdown-menu {
     // transform: translate3d(0px, 50px, 0px) !important;
     // }
-     main .order-details-page .order-details-wrapper .status-progress .progress-box .status{
-       left: unset ;
-       right: 0;
-     }
+    main
+      .order-details-page
+      .order-details-wrapper
+      .status-progress
+      .progress-box
+      .status {
+      left: unset;
+      right: 0;
+    }
     .itemDetails .btns-wrapper {
       left: unset !important;
       right: 0 !important;
@@ -1459,7 +1466,7 @@ body {
   &::after {
     flex-grow: 1 !important;
     display: flex !important;
-    align-items: center !important; 
+    align-items: center !important;
 
     justify-content: flex-start !important;
     transform: none !important;
@@ -1470,7 +1477,7 @@ body {
   width: 100%;
 }
 
-.no-rewards{
+.no-rewards {
   background-color: #f7e9c1;
   border-radius: 12px;
   width: 100%;
@@ -1479,6 +1486,4 @@ body {
   flex-direction: column;
   gap: 4px;
   margin-bottom: 12px;
-
-
 }

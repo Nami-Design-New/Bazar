@@ -43,16 +43,6 @@ function Profile() {
   const { follow, isLoading: followingLoading } = useFollow();
   const { unfollow, isLoading: unfollowingLoading } = useUnfollow();
 
-  // const timeDifference = getTimeDifference(user?.start_date);
-  // const packageCreationTime = formatTimeDifference(
-  //   timeDifference.years,
-  //   timeDifference.months,
-  //   timeDifference.days,
-  //   timeDifference.hours,
-  //   timeDifference.minutes,
-  //   t
-  // );
-
   useEffect(() => {
     if (id) {
       if (Number(id) === Number(authedUser?.id)) {
@@ -305,7 +295,11 @@ function Profile() {
                                 {/* <span className="verification-item">
                                   <i className="fa-regular fa-clock"></i>
                                   <span className="colored">
-                                    {packageCreationTime}
+                                    {`${new Date(
+                                      user?.start_date
+                                    ).toDateString()}, ${new Date(
+                                      user?.start_date
+                                    ).toLocaleTimeString()}`}
                                   </span>
                                 </span> */}
                                 <span className="verification-item">

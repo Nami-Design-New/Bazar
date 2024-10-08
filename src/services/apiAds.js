@@ -34,7 +34,7 @@ export async function getAdsByFilter({
 
   if (area_id) requestBody.area_id = area_id;
 
-  if (category_id && category_id.length) requestBody.category_ids = category_id;
+  if (category_id && category_id.length) requestBody.category_id = category_id;
 
   if (sub_category_id && sub_category_id.length)
     requestBody.sub_category_id = sub_category_id;
