@@ -18,22 +18,22 @@ function AdTabs({ ad, isMyAd }) {
     : 1;
   const ratesPage = searchParams.get("rates-page")
     ? Number(searchParams.get("rates-page"))
-    : 2;
+    : 1;
 
   const { isLoading: commentsLoading, data: comments } = useGetComments({
-    id: id,
+    id: +id,
     page: commentsPage,
     skip: 5,
   });
   const { isLoading: ratesLoading, data: rates } = useGetRates({
-    id: id,
+    id: +id,
     page: ratesPage,
     skip: 5,
   });
 
   return (
     <div className="tabs-section">
-      <Tabs defaultActiveKey="aboutAd" id="uncontrolled-tab-example">
+      <Tabs defaultActiveKey="comments" id="uncontrolled-tab-example">
         <Tab eventKey="aboutAd" title={t("ads.aboutAd")}>
           <ADAboutTab ad={ad} />
         </Tab>

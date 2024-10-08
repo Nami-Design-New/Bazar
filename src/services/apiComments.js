@@ -17,8 +17,6 @@ export async function getReplays(id) {
 }
 
 export async function getComments(requestBody) {
-  console.log(requestBody);
-  
   try {
     const req = await axios.post("/get_comments", requestBody);
 
@@ -28,13 +26,7 @@ export async function getComments(requestBody) {
   }
 }
 
-export async function getRates(id) {
-  const requestBody = {};
-
-  if (id) {
-    requestBody.id = +id;
-  }
-
+export async function getRates(requestBody) {
   try {
     const req = await axios.post("/get_rates", requestBody);
 

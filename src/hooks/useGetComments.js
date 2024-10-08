@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getComments } from "../services/apiComments";
 
-function useGetComments(requestBody) {
-  console.log(requestBody);
 
+
+function useGetComments(requestBody) {
   const { isLoading, data, error } = useQuery({
     queryKey: ["comments", requestBody],
     queryFn: () => getComments(requestBody),

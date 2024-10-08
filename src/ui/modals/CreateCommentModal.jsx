@@ -13,7 +13,7 @@ import { useQueryClient } from "@tanstack/react-query";
 function CreateCommentModal({ showModal, setShowModal, id }) {
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
-    ad_id: "",
+    ad_id: id,
     comment: "",
   });
   const [loading, setLoading] = useState(false);
@@ -30,7 +30,7 @@ function CreateCommentModal({ showModal, setShowModal, id }) {
         const res = await axios.post(`/user/create_comment`, formData);
         if (res.status === 201 || res.status === 200) {
           toast.success(`t("successfullyCommented")`);
-          queryClient.invalidateQueries(["comments", id]);
+          queryClient.invalidateQueries(["comments"]);
           setShowModal(false);
         } else {
           toast.error(t("someThingWentWrong"));
