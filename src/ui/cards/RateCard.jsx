@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 import StarsList from "../StarsList";
 import ReportModal from "../modals/ReportModal";
 import { useState } from "react";
@@ -9,16 +8,6 @@ import { useState } from "react";
 function RateCard({ rate }) {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
-
-  const timeDifference = getTimeDifference(rate?.created_at);
-  const creationTime = formatTimeDifference(
-    timeDifference.years,
-    timeDifference.months,
-    timeDifference.days,
-    timeDifference.hours,
-    timeDifference.minutes,
-    t
-  );
 
   return (
     <div className="rate-card">
@@ -31,7 +20,9 @@ function RateCard({ rate }) {
             <Link to={`/profile/${rate?.user?.id}`} className="name">
               {rate?.user?.name}
             </Link>
-            <span>{creationTime}</span>
+            <span>{`${new Date(rate?.created_at).toDateString()}, ${new Date(
+              rate?.created_at
+            ).toLocaleTimeString()}`}</span>
           </div>
           {rate?.rate ? (
             <div className="rate">

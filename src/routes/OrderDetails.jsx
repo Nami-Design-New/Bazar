@@ -1,7 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { ORDER_STATUS_AR, ORDER_STATUS_EN } from "../utils/constants";
-import { formatTimeDifference, getTimeDifference } from "../utils/helpers";
 import { Link } from "react-router-dom";
 import DataLoader from "../ui/DataLoader";
 import SectionHeader from "../ui/layout/SectionHeader";
@@ -15,16 +12,6 @@ function OrderDetails() {
   const { t } = useTranslation();
   const { isLoading: orderLoading, data: order, refetch } = useOrderDetails();
   const [loading, setLoading] = useState(false);
-  const lang = useSelector((state) => state.language.lang);
-  const timeDifference = getTimeDifference(order?.data?.created_at);
-  const creationTime = formatTimeDifference(
-    timeDifference.years,
-    timeDifference.months,
-    timeDifference.days,
-    timeDifference.hours,
-    timeDifference.minutes,
-    t
-  );
 
   const handleCancelOrder = async (e) => {
     e.preventDefault();
@@ -71,10 +58,14 @@ function OrderDetails() {
                         />
                       </Link>
                       <div className="d-flex flex-column gap-2">
-                      {order?.data?.market?.name}
+                        {order?.data?.market?.name}
                         <span className="box gradient-text">
                           <i className="fa-solid fa-clock"></i>
-                          {creationTime}
+                          {`${new Date(
+                            order?.data?.created_at
+                          ).toDateString()}, ${new Date(
+                            order?.data?.created_at
+                          ).toLocaleTimeString()}`}
                         </span>
                       </div>
                     </h5>

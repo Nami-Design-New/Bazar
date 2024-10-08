@@ -113,7 +113,9 @@
     "profileEditedSuccessfully": "Profile successfully updated",
     "otpSentSuccess": "Code sent successfully, please check your message",
     "otpResentSuccess": "Code resent successfully, please check your message",
-    "areYouSureYouWantToDeleteAccount": "Are you sure you want to delete this account?"
+    "areYouSureYouWantToDeleteAccount": "Are you sure you want to delete this account?",
+    "imageRequired": "Image is required",
+    "registerError": "An error occurred while registering the account, please try again and make sure your data is correct"
   },
   "profile": {
     "ads": "Ads",
@@ -347,7 +349,9 @@
     "main_imageHint": "Video Cover",
     "main_imageHintDescription": "This is the still image that appears before the video plays. It can be any frame you want to display to the audience before watching the video.",
     "successfullyDeleted": "Ad deleted successfully",
-    "contactTypeHint": "After entering the number, you must press the Verify button to add the number after verifying it."
+    "contactTypeHint": "After entering the number, you must press the Verify button to add the number after verifying it.",
+    "phoneRequired": "Please enter your phone number or you can cancel the call feature.",
+    "whatsappRequired": "Please enter your whatsapp number or you can cancel the whatsapp feature."
   },
   "markets": {
     "products": "Products",

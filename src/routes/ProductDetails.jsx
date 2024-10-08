@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import AdDetailsSlider from "../components/ad-details/AdDetailsSlider";
-import { formatTimeDifference, getTimeDifference } from "../utils/helpers";
 import { Link } from "react-router-dom";
 import useProductDetails from "../hooks/useProductDetails";
 import DataLoader from "../ui/DataLoader";
@@ -20,16 +19,6 @@ function ProductDetails() {
   const { isLoading: productLoading, data: product } = useProductDetails();
   const cart = useSelector((state) => state.cart.cartList);
   const queryClient = useQueryClient();
-
-  const timeDifference = getTimeDifference(product?.data?.created_at);
-  const creationTime = formatTimeDifference(
-    timeDifference.years,
-    timeDifference.months,
-    timeDifference.days,
-    timeDifference.hours,
-    timeDifference.minutes,
-    t
-  );
 
   const handleAddToCart = async () => {
     if (
@@ -140,7 +129,11 @@ function ProductDetails() {
                 {product?.data?.created_at ? (
                   <div className="time">
                     <img src="/images/clock.svg" alt="" />{" "}
-                    {product?.data?.created_at ? creationTime : "1h ago"}
+                    {`${new Date(
+                      product?.data?.created_at
+                    ).toDateString()}, ${new Date(
+                      product?.data?.created_at
+                    ).toLocaleTimeString()}`}
                   </div>
                 ) : null}
                 {product?.data?.view_count ? (

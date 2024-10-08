@@ -8918,6 +8918,8 @@ body .search-section .filter-wrap form .departments .deps li {
   flex-direction: column;
   gap: 10px;
   align-items: flex-start !important;
+  border-bottom: 1px solid #cacaca;
+  padding-bottom: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;

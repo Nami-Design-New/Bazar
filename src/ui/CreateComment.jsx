@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import RateScale from "./form-elements/RateScale";
 import StarsList from "./StarsList";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { formatTimeDifference, getTimeDifference } from "../utils/helpers";
 import axios from "../utils/axios";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
@@ -15,43 +14,33 @@ function CreateComment({ comment, setTargetedComment, refetch }) {
   const [commentLoading, setCommentLoading] = useState(false);
   const [formData, setFormData] = useState({
     rate: 0,
-    comment: ""
+    comment: "",
   });
   const [replayData, setReplayDataData] = useState({
-    comment: ""
+    comment: "",
   });
   const isLogged = useSelector((state) => state.authedUser.isLogged);
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const timeDifference = getTimeDifference(comment?.created_at);
-  const creationTime = formatTimeDifference(
-    timeDifference.years,
-    timeDifference.months,
-    timeDifference.days,
-    timeDifference.hours,
-    timeDifference.minutes,
-    t
-  );
-
   const handleChangeRate = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleChangeReplay = (e) => {
     setReplayDataData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleRatingChange = (rate) => {
     setFormData({
       ...formData,
-      rate
+      rate,
     });
   };
 
@@ -87,7 +76,7 @@ function CreateComment({ comment, setTargetedComment, refetch }) {
           refetch();
           setFormData({
             rate: 0,
-            comment: ""
+            comment: "",
           });
           setTargetedComment("");
         }
@@ -113,7 +102,11 @@ function CreateComment({ comment, setTargetedComment, refetch }) {
                 <Link to="/profile" className="name">
                   {comment.user.name}
                 </Link>
-                <span>{creationTime}</span>
+                <span>{`${new Date(
+                  comment?.created_at
+                ).toDateString()}, ${new Date(
+                  comment?.created_at
+                ).toLocaleTimeString()}`}</span>
               </div>
               <div className="rate">
                 <StarsList rate={comment.rate} />

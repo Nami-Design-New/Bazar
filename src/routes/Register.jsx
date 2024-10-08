@@ -10,7 +10,6 @@ function Register() {
     email: "",
     phone: "",
     password: "",
-    token: 123,
   });
   const [showOtp, setShowOtp] = useState(false);
   const [otpData, setOtpData] = useState({});

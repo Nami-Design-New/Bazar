@@ -54,9 +54,19 @@ const ChatRoom = ({ chat }) => {
     };
   }, []);
 
+  console.log(isRecording);
+
   const handleSendMessage = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    if (isRecording) {
+      stopRecording();
+      setIsRecording(false);
+    }
+
+    if (!message?.message) return;
+
     setMessages((prevMessages) => {
       return [
         ...prevMessages,
@@ -156,8 +166,6 @@ const ChatRoom = ({ chat }) => {
     const match = url.match(regex);
     return match ? match[1] : fileName;
   };
-
-  console.log(chat);
 
   return (
     <div className="chat-container">

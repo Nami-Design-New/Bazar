@@ -16,7 +16,6 @@ function Login() {
   const [formData, setFormData] = useState({
     phone: "",
     password: "",
-    token: 123234,
   });
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -43,10 +42,10 @@ function Login() {
         },
       });
       if (res.data.code === 200) {
+        navigate("/");
         toast.success(t("auth.loginSuccess"));
         dispatch(setUser(res.data.data));
         dispatch(setIsLogged(true));
-        navigate("/");
         setCookie("token", res.data.data.token, {
           path: "/",
           secure: true,

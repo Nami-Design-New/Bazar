@@ -8,7 +8,16 @@ import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axios from "../../utils/axios";
 import OtpContainer from "./../../ui/form-elements/OtpContainer";
 
-function Pricing({ formData, setFormData, setForm, loading }) {
+function Pricing({
+  formData,
+  setFormData,
+  setForm,
+  loading,
+  phoneChecked,
+  whatsappChecked,
+  setWhatsappChecked,
+  setPhoneChecked,
+}) {
   const { t } = useTranslation();
   const { id } = useParams();
 
@@ -25,13 +34,6 @@ function Pricing({ formData, setFormData, setForm, loading }) {
 
   const [phone, setPhone] = useState(formData?.phone_number || "");
   const [whatsapp, setWhatsapp] = useState(formData?.whatsapp_number || "");
-
-  const [phoneChecked, setPhoneChecked] = useState(
-    Boolean(formData?.phone_number)
-  );
-  const [whatsappChecked, setWhatsappChecked] = useState(
-    Boolean(formData?.whatsapp_number)
-  );
 
   const [showPhoneOtp, setShowPhoneOtp] = useState(false);
   const [showWhatsappOtp, setShowWhatsappOtp] = useState(false);
