@@ -1,9 +1,5 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import {
-  IconCirclePlus,
-  IconMessageCircle,
-  IconPhone,
-} from "@tabler/icons-react";
+import { IconMessageCircle, IconPhone } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,20 +11,12 @@ import AdDetailsSlider from "../components/ad-details/AdDetailsSlider";
 import DataLoader from "../ui/DataLoader";
 import useGetAdById from "./../hooks/ads/useGetAdById";
 import Post from "./../ui/cards/Post";
-import useAddToFavorite from "../hooks/useAddToFavorite";
-import useRemoveFromFavorite from "../hooks/useRemoveFromFavorite";
 import "swiper/swiper-bundle.css";
 import useFollow from "../hooks/useFollow";
 import useUnfollow from "../hooks/useUnfollow";
-import ReportModal from "../ui/modals/ReportModal";
-import { useState } from "react";
 import axios from "../utils/axios";
 import { toast } from "react-toastify";
-import useGetComments from "../hooks/useGetComments";
-import RateCard from "../ui/cards/RateCard";
-import useGetRates from "../hooks/useGetRates";
-import CreateCommentModal from "../ui/modals/CreateCommentModal";
-import CreateRateModal from "../ui/modals/CreateRateModal";
+import AdTabs from "../components/ad-details/AdTabs";
 const containerStyle = {
   width: "100%",
   height: "300px",
@@ -40,70 +28,16 @@ function AdDetails() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { id } = useParams();
-  const [showCommentModal, setShowCommentModal] = useState(false);
-  const [showAdReportModal, setShowAdReportModal] = useState(false);
-  const currentPageLink = window.location.href;
+
   const lang = useSelector((state) => state.language.lang);
   const user = useSelector((state) => state.authedUser.user);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
   const { isLoading, data: ad } = useGetAdById();
-  const { isLoading: commentsLoading, data: comments } = useGetComments(id);
-  const { isLoading: ratesLoading, data: rates } = useGetRates(id);
-  const { addToFavorite, isLoading: addingLoading } = useAddToFavorite();
-  const { removeFromFavorite, isLoading: removingLoading } =
-    useRemoveFromFavorite();
+
   const { follow, isLoading: followingLoading } = useFollow();
   const { unfollow, isLoading: unfollowingLoading } = useUnfollow();
   const isMyAd = Number(ad?.data?.user?.id) === Number(user?.id);
 
-  function handleToggleFavorite(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    if (isLogged) {
-      if (ad?.is_favorite) {
-        removeFromFavorite(
-          { id: ad?.id, type: "ad_id" },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries([
-                  "userAds",
-                  "adsByFilter",
-                  "favoriteAds",
-                ]);
-                queryClient.invalidateQueries(["adById", ad?.id]);
-              }
-            },
-          }
-        );
-      } else {
-        addToFavorite(
-          {
-            id: ad?.id,
-            type: "ad_id",
-          },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries([
-                  "userAds",
-                  "adsByFilter",
-                  "favoriteAds",
-                ]);
-                queryClient.invalidateQueries(["adById", ad?.id]);
-              }
-            },
-          }
-        );
-      }
-    } else {
-      navigate("/login");
-    }
-  }
   const openChat = async () => {
     if (isLogged) {
       sessionStorage.setItem("buyer_id", user?.id);
@@ -150,12 +84,7 @@ function AdDetails() {
       navigate("/login");
     }
   };
-  const socialShareLinks = {
-    facebook: `https://www.facebook.com/sharer/sharer.php?u=${currentPageLink}`,
-    instagram: `https://www.instagram.com/?url=${currentPageLink}`,
-    twitter: `https://twitter.com/intent/tweet?url=${currentPageLink}`,
-    whatsapp: `https://wa.me/?text=${currentPageLink}`,
-  };
+
   function handleToggleFollowing(e) {
     e.stopPropagation();
     e.preventDefault();
@@ -204,7 +133,8 @@ function AdDetails() {
       navigate("/login");
     }
   }
-  return isLoading || commentsLoading || ratesLoading ? (
+
+  return isLoading ? (
     <DataLoader />
   ) : ad?.data ? (
     <>
@@ -212,160 +142,13 @@ function AdDetails() {
         <div className="container">
           <div className="row px-2">
             <div className="col-lg-8 d-flex flex-column gap-4 p-0 pb-3 p-md-3">
-              <AdDetailsSlider images={ad?.data?.images} />
-              {ad?.data?.audio && (
-                <div className="audioPlayer">
-                  <audio controls className="w-100">
-                    <source src={ad?.data?.audio} type="audio/mpeg" />
-                  </audio>
-                </div>
-              )}
-              <div className="priceInfo">
-                <div className="price">
-                  <span> ${ad?.data?.price || 200} </span>
-                </div>
-                <button
-                  className={`favorite ${
-                    ad?.data?.is_favorite ? "active" : ""
-                  }`}
-                  onClick={handleToggleFavorite}
-                  disabled={addingLoading || removingLoading}
-                >
-                  <img src="/images/heart.svg" alt="heart" />
-                </button>
-                <div className="actions">
-                  <a href="listing.html" className="category">
-                    <img src={ad?.data?.category?.image} alt="category" />
-                    {ad?.data?.category?.name}
-                  </a>
-                  <div className="share">
-                    <span className="ps-2 text-capitalize fw-bold">
-                      {t("share.share")} :
-                    </span>
-                    <a
-                      href={socialShareLinks.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="twitter"
-                    >
-                      <img src="/images/twitter.svg" alt="" />
-                    </a>
-                    <a
-                      href={socialShareLinks.whatsapp}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="whatsapp"
-                    >
-                      <img src="/images/whatsapp.svg" alt="" />
-                    </a>
-                    <a
-                      href={socialShareLinks.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="instagram"
-                    >
-                      <img src="/images/instagram.svg" alt="" />
-                    </a>
-                    <a
-                      href={socialShareLinks.facebook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="facebook"
-                    >
-                      <img src="/images/facebook.svg" alt="" />
-                    </a>
-                  </div>
-                  <span
-                    className="action-btn report"
-                    onClick={() => {
-                      if (isLogged) {
-                        setShowAdReportModal(true);
-                      } else {
-                        navigate("/login");
-                      }
-                    }}
-                  >
-                    <i className="fa-regular fa-flag"></i> {t("report")}
-                  </span>
-                </div>
+              <div className="col-12 p-2">
+                <AdDetailsSlider images={ad?.data?.images} />
               </div>
-              <div className="itemInfo">
-                <h3 className="title">{ad?.data?.title}</h3>
-                <div className="itemBottom">
-                  <Link className="location">
-                    <img src="/images/location.svg" alt="" />
-                    <span> {ad?.data?.address} </span>
-                  </Link>
-                  <div className="time">
-                    <img src="/images/clock.svg" alt="" />{" "}
-                    {`${new Date(
-                      ad?.data?.created_at
-                    ).toDateString()}, ${new Date(
-                      ad?.data?.created_at
-                    ).toLocaleTimeString()}`}
-                  </div>
-                  <div className="views">
-                    <img src="/images/eye.svg" alt="" /> {ad?.data?.view_count}
-                  </div>
-                </div>
-                <p className="description">{ad?.data?.description}</p>
+
+              <div className="col-12 p-2">
+                <AdTabs ad={ad} isMyAd={isMyAd} />
               </div>
-              {comments &&
-                (!comments?.data && isMyAd ? null : (
-                  <div className="itemDetailsBox d-flex flex-column gap-2">
-                    <div className="w-100 d-flex align-items-center justify-content-between gap-2">
-                      <h5>{t("comments")}</h5>
-                      {isMyAd ? null : (
-                        <span
-                          className="custom-btn filled"
-                          style={{
-                            width: "unset !important",
-                            aspectRatio: " 1 / 1",
-                            cursor: "pointer",
-                          }}
-                          onClick={() => setShowCommentModal(true)}
-                        >
-                          <span>
-                            <IconCirclePlus stroke={1.5} />
-                          </span>
-                        </span>
-                      )}
-                    </div>
-                    <div className="scrollVertical">
-                      {comments?.data?.map((comment) => (
-                        <RateCard key={comment?.id} rate={comment} />
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              {rates &&
-                (!rates?.data && isMyAd ? null : (
-                  <div className="itemDetailsBox d-flex flex-column gap-2">
-                    <div className="w-100 d-flex align-items-center justify-content-between gap-2">
-                      <h5>{t("rates")}</h5>
-                      {ad?.data?.is_rated || isMyAd ? null : (
-                        <span
-                          className="custom-btn filled"
-                          style={{
-                            width: "unset !important",
-                            aspectRatio: " 1 / 1",
-                            cursor: "pointer",
-                          }}
-                          onClick={() => setShowCommentModal(true)}
-                        >
-                          <span>
-                            <IconCirclePlus stroke={1.5} />
-                          </span>
-                        </span>
-                      )}
-                    </div>
-                    <div className="scrollVertical">
-                      {rates?.data?.map((rate) => (
-                        <RateCard key={rate?.id} rate={rate} />
-                      ))}
-                    </div>
-                  </div>
-                ))}
             </div>
             <div className="col-lg-4 p-0 p-md-3">
               <div className="advertiserDetails mb-3">
@@ -543,22 +326,6 @@ function AdDetails() {
           </div>
         </div>
       </section>
-      <ReportModal
-        id={ad?.data?.id}
-        type="ad"
-        showModal={showAdReportModal}
-        setShowModal={setShowAdReportModal}
-      />
-      <CreateCommentModal
-        id={ad?.data?.id}
-        showModal={showCommentModal}
-        setShowModal={setShowCommentModal}
-      />
-      <CreateRateModal
-        id={ad?.data?.id}
-        showModal={showCommentModal}
-        setShowModal={setShowCommentModal}
-      />
     </>
   ) : (
     <section className="error-section">

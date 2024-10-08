@@ -1,5 +1,47 @@
 .itemDetails {
   padding: 40px 0;
+
+  .tabs-section {
+    padding: 0 !important;
+    position: relative;
+    .nav-tabs {
+      padding: 4px;
+      border: 0;
+      gap: 8px;
+      margin-bottom: 16px;
+      // background: #e9e9e9;
+      border: 1px dashed #cecece !important;
+      border-radius: 12px;
+
+      @media screen and (max-width: 768px) {
+        gap: 8px !important;
+      }
+      .nav-item {
+        flex: 1;
+        border-radius: 0 !important;
+        button {
+          background: #f3f3f3 !important;
+          color: $black !important;
+          font-size: 18px;
+          border-radius: 12px !important;
+          width: 100%;
+          border: 0;
+          padding: 16px;
+          white-space: nowrap;
+          color: $main;
+          position: relative;
+          &.active {
+            background: $main !important;
+          }
+          @media screen and (max-width: 768px) {
+            font-size: 14px;
+            padding: 10px;
+          }
+        }
+      }
+    }
+  }
+
   .btns-wrapper {
     display: flex;
     align-items: center;

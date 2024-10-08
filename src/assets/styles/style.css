@@ -4742,7 +4742,7 @@ body main .market-details-page .tabs-section .nav-tabs {
   border: 0;
   gap: 8px;
   margin-bottom: 16px;
-  border: 1px dashed #cecece;
+  border: 1px dashed #cecece !important;
   border-radius: 12px;
 }
 @media screen and (max-width: 768px) {
@@ -5628,6 +5628,7 @@ body main .rate-card {
   padding: 16px;
   border-radius: 12px;
   position: relative;
+  border: 1px solid #d9d9d9;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -5801,6 +5802,48 @@ body main .coupons-page .filter-wrapper .filter-list .filter-item.active {
 }
 body main .itemDetails {
   padding: 40px 0;
+}
+body main .itemDetails .tabs-section {
+  padding: 0 !important;
+  position: relative;
+}
+body main .itemDetails .tabs-section .nav-tabs {
+  padding: 4px;
+  border: 0;
+  gap: 8px;
+  margin-bottom: 16px;
+  border: 1px dashed #cecece !important;
+  border-radius: 12px;
+}
+@media screen and (max-width: 768px) {
+  body main .itemDetails .tabs-section .nav-tabs {
+    gap: 8px !important;
+  }
+}
+body main .itemDetails .tabs-section .nav-tabs .nav-item {
+  flex: 1;
+  border-radius: 0 !important;
+}
+body main .itemDetails .tabs-section .nav-tabs .nav-item button {
+  background: #f3f3f3 !important;
+  color: #000 !important;
+  font-size: 18px;
+  border-radius: 12px !important;
+  width: 100%;
+  border: 0;
+  padding: 16px;
+  white-space: nowrap;
+  color: #4381f8;
+  position: relative;
+}
+body main .itemDetails .tabs-section .nav-tabs .nav-item button.active {
+  background: #4381f8 !important;
+}
+@media screen and (max-width: 768px) {
+  body main .itemDetails .tabs-section .nav-tabs .nav-item button {
+    font-size: 14px;
+    padding: 10px;
+  }
 }
 body main .itemDetails .btns-wrapper {
   display: flex;
