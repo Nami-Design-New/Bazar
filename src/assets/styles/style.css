@@ -5646,9 +5646,7 @@ body main .rate-card.replay-to {
 }
 body main .rate-card ul {
   padding: 0 24px;
-}
-body main .rate-card ul .replay-card {
-  border-style: dashed !important;
+  border: 1px dashed #d9d9d9 !important;
 }
 body main .rate-card ul .replay-card .image-wrapper {
   width: 36px !important;
