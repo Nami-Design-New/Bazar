@@ -3,11 +3,12 @@ import useAddToFavorite from "../../hooks/useAddToFavorite";
 import useRemoveFromFavorite from "../../hooks/useRemoveFromFavorite";
 import { useSelector } from "react-redux";
 
-function FavoriteMarketCard({ market }) {
+function FavoriteMarketCard({ market, showFav = false }) {
   const { addToFavorite, isLoading: addingLoading } = useAddToFavorite();
   const { removeFromFavorite, isLoading: removingLoading } =
     useRemoveFromFavorite();
   const isLogged = useSelector((state) => state.authedUser.isLogged);
+
   const navigate = useNavigate();
 
   function handleToggleFavorite(e) {
@@ -63,17 +64,19 @@ function FavoriteMarketCard({ market }) {
               </div>
             </div>
 
-            <div className="action-boxes">
-              <span
-                className={`action-btn favorite ${
-                  market?.is_favorite ? "liked" : ""
-                }`}
-                onClick={handleToggleFavorite}
-                disabled={addingLoading || removingLoading}
-              >
-                <i className="fa-solid fa-heart"></i>
-              </span>
-            </div>
+            {showFav && (
+              <div className="action-boxes">
+                <span
+                  className={`action-btn favorite ${
+                    market?.is_favorite ? "liked" : ""
+                  }`}
+                  onClick={handleToggleFavorite}
+                  disabled={addingLoading || removingLoading}
+                >
+                  <i className="fa-solid fa-heart"></i>
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </div>

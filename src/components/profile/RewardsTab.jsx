@@ -9,28 +9,40 @@ import { useState } from "react";
 import axios from "../../utils/axios";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
+import useGetRewardValue from "../../hooks/profile/useGetRewardValue";
+import { useNavigate } from "react-router-dom";
 
 function RewardsTab({ isMyAccount, user }) {
   const { t } = useTranslation();
   const { isLoading: rewardsLoading, data: rewards } = useUserRewards(user?.id);
   const { isLoading: settingsLoading, data: settings } = useGetSettings();
   const [finishLoading, setFinishLoading] = useState(false);
+  const { data: rewardValue } = useGetRewardValue();
+
+  console.log(rewardValue);
 
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
-  const hasReward =
-    rewards?.data && rewards?.data?.length > 0
-      ? rewards?.data?.some((reward) => reward?.rewarded)
-      : false;
+  // const [hasReward, setHasReward] = useState(false);
+  // useEffect(() => {
+  //   setHasReward(() =>
+  //     rewards?.data && rewards?.data?.length > 0
+  //       ? rewards?.data?.some((reward) => reward?.rewarded)
+  //       : false
+  //   );
+  // }, [rewards?.data]);
 
   const handleFinishReward = async (e) => {
     e.preventDefault();
     setFinishLoading(true);
     try {
       const res = await axios.get("/user/finish_reward");
-      if (res.data.code === 200) {
+      if (res?.data?.code === 200 || res?.data?.code === 201) {
         toast.success(t("profile.successfullyWithdrawRewards"));
-        queryClient.invalidateQueries("userRewards");
+        queryClient.invalidateQueries({ queryKey: ["userRewards"] });
+        queryClient.invalidateQueries({ queryKey: ["rewardValue"] });
+        navigate("/profile?tab=balance");
       } else {
         toast.error("profile.finishRewardError");
         setFinishLoading(false);
@@ -49,17 +61,20 @@ function RewardsTab({ isMyAccount, user }) {
   ) : rewards?.data && rewards?.data?.length > 0 ? (
     <>
       {isMyAccount &&
-        (hasReward ? (
-          <div className="w-100 btn-wrapper d-flex justify-content-end mb-3 p-2">
-            <div className="btns-wrapper">
-              <button
-                className="btn custom-btn filled"
-                style={{ width: "unset !important" }}
-                onClick={handleFinishReward}
-              >
-                <span></span>
-              </button>
+        (rewardValue?.data ? (
+          <div className="rewarded d-flex align-items-center flex-row flex-wrap justify-content-center">
+            <h4 style={{ textWrap: "balance" }}>{t("profile.noRewards")}</h4>
+            <div
+              className="btns-wrapper d-flex align-items-center justify-content-end"
+              style={{ flex: "1 0" }}
+            >
               <SubmitButton
+                className={"custom-btn filled"}
+                style={{
+                  width: "unset !important",
+                  padding: "8px 16px",
+                  minWidth: "160px",
+                }}
                 name={t("profile.withdrawRewards")}
                 loading={finishLoading}
                 onClick={handleFinishReward}
@@ -67,7 +82,7 @@ function RewardsTab({ isMyAccount, user }) {
             </div>
           </div>
         ) : (
-          <div className="no-rewards">
+          <div className={"no-rewards"}>
             <h4 style={{ textWrap: "balance" }}>{t("profile.noRewards")}</h4>
             {settings?.reward_rate_average ||
             settings?.reward_favorite_count ? (

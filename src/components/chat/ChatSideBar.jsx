@@ -8,7 +8,7 @@ const ChatSideBar = ({
   showChatsMenu,
   chats,
   targetChat,
-  setTargetChat
+  setTargetChat,
 }) => {
   const { t } = useTranslation();
   const { user } = useSelector((state) => state.authedUser);
@@ -61,6 +61,8 @@ const ChatSideBar = ({
                   : chat?.buyer?.name
                 : t("chat.deletedAccount")}
             </h6>
+
+            <p className="one-line-wrap">{chat?.ad?.title}</p>
 
             <p className="lastMessage unread">
               {chat?.last_message?.type !== "text" ? (

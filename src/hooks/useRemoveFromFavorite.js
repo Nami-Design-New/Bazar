@@ -3,19 +3,13 @@ import { removeFromFavorite as removeFromFavoriteApi } from "../services/apiFavo
 
 function useRemoveFromFavorite() {
   const queryClient = useQueryClient();
-
   const { mutate: removeFromFavorite, isLoading } = useMutation({
     mutationFn: (requestBody) => removeFromFavoriteApi(requestBody),
     onSuccess: () => {
-      queryClient.invalidateQueries([
-        "adsByFilter",
-        "marketDetails",
-        "ads-videos",
-        "marketsByFilter",
-        "favoriteAds",
-        "favoriteMarkets",
-        "userRewards",
-      ]);
+      queryClient.invalidateQueries({ queryKey: ["favoriteMarkets"] });
+      queryClient.invalidateQueries({ queryKey: ["favoriteAds"] });
+      queryClient.invalidateQueries({ queryKey: ["marketDetails"] });
+      queryClient.invalidateQueries({ queryKey: ["adById"] });
     },
   });
   return { removeFromFavorite, isLoading };

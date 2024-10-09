@@ -17,6 +17,8 @@ function Location({ formData, setFormData, setForm }) {
     formData?.city_id ? true : false
   );
 
+  // const user = useSelector((state) => state.authedUser.user);
+
   useEffect(() => {
     const loadGoogleMapsScript = () => {
       if (!window.google) {

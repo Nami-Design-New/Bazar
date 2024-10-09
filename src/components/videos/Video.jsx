@@ -86,15 +86,17 @@ function Video({ ad }) {
     }
   }
 
+  console.log(ad?.user);
+
   function handleToggleFollowing(e) {
     e.stopPropagation();
     e.preventDefault();
     if (isLogged) {
-      if (ad?.data?.user?.is_follow) {
-        unfollow({ id: ad?.data?.user?.id, type: "user" });
+      if (ad?.user?.is_follow) {
+        unfollow({ id: ad?.user?.id, type: "user" });
       } else {
         follow({
-          id: ad?.data?.user?.id,
+          id: ad?.user?.id,
           type: "user",
         });
       }

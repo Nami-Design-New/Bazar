@@ -13,12 +13,14 @@ function MarketBanner({ market }) {
   const [showTooltip, setShowTooltip] = useState(false);
   const currentPageLink = window.location.href;
 
+  useRemoveFromFavorite();
   const { addToFavorite, isLoading: addingLoading } = useAddToFavorite();
   const { removeFromFavorite, isLoading: removingLoading } =
     useRemoveFromFavorite();
   const { follow, isLoading: followingLoading } = useFollow();
   const { unfollow, isLoading: unfollowingLoading } = useUnfollow();
   const isLogged = useSelector((state) => state.authedUser.isLogged);
+
   const navigate = useNavigate();
 
   function handleToggleFavorite(e) {
