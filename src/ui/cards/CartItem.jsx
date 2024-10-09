@@ -105,8 +105,8 @@ function CartItem({ item }) {
                   <h6 className="mb-0">
                     {(item?.product?.offer_price
                       ? item?.product?.offer_price
-                      : item?.product?.price) * item.quantity}
-                    <i className="fa-solid fa-dollar-sign"></i>
+                      : item?.product?.price) * item.quantity}{" "}
+                    {t("currency.sar")}
                   </h6>
                   <button
                     className="delete_btn"

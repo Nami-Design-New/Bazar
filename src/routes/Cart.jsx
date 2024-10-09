@@ -62,7 +62,7 @@ function Cart() {
                               : item?.product?.price),
                         0
                       )}
-                      <i className="fa-solid fa-dollar-sign"></i>
+                      {t("currency.sar")}
                     </h6>
                   </div>
                 </div>

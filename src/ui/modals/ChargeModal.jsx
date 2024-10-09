@@ -21,8 +21,8 @@ const ChargeModal = ({ showModal, setShowModal, cartTotalPrice }) => {
           <h3 className="text-center">
             {t("cart.youDontHaveEnoughBallance")}{" "}
             <span>
-              {cartTotalPrice}
-              <i className="fa-solid fa-dollar-sign"></i>
+              {cartTotalPrice} {" "}
+              {t("currency.sar")}
             </span>
           </h3>
         )}

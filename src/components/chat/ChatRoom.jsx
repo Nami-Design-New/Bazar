@@ -170,7 +170,16 @@ const ChatRoom = ({ chat }) => {
   return (
     <div className="chat-container">
       <div className="chat-head">
-        <div className="user">
+        <Link
+          to={`/profile/${
+            chat?.buyer
+              ? user?.id === chat?.buyer?.id
+                ? chat?.seller?.id
+                : chat?.buyer?.id
+              : chat?.buyer?.id
+          }`}
+          className="user"
+        >
           <img
             src={
               chat?.buyer
@@ -188,7 +197,7 @@ const ChatRoom = ({ chat }) => {
                 : chat?.buyer?.name
               : t("chat.deletedAccount")}
           </h6>
-        </div>
+        </Link>
       </div>
 
       {chat?.ad && (

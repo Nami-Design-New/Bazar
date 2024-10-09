@@ -80,14 +80,11 @@ function Markets() {
   function handleClearFilters() {
     setSearchParams({});
     setSearchFilterData({
-      search: searchParams.get("search") || "",
-      page: Number(searchParams.get("page")) || null,
-      type: Number(searchParams.get("type")) || "",
-      city_id: Number(searchParams.get("city_id")) || "",
-      area_id: Number(searchParams.get("area_id")) || "",
-      category_id: searchParams.get("category_id")
-        ? Number(searchParams.get("category_id"))
-        : "",
+      search: "",
+      type: "",
+      city_id: "",
+      area_id: "",
+      category_id: "",
     });
   }
 
@@ -192,7 +189,6 @@ function Markets() {
                     />
                   </div>
                   <div className="d-flex gap-2 w-100">
-                   
                     <button
                       onClick={handleClearFilters}
                       className="search-btn clear"

@@ -28,7 +28,7 @@ function BalanceTab({ user }) {
                 {t("balance.totalBalance")}
               </span>
               <h6>
-                {user?.wallet} <i className="fa-solid fa-dollar-sign"></i>
+                {user?.wallet} {t("currency.sar")}
               </h6>
             </div>
           </div>

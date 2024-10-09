@@ -38,15 +38,13 @@ const OrderModal = ({
         <h3>
           {t("cart.currentBallance")}:{" "}
           <span>
-            {ballance}
-            <i className="fa-solid fa-dollar-sign"></i>
+            {ballance} {t("currency.sar")}
           </span>
         </h3>
         <h3>
           {t("cart.valueWillbediscountedfromyourballance")}{" "}
           <span>
-            {cartTotalPrice}
-            <i className="fa-solid fa-dollar-sign"></i>
+            {cartTotalPrice} {t("currency.sar")}
           </span>{" "}
           {t("cart.fromYourWallet")}
         </h3>

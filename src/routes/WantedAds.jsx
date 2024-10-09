@@ -100,27 +100,16 @@ function WantedAds() {
   function handleClearFilters() {
     setSearchParams({});
     setSearchFilterData({
-      search: searchParams.get("search") || "",
-      price_from: Number(searchParams.get("price_from")) || null,
-      price_to: Number(searchParams.get("price_to")) || null,
-      duration_from: Number(searchParams.get("duration_from")) || null,
-      duration_to: Number(searchParams.get("duration_to")) || null,
-      page: Number(searchParams.get("page")) || null,
-      ad_type: Number(searchParams.get("ad_type")) || "buy",
-      city_id: Number(searchParams.get("city_id")) || "",
-      area_id: Number(searchParams.get("area_id")) || "",
-      category_id: searchParams.get("category_id")
-        ? searchParams
-            .get("category_id")
-            .split("-")
-            .map((category) => Number(category))
-        : [],
-      sub_category_id: searchParams.get("sub_category_id")
-        ? searchParams
-            .get("sub_category_id")
-            .split("-")
-            .map((subcategory) => Number(subcategory))
-        : [],
+      search: "",
+      price_from: null,
+      price_to: null,
+      duration_from: null,
+      duration_to: null,
+      ad_type: "buy",
+      city_id: "",
+      area_id: "",
+      category_id: "",
+      sub_category_id: "",
     });
   }
 
@@ -140,7 +129,7 @@ function WantedAds() {
         <div className="container">
           <div className="row">
             <>
-            <aside
+              <aside
                 className={`col-lg-3 p-2 pt-3 side-menu ${
                   isFilterOpen ? "active" : ""
                 }`}
@@ -194,7 +183,6 @@ function WantedAds() {
                       dynamicFilterData={dynamicFilterData}
                     />
                     <div className="d-flex gap-2 w-100">
-                     
                       <button
                         onClick={handleClearFilters}
                         className="search-btn clear"
