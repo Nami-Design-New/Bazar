@@ -136,14 +136,14 @@ function Video({ ad }) {
       )}
 
       <div className="video_utils">
-        <div className="user">
+        <Link to={`/profile/${ad?.user?.id}`} className="user">
           <img src={ad?.user?.image} alt="user" />
           {!ad?.user?.is_follow && (
             <button className={`follow `} onClick={handleToggleFollowing}>
               <i className="fa-solid fa-plus"></i>
             </button>
           )}
-        </div>
+        </Link>
 
         <div className="actions">
           <button

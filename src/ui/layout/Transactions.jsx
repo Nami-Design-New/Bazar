@@ -22,8 +22,8 @@ function Transactions() {
                 <Link to={``} className="transaction-box" key={index}>
                   <div className="money-wrapper">
                     <h5>
-                      {transaction?.amount}
-                      <i className="fa-solid fa-dollar-sign"></i>
+                      {transaction?.amount} {" "}
+                      {t("currency.sar")}
                     </h5>
                   </div>
                   <div className="info-wrapper">

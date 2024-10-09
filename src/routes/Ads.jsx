@@ -29,7 +29,7 @@ function Ads() {
   const { isLoading: filtersLoading, data: filters } = useGetFilters();
 
   const [dynamicFilterData, setDynamicFilterData] = useState({});
-  
+
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
     price_from: Number(searchParams.get("price_from")) || null,
@@ -95,21 +95,16 @@ function Ads() {
   function handleClearFilters() {
     setSearchParams({});
     setSearchFilterData({
-      search: searchParams.get("search") || "",
-      price_from: Number(searchParams.get("price_from")) || null,
-      price_to: Number(searchParams.get("price_to")) || null,
-      duration_from: Number(searchParams.get("duration_from")) || null,
-      duration_to: Number(searchParams.get("duration_to")) || null,
-      page: Number(searchParams.get("page")) || null,
-      ad_type: Number(searchParams.get("ad_type")) || "sell",
-      city_id: Number(searchParams.get("city_id")) || "",
-      area_id: Number(searchParams.get("area_id")) || "",
-      category_id: searchParams.get("category_id")
-        ? Number(searchParams.get("category_id"))
-        : "",
-      sub_category_id: searchParams.get("sub_category_id")
-        ? Number(searchParams.get("sub_category_id"))
-        : "",
+      search: "",
+      price_from: null,
+      price_to: null,
+      duration_from: null,
+      duration_to: null,
+      ad_type: "sell",
+      city_id: "",
+      area_id: "",
+      category_id: "",
+      sub_category_id: "",
     });
   }
 
@@ -183,7 +178,6 @@ function Ads() {
                       dynamicFilterData={dynamicFilterData}
                     />
                     <div className="d-flex gap-2 w-100">
-                     
                       <button
                         onClick={handleClearFilters}
                         className="search-btn clear"

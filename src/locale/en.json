@@ -225,7 +225,7 @@
     "withdrawSuccessfully": "Withdrawal completed successfully",
     "noTransactions": "No financial transactions available",
     "conditionNote1": "Bank transfers you send are international, and depending on your bank, the transfer may go through an intermediary bank to complete the transfer, which will result in additional fees being deducted.",
-    "conditionNote2": "The local bank you use may charge additional fees for receiving international wire transfers or fees for converting currency from dollars to local currency."
+    "conditionNote2": "The local bank you use may charge additional fees for receiving international wire transfers or fees for converting currency from SARs to local currency."
   },
   "manageAccounts": {
     "headerText": "Manage Bank Accounts",

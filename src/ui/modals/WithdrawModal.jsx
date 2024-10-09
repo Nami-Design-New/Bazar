@@ -84,7 +84,7 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
             {t("cart.youDontHaveEnoughBallance")}{" "}
             <span>
               {cartTotalPrice}
-              <i className="fa-solid fa-dollar-sign"></i>
+              {t("currency.sar")}
             </span>
           </h3>
         )}
