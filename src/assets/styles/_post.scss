@@ -48,7 +48,6 @@
       }
       &.favorite,
       &.delete {
-        &:hover,
         &.active {
           background-color: red;
         }
@@ -168,11 +167,10 @@
           font-weight: 600;
           position: relative;
           // color: $main;
-          svg{
+          svg {
             width: 20px;
             height: 20px;
             stroke: $main;
-           
           }
         }
       }

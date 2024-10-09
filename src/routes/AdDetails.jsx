@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IconMessageCircle, IconPhone } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -27,7 +27,6 @@ function AdDetails() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { id } = useParams();
 
   const lang = useSelector((state) => state.language.lang);
   const user = useSelector((state) => state.authedUser.user);
@@ -90,44 +89,12 @@ function AdDetails() {
     e.preventDefault();
     if (isLogged) {
       if (ad?.data?.user?.is_follow) {
-        unfollow(
-          { id: ad?.data?.user?.id, type: "user" },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries(["adById", id]);
-                queryClient.invalidateQueries([
-                  "ads-videos",
-                  "favoriteAds",
-                  "adsByFilter",
-                ]);
-              }
-            },
-          }
-        );
+        unfollow({ id: ad?.data?.user?.id, type: "user" });
       } else {
-        follow(
-          {
-            id: ad?.data?.user?.id,
-            type: "user",
-          },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries(["adById", id]);
-                queryClient.invalidateQueries([
-                  "ads-videos",
-                  "favoriteAds",
-                  "adsByFilter",
-                ]);
-              }
-            },
-          }
-        );
+        follow({
+          id: ad?.data?.user?.id,
+          type: "user",
+        });
       }
     } else {
       navigate("/login");

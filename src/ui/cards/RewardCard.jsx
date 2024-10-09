@@ -1,73 +1,16 @@
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { calculateDate } from "../../utils/helpers";
 import { toast } from "react-toastify";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import axios from "./../../utils/axios";
 import useUserAds from "../../hooks/ads/useUserAds";
-import { useSelector } from "react-redux";
-import useAddToFavorite from "../../hooks/useAddToFavorite";
-import useRemoveFromFavorite from "../../hooks/useRemoveFromFavorite";
-import { useQueryClient } from "@tanstack/react-query";
 
-function RewardCard({ ad, isMyAccount, userId }) {
+function RewardCard({ ad, userId }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const { refetch } = useUserAds();
-  const { addToFavorite, isLoading: addingLoading } = useAddToFavorite();
-  const { removeFromFavorite, isLoading: removingLoading } =
-    useRemoveFromFavorite();
-  const isLogged = useSelector((state) => state.authedUser.isLogged);
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
-
-  function handleToggleFavorite(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    if (isLogged) {
-      if (ad?.is_favorite) {
-        removeFromFavorite(
-          { id: ad?.id, type: "ad_id" },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries([
-                  "userAds",
-                  "adsByFilter",
-                  "favoriteAds",
-                ]);
-              }
-            },
-          }
-        );
-      } else {
-        addToFavorite(
-          {
-            id: ad?.id,
-            type: "ad_id",
-          },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries([
-                  "userAds",
-                  "adsByFilter",
-                  "favoriteAds",
-                ]);
-              }
-            },
-          }
-        );
-      }
-    } else {
-      navigate("/login");
-    }
-  }
 
   const [showConfirmation, setShowConfirmation] = useState(false);
 
@@ -139,29 +82,17 @@ function RewardCard({ ad, isMyAccount, userId }) {
           </span>
         </div>
         <div className="action-boxes">
-          {isMyAccount ? (
-            <>
-              <span
-                className="action-btn delete"
-                onClick={handleOpenConfirmation}
-              >
-                <i className="fa-regular fa-trash "></i>
-              </span>
-              <Link to={`/add-ad/${ad?.id}`} className="action-btn edit">
-                <i className="fa-regular fa-pen-to-square"></i>
-              </Link>
-            </>
-          ) : (
+          <>
             <span
-              className={`action-btn favorite ${
-                ad?.is_favorite ? "liked" : ""
-              }`}
-              onClick={handleToggleFavorite}
-              disabled={removingLoading || addingLoading}
+              className="action-btn delete"
+              onClick={handleOpenConfirmation}
             >
-              <i className="fa-solid fa-heart"></i>
+              <i className="fa-regular fa-trash "></i>
             </span>
-          )}
+            <Link to={`/add-ad/${ad?.id}`} className="action-btn edit">
+              <i className="fa-regular fa-pen-to-square"></i>
+            </Link>
+          </>
         </div>
       </div>
       <div className="card-statistics">

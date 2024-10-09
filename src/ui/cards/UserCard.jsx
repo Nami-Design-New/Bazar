@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import useFollow from "../../hooks/useFollow";
 import useUnfollow from "../../hooks/useUnfollow";
-import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
@@ -9,7 +8,6 @@ function UserCard({ user, type }) {
   const { t } = useTranslation();
   const { authedUser } = useSelector((state) => state.authedUser);
   const isMyAccount = !user || Number(user?.id) === Number(authedUser?.id);
-  const queryClient = useQueryClient();
   const { follow, isLoading: followingLoading } = useFollow();
   const { unfollow, isLoading: unfollowingLoading } = useUnfollow();
 
@@ -20,54 +18,21 @@ function UserCard({ user, type }) {
     console.log(user);
 
     if (type === "following") {
-      unfollow(
-        {
-          id: user?.followed_id,
-          type: "user",
-        },
-        {
-          onSuccess: (res) => {
-            if (res?.data?.code !== 200 || res?.data?.code !== 201)
-              throw new Error(res?.message);
-            else {
-              queryClient.invalidateQueries(["followers", "followings"]);
-            }
-          },
-        }
-      );
+      unfollow({
+        id: user?.followed_id,
+        type: "user",
+      });
     } else {
       if (user?.user?.is_follow) {
-        unfollow(
-          {
-            id: user?.user?.id,
-            type: "user",
-          },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries(["followers", "followings"]);
-              }
-            },
-          }
-        );
+        unfollow({
+          id: user?.user?.id,
+          type: "user",
+        });
       } else {
-        follow(
-          {
-            id: user?.user?.id,
-            type: "user",
-          },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries(["followers", "followings"]);
-              }
-            },
-          }
-        );
+        follow({
+          id: user?.user?.id,
+          type: "user",
+        });
       }
     }
   }

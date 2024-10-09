@@ -48,8 +48,6 @@ function OrderCard({ order }) {
     return status;
   };
 
-  console.log(progressWidth());
-
   return (
     <Link to={`/order-details/${order?.id}`} className={`order-card`}>
       <div className="card-header">

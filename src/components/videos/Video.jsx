@@ -10,12 +10,10 @@ import useFollow from "../../hooks/useFollow";
 import useUnfollow from "../../hooks/useUnfollow";
 import useRemoveFromFavorite from "../../hooks/useRemoveFromFavorite";
 import { useSelector } from "react-redux";
-import { useQueryClient } from "@tanstack/react-query";
 
 function Video({ ad }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
   const videoRef = useRef(null);
   const [showComments, setShowComments] = useState(false);
   const [showShare, setShowShare] = useState(false);
@@ -76,44 +74,12 @@ function Video({ ad }) {
     e.preventDefault();
     if (isLogged) {
       if (ad?.is_favorite) {
-        removeFromFavorite(
-          { id: ad?.id, type: "ad_id" },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries([
-                  "userAds",
-                  "adsByFilter",
-                  "favoriteAds",
-                ]);
-                queryClient.invalidateQueries(["adById", ad?.id]);
-              }
-            },
-          }
-        );
+        removeFromFavorite({ id: ad?.id, type: "ad_id" });
       } else {
-        addToFavorite(
-          {
-            id: ad?.id,
-            type: "ad_id",
-          },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries([
-                  "userAds",
-                  "adsByFilter",
-                  "favoriteAds",
-                ]);
-                queryClient.invalidateQueries(["adById", ad?.id]);
-              }
-            },
-          }
-        );
+        addToFavorite({
+          id: ad?.id,
+          type: "ad_id",
+        });
       }
     } else {
       navigate("/login");
@@ -125,42 +91,12 @@ function Video({ ad }) {
     e.preventDefault();
     if (isLogged) {
       if (ad?.data?.user?.is_follow) {
-        unfollow(
-          { id: ad?.data?.user?.id, type: "user" },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries([
-                  "ads-videos",
-                  "favoriteAds",
-                  "adsByFilter",
-                ]);
-              }
-            },
-          }
-        );
+        unfollow({ id: ad?.data?.user?.id, type: "user" });
       } else {
-        follow(
-          {
-            id: ad?.data?.user?.id,
-            type: "user",
-          },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries([
-                  "ads-videos",
-                  "favoriteAds",
-                  "adsByFilter",
-                ]);
-              }
-            },
-          }
-        );
+        follow({
+          id: ad?.data?.user?.id,
+          type: "user",
+        });
       }
     } else {
       navigate("/login");
