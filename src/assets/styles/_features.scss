@@ -1182,9 +1182,29 @@
     padding-right: 26px;
   }
   ul {
-    padding: 0 24px;
-    border: 1px dashed $LightGray !important;
+    &:has(li) {
+      padding: 0 24px;
+      border: 1px dashed $LightGray !important;
+      border-radius: 12px;
+    }
+    li {
+      background: none !important;
+      display: flex;
+      padding: 12px;
+      border-radius: 0 !important;
+      gap: 0 !important;
+      &:not(:last-of-type) {
+        border-bottom: 1px dashed $LightGray;
+      }
+
+      p {
+        font-size: 14px !important;
+        font-weight: 400 !important;
+        color: $black !important;
+      }
+    }
     .replay-card {
+      border: none !important;
       .image-wrapper {
         width: 36px !important;
         height: 36px !important;
@@ -1194,7 +1214,8 @@
         font-size: 14px;
       }
 
-      .time {
+      .time,
+      span {
         font-size: 12px;
       }
     }
@@ -1255,7 +1276,8 @@
         position: relative;
         margin: 0;
       }
-      .time {
+      .time,
+      span {
         display: flex;
         font-size: 14px;
         color: #00000099;
