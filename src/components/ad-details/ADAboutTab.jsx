@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import useAddToFavorite from "../../hooks/useAddToFavorite";
 import useRemoveFromFavorite from "../../hooks/useRemoveFromFavorite";
 import { useSelector } from "react-redux";
-import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import ReportModal from "../../ui/modals/ReportModal";
@@ -18,7 +17,6 @@ function ADAboutTab({ ad }) {
   const isLogged = useSelector((state) => state.authedUser.isLogged);
 
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
   const currentPageLink = window.location.href;
   const socialShareLinks = {
@@ -32,45 +30,13 @@ function ADAboutTab({ ad }) {
     e.stopPropagation();
     e.preventDefault();
     if (isLogged) {
-      if (ad?.is_favorite) {
-        removeFromFavorite(
-          { id: ad?.id, type: "ad_id" },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries([
-                  "userAds",
-                  "adsByFilter",
-                  "favoriteAds",
-                ]);
-                queryClient.invalidateQueries(["adById", ad?.id]);
-              }
-            },
-          }
-        );
+      if (ad?.data?.is_favorite) {
+        removeFromFavorite({ id: ad?.data?.id, type: "ad_id" });
       } else {
-        addToFavorite(
-          {
-            id: ad?.id,
-            type: "ad_id",
-          },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries([
-                  "userAds",
-                  "adsByFilter",
-                  "favoriteAds",
-                ]);
-                queryClient.invalidateQueries(["adById", ad?.id]);
-              }
-            },
-          }
-        );
+        addToFavorite({
+          id: ad?.data?.id,
+          type: "ad_id",
+        });
       }
     } else {
       navigate("/login");

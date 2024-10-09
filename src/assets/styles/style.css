@@ -4507,6 +4507,9 @@ body main .market-details-page .page-header .cover-wrapper .market {
   width: 100%;
   height: 100%;
 }
+body main .market-details-page .page-header .cover-wrapper .market .dropdown-toggle {
+  background-color: #fff !important;
+}
 body main .market-details-page .page-header .cover-wrapper .market .top-wrapper {
   width: 100%;
   display: flex;
@@ -6046,11 +6049,11 @@ body main .itemDetails .priceInfo .favorite img {
   height: 24px;
   transition: all 0.2s ease-in-out;
 }
-body main .itemDetails .priceInfo .favorite:hover, body main .itemDetails .priceInfo .favorite.active {
+body main .itemDetails .priceInfo .favorite.active {
   background-color: red;
   border: 1px solid red;
 }
-body main .itemDetails .priceInfo .favorite:hover img, body main .itemDetails .priceInfo .favorite.active img {
+body main .itemDetails .priceInfo .favorite.active img {
   filter: invert(1);
 }
 body main .itemDetails .priceInfo .share {
@@ -7068,7 +7071,7 @@ body main .item .actions-wrapper .action img {
   transition: all 0.2s ease-in-out;
   filter: invert(1);
 }
-body main .item .actions-wrapper .action.favorite:hover, body main .item .actions-wrapper .action.favorite.active, body main .item .actions-wrapper .action.delete:hover, body main .item .actions-wrapper .action.delete.active {
+body main .item .actions-wrapper .action.favorite.active, body main .item .actions-wrapper .action.delete.active {
   background-color: red;
 }
 body main .item .itemImg {

@@ -34,42 +34,12 @@ function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
     e.preventDefault();
     if (isLogged) {
       if (post?.is_favorite) {
-        removeFromFavorite(
-          { id: post?.id, type: "ad_id" },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries([
-                  "userAds",
-                  "adsByFilter",
-                  "favoriteAds",
-                ]);
-              }
-            },
-          }
-        );
+        removeFromFavorite({ id: post?.id, type: "ad_id" });
       } else {
-        addToFavorite(
-          {
-            id: post?.id,
-            type: "ad_id",
-          },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries([
-                  "userAds",
-                  "adsByFilter",
-                  "favoriteAds",
-                ]);
-              }
-            },
-          }
-        );
+        addToFavorite({
+          id: post?.id,
+          type: "ad_id",
+        });
       }
     } else {
       navigate("/login");

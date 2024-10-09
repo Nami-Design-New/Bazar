@@ -19,7 +19,6 @@ import EmptyData from "../ui/EmptyData";
 import Post from "../ui/cards/Post";
 import { IconCirclePlus } from "@tabler/icons-react";
 import useUserAds from "../hooks/ads/useUserAds";
-import { useQueryClient } from "@tanstack/react-query";
 
 function Profile() {
   const { id } = useParams();
@@ -33,8 +32,6 @@ function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLogged = useSelector((state) => state.authedUser.isLogged);
-
-  const queryClient = useQueryClient();
 
   const { isLoading: adsLoading, data: ads } = useUserAds(user?.id);
 
@@ -65,37 +62,15 @@ function Profile() {
 
     if (isLogged) {
       if (user?.is_follow) {
-        unfollow(
-          {
-            id: user?.id,
-            type: "user",
-          },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries(["userById", id]);
-              }
-            },
-          }
-        );
+        unfollow({
+          id: user?.id,
+          type: "user",
+        });
       } else {
-        follow(
-          {
-            id: user?.id,
-            type: "user",
-          },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries(["userById", id]);
-              }
-            },
-          }
-        );
+        follow({
+          id: user?.id,
+          type: "user",
+        });
       }
     } else {
       navigate("/login");

@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import useAddToFavorite from "../../hooks/useAddToFavorite";
 import useRemoveFromFavorite from "../../hooks/useRemoveFromFavorite";
 import { useSelector } from "react-redux";
-import { useQueryClient } from "@tanstack/react-query";
 
 function FavoriteMarketCard({ market }) {
   const { addToFavorite, isLoading: addingLoading } = useAddToFavorite();
@@ -10,41 +9,18 @@ function FavoriteMarketCard({ market }) {
     useRemoveFromFavorite();
   const isLogged = useSelector((state) => state.authedUser.isLogged);
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
   function handleToggleFavorite(e) {
     e.stopPropagation();
     e.preventDefault();
     if (isLogged) {
       if (market?.is_favorite) {
-        removeFromFavorite(
-          { id: market?.id, type: "market_id" },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries(["marketsByFilter"]);
-              }
-            },
-          }
-        );
+        removeFromFavorite({ id: market?.id, type: "market_id" });
       } else {
-        addToFavorite(
-          {
-            id: market?.id,
-            type: "market_id",
-          },
-          {
-            onSuccess: (res) => {
-              if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                throw new Error(res?.message);
-              else {
-                queryClient.invalidateQueries(["marketsByFilter"]);
-              }
-            },
-          }
-        );
+        addToFavorite({
+          id: market?.id,
+          type: "market_id",
+        });
       }
     } else {
       navigate("/login");
