@@ -4266,10 +4266,13 @@ body main .order-card .card-header .image-wrapper img {
 body main .order-card .card-header .heading {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center !important;
   gap: 16px;
   flex-wrap: wrap;
   position: relative;
+  padding: 8px 16px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
 }
 body main .order-card .card-header .heading h3 {
   flex: 1 0;
@@ -4279,6 +4282,7 @@ body main .order-card .card-header .heading h3 {
 }
 body main .order-card .card-header .heading .progress-status {
   padding: 4px 12px;
+  min-width: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4381,10 +4385,10 @@ body main .order-card .progress {
   background: #ededed !important;
 }
 body main .order-card .progress .progress-bar {
-  border-radius: 8px !important;
+  border-radius: 4px !important;
 }
-body main .order-card .new {
-  background-color: #0467d0;
+body main .order-card .pending {
+  background-color: #ecb01c;
 }
 body main .order-card .accepted {
   background-color: #218838;
@@ -5837,6 +5841,20 @@ body main .coupons-page .filter-wrapper .filter-list .filter-item {
 body main .coupons-page .filter-wrapper .filter-list .filter-item.active {
   color: #fff;
   background: linear-gradient(238.2deg, #d785f1 0%, #4381f8 100%) !important;
+}
+body main .progress-wrapper {
+  width: 100%;
+  height: 8px !important;
+}
+body main .progress-wrapper .progress {
+  height: 100% !important;
+  border-radius: 4px !important;
+  overflow: hidden;
+  position: relative;
+  background-color: #fff !important;
+}
+body main .progress-wrapper .progress-bar {
+  border-radius: 4px !important;
 }
 body main .itemDetails {
   padding: 40px 0;

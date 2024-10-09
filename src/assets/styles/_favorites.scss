@@ -386,10 +386,13 @@
     .heading {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: center !important;
       gap: 16px;
       flex-wrap: wrap;
       position: relative;
+      padding: 8px 16px;
+      background-color: #f9f9f9;
+      border-radius: 12px;
 
       h3 {
         flex: 1 0;
@@ -400,6 +403,7 @@
 
       .progress-status {
         padding: 4px 12px;
+        min-width: 140px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -506,11 +510,11 @@
     background: #ededed !important;
 
     .progress-bar {
-      border-radius: 8px !important;
+      border-radius: 4px !important;
     }
   }
-  .new {
-    background-color: #0467d0;
+  .pending {
+    background-color: #ecb01c;
   }
   .accepted {
     background-color: #218838;

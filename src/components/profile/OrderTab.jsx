@@ -12,7 +12,7 @@ function OrderTab({ isMyAccount, user }) {
     <DataLoader minHeight="400px" />
   ) : orders?.data && orders?.data?.length > 0 ? (
     orders?.data?.map((order) => (
-      <div className="col-lg-6 col-12 p-1" key={order?.id}>
+      <div className="col-12 p-1" key={order?.id}>
         <OrderCard order={order} isMyAccount={isMyAccount} />
       </div>
     ))

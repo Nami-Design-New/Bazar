@@ -12,7 +12,7 @@ import {
   IconCirclePlus,
   IconLanguage,
   IconMessage,
-  IconShoppingBag
+  IconShoppingBag,
 } from "@tabler/icons-react";
 import axios from "../../utils/axios";
 import i18next from "i18next";
@@ -204,7 +204,7 @@ export default function Header() {
               <Dropdown.Toggle
                 as="div"
                 id="dropdownMenuLink"
-                className="account"
+                className="account d-flex"
               >
                 <IconBell stroke={1.5} />
               </Dropdown.Toggle>

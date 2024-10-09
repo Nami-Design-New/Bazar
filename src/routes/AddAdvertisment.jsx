@@ -14,7 +14,7 @@ function AddAdvertisment() {
   const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
-  const [form, setForm] = useState("pricing-contact");
+  const [form, setForm] = useState("main-info");
   const [loading, setLoading] = useState(false);
   const { data: ad } = useGetAdById();
 
