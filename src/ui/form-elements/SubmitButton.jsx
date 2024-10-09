@@ -1,7 +1,7 @@
-const SubmitButton = ({ loading, name, className, onClick, icon }) => {
+const SubmitButton = ({ loading, name, className, onClick, icon, style }) => {
   return (
     <button
-      style={{ opacity: loading ? 0.7 : 1 }}
+      style={{ ...style, opacity: loading ? 0.7 : 1 }}
       disabled={loading}
       type="submit"
       onClick={onClick}

@@ -17,7 +17,15 @@ import {
 } from "@tabler/icons-react";
 import { useQueryClient } from "@tanstack/react-query";
 
-function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
+function Post({
+  post,
+  category,
+  isMyAccount,
+  userId,
+  type,
+  isMyPost = false,
+  showFav = false,
+}) {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -93,7 +101,7 @@ function Post({ post, category, isMyAccount, userId, type, isMyPost = false }) {
       }}
     >
       <div className="actions-wrapper">
-        {!isMyPost && (
+        {!isMyPost && showFav && (
           <button
             className={`action favorite ${post?.is_favorite ? "active" : ""}`}
             onClick={handleToggleFavorite}

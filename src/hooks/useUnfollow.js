@@ -10,9 +10,13 @@ function useUnfollow() {
     onSuccess: () => {
       queryClient.invalidateQueries([
         "marketDetails",
-        "favoriteMarkets",
-        "marketsByFilter",
+        "followers",
+        "followings",
         "profile",
+        "adById",
+        "userById",
+        "ads-videos",
+        "adById",
       ]);
     },
   });

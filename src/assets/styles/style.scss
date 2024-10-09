@@ -1613,8 +1613,8 @@ body {
   width: 100%;
 }
 
-.no-rewards {
-  background-color: #f7e9c1;
+.no-rewards,
+.rewarded {
   border-radius: 12px;
   width: 100%;
   padding: 20px;
@@ -1622,6 +1622,14 @@ body {
   flex-direction: column;
   gap: 4px;
   margin-bottom: 12px;
+}
+
+.no-rewards {
+  background-color: #f7e9c1;
+}
+
+.rewarded {
+  background-color: #a3f5a3;
 }
 .dropdown-toggle {
   background-color: transparent !important;
