@@ -453,7 +453,8 @@
     "cartDelted": "The cart was deleted successfully.",
     "currentBallance": "Current Ballance",
     "valueWillbediscountedfromyourballance": "An amount will be deducted: ",
-    "fromYourWallet": "From Your Wallet"
+    "fromYourWallet": "From Your Wallet",
+    "addAdress": "Add new address"
   },
   "tabs": {
     "main-info": "Main Information",

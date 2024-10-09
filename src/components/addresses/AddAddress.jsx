@@ -78,7 +78,7 @@ const AddAddress = ({
           t(`addresses.${targetAddress ? "addressUpdated" : "addressAdded"}`)
         );
         setShowModal(false);
-        queryClient.invalidateQueries(["addresses"]);
+        queryClient.invalidateQueries({ queryKey: ["addresses"] });
         setFormData({
           address_title: "",
           recipient_name: "",

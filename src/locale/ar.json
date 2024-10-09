@@ -460,7 +460,8 @@
     "currentBallance": "الرصيد الحالى",
     "valueWillbediscountedfromyourballance": "سوف يتم خصم مبلغ: ",
     "fromYourWallet": "من محفظتك",
-    "charge": "شحن المحفظة"
+    "charge": "شحن المحفظة",
+    "addAdress": "أضف عنوان جديد"
   },
   "tabs": {
     "main-info": "المعلومات الرئيسية",
