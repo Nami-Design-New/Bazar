@@ -17,11 +17,18 @@ function UserCard({ user, type }) {
 
     console.log(user);
 
-    if (type === "following") {
-      unfollow({
-        id: user?.followed_id,
-        type: "user",
-      });
+    if (user?.type === "market") {
+      if (user?.market?.is_follow) {
+        unfollow({
+          id: user?.market?.id,
+          type: "market",
+        });
+      } else {
+        follow({
+          id: user?.market?.id,
+          type: "market",
+        });
+      }
     } else {
       if (user?.user?.is_follow) {
         unfollow({
@@ -39,28 +46,33 @@ function UserCard({ user, type }) {
 
   return (
     <Link
-      to={`/profile/${
-        type === "following" ? user?.followed_id : user?.user_id
+      to={`${
+        user?.type === "market"
+          ? `/market-details/${user?.market?.id}`
+          : `/profile/${user?.user?.id} `
       }`}
       className="user-card"
     >
       <div className="image-wrapper">
         <img
-          src={type === "following" ? user?.followed?.image : user?.user?.image}
+          src={user?.type === "market" ? user?.market?.logo : user?.user?.image}
           alt=""
         />
       </div>
-      <div className="info">
+      <div className="info d-flex align-items-center flex-column ">
         <h6>
-          {type === "following" ? user?.followed?.name : user?.user?.name}
+          {user?.type === "market" ? user?.market?.name : user?.user?.name}
         </h6>
+        {type !== "follower" ? (
+          <span style={{ fontSize: "12px" }}>( {user?.type} )</span>
+        ) : null}
       </div>
       {!isMyAccount && (
         <div className="actions-wrapper">
           <button
             className={`custom-btn filled follow ${
-              type === "following"
-                ? user?.followed?.is_follow
+              user?.type === "market"
+                ? user?.market?.is_follow
                   ? "followed-user"
                   : ""
                 : user?.user?.is_follow
@@ -77,15 +89,17 @@ function UserCard({ user, type }) {
             <span>
               <i
                 className={`fa-regular fa-user-${
-                  type === "following"
-                    ? "check"
+                  user?.type === "market"
+                    ? user?.market?.is_follow
+                      ? "check"
+                      : "plus"
                     : user?.user?.is_follow
                     ? "check"
                     : "plus"
                 }`}
               ></i>
-              {type === "following"
-                ? user?.followed?.is_follow
+              {user?.type === "market"
+                ? user?.market?.is_follow
                   ? t("following")
                   : t("follow")
                 : user?.user?.is_follow

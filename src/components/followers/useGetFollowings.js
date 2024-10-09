@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { getFollowings } from "../../services/apiFollow";
 
-function useGetFollowings(requestBody) {
+function useGetFollowings() {
   const { isLoading, data, error } = useQuery({
     queryKey: ["followings"],
-    queryFn: () => getFollowings(requestBody),
+    queryFn: () => getFollowings(),
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,

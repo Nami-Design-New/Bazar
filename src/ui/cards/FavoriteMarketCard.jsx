@@ -57,12 +57,14 @@ function FavoriteMarketCard({ market, showFav = false }) {
           </div>
 
           <div className="category_like">
-            <div className="category_wrapper">
-              <div className="category">
-                <img src={market?.category?.image} alt="" />
-                {market?.category?.name}
+            {market?.category ? (
+              <div className="category_wrapper">
+                <div className="category">
+                  <img src={market?.category?.image} alt="" />
+                  {market?.category?.name}
+                </div>
               </div>
-            </div>
+            ) : null}
 
             {showFav && (
               <div className="action-boxes">
@@ -81,7 +83,9 @@ function FavoriteMarketCard({ market, showFav = false }) {
         </div>
       </div>
       <div className="card-details">
-        <p className="description one-line-wrap">{market?.bio}</p>
+        <p className="description one-line-wrap">
+          {market?.bio || market?.name}
+        </p>
         <div className="card-statistics">
           {market?.views_count || market?.views_count === 0 ? (
             <div className="statistic">
