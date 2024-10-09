@@ -11,6 +11,7 @@ const OrderModal = ({
   cartTotalPrice,
   eventFunction,
   loading,
+  buttonTitle,
 }) => {
   const { t } = useTranslation();
 
@@ -53,7 +54,7 @@ const OrderModal = ({
             {t("cancel")}
           </button>
           <SubmitButton
-            name={t("orderNow")}
+            name={buttonTitle ? buttonTitle : t("orderNow")}
             loading={loading}
             onClick={eventFunction}
             className="order-now"

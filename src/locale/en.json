@@ -529,7 +529,8 @@
     "phone": "Mobile number associated with your membership",
     "image": "Receipt image",
     "transferCommissions": "Bank transfer receipt",
-    "selectBank": "Select the bank you want to send the receipt to"
+    "selectBank": "Select the bank you want to send the receipt to",
+    "successfullySentData": "Successfully sent data"
   },
   "createdAt": "Created At",
   "orderedAt": "Ordered At",

@@ -9,8 +9,8 @@ import BankTransferCard from "../cards/BankTransferCard";
 import InputField from "../form-elements/InputField";
 import { handleChange } from "../../utils/helpers";
 import PhoneField from "../form-elements/PhoneField";
-import { useSelector } from "react-redux";
 import SubmitButton from "../form-elements/SubmitButton";
+import { useNavigate } from "react-router-dom";
 
 function CommissionWalletModal({ setShowModal, showModal, ids, price }) {
   const { t } = useTranslation();
@@ -25,7 +25,7 @@ function CommissionWalletModal({ setShowModal, showModal, ids, price }) {
 
   const queryClient = useQueryClient();
 
-  const user = useSelector((state) => state.authedUser.user);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,22 +44,17 @@ function CommissionWalletModal({ setShowModal, showModal, ids, price }) {
       return;
     }
 
-    if (!user?.wallet || user?.wallet < price) {
-      toast?.error(t("walletNotEnough"));
+    try {
+      await createTransfer(requestBody, queryClient);
+      toast.success(t("commissions.successfullySentData"));
+      setShowModal(false);
+      navigate("/profile")
+    } catch (error) {
+      setShowModal(false);
+      throw new Error(error.message);
+    } finally {
       setLoading(false);
-      return;
-    } else {
-      try {
-        await createTransfer(requestBody, queryClient);
-        toast.success(t("commissions.payedSuccessfully"));
-        setShowModal(false);
-      } catch (error) {
-        setShowModal(false);
-        throw new Error(error.message);
-      } finally {
-        setLoading(false);
-        setShowModal(false);
-      }
+      setShowModal(false);
     }
   };
 

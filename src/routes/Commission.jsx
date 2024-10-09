@@ -12,6 +12,9 @@ import { toast } from "react-toastify";
 import axios from "../utils/axios";
 import CommissionWalletModal from "../ui/modals/CommissionWalletModal";
 import { useQueryClient } from "@tanstack/react-query";
+import ChargeModal from "../ui/modals/ChargeModal";
+import OrderModal from "../ui/modals/OrderModal";
+import { useNavigate } from "react-router-dom";
 
 function Commission() {
   const { t } = useTranslation();
@@ -21,11 +24,16 @@ function Commission() {
   const [selectedAds, setSelectedAds] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState("");
   const [loading, setLoading] = useState(false);
+  const [payLoading, setPayLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   const [totalCost, setTotalCost] = useState(0);
+  const [showConfirmPayModel, setShowConfirmPayModel] = useState(false);
+  const [showChargeModel, setShowChargeModel] = useState(false);
 
   const queryClient = useQueryClient();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const newCost = ads?.data?.reduce((acc, ad) => {
@@ -68,46 +76,59 @@ function Commission() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    if (!selectedAds) {
+      toast.error(t("commissions.fillAllFields"));
+      setLoading(false);
+      return;
+    }
     if (!paymentMethod || !selectedAds?.length) {
       toast.error(t("commissions.fillAllFields"));
       setLoading(false);
       return;
     } else {
       if (paymentMethod === "online") {
-        try {
-          await axios.post(
-            "/user/finish_commission",
-            {
-              ids: selectedAds,
-              payment_method: paymentMethod,
-            },
-            {
-              onSuccess: (res) => {
-                if (res?.data?.code !== 200 || res?.data?.code !== 201)
-                  throw new Error(res?.message);
-                else {
-                  toast.success(t("commissions.success"));
-                  setLoading(false);
-                  queryClient.invalidateQueries["commissionAds"];
-                }
-              },
-            }
-          );
-        } catch (err) {
-          setLoading(false);
-          toast.error(t("commissions.failed"));
-          throw new Error(err.message);
-        } finally {
-          setLoading(false);
-        }
-      } else if (paymentMethod === "wallet") {
-        if (selectedAds) {
-          setShowModal(true);
+        if (user?.wallet >= totalCost) {
+          setShowConfirmPayModel(true);
         } else {
-          toast.error(t("commissions.fillAllFields"));
+          setShowChargeModel(true);
         }
         setLoading(false);
+      } else if (paymentMethod === "wallet") {
+        setShowModal(true);
+        setLoading(false);
       }
+    }
+  };
+
+  const handlePayCommission = async () => {
+    setPayLoading(true);
+    try {
+      await axios.post(
+        "/user/finish_commission",
+        {
+          ids: selectedAds,
+          payment_method: paymentMethod,
+        },
+        {
+          onSuccess: (res) => {
+            if (res?.data?.code !== 200 || res?.data?.code !== 201)
+              throw new Error(res?.message);
+            else {
+              toast.success(t("commissions.success"));
+              setLoading(false);
+              queryClient.invalidateQueries["commissionAds"];
+              navigate("/profile");
+            }
+          },
+        }
+      );
+    } catch (err) {
+      setPayLoading(false);
+      toast.error(t("commissions.failed"));
+      throw new Error(err.message);
+    } finally {
+      setPayLoading(false);
+      setLoading(false);
     }
   };
 
@@ -234,6 +255,21 @@ function Commission() {
         setShowModal={setShowModal}
         ids={selectedAds}
         price={totalCost}
+      />
+      <ChargeModal
+        cartTotalPrice={totalCost}
+        showModal={showChargeModel}
+        setShowModal={setShowChargeModel}
+        title={t("cart.charge")}
+      />
+      <OrderModal
+        setShowModal={setShowConfirmPayModel}
+        showModal={showConfirmPayModel}
+        ballance={user?.wallet}
+        cartTotalPrice={totalCost}
+        eventFunction={handlePayCommission}
+        loading={payLoading}
+        buttonTitle={t("payNow")}
       />
     </>
   );
