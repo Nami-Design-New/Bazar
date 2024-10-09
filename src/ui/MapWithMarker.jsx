@@ -11,7 +11,7 @@ const MapWithMarker = ({ formData, setFormData }) => {
   useEffect(() => {
     setMarkerPosition({
       lat: Number(formData.lat),
-      lng: Number(formData.lng)
+      lng: Number(formData.lng),
     });
 
     reverseGeocodeMarkerPosition();
@@ -23,8 +23,8 @@ const MapWithMarker = ({ formData, setFormData }) => {
 
     setFormData({
       ...formData,
-      lat: coord.lat.toFixed(6),
-      lng: coord.lng.toFixed(6)
+      lat: Number(coord.lat.toFixed(6)),
+      lng: Number(coord.lng.toFixed(6)),
     });
 
     reverseGeocodeMarkerPosition(coord);
@@ -39,7 +39,7 @@ const MapWithMarker = ({ formData, setFormData }) => {
           setSearchInput(results[0].formatted_address);
           setFormData((prev) => ({
             ...prev,
-            address: results[0].formatted_address
+            address: results[0].formatted_address,
           }));
         } else {
           console.error("No results found");
@@ -57,14 +57,14 @@ const MapWithMarker = ({ formData, setFormData }) => {
       const selectedPlace = places[0];
       const position = {
         lat: selectedPlace.geometry.location.lat(),
-        lng: selectedPlace.geometry.location.lng()
+        lng: selectedPlace.geometry.location.lng(),
       };
       setMarkerPosition(position);
 
       setFormData({
         ...formData,
         lat: position.lat.toFixed(6),
-        lng: position.lng.toFixed(6)
+        lng: position.lng.toFixed(6),
       });
 
       setSearchInput(selectedPlace.name);
@@ -87,7 +87,7 @@ const MapWithMarker = ({ formData, setFormData }) => {
       mapContainerStyle={{
         width: "100%",
         height: "400px",
-        borderRadius: "12px"
+        borderRadius: "12px",
       }}
       zoom={10}
       center={markerPosition}
@@ -99,7 +99,7 @@ const MapWithMarker = ({ formData, setFormData }) => {
         onDragEnd={(e) => {
           handleMarkerDragEnd({
             lat: e.latLng.lat(),
-            lng: e.latLng.lng()
+            lng: e.latLng.lng(),
           });
         }}
       />

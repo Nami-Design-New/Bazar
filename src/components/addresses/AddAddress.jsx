@@ -7,12 +7,13 @@ import axios from "./../../utils/axios";
 import InputField from "./../../ui/form-elements/InputField";
 import SubmitButton from "./../../ui/form-elements/SubmitButton";
 import MapWithMarker from "./../../ui/MapWithMarker";
+import PhoneField from "../../ui/form-elements/PhoneField";
 
 const AddAddress = ({
   showModal,
   setShowModal,
   setTargetAddress,
-  targetAddress
+  targetAddress,
 }) => {
   const queryClient = useQueryClient();
   const { t } = useTranslation();
@@ -24,7 +25,7 @@ const AddAddress = ({
     recipient_phone: targetAddress?.recipient_phone || "",
     address: targetAddress?.address || "",
     lat: targetAddress?.lat || 24.7136,
-    lng: targetAddress?.lat || 46.6753
+    lng: targetAddress?.lat || 46.6753,
   });
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const AddAddress = ({
       recipient_phone: targetAddress?.recipient_phone || "",
       address: targetAddress?.address || "",
       lat: targetAddress?.lat || 24.7136,
-      lng: targetAddress?.lat || 46.6753
+      lng: targetAddress?.lat || 46.6753,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetAddress]);
@@ -55,6 +56,18 @@ const AddAddress = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    if (
+      !formData?.address_title ||
+      !formData?.recipient_name ||
+      !formData?.recipient_phone ||
+      !formData?.lat ||
+      !formData?.lng
+    ) {
+      toast.error(t("fillAllRequiredFields"));
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await axios.post(
         `/user${targetAddress ? "/edit_address" : "/create_address"}`,
@@ -65,14 +78,14 @@ const AddAddress = ({
           t(`addresses.${targetAddress ? "addressUpdated" : "addressAdded"}`)
         );
         setShowModal(false);
-        queryClient.invalidateQueries(["addresses"]);
+        queryClient.invalidateQueries({ queryKey: ["addresses"] });
         setFormData({
           address_title: "",
           recipient_name: "",
           recipient_phone: "",
           address: "",
           lat: 24.7136,
-          lng: 46.6753
+          lng: 46.6753,
         });
         setTargetAddress(null);
       }
@@ -105,6 +118,7 @@ const AddAddress = ({
                 onChange={(e) =>
                   setFormData({ ...formData, address_title: e.target.value })
                 }
+                required={true}
               />
             </div>
 
@@ -116,17 +130,23 @@ const AddAddress = ({
                 onChange={(e) =>
                   setFormData({ ...formData, recipient_name: e.target.value })
                 }
+                required={true}
               />
             </div>
 
             <div className="col-lg-6 col-12 p-2">
-              <InputField
+              <PhoneField
                 label={t("addresses.recipientPhone")}
-                placeholder={t("addresses.recipientPhonePlaceholder")}
-                value={formData.recipient_phone}
                 onChange={(e) =>
                   setFormData({ ...formData, recipient_phone: e.target.value })
                 }
+                value={formData.recipient_phone}
+                id="recipient_phone"
+                name="recipient_phone"
+                type="tel"
+                placeholder={t("5XXXXXXX")}
+                maxLength={9}
+                required={true}
               />
             </div>
 

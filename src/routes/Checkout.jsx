@@ -30,6 +30,7 @@ function Checkout() {
   const [payLoading, setPayLoading] = useState(false);
   const [couponLoading, setCouponLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showAddressModal, setShowAddressModal] = useState(false);
   const [showChargeModel, setShowChargeModel] = useState(false);
   const [showConfirmPayModel, setShowConfirmPayModel] = useState(false);
   const [formData, setFormData] = useState({
@@ -290,7 +291,16 @@ function Checkout() {
                   {/* addresses */}
                   {cart?.[0]?.market?.delivery ? (
                     <div className="address-wrapper">
-                      <h6>{t("cart.orderAddress")}</h6>
+                      <div className="col-12 d-flex align-items-center justify-content-between gap-4">
+                        <h6>{t("cart.orderAddress")}</h6>
+                        <span
+                          className="add-address-btn d-flex align-items-center justify-content-between gap-1"
+                          onClick={() => setShowAddressModal(true)}
+                        >
+                          <i className="fa-regular fa-location-plus"></i>
+                          {t("cart.addAdress")}
+                        </span>
+                      </div>
                       {addresses?.data?.length > 0 ? (
                         <div className="radios">
                           {addresses?.data?.map((address) => (
@@ -424,6 +434,10 @@ function Checkout() {
           cartTotalPrice={formData?.total}
           eventFunction={handlePlaceOrder}
           loading={payLoading}
+        />
+        <AddAddress
+          showModal={showAddressModal}
+          setShowModal={setShowAddressModal}
         />
       </section>
     </>

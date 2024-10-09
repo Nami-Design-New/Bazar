@@ -173,7 +173,8 @@
     "successfullyVerified": "The request has been sent successfully, you will be replied to by the admin soon",
     "FailedToVerify": "Failed to Verify",
     "noFollowers": "No followers yet",
-    "noFollowings": "No followings yet"
+    "noFollowings": "No followings yet",
+    "selectPackage": "Select a package to proceed"
   },
   "error": {
     "pageNotFound": "This link doesn't exist or might have been deleted. How did you get here?",
@@ -452,7 +453,8 @@
     "cartDelted": "The cart was deleted successfully.",
     "currentBallance": "Current Ballance",
     "valueWillbediscountedfromyourballance": "An amount will be deducted: ",
-    "fromYourWallet": "From Your Wallet"
+    "fromYourWallet": "From Your Wallet",
+    "addAdress": "Add new address"
   },
   "tabs": {
     "main-info": "Main Information",
@@ -529,7 +531,9 @@
     "phone": "Mobile number associated with your membership",
     "image": "Receipt image",
     "transferCommissions": "Bank transfer receipt",
-    "selectBank": "Select the bank you want to send the receipt to"
+    "selectBank": "Select the bank you want to send the receipt to",
+    "successfullySentData": "Successfully sent data",
+    "success": "Successfully done"
   },
   "createdAt": "Created At",
   "orderedAt": "Ordered At",
