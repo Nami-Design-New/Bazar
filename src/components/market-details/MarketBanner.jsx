@@ -11,6 +11,7 @@ import useUnfollow from "../../hooks/useUnfollow";
 function MarketBanner({ market }) {
   const { t } = useTranslation();
   const [showTooltip, setShowTooltip] = useState(false);
+  const [bannerError, setBannerError] = useState(false);
   const currentPageLink = window.location.href;
 
   useRemoveFromFavorite();
@@ -90,8 +91,13 @@ function MarketBanner({ market }) {
     <div className="page-header">
       <div className="cover-wrapper">
         <img
-          src={market?.data?.banner || "/images/banner.png"}
+          src={
+            !market?.data?.banner || bannerError
+              ? "/images/banner.png"
+              : market?.data?.banner
+          }
           alt="market cover image"
+          onError={() => setBannerError(true)}
         />
         <div className="market">
           <div className="top-wrapper">
@@ -99,7 +105,7 @@ function MarketBanner({ market }) {
               <div className="logo-wrapper">
                 <img src={market?.data?.logo} alt="market logo image" />
               </div>
-              <h3>{market?.data?.name}</h3>
+              {market?.data?.name ? <h3>{market?.data?.name}</h3> : null}
             </div>
 
             <div className="btns-wrapper">

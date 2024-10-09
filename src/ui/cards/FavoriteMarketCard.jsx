@@ -2,8 +2,10 @@ import { Link, useNavigate } from "react-router-dom";
 import useAddToFavorite from "../../hooks/useAddToFavorite";
 import useRemoveFromFavorite from "../../hooks/useRemoveFromFavorite";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 function FavoriteMarketCard({ market, showFav = false }) {
+  const [bannerError, setBannerError] = useState(false);
   const { addToFavorite, isLoading: addingLoading } = useAddToFavorite();
   const { removeFromFavorite, isLoading: removingLoading } =
     useRemoveFromFavorite();
@@ -48,7 +50,13 @@ function FavoriteMarketCard({ market, showFav = false }) {
     >
       <div className="card-header">
         <div className="cover-wrapper">
-          <img src={market?.banner} alt="market cover image" />
+          {!market?.banner || bannerError ? null : (
+            <img
+              src={market?.banner}
+              alt="market cover image"
+              onError={() => setBannerError(true)}
+            />
+          )}
         </div>
 
         <div className="card_header__content">
