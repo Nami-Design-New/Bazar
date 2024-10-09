@@ -15,8 +15,6 @@ function CommentCard({ comment }) {
     comment_id: comment?.id,
   });
 
-  console.log(replays?.data);
-
   return (
     <div className="rate-card">
       <div className="info-wrapper">

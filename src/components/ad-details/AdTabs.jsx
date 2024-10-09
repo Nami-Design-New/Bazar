@@ -33,7 +33,7 @@ function AdTabs({ ad, isMyAd }) {
 
   return (
     <div className="tabs-section">
-      <Tabs defaultActiveKey="comments" id="uncontrolled-tab-example">
+      <Tabs defaultActiveKey="aboutAd" id="uncontrolled-tab-example">
         <Tab eventKey="aboutAd" title={t("ads.aboutAd")}>
           <ADAboutTab ad={ad} />
         </Tab>
