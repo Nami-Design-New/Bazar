@@ -9,30 +9,53 @@ import axios from "./../utils/axios";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import OrderModal from "../ui/modals/OrderModal";
+import ChargeModal from "../ui/modals/ChargeModal";
+import { useSelector } from "react-redux";
 
 function CommercialVerification() {
   const { t } = useTranslation();
   const [selectedPlan, setSelectedPlan] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("");
   const { isLoading: packagesLoading, data: packages } = usePackagesList();
   const [loading, setLoading] = useState(false);
+  const [payLoading, setPayLoading] = useState(false);
+
+  const [showConfirmPayModel, setShowConfirmPayModel] = useState(false);
+  const [showChargeModel, setShowChargeModel] = useState(false);
 
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+
+  const user = useSelector((state) => state.authedUser.user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    const requestBody = {};
+    if (!selectedPlan) {
+      toast.error(t("profile.selectPackage"));
+      setLoading(false);
+      return;
+    }
+
+    if (user?.wallet >= selectedPlan?.price) {
+      setShowConfirmPayModel(true);
+    } else {
+      setShowChargeModel(true);
+    }
+    setLoading(false);
+  };
+
+  const handlePayCommission = async (e) => {
+    e.preventDefault();
+    setPayLoading(true);
+
+    const requestBody = {
+      payment_method: "wallet",
+    };
 
     if (selectedPlan) {
       requestBody.package_id = +selectedPlan?.id;
-    } else {
-      return;
-    }
-    if (paymentMethod) {
-      requestBody.payment_method = +paymentMethod;
     } else {
       return;
     }
@@ -42,7 +65,6 @@ function CommercialVerification() {
       if (res.data.code === 200) {
         toast.success(t("subscripedSuccessfully"));
         setSelectedPlan("");
-        setPaymentMethod("");
         queryClient.invalidateQueries(["profile"]);
         navigate("/profile");
       }
@@ -50,6 +72,7 @@ function CommercialVerification() {
       toast.error(t("someThingWentWrong"));
       throw new Error(error.message);
     } finally {
+      setPayLoading(false);
       setLoading(false);
     }
   };
@@ -143,40 +166,6 @@ function CommercialVerification() {
               </div>
             </>
           )}
-          <div className="col-12 plan-wrapper d-flex flex-column gap-2">
-            <h6>{t("paymentMethod")}</h6>
-            <div className="radios">
-              <label htmlFor="online">
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  id="online"
-                  value="online"
-                  checked={paymentMethod === "online"}
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                />
-
-                <span className="label-content">
-                  <i className="fa-regular fa-globe"></i>{" "}
-                  {t("commissions.online")}
-                </span>
-              </label>
-              <label htmlFor="wallet">
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  id="wallet"
-                  value="wallet"
-                  checked={paymentMethod === "wallet"}
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                />
-                <span className="label-content">
-                  <i className="fa-regular fa-building-columns"></i>
-                  {t("commissions.wallet")}
-                </span>
-              </label>
-            </div>
-          </div>
           <div className="submit-wrapper col-12">
             <SubmitButton
               name={t("payNow")}
@@ -188,6 +177,21 @@ function CommercialVerification() {
       ) : (
         <EmptyData minHeight={"300px"}>{t("profile.noPackages")}</EmptyData>
       )}
+      <ChargeModal
+        cartTotalPrice={selectedPlan?.price}
+        showModal={showChargeModel}
+        setShowModal={setShowChargeModel}
+        title={t("cart.charge")}
+      />
+      <OrderModal
+        setShowModal={setShowConfirmPayModel}
+        showModal={showConfirmPayModel}
+        ballance={user?.wallet}
+        cartTotalPrice={selectedPlan?.price}
+        eventFunction={handlePayCommission}
+        loading={payLoading}
+        buttonTitle={t("payNow")}
+      />
     </div>
   );
 }

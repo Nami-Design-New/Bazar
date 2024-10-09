@@ -100,7 +100,8 @@ function Commission() {
     }
   };
 
-  const handlePayCommission = async () => {
+  const handlePayCommission = async (e) => {
+    e.preventDefault();
     setPayLoading(true);
     try {
       await axios.post(

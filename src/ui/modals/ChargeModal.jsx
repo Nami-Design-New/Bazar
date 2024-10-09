@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import InputField from "../form-elements/InputField";
 
@@ -10,6 +10,11 @@ const ChargeModal = ({ showModal, setShowModal, cartTotalPrice }) => {
   const [chargeValue, setChargeValue] = useState("");
   const [cookies] = useCookies(["token"]);
   const token = cookies?.token;
+  const [searchParams] = useSearchParams();
+
+  const tab = searchParams.get("tab");
+
+  console.log(tab);
 
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
@@ -21,8 +26,7 @@ const ChargeModal = ({ showModal, setShowModal, cartTotalPrice }) => {
           <h3 className="text-center">
             {t("cart.youDontHaveEnoughBallance")}{" "}
             <span>
-              {cartTotalPrice} {" "}
-              {t("currency.sar")}
+              {cartTotalPrice} {t("currency.sar")}
             </span>
           </h3>
         )}
@@ -50,7 +54,7 @@ const ChargeModal = ({ showModal, setShowModal, cartTotalPrice }) => {
             className="order-now text-center custom-btn filled"
             to={
               chargeValue === 0 || chargeValue === ""
-                ? ""
+                ? `${window.location.href}`
                 : `https://api.bazar.com.sa/payment/${chargeValue}/wallet?Authorization=${token}&Redirect_url=${window.location.href}`
             }
           >
