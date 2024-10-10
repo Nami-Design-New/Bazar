@@ -379,7 +379,8 @@
     "noRates": "Sorry, there are no ratings for this market at the moment.",
     "noCoupons": "Sorry, there are no coupons for this market at the moment.",
     "noMarkets": "Sorry, there are no markets with these specifications.",
-    "coupons": "Coupons"
+    "coupons": "Coupons",
+    "visitWebsite": "Visit Website"
   },
   "orders": {
     "areYouSureYouWantToDeleteOrder": "Are you sure you want to delete this order?",
@@ -626,5 +627,6 @@
   "replay": "Replay",
   "addReplay": "Add Replay",
   "add": "Add",
-  "successfullyReplied": "Successfully replied"
+  "successfullyReplied": "Successfully replied",
+  "showMore": "Show more"
 }

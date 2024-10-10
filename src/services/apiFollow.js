@@ -69,9 +69,9 @@ export async function getFollowers() {
   }
 }
 
-export async function getFollowings(requestBody) {
+export async function getFollowings() {
   try {
-    const req = await axios.post("/user/get_following", requestBody);
+    const req = await axios.post("/user/get_following_web");
 
     return req.data;
   } catch (err) {

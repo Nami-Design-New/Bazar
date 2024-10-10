@@ -86,8 +86,6 @@ function Video({ ad }) {
     }
   }
 
-  console.log(ad?.user);
-
   function handleToggleFollowing(e) {
     e.stopPropagation();
     e.preventDefault();

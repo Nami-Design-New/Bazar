@@ -15,9 +15,9 @@ function Followers() {
   const { isLoading: followersLoading, data: followers } = useGetFollowers({
     type: "followed",
   });
-  const { isLoading: followingsLoading, data: followings } = useGetFollowings({
-    type: "user",
-  });
+  const { isLoading: followingsLoading, data: followings } = useGetFollowings();
+
+  console.log(followings?.data);
 
   function handleTabChange(tab) {
     setSearchParams({ tab });
@@ -69,13 +69,20 @@ function Followers() {
                 {followingsLoading ? (
                   <DataLoader minHeight="400px" />
                 ) : followings?.data && followings?.data?.length > 0 ? (
-                  followings?.data?.map((user) =>
-                    user?.followed ? (
+                  followings?.data?.map((following) =>
+                    following?.user ? (
                       <div
                         className="col-md-6 col-lg-3 col-12 p-2"
-                        key={user?.id}
+                        key={following?.id}
                       >
-                        <UserCard user={user} type="following" />
+                        <UserCard user={following} type="following" />
+                      </div>
+                    ) : following?.market ? (
+                      <div
+                        className="col-md-6 col-lg-3 col-12 p-2"
+                        key={following?.id}
+                      >
+                        <UserCard user={following} type="market" />
                       </div>
                     ) : null
                   )

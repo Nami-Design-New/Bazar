@@ -73,7 +73,6 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
     try {
       const res = await axios.request(checkCodeRequest);
       if (res.data.code === 200) {
-        console.log(formData);
         const req = await axios.post("/user/register", formData);
 
         if (req.data.code === 200) {
