@@ -47,7 +47,10 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
     setLoading(true);
 
     try {
-      const res = await axios.post("/user/can_register", formData);
+      const res = await axios.post("/user/can_register", {
+        email: formData?.email,
+        phone: formData?.phone,
+      });
 
       if (res.data.code === 200) {
         setTimer(60);
@@ -72,8 +75,9 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
     setLoading(true);
     try {
       const res = await axios.request(checkCodeRequest);
+
       if (res.data.code === 200) {
-        const req = await axios.post("/user/register", formData);
+        const req = await axios.post("/user/register", { ...formData });
 
         if (req.data.code === 200) {
           toast.success(t("auth.registerSuccess"));
