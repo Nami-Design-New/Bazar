@@ -15,9 +15,9 @@ function AddAdvertisment() {
   const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
-  const [form, setForm] = useState("category-filters");
   const [loading, setLoading] = useState(false);
   const { data: ad } = useGetAdById();
+  const [form, setForm] = useState("main-info");
   const [filterData, setFilterData] = useState({});
 
   const [formData, setFormData] = useState({

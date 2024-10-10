@@ -10,7 +10,7 @@ function MainInfo({ formData, setFormData, setForm }) {
   const handleGetNextPage = (e) => {
     e.preventDefault();
     if (formData?.title && formData?.ad_type && formData?.description) {
-      setForm("location");
+      setForm("category-filters");
     } else {
       toast.error(t("fillAllRequiredFields"));
     }
