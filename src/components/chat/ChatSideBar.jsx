@@ -9,6 +9,7 @@ const ChatSideBar = ({
   chats,
   targetChat,
   setTargetChat,
+  refetch,
 }) => {
   const { t } = useTranslation();
   const { user } = useSelector((state) => state.authedUser);
@@ -37,6 +38,7 @@ const ChatSideBar = ({
             sessionStorage.setItem("buyer_id", chat?.buyer_id);
             sessionStorage.setItem("seller_id", chat?.seller_id);
             sessionStorage.setItem("ad_id", chat?.ad_id);
+            refetch();
             setTargetChat(chat);
             setShowChatsMenu(false);
           }}
