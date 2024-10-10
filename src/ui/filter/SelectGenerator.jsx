@@ -1,114 +1,69 @@
-function SelectGenerator({
-  filter,
-  dynamicFilterData,
-  setDynamicFilterData,
-  nested,
-}) {
-  const handleChange = (e) => {
-    const { name, checked, value } = e.target;
+import { useTranslation } from "react-i18next";
+import SelectField from "../form-elements/SelectField";
+import SubSelectGenerator from "./SubSelectGenerator";
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
-    const filterValue = Number(value);
-    setDynamicFilterData((prevState) => {
-      const updatedState = { ...prevState };
+function SelectGenerator({ filter, dynamicFilterData, setDynamicFilterData }) {
+  const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
 
-      const updateList = (list = [], value, add) => {
-        return add ? [...list, value] : list.filter((id) => id !== value);
-      };
+  const isChecked =
+    searchParams.get(filter?.id) &&
+    Number(searchParams.get("sub_category_id")) ===
+      Number(filter?.sub_category_id)
+      ? true
+      : false;
 
-      updatedState[name] = updateList(prevState[name], filterValue, checked);
+  useEffect(() => {
+    if (isChecked)
+      setDynamicFilterData((prevState) => ({
+        ...prevState,
+        [filter?.id]: Number(searchParams.get(filter?.id)),
+      }));
+  }, []);
 
-      return updatedState;
-    });
-  };
-
-  const hasSubcategories =
-    filter?.sub_categories && filter?.sub_categories?.length > 0;
-
-  const isParentChecked = hasSubcategories
-    ? filter?.sub_categories?.every((sub_category) =>
-        dynamicFilterData[filter?.id]?.includes(+sub_category.id)
-      )
-    : dynamicFilterData[filter?.id]?.includes(+filter.id);
-
-  const handleParentCheckboxChange = (e) => {
-    const { checked } = e.target;
-    if (hasSubcategories) {
-      filter?.values?.forEach((value) => {
-        handleChange({
-          target: {
-            name: "sub_category_id",
-            value: value?.id,
-            checked,
-          },
-        });
-      });
-
-      handleChange({
-        target: {
-          name: "category_id",
-          value: filter.id,
-          checked,
-        },
-      });
-    } else {
-      handleChange({
-        target: {
-          name: "category_id",
-          value: filter.id,
-          checked,
-        },
-      });
-    }
-  };
-
-  return (
-    <div className="departments w-100">
-      {!nested && <h6>{filter?.name}</h6>}
+  return filter?.values && filter?.values?.length > 0 ? (
+    <>
+      <div className="departments w-100">
+        {<h6>{filter?.name}</h6>}
+        <SelectField
+          required={filter?.required}
+          name={filter?.id}
+          id={filter?.id}
+          value={
+            dynamicFilterData?.[filter?.id]
+              ? dynamicFilterData?.[filter?.id]
+              : ""
+          }
+          onChange={(e) =>
+            setDynamicFilterData({
+              ...dynamicFilterData,
+              [filter?.id]: e.target.value,
+            })
+          }
+          disabledOption={t("select")}
+          options={filter?.values?.map((value) => {
+            return { name: value.name, value: value.id };
+          })}
+        />
+      </div>
       {filter?.values && filter?.values?.length > 0 ? (
-        <ul className="deps">
-          {filter?.values?.map((value) => (
-            <li className="mb-4 department-filter" key={value?.id}>
-              <div className="department-header">
-                <label htmlFor={value?.id}>
-                  {value?.values && value?.values?.length > 0 ? (
-                    <button
-                      className="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target={`#accordion-${value?.id}`}
-                      aria-expanded="true"
-                      aria-controls={`#accordion-${value?.id}`}
-                    >
-                      <span className="horizontal"></span>
-                      <span className="vertical"></span>
-                    </button>
-                  ) : null}
-                  {value?.name}
-                </label>
-                <input
-                  className="checkBox"
-                  type="checkbox"
-                  name={filter?.id}
-                  value={value.id}
-                  id={value.id}
-                  checked={isParentChecked}
-                  onChange={handleParentCheckboxChange}
-                />
-              </div>
-              {value?.values && value?.values?.length > 0 ? (
-                <SelectGenerator
-                  filter={value}
-                  dynamicFilterData={dynamicFilterData}
-                  setDynamicFilterData={setDynamicFilterData}
-                  nested={true}
-                />
-              ) : null}
-            </li>
-          ))}
-        </ul>
+        <>
+          {filter?.values?.map((value) => {
+            return (
+              <SubSelectGenerator
+                key={value?.id}
+                filter={value}
+                setDynamicFilterData={setDynamicFilterData}
+                dynamicFilterData={dynamicFilterData}
+              />
+            );
+          })}
+        </>
       ) : null}
-    </div>
-  );
+    </>
+  ) : null;
 }
 
 export default SelectGenerator;

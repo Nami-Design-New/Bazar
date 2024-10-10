@@ -19,8 +19,6 @@ function RewardsTab({ isMyAccount, user }) {
   const [finishLoading, setFinishLoading] = useState(false);
   const { data: rewardValue } = useGetRewardValue();
 
-  console.log(rewardValue);
-
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 

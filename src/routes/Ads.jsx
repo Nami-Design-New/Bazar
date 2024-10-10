@@ -20,15 +20,15 @@ import CustomPagination from "../ui/CustomPagination";
 
 function Ads() {
   const { t } = useTranslation();
+  const [dynamicFilterData, setDynamicFilterData] = useState({});
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const { isLoading: adsLoading, data: ads } = useAdsByFilter();
+  const [requestBody, setRequestBody] = useState({});
+  const { isLoading: adsLoading, data: ads } = useAdsByFilter(requestBody);
   const { isLoading: categoriesLoading, data: categories } =
     useCategoriesList();
 
   const { isLoading: filtersLoading, data: filters } = useGetFilters();
-
-  const [dynamicFilterData, setDynamicFilterData] = useState({});
 
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
@@ -110,7 +110,13 @@ function Ads() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleApplyFilters(setSearchParams, searchFilterData);
+
+    setRequestBody({ ...dynamicFilterData });
+
+    handleApplyFilters(setSearchParams, {
+      ...searchFilterData,
+      ...dynamicFilterData,
+    });
   }
 
   if (categoriesLoading || filtersLoading || adsLoading || citiesLoading) {

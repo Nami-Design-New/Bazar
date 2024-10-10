@@ -17,8 +17,6 @@ function Followers() {
   });
   const { isLoading: followingsLoading, data: followings } = useGetFollowings();
 
-  console.log(followings?.data);
-
   function handleTabChange(tab) {
     setSearchParams({ tab });
   }

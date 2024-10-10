@@ -54,7 +54,6 @@ const ChatRoom = ({ chat }) => {
     };
   }, []);
 
-  console.log(isRecording);
 
   const handleSendMessage = async (e) => {
     e.preventDefault();

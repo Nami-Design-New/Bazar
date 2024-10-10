@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import InputField from "../form-elements/InputField";
 
@@ -10,11 +10,6 @@ const ChargeModal = ({ showModal, setShowModal, cartTotalPrice }) => {
   const [chargeValue, setChargeValue] = useState("");
   const [cookies] = useCookies(["token"]);
   const token = cookies?.token;
-  const [searchParams] = useSearchParams();
-
-  const tab = searchParams.get("tab");
-
-  console.log(tab);
 
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>

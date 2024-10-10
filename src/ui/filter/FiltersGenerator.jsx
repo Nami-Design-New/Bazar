@@ -14,6 +14,7 @@ function FiltersGenerator({
             <RangeGenerator
               key={filter?.id}
               filter={filter}
+              dynamicFilterData={dynamicFilterData}
               setDynamicFilterData={setDynamicFilterData}
             />
           );
