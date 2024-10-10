@@ -1,10 +1,14 @@
 import { useTranslation } from "react-i18next";
-import SelectField from "../form-elements/SelectField";
-import SubSelectGenerator from "./SubSelectGenerator";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
+import SelectField from "../../ui/form-elements/SelectField";
+import AdSubSelectGenerator from "./AdSubSelectGenerator";
 
-function SelectGenerator({ filter, dynamicFilterData, setDynamicFilterData }) {
+function AdSelectGenerator({
+  filter,
+  dynamicFilterData,
+  setDynamicFilterData,
+}) {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
 
@@ -25,7 +29,7 @@ function SelectGenerator({ filter, dynamicFilterData, setDynamicFilterData }) {
 
   return filter?.values && filter?.values?.length > 0 ? (
     <>
-      <div className="departments w-100  gap-2">
+      <div className="departments col-6 p-2 gap-2">
         {<h6>{filter?.name}</h6>}
         <SelectField
           required={filter?.required}
@@ -52,7 +56,7 @@ function SelectGenerator({ filter, dynamicFilterData, setDynamicFilterData }) {
         <>
           {filter?.values?.map((value) => {
             return (
-              <SubSelectGenerator
+              <AdSubSelectGenerator
                 key={value?.id}
                 filter={value}
                 setDynamicFilterData={setDynamicFilterData}
@@ -66,4 +70,4 @@ function SelectGenerator({ filter, dynamicFilterData, setDynamicFilterData }) {
   ) : null;
 }
 
-export default SelectGenerator;
+export default AdSelectGenerator;

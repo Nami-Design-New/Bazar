@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
-import SelectField from "../form-elements/SelectField";
-import SelectGenerator from "./SelectGenerator";
+import SelectField from "../../ui/form-elements/SelectField";
+import AdSelectGenerator from "./AdSelectGenerator";
 
-function SubSelectGenerator({
+function AdSubSelectGenerator({
   filter,
   dynamicFilterData,
   setDynamicFilterData,
@@ -11,7 +11,7 @@ function SubSelectGenerator({
 
   return dynamicFilterData?.[filter?.parent_id] ? (
     <>
-      <div className="departments w-100 gap-2">
+      <div className="departments col-6 p-2 gap-2">
         {<h6>{filter?.name}</h6>}
         <SelectField
           required={filter?.required}
@@ -38,7 +38,7 @@ function SubSelectGenerator({
       {filter?.values && filter?.values?.length > 0
         ? filter?.values?.map((value) =>
             dynamicFilterData?.[value?.parent_id] ? (
-              <SelectGenerator
+              <AdSelectGenerator
                 filter={value}
                 key={value?.id}
                 dynamicFilterData={dynamicFilterData}
@@ -51,4 +51,4 @@ function SubSelectGenerator({
   ) : null;
 }
 
-export default SubSelectGenerator;
+export default AdSubSelectGenerator;

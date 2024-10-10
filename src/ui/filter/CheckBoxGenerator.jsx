@@ -5,6 +5,7 @@ function CheckBoxGenerator({
   filter,
   setDynamicFilterData,
   dynamicFilterData,
+  showTitle = false,
 }) {
   const [searchParams] = useSearchParams();
   const isChecked =
@@ -23,8 +24,10 @@ function CheckBoxGenerator({
   }, []);
 
   return (
-    <div className="w-100 d-flex flex-column my-2">
-      {filter?.filter_name && <h6>{filter?.filter_name}</h6>}
+    <div className="d-flex flex-column my-2 gap-2">
+      {showTitle && !filter?.filter_name && (
+        <h6>{filter?.filter_name || filter?.name}</h6>
+      )}
       <div className="w-100 d-flex align-items-center gap-2">
         <input
           required={filter?.required}
