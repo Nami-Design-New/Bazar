@@ -1,10 +1,6 @@
-import { useEffect } from "react";
-import RangeSlider from "../form-elements/RangeSlider";
-import { useSearchParams } from "react-router-dom";
+import RangeSlider from "../../ui/form-elements/RangeSlider";
 
-function RangeGenerator({ filter, dynamicFilterData, setDynamicFilterData }) {
-  const [searchParams] = useSearchParams();
-
+function AdRangeGenerator({ filter, dynamicFilterData, setDynamicFilterData }) {
   const handleSliderChange = (value) => {
     setDynamicFilterData((prevState) => ({
       ...prevState,
@@ -12,14 +8,6 @@ function RangeGenerator({ filter, dynamicFilterData, setDynamicFilterData }) {
       max: value?.[1],
     }));
   };
-
-  useEffect(() => {
-    setDynamicFilterData((prevState) => ({
-      ...prevState,
-      min: Number(searchParams?.get("min")) || Number(filter?.range?.min),
-      max: Number(searchParams?.get("max")) || Number(filter?.range?.max),
-    }));
-  }, []);
 
   return (Number(filter?.range?.min) || Number(filter?.range?.min) == 0) &&
     (Number(filter?.range?.max) || Number(filter?.range?.max) == 0) ? (
@@ -43,4 +31,4 @@ function RangeGenerator({ filter, dynamicFilterData, setDynamicFilterData }) {
   ) : null;
 }
 
-export default RangeGenerator;
+export default AdRangeGenerator;

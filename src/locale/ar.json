@@ -298,6 +298,7 @@
     "markets": "المتاجر"
   },
   "ads": {
+    "selectCategoryAndSubcategory": "يرجى تحديد التصنيف والتصنيف الفرعية لتتمكن من اضافة المتابعة",
     "areYouSureYouWantToDeleteAD": "هل انت متأكد من حذف هذا الاعلان؟",
     "addAD": "اضافة اعلان",
     "noWantedAds": "لا توجد اعلانات مطلوبة بهذه التفاصيل",
@@ -468,7 +469,8 @@
     "main-info": "المعلومات الرئيسية",
     "location": "العنوان",
     "gallery": "صور الإعلان",
-    "pricing-contact": "التسعير والتواصل"
+    "pricing-contact": "التسعير والتواصل",
+    "category-filters": "التصنيف"
   },
   "search": {
     "searchFor": "ابحث عن...",

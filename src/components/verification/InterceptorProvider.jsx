@@ -41,8 +41,7 @@ const setupAxiosInterceptors = (setCookie) => {
 
           return axios(originalRequest);
         } catch (error) {
-          console.log("Token refresh error:", error);
-          return Promise.reject(err);
+          return Promise.reject(error);
         }
       }
       return Promise.reject(err);

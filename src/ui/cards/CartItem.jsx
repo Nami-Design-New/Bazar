@@ -15,8 +15,6 @@ function CartItem({ item }) {
   const [loading, setLoading] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  console.log(item);
-
   const handleDecrease = async () => {
     try {
       setLoading(true);

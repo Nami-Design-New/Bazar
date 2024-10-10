@@ -10,13 +10,19 @@ function CheckBoxContainer({
   const hasSubcategories =
     item?.sub_categories && item?.sub_categories?.length > 0;
 
+  const isChildChecked = item?.sub_categories?.some(
+    (sub_category) => Number(sub_category?.id) === Number(sub_categoriesValue)
+  );
+
   return (
     <li className="department-item">
       <div className="department-header">
         <label htmlFor={item.id} className="w-100">
           {hasSubcategories && viewSubCategories && (
             <button
-              className="accordion-button collapsed"
+              className={`accordion-button ${
+                isChildChecked ? "" : "collapsed"
+              }`}
               type="button"
               data-bs-toggle="collapse"
               data-bs-target={`#accordion-${item.id}`}
@@ -43,7 +49,9 @@ function CheckBoxContainer({
       {item?.sub_categories && viewSubCategories && (
         <div
           id={`accordion-${item.id}`}
-          className="accordion-collapse collapse"
+          className={`accordion-collapse collapse ${
+            isChildChecked ? "show" : ""
+          }`}
           aria-labelledby="headingOne"
           data-bs-parent="#accordionExample"
         >

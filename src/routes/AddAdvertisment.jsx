@@ -9,14 +9,16 @@ import Gallery from "../components/add-ad/Gallery";
 import Pricing from "../components/add-ad/Pricing";
 import axios from "./../utils/axios";
 import useGetAdById from "./../hooks/ads/useGetAdById";
+import AdCategoryStep from "../components/add-ad/AdCategoryStep";
 
 function AddAdvertisment() {
   const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
-  const [form, setForm] = useState("main-info");
+  const [form, setForm] = useState("category-filters");
   const [loading, setLoading] = useState(false);
   const { data: ad } = useGetAdById();
+  const [filterData, setFilterData] = useState({});
 
   const [formData, setFormData] = useState({
     title: "",
@@ -128,6 +130,7 @@ function AddAdvertisment() {
       delete_images: formData.delete_images,
       delete_audio: formData.delete_audio,
       delete_video: formData.delete_video,
+      ...filterData,
     };
 
     if (!ad) {
@@ -183,26 +186,31 @@ function AddAdvertisment() {
             {/* wizard tabs buttons */}
             <div className="col-12 p-2">
               <div className="wizard_tabs">
-                {["main-info", "location", "gallery", "pricing-contact"].map(
-                  (fo, i) => (
-                    <div
-                      key={i}
-                      className={`wizard_tab ${
-                        [
-                          "main-info",
-                          "location",
-                          "gallery",
-                          "pricing-contact",
-                        ].indexOf(form) >= i
-                          ? "active"
-                          : ""
-                      }`}
-                    >
-                      <div className="step_no">{i + 1}</div>
-                      <h6>{t(`tabs.${fo}`)}</h6>
-                    </div>
-                  )
-                )}
+                {[
+                  "main-info",
+                  "category-filters",
+                  "location",
+                  "gallery",
+                  "pricing-contact",
+                ].map((fo, i) => (
+                  <div
+                    key={i}
+                    className={`wizard_tab ${
+                      [
+                        "main-info",
+                        "category-filters",
+                        "location",
+                        "gallery",
+                        "pricing-contact",
+                      ].indexOf(form) >= i
+                        ? "active"
+                        : ""
+                    }`}
+                  >
+                    <div className="step_no">{i + 1}</div>
+                    <h6>{t(`tabs.${fo}`)}</h6>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -214,6 +222,15 @@ function AddAdvertisment() {
                     formData={formData}
                     setFormData={setFormData}
                     setForm={setForm}
+                  />
+                )}
+                {form === "category-filters" && (
+                  <AdCategoryStep
+                    formData={formData}
+                    setFormData={setFormData}
+                    setForm={setForm}
+                    filterData={filterData}
+                    setFilterData={setFilterData}
                   />
                 )}
                 {form === "location" && (

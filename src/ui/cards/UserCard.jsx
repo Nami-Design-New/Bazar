@@ -15,8 +15,6 @@ function UserCard({ user, type }) {
     e.stopPropagation();
     e.preventDefault();
 
-    console.log(user);
-
     if (user?.type === "market") {
       if (user?.market?.is_follow) {
         unfollow({

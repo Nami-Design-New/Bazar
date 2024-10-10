@@ -37,14 +37,12 @@ function CreateRateModal({ showModal, setShowModal, id }) {
     if (!formData?.rate) {
       return;
     }
-    console.log(formData);
 
     if (isLogged) {
       try {
         const res = await axios.post(`/user/create_rate`, formData);
         if (res.status === 201 || res.status === 200) {
           toast.success(t("successfullyRated"));
-          console.log(id);
 
           queryClient.invalidateQueries(["rates"]);
           setShowModal(false);

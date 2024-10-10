@@ -18,7 +18,12 @@ export const handleApplyFilters = (setSearchParams, searchFilterData) => {
   const newParams = new URLSearchParams();
 
   for (const [key, value] of Object.entries(searchFilterData)) {
-    if (value !== undefined && value !== null && value !== "") {
+    if (
+      value !== undefined &&
+      value !== null &&
+      value !== "" &&
+      value !== false
+    ) {
       if (Array.isArray(value) && value.length > 0) {
         newParams.set(key, value.join("-"));
       } else if (!Array.isArray(value)) {

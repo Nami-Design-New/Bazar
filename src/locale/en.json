@@ -293,6 +293,7 @@
     "markets": "Markets"
   },
   "ads": {
+    "selectCategoryAndSubcategory": "Please select a category and subcategory to proceed",
     "areYouSureYouWantToDeleteAD": "Are you sure you want to delete this ad?",
     "addAD": "Add Ad",
     "noWantedAds": "There are no wanted ads with these details",
@@ -461,7 +462,8 @@
     "main-info": "Main Information",
     "location": "Address",
     "gallery": "Ad Images",
-    "pricing-contact": "Pricing and Contact"
+    "pricing-contact": "Pricing and Contact",
+    "category-filters": "Category"
   },
   "search": {
     "searchFor": "Search for...",
