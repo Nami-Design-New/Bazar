@@ -33,6 +33,10 @@ function CreateReplayModal({ showModal, setShowModal, targetComment }) {
           toast.success(t("successfullyReplied"));
           queryClient.invalidateQueries(["comments", "replays"]);
           setShowModal(false);
+          setFormData({
+            comment_id: targetComment?.id,
+            comment: "",
+          })
         } else {
           toast.error(t("someThingWentWrong"));
         }

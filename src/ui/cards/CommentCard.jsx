@@ -4,16 +4,12 @@ import { useTranslation } from "react-i18next";
 import ReportModal from "../modals/ReportModal";
 import { useState } from "react";
 import CreateReplayModal from "../modals/CreateReplayModal";
-import useGetReplays from "../../hooks/useGetReplays";
-import ReplayCard from "./ReplayCard";
+import CommentReplays from "../../components/replays/CommentReplays";
 
 function CommentCard({ comment }) {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const [showReplayModal, setShowReplayModal] = useState(false);
-  const { isLoading: replaysLoading, data: replays } = useGetReplays({
-    comment_id: comment?.id,
-  });
 
   return (
     <div className="rate-card">
@@ -50,15 +46,8 @@ function CommentCard({ comment }) {
 
       <p className="comment">{comment?.comment}</p>
 
-      <ul>
-        {replays?.data &&
-          replays?.data?.length > 0 &&
-          replays?.data?.map((replay) => (
-            <li key={replay?.id}>
-              <ReplayCard targetComment={replay} />
-            </li>
-          ))}
-      </ul>
+      <CommentReplays comment={comment} />
+
       <ReportModal
         id={comment?.id}
         type={"comment"}

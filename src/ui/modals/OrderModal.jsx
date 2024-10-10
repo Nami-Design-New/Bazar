@@ -2,7 +2,7 @@ import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import Lottie from "react-lottie";
 import SubmitButton from "../form-elements/SubmitButton";
-import animation from "../../../public/images/wallet.json";
+import animation from "../../assets/images/wallet.json";
 
 const OrderModal = ({
   showModal,

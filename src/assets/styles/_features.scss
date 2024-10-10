@@ -1185,7 +1185,14 @@
     gap: 16px;
     padding-right: 26px;
   }
-  ul {
+  .comments-replays {
+    max-height: 350px;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+    }
     &:has(li) {
       padding: 0 24px;
       border: 1px dashed $LightGray !important;
@@ -1399,5 +1406,23 @@
 
   .progress-bar {
     border-radius: 4px !important;
+  }
+}
+.show-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  min-width: 160px;
+  position: relative;
+  color: $main;
+  font-size: 16px;
+  cursor: pointer;
+  transition: $transition;
+  line-height: 14px;
+
+  i {
+    font-size: 14px;
   }
 }
