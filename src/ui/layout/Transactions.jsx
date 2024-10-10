@@ -13,7 +13,7 @@ function Transactions() {
     <DataLoader minHeight="400px" />
   ) : (
     <div className="transactions-wrapper">
-      <h3>{t("balance.transactions")}</h3>
+      <h5>{t("balance.transactions")}</h5>
       <div className="row m-0">
         <div className="col-12 p-2">
           {transactions?.data && transactions?.data?.length > 0 ? (

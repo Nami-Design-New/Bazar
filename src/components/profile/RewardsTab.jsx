@@ -83,7 +83,7 @@ function RewardsTab({ isMyAccount, user }) {
           </div>
         ) : (
           <div className={"no-rewards"}>
-            <h4 style={{ textWrap: "balance" }}>{t("profile.noRewards")}</h4>
+            <h5 style={{ textWrap: "balance" }}>{t("profile.noRewards")}</h5>
             {settings?.reward_rate_average ||
             settings?.reward_favorite_count ? (
               <>

@@ -77,7 +77,7 @@ function OrderCard({ order }) {
             </div>
             <div className="col-lg-4 col-12 d-flex flex-column gap-3">
               <div className="heading">
-                <span className={`progress-status ${order?.status}`}>
+                <span className={`progress-status`}>
                   {lang === "ar"
                     ? ORDER_STATUS_AR[order?.status]
                     : ORDER_STATUS_EN[order?.status]}
