@@ -77,7 +77,15 @@ const ConfirmOtp = ({ otpData, setOtpData, formData, phone }) => {
       const res = await axios.request(checkCodeRequest);
 
       if (res.data.code === 200) {
-        const req = await axios.post("/user/register", { ...formData });
+        const req = await axios.post(
+          "/user/register",
+          { ...formData },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
 
         if (req.data.code === 200) {
           toast.success(t("auth.registerSuccess"));
