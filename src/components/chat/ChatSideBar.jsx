@@ -9,6 +9,7 @@ const ChatSideBar = ({
   chats,
   targetChat,
   setTargetChat,
+  refetch,
 }) => {
   const { t } = useTranslation();
   const { user } = useSelector((state) => state.authedUser);
@@ -37,6 +38,7 @@ const ChatSideBar = ({
             sessionStorage.setItem("buyer_id", chat?.buyer_id);
             sessionStorage.setItem("seller_id", chat?.seller_id);
             sessionStorage.setItem("ad_id", chat?.ad_id);
+            refetch();
             setTargetChat(chat);
             setShowChatsMenu(false);
           }}
@@ -62,7 +64,9 @@ const ChatSideBar = ({
                 : t("chat.deletedAccount")}
             </h6>
 
-            <p className="one-line-wrap">{chat?.ad?.title}</p>
+            {chat?.ad?.title ? (
+              <p className="chat-subtitle one-line-wrap">{chat?.ad?.title}</p>
+            ) : null}
 
             <p className="lastMessage unread">
               {chat?.last_message?.type !== "text" ? (

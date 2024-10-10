@@ -13,11 +13,15 @@ const Chats = () => {
   const [targetChat, setTargetChat] = useState(null);
 
   const { data: chats, isLoading } = useGetChats();
-  
-  const { data: chat, isLoading: isChatLoading } = useGetChat({
+
+  const {
+    data: chat,
+    isLoading: isChatLoading,
+    refetch,
+  } = useGetChat({
     buyer_id: sessionStorage.getItem("buyer_id"),
     seller_id: sessionStorage.getItem("seller_id"),
-    ad_id: sessionStorage.getItem("ad_id")
+    ad_id: sessionStorage.getItem("ad_id"),
   });
 
   useEffect(() => {
@@ -47,6 +51,7 @@ const Chats = () => {
                   targetChat={targetChat}
                   showChatsMenu={showChatsMenu}
                   setShowChatsMenu={setShowChatsMenu}
+                  refetch={refetch}
                 />
               </div>
               <div className="col-lg-8 col-12 p-2">

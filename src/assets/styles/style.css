@@ -5882,6 +5882,10 @@ body main .show-more {
 body main .show-more i {
   font-size: 14px;
 }
+body main .chat-subtitle {
+  color: #6b6464;
+  font-size: 14px;
+}
 body main .itemDetails {
   padding: 40px 0;
 }
