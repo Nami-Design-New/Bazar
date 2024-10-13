@@ -6256,19 +6256,25 @@ body main .itemDetails .itemDetailsBox ul {
 }
 body main .itemDetails .itemDetailsBox ul li {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   padding: 12px;
   border-radius: 16px;
-  gap: 8px;
+  gap: 16px;
 }
 body main .itemDetails .itemDetailsBox ul li span {
   flex: 1;
 }
 body main .itemDetails .itemDetailsBox ul li p {
-  flex: 3;
-  font-size: 12px;
+  font-size: 12px !important;
   color: #777777;
   font-weight: bold;
+}
+body main .itemDetails .itemDetailsBox ul li p.item-value {
+  flex: 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 body main .itemDetails .itemDetailsBox ul li:nth-child(2n) {
   background-color: #f5f5f5;

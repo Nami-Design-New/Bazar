@@ -26,6 +26,8 @@ function ADAboutTab({ ad }) {
     whatsapp: `https://wa.me/?text=${currentPageLink}`,
   };
 
+  console.log(ad?.data);
+
   function handleToggleFavorite(e) {
     e.stopPropagation();
     e.preventDefault();
@@ -137,6 +139,29 @@ function ADAboutTab({ ad }) {
           </div>
         </div>
         <p className="description">{ad?.data?.description}</p>
+      </div>
+      <div className="itemDetailsBox mb-3">
+        <h4 className="title">{t("moreDetails")}</h4>
+        <ul>
+          {ad?.data?.filters?.map((filter) => (
+            <li key={filter?.id}>
+              {filter?.filter?.filter_name || filter?.filter?.name ? (
+                <p className="item-title">
+                  {filter?.filter?.filter_name || filter?.filter?.name}
+                </p>
+              ) : null}
+              <p className="item-value">
+                {filter?.filter?.type === "number"
+                  ? filter?.value
+                  : filter?.filter?.type === "boolean"
+                  ? filter?.value
+                    ? t("yes")
+                    : t("no")
+                  : filter?.value?.name}
+              </p>
+            </li>
+          ))}
+        </ul>
       </div>
       <ReportModal
         id={ad?.data?.id}

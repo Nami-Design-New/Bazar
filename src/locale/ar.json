@@ -640,5 +640,8 @@
   "addReplay": "اضافة رد",
   "add": "اضف",
   "successfullyReplied": "تم الرد بنجاح",
-  "showMore": "عرض المزيد"
+  "showMore": "عرض المزيد",
+  "moreDetails": "تفاصيل إضافية",
+  "yes": "نعم",
+  "no": "لا"
 }

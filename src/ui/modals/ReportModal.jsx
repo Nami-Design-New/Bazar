@@ -34,7 +34,7 @@ function ReportModal({ id, type, showModal, setShowModal }) {
         },
       });
       if (res.status === 201 || res.status === 200) {
-        toast.success(`t("interests.successfullyReported")`);
+        toast.success(t("interests.successfullyReported"));
         setShowModal(false);
       } else {
         toast.error(t("someThingWentWrong"));
