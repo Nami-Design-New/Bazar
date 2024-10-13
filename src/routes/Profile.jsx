@@ -80,7 +80,7 @@ function Profile() {
   const handleDeleteAccount = async () => {
     try {
       setDeleteLoading(true);
-      const res = await handleDeleteAccount();
+      const res = await axios.post("/user/delete_account" );
       if (res.data.code === 200) {
         delete axios.defaults.headers.common["Authorization"];
         toast.success(t("cart.orderSuccess"));
