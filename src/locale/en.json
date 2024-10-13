@@ -630,5 +630,8 @@
   "addReplay": "Add Replay",
   "add": "Add",
   "successfullyReplied": "Successfully replied",
-  "showMore": "Show more"
+  "showMore": "Show more",
+  "moreDetails": "More Details",
+  "yes": "Yes",
+  "No": "No"
 }
