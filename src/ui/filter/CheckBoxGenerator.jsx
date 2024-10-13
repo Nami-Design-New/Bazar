@@ -24,7 +24,7 @@ function CheckBoxGenerator({
   }, []);
 
   return (
-    <div className="d-flex flex-column my-2 gap-2">
+    <div className="w-100 d-flex flex-column my-2 gap-2">
       {showTitle && !filter?.filter_name && (
         <h6>{filter?.filter_name || filter?.name}</h6>
       )}
