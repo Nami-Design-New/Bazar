@@ -47,6 +47,7 @@ function AdDetails() {
       navigate("/login");
     }
   };
+
   const handleIncreasePhoneCount = async () => {
     if (isLogged) {
       try {

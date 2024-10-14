@@ -8,6 +8,7 @@ import useGetFilters from "../../hooks/settings/useGetFilters";
 import AdFormFiltersGenerator from "./AdFormFiltersGenerator";
 
 function AdCategoryStep({
+  ad,
   formData,
   setForm,
   setFormData,
@@ -26,7 +27,8 @@ function AdCategoryStep({
           ?.sub_categories
       );
     }
-  }, [formData?.category_id, categories]);
+    setForm;
+  }, [formData?.category_id, categories, setForm]);
 
   const handleGetNextPage = (e) => {
     e.preventDefault();
@@ -78,6 +80,7 @@ function AdCategoryStep({
 
       <div className="col-12 p-2 d-flex flex-wrap">
         <AdFormFiltersGenerator
+          ad={ad}
           filters={filters}
           setDynamicFilterData={setFilterData}
           dynamicFilterData={filterData}

@@ -43,6 +43,7 @@ function AddAdvertisment() {
     delete_video: 0,
     delete_audio: 0,
     delete_images: [],
+    filters: null,
   });
 
   const [phoneChecked, setPhoneChecked] = useState(
@@ -75,10 +76,33 @@ function AddAdvertisment() {
         audio: ad?.data?.audio,
         whatsapp: ad?.data?.whatsapp,
         video: ad?.data?.video,
+        filters: ad?.data?.filters,
+      });
+    }
+
+    if (ad?.data?.filters) {
+      ad?.data?.filters?.map((filter) => {
+        if (filter?.filter?.type === "number") {
+          setFilterData((filterData) => ({
+            ...filterData,
+            [filter?.filter_id]: +filter?.value,
+          }));
+        } else if (filter?.filter?.type === "boolean") {
+          setFilterData((filterData) => ({
+            ...filterData,
+            [filter?.filter_id]:
+              filter?.value === "true" || filter?.value ? true : false,
+          }));
+        } else if (filter?.filter?.type === "select") {
+          setFilterData((filterData) => ({
+            ...filterData,
+            [filter?.filter_id]: +filter?.value?.id,
+          }));
+        }
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ad]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -130,6 +154,7 @@ function AddAdvertisment() {
       delete_images: formData.delete_images,
       delete_audio: formData.delete_audio,
       delete_video: formData.delete_video,
+      filters: formData.filters,
       ...filterData,
     };
 
@@ -231,6 +256,7 @@ function AddAdvertisment() {
                     setForm={setForm}
                     filterData={filterData}
                     setFilterData={setFilterData}
+                    ad={ad}
                   />
                 )}
                 {form === "location" && (
