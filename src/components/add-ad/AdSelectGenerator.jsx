@@ -30,7 +30,7 @@ function AdSelectGenerator({
   return filter?.values && filter?.values?.length > 0 ? (
     <>
       <div className="departments col-6 p-2 gap-2">
-        {<h6>{filter?.name}</h6>}
+        {<h6>{filter?.filter_name}</h6>}
         <SelectField
           required={filter?.required}
           name={filter?.id}

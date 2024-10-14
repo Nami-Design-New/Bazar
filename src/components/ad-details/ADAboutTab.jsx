@@ -26,8 +26,6 @@ function ADAboutTab({ ad }) {
     whatsapp: `https://wa.me/?text=${currentPageLink}`,
   };
 
-  console.log(ad?.data);
-
   function handleToggleFavorite(e) {
     e.stopPropagation();
     e.preventDefault();
@@ -145,7 +143,10 @@ function ADAboutTab({ ad }) {
         <ul>
           {ad?.data?.filters?.map((filter) => (
             <li key={filter?.id}>
-              {filter?.filter?.filter_name || filter?.filter?.name ? (
+              {filter?.filter?.type === "number" ||
+              filter?.filter?.type === "boolean" ? (
+                <p className="item-title">{filter?.filter?.name}</p>
+              ) : filter?.filter?.filter_name || filter?.filter?.name ? (
                 <p className="item-title">
                   {filter?.filter?.filter_name || filter?.filter?.name}
                 </p>

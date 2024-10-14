@@ -1,9 +1,20 @@
+import { useEffect } from "react";
+
 function AdCheckBoxGenerator({
   filter,
   setDynamicFilterData,
   dynamicFilterData,
   showTitle = false,
 }) {
+  useEffect(() => {
+    if (filter?.required) {
+      setDynamicFilterData((prevState) => ({
+        ...prevState,
+        [filter?.id]: 1,
+      }));
+    }
+  }, []);
+
   return (
     <div className="d-flex flex-column my-2 gap-2">
       {showTitle && !filter?.filter_name && (

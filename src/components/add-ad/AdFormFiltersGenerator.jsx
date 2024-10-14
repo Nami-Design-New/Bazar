@@ -1,5 +1,6 @@
+import InputField from "../../ui/form-elements/InputField";
+import { handleChange } from "../../utils/helpers";
 import AdCheckBoxGenerator from "./AdCheckBoxGenerator";
-import AdRangeGenerator from "./AdRangeGenerator";
 import AdSelectGenerator from "./AdSelectGenerator";
 
 function AdFormFiltersGenerator({
@@ -12,11 +13,17 @@ function AdFormFiltersGenerator({
         if (filter?.type === "number") {
           return (
             <div className="col-6 p-2" key={filter?.id}>
-              <AdRangeGenerator
-                key={filter?.id}
-                filter={filter}
-                dynamicFilterData={dynamicFilterData}
-                setDynamicFilterData={setDynamicFilterData}
+              <InputField
+                label={filter?.filter_name || filter?.name}
+                placeholder="00"
+                name={filter?.id}
+                id={filter?.id}
+                type="number"
+                value={dynamicFilterData?.[filter?.id]}
+                onChange={(e) => {
+                  handleChange(e, setDynamicFilterData);
+                }}
+                required={filter?.required}
               />
             </div>
           );
