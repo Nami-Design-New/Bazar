@@ -26,7 +26,7 @@ function SelectGenerator({ filter, dynamicFilterData, setDynamicFilterData }) {
   return filter?.values && filter?.values?.length > 0 ? (
     <>
       <div className="departments w-100  gap-2">
-        {<h6>{filter?.name}</h6>}
+        {<h6>{filter?.filter_name}</h6>}
         <SelectField
           required={filter?.required}
           name={filter?.id}
