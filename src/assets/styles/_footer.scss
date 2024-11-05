@@ -48,7 +48,7 @@ footer {
   isolation: isolate;
   overflow: hidden;
   // box-shadow: 0px -4px 10px 0 #00000010;
-border-top: 1px solid $LightGray;
+  border-top: 1px solid $LightGray;
   &::after {
     content: "";
     width: 0px;
@@ -114,7 +114,6 @@ border-top: 1px solid $LightGray;
   .social {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 16px;
     a {
       display: flex;
@@ -139,9 +138,6 @@ border-top: 1px solid $LightGray;
           object-fit: contain;
           transition: $transition;
         }
-      }
-      &:hover {
-        margin-left: 8px;
       }
     }
   }

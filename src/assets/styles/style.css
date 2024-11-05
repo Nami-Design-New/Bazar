@@ -8611,7 +8611,6 @@ body footer .copywriting .hint a img {
 body footer .social {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 16px;
 }
 body footer .social a {
@@ -8639,9 +8638,6 @@ body footer .social a .icon img {
   -o-object-fit: contain;
      object-fit: contain;
   transition: all 0.2s ease-in-out;
-}
-body footer .social a:hover {
-  margin-left: 8px;
 }
 body footer .group {
   display: flex;
